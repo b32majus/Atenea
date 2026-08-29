@@ -29,11 +29,12 @@ Remove or disable only partial/conflicting Matt/Gentle installations that would 
 ## Stage 2 — Full upstream installation
 
 1. Install/configure the current supported Gentle AI ecosystem for OpenCode.
-2. Install the full Matt Pocock skills set for Atenea using the supported upstream installer.
-3. Run `/setup-matt-pocock-skills` in Atenea.
-4. Do not hand-edit generated Gentle or Matt internals merely to force compatibility.
+2. For the first qualification, prefer a **pinned reproducible build of the new RDD architecture** rather than floating `main`. Current candidate: `v2.5.0-rc.1`, subject to Stage 0/Stage 1 confirmation that no newer stable supersedes the reason for selecting it.
+3. Install the full Matt Pocock skills set for Atenea using the supported upstream installer.
+4. Run `/setup-matt-pocock-skills` in Atenea.
+5. Do not hand-edit generated Gentle or Matt internals merely to force compatibility.
 
-**Pass condition:** Both upstream ecosystems report healthy installation state.
+**Pass condition:** Both upstream ecosystems report healthy installation state and the exact Gentle version under test is recorded.
 
 ## Stage 3 — Skill discovery compatibility
 
@@ -65,6 +66,16 @@ Required durable outputs should include, where naturally produced:
 
 **Pass condition:** A fresh agent should have enough durable information to understand what is required without the original authoring chat.
 
+### Matt project-knowledge continuity canary
+
+During authoring, add or naturally establish at least one project-level engineering rule that Matt's own workflow would consume later. Preferred canary from Matt's own example:
+
+`Tautological tests considered harmful.`
+
+The rule should live in the normal durable project surface used by Matt (for example `CODING_STANDARDS.md` if that is what the upstream workflow creates/uses), not in a one-off execution prompt.
+
+The purpose is not to force this exact wording forever. It is to verify that **knowledge created/consumed by Matt remains visible to Gentle during unattended execution without manual prompt translation**.
+
 ## Stage 5 — Fresh-session unattended handoff
 
 Close the authoring session. Start a fresh OpenCode/Gentle session in the same repository.
@@ -84,10 +95,46 @@ Observe whether Gentle:
 - performs its native review/RDD behavior when enabled;
 - stops/escalates when the contract is genuinely insufficient.
 
-## Stage 6 — Evidence and cost
+### Cross-ecosystem continuity check
+
+The unattended run must also demonstrate that Gentle can consume durable project knowledge produced or used by Matt. The Matt project-knowledge canary from Stage 4 must influence implementation/review **without repeating the rule in the unattended prompt**.
+
+**Pass:** Gentle respects or detects violation of the rule from repository/project context.
+
+**Fail:** Matt sees the rule in its own workflow but Gentle behaves as if the rule does not exist unless it is copied into the prompt.
+
+### Tautological-test canary
+
+Include a case where a shallow textual assertion could appear to prove the feature while not proving its behavior (for example, checking that an implementation string exists in a file when the requirement is behavioral).
+
+The canary should test whether the combined ecosystem avoids or catches false assurance from tautological tests.
+
+Passing evidence can come from either:
+
+- the implementation avoiding such a test because project/testing rules are correctly consumed; or
+- verification/RDD flagging the tautological test as insufficient evidence.
+
+Do not add a custom Atenea reviewer solely to enforce this. The point is to test upstream behavior.
+
+## Stage 6 — RDD/runtime behavior
+
+Treat RDD as a **native Gentle subsystem**, not as a prompt bundle to be reconstructed.
+
+Qualification observations should include:
+
+- whether RDD starts through the supported OpenCode adapter;
+- whether native deterministic verification/lifecycle behavior works without custom glue;
+- whether the run remains bounded rather than entering uncontrolled review loops;
+- whether `Ready` / `Needs your decision` accurately reflects the observed candidate state;
+- whether any adapter/runtime failure is fail-closed and diagnosable.
+
+Atenea must not recreate RDD algorithms, receipts, candidate freezing, lifecycle state or adapter behavior in custom code.
+
+## Stage 7 — Evidence and cost
 
 Record at minimum:
 
+- exact Gentle version/commit under test;
 - models used;
 - number of agent/model calls if observable;
 - token/cost information if observable;
@@ -98,7 +145,23 @@ Record at minimum:
 - lifecycle/recovery behavior;
 - final repository state.
 
-## Stage 7 — Decision
+Also record signals relevant to Gentle's current cost claims:
+
+- unnecessary repeated reads;
+- number of exploratory/delegated workers;
+- whether workers converge to bounded writes;
+- review/verification latency;
+- whether search/indexing becomes a measurable bottleneck.
+
+Do **not** add CodeGraph to the first baseline merely to improve these numbers. Establish the vanilla baseline first. If search cost is a real bottleneck, CodeGraph may be evaluated later as a separate optimization.
+
+## Stage 8 — Fresh-session isolation
+
+Where practical, keep authoring and unattended implementation in separate sessions. This is both a durability test and a context-contamination control.
+
+**Pass condition:** the unattended executor succeeds from durable repository/tracker context, not from hidden conversational memory.
+
+## Stage 9 — Decision
 
 Possible outcomes:
 
@@ -121,3 +184,5 @@ The ecosystems conflict structurally or require substantial custom orchestration
 - Testing Pi before OpenCode succeeds.
 - Introducing OpenSpec/Convoy/Spec Kit into the baseline.
 - Optimizing token cost before functional compatibility is demonstrated.
+- Extracting or reimplementing pieces of Gentle RDD.
+- Adding CodeGraph before the vanilla baseline is measured.
