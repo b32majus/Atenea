@@ -39,6 +39,7 @@ import { statSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 import { resolveEffectiveMode } from '../resolve.js';
+import { parseConfigDocument } from '../config-parser.js';
 
 const CONVENTION_FILE = '.execution-mode.json';
 
@@ -152,18 +153,7 @@ function readExplicitConfig(configPath) {
     throw new Error(`unreadable config file: ${configPath}`);
   }
 
-  let document;
-  try {
-    document = JSON.parse(raw);
-  } catch {
-    throw new Error(`malformed JSON in config file: ${configPath}`);
-  }
-
-  if (document === null || typeof document !== 'object' || Array.isArray(document)) {
-    throw new Error(`config file must contain a JSON object: ${configPath}`);
-  }
-
-  return document.mode;
+  return parseConfigDocument(raw, 'config file', configPath);
 }
 
 /**
@@ -203,18 +193,7 @@ function readConventionConfig(cwd) {
     throw new Error(`unreadable convention file: ${configPath}`);
   }
 
-  let document;
-  try {
-    document = JSON.parse(raw);
-  } catch {
-    throw new Error(`malformed JSON in convention file: ${configPath}`);
-  }
-
-  if (document === null || typeof document !== 'object' || Array.isArray(document)) {
-    throw new Error(`convention file must contain a JSON object: ${configPath}`);
-  }
-
-  return document.mode;
+  return parseConfigDocument(raw, 'convention file', configPath);
 }
 
 function main() {
