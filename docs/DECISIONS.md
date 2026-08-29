@@ -203,3 +203,18 @@ qualification window and must be reverted afterward.
 
 **Why:** Installation must establish the complete upstream surface without
 silently changing the review lifecycle used by later qualification stages.
+
+## D-017 — Gentle OpenCode workspace scope rejected for qualification
+
+**Status:** Accepted for Stage 2B
+
+For the Atenea baseline, Gentle is global for OpenCode because upstream
+workspace scope currently suffers from Gentleman-Programming/gentle-ai#3128:
+it writes `.config/opencode`, which is not an OpenCode project-local discovery
+surface. Matt Pocock skills remain project-local. Global scope is the simplest
+supported baseline while #3128 remains open; this is not a claim that global
+scope is architecturally preferable in general.
+
+**Why:** The defect was reproduced with OpenCode 1.18.25 and pinned Gentle
+2.5.0-rc.1. Qualification must measure supported runtime discovery rather than
+introduce local path-repair glue.

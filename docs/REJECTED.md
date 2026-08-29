@@ -81,3 +81,11 @@ A passing test can be tautological or self-fulfilling. Atenea will explicitly te
 **Decision:** Rejected for qualification.
 
 A fresh execution session is intentional: it verifies that the Agent Brief/project context is durable and limits cross-feature/context-compaction contamination.
+
+## R-014 — Work around Gentle OpenCode workspace issue #3128
+
+**Decision:** Rejected for baseline qualification.
+
+Do not manually move Gentle assets, add wrappers or `OPENCODE_CONFIG` overrides,
+or create custom adapter glue to work around #3128. Use the supported global
+OpenCode installation while the workspace-scope defect remains open.
