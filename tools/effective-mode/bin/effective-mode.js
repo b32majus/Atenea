@@ -41,7 +41,7 @@ import { resolve } from 'node:path';
 import { resolveEffectiveMode } from '../resolve.js';
 import { parseConfigDocument } from '../config-parser.js';
 import { parseArgs } from '../argv-parser.js';
-import { formatSuccessLine } from '../output-format.js';
+import { formatSuccessLine, formatErrorLine } from '../output-format.js';
 
 const CONVENTION_FILE = '.execution-mode.json';
 
@@ -175,6 +175,6 @@ try {
   main();
   process.exitCode = 0;
 } catch (err) {
-  process.stderr.write(`error: ${err instanceof Error ? err.message : String(err)}\n`);
+  process.stderr.write(formatErrorLine(err));
   process.exitCode = 1;
 }
