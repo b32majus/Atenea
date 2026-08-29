@@ -91,3 +91,65 @@ OpenSpec is a strong candidate for brownfield/evolutionary authoring, especially
 KairOS should become a thin scheduler/supervisor: discover ready work, respect dependency/blocker state, start execution, observe supported lifecycle state, apply deterministic repository delivery gates and move to the next work unit.
 
 It should not own planning, implementation reasoning, reviewer internals or repair algorithms that upstream ecosystems already own.
+
+---
+
+## D-010 — RDD remains a Gentle-owned subsystem
+
+**Status:** Accepted
+
+Do not extract or recreate RDD internals in Atenea/KairOS.
+
+**Evidence added 2026-08-29:** in the Gentleman Programming live stream, Alan described RDD as a difficult deterministic subsystem with runtime-specific adapters for Pi, Codex, Claude and OpenCode, and explained the maintenance burden created by architectural changes across those adapters.
+
+**Why:** This directly reinforces D-002. Atenea should qualify the supported upstream adapter, not rebuild the deterministic machinery around review, candidate identity, receipts, recovery or lifecycle.
+
+---
+
+## D-011 — Qualify a pinned Gentle build, not floating `main`
+
+**Status:** Accepted for first qualification
+
+Current target candidate: **Gentle AI `v2.5.0-rc.1`**, subject to checking at Stage 2 whether a newer stable release supersedes the reason for selecting it.
+
+**Why:** The 2026-08-29 live stream describes a substantial RDD architectural simplification and an analogous SDD simplification in the 2.5 line. A pinned RC gives us the relevant current architecture without letting `main` move underneath the experiment.
+
+Record the exact version/commit actually used.
+
+---
+
+## D-012 — Matt project knowledge must survive the handoff to Gentle
+
+**Status:** Qualification requirement
+
+Compatibility is not proven merely because Gentle's registry can see Matt skill names.
+
+At least one durable project rule used by Matt must influence Gentle unattended execution/review without being repeated in the execution prompt.
+
+Initial canary:
+
+`Tautological tests considered harmful.`
+
+Prefer the normal Matt/project surface such as `CODING_STANDARDS.md` if that is what the upstream workflow uses.
+
+**Why:** This tests semantic continuity between the ecosystems, not just file discovery.
+
+---
+
+## D-013 — Baseline before adding CodeGraph or other optimizations
+
+**Status:** Accepted
+
+The first compatibility run remains vanilla Matt + Gentle + OpenCode. Do not add CodeGraph merely to improve search/reviewer speed before the baseline exists.
+
+**Why:** Gentleman maintainers currently report meaningful token/time savings from CodeGraph, but introducing it immediately would confound functional compatibility with performance optimization. Measure first; optimize second.
+
+---
+
+## D-014 — Treat session isolation as part of qualification
+
+**Status:** Accepted
+
+Authoring and unattended implementation should use separate sessions where practical.
+
+**Why:** Besides proving durable handoff, this matches current Gentleman guidance to isolate unrelated features in separate sessions to reduce context contamination and compaction drift.
