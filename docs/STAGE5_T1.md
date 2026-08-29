@@ -105,6 +105,10 @@ The implementation commit is unchanged in history. The checkpoint qualifies
 the T1 handoff and implementation boundary, including the lesson that changed
 durable authority must be followed by a genuinely fresh session.
 
+A later documentation-authority commit on the same branch is
+`6af527858b3194379138ec462be5817e78647b3f`; it does not replace the accepted
+implementation HEAD/TREE above.
+
 ## Isolation note
 
 Engram remained available and was used during execution. This was therefore
@@ -121,11 +125,9 @@ Gentle AI v2.5.0-rc.2 was released on 2026-08-29 after Stage 5 T1
 qualification. Its tag target commit is
 `c668c11e5feb8c8b8555f22f1a6103f6ac5cf79d`.
 
-Stage 5 remains v2.5.0-rc.1 with RDD OFF. Keep that runtime for the remaining
-Stage 5 direct/delegated qualification unless a material rc.1 blocker is
-discovered. The deliberate next epoch is:
+Stage 5 remained v2.5.0-rc.1 with RDD OFF through T4. The deliberate next epoch is:
 
-- Stage 5: v2.5.0-rc.1 / RDD OFF;
+- Stage 5: v2.5.0-rc.1 / RDD OFF — complete;
 - Stage 6: upgrade qualification to v2.5.0-rc.2 / RDD ON.
 
 rc.2 contains a materially changed review lifecycle, including one active
@@ -143,9 +145,14 @@ untracked artifact; opaque `repository_context` digest and
 wrong-repository refusal; and bounded/fail-closed refusal. Pi-specific relay
 testing remains outside the OpenCode baseline.
 
+## Later train closure
+
+After this T1-specific document was first written, issue #2 passed its exact
+Closure Gate and was closed. T2, T3 and T4 subsequently completed and closed as
+well. The canonical full Stage 5 record is now `docs/STAGE5_TRACER_TRAIN.md`.
+
 ## Remaining unqualified work
 
 - native Gentle RDD/runtime behavior remains Stage 6;
-- automated handoff/dispatch remains deferred;
-- issue #2 is intentionally not closed by this documentation checkpoint;
-- merge/release remains separate from dependency-ticket closure.
+- automated fresh-session ticket progression remains deferred;
+- final train integration/merge/release remains separate from dependency-ticket closure.
