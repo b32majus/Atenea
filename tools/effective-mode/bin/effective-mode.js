@@ -40,6 +40,7 @@ import { resolve } from 'node:path';
 
 import { resolveEffectiveMode } from '../resolve.js';
 import { parseConfigDocument } from '../config-parser.js';
+import { parseArgs } from '../argv-parser.js';
 
 const CONVENTION_FILE = '.execution-mode.json';
 
@@ -68,56 +69,6 @@ Sources, in precedence order:
 A present but invalid mode value in any source is an error; it never falls
 through to a lower source.
 `;
-
-/**
- * Parse argv strictly and return the effective configuration source.
- *
- * The only supported forms are `--config <path>` and a standalone `--help`.
- * Every other argument is a hard error identifying its semantic category:
- * the unsupported `--config=<path>` form, an empty `--config` value, a
- * missing `--config` value, repeated `--config` flags, an unknown flag, or
- * `--help` combined with any other argument.
- *
- * @param {string[]} args - `process.argv.slice(2)`.
- * @returns {{ configPath?: string, help: boolean }} The parse result.
- */
-function parseArgs(args) {
-  if (args.length === 1 && args[0] === '--help') {
-    return { help: true };
-  }
-  if (args.some((arg) => arg === '--help')) {
-    throw new Error('--help cannot be combined with other arguments');
-  }
-
-  let configPath;
-  for (let i = 0; i < args.length; i += 1) {
-    const arg = args[i];
-    if (arg === '--config') {
-      if (configPath !== undefined) {
-        throw new Error('repeated --config flags are not supported');
-      }
-      if (i + 1 >= args.length) {
-        throw new Error('missing value for --config');
-      }
-      const value = args[i + 1];
-      if (value === '') {
-        throw new Error('empty value for --config');
-      }
-      if (value.startsWith('--')) {
-        throw new Error(`missing value for --config (unexpected flag: ${value})`);
-      }
-      configPath = value;
-      i += 1;
-    } else if (arg.startsWith('--config=')) {
-      throw new Error('unsupported --config=<path> form; use --config <path>');
-    } else if (arg.startsWith('--')) {
-      throw new Error(`unknown flag: ${arg}`);
-    } else {
-      throw new Error(`unexpected argument: ${arg}`);
-    }
-  }
-  return { configPath };
-}
 
 /**
  * Read the raw mode value from a config document at an explicit path.
