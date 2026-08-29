@@ -42,6 +42,7 @@ import { resolveEffectiveMode } from '../resolve.js';
 import { parseConfigDocument } from '../config-parser.js';
 import { parseArgs } from '../argv-parser.js';
 import { formatSuccessLine, formatErrorLine } from '../output-format.js';
+import { normalizeEnvMode } from '../env-mode.js';
 
 const CONVENTION_FILE = '.execution-mode.json';
 
@@ -157,8 +158,7 @@ function main() {
 
   // Only the exact empty string counts as absence; whitespace-only values
   // remain present candidates and are validated by the resolver.
-  const rawEnvValue = process.env.EXECUTION_MODE;
-  const envValue = rawEnvValue === '' ? undefined : rawEnvValue;
+  const envValue = normalizeEnvMode(process.env.EXECUTION_MODE);
 
   const configValue =
     configPath !== undefined
