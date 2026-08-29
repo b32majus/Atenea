@@ -1,10 +1,10 @@
 # Atenea Stage 1 — Scoped Radical Reset
 
-Status: `NEEDS_REVIEW`
+Status: `PASS`
 
 Captured: 2026-08-29
 
-Stage 1 removed old Matt Pocock and Gentle AI surfaces from the active global discovery paths without changing OpenCode provider/auth configuration, Context7, Codex configuration, Hermes/Engram data, or unrelated repositories. The cleanup used recoverable quarantine for filesystem trees because the requested radical purge would otherwise be irreversible.
+Stage 1 removed old Matt Pocock and Gentle AI surfaces from the active global discovery paths without changing OpenCode provider/auth configuration, Context7, Codex configuration, Hermes/Engram data, or unrelated repositories. After human review, the exact quarantine was purged irreversibly and no old Matt/Gentle artifact remains active or recoverable within the experiment scope.
 
 ## Cleanup result
 
@@ -12,11 +12,11 @@ Stage 1 removed old Matt Pocock and Gentle AI surfaces from the active global di
 |---|---|---|
 | Matt Pocock skills | 17 named skills removed from global agent links | Official `npx skills remove --global ... -y` |
 | Matt lockfile | 13 stale `mattpocock/skills` entries removed; no other entries were present | Minimal mechanical lockfile cleanup after official CLI left stale entries |
-| Gentle OpenCode skills | 11 Gentle-authored skill directories and `_shared` support files removed from the active OpenCode root | Manual proven-owned cleanup, moved to quarantine |
-| Gentle OpenCode registry | `.atl` registry and cache removed from the active OpenCode root | Manual proven-owned cleanup, moved to quarantine |
+| Gentle OpenCode skills | 11 Gentle-authored skill directories and `_shared` support files removed from the active OpenCode root | Manual proven-owned cleanup, then final quarantine purge |
+| Gentle OpenCode registry | `.atl` registry and cache removed from the active OpenCode root | Manual proven-owned cleanup, then final quarantine purge |
 | Gentle OpenCode integrations | `commands/skill-registry.md` and Gentle skill-registry integration removed; `opencode-sdd-engram-manage` removed from `tui.json` | Manual proven-owned cleanup |
-| Gentle state | `~/.gentle-ai` state, cache and historical backups removed from the active home path | Manual proven-owned cleanup, moved to quarantine |
-| Gentle binary | Standalone `gentle-ai` 2.2.4 removed from `~/.local/bin` | Manual proven-owned cleanup, moved to quarantine |
+| Gentle state | `~/.gentle-ai` state, cache and historical backups removed from the active home path | Manual proven-owned cleanup, then final quarantine purge |
+| Gentle binary | Standalone `gentle-ai` 2.2.4 removed from `~/.local/bin` | Manual proven-owned cleanup, then final quarantine purge |
 
 ## Exact active paths changed
 
@@ -60,23 +60,19 @@ Matt ownership was proven by the official skills CLI and `/home/hermes/.agents/.
 - Hermes and Engram products/data, including `/home/hermes/.hermes/`; no database, memory store, repository, KairOS backup, credential, token, auth store or unrelated process was touched.
 - OpenCode itself; version remained `1.18.25` and no update was run.
 
-## Remaining Gentle surfaces
+## Final purge and remaining surfaces
 
-The following are deliberately retained only as recoverable quarantine, outside all active discovery paths:
+After favorable human review, the exact path `/tmp/atenea-stage1-gentle-quarantine-20260829` was validated as a non-symlink directory containing only the four documented categories (`.gentle-ai`, the old 2.2.4 binary, removed OpenCode Gentle skills/support, and removed registry/integrations) and was irreversibly deleted. Post-purge verification confirmed the path is absent.
 
-- `/tmp/atenea-stage1-gentle-quarantine-20260829/.gentle-ai/` — old Gentle state/cache/backups.
-- `/tmp/atenea-stage1-gentle-quarantine-20260829/gentle-bin/gentle-ai` — old standalone 2.2.4 binary.
-- `/tmp/atenea-stage1-gentle-quarantine-20260829/opencode-skills/` — removed Gentle-authored OpenCode skills/support files.
-- `/tmp/atenea-stage1-gentle-quarantine-20260829/opencode-integrations/` — removed ATL registry/cache and Gentle command remnants.
-
-Hermes-native skills and references that mention Gentle or SDD were preserved because they are under Hermes' own product surface and were not proven to be active OpenCode-managed files. They are not in the active OpenCode roots above.
+No old Matt or Gentle surface remains active or recoverable within the Atenea experiment scope. Hermes-native skills and references that mention Gentle or SDD were preserved because they are under Hermes' own product surface and were not proven to be active OpenCode-managed files.
 
 ## Verification
 
 - `npx skills list --global --json`: zero entries with `source == "mattpocock/skills"`.
 - Matt lockfile source count: `0`; no target directory remains in `.config/opencode/skills`, `.agents/skills`, or `.codex/skills`. The only same-named non-Matt Hermes skill found was `/home/hermes/.hermes/skills/mlops/research`, preserved because it has no Matt provenance.
 - No `triage` directory or Matt source reference remains in the active roots.
-- No active `/home/hermes/.gentle-ai`, `gentle-ai` binary, `.atl`, Gentle registry, Gentle command, Gentle plugin, or SDD TUI plugin remains.
+- No active or recoverable `/home/hermes/.gentle-ai`, `gentle-ai` binary, `.atl`, Gentle registry, Gentle command, Gentle plugin, or SDD TUI plugin remains.
+- Final purge: `/tmp/atenea-stage1-gentle-quarantine-20260829` is `ABSENT`; its pre-purge whitelist and zero-symlink checks passed.
 - `/home/hermes/.opencode/bin/opencode --version` returned `1.18.25`; `opencode --help` completed successfully.
 - Critical configuration hashes/mtimes were compared before and after. `opencode.json`, package metadata, auth-adjacent files, `.env` files, global `AGENTS.md`, and Codex files were unchanged. The intentional `tui.json` plugin removal is the sole related configuration change.
 - No Gentle/RFA process was running at verification time; no process was stopped.
@@ -84,4 +80,4 @@ Hermes-native skills and references that mention Gentle or SDD were preserved be
 
 ## Final state
 
-The active VPS surface is clean for a future OpenCode + full Matt + full Gentle qualification: old Matt skills are no longer discoverable, the old Gentle registry/state/binary are out of active paths, and protected configuration/data remain intact. Status is `NEEDS_REVIEW` only because the old artifacts remain recoverably quarantined rather than irreversibly purged after the safety guard rejected the broad delete; purge the explicit quarantine before Stage 2 if a destructive final purge is required.
+The active VPS surface is clean for a future OpenCode + full Matt + full Gentle qualification: old Matt skills are no longer discoverable, the old Gentle registry/state/binary are absent, and protected configuration/data remain intact. Stage 1 is complete with status `PASS`; no old Matt/Gentle surface remains active or recoverable within the experiment scope.
