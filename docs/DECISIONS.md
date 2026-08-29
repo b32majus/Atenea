@@ -190,3 +190,16 @@ Do not use the reset as an excuse to purge unrelated infrastructure. Preserve:
 - Hermes/Engram data unless an upstream Gentle uninstall specifically owns and removes a managed integration that must be recreated later.
 
 **Why:** Installing current ecosystems on top of duplicated/partial old state would make any success or failure ambiguous. A clean Matt/Gentle baseline is worth more than preserving obsolete integration state.
+---
+
+## D-016 — RDD activation remains off until unattended qualification
+
+**Status:** Accepted for Stage 2A
+
+Stage 2A does not enable Gentle review mode/RDD. The current binary reports that
+RDD can be enabled globally, while a clone may only disable it and can never
+require it. Any global activation is deferred to the controlled Stage 5/6
+qualification window and must be reverted afterward.
+
+**Why:** Installation must establish the complete upstream surface without
+silently changing the review lifecycle used by later qualification stages.
