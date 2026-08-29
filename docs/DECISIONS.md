@@ -153,3 +153,40 @@ The first compatibility run remains vanilla Matt + Gentle + OpenCode. Do not add
 Authoring and unattended implementation should use separate sessions where practical.
 
 **Why:** Besides proving durable handoff, this matches current Gentleman guidance to isolate unrelated features in separate sessions to reduce context contamination and compaction drift.
+
+---
+
+## D-015 — Stage 1 uses a scoped radical reset of Matt + Gentle
+
+**Status:** Accepted
+
+Before installing the qualification baseline, remove existing **Matt Pocock and Gentle AI managed/discovered artifacts that can affect the OpenCode experiment**, then reinstall both ecosystems cleanly through their supported upstream paths.
+
+The reset is radical with respect to Matt/Gentle, but deliberately conservative with respect to the rest of the VPS.
+
+### Evidence
+
+Stage 0 found:
+
+- duplicated Matt installations in two OpenCode-visible skill roots;
+- a mixed historical Matt skill lockfile;
+- missing `triage` despite the target workflow requiring it;
+- Gentle AI `2.2.4`, older than the architecture being qualified;
+- a stale Gentle skill registry that does not reflect the current Matt installation;
+- existing Gentle state centered on a previous Hermes/CodeGraph setup rather than the Atenea OpenCode baseline.
+
+See `docs/STAGE0_ENVIRONMENT.md`.
+
+### Preserve unless direct interference is proven
+
+Do not use the reset as an excuse to purge unrelated infrastructure. Preserve:
+
+- OpenCode provider/auth configuration;
+- unrelated OpenCode plugins, commands and agents;
+- Context7;
+- Codex configuration;
+- credentials, `.env` files and auth stores;
+- unrelated project data;
+- Hermes/Engram data unless an upstream Gentle uninstall specifically owns and removes a managed integration that must be recreated later.
+
+**Why:** Installing current ecosystems on top of duplicated/partial old state would make any success or failure ambiguous. A clean Matt/Gentle baseline is worth more than preserving obsolete integration state.
