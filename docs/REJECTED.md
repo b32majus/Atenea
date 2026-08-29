@@ -8,6 +8,8 @@ This is not a graveyard of ideas. It records alternatives deliberately excluded 
 
 Gentle RDD is a complex lifecycle subsystem with deterministic/native machinery. Extracting the attractive review pieces while recreating identity, recovery, receipts, repair and lifecycle semantics ourselves defeats the purpose of adopting the upstream ecosystem.
 
+**Additional evidence, 2026-08-29:** Alan described RDD publicly as difficult to implement because each supported agent requires its own adapter around deterministic machinery. This strengthens the rejection: Atenea should use the complete upstream implementation or not use RDD at all.
+
 ## R-002 — Install only selected Matt skills
 
 **Decision:** Rejected for qualification.
@@ -55,3 +57,27 @@ Pi may be qualified later. OpenCode is the first runtime because it gives a simp
 **Decision:** Rejected for this experiment.
 
 Atenea intentionally prioritizes a simple, realistic setup inside the existing VPS environment. We will inventory global influence first, clean only conflicting/partial installations where necessary, and document what remains.
+
+## R-010 — Use floating Gentle `main` as the primary qualification target
+
+**Decision:** Rejected.
+
+A moving branch makes failures, performance and lifecycle behavior hard to reproduce. Use a pinned release/RC/commit selected for the architecture under test. `v2.5.0-rc.1` is the current intended target unless superseded by a suitable stable release before Stage 2.
+
+## R-011 — Add CodeGraph before vanilla baseline
+
+**Decision:** Deferred.
+
+Current maintainers report that CodeGraph can materially reduce search and verification cost. That may be valuable later, but it must not obscure the initial measurement of vanilla Matt + Gentle interoperability.
+
+## R-012 — Assume passing tests are sufficient evidence
+
+**Decision:** Rejected.
+
+A passing test can be tautological or self-fulfilling. Atenea will explicitly test whether a project-level anti-tautology rule established in the Matt side remains effective during Gentle unattended execution/review without being copied into the prompt.
+
+## R-013 — Keep one long session from design through unattended execution
+
+**Decision:** Rejected for qualification.
+
+A fresh execution session is intentional: it verifies that the Agent Brief/project context is durable and limits cross-feature/context-compaction contamination.
