@@ -1,13 +1,13 @@
 /**
  * Behavioral tests of the spawned CLI as a black box: observable stdout,
- * stderr, and exit code, with a controlled env and cwd. T1 required that
- * setting EXECUTION_MODE must NOT change CLI behavior; environment
- * acquisition is not introduced until T3 (#4). T2 introduces the convention
- * config file `.execution-mode.json` in the working directory: a valid mode
- * wins over the default and reports `config`; a missing file or missing
- * `mode` key falls through; presence-but-unusable (unreadable file,
- * malformed JSON, non-object document) fails loudly; a present-but-invalid
- * `mode` value is a resolver config-mode error.
+ * stderr, and exit code, with a controlled env and cwd. T3 introduces
+ * environment acquisition: a valid `EXECUTION_MODE` wins over the config
+ * file and the default and reports `environment`; the exact empty string
+ * counts as absence; whitespace-only values remain present and invalid.
+ * Validation is deterministic: the environment error is reported first, and
+ * an invalid lower-priority candidate is never hidden by a valid
+ * higher-priority one. T2 config behavior (convention file, container
+ * errors, present-but-invalid modes) is unchanged and still covered.
  */
 
 import { test } from 'node:test';
@@ -28,7 +28,8 @@ const CONVENTION_FILE = '.execution-mode.json';
 
 /**
  * Run the CLI as a black box in a clean temp dir with a fully controlled
- * environment (only a minimal HOME so Node does not warn).
+ * environment (only a minimal HOME so Node does not warn). The env is fully
+ * replaced, so EXECUTION_MODE is absent unless explicitly provided.
  *
  * @param {{
  *   env?: Record<string, string>,
@@ -68,18 +69,96 @@ test('no env and no config prints exactly the default line and exits 0', () => {
   assert.strictEqual(result.stderr, '');
 });
 
-test('setting EXECUTION_MODE must not change CLI behavior (scope acceptance)', () => {
-  for (const value of ['fast', 'full', '', 'FAST', '   ']) {
-    const result = runCli({ env: { EXECUTION_MODE: value } });
-    assert.strictEqual(result.status, 0, `EXECUTION_MODE=${JSON.stringify(value)} should exit 0`);
+// --- Environment source, end to end --------------------------------------
+
+test('a valid EXECUTION_MODE alone prints the environment line and exits 0', () => {
+  for (const mode of ['fast', 'full']) {
+    const result = runCli({ env: { EXECUTION_MODE: mode } });
+    assert.strictEqual(result.status, 0, `EXECUTION_MODE=${mode} should exit 0`);
     assert.strictEqual(
       result.stdout,
-      'execution mode: full (source: default)\n',
-      `EXECUTION_MODE=${JSON.stringify(value)} should still print the default line`,
+      `execution mode: ${mode} (source: environment)\n`,
+      `EXECUTION_MODE=${mode} should print the environment line`,
     );
-    assert.strictEqual(result.stderr, '', `EXECUTION_MODE=${JSON.stringify(value)} should write nothing to stderr`);
+    assert.strictEqual(result.stderr, '', `EXECUTION_MODE=${mode} should write nothing to stderr`);
   }
 });
+
+test('a valid EXECUTION_MODE wins over a valid convention config file', () => {
+  const result = runCli({
+    env: { EXECUTION_MODE: 'fast' },
+    files: { [CONVENTION_FILE]: JSON.stringify({ mode: 'full' }) },
+  });
+  assert.strictEqual(result.status, 0);
+  assert.strictEqual(result.stdout, 'execution mode: fast (source: environment)\n');
+  assert.strictEqual(result.stderr, '');
+});
+
+test('a valid EXECUTION_MODE wins over the default when no config file exists', () => {
+  const result = runCli({ env: { EXECUTION_MODE: 'fast' } });
+  assert.strictEqual(result.status, 0);
+  assert.strictEqual(result.stdout, 'execution mode: fast (source: environment)\n');
+  assert.strictEqual(result.stderr, '');
+});
+
+test('EXECUTION_MODE="" falls through to a valid config, then to the default', () => {
+  const withConfig = runCli({
+    env: { EXECUTION_MODE: '' },
+    files: { [CONVENTION_FILE]: JSON.stringify({ mode: 'fast' }) },
+  });
+  assert.strictEqual(withConfig.status, 0);
+  assert.strictEqual(withConfig.stdout, 'execution mode: fast (source: config)\n');
+  assert.strictEqual(withConfig.stderr, '');
+
+  const withoutConfig = runCli({ env: { EXECUTION_MODE: '' } });
+  assert.strictEqual(withoutConfig.status, 0);
+  assert.strictEqual(withoutConfig.stdout, 'execution mode: full (source: default)\n');
+  assert.strictEqual(withoutConfig.stderr, '');
+});
+
+test('whitespace-only EXECUTION_MODE values are present and fail as environment-mode errors', () => {
+  for (const value of [' ', '  ']) {
+    const result = runCli({ env: { EXECUTION_MODE: value } });
+    assert.strictEqual(result.status, 1, `EXECUTION_MODE=${JSON.stringify(value)} should exit 1`);
+    assert.strictEqual(result.stdout, '', `EXECUTION_MODE=${JSON.stringify(value)} should write nothing to stdout`);
+    assert.notStrictEqual(result.stderr, '', `EXECUTION_MODE=${JSON.stringify(value)} should write an error to stderr`);
+    assert.match(result.stderr, /environment mode/i);
+  }
+});
+
+test('invalid EXECUTION_MODE values fail with an environment-mode error even when the config is valid', () => {
+  for (const value of ['FAST', ' full ', 'fast2', '42']) {
+    const result = runCli({
+      env: { EXECUTION_MODE: value },
+      files: { [CONVENTION_FILE]: JSON.stringify({ mode: 'fast' }) },
+    });
+    assert.strictEqual(result.status, 1, `EXECUTION_MODE=${JSON.stringify(value)} should exit 1`);
+    assert.strictEqual(result.stdout, '', `EXECUTION_MODE=${JSON.stringify(value)} should write nothing to stdout`);
+    assert.match(result.stderr, /environment mode/i);
+  }
+});
+
+test('invalid EXECUTION_MODE + invalid config reports the environment error (validation order)', () => {
+  const result = runCli({
+    env: { EXECUTION_MODE: 'FAST' },
+    files: { [CONVENTION_FILE]: JSON.stringify({ mode: 42 }) },
+  });
+  assert.strictEqual(result.status, 1);
+  assert.strictEqual(result.stdout, '');
+  assert.match(result.stderr, /environment mode/i);
+});
+
+test('valid EXECUTION_MODE + invalid config reports the config error (invalid lower-priority never hidden)', () => {
+  const result = runCli({
+    env: { EXECUTION_MODE: 'fast' },
+    files: { [CONVENTION_FILE]: JSON.stringify({ mode: 42 }) },
+  });
+  assert.strictEqual(result.status, 1);
+  assert.strictEqual(result.stdout, '');
+  assert.match(result.stderr, /config mode/i);
+});
+
+// --- Config behavior (unchanged from T2) ---------------------------------
 
 test('a valid convention file with mode "fast" wins and reports config', () => {
   const result = runCli({

@@ -3,10 +3,13 @@
 /**
  * Thin CLI wrapper for the effective-mode resolver.
  *
- * This slice (T2) introduces config acquisition from the convention file
- * `.execution-mode.json` in the working directory. The CLI owns ALL input
- * acquisition and output behavior:
+ * This slice (T3) introduces environment acquisition: the raw value of
+ * `process.env.EXECUTION_MODE` becomes the highest-precedence candidate.
+ * The CLI owns ALL input acquisition and output behavior:
  *
+ * - environment: the raw value of `process.env.EXECUTION_MODE`; only the
+ *   exact empty string is normalized to absence (undefined) so an override
+ *   can be neutralized; whitespace-only values remain present candidates;
  * - discovery: the convention file path is process.cwd() + '.execution-mode.json';
  * - container semantics: a missing file is absent; a file that exists but
  *   cannot be read as a regular file (directory, permission/read failure),
@@ -19,9 +22,8 @@
  *
  * The CLI never revalidates domain candidates: a present-but-invalid `mode`
  * value (including JSON `null` and wrong types like `42`) is passed RAW to
- * the resolver, which throws a config-mode error. Environment acquisition
- * belongs to T3 (#4) and argv parsing to T4 (#5): this slice passes
- * `envValue: undefined` and takes no arguments.
+ * the resolver, which throws an environment- or config-mode error. Argv
+ * parsing (`--help`) belongs to T4 (#5): this slice takes no arguments.
  */
 
 import { statSync, readFileSync } from 'node:fs';
@@ -83,9 +85,14 @@ function readConventionConfig(cwd) {
 }
 
 function main() {
+  // Only the exact empty string counts as absence; whitespace-only values
+  // remain present candidates and are validated by the resolver.
+  const rawEnvValue = process.env.EXECUTION_MODE;
+  const envValue = rawEnvValue === '' ? undefined : rawEnvValue;
+
   const configValue = readConventionConfig(process.cwd());
   const { mode, source } = resolveEffectiveMode({
-    envValue: undefined,
+    envValue,
     configValue,
   });
   process.stdout.write(`execution mode: ${mode} (source: ${source})\n`);
