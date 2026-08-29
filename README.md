@@ -7,17 +7,17 @@ Atenea is an isolated workflow laboratory for testing whether the **full Matt Po
 Validate the smallest viable architecture for autonomous software work:
 
 ```text
-Interactive design / authoring
+Matt interactive authoring
         ↓
-Matt Pocock ecosystem
+CONTEXT / ADR → spec → audited tickets
         ↓
-ready-for-agent + authoritative Agent Brief
+ready-for-agent + Handoff Contract Gate
         ↓
-Gentle AI direct/delegated execution
+fresh Gentle session: direct/delegated execution
         ↓
-verification + optional RDD
+deterministic verification + Closure Gate
         ↓
-Ready / Needs your decision
+accepted remote checkpoint
 ```
 
 If this works upstream-first, KairOS should later become only a thin scheduler/supervisor around already-supported interfaces rather than a custom engineering harness.
@@ -33,12 +33,12 @@ If this works upstream-first, KairOS should later become only a thin scheduler/s
 
 ## Current hypothesis
 
-- **Greenfield authoring:** Matt Pocock is the preferred front end: `grill-with-docs → to-spec → to-tickets → triage → Agent Brief → ready-for-agent`.
+- **Greenfield authoring:** Matt Pocock owns interactive discovery, specification and ticket authoring: `grill-with-docs → CONTEXT / ADR → to-spec → clean SPEC audit → to-tickets → clean TICKET/HANDOFF audit → ready-for-agent`. Matt triage remains valid for raw incoming issues that Matt did not create; generated `to-tickets` issues do not require triage or an Agent Brief.
 - **Brownfield authoring:** OpenSpec is a likely alternative entry path and will be evaluated later; it is not part of the first experiment.
-- **Supervised implementation:** Matt `/implement` remains available when a human is present.
-- **Unattended implementation:** Gentle AI owns implementation from an already-ready contract using direct/delegated routing; it should not recreate Matt planning through SDD.
-- **Post-candidate review:** Gentle native verification/RDD owns the unattended review lifecycle.
-- **Delivery:** repository policy remains separate from review. KairOS integration is explicitly out of scope until the upstream workflow works unaided.
+- **Ownership boundary:** Matt owns interactive greenfield discovery/spec/ticket authoring. Gentle owns unattended execution from an already-ready durable contract, using direct/delegated routing and deterministic verification. KairOS remains future thin scheduling/supervision/delivery only.
+- **Unattended implementation:** The normal prompt is intentionally minimal: `Implement GitHub issue #N.` Gentle must start from a fresh session and must not recreate Matt planning through SDD.
+- **Post-candidate review:** Native Gentle RDD remains a later qualification stage; the current Closure Gate accepts a dependency work unit at an exact remote checkpoint.
+- **Delivery:** repository merge/release policy remains separate from work-unit acceptance. KairOS integration is explicitly out of scope until the upstream workflow works unaided.
 
 ## First qualification sequence
 
@@ -47,11 +47,12 @@ If this works upstream-first, KairOS should later become only a thin scheduler/s
 3. Install/configure full Gentle AI for OpenCode.
 4. Install the full Matt Pocock skills ecosystem for the Atenea project and run its official project setup.
 5. Refresh and inspect Gentle's skill registry. Confirm that it discovers the original Matt `SKILL.md` files.
-6. Run a small greenfield workflow entirely through Matt until a GitHub issue reaches `ready-for-agent` with an authoritative Agent Brief.
-7. Close the authoring session.
-8. From a fresh OpenCode/Gentle session, issue only the minimal instruction: `Implement issue #X.`
-9. Observe whether Gentle consumes the existing contract, avoids unnecessary SDD recreation, implements, verifies and completes native review correctly.
-10. Record token/call cost, human interventions, lifecycle behavior and any conflicts.
+6. Run a small greenfield workflow entirely through Matt until audited GitHub issues reach `ready-for-agent`.
+7. Run the Handoff Contract Gate in clean context, including temporal slice exclusivity.
+8. Close the authoring session.
+9. From a fresh OpenCode/Gentle session, issue only: `Implement GitHub issue #N.`
+10. Observe whether Gentle consumes the existing contract, avoids unnecessary SDD recreation, implements and verifies within scope.
+11. Apply the Closure Gate; record native RDD separately when that stage is qualified.
 
 ## Explicitly rejected for the first experiment
 
@@ -62,4 +63,4 @@ If this works upstream-first, KairOS should later become only a thin scheduler/s
 - Creating custom work-unit schemas or translating Matt tickets/Agent Briefs into a KairOS-specific format.
 - Redesigning KairOS while this laboratory is still qualifying the upstream workflow.
 
-See `docs/DECISIONS.md` and `docs/QUALIFICATION.md` as the experiment evolves.
+See `docs/HANDOFF_CONTRACT.md`, `docs/DECISIONS.md` and `docs/QUALIFICATION.md` as the experiment evolves.

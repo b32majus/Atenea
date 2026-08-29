@@ -29,6 +29,20 @@ GitHub shares one number space across issues and PRs, so a bare `#42` may be eit
 
 Create a GitHub issue.
 
+## Atenea completion convention
+
+A dependency work unit may be closed only after the Closure Gate, including
+post-execution remote reconciliation, passes at an exact remote checkpoint.
+The accepted checkpoint must have known HEAD and TREE, with
+`REMOTE_RECONCILIATION=PASS`, and the required acceptance, scope,
+behavioral-test, canary and diff evidence. The closure record distinguishes
+`REMOTE_BRANCH_DRIFT=` from `INTEGRATION_TARGET_DRIFT=`. Merge and release
+remain separate repository delivery concerns.
+
+This convention does not alter Matt's native blocker mechanics: GitHub native
+dependencies remain the canonical representation, and an issue is unblocked
+when all of its blockers are closed.
+
 ## When a skill says "fetch the relevant ticket"
 
 Run `gh issue view <number> --comments`.

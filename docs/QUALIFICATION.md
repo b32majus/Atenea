@@ -53,7 +53,7 @@ Required checks:
 
 Build a deliberately small but non-trivial greenfield feature/project using only upstream Matt workflow behavior:
 
-`grill-with-docs → to-spec → to-tickets → triage`
+`grill-with-docs → CONTEXT / ADR → to-spec → independent clean-context SPEC audit → to-tickets → independent clean-context TICKET/HANDOFF audit → ready-for-agent`
 
 Required durable outputs should include, where naturally produced:
 
@@ -62,7 +62,8 @@ Required durable outputs should include, where naturally produced:
 - spec;
 - ticket graph/dependencies;
 - `ready-for-agent` state;
-- authoritative Agent Brief.
+- a ticket that is executable from durable repository/tracker authority. An
+  Agent Brief is not required for Matt-generated `to-tickets` issues.
 
 **Pass condition:** A fresh agent should have enough durable information to understand what is required without the original authoring chat.
 
@@ -76,23 +77,50 @@ The rule should live in the normal durable project surface used by Matt (for exa
 
 The purpose is not to force this exact wording forever. It is to verify that **knowledge created/consumed by Matt remains visible to Gentle during unattended execution without manual prompt translation**.
 
+## Handoff Contract Gate
+
+After `to-tickets` and before unattended execution, run this gate in a clean
+context. It is a semantic check of the handoff, not another authoring phase.
+
+The gate must pass:
+
+- coverage: the ticket covers the behavior it claims to introduce;
+- dependencies: blockers and required predecessor state are explicit;
+- vertical-slice executability: the ticket can be implemented and verified as
+  one bounded work unit;
+- deterministic acceptance: the acceptance criteria have observable checks;
+- authority consistency: ticket, parent/spec, CONTEXT.md, ADRs and coding
+  standards do not disagree;
+- temporal slice exclusivity: ownership is unambiguous across adjacent
+  tickets.
+
+Temporal slice exclusivity means every observable parent behavior has one
+first-introducing ticket. An earlier ticket may establish a seam/interface
+used later without making later-ticket behavior observable. Acceptance criteria
+must not require behavior owned by a later ticket. When adjacent slices share
+a seam and ambiguity is material, repair the ticket before dispatch with
+explicit deferred ownership. Do not add verbose deferral boilerplate when
+ownership is already unambiguous.
+
 ## Stage 5 — Fresh-session unattended handoff
 
-Close the authoring session. Start a fresh OpenCode/Gentle session in the same repository.
+Close the authoring session. Start a genuinely fresh OpenCode/Gentle session in
+the same repository.
 
-Initial instruction should be intentionally minimal:
+The dispatch prompt is intentionally minimal:
 
-`Implement issue #X.`
+`Implement GitHub issue #N.`
 
-Do not manually tell the executor which Matt files to read, how to perform TDD, which reviewers to call, how to route models or how RDD works.
-
+Do not carry the Matt authoring conversation or manually tell the executor
+which Matt files to read, how to perform TDD, which reviewers to call, how to
+route models or how RDD works.
 Observe whether Gentle:
 
 - discovers the work contract and project context;
 - uses direct/delegated routing rather than unnecessarily recreating planning through SDD;
 - implements within ticket scope;
 - verifies deterministically where possible;
-- performs its native review/RDD behavior when enabled;
+- leaves native RDD behavior to its later qualification stage;
 - stops/escalates when the contract is genuinely insufficient.
 
 ### Cross-ecosystem continuity check
@@ -116,7 +144,138 @@ Passing evidence can come from either:
 
 Do not add a custom Atenea reviewer solely to enforce this. The point is to test upstream behavior.
 
+### Stage 5 T1 evidence
+
+The qualified T1 sequence is recorded factually in `docs/STAGE5_T1.md`:
+
+- Stage 4 baseline: `c6526887a3464527339f66cb8d8a0247a418f3fa`.
+- The first Gentle attempt was interrupted before mutation after registry
+  resolution selected Matt `implement`. The diagnostic was:
+  `IMPLEMENT_SKILL_IDENTITY=MATT_POCOCK`,
+  `IMPLEMENT_DISABLE_MODEL_INVOCATION=true`,
+  `ORCHESTRATOR_BEHAVIOR=EXPECTED_GENTLE_SKILL_INJECTION`,
+  `DISABLE_MODEL_INVOCATION_RESPECTED=NO`,
+  `CONFIG_MUTATED=NO`.
+- A fresh Gentle execution read issue #2, parent #1, CONTEXT.md, ADR-0001
+  and CODING_STANDARDS.md; confirmed RDD OFF; selected direct/delegated
+  routing; used one fresh `general` writer; and did not recreate SDD.
+- The initial result was functional quality PASS, 15/15 tests PASS and canary
+  respected, but an independent audit found T3 environment behavior
+  prematurely observable. The root cause was material temporal-scope ambiguity
+  in issue #2.
+- Issue #2 was repaired once to state T1-only built-in-default behavior;
+  config acquisition is T2, environment acquisition/precedence/validation is
+  T3, argv/help is T4, and the resolver interface remains future-compatible.
+- A new fresh Gentle session received only:
+  `GitHub issue #2 has been updated. Re-read the current issue #2 and make one
+  bounded repair pass on the existing working tree so the implementation
+  satisfies the current issue exactly. Verify the result and leave it
+  uncommitted.`
+  Gentle independently removed the scope drift.
+- The focused recheck passed: T1 scope, acceptance, 4/4 tests, default-only
+  CLI, deferred environment/config/argv behavior, resolver seam,
+  non-tautological tests, zero runtime dependencies, Node 24 target, diff
+  containment, and no out-of-scope changes. Repair cycles: 1.
+- Qualified remote checkpoint: branch `stage5-gentle-t1-20260829`, HEAD
+  `5d070ac095503f1a4348a77a5d023801943074b5`, TREE
+  `0cda7154567723e44089929cc1417eec43109ccf`, tests 4/4 PASS, remote sync
+  YES.
+- Engram was available and used, so this was fresh conversational/session
+  context rather than strict persistent-memory isolation. The fresh Gentle
+  session nevertheless followed changed durable authority and repaired the
+  implementation correctly.
+
+## Post-execution remote reconciliation
+
+After Gentle implementation and before candidate closure, perform a fresh remote
+fetch and reconcile authoritative remote state. Every work unit must pass this
+gate before acceptance.
+
+### Working-branch remote drift
+
+Verify that the execution branch's remote ref has not advanced unexpectedly or
+diverged due to another actor. If unexpected same-branch drift exists:
+
+`REMOTE_BRANCH_DRIFT=YES` → STOP / NEEDS_DECISION
+
+Never silently force-push or overwrite competing remote history.
+
+### Integration-target drift
+
+Record whether the designated integration target, normally `origin/main`, has
+advanced since the work unit's starting point. This does not require rebasing
+or merging every tracer-bullet ticket onto current `main` before closure;
+target drift may be deferred to the train's integration/delivery gate. Before
+final integration/merge, the train must reconcile with current target state and
+rerun required verification.
+
+### Review order when RDD is enabled
+
+Bind review authority to the reconciled candidate:
+
+`implementation → fetch/reconcile authoritative remote state →
+deterministic verification → freeze review candidate → Gentle native RDD →
+acknowledgement / terminal state → exact durable checkpoint → delivery/closure`
+
+Do not approve SHA/tree A and then mutate or rebase into SHA/tree B without a
+new candidate/review cycle.
+
+## Closure Gate
+
+Before closing a dependency ticket, require:
+
+- current acceptance criteria PASS;
+- temporal/scope discipline PASS;
+- behavioral test evidence PASS;
+- coding-standard/canary evidence where applicable;
+- diff containment PASS;
+- exact HEAD and TREE known;
+- `REMOTE_RECONCILIATION=PASS`; remote checkpoint exists.
+
+The closure record distinguishes `REMOTE_BRANCH_DRIFT=` from
+`INTEGRATION_TARGET_DRIFT=` and retains the exact accepted implementation
+HEAD/TREE even when later documentation commits exist on the same branch.
+Issue closure records an accepted durable remote checkpoint for the work unit.
+Merge/release remains a separate repository delivery concern.
+
 ## Stage 6 — RDD/runtime behavior
+
+Stage 5 T1 was qualified on Gentle AI v2.5.0-rc.1 with RDD OFF. Gentle AI
+v2.5.0-rc.2 was released on 2026-08-29 after that qualification; its tag
+target commit is `c668c11e5feb8c8b8555f22f1a6103f6ac5cf79d`.
+
+Use an explicit version epoch:
+
+- Stage 5: v2.5.0-rc.1 / RDD OFF;
+- Stage 6: upgrade qualification to v2.5.0-rc.2 / RDD ON.
+
+Do not silently change the runtime during the remaining Stage 5 direct/delegated
+qualification unless a material rc.1 blocker is discovered. Before enabling
+RDD for Stage 6:
+
+- record the exact installed binary/version;
+- run `doctor`;
+- verify managed OpenCode assets;
+- verify skill registry/discovery remains correct;
+- verify Matt project skills still resolve as expected;
+- record the configuration diff caused by the upgrade;
+- only then enable RDD.
+
+The rc.2 review lifecycle is materially changed, including one active review
+record and explicit `review.acknowledge-approved` semantics. Field-test the
+following targets where applicable to the OpenCode baseline:
+
+- negotiated review to approval;
+- exact-token `review.acknowledge-approved` execution;
+- STATUS restart before acknowledgement replays the same pending transition;
+- wrong, stale or replayed acknowledgement refuses without side effects;
+- zero-lens approval path;
+- correction with an untracked artifact;
+- opaque `repository_context` digest and wrong-repository refusal;
+- bounded, fail-closed refusal behavior.
+
+Do not add Pi-specific relay testing to the OpenCode baseline; Pi remains a
+later runtime.
 
 Treat RDD as a **native Gentle subsystem**, not as a prompt bundle to be reconstructed.
 
