@@ -7,7 +7,11 @@
  * Validation is deterministic: the environment error is reported first, and
  * an invalid lower-priority candidate is never hidden by a valid
  * higher-priority one. T2 config behavior (convention file, container
- * errors, present-but-invalid modes) is unchanged and still covered.
+ * errors, present-but-invalid modes) is unchanged and still covered. T4
+ * completes the CLI surface: `--config <path>` overrides the convention
+ * file and inherits all container semantics, argument errors (unknown
+ * flags, the `--config=<path>` form, empty/missing/repeated `--config`)
+ * fail loudly, and `--help` works only as a standalone invocation.
  */
 
 import { test } from 'node:test';
@@ -254,4 +258,178 @@ test('package metadata declares ESM, a bin entry, no runtime deps, and the built
   assert.deepEqual(pkg.devDependencies, undefined);
   assert.strictEqual(pkg.engines.node, '>=24');
   assert.match(pkg.scripts.test, /^node --test(\s|$)/);
+});
+
+// --- T4: --config <path> explicit configuration ---------------------------
+
+test('--config with a valid explicit file wins over the default and reports config', () => {
+  const result = runCli({
+    files: { 'config.json': JSON.stringify({ mode: 'fast' }) },
+    args: ['--config', 'config.json'],
+  });
+  assert.strictEqual(result.status, 0);
+  assert.strictEqual(result.stdout, 'execution mode: fast (source: config)\n');
+  assert.strictEqual(result.stderr, '');
+});
+
+test('--config explicit path overrides a different convention file in the cwd', () => {
+  const result = runCli({
+    files: {
+      [CONVENTION_FILE]: JSON.stringify({ mode: 'full' }),
+      'config.json': JSON.stringify({ mode: 'fast' }),
+    },
+    args: ['--config', 'config.json'],
+  });
+  assert.strictEqual(result.status, 0);
+  assert.strictEqual(result.stdout, 'execution mode: fast (source: config)\n');
+  assert.strictEqual(result.stderr, '');
+});
+
+test('a convention file is ignored when the explicit --config file has no mode key', () => {
+  const result = runCli({
+    files: {
+      [CONVENTION_FILE]: JSON.stringify({ mode: 'full' }),
+      'config.json': JSON.stringify({ other: 'ignored' }),
+    },
+    args: ['--config', 'config.json'],
+  });
+  assert.strictEqual(result.status, 0);
+  assert.strictEqual(result.stdout, 'execution mode: full (source: default)\n');
+  assert.strictEqual(result.stderr, '');
+});
+
+test('a valid EXECUTION_MODE wins over an explicit --config file', () => {
+  const result = runCli({
+    env: { EXECUTION_MODE: 'fast' },
+    files: { 'config.json': JSON.stringify({ mode: 'full' }) },
+    args: ['--config', 'config.json'],
+  });
+  assert.strictEqual(result.status, 0);
+  assert.strictEqual(result.stdout, 'execution mode: fast (source: environment)\n');
+  assert.strictEqual(result.stderr, '');
+});
+
+test('--config file with malformed JSON is a hard error, exit 1', () => {
+  const result = runCli({
+    files: { 'config.json': '{ "mode": "fast", ' },
+    args: ['--config', 'config.json'],
+  });
+  assert.strictEqual(result.status, 1);
+  assert.strictEqual(result.stdout, '');
+  assert.match(result.stderr, /malformed JSON/i);
+});
+
+test('--config file with a non-object top-level document is a hard error, exit 1', () => {
+  for (const document of ['null', '42', '"fast"', 'true', '["fast"]']) {
+    const result = runCli({
+      files: { 'config.json': document },
+      args: ['--config', 'config.json'],
+    });
+    assert.strictEqual(result.status, 1, `document ${document} should exit 1`);
+    assert.strictEqual(result.stdout, '', `document ${document} should write nothing to stdout`);
+    assert.notStrictEqual(result.stderr, '', `document ${document} should write an error to stderr`);
+  }
+});
+
+test('--config file missing the mode key falls through to the default, exit 0', () => {
+  const result = runCli({
+    files: { 'config.json': JSON.stringify({ other: 'ignored' }) },
+    args: ['--config', 'config.json'],
+  });
+  assert.strictEqual(result.status, 0);
+  assert.strictEqual(result.stdout, 'execution mode: full (source: default)\n');
+  assert.strictEqual(result.stderr, '');
+});
+
+test('--config file with an invalid mode value is a config-mode error, exit 1', () => {
+  for (const document of [JSON.stringify({ mode: 42 }), JSON.stringify({ mode: null })]) {
+    const result = runCli({
+      files: { 'config.json': document },
+      args: ['--config', 'config.json'],
+    });
+    assert.strictEqual(result.status, 1, `document ${document} should exit 1`);
+    assert.strictEqual(result.stdout, '', `document ${document} should write nothing to stdout`);
+    assert.match(result.stderr, /config mode/i);
+  }
+});
+
+// --- T4: --config argument errors -----------------------------------------
+
+test('--config pointing at a nonexistent file is a hard error, exit 1', () => {
+  const result = runCli({ args: ['--config', 'no-such-file.json'] });
+  assert.strictEqual(result.status, 1);
+  assert.strictEqual(result.stdout, '');
+  assert.match(result.stderr, /config/i);
+  assert.match(result.stderr, /no-such-file\.json/);
+});
+
+test('--config pointing at a directory is a hard error, exit 1', () => {
+  const result = runCli({ args: ['--config', 'config-dir'], directories: ['config-dir'] });
+  assert.strictEqual(result.status, 1);
+  assert.strictEqual(result.stdout, '');
+  assert.match(result.stderr, /config/i);
+});
+
+test('--config with an empty value is a hard error, exit 1', () => {
+  const result = runCli({ args: ['--config', ''] });
+  assert.strictEqual(result.status, 1);
+  assert.strictEqual(result.stdout, '');
+  assert.match(result.stderr, /empty|value|config/i);
+});
+
+test('--config as the last argument with no value is a hard error, exit 1', () => {
+  const result = runCli({ args: ['--config'] });
+  assert.strictEqual(result.status, 1);
+  assert.strictEqual(result.stdout, '');
+  assert.match(result.stderr, /config/i);
+});
+
+test('repeated --config flags are a hard error, exit 1', () => {
+  const result = runCli({
+    files: { 'a.json': JSON.stringify({ mode: 'fast' }), 'b.json': JSON.stringify({ mode: 'full' }) },
+    args: ['--config', 'a.json', '--config', 'b.json'],
+  });
+  assert.strictEqual(result.status, 1);
+  assert.strictEqual(result.stdout, '');
+  assert.match(result.stderr, /repeated|config/i);
+});
+
+test('the --config=<path> form is a hard error, exit 1', () => {
+  const result = runCli({ args: ['--config=config.json'] });
+  assert.strictEqual(result.status, 1);
+  assert.strictEqual(result.stdout, '');
+  assert.match(result.stderr, /config/i);
+});
+
+test('unknown flags are a hard error, exit 1', () => {
+  for (const args of [['--version'], ['--json'], ['--unknown']]) {
+    const result = runCli({ args });
+    assert.strictEqual(result.status, 1, `${args.join(' ')} should exit 1`);
+    assert.strictEqual(result.stdout, '', `${args.join(' ')} should write nothing to stdout`);
+    assert.notStrictEqual(result.stderr, '', `${args.join(' ')} should write an error to stderr`);
+  }
+});
+
+// --- T4: --help -------------------------------------------------------------
+
+test('standalone --help writes help to stdout and exits 0', () => {
+  const result = runCli({ args: ['--help'] });
+  assert.strictEqual(result.status, 0);
+  assert.strictEqual(result.stderr, '');
+  assert.notStrictEqual(result.stdout, '');
+  assert.match(result.stdout, /usage/i);
+  assert.match(result.stdout, /--config/i);
+  assert.match(result.stdout, /EXECUTION_MODE/i);
+  assert.match(result.stdout, /\.execution-mode\.json/);
+  assert.match(result.stdout, /precedence|environment|default/i);
+  assert.match(result.stdout, /\bfull\b/);
+});
+
+test('--help combined with any other argument is a hard error, exit 1', () => {
+  for (const args of [['--help', '--config', 'x'], ['--config', 'x', '--help']]) {
+    const result = runCli({ args });
+    assert.strictEqual(result.status, 1, `${args.join(' ')} should exit 1`);
+    assert.strictEqual(result.stdout, '', `${args.join(' ')} should write nothing to stdout`);
+    assert.notStrictEqual(result.stderr, '', `${args.join(' ')} should write an error to stderr`);
+  }
 });
