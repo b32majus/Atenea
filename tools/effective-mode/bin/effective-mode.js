@@ -41,6 +41,7 @@ import { resolve } from 'node:path';
 import { resolveEffectiveMode } from '../resolve.js';
 import { parseConfigDocument } from '../config-parser.js';
 import { parseArgs } from '../argv-parser.js';
+import { formatSuccessLine } from '../output-format.js';
 
 const CONVENTION_FILE = '.execution-mode.json';
 
@@ -167,7 +168,7 @@ function main() {
     envValue,
     configValue,
   });
-  process.stdout.write(`execution mode: ${mode} (source: ${source})\n`);
+  process.stdout.write(formatSuccessLine({ mode, source }));
 }
 
 try {
