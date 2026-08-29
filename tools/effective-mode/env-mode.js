@@ -25,3 +25,23 @@
 export function normalizeEnvMode(raw) {
   return raw === '' ? undefined : raw;
 }
+
+/**
+ * Acquire the raw environment-mode candidate from an environment-like object.
+ *
+ * This is the CLI's environment input seam: it reads exactly the
+ * `EXECUTION_MODE` key from the passed object and returns the normalized raw
+ * candidate, applying only the exact-empty normalization from
+ * `normalizeEnvMode`. It never validates, coerces, or trims, and it never
+ * touches `process.env` itself — the caller owns the ambient environment,
+ * which keeps this helper pure and directly testable with a plain object.
+ *
+ * @param {{ EXECUTION_MODE?: unknown }} env - An environment-like object
+ *   (typically `process.env` in the CLI).
+ * @returns {unknown} The normalized raw value of `env.EXECUTION_MODE`:
+ *   `undefined` when absent or the exact empty string; otherwise the raw
+ *   value unchanged.
+ */
+export function getEnvMode(env) {
+  return normalizeEnvMode(env.EXECUTION_MODE);
+}

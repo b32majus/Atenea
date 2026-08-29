@@ -42,7 +42,7 @@ import { resolveEffectiveMode } from '../resolve.js';
 import { parseConfigDocument } from '../config-parser.js';
 import { parseArgs } from '../argv-parser.js';
 import { formatSuccessLine, formatErrorLine } from '../output-format.js';
-import { normalizeEnvMode } from '../env-mode.js';
+import { getEnvMode } from '../env-mode.js';
 
 const CONVENTION_FILE = '.execution-mode.json';
 
@@ -156,9 +156,11 @@ function main() {
     return;
   }
 
-  // Only the exact empty string counts as absence; whitespace-only values
-  // remain present candidates and are validated by the resolver.
-  const envValue = normalizeEnvMode(process.env.EXECUTION_MODE);
+  // The environment candidate is acquired through the shared seam, which
+  // reads EXECUTION_MODE and applies only the exact-empty normalization
+  // (whitespace-only values remain present candidates, validated by the
+  // resolver).
+  const envValue = getEnvMode(process.env);
 
   const configValue =
     configPath !== undefined
