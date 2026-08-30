@@ -2,42 +2,38 @@
 
 Atenea is an **upstream-first autonomous engineering harness** for executing already-shaped software work safely with minimal custom glue.
 
-The project began as a laboratory to test whether the complete Matt Pocock and Gentle AI ecosystems could compose cleanly. That question is now answered positively through Stage 8. The current task is no longer to invent an execution platform, but to preserve the qualified workflow, define the small remaining repo-local policy surface, and use it on real projects.
+The original laboratory question — whether complete upstream authoring/execution ecosystems could compose without rebuilding their internals — is answered positively through Stage 8. Atenea v1 is therefore a contract and policy layer over qualified upstream tools, not a new orchestration runtime.
 
-## Current qualified architecture
+## Current architecture
 
 ```text
-AUTHORING / SHAPING
+MANUAL / INTERACTIVE SHAPING
   greenfield: Matt Pocock upstream workflow
-  brownfield: OpenSpec is the intended entry path, not yet qualified in Atenea
-  material UI/UX: conditional Impeccable policy to be finalized from #267
+  brownfield: OpenSpec delta-first (field qualification pending)
+  material UI/UX: conditional Impeccable
         ↓
-ready-for-agent GitHub work + durable repository authority
+explicit human promotion to EXECUTION_READY
         ↓
 PI — autonomous supervisor
-  discovers executable frontier
-  respects blockers / authority / runtime constraints
-  creates and supervises the worker through Herdr
-  remains non-implementing
+  frontier discovery / blocker + authority decisions
+  worker supervision / allowed permission relay
         ↓
 HERDR — process/session substrate
         ↓
 OPENCODE + GENTLE AI — implementation worker
-  implementation
-  deterministic verification
+  implementation + deterministic verification
   native RDD exact-candidate review / bounded repair
-  exact candidate / receipt authority
         ↓
-normal git push
-  exact local/upstream/remote reconciliation
-  issue closure or repository PR policy
+normal non-force publication
+  exact reconciliation
+  checkpoint or PR according to repo policy
         ↓
 PI re-discovers frontier
         ↓
 STOP when exhausted
 ```
 
-Atenea does **not** require a bespoke queue, scheduler, DAG, lifecycle controller, reviewer wrapper, RDD implementation, execution launcher or state machine.
+Atenea does **not** require a bespoke queue, scheduler, DAG, lifecycle controller, reviewer wrapper, RDD implementation, execution launcher, Herdr policy gate or state machine.
 
 ## Qualification status
 
@@ -60,7 +56,7 @@ Stage 8 accepted checkpoints:
 - final Stage 8 tree `18687fcb7d9bfaac157c5ca33a0715ea5c996a6b`
 - 131/131 tests
 
-See `docs/STAGE7_SELF_LAUNCH_CLOSURE.md` and `docs/STAGE8_FRONTIER_DISCOVERY_EXPERIMENT.md` for the frozen qualification evidence.
+See `docs/QUALIFICATION.md` and the Stage-specific files for frozen evidence.
 
 ## Current runtime baseline
 
@@ -73,54 +69,100 @@ As of the canonical 2026-08-30 handoff:
 
 The accepted execution pattern is **Pi → Herdr → OpenCode + Gentle AI**.
 
+## Atenea v1 contract
+
+`docs/ATENEA_HARNESS_CONTRACT_V1.md` is the normative horizontal contract.
+
+Core rules:
+
+1. **Before `EXECUTION_READY`: manual + interactive + repo-native shaping.**
+2. **From `EXECUTION_READY`: autonomous bounded execution.**
+3. **Pi supervises; it does not implement.**
+4. **Herdr is substrate, not policy authority.**
+5. **Gentle owns exact candidate/RDD/reviewer/repair authority.**
+6. **Evidence outranks narration.**
+7. **Normal push is allowed; no force-push, hidden history rewrite or auto-merge.**
+8. **Material ambiguity or unsafe drift => STOP.**
+9. **Any new Atenea glue must prove a real missing upstream owner.**
+
 ## Authoring entry points
 
-### Greenfield
+### Greenfield — Matt Pocock
 
-Use the complete Matt Pocock ecosystem, keeping upstream methods intact and pinned where appropriate. The qualified path uses durable repository/tracker authority rather than a custom Agent Brief translation layer.
+Use the complete Matt ecosystem and current repo setup/shaping semantics. Durable repository/tracker authority must be sufficient for a fresh executor; no Atenea Agent Brief/work-unit translation is required.
 
-### Brownfield
+### Brownfield — OpenSpec
 
-**OpenSpec is the intended Atenea entry path for evolutionary/brownfield work.**
+OpenSpec is the intended evolutionary/brownfield entry path.
 
-It should be used delta-first: shape/specify the behavior being changed rather than reverse-documenting the entire existing codebase. OpenSpec remains an authoring/shaping front end; it does not replace Pi supervision, OpenCode/Gentle execution, Gentle RDD or Git/GitHub authority.
+Use it delta-first: specify the behavior being added/changed/removed instead of reverse-documenting the whole existing product before each change. OpenSpec remains a shaping/specification front end; it does not replace Pi supervision, Gentle execution/RDD or Git/GitHub authority.
 
-Status: **architecturally accepted candidate, not yet field-qualified inside Atenea**.
+Status: **architecturally accepted; end-to-end Atenea field qualification pending**.
 
-The first OpenSpec qualification should happen on a real brownfield change, not on Atenea's own documentation repair, to avoid a self-referential test.
+The first qualification belongs on a real bounded brownfield code change, not Atenea's own maintenance.
+
+### Material UI/UX — Impeccable
+
+Impeccable is conditional. Material UI applicability is decided during human-present shaping, before `EXECUTION_READY`.
+
+- `DESIGN.md` may own durable visual-system decisions where warranted.
+- For existing verticals whose product truth lives elsewhere, `PRODUCT.md` is a deterministic derived compatibility projection, not a second source of truth.
+- No universal Atenea UX framework or PRODUCT generator is required.
+
+## Engineering quality
+
+`CODING_STANDARDS.md` contains only the horizontal #268 delta not already owned by upstream engineering methods.
+
+Composition:
+
+```text
+CODING_STANDARDS.md
++ Matt tdd
++ Matt codebase-design
++ Matt domain-modeling
++ Matt diagnosing-bugs
++ Matt code-review when useful
++ justified deterministic repo tooling
++ Gentle final exact-candidate RDD authority
+```
+
+Atenea deliberately does not create a Clean Code agent/framework or a second mandatory reviewer lifecycle.
 
 ## Working principles
 
-1. **Upstream first.** Prefer supported Matt, Pi, Herdr, OpenCode, Gentle, OpenSpec, Impeccable and Git/GitHub capabilities before proposing Atenea glue.
-2. **Evidence over narration.** Tests, exact candidate identity, git state, remote refs and tracker state outrank agent claims.
-3. **Pi supervises; it does not implement.** Herdr provides process/session primitives, not product-policy authority.
-4. **Gentle owns final candidate authority.** Atenea never reconstructs RDD, candidate freezing, reviewer lineage, receipts or repair lifecycle.
-5. **Normal publication only.** No force-push, hidden reset/rebase recovery or automatic merge.
-6. **Fail closed on material ambiguity or drift.** Unexpected authority conflicts or unsafe repository state stop execution for adjudication.
-7. **Keep repo overlays small.** `AGENTS.md` should remain pointers/high-frequency invariants; engineering quality belongs in concise `CODING_STANDARDS.md` plus upstream methods and deterministic tools.
-8. **Scalable means changeable.** Do not introduce distributed or abstract architecture without requirement or evidence.
+1. **Upstream first.** Verify current upstream before adding glue.
+2. **Evidence over narration.** Tests, exact candidate identity, git refs and tracker state outrank claims.
+3. **Keep repo overlays small.** `AGENTS.md` is pointers/high-frequency invariants; detailed quality lives in `CODING_STANDARDS.md` and upstream methods.
+4. **Scalable means changeable.** No speculative microservices/distribution/abstraction without evidence.
+5. **Debt is explicit.** Intentional debt must be visible, bounded and owned.
+6. **No duplicated authority.** Product/design/runtime facts each have one canonical owner.
 
 ## What remains
 
-The qualified runtime does not need another large qualification ladder.
+Atenea v1 does not need more harness construction or another large synthetic qualification ladder.
 
-Remaining work is primarily policy/documentation:
+The next work is **real-project rollout**:
 
-1. reconcile this repository with the Stage 8 qualified state;
-2. consolidate `Atenea Harness Contract v1`;
-3. incorporate only the still-useful delta from KairOS #268 into `CODING_STANDARDS.md`;
-4. incorporate only the surviving #267 policy: conditional Impeccable, `DESIGN.md` visual authority, and derived-only `PRODUCT.md` where required;
-5. design the first real-project rollout and gather field evidence for surfaces such as OpenSpec brownfield authoring and repository-specific PR/merge policy.
+1. choose one bounded real slice;
+2. onboard only missing repo-local policy/config;
+3. shape with Matt (greenfield) or OpenSpec (brownfield);
+4. conditionally use Impeccable for material UI;
+5. promote explicitly to `EXECUTION_READY`;
+6. run the qualified Pi → Herdr → OpenCode/Gentle path;
+7. collect compact field evidence;
+8. treat any discovered gap as repo-local/upstream/horizontal before building anything.
 
-Do not create a custom execution controller merely to complete this list.
+See `docs/REAL_PROJECT_ROLLOUT_V1.md`.
 
 ## Canonical documentation
 
-- `docs/ATENEA_HANDOFF_20260830.md` — current post-Stage-8 handoff and ownership map.
-- `docs/QUALIFICATION.md` — current qualification status and what is/not yet field-qualified.
-- `docs/STAGE5_TRACER_TRAIN.md` — Stage 5 frozen evidence.
+- `docs/ATENEA_HARNESS_CONTRACT_V1.md` — normative Atenea v1 contract.
+- `CODING_STANDARDS.md` — repo-local engineering-quality policy.
+- `docs/REAL_PROJECT_ROLLOUT_V1.md` — next real-project adoption plan.
+- `docs/CURRENT_DECISIONS.md` — current short decision index.
+- `docs/ATENEA_HANDOFF_20260830.md` — canonical post-Stage-8 handoff/evidence map.
+- `docs/QUALIFICATION.md` — qualification status and field-qualified boundaries.
 - `docs/STAGE7_SELF_LAUNCH_CLOSURE.md` — Pi self-launch evidence.
-- `docs/STAGE8_FRONTIER_DISCOVERY_EXPERIMENT.md` — autonomous frontier-discovery evidence.
-- `docs/HANDOFF_CONTRACT.md` — historical Matt→Gentle handoff contract from the qualification ladder.
-- `docs/DECISIONS.md` and stage decision files — durable historical decisions; later documents may supersede earlier forward-looking status.
-- `docs/REJECTED.md` — rejected/deferred approaches and current supersession notes.
+- `docs/STAGE8_FRONTIER_DISCOVERY_EXPERIMENT.md` — autonomous frontier evidence.
+- `docs/REJECTED.md` — rejected/deferred architecture and supersession notes.
+- older decision/stage files — historical evidence; current authority above supersedes stale forward-looking labels.
