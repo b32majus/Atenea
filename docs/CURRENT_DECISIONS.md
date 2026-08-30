@@ -2,7 +2,7 @@
 
 Date: 2026-08-30
 
-This file is the short current decision index. Historical `docs/DECISIONS.md` and stage decision files remain evidence of how Atenea evolved, but any forward-looking status in those older files is superseded where it conflicts with this index, `README.md`, `docs/QUALIFICATION.md` or `docs/ATENEA_HANDOFF_20260830.md`.
+This file is the short current decision index. Historical `docs/DECISIONS.md` and stage decision files remain evidence of how Atenea evolved, but any forward-looking status in those older files is superseded where it conflicts with this index, `README.md`, `docs/QUALIFICATION.md`, `docs/ATENEA_HANDOFF_20260830.md` or `docs/ATENEA_HARNESS_CONTRACT_V1.md`.
 
 ## C-001 — Atenea is a contract over upstream tools, not an orchestration product
 
@@ -54,19 +54,23 @@ Use the complete Matt Pocock ecosystem and durable repository/tracker authority.
 
 OpenSpec should be used delta-first for existing systems. It is an authoring/shaping entry path, not a replacement for Pi supervision or Gentle execution/review authority.
 
-The first qualification should be a bounded real brownfield change outside Atenea's own documentation repair.
+The first qualification should be one bounded real brownfield code change outside Atenea's own harness/documentation maintenance.
 
 ## C-009 — Material UI/UX uses upstream Impeccable conditionally
 
-**Accepted direction; #267 consolidation pending.**
+**Accepted and consolidated in Harness Contract v1.**
 
-Do not make Impeccable a mandatory phase for backend/non-UI work. `DESIGN.md` may own durable visual-system rules. If tooling needs `PRODUCT.md` while product truth lives elsewhere, use a deterministic derived projection rather than duplicate authority.
+Material UI/UX applicability is decided during human-present shaping before `EXECUTION_READY`.
+
+Do not make Impeccable a mandatory phase for backend/non-UI work. `DESIGN.md` may own durable visual-system rules where warranted. If tooling needs `PRODUCT.md` while product truth lives elsewhere, use the smallest deterministic derived projection rather than duplicate authority.
 
 ## C-010 — Engineering quality is upstream methods + concise repo policy
 
-**Accepted direction; #268 consolidation pending.**
+**Accepted and consolidated.**
 
-Use upstream `tdd`, `codebase-design`, `domain-modeling`, `diagnosing-bugs`, `code-review` and justified deterministic tooling. `CODING_STANDARDS.md` should contain only the horizontal repo-specific delta that upstream does not already own.
+Use `CODING_STANDARDS.md` plus upstream `tdd`, `codebase-design`, `domain-modeling`, `diagnosing-bugs`, `code-review` and justified deterministic tooling.
+
+The repo-local standards own only the horizontal delta: changeability, bounded debt, contract cleanup/evolution, TDD applicability and risk-driven negative testing, dependency hygiene, operability, security/data boundaries, evidence-driven performance/scale and durable decision placement.
 
 Do not build a custom Clean Code framework, quality agent or new quality lifecycle.
 
@@ -74,7 +78,7 @@ Do not build a custom Clean Code framework, quality agent or new quality lifecyc
 
 **Accepted.**
 
-Gentle native RDD owns final exact-candidate review authority. Matt `code-review` remains available as an upstream engineering method and may be used where the workflow/risk warrants it, but Atenea does not mandate a second reviewer chain after every candidate by ritual.
+Gentle native RDD owns final exact-candidate review authority. Matt `code-review` remains available as an upstream engineering method and may be used where workflow/risk warrants it, but Atenea does not mandate a second reviewer chain after every candidate by ritual.
 
 ## C-012 — Repository delivery policy remains repository-specific
 
@@ -82,18 +86,41 @@ Gentle native RDD owns final exact-candidate review authority. Matt `code-review
 
 A work unit may end at an accepted remote checkpoint or PR according to repository policy. Human merge boundaries remain valid. Atenea does not auto-merge.
 
-## C-013 — Next work is policy consolidation and real-project rollout
+## C-013 — No further large synthetic qualification ladder
 
 **Accepted.**
 
-Do not start another large synthetic qualification ladder.
+Stage 5–8 already qualify the core runtime. Optional/new surfaces should be validated through bounded real-project field evidence rather than ceremonial Stage 9/10 sequences.
+
+## C-014 — Harness Contract v1 is the normative horizontal runtime/policy boundary
+
+**Accepted.**
+
+`docs/ATENEA_HARNESS_CONTRACT_V1.md` is the compact normative contract for readiness, ownership, supervision, candidate/review authority, engineering-quality placement, material UI activation, publication/reconciliation and STOP behavior.
+
+It adds no new runtime.
+
+## C-015 — PRODUCT.md is compatibility, not duplicate product truth
+
+**Accepted.**
+
+For established verticals whose canonical product authority lives elsewhere, any `PRODUCT.md` required by design tooling is generated/derived, names canonical sources, is marked `DO NOT EDIT AS AUTHORITY`, and must be idempotent/diffable. `DESIGN.md` remains separate visual-system authority.
+
+No universal Atenea PRODUCT generator is required.
+
+## C-016 — Real-project rollout is now the next boundary
+
+**Accepted.**
+
+Use `docs/REAL_PROJECT_ROLLOUT_V1.md`.
 
 Next sequence:
 
-1. finish documentation reconciliation;
-2. cross-walk #267 and #268 against complete current upstream ecosystems;
-3. write compact Atenea Harness Contract v1;
-4. complete `CODING_STANDARDS.md` with only the surviving #268 delta;
-5. finalize Impeccable / `DESIGN.md` / derived `PRODUCT.md` policy;
-6. design real-project rollout;
-7. qualify OpenSpec on the first suitable real brownfield change.
+1. choose one bounded real project/slice;
+2. onboard only missing repo-local policy/config;
+3. use Matt for greenfield or OpenSpec for brownfield;
+4. decide material UI applicability during shaping;
+5. explicitly promote to `EXECUTION_READY`;
+6. run the already-qualified Pi → Herdr → OpenCode/Gentle path;
+7. capture compact evidence;
+8. qualify OpenSpec when the first suitable brownfield change completes end-to-end.
