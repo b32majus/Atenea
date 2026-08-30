@@ -1,137 +1,194 @@
 # Atenea — Rejected / Deferred Approaches
 
-This is not a graveyard of ideas. It records alternatives deliberately excluded so future agents do not rediscover and reintroduce them without understanding why.
+This file prevents future agents from rediscovering rejected architecture without the evidence that led to rejection.
 
-## R-001 — Rebuild RDD inside KairOS
+## Current supersession index — 2026-08-30
+
+Several entries below originated before Stage 7/8 and are preserved as historical decisions. Current interpretation:
+
+- OpenSpec is **no longer merely deferred in principle**: it is the intended brownfield/evolutionary authoring entry path, still awaiting a bounded real-project qualification.
+- Pi is **qualified as Atenea's thin supervisor** through Stage 7/8.
+- Herdr is the **process/session substrate**, not a policy/gating controller.
+- OpenCode + Gentle remains the accepted implementation worker.
+- Gentle Pi `2.2.0` is **not qualified** and remains uninstalled.
+- no custom execute-Issue launcher/controller is to be rebuilt from KairOS #271.
+
+Historical entries remain useful because they explain why the architecture converged.
+
+## R-001 — Rebuild RDD inside Atenea/KairOS
 
 **Decision:** Rejected.
 
-Gentle RDD is a complex lifecycle subsystem with deterministic/native machinery. Extracting the attractive review pieces while recreating identity, recovery, receipts, repair and lifecycle semantics ourselves defeats the purpose of adopting the upstream ecosystem.
-
-**Additional evidence, 2026-08-29:** Alan described RDD publicly as difficult to implement because each supported agent requires its own adapter around deterministic machinery. This strengthens the rejection: Atenea should use the complete upstream implementation or not use RDD at all.
+Gentle owns deterministic/native RDD machinery: exact candidate identity, reviewer lineage, receipts, mutation invalidation, bounded repair and lifecycle semantics. Atenea must consume the supported upstream implementation, not reconstruct it.
 
 ## R-002 — Install only selected Matt skills
 
-**Decision:** Rejected for qualification.
+**Decision:** Rejected.
 
-A partial Matt installation makes workflow boundaries harder to understand and encourages accidental reimplementation of missing seams. Atenea qualifies the complete upstream ecosystem first, including triage, implement, TDD and code-review, then assigns ownership by workflow rather than by deleting skills.
+A partial Matt installation encourages accidental reimplementation of missing seams. Atenea keeps the complete upstream ecosystem and assigns ownership by workflow.
 
 ## R-003 — Remove overlapping Matt skills
 
 **Decision:** Rejected.
 
-`implement`, `tdd`, `code-review` and other Matt skills remain installed. We avoid duplicate execution by assigning workflow ownership, not by mutilating the upstream package.
+`implement`, `tdd`, `code-review` and other Matt skills remain available. Avoid duplicate execution through ownership policy, not by mutilating the upstream package.
 
-Stage 5 additionally showed that Gentle's registry may resolve Matt `implement`; this is an integration behavior to understand, not a reason to fork or filter Matt.
+## R-004 — Custom Matt→Gentle work-unit schema / Agent Brief translation
 
-## R-004 — Custom Matt-to-Gentle work-unit schema
+**Decision:** Rejected for the qualified path.
 
-**Decision:** Rejected for the qualified greenfield path.
+A ready GitHub issue plus durable repository authority, dependency state and fresh execution context is sufficient. No Atenea-specific work-unit schema is required.
 
-The qualified handoff is the existing `ready-for-agent` GitHub ticket plus durable repository authority, dependency state and a fresh Gentle session. No `kairos-work-unit.json`, Agent Brief translation or equivalent conversion layer is required.
+## R-005 — Recreate Matt planning through Gentle on an already-ready ticket
 
-## R-005 — Recreate Matt planning through Gentle SDD on unattended handoff
+**Decision:** Rejected.
 
-**Decision:** Rejected for an already-ready Matt ticket.
+If shaping has produced an executable contract, execution should implement it. If authority is materially insufficient, fail closed rather than silently redesign the product.
 
-If Matt has produced a sufficiently specified `ready-for-agent` contract, Gentle should implement from it through direct/delegated routing. If the contract is insufficient, the desired failure mode is escalation or pre-dispatch contract repair, not silent re-planning.
+## R-006 — Add OpenSpec to the original baseline qualification
 
-## R-006 — Add OpenSpec immediately
+**Historical decision:** Deferred during the original Matt + Gentle baseline.
 
-**Decision:** Deferred.
+**Current status:** Superseded.
 
-OpenSpec remains attractive for brownfield/evolutionary work, but adding it to the first experiment would introduce another source of truth before Matt + Gentle compatibility is understood.
+OpenSpec is now the intended Atenea entry path for brownfield/evolutionary authoring, while Matt remains the qualified greenfield authoring path. OpenSpec itself has not yet been field-qualified end-to-end with the Stage 8 execution stack.
+
+The first qualification should use a real brownfield code change, not Atenea's own documentation repair.
 
 ## R-007 — Add Convoy immediately
 
+**Decision:** Deferred unless a required property fails in the accepted upstream stack.
+
+Do not introduce another execution kernel without field evidence that OpenCode/Gentle cannot provide a required behavior.
+
+## R-008 — Start the original baseline on Pi
+
+**Historical decision:** Deferred during early qualification.
+
+**Current status:** Superseded by Stage 7/8 PASS.
+
+Pi is now the qualified thin supervisor for self-launch, autonomous frontier discovery, closure/reconciliation checks and frontier exhaustion stop.
+
+## R-009 — Elaborate clean-room infrastructure as default
+
+**Decision:** Rejected for the baseline.
+
+Use the real VPS environment, inventory influencing state, fix demonstrated contamination at its root and add stronger isolation only when a concrete vertical requires it.
+
+## R-010 — Use floating Gentle `main` for qualification
+
+**Decision:** Rejected.
+
+Qualification evidence belongs to explicit runtime epochs. The accepted current handoff records Gentle AI `2.5.0-rc.2`.
+
+## R-011 — Add CodeGraph before proving functional value
+
 **Decision:** Deferred.
 
-Convoy remains an alternative execution-kernel candidate if Gentle later fails a required property. It is excluded from the baseline to keep attribution clean.
+Optimization should respond to measured search/cost bottlenecks, not obscure workflow correctness.
 
-## R-008 — Start on Pi
-
-**Decision:** Deferred.
-
-Pi may be qualified later. OpenCode is the first runtime because it gives a simpler first surface for Gentle + external skill discovery.
-
-## R-009 — Create a separate Linux user / elaborate clean-room infrastructure
-
-**Decision:** Rejected for this experiment.
-
-Atenea intentionally prioritizes a simple, realistic setup inside the existing VPS environment. Inventory global influence first, clean only conflicting/partial installations where necessary, and document what remains.
-
-## R-010 — Use floating Gentle `main` as the primary qualification target
+## R-012 — Treat passing tests alone as sufficient evidence
 
 **Decision:** Rejected.
 
-A moving branch makes failures, performance and lifecycle behavior hard to reproduce. Qualification uses explicit version epochs. Stage 5 is pinned to `v2.5.0-rc.1`; Stage 6 deliberately moves to `v2.5.0-rc.2`.
+Tests can be tautological or use a self-fulfilling oracle. Durable coding standards, deterministic repository evidence and exact Gentle candidate/review authority remain relevant.
 
-## R-011 — Add CodeGraph before vanilla baseline
-
-**Decision:** Deferred.
-
-Current maintainers report that CodeGraph can materially reduce search and verification cost. That may be valuable later, but it must not obscure the vanilla Matt + Gentle interoperability baseline.
-
-## R-012 — Assume passing tests are sufficient evidence
+## R-013 — Depend on one long design→execution conversation
 
 **Decision:** Rejected.
 
-A passing test can be tautological or self-fulfilling. Atenea explicitly checks whether a project-level anti-tautology rule established on the Matt side remains effective during Gentle execution without being copied into the prompt.
+Execution must be recoverable from durable repository/tracker authority rather than hidden conversational context.
 
-## R-013 — Keep one long session from design through unattended execution
+## R-014 — Build path-repair glue around Gentle/OpenCode installation defects
 
-**Decision:** Rejected for qualification and target handoff.
+**Decision:** Rejected for the qualified baseline.
 
-A fresh execution session verifies that the `ready-for-agent` ticket and repository authority are durable and limits cross-feature/context-compaction contamination.
+Use supported upstream installation surfaces and explicit runtime epochs. Diagnose upstream defects before writing Atenea adapters.
 
-## R-014 — Work around Gentle OpenCode workspace issue #3128
-
-**Decision:** Rejected for baseline qualification.
-
-Do not manually move Gentle assets, add wrappers or `OPENCODE_CONFIG` overrides, or create custom adapter glue to work around #3128. Use the supported global OpenCode installation while the workspace-scope defect remains open.
-
-## R-015 — Require Agent Brief translation for Matt-generated tickets
+## R-015 — Require triage/Agent Brief translation for Matt-generated tickets
 
 **Decision:** Rejected.
 
-Matt `to-tickets` output already belongs to the authored greenfield path and reaches `ready-for-agent`. Triage/Agent Brief remains relevant to raw incoming issues Matt did not author, not as a mandatory translation layer between Matt and Gentle.
+Matt `to-tickets` output already belongs to the authored path. Triage remains useful for raw incoming issues, not as a mandatory translation seam before Gentle.
 
-## R-016 — Put the future handoff dispatcher in `.agents/skills`
+## R-016 — Build a custom handoff dispatcher / put it in `.agents/skills`
 
-**Decision:** Rejected.
+**Historical decision:** Rejected/deferred.
 
-Gentle's registry can discover and inject project-local skills. Making the Matt→Gentle dispatcher another project skill risks turning the boundary mechanism into an implementation skill selected by the executor itself.
+**Current status:** Superseded by qualified Pi supervision.
 
-Prefer a command/dispatcher outside the skill registry, ultimately a thin KairOS supervisor.
+Stage 7/8 demonstrated that Pi can supervise the Herdr → OpenCode/Gentle lifecycle and autonomously rediscover the executable frontier. Do not resurrect a separate dispatcher unless new field evidence proves a missing capability.
 
-## R-017 — Permanent Codex/external LLM reviewer after every Gentle work unit
+## R-017 — Permanent second LLM reviewer after every Gentle work unit
 
-**Decision:** Rejected as target runtime architecture.
+**Decision:** Rejected as default architecture.
 
-External audits were useful qualification scaffolding in T1/T2 and exact-SHA audits remained useful laboratory observation in T3/T4. They should not become a second permanent reviewer/repair harness around Gentle.
-
-For the target system, use deterministic verification/closure around the executor and qualify Gentle-native RDD for review/repair in Stage 6. External review may remain signal-driven, sampled or diagnostic, not mandatory by ritual.
+Qualification audits were useful scaffolding. Gentle native RDD owns final exact-candidate review authority. Additional independent review may be risk-driven or diagnostic, not mandatory ritual.
 
 ## R-018 — Rebase/merge every ticket onto current `main` before issue closure
 
-**Decision:** Rejected.
+**Decision:** Rejected as universal policy.
 
-Ticket acceptance and train integration are different gates. A ticket may close at an accepted exact remote checkpoint even if `origin/main` advanced. Reconciliation with current `main` belongs to the final train integration/delivery gate.
+Work-unit acceptance, PR publication and final integration/merge are distinct repository concerns. Use the target repository's real delivery policy.
 
 ## R-019 — Force-push through unexpected same-branch drift
 
 **Decision:** Rejected.
 
-Unexpected working-branch remote drift is a STOP/NEEDS_DECISION condition. Silent overwrite would destroy the exact candidate authority Stage 5 is designed to preserve.
+Unexpected drift is a fail-closed condition. No force-push or hidden history rewrite as automatic recovery.
 
-## R-020 — Silent runtime upgrades during a qualification train
-
-**Decision:** Rejected.
-
-Gentle runtime changes use explicit qualification epochs. rc.2 and its materially different RDD lifecycle must not be mixed retroactively into the rc.1/RDD-OFF Stage 5 evidence.
-
-## R-021 — Add a custom GitHub-auth shim because T2 saw HTTP 401
+## R-020 — Silent runtime upgrades during qualification
 
 **Decision:** Rejected.
 
-The T2 auth incident was caused by stale `GH_TOKEN` / `GITHUB_TOKEN` environment overrides inherited from Herdr/tmux, which shadowed valid official `gh` stored credentials. The correct fix is environment hygiene/preflight, not another authentication subsystem inside Atenea/KairOS.
+Material runtime changes require explicit evidence boundaries; do not retroactively mix versions into older qualification claims.
+
+## R-021 — Add a custom GitHub-auth shim after the 401 incident
+
+**Decision:** Rejected; root cause resolved.
+
+The incident was caused by stale `GH_TOKEN` / `GITHUB_TOKEN` values in tmux's global environment overriding valid `gh` credentials. The correct fix was removing the stale variables. Do not reintroduce `env -u ...` wrappers without new evidence.
+
+## R-022 — Gentle Pi `2.2.0` as unattended Atenea worker
+
+**Decision:** NOT QUALIFIED / rejected for current use.
+
+Clean and isolated runs still failed the complete unattended ticket lifecycle reliably. Failure classes included child model-routing inheritance gaps, RDD integration gaps and package-private/global Gentle lifecycle incompatibilities.
+
+Gentle Pi remains uninstalled. Do not build adapters around it. Revisit only after a materially changed upstream release.
+
+## R-023 — Rebuild KairOS #271 custom execute-Issue seam
+
+**Decision:** Rejected.
+
+The custom launcher accumulated environment handling, logging, topology/authority validation, timeouts, gate handling and lifecycle responsibilities while still failing important safety properties.
+
+Preserve useful product requirements from #271, but satisfy them through Pi/Herdr/OpenCode/Gentle/Git wherever upstream already owns them.
+
+## R-024 — Use Herdr as Atenea's policy/gating controller
+
+**Decision:** Rejected.
+
+Attempts to make Herdr gates carry Atenea's supervisory policy were not the successful architecture. Stage 7/8 qualified Pi as the decision-making supervisor while Herdr remains the process/session substrate.
+
+Do not move authority/blocker/publication reasoning back into a bespoke Herdr-gating layer.
+
+## R-025 — Rebuild a custom Clean Code / engineering-quality lifecycle
+
+**Decision:** Rejected.
+
+Use concise repo-local `CODING_STANDARDS.md`, upstream Matt `tdd`, `codebase-design`, `domain-modeling`, `diagnosing-bugs`, `code-review`, plus deterministic tooling where justified.
+
+Atenea should contain only the repo-specific quality delta not already owned upstream.
+
+## R-026 — Build a custom Atenea UX framework
+
+**Decision:** Rejected.
+
+Use upstream Impeccable conditionally for material UI/UX work. `DESIGN.md` may own durable visual-system rules; `PRODUCT.md` should not become a second product truth when canonical product authority exists elsewhere.
+
+## R-027 — Automatic merge or history-rewrite recovery
+
+**Decision:** Rejected.
+
+Normal non-force publication is acceptable. Automatic merge, force-push, hidden reset/rebase recovery and destructive history repair are outside the autonomous default boundary.
