@@ -15,9 +15,11 @@
  * Per-candidate validation lives in the shared validation module
  * (`mode-validation.js`); this resolver delegates its validation phase to
  * the shared ordered validator, which owns the deterministic
- * environment-then-config candidate order and the first-invalid error. The
- * resolver keeps owning absence handling, precedence selection, and source
- * attribution.
+ * environment-then-config candidate order and the first-invalid error.
+ * Precedence/default selection and source attribution are delegated to the
+ * shared selection helper (`select-mode.js`), which owns the single
+ * environment > config > default rule. The resolver keeps owning only the
+ * ordered validation-then-selection sequence.
  *
  * The resolver is genuinely pure: it never touches argv, the filesystem,
  * JSON parsing, process.env, stdout/stderr, or exit codes. The CLI owns all
@@ -28,9 +30,7 @@
 /** @typedef {'default' | 'config' | 'environment'} Source */
 
 import { validatePresentCandidates } from './mode-validation.js';
-
-/** The built-in default mode, per ADR-0001's closed `fast | full` enum. */
-const DEFAULT_MODE = 'full';
+import { selectMode } from './select-mode.js';
 
 /**
  * @typedef {object} ResolveInput
@@ -52,9 +52,10 @@ const DEFAULT_MODE = 'full';
  * order (environment, then config); the first invalid present candidate is
  * the reported error, so a valid higher-priority candidate never masks an
  * invalid lower-priority one. Only when every present candidate validates
- * does precedence select: a valid environment value wins over a valid config
- * value and the built-in default, attributed to `environment`; a valid
- * config value wins over the default; both absent resolves to the default.
+ * does the delegated selector apply precedence: a valid environment value
+ * wins over a valid config value and the built-in default, attributed to
+ * `environment`; a valid config value wins over the default; both absent
+ * resolves to the default.
  *
  * @param {ResolveInput} input
  * @returns {{ mode: Mode, source: Source }}
@@ -68,12 +69,7 @@ export function resolveEffectiveMode({ envValue, configValue }) {
     { source: 'config', value: configValue },
   ]);
 
-  // Precedence phase: every present candidate is known valid here.
-  if (envValue !== undefined) {
-    return { mode: envValue, source: 'environment' };
-  }
-  if (configValue !== undefined) {
-    return { mode: configValue, source: 'config' };
-  }
-  return { mode: DEFAULT_MODE, source: 'default' };
+  // Selection phase: every present candidate is known valid here; delegate
+  // precedence and default attribution to the shared selection helper.
+  return selectMode({ envValue, configValue });
 }

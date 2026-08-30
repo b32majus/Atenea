@@ -126,6 +126,24 @@ test('env present + config absent: a valid env wins, an invalid env is the repor
   assertThrowsSourceError({ envValue: 'FAST', configValue: undefined }, 'environment');
 });
 
+test('the selection phase delegates precedence to the shared helper (env > config > default)', () => {
+  // The resolver no longer owns the inline precedence decision; this pins the
+  // delegated contract observable through the public seam, including source
+  // attribution and the both-absent fallback to the built-in default.
+  assert.deepEqual(
+    resolveEffectiveMode({ envValue: 'fast', configValue: 'full' }),
+    { mode: 'fast', source: 'environment' },
+  );
+  assert.deepEqual(
+    resolveEffectiveMode({ envValue: undefined, configValue: 'fast' }),
+    { mode: 'fast', source: 'config' },
+  );
+  assert.deepEqual(
+    resolveEffectiveMode({ envValue: undefined, configValue: undefined }),
+    { mode: 'full', source: 'default' },
+  );
+});
+
 test('env absent + config present: a valid config wins, an invalid config is the reported error', () => {
   assert.deepEqual(
     resolveEffectiveMode({ envValue: undefined, configValue: 'full' }),
