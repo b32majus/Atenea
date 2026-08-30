@@ -1,65 +1,126 @@
 # Atenea
 
-Atenea is an isolated workflow laboratory for testing whether the **full Matt Pocock engineering-skills ecosystem** can coexist cleanly with the **full Gentle AI ecosystem** inside **OpenCode**, without rebuilding either system inside KairOS.
+Atenea is an **upstream-first autonomous engineering harness** for executing already-shaped software work safely with minimal custom glue.
 
-## Objective
+The project began as a laboratory to test whether the complete Matt Pocock and Gentle AI ecosystems could compose cleanly. That question is now answered positively through Stage 8. The current task is no longer to invent an execution platform, but to preserve the qualified workflow, define the small remaining repo-local policy surface, and use it on real projects.
 
-Validate the smallest viable architecture for autonomous software work:
+## Current qualified architecture
 
 ```text
-Interactive design / authoring
+AUTHORING / SHAPING
+  greenfield: Matt Pocock upstream workflow
+  brownfield: OpenSpec is the intended entry path, not yet qualified in Atenea
+  material UI/UX: conditional Impeccable policy to be finalized from #267
         ↓
-Matt Pocock ecosystem
+ready-for-agent GitHub work + durable repository authority
         ↓
-ready-for-agent + authoritative Agent Brief
+PI — autonomous supervisor
+  discovers executable frontier
+  respects blockers / authority / runtime constraints
+  creates and supervises the worker through Herdr
+  remains non-implementing
         ↓
-Gentle AI direct/delegated execution
+HERDR — process/session substrate
         ↓
-verification + optional RDD
+OPENCODE + GENTLE AI — implementation worker
+  implementation
+  deterministic verification
+  native RDD exact-candidate review / bounded repair
+  exact candidate / receipt authority
         ↓
-Ready / Needs your decision
+normal git push
+  exact local/upstream/remote reconciliation
+  issue closure or repository PR policy
+        ↓
+PI re-discovers frontier
+        ↓
+STOP when exhausted
 ```
 
-If this works upstream-first, KairOS should later become only a thin scheduler/supervisor around already-supported interfaces rather than a custom engineering harness.
+Atenea does **not** require a bespoke queue, scheduler, DAG, lifecycle controller, reviewer wrapper, RDD implementation, execution launcher or state machine.
+
+## Qualification status
+
+```text
+STAGES_0_4                         PASS
+STAGE5_MATT_GENTLE_COMPOSITION    PASS
+STAGE6_NATIVE_GENTLE_RDD          PASS
+STAGE7_PI_SELF_LAUNCH             PASS
+STAGE8_FRONTIER_DISCOVERY         PASS
+UNATTENDED_EXECUTION              PASS
+ZERO_HUMAN_TOUCH                  PASS
+REMOTE_RECONCILIATION             PASS
+FRONTIER_EXHAUSTION_STOP          PASS
+```
+
+Stage 8 accepted checkpoints:
+
+- issue #18 — HEAD `1313b060ce8d22c3eac8bab5258c770af2dd08c0`
+- issue #19 — HEAD `ad1bc950db3c03755ed1632bbf159b6c2f695a73`
+- final Stage 8 tree `18687fcb7d9bfaac157c5ca33a0715ea5c996a6b`
+- 131/131 tests
+
+See `docs/STAGE7_SELF_LAUNCH_CLOSURE.md` and `docs/STAGE8_FRONTIER_DISCOVERY_EXPERIMENT.md` for the frozen qualification evidence.
+
+## Current runtime baseline
+
+As of the canonical 2026-08-30 handoff:
+
+- OpenCode `1.18.25`
+- Gentle AI global `2.5.0-rc.2`
+- Pi supervisor with project/global model routing intact
+- Gentle Pi: **uninstalled / not qualified / do not repair with adapters**
+
+The accepted execution pattern is **Pi → Herdr → OpenCode + Gentle AI**.
+
+## Authoring entry points
+
+### Greenfield
+
+Use the complete Matt Pocock ecosystem, keeping upstream methods intact and pinned where appropriate. The qualified path uses durable repository/tracker authority rather than a custom Agent Brief translation layer.
+
+### Brownfield
+
+**OpenSpec is the intended Atenea entry path for evolutionary/brownfield work.**
+
+It should be used delta-first: shape/specify the behavior being changed rather than reverse-documenting the entire existing codebase. OpenSpec remains an authoring/shaping front end; it does not replace Pi supervision, OpenCode/Gentle execution, Gentle RDD or Git/GitHub authority.
+
+Status: **architecturally accepted candidate, not yet field-qualified inside Atenea**.
+
+The first OpenSpec qualification should happen on a real brownfield change, not on Atenea's own documentation repair, to avoid a self-referential test.
 
 ## Working principles
 
-1. **Upstream first.** Install and test Matt and Gentle as complete ecosystems before adapting anything.
-2. **No cherry-picking internals.** Do not extract RDD, TDD, review, triage, or lifecycle fragments into custom Atenea/KairOS implementations.
-3. **No hidden integration layer.** Prefer native skills, project conventions, GitHub issues, Agent Briefs, OpenCode and Gentle lifecycle state.
-4. **Fresh-session handoff.** A `ready-for-agent` work unit must be executable from durable repository/tracker context; success must not depend on the original design conversation remaining in context.
-5. **Fail before patching.** If vanilla Matt + Gentle do not interoperate, diagnose first. Do not immediately write glue code.
-6. **Keep the experiment isolated from KairOS.** Atenea lives at `/srv/kairos-lab/Atenea` and in this repository; no KairOS harness changes belong here.
+1. **Upstream first.** Prefer supported Matt, Pi, Herdr, OpenCode, Gentle, OpenSpec, Impeccable and Git/GitHub capabilities before proposing Atenea glue.
+2. **Evidence over narration.** Tests, exact candidate identity, git state, remote refs and tracker state outrank agent claims.
+3. **Pi supervises; it does not implement.** Herdr provides process/session primitives, not product-policy authority.
+4. **Gentle owns final candidate authority.** Atenea never reconstructs RDD, candidate freezing, reviewer lineage, receipts or repair lifecycle.
+5. **Normal publication only.** No force-push, hidden reset/rebase recovery or automatic merge.
+6. **Fail closed on material ambiguity or drift.** Unexpected authority conflicts or unsafe repository state stop execution for adjudication.
+7. **Keep repo overlays small.** `AGENTS.md` should remain pointers/high-frequency invariants; engineering quality belongs in concise `CODING_STANDARDS.md` plus upstream methods and deterministic tools.
+8. **Scalable means changeable.** Do not introduce distributed or abstract architecture without requirement or evidence.
 
-## Current hypothesis
+## What remains
 
-- **Greenfield authoring:** Matt Pocock is the preferred front end: `grill-with-docs → to-spec → to-tickets → triage → Agent Brief → ready-for-agent`.
-- **Brownfield authoring:** OpenSpec is a likely alternative entry path and will be evaluated later; it is not part of the first experiment.
-- **Supervised implementation:** Matt `/implement` remains available when a human is present.
-- **Unattended implementation:** Gentle AI owns implementation from an already-ready contract using direct/delegated routing; it should not recreate Matt planning through SDD.
-- **Post-candidate review:** Gentle native verification/RDD owns the unattended review lifecycle.
-- **Delivery:** repository policy remains separate from review. KairOS integration is explicitly out of scope until the upstream workflow works unaided.
+The qualified runtime does not need another large qualification ladder.
 
-## First qualification sequence
+Remaining work is primarily policy/documentation:
 
-1. Inventory the existing global OpenCode/Gentle/Matt configuration on the VPS **read-only**.
-2. Clean only conflicting/partial installations that would make the result uninterpretable.
-3. Install/configure full Gentle AI for OpenCode.
-4. Install the full Matt Pocock skills ecosystem for the Atenea project and run its official project setup.
-5. Refresh and inspect Gentle's skill registry. Confirm that it discovers the original Matt `SKILL.md` files.
-6. Run a small greenfield workflow entirely through Matt until a GitHub issue reaches `ready-for-agent` with an authoritative Agent Brief.
-7. Close the authoring session.
-8. From a fresh OpenCode/Gentle session, issue only the minimal instruction: `Implement issue #X.`
-9. Observe whether Gentle consumes the existing contract, avoids unnecessary SDD recreation, implements, verifies and completes native review correctly.
-10. Record token/call cost, human interventions, lifecycle behavior and any conflicts.
+1. reconcile this repository with the Stage 8 qualified state;
+2. consolidate `Atenea Harness Contract v1`;
+3. incorporate only the still-useful delta from KairOS #268 into `CODING_STANDARDS.md`;
+4. incorporate only the surviving #267 policy: conditional Impeccable, `DESIGN.md` visual authority, and derived-only `PRODUCT.md` where required;
+5. design the first real-project rollout and gather field evidence for surfaces such as OpenSpec brownfield authoring and repository-specific PR/merge policy.
 
-## Explicitly rejected for the first experiment
+Do not create a custom execution controller merely to complete this list.
 
-- Rebuilding a bespoke builder/reviewer protocol in KairOS.
-- Copying only selected pieces of Gentle RDD.
-- Removing Matt skills merely because they overlap with Gentle; ownership is selected by workflow, not by mutilating the installation.
-- Adding Convoy, Spec Kit or OpenSpec before the Matt + Gentle baseline is understood.
-- Creating custom work-unit schemas or translating Matt tickets/Agent Briefs into a KairOS-specific format.
-- Redesigning KairOS while this laboratory is still qualifying the upstream workflow.
+## Canonical documentation
 
-See `docs/DECISIONS.md` and `docs/QUALIFICATION.md` as the experiment evolves.
+- `docs/ATENEA_HANDOFF_20260830.md` — current post-Stage-8 handoff and ownership map.
+- `docs/QUALIFICATION.md` — current qualification status and what is/not yet field-qualified.
+- `docs/STAGE5_TRACER_TRAIN.md` — Stage 5 frozen evidence.
+- `docs/STAGE7_SELF_LAUNCH_CLOSURE.md` — Pi self-launch evidence.
+- `docs/STAGE8_FRONTIER_DISCOVERY_EXPERIMENT.md` — autonomous frontier-discovery evidence.
+- `docs/HANDOFF_CONTRACT.md` — historical Matt→Gentle handoff contract from the qualification ladder.
+- `docs/DECISIONS.md` and stage decision files — durable historical decisions; later documents may supersede earlier forward-looking status.
+- `docs/REJECTED.md` — rejected/deferred approaches and current supersession notes.

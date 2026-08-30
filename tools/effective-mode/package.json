@@ -1,0 +1,16 @@
+{
+  "name": "effective-mode",
+  "version": "0.1.0",
+  "description": "Tiny dependency-light CLI that reports the effective execution mode across default, config, and environment.",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "effective-mode": "bin/effective-mode.js"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "test": "node --test"
+  }
+}
