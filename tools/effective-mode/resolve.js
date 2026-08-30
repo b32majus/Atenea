@@ -12,6 +12,11 @@
  * (including `""` received directly) as a present candidate and validates
  * it strictly.
  *
+ * Per-candidate validation lives in the shared validation module
+ * (`mode-validation.js`); this resolver delegates each present candidate to
+ * it. The resolver keeps owning absence handling, precedence selection, and
+ * source attribution.
+ *
  * The resolver is genuinely pure: it never touches argv, the filesystem,
  * JSON parsing, process.env, stdout/stderr, or exit codes. The CLI owns all
  * input acquisition and output behavior.
@@ -20,8 +25,7 @@
 /** @typedef {'fast' | 'full'} Mode */
 /** @typedef {'default' | 'config' | 'environment'} Source */
 
-/** Closed enum of valid mode values, per ADR-0001. */
-const VALID_MODES = new Set(['fast', 'full']);
+import { validateModeCandidate } from './mode-validation.js';
 
 /** The built-in default mode, per ADR-0001's closed `fast | full` enum. */
 const DEFAULT_MODE = 'full';
@@ -37,26 +41,6 @@ const DEFAULT_MODE = 'full';
  *   file or no `mode` key). A JSON `null` is a PRESENT raw value, not
  *   absence.
  */
-
-/**
- * Validate a present candidate value against the closed enum.
- *
- * A present candidate must be exactly the string `"fast"` or `"full"`
- * (case-sensitive, untrimmed). Any other present value — wrong type
- * (number, boolean, object, array, null) or unknown string — throws a
- * normal Error (no subclass, no error-code machinery) whose message
- * identifies the offending source and the semantic category of the error.
- *
- * @param {Source} source - The candidate's source, for the error message.
- * @param {unknown} value - The present raw candidate value.
- * @returns {Mode} The validated mode.
- */
-function validateCandidate(source, value) {
-  if (typeof value === 'string' && VALID_MODES.has(value)) {
-    return value;
-  }
-  throw new Error(`invalid ${source} mode: ${JSON.stringify(value)}`);
-}
 
 /**
  * Resolve the effective execution mode.
@@ -75,12 +59,13 @@ function validateCandidate(source, value) {
  */
 export function resolveEffectiveMode({ envValue, configValue }) {
   // Validation phase: every present candidate, environment first, then
-  // config. The first invalid present candidate is the reported error.
+  // config, each delegated to the shared single-candidate validator. The
+  // first invalid present candidate is the reported error.
   if (envValue !== undefined) {
-    validateCandidate('environment', envValue);
+    validateModeCandidate('environment', envValue);
   }
   if (configValue !== undefined) {
-    validateCandidate('config', configValue);
+    validateModeCandidate('config', configValue);
   }
 
   // Precedence phase: every present candidate is known valid here.
