@@ -1,298 +1,226 @@
-# Atenea — Qualification Protocol and Status
+# Atenea — Qualification Status
 
-## Goal
+Date of current status: 2026-08-30
 
-Determine whether **vanilla full Matt Pocock skills + vanilla full Gentle AI on OpenCode** can form a clean interactive-to-unattended engineering workflow without custom Matt→Gentle integration code.
+This document is the current status index for Atenea qualification. The Stage-specific files remain the frozen evidence for each experiment. Earlier forward-looking statements in older decision/history files must be interpreted against this current status.
 
-The experiment is intentionally staged so failures can be attributed to a specific layer instead of immediately patched with new glue.
+## Overall result
 
-## Current qualification status
+Atenea has qualified the upstream-first execution architecture through autonomous frontier exhaustion.
 
 ```text
-STAGES_0_4=PASS
-STAGE5_DIRECT_DELEGATED_COMPOSITION=PASS
-STAGE6_NATIVE_RDD=NOT_YET_QUALIFIED
-AUTONOMOUS_MULTI_TICKET_DISPATCH=NOT_YET_QUALIFIED
-FINAL_TRAIN_INTEGRATION=NOT_YET_QUALIFIED
+STAGES_0_4                         PASS
+STAGE5_MATT_GENTLE_COMPOSITION    PASS
+STAGE6_NATIVE_GENTLE_RDD          PASS
+STAGE7_PI_SELF_LAUNCH             PASS
+STAGE8_FRONTIER_DISCOVERY         PASS
+UNATTENDED_EXECUTION              PASS
+ZERO_HUMAN_TOUCH                  PASS
+REMOTE_RECONCILIATION             PASS
+FRONTIER_EXHAUSTION_STOP          PASS
 ```
 
-Stage 5 evidence is frozen on:
+The result is not a recommendation to build a larger Atenea runtime. It is evidence that the required behavior can be composed from upstream systems with a thin supervisory contract.
 
-- OpenCode `1.18.25`;
-- Gentle AI `v2.5.0-rc.1`;
-- RDD OFF;
-- full Matt project-local ecosystem;
-- full Gentle OpenCode installation, global because of upstream workspace issue #3128.
+## Qualified ownership split
 
-See `docs/STAGE5_TRACER_TRAIN.md` for the factual closure record.
+```text
+Matt Pocock upstream skills
+  interactive shaping / engineering methods
 
-## Stage 0 — Environment inventory — PASS
+Pi
+  trusted thin supervisor
+  GitHub frontier discovery
+  blocker / authority / runtime decisions
+  worker supervision
+  permission relay when required
+  closure / reconciliation checks
+  frontier rediscovery
 
-Read-only inventory established which global assets could influence the Atenea session:
+Herdr
+  process / session substrate
 
-- OpenCode version/config sources;
-- existing Gentle binary/state;
-- Matt/Gentle/other skill roots;
-- global/project agents, commands and plugins;
-- relevant environment variables.
+OpenCode
+  implementation runtime
 
-See `docs/STAGE0_ENVIRONMENT.md`.
+Gentle AI
+  implementation lifecycle integration
+  native RDD
+  exact-candidate integrity
+  reviewer lineage / authority
+  bounded repair
+  receipts / candidate mutation invalidation
 
-## Stage 1 — Controlled cleanup — PASS
+Git / GitHub
+  repository history
+  branches / worktrees
+  issues / dependencies
+  remote checkpoints
+  PR / merge policy
 
-Conflicting/partial Matt and Gentle state was removed while unrelated VPS/OpenCode infrastructure was preserved.
+Atenea repo-local policy
+  only the horizontal rules that upstream systems do not own
+```
 
-See `docs/STAGE1_CLEANUP.md`.
+Pi is a supervisor, not a security boundary and not an implementation worker. Herdr is process infrastructure, not a policy engine.
 
-## Stage 2 — Full upstream installation — PASS
+## Stage 5 — Matt → Gentle/OpenCode composition — PASS
 
-The baseline installed complete upstream ecosystems rather than selected fragments.
+The qualified handoff showed that complete Matt project skills and complete Gentle/OpenCode can compose through durable repository/tracker authority without a custom work-unit schema or Agent Brief translation.
 
-Important result:
-
-- Gentle workspace scope was rejected for the OpenCode baseline because upstream issue #3128 writes to a path OpenCode does not use as project-local discovery;
-- Gentle therefore remained global;
-- Matt remained project-local;
-- RDD stayed OFF during installation/direct execution qualification.
-
-See `docs/STAGE2_INSTALL.md` and `docs/STAGE2_MATT_SETUP.md`.
-
-## Stage 3 — Skill discovery compatibility — PASS
-
-Gentle's registry discovered the Matt project skill set from the original project `SKILL.md` paths without a translation layer.
-
-Important integration finding: Matt `disable-model-invocation: true` is not a Gentle registry isolation boundary; Gentle may resolve Matt `implement`. Do not delete/rename/filter Matt skills to hide that behavior.
-
-See `docs/STAGE3_SKILL_REGISTRY.md`.
-
-## Stage 4 — Matt authoring qualification — PASS
-
-Qualified greenfield authoring path:
-
-`grill-with-docs → CONTEXT / ADR → to-spec → clean SPEC audit → to-tickets → clean TICKET/HANDOFF audit → ready-for-agent`
-
-Generated Matt `to-tickets` issues do not require triage or an Agent Brief. Triage remains valid for raw incoming issues Matt did not create.
-
-The fixture used a durable project testing rule:
-
-`Tautological tests considered harmful.`
-
-The authored tracer train became:
-
-- #2 T1 — built-in default;
-- #3 T2 — convention config;
-- #4 T3 — environment precedence/validation;
-- #5 T4 — argv, explicit config and help.
-
-## Handoff Contract Gate
-
-Before unattended dispatch, run a bounded clean-context semantic gate over the current frontier ticket.
-
-It checks:
-
-- coverage;
-- blockers/dependencies;
-- vertical-slice executability;
-- deterministic acceptance;
-- authority consistency;
-- temporal slice exclusivity.
-
-Temporal slice exclusivity means every observable parent behavior has one first-introducing ticket. Earlier slices may establish seams for later work without making later behavior observable.
-
-T1 demonstrated why this matters: its initial contract was materially ambiguous and Gentle implemented T3 environment behavior early. After one focused ticket repair, T1 was repaired correctly and T2/T3/T4 required zero repair cycles.
-
-The gate is therefore retained as a semantic guardrail, not expanded into a second planning framework.
-
-See `docs/HANDOFF_CONTRACT.md`.
-
-## Stage 5 — Fresh-session direct/delegated handoff — PASS
-
-Every execution session starts fresh and receives the intentionally minimal prompt:
+The minimal execution instruction remained effectively:
 
 `Implement GitHub issue #N.`
 
-The executor is not told which repository files to read, which Matt skills to invoke, how to route models, how to perform TDD, or how to recreate the authoring conversation.
+Frozen evidence: `docs/STAGE5_TRACER_TRAIN.md`.
 
-### Cross-ecosystem continuity
+## Stage 6 — native Gentle RDD — PASS
 
-PASS: Gentle consumed durable issue/repository authority and the Matt-side anti-tautology rule without that rule being copied into the execution prompt.
+Gentle AI `2.5.0-rc.2` native RDD was qualified as the review/candidate authority rather than reconstructed inside Atenea.
 
-Engram remained available, so this proves fresh conversational/session context rather than strict persistent-memory isolation. Changed durable authority nevertheless overrode stale prior implementation during the T1 repair.
+Qualified properties include the exact-candidate lifecycle, reviewer authority/lineage, bounded repair and invalidation of review evidence when the candidate changes.
 
-### Stage 5 tracer ledger
+Atenea must not duplicate those mechanisms.
 
-| Slice | Issue | Accepted HEAD | TREE | Tests | Repairs |
-|---|---:|---|---|---:|---:|
-| T1 | #2 | `5d070ac095503f1a4348a77a5d023801943074b5` | `0cda7154567723e44089929cc1417eec43109ccf` | 4/4 | 1 |
-| T2 | #3 | `fcbbd224183d8af37ab561b8ecce911f33ad93cc` | `b31e22cdf837670750e15c23646f768f652e6037` | 15/15 | 0 |
-| T3 | #4 | `ad5c19db57cdc7efe78bb0010635172c1f50bdf2` | `fa547db8c6e2bb2577b0fb11408d21b65aaee01b` | 32/32 | 0 |
-| T4 | #5 | `c06a88620a15d9e8ff5570892d84a551ac1a8e95` | `2ee5d8d37dbdb6c83effbd20c11106006e5b1a76` | 49/49 | 0 |
+## Stage 7 — Pi self-launch — PASS
 
-All four dependency tickets are closed at accepted remote checkpoints.
+Pi proved it can remain non-implementing while creating/managing the OpenCode + Gentle worker through Herdr and completing accepted work with no human running the worker lifecycle manually.
 
-### Reviewer scaffolding progression
+Canonical accepted Stage 7 checkpoint:
 
-Qualification deliberately reduced external scaffolding as confidence grew:
+`79489688a6c6bd83ba8fd807cb87bdc0a59b94bf`
 
-- T1: external audit found scope drift; one bounded repair;
-- T2: pre-handoff gate PASS + independent audit PASS; zero repairs;
-- T3/T4: Gentle performed implementation, deterministic verification, remote reconciliation, commit and push without a Codex reviewer/repair loop; exact-SHA audits remained laboratory observation before deterministic closure.
+Frozen evidence: `docs/STAGE7_SELF_LAUNCH_CLOSURE.md`.
 
-Do not convert the qualification audits into a permanent second reviewer harness. Stage 6 exists to qualify native Gentle RDD.
+## Stage 8 — autonomous frontier discovery — PASS
 
-## Post-execution remote reconciliation
+The operator did not provide issue numbers. Pi scanned GitHub, classified the executable frontier, selected #18, respected #19 while blocked, completed #18, re-scanned, discovered #19 had become executable, completed #19, and stopped when no compatible frontier remained.
 
-Every work unit performs a fresh fetch before acceptance.
+### Issue #18
 
-### Working-branch drift
+```text
+HEAD   1313b060ce8d22c3eac8bab5258c770af2dd08c0
+TREE   8a79548c43d0acdaf426dcd7c8acfc801c9fe1f8
+RDD    review-0d11fc95166af074
+STATE  CLOSED
+TESTS  131/131
+```
 
-Unexpected same-branch drift:
+### Issue #19
 
-`REMOTE_BRANCH_DRIFT=YES → STOP / NEEDS_DECISION`
+```text
+HEAD   ad1bc950db3c03755ed1632bbf159b6c2f695a73
+TREE   18687fcb7d9bfaac157c5ca33a0715ea5c996a6b
+RDD    review-3248f7d4dbb7f3d4
+STATE  CLOSED
+TESTS  131/131
+```
 
-Never silently force-push competing remote history.
+Final Stage 8 repository state:
 
-### Integration-target drift
+```text
+local HEAD == upstream == origin/stage8-frontier-discovery-20260830
+HEAD = ad1bc950db3c03755ed1632bbf159b6c2f695a73
+worktree clean
+```
 
-Record whether `origin/main` advanced, but do not automatically rebase/merge each dependency ticket before closure.
+Frozen evidence: `docs/STAGE8_FRONTIER_DISCOVERY_EXPERIMENT.md`.
 
-Ticket closure and train integration are separate gates. Before final integration/merge, reconcile with current target state and rerun required verification.
+## GitHub authentication incident — resolved
 
-## Candidate checkpoint
+The intermittent 401 failures were traced to stale `GH_TOKEN` / `GITHUB_TOKEN` values in the tmux global environment, which overrode the valid `gh` credential store.
 
-An accepted direct/delegated candidate records:
+The root fix was removal of those stale tmux-global variables. New panes were then verified clean and `gh auth status` succeeded.
 
-- branch;
-- implementation HEAD;
-- implementation TREE;
-- predecessor HEAD;
-- deterministic tests;
-- diff containment;
-- tracked-clean state;
-- remote branch HEAD equal to implementation HEAD.
+Do not reintroduce `env -u GH_TOKEN -u GITHUB_TOKEN ...` wrappers or build an authentication shim unless new evidence demonstrates a new problem.
 
-T3/T4 qualified Gentle creating this checkpoint itself after deterministic checks.
+## Gentle Pi experiment — NOT QUALIFIED / rejected for current use
 
-## Closure Gate
+Gentle Pi `2.2.0` was tested as a possible Pi → Pi/Gentle-Pi execution replacement.
 
-Before closing a dependency ticket, require:
+It did not complete the full unattended lifecycle reliably even after isolated-home bootstrapping. Observed failure classes included model-routing inheritance gaps, native RDD selection/integration gaps and package-private/global Gentle lifecycle incompatibilities.
 
-- current acceptance PASS;
-- temporal/scope discipline PASS;
-- behavioral test evidence PASS;
-- coding-standard/canary evidence where applicable;
-- diff containment PASS;
-- exact implementation HEAD/TREE;
-- `REMOTE_RECONCILIATION=PASS`;
-- no unexpected same-branch drift;
-- exact remote checkpoint;
-- tracked tree clean except explicitly known untracked runtime artifacts.
+Decision:
 
-Issue closure records an accepted work-unit checkpoint. It is not a merge/release event.
+```text
+GENTLE_PI_2_2_0_FOR_ATENEA_UNATTENDED_EXECUTION = NOT_QUALIFIED / FAIL
+```
 
-## Stage 6 — RDD/runtime behavior — NEXT
+Current policy:
 
-Stage 6 is an explicit runtime qualification epoch:
+- Gentle Pi remains uninstalled;
+- do not write adapters around it;
+- do not reopen qualification until an upstream release materially changes the failed lifecycle surfaces;
+- keep Pi → Herdr → OpenCode + Gentle as the accepted baseline.
 
-- Stage 5: Gentle `v2.5.0-rc.1` / RDD OFF — frozen PASS evidence;
-- Stage 6: upgrade deliberately to Gentle `v2.5.0-rc.2` / RDD ON.
+## Current runtime baseline
 
-Do not silently upgrade inside Stage 5 or retroactively mix rc.2 behavior into the rc.1 evidence.
+At the 2026-08-30 canonical handoff:
 
-Before enabling RDD:
+- OpenCode `1.18.25`
+- Gentle AI global `2.5.0-rc.2`
+- Pi routing intact
+- Gentle Pi absent
 
-1. record exact installed binary/version;
-2. run Gentle `doctor`;
-3. verify managed OpenCode assets;
-4. verify the skill registry remains healthy;
-5. verify Matt project skills still resolve as expected;
-6. record the configuration diff caused by the upgrade;
-7. only then enable RDD.
+Model/provider/effort values are operational routing facts, not Atenea architecture.
 
-### rc.2 OpenCode targets
+## What is not yet field-qualified
 
-Field-test, where applicable:
+These are not reasons to build new infrastructure. They are surfaces to exercise naturally on real projects when relevant:
 
-- negotiated review to approval;
-- exact-token `review.acknowledge-approved` execution;
-- STATUS restart before acknowledgement replaying the same pending transition;
-- wrong/stale/replayed acknowledgement refusing without side effects;
-- zero-lens approval path;
-- correction with an untracked artifact;
-- opaque `repository_context` digest and wrong-repository refusal;
-- bounded fail-closed refusal behavior.
+### OpenSpec brownfield authoring
 
-Review authority must bind to the reconciled candidate:
+OpenSpec is the intended brownfield/evolutionary entry path, but it has not yet been qualified end-to-end inside Atenea.
 
-`implementation → fetch/reconcile → deterministic verification → freeze candidate → native RDD → acknowledgement/terminal state → exact durable checkpoint → closure/delivery`
+Qualification should happen on a real existing-code change and should test the seam:
 
-A SHA/TREE change after approval requires a new candidate/review cycle.
+```text
+existing repo authority
+→ OpenSpec delta-first shaping
+→ ready executable GitHub work
+→ qualified Pi / Herdr / OpenCode / Gentle path
+```
 
-Atenea must not recreate RDD algorithms, receipts, candidate freezing, lifecycle state or runtime adapters in custom code.
+Do not use Atenea's own documentation reconciliation as the OpenSpec canary because that would make the test self-referential.
 
-## Later qualification — thin autonomous progression
+### Material UI/UX policy
 
-Stage 5 used a human to select the next frontier, create/start the next fresh execution context and perform closure actions.
+The surviving #267 design policy still needs to be consolidated:
 
-A later stage must prove that a deliberately thin dispatcher can:
+- Impeccable only for material UI/UX work;
+- `DESIGN.md` as durable visual-system authority where warranted;
+- `PRODUCT.md` derived from canonical product authority when a compatibility projection is required.
 
-1. discover the next unblocked `ready-for-agent` ticket;
-2. verify predecessor/branch/repository state;
-3. run the Handoff Contract Gate;
-4. start a genuinely fresh Gentle session;
-5. dispatch the minimal prompt;
-6. observe deterministic checkpoint/RDD state;
-7. close the accepted work unit;
-8. advance to the next dependency frontier.
+This is policy/configuration work, not a new execution lifecycle.
 
-This dispatcher must not become another skill-based planning/implementation/review harness.
+### Engineering-quality horizontal policy
 
-## Evidence and cost
+The surviving #268 delta still needs to be incorporated into concise `CODING_STANDARDS.md`, relying on upstream `tdd`, `codebase-design`, `domain-modeling`, `diagnosing-bugs` and `code-review` rather than duplicating them.
 
-Record for later runs:
+### Repository-specific delivery policy
 
-- exact Gentle version/commit;
-- models used;
-- observable agent/model calls;
-- token/cost information if available;
-- human interventions;
-- implementation result and tests;
-- review findings and repairs;
-- whether candidate identity changed after review;
-- lifecycle/recovery behavior;
-- final repository state.
+Real repositories may use PRs and human merge boundaries. The qualified runtime already supports normal push/reconciliation; PR creation and merge policy should be exercised according to each repository's actual workflow rather than through another synthetic qualification ladder.
 
-Do not add CodeGraph merely to improve baseline numbers. Establish the vanilla baseline first, then measure optimization separately.
+## No further large qualification ladder
 
-## Deferred surfaces
+Do not create Stage 9/10/... simply to obtain ceremonial completeness.
 
-Not part of the current qualified baseline:
+New qualification is justified only when one of these is true:
 
-- Pi runtime;
-- OpenSpec brownfield/evolutionary authoring;
-- Convoy unless Gentle fails a required property;
-- CodeGraph optimization;
-- final PR/merge/release policy;
-- strict memory-isolation qualification with Engram disabled.
+1. a required property has no upstream owner;
+2. a real field run exposes an unresolved seam;
+3. a materially different upstream runtime replaces a previously failed/qualified lifecycle;
+4. a new entry path such as OpenSpec needs a bounded compatibility test.
 
-## Decision semantics
+Otherwise proceed by real-project use and collect evidence there.
 
-### PASS
+## Evidence precedence
 
-The tested layer works through supported interfaces without meaningful custom glue.
+When documentation conflicts:
 
-### CONDITIONAL PASS
+1. exact repository / GitHub / runtime evidence;
+2. current `README.md`, this file and `docs/ATENEA_HANDOFF_20260830.md`;
+3. Stage-specific frozen evidence;
+4. earlier decision files and forward-looking plans.
 
-The architecture works but requires a bounded explicit ownership/configuration policy. Document the exact requirement.
-
-### FAIL
-
-The ecosystems conflict structurally or require substantial custom orchestration. Diagnose and compare alternatives before patching.
-
-## Non-goals
-
-- rebuilding production KairOS during qualification;
-- reconstructing Gentle RDD;
-- translating Matt tickets into a custom schema;
-- benchmarking every model/provider before workflow correctness;
-- adding optimizations that obscure the vanilla baseline.
+Historical documents are preserved because they explain how the architecture was reached; their old `NEXT`, `DEFERRED` or `NOT_YET_QUALIFIED` labels are not current status unless repeated here.
