@@ -86,26 +86,34 @@ The first qualification MUST use a real bounded brownfield code change, not Aten
 
 ### 4.3 Raw incoming issues
 
-Matt triage remains available for issues that were not created by the shaped greenfield/brownfield path and are not yet executable.
+Matt triage remains available for issues that were not created by a shaped greenfield/brownfield path and are not yet executable.
 
 Do not route already-shaped tickets through triage by ritual.
 
-## 5. Readiness contract
+## 5. Readiness and authority
 
-A work item may enter autonomous execution only when the current repository/tracker authority is sufficient to determine, at minimum:
+A work item may enter autonomous execution only when current repository/tracker authority is sufficient to determine:
 
-- what behavior/change is required;
-- which authority is canonical;
+- required behavior/change;
+- canonical authority;
 - relevant dependencies/blockers;
-- deterministic acceptance or other falsifiable evidence;
+- falsifiable acceptance/evidence;
 - scope and ownership boundaries with adjacent work;
-- any repository-specific delivery boundary.
+- repository-specific delivery boundary.
 
 Material ambiguity, contradictory authority, unresolved human product decisions or incompatible runtime assumptions mean NOT READY.
 
 Atenea MUST fail closed rather than silently redesign product semantics during execution.
 
-## 6. Frontier discovery and supervision
+## 6. Repository isolation
+
+Do not appropriate, reset, clean or overwrite an unexpected dirty checkout in order to begin work.
+
+Real work should use a clean dedicated branch/worktree when isolation is needed by repository policy, parallel work or safety. Prefer standard Git and native Herdr/Git worktree primitives over a custom topology layer.
+
+An unexpected topology or dirty-state contradiction is a STOP condition, not authorization for destructive cleanup.
+
+## 7. Frontier discovery and supervision
 
 Pi is the trusted thin supervisor.
 
@@ -124,15 +132,13 @@ For each autonomous iteration Pi should:
 
 Do not reintroduce a separate queue, DAG, scheduler, controller or dispatcher unless field evidence proves Pi plus standard repository/tracker primitives cannot provide a required property.
 
-## 7. Process/session substrate
+## 8. Process/session substrate
 
 Herdr owns process/session primitives only.
 
 Atenea MUST NOT move product authority, blocker reasoning, publication policy or lifecycle state into bespoke Herdr gates.
 
-Where native Herdr/Git worktree primitives are useful, use them as infrastructure rather than inventing a parallel topology layer.
-
-## 8. Implementation and engineering methods
+## 9. Implementation and engineering methods
 
 OpenCode + Gentle AI is the accepted unattended implementation worker.
 
@@ -152,7 +158,7 @@ CODING_STANDARDS.md
 
 Matt `code-review` is available as an engineering method, but Atenea does not mandate a second LLM reviewer lifecycle after every candidate. Gentle native RDD owns final exact-candidate review authority.
 
-## 9. Deterministic evidence before claims
+## 10. Deterministic evidence before claims
 
 Where the repository provides deterministic checks, run the relevant ones before accepting semantic claims.
 
@@ -160,7 +166,7 @@ Examples include tests, linting, type checks, build checks, schema validation, d
 
 Only adopt checks that are machine-decidable and justified by the repository's stack/risk. Passing checks do not override contradictory product authority or an invalid review candidate.
 
-## 10. Exact candidate and review authority
+## 11. Exact candidate and review authority
 
 Gentle AI alone owns the final candidate/RDD lifecycle.
 
@@ -173,9 +179,9 @@ Atenea MUST NOT reconstruct:
 - repair-loop state;
 - acknowledgement/recovery algorithms.
 
-A post-review candidate mutation invalidates the prior review evidence according to Gentle's native lifecycle.
+A post-review candidate mutation invalidates prior review evidence according to Gentle's native lifecycle.
 
-## 11. Engineering-quality policy
+## 12. Engineering-quality policy
 
 Atenea's horizontal engineering standard is `CODING_STANDARDS.md`.
 
@@ -187,7 +193,7 @@ Scalability does not imply premature microservices, distributed architecture, ge
 
 Technical debt may exist only as intentional, visible, bounded and owned debt.
 
-## 12. Material UI/UX activation
+## 13. Material UI/UX activation
 
 Impeccable is conditional, not universal.
 
@@ -217,7 +223,7 @@ visual-system / tokens / component-system change
 
 Do not create an Atenea UX framework around these methods.
 
-## 13. DESIGN.md authority
+## 14. DESIGN.md authority
 
 Where a product has durable visual-system decisions worth preserving, `DESIGN.md` may be the visual-system authority.
 
@@ -225,7 +231,7 @@ It owns visual identity/tokens/rationale, not product semantics.
 
 A missing `DESIGN.md` alone does not imply greenfield or authorize a redesign. Existing visual evidence and product authority still matter.
 
-## 14. PRODUCT.md compatibility rule
+## 15. PRODUCT.md compatibility rule
 
 Existing canonical product authority MUST NOT be duplicated merely because a design tool expects `PRODUCT.md`.
 
@@ -253,7 +259,17 @@ If a simple repo legitimately uses `PRODUCT.md` itself as canonical product auth
 
 `DESIGN.md` remains a separate visual-system authority and is not generated from `PRODUCT.md`.
 
-## 15. Publication boundary
+## 16. Pre-publication authority revalidation
+
+Immediately before publication, perform one fresh read of current GitHub/product authority relevant to the work item.
+
+This is a single bounded revalidation, not a polling subsystem or Herdr gate.
+
+If blockers, scope, product authority or repository delivery instructions changed materially since execution began, do not publish the stale candidate: STOP for adjudication.
+
+If authority is unchanged, continue to normal publication without adding another lifecycle layer.
+
+## 17. Publication boundary
 
 Normal non-force `git push` is allowed in the accepted autonomous path.
 
@@ -270,7 +286,7 @@ The autonomous default MUST NOT use force-push, hidden reset/rebase/history rewr
 
 If publication partially succeeds (for example push succeeds but PR creation fails), preserve the exact remote state and STOP for adjudication rather than silently inventing recovery semantics.
 
-## 16. Reconciliation
+## 18. Reconciliation
 
 Acceptance depends on exact repository evidence, not agent narration.
 
@@ -280,7 +296,7 @@ Unexpected same-branch drift or contradictory authoritative state is fail-closed
 
 Work-unit acceptance, PR publication and final merge are distinct repository boundaries.
 
-## 17. STOP conditions
+## 19. STOP conditions
 
 STOP rather than improvise when any material condition is unresolved, including:
 
@@ -291,22 +307,23 @@ STOP rather than improvise when any material condition is unresolved, including:
 - unresolved product decision;
 - inability to establish falsifiable acceptance for a requirement that needs it;
 - candidate/review state inconsistent with Gentle authority;
+- material pre-publication authority change;
 - destructive publication/recovery being required;
 - publication partially succeeding without an explicit safe continuation.
 
-## 18. Model/provider routing
+## 20. Model/provider routing
 
 Model, provider and reasoning-effort selections are operational routing facts, not Atenea architecture.
 
 Record them when useful for evidence/cost/reproducibility, but do not hard-code the harness around a specific model unless a repository has a demonstrated requirement.
 
-## 19. Security boundary
+## 21. Security boundary
 
 Pi and Herdr run with the privileges of their environment and are not security sandboxes.
 
 If a vertical requires stronger isolation, use an appropriate container/sandbox boundary. Do not build a bespoke Atenea security sandbox without a concrete requirement.
 
-## 20. Upstream-first change test
+## 22. Upstream-first change test
 
 Before adding any Atenea glue, answer all of these:
 
@@ -318,7 +335,7 @@ Before adding any Atenea glue, answer all of these:
 
 If those questions do not have concrete answers, DO NOT BUILD.
 
-## 21. Current completion state
+## 23. Current completion state
 
 The Stage 5–8 runtime path is qualified. Harness Contract v1 deliberately adds no new runtime.
 
