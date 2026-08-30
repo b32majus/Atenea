@@ -49,7 +49,7 @@ Use Matt Pocock upstream shaping and setup semantics.
 
 Use the current supported OpenSpec workflow delta-first: specify the change to existing behavior rather than reverse-specifying the whole application.
 
-The first brownfield field run should answer only one compatibility question:
+The first brownfield field run should answer one compatibility question:
 
 > Can OpenSpec produce durable, unambiguous executable work that the already-qualified Pi → Herdr → OpenCode/Gentle path can consume without a custom translation layer?
 
@@ -106,12 +106,15 @@ Pi discovers frontier
 → OpenCode + Gentle implements
 → repo deterministic verification
 → Gentle native exact-candidate RDD / bounded repair
+→ ONE fresh pre-publication authority revalidation
 → normal push
 → repository-specific PR/checkpoint policy
 → exact reconciliation
 → Pi re-discovers frontier
 → STOP when exhausted
 ```
+
+The pre-publication revalidation is one bounded fresh read, not polling and not a Herdr gate. Material authority change means STOP rather than publishing a stale candidate.
 
 Do not add a temporary dispatcher/controller merely for the rollout.
 
@@ -128,6 +131,7 @@ For each first-use surface, keep compact factual evidence:
 - Gentle RDD review identifier/state where available;
 - repair cycles;
 - human interventions after `EXECUTION_READY`;
+- pre-publication authority revalidation result;
 - publication result;
 - reconciliation result;
 - final STOP/next-frontier result;
