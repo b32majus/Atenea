@@ -1,100 +1,126 @@
 # Atenea
 
-Atenea is an isolated workflow laboratory for testing whether the **full Matt Pocock engineering-skills ecosystem** can compose cleanly with the **full Gentle AI ecosystem** inside **OpenCode**, without rebuilding either system inside KairOS.
+Atenea is an **upstream-first autonomous engineering harness** for executing already-shaped software work safely with minimal custom glue.
 
-## Current status
+The project began as a laboratory to test whether the complete Matt Pocock and Gentle AI ecosystems could compose cleanly. That question is now answered positively through Stage 8. The current task is no longer to invent an execution platform, but to preserve the qualified workflow, define the small remaining repo-local policy surface, and use it on real projects.
 
-**Stage 5 direct/delegated composition: PASS.**
-
-A four-ticket tracer train authored through Matt and executed through fresh Gentle sessions completed with exact remote checkpoints and closed dependency tickets:
-
-| Slice | Issue | Accepted HEAD | Tests | Repairs |
-|---|---:|---|---:|---:|
-| T1 | #2 | `5d070ac095503f1a4348a77a5d023801943074b5` | 4/4 | 1 |
-| T2 | #3 | `fcbbd224183d8af37ab561b8ecce911f33ad93cc` | 15/15 | 0 |
-| T3 | #4 | `ad5c19db57cdc7efe78bb0010635172c1f50bdf2` | 32/32 | 0 |
-| T4 | #5 | `c06a88620a15d9e8ff5570892d84a551ac1a8e95` | 49/49 | 0 |
-
-Runtime for this evidence: **OpenCode 1.18.25 + Gentle AI v2.5.0-rc.1 + RDD OFF**.
-
-The detailed closure record is `docs/STAGE5_TRACER_TRAIN.md`.
-
-## Qualified architecture
+## Current qualified architecture
 
 ```text
-MATT — interactive authoring
-  grill-with-docs
-  → CONTEXT / ADR
-  → to-spec
-  → clean spec audit
-  → to-tickets
-  → clean handoff audit / temporal ownership
-  → ready-for-agent ticket
-           │
-           │ durable trust boundary
-           ▼
-GENTLE — fresh unattended execution
-  Implement GitHub issue #N.
-  → direct/delegated implementation
-  → deterministic verification
-  → remote reconciliation
-  → exact remote checkpoint
-  → [Stage 6: native RDD when enabled]
-           │
-           ▼
-THIN SUPERVISION
-  deterministic closure
-  → next dependency frontier
-  → later integration/delivery
+AUTHORING / SHAPING
+  greenfield: Matt Pocock upstream workflow
+  brownfield: OpenSpec is the intended entry path, not yet qualified in Atenea
+  material UI/UX: conditional Impeccable policy to be finalized from #267
+        ↓
+ready-for-agent GitHub work + durable repository authority
+        ↓
+PI — autonomous supervisor
+  discovers executable frontier
+  respects blockers / authority / runtime constraints
+  creates and supervises the worker through Herdr
+  remains non-implementing
+        ↓
+HERDR — process/session substrate
+        ↓
+OPENCODE + GENTLE AI — implementation worker
+  implementation
+  deterministic verification
+  native RDD exact-candidate review / bounded repair
+  exact candidate / receipt authority
+        ↓
+normal git push
+  exact local/upstream/remote reconciliation
+  issue closure or repository PR policy
+        ↓
+PI re-discovers frontier
+        ↓
+STOP when exhausted
 ```
 
-The key result is that the Matt→Gentle seam did **not** require an Agent Brief translation, custom work-unit schema, copied planning context, selected-skill fork, or a custom integration adapter.
+Atenea does **not** require a bespoke queue, scheduler, DAG, lifecycle controller, reviewer wrapper, RDD implementation, execution launcher or state machine.
+
+## Qualification status
+
+```text
+STAGES_0_4                         PASS
+STAGE5_MATT_GENTLE_COMPOSITION    PASS
+STAGE6_NATIVE_GENTLE_RDD          PASS
+STAGE7_PI_SELF_LAUNCH             PASS
+STAGE8_FRONTIER_DISCOVERY         PASS
+UNATTENDED_EXECUTION              PASS
+ZERO_HUMAN_TOUCH                  PASS
+REMOTE_RECONCILIATION             PASS
+FRONTIER_EXHAUSTION_STOP          PASS
+```
+
+Stage 8 accepted checkpoints:
+
+- issue #18 — HEAD `1313b060ce8d22c3eac8bab5258c770af2dd08c0`
+- issue #19 — HEAD `ad1bc950db3c03755ed1632bbf159b6c2f695a73`
+- final Stage 8 tree `18687fcb7d9bfaac157c5ca33a0715ea5c996a6b`
+- 131/131 tests
+
+See `docs/STAGE7_SELF_LAUNCH_CLOSURE.md` and `docs/STAGE8_FRONTIER_DISCOVERY_EXPERIMENT.md` for the frozen qualification evidence.
+
+## Current runtime baseline
+
+As of the canonical 2026-08-30 handoff:
+
+- OpenCode `1.18.25`
+- Gentle AI global `2.5.0-rc.2`
+- Pi supervisor with project/global model routing intact
+- Gentle Pi: **uninstalled / not qualified / do not repair with adapters**
+
+The accepted execution pattern is **Pi → Herdr → OpenCode + Gentle AI**.
+
+## Authoring entry points
+
+### Greenfield
+
+Use the complete Matt Pocock ecosystem, keeping upstream methods intact and pinned where appropriate. The qualified path uses durable repository/tracker authority rather than a custom Agent Brief translation layer.
+
+### Brownfield
+
+**OpenSpec is the intended Atenea entry path for evolutionary/brownfield work.**
+
+It should be used delta-first: shape/specify the behavior being changed rather than reverse-documenting the entire existing codebase. OpenSpec remains an authoring/shaping front end; it does not replace Pi supervision, OpenCode/Gentle execution, Gentle RDD or Git/GitHub authority.
+
+Status: **architecturally accepted candidate, not yet field-qualified inside Atenea**.
+
+The first OpenSpec qualification should happen on a real brownfield change, not on Atenea's own documentation repair, to avoid a self-referential test.
 
 ## Working principles
 
-1. **Upstream first.** Keep Matt and Gentle complete and qualify their supported surfaces before adapting anything.
-2. **No cherry-picking internals.** Do not extract RDD, TDD, review, triage or lifecycle fragments into custom Atenea/KairOS implementations.
-3. **Durable handoff.** A Matt-generated `ready-for-agent` issue plus repository authority and dependency state is the contract. Generated `to-tickets` issues do not require triage or an Agent Brief.
-4. **Fresh execution session.** Gentle must succeed from durable tracker/repository state, not from the Matt authoring chat.
-5. **Semantic ambiguity is repaired before dispatch.** The Handoff Contract Gate checks coverage, dependencies, deterministic acceptance and temporal slice exclusivity; it is not a second authoring framework.
-6. **Deterministic evidence first.** Tests, git state, exact SHA/TREE, remote refs and issue state are preferred over narrative claims.
-7. **Closure is not merge.** A work unit may close at an accepted remote checkpoint; integration with current `main` is a later train-delivery concern.
-8. **No permanent external reviewer loop.** Codex/external audits used during qualification are scaffolding, not the target runtime. Native Gentle RDD is the Stage 6 review candidate.
-9. **KairOS stays thin.** If later stages pass, KairOS should schedule, supervise and deliver; it should not recreate planning, implementation, review or repair internals.
+1. **Upstream first.** Prefer supported Matt, Pi, Herdr, OpenCode, Gentle, OpenSpec, Impeccable and Git/GitHub capabilities before proposing Atenea glue.
+2. **Evidence over narration.** Tests, exact candidate identity, git state, remote refs and tracker state outrank agent claims.
+3. **Pi supervises; it does not implement.** Herdr provides process/session primitives, not product-policy authority.
+4. **Gentle owns final candidate authority.** Atenea never reconstructs RDD, candidate freezing, reviewer lineage, receipts or repair lifecycle.
+5. **Normal publication only.** No force-push, hidden reset/rebase recovery or automatic merge.
+6. **Fail closed on material ambiguity or drift.** Unexpected authority conflicts or unsafe repository state stop execution for adjudication.
+7. **Keep repo overlays small.** `AGENTS.md` should remain pointers/high-frequency invariants; engineering quality belongs in concise `CODING_STANDARDS.md` plus upstream methods and deterministic tools.
+8. **Scalable means changeable.** Do not introduce distributed or abstract architecture without requirement or evidence.
 
-## What Stage 5 proved
+## What remains
 
-- full Matt project skills and full Gentle can coexist in the OpenCode baseline;
-- Gentle can consume a Matt-authored durable contract from a fresh session with the minimal prompt `Implement GitHub issue #N.`;
-- project knowledge such as the anti-tautological-test rule survives the boundary;
-- the T1 scope defect was a ticket temporal-boundary problem, not a structural Matt/Gentle incompatibility;
-- after the handoff contract was clarified, T2/T3/T4 completed with zero repair cycles;
-- Gentle successfully handled implementation, deterministic verification and remote checkpoint creation on T3/T4 without a Codex reviewer/repair loop;
-- same-branch remote drift is fail-closed, while `origin/main` drift is recorded separately and may be deferred to train integration;
-- a custom Matt→Gentle adapter is unnecessary for the qualified direct/delegated path.
+The qualified runtime does not need another large qualification ladder.
 
-## Important limitations
+Remaining work is primarily policy/documentation:
 
-Stage 5 does **not** yet qualify:
+1. reconcile this repository with the Stage 8 qualified state;
+2. consolidate `Atenea Harness Contract v1`;
+3. incorporate only the still-useful delta from KairOS #268 into `CODING_STANDARDS.md`;
+4. incorporate only the surviving #267 policy: conditional Impeccable, `DESIGN.md` visual authority, and derived-only `PRODUCT.md` where required;
+5. design the first real-project rollout and gather field evidence for surfaces such as OpenSpec brownfield authoring and repository-specific PR/merge policy.
 
-- native Gentle RDD review/repair/acknowledgement/recovery;
-- autonomous multi-ticket selection and progression without a human starting each fresh session;
-- final train integration/merge/release;
-- Pi;
-- OpenSpec brownfield authoring;
-- CodeGraph optimization;
-- strict memory isolation with Engram disabled.
-
-## Next stage
-
-Stage 6 is a deliberate runtime epoch: upgrade from Gentle `v2.5.0-rc.1` to `v2.5.0-rc.2`, verify installation/registry health, then enable and qualify **native RDD**. Do not mix rc.2 results retroactively into Stage 5 evidence.
+Do not create a custom execution controller merely to complete this list.
 
 ## Canonical documentation
 
-- `docs/STAGE5_TRACER_TRAIN.md` — full Stage 5 result, findings, kept/rejected choices and remaining gaps.
-- `docs/STAGE5_DECISIONS.md` — Stage 5 continuation of the durable decision log (D-031 onward).
-- `docs/HANDOFF_CONTRACT.md` — normative Matt→Gentle boundary.
-- `docs/DECISIONS.md` — foundational durable architectural decisions through D-030.
-- `docs/REJECTED.md` — rejected/deferred approaches and why.
-- `docs/QUALIFICATION.md` — qualification protocol and Stage 6 targets.
-- `docs/STAGE5_T1.md` — detailed T1 incident/repair evidence.
+- `docs/ATENEA_HANDOFF_20260830.md` — current post-Stage-8 handoff and ownership map.
+- `docs/QUALIFICATION.md` — current qualification status and what is/not yet field-qualified.
+- `docs/STAGE5_TRACER_TRAIN.md` — Stage 5 frozen evidence.
+- `docs/STAGE7_SELF_LAUNCH_CLOSURE.md` — Pi self-launch evidence.
+- `docs/STAGE8_FRONTIER_DISCOVERY_EXPERIMENT.md` — autonomous frontier-discovery evidence.
+- `docs/HANDOFF_CONTRACT.md` — historical Matt→Gentle handoff contract from the qualification ladder.
+- `docs/DECISIONS.md` and stage decision files — durable historical decisions; later documents may supersede earlier forward-looking status.
+- `docs/REJECTED.md` — rejected/deferred approaches and current supersession notes.
