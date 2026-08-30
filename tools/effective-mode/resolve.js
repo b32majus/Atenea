@@ -13,9 +13,11 @@
  * it strictly.
  *
  * Per-candidate validation lives in the shared validation module
- * (`mode-validation.js`); this resolver delegates each present candidate to
- * it. The resolver keeps owning absence handling, precedence selection, and
- * source attribution.
+ * (`mode-validation.js`); this resolver delegates its validation phase to
+ * the shared ordered validator, which owns the deterministic
+ * environment-then-config candidate order and the first-invalid error. The
+ * resolver keeps owning absence handling, precedence selection, and source
+ * attribution.
  *
  * The resolver is genuinely pure: it never touches argv, the filesystem,
  * JSON parsing, process.env, stdout/stderr, or exit codes. The CLI owns all
@@ -25,7 +27,7 @@
 /** @typedef {'fast' | 'full'} Mode */
 /** @typedef {'default' | 'config' | 'environment'} Source */
 
-import { validateModeCandidate } from './mode-validation.js';
+import { validatePresentCandidates } from './mode-validation.js';
 
 /** The built-in default mode, per ADR-0001's closed `fast | full` enum. */
 const DEFAULT_MODE = 'full';
@@ -59,14 +61,12 @@ const DEFAULT_MODE = 'full';
  */
 export function resolveEffectiveMode({ envValue, configValue }) {
   // Validation phase: every present candidate, environment first, then
-  // config, each delegated to the shared single-candidate validator. The
-  // first invalid present candidate is the reported error.
-  if (envValue !== undefined) {
-    validateModeCandidate('environment', envValue);
-  }
-  if (configValue !== undefined) {
-    validateModeCandidate('config', configValue);
-  }
+  // config, owned by the shared ordered validator. The first invalid
+  // present candidate is the reported error.
+  validatePresentCandidates([
+    { source: 'environment', value: envValue },
+    { source: 'config', value: configValue },
+  ]);
 
   // Precedence phase: every present candidate is known valid here.
   if (envValue !== undefined) {
