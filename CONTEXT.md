@@ -9,8 +9,8 @@ One of a small closed set of named modes, `fast | full`, that some consumer outs
 _Avoid_: execution mode setting, mode flag, run level
 
 **Source**:
-One of the three places an execution mode may come from: `default`, `config`, or `environment`.
-_Avoid_: origin, layer, channel
+One of the three places an execution mode may come from: `default`, `config`, or `environment`. Command-line arguments are not a source: they select and shape reporting (`--config <path>`, `--explain`, `--help`) but never carry a mode value.
+_Avoid_: origin, layer, channel, argv source
 
 **Default**:
 The built-in fallback execution mode, `full`. It is the conservative baseline; it is not described as the "safe" choice in contrast to `fast`.
@@ -31,3 +31,7 @@ _Avoid_: empty, unset, not provided
 **Invalid**:
 A source that carries a present but unusable mode value: not exactly `fast` or `full` (case-sensitive, untrimmed), or the wrong type. A JSON `null` is a present raw value, not absence. Presence of an unusable value fails loudly; it never falls through.
 _Avoid_: bad, malformed value, bogus
+
+**Explain block**:
+The reporting-only output of `--explain`: the canonical success line first, unchanged byte-for-byte, followed by exactly three `explain:` lines — one per source in precedence order (environment, config, default) — each carrying that source's state (`absent`, or its validated mode value) and its role in the resolution (`winner`, `shadowed`, or `unused`). A present candidate is `winner` or `shadowed`; an absent source is `unused`; exactly one line reports `winner`. A present config line additionally names its provenance: `via --config` or `via .execution-mode.json`. The explain block never changes resolution, precedence, error behavior, or exit codes; on failure the CLI output is byte-identical to a failure without `--explain`.
+_Avoid_: debug output, verbose mode, diagnostics dump, machine-readable trace
