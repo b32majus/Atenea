@@ -2,7 +2,7 @@
 
 Date of current status: 2026-08-30
 
-This document is the current status index for Atenea qualification. The Stage-specific files remain the frozen evidence for each experiment. Earlier forward-looking statements in older decision/history files must be interpreted against this current status.
+This document is the current qualification index. Stage-specific files remain frozen evidence. Earlier `NEXT`, `DEFERRED` or `NOT_YET_QUALIFIED` labels are historical when they conflict with this file, `README.md`, `docs/CURRENT_DECISIONS.md` or `docs/ATENEA_HARNESS_CONTRACT_V1.md`.
 
 ## Overall result
 
@@ -20,55 +20,40 @@ REMOTE_RECONCILIATION             PASS
 FRONTIER_EXHAUSTION_STOP          PASS
 ```
 
-The result is not a recommendation to build a larger Atenea runtime. It is evidence that the required behavior can be composed from upstream systems with a thin supervisory contract.
+The result is evidence for a thin supervisory contract, not a recommendation to build a larger Atenea runtime.
 
 ## Qualified ownership split
 
 ```text
 Matt Pocock upstream skills
-  interactive shaping / engineering methods
+  qualified greenfield shaping / engineering methods
 
 Pi
-  trusted thin supervisor
-  GitHub frontier discovery
-  blocker / authority / runtime decisions
-  worker supervision
-  permission relay when required
-  closure / reconciliation checks
-  frontier rediscovery
+  qualified thin autonomous supervisor
 
 Herdr
-  process / session substrate
+  qualified process/session substrate
 
 OpenCode
-  implementation runtime
+  qualified implementation runtime
 
 Gentle AI
-  implementation lifecycle integration
-  native RDD
-  exact-candidate integrity
-  reviewer lineage / authority
-  bounded repair
-  receipts / candidate mutation invalidation
+  qualified native RDD / exact-candidate / reviewer / bounded-repair authority
 
 Git / GitHub
-  repository history
-  branches / worktrees
-  issues / dependencies
-  remote checkpoints
-  PR / merge policy
+  repository/tracker/publication authority
 
 Atenea repo-local policy
-  only the horizontal rules that upstream systems do not own
+  Harness Contract v1 + CODING_STANDARDS.md + repo-specific config only
 ```
 
-Pi is a supervisor, not a security boundary and not an implementation worker. Herdr is process infrastructure, not a policy engine.
+Pi is not an implementation worker or security sandbox. Herdr is not a policy engine.
 
 ## Stage 5 — Matt → Gentle/OpenCode composition — PASS
 
-The qualified handoff showed that complete Matt project skills and complete Gentle/OpenCode can compose through durable repository/tracker authority without a custom work-unit schema or Agent Brief translation.
+Complete Matt project skills and complete Gentle/OpenCode compose through durable repository/tracker authority without a custom work-unit schema or Agent Brief translation.
 
-The minimal execution instruction remained effectively:
+The execution instruction remained effectively:
 
 `Implement GitHub issue #N.`
 
@@ -76,15 +61,15 @@ Frozen evidence: `docs/STAGE5_TRACER_TRAIN.md`.
 
 ## Stage 6 — native Gentle RDD — PASS
 
-Gentle AI `2.5.0-rc.2` native RDD was qualified as the review/candidate authority rather than reconstructed inside Atenea.
+Gentle AI `2.5.0-rc.2` native RDD is the qualified final candidate/review authority.
 
-Qualified properties include the exact-candidate lifecycle, reviewer authority/lineage, bounded repair and invalidation of review evidence when the candidate changes.
+Qualified properties include exact-candidate lifecycle, reviewer authority/lineage, bounded repair and invalidation when the candidate changes.
 
-Atenea must not duplicate those mechanisms.
+Atenea must not recreate them.
 
 ## Stage 7 — Pi self-launch — PASS
 
-Pi proved it can remain non-implementing while creating/managing the OpenCode + Gentle worker through Herdr and completing accepted work with no human running the worker lifecycle manually.
+Pi remained non-implementing while creating/managing the OpenCode + Gentle worker through Herdr and completing accepted work without a human manually running the worker lifecycle.
 
 Canonical accepted Stage 7 checkpoint:
 
@@ -94,7 +79,7 @@ Frozen evidence: `docs/STAGE7_SELF_LAUNCH_CLOSURE.md`.
 
 ## Stage 8 — autonomous frontier discovery — PASS
 
-The operator did not provide issue numbers. Pi scanned GitHub, classified the executable frontier, selected #18, respected #19 while blocked, completed #18, re-scanned, discovered #19 had become executable, completed #19, and stopped when no compatible frontier remained.
+The operator supplied no issue numbers. Pi discovered the GitHub frontier, selected #18, respected #19 while blocked, completed #18, rediscovered #19 as executable, completed it and stopped when the compatible frontier was exhausted.
 
 ### Issue #18
 
@@ -116,7 +101,7 @@ STATE  CLOSED
 TESTS  131/131
 ```
 
-Final Stage 8 repository state:
+Final Stage 8 state:
 
 ```text
 local HEAD == upstream == origin/stage8-frontier-discovery-20260830
@@ -128,29 +113,25 @@ Frozen evidence: `docs/STAGE8_FRONTIER_DISCOVERY_EXPERIMENT.md`.
 
 ## GitHub authentication incident — resolved
 
-The intermittent 401 failures were traced to stale `GH_TOKEN` / `GITHUB_TOKEN` values in the tmux global environment, which overrode the valid `gh` credential store.
+Intermittent 401 failures were traced to stale `GH_TOKEN` / `GITHUB_TOKEN` values in tmux's global environment overriding valid `gh` credentials.
 
-The root fix was removal of those stale tmux-global variables. New panes were then verified clean and `gh auth status` succeeded.
+The root fix was removing those stale variables. New panes were verified clean and `gh auth status` succeeded.
 
-Do not reintroduce `env -u GH_TOKEN -u GITHUB_TOKEN ...` wrappers or build an authentication shim unless new evidence demonstrates a new problem.
+Do not reintroduce `env -u GH_TOKEN -u GITHUB_TOKEN ...` wrappers or an authentication shim without new evidence.
 
-## Gentle Pi experiment — NOT QUALIFIED / rejected for current use
+## Gentle Pi — NOT QUALIFIED / rejected for current use
 
-Gentle Pi `2.2.0` was tested as a possible Pi → Pi/Gentle-Pi execution replacement.
-
-It did not complete the full unattended lifecycle reliably even after isolated-home bootstrapping. Observed failure classes included model-routing inheritance gaps, native RDD selection/integration gaps and package-private/global Gentle lifecycle incompatibilities.
-
-Decision:
+Gentle Pi `2.2.0` did not complete the full unattended lifecycle reliably even after isolated-home bootstrapping.
 
 ```text
 GENTLE_PI_2_2_0_FOR_ATENEA_UNATTENDED_EXECUTION = NOT_QUALIFIED / FAIL
 ```
 
-Current policy:
+Policy:
 
-- Gentle Pi remains uninstalled;
-- do not write adapters around it;
-- do not reopen qualification until an upstream release materially changes the failed lifecycle surfaces;
+- remain uninstalled;
+- no adapters around it;
+- re-evaluate only after a materially changed upstream release;
 - keep Pi → Herdr → OpenCode + Gentle as the accepted baseline.
 
 ## Current runtime baseline
@@ -164,63 +145,87 @@ At the 2026-08-30 canonical handoff:
 
 Model/provider/effort values are operational routing facts, not Atenea architecture.
 
-## What is not yet field-qualified
+## Policy consolidation — COMPLETE
 
-These are not reasons to build new infrastructure. They are surfaces to exercise naturally on real projects when relevant:
+KairOS #267/#268 were reconciled against the complete current upstream stack.
+
+### Engineering quality
+
+`CODING_STANDARDS.md` now owns only the horizontal repo-specific delta that upstream methods do not already own.
+
+Composition:
+
+```text
+CODING_STANDARDS.md
++ upstream tdd
++ upstream codebase-design
++ upstream domain-modeling
++ upstream diagnosing-bugs
++ upstream code-review when useful
++ justified deterministic tooling
++ Gentle final exact-candidate RDD authority
+```
+
+No custom Clean Code framework, quality agent or new lifecycle phase is required.
+
+### Material UI/UX
+
+Harness Contract v1 now defines the surviving #267 policy:
+
+- Impeccable only for material UI/UX;
+- applicability decided during human-present shaping before `EXECUTION_READY`;
+- `DESIGN.md` may own durable visual-system decisions where warranted;
+- `PRODUCT.md` is a derived compatibility projection when canonical product authority lives elsewhere;
+- no universal Atenea UX framework or PRODUCT generator.
+
+These are policy decisions. Natural field use may still provide evidence, but no runtime qualification is blocked on them.
+
+## What is not yet field-qualified
 
 ### OpenSpec brownfield authoring
 
-OpenSpec is the intended brownfield/evolutionary entry path, but it has not yet been qualified end-to-end inside Atenea.
+OpenSpec is the intended brownfield/evolutionary on-ramp, but has not yet completed an end-to-end Atenea field run.
 
-Qualification should happen on a real existing-code change and should test the seam:
+The bounded test is:
 
 ```text
-existing repo authority
+existing repo/product authority
 → OpenSpec delta-first shaping
-→ ready executable GitHub work
+→ executable GitHub work
+→ human EXECUTION_READY promotion
 → qualified Pi / Herdr / OpenCode / Gentle path
 ```
 
-Do not use Atenea's own documentation reconciliation as the OpenSpec canary because that would make the test self-referential.
+PASS requires no custom OpenSpec→Gentle translation layer.
 
-### Material UI/UX policy
+Use a real bounded brownfield code change, not Atenea's own maintenance.
 
-The surviving #267 design policy still needs to be consolidated:
+### Repository-specific delivery variants
 
-- Impeccable only for material UI/UX work;
-- `DESIGN.md` as durable visual-system authority where warranted;
-- `PRODUCT.md` derived from canonical product authority when a compatibility projection is required.
+Real repositories may end work at an exact remote checkpoint or open a PR awaiting human merge. The core runtime already qualifies normal push/reconciliation; each repository's actual PR/merge policy should be exercised in normal field use.
 
-This is policy/configuration work, not a new execution lifecycle.
+### Naturally material UI slices
 
-### Engineering-quality horizontal policy
-
-The surviving #268 delta still needs to be incorporated into concise `CODING_STANDARDS.md`, relying on upstream `tdd`, `codebase-design`, `domain-modeling`, `diagnosing-bugs` and `code-review` rather than duplicating them.
-
-### Repository-specific delivery policy
-
-Real repositories may use PRs and human merge boundaries. The qualified runtime already supports normal push/reconciliation; PR creation and merge policy should be exercised according to each repository's actual workflow rather than through another synthetic qualification ladder.
+The policy is complete, but the first naturally material UI slice can provide field evidence that Impeccable/DESIGN/PRODUCT authority composes cleanly with the existing runtime. Do not create a synthetic UI ladder solely for this.
 
 ## No further large qualification ladder
 
-Do not create Stage 9/10/... simply to obtain ceremonial completeness.
+Do not create Stage 9/10/... for ceremonial completeness.
 
-New qualification is justified only when one of these is true:
+New bounded qualification is justified only when:
 
 1. a required property has no upstream owner;
 2. a real field run exposes an unresolved seam;
-3. a materially different upstream runtime replaces a previously failed/qualified lifecycle;
-4. a new entry path such as OpenSpec needs a bounded compatibility test.
+3. a materially different upstream runtime replaces a failed/qualified lifecycle; or
+4. a new entry path such as OpenSpec needs a compatibility test.
 
-Otherwise proceed by real-project use and collect evidence there.
+Otherwise use real projects and capture compact evidence.
 
 ## Evidence precedence
 
 When documentation conflicts:
 
 1. exact repository / GitHub / runtime evidence;
-2. current `README.md`, this file and `docs/ATENEA_HANDOFF_20260830.md`;
-3. Stage-specific frozen evidence;
+2. `docs/ATENEA_HARNESS_CONTRACT_V1.md`, current `README.md`, this file and `docs/CURRENT_DECISIONS.md`;
+3. `docs/ATENEA_HANDOFF_20260830.md` and Stage-specific frozen evidence;
 4. earlier decision files and forward-looking plans.
-
-Historical documents are preserved because they explain how the architecture was reached; their old `NEXT`, `DEFERRED` or `NOT_YET_QUALIFIED` labels are not current status unless repeated here.
