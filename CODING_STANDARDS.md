@@ -20,7 +20,11 @@ Do not add speculative abstractions, indirection, generic frameworks, services o
 
 A locally explicit design is preferable to a globally "flexible" one that increases cognitive or operational cost.
 
-## 3. Follow local consistency unless the contract changes it
+Do not abstract repetition merely because code looks similar. Deduplicate when repeated code represents the same knowledge, rule or reason to change; keep coincidentally similar behavior separate.
+
+Keep behavior that changes for the same reason close enough to understand and modify coherently. Avoid scattering one logical change across unrelated modules without a demonstrated boundary that earns the separation.
+
+## 3. Follow local consistency and expose intent
 
 Respect the established architecture, vocabulary and conventions of the code being changed unless the work explicitly changes those conventions.
 
@@ -28,7 +32,17 @@ Do not introduce a new architectural or stylistic pattern merely because it is a
 
 When a local convention is actively harmful to the requested change, make that conflict explicit and change it deliberately rather than drifting into a second competing pattern.
 
-## 4. Preserve one authority and remove obsolete design
+Names should expose domain intent. Avoid vague, generic or misleading names that require implementation knowledge or explanatory comments to understand what a concept represents. Prefer the repository's established domain vocabulary.
+
+## 4. Introduce seams and abstractions only under real pressure
+
+Introduce interfaces, adapters or abstraction seams when there is demonstrated variation, substitution, isolation or testability pressure.
+
+Do not create abstraction layers for hypothetical future implementations or merely to satisfy a design pattern.
+
+Prefer the simplest boundary that preserves locality and lets the current behavior be changed or tested safely.
+
+## 5. Preserve one authority and remove obsolete design
 
 Do not create competing sources of truth for the same durable fact.
 
@@ -38,13 +52,13 @@ Backward compatibility, migrations or temporary dual paths are justified only wh
 
 Record durable, non-obvious architectural or domain decisions in the repository's normal authority surface (for example `CONTEXT.md`, ADRs, specs or canonical product docs), not only in chat, commit messages or agent memory.
 
-## 5. Technical debt must be intentional
+## 6. Technical debt must be intentional
 
 Technical debt may be accepted when the trade-off is worth it, but it must be visible, bounded and owned by a person, team, issue or explicit remediation condition.
 
 Do not silently accumulate compatibility layers, TODO architecture, duplicated implementations or temporary shortcuts as permanent design.
 
-## 6. Verification must be meaningful
+## 7. Verification must be meaningful
 
 Prefer deterministic verification that can independently disagree with the implementation.
 
@@ -54,7 +68,7 @@ Use the upstream TDD method when its trigger applies. Do not force TDD for wirin
 
 Negative and adversarial verification should be proportional to actual risk, especially around authorization, parsing, trust boundaries, migrations, failure/retry behavior, state transitions and destructive operations.
 
-## 7. Fail explicitly when correctness requires knowledge
+## 8. Fail explicitly when correctness requires knowledge
 
 Do not hide invariant, authority, persistence or safety failures behind silent fallbacks, guessed defaults or "best effort" success.
 
@@ -64,7 +78,7 @@ Return or propagate actionable failures. Make retry, idempotency and recovery se
 
 Preserve enough diagnostic context to understand failures without leaking secrets.
 
-## 8. Dependencies must earn their cost
+## 9. Dependencies must earn their cost
 
 Add a dependency only when it provides concrete value that is not reasonably available from the existing stack or a small local implementation.
 
@@ -72,7 +86,7 @@ Consider maintenance, transitive risk, runtime weight, upgrade burden and lock-i
 
 Do not build internal substitutes for mature upstream capabilities merely to avoid a dependency that the architecture has already adopted.
 
-## 9. Security and data boundaries must be explicit
+## 10. Security and data boundaries must be explicit
 
 Apply least privilege and minimize credential and data exposure.
 
@@ -82,7 +96,7 @@ Never log secrets or credentials. Avoid broad environment or credential propagat
 
 Security controls should match the actual threat and risk model; do not invent a bespoke security platform without a concrete requirement.
 
-## 10. Performance and scale require evidence
+## 11. Performance and scale require evidence
 
 Optimize when requirements, measurements or credible load characteristics justify it.
 
