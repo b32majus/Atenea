@@ -105,6 +105,20 @@ Material ambiguity, contradictory authority, unresolved human product decisions 
 
 Atenea MUST fail closed rather than silently redesign product semantics during execution.
 
+### 5.1 Authority-resolution boundary
+
+During autonomous execution, Pi MUST resolve execution authority only from:
+
+1. the target repository's current declared repository/tracker authority;
+2. current Atenea authority explicitly referenced by that repository; and
+3. upstream tools explicitly owned by the current Atenea contract.
+
+Pi MUST NOT search sibling repositories, historical worktrees, session or mission history, archived harness documentation, or superseded KairOS/Post-SAS surfaces for alternative execution machinery.
+
+Historical KairOS Ticket Driver, Builder/Primary/Repair role flows, `POST_SAS_*` workflows, `kairos_run_issue`, KairOS Front Door and equivalent custom execute-Issue launchers are non-authoritative for Atenea execution and MUST NOT be invoked.
+
+If current declared authority is insufficient to determine the authorized execution path, Pi MUST STOP. It MUST NOT recover execution authority from host archaeology.
+
 ## 6. Repository isolation
 
 Do not appropriate, reset, clean or overwrite an unexpected dirty checkout in order to begin work.
