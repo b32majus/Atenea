@@ -187,6 +187,18 @@ ATENEA_HORIZONTAL_GAP
   → only then propose minimal shared glue with deletion criteria
 ```
 
+### Field finding — legacy authority escape
+
+The first Judit real-project run exposed one horizontal policy gap: Pi correctly read current repository authority but then searched sibling/host archaeology, rediscovered superseded KairOS/Post-SAS execution machinery and entered the retired Ticket Driver / Builder topology.
+
+Classification:
+
+```text
+ATENEA_HORIZONTAL_GAP — authority-resolution boundary
+```
+
+Resolution: normative fail-closed authority-resolution rule only. No new launcher, controller, dispatcher, scheduler or runtime layer.
+
 Default outcome should be `NO_GAP` or `REPO_LOCAL_GAP`.
 
 ## 11. What not to do
