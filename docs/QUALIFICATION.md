@@ -1,6 +1,6 @@
 # Atenea — Qualification Status
 
-Date of current status: 2026-08-30
+Date of current status: 2026-09-01
 
 This document is the current qualification index. Stage-specific files remain frozen evidence. Earlier `NEXT`, `DEFERRED` or `NOT_YET_QUALIFIED` labels are historical when they conflict with this file, `README.md`, `docs/CURRENT_DECISIONS.md` or `docs/ATENEA_HARNESS_CONTRACT_V1.md`.
 
@@ -22,11 +22,27 @@ FRONTIER_EXHAUSTION_STOP          PASS
 
 The result is evidence for a thin supervisory contract, not a recommendation to build a larger Atenea runtime.
 
+## Qualification evidence vs current runtime
+
+Do not rewrite historical qualification evidence when upstream advances.
+
+```text
+STAGE 5–8 QUALIFICATION EVIDENCE
+  Gentle AI 2.5.0-rc.2
+  historical and still valid for the properties actually exercised
+
+CURRENT OPERATIONAL TARGET
+  Gentle AI 2.5.0 stable
+  natural field evidence pending on the next real Atenea slice
+```
+
+Gentle AI `2.5.0` stable is a compatible upstream progression of the candidate/review owner, not authorization to repeat Stage 5–8. The next real slice should capture compact evidence that the stable provider-issued continuation/re-entry and final acknowledgement lifecycle work naturally in Atenea's OpenCode/Gentle path.
+
 ## Qualified ownership split
 
 ```text
 Matt Pocock upstream skills
-  qualified greenfield shaping / engineering methods
+  qualified greenfield shaping / task-triggered engineering methods
 
 Pi
   qualified thin autonomous supervisor
@@ -61,11 +77,13 @@ Frozen evidence: `docs/STAGE5_TRACER_TRAIN.md`.
 
 ## Stage 6 — native Gentle RDD — PASS
 
-Gentle AI `2.5.0-rc.2` native RDD is the qualified final candidate/review authority.
+Gentle AI `2.5.0-rc.2` native RDD was the exact runtime used for the qualified final candidate/review evidence.
 
 Qualified properties include exact-candidate lifecycle, reviewer authority/lineage, bounded repair and invalidation when the candidate changes.
 
 Atenea must not recreate them.
+
+The stable `2.5.0` contract now additionally makes provider-owned continuation/re-entry and final acknowledgement/burn semantics explicit. Atenea consumes those upstream semantics; it does not retrofit them into the historical Stage 6 evidence.
 
 ## Stage 7 — Pi self-launch — PASS
 
@@ -119,7 +137,7 @@ The root fix was removing those stale variables. New panes were verified clean a
 
 Do not reintroduce `env -u GH_TOKEN -u GITHUB_TOKEN ...` wrappers or an authentication shim without new evidence.
 
-## Gentle Pi — NOT QUALIFIED / rejected for current use
+## Gentle Pi — historical FAIL; 2.3.0 REEVALUATION_ELIGIBLE
 
 Gentle Pi `2.2.0` did not complete the full unattended lifecycle reliably even after isolated-home bootstrapping.
 
@@ -127,50 +145,64 @@ Gentle Pi `2.2.0` did not complete the full unattended lifecycle reliably even a
 GENTLE_PI_2_2_0_FOR_ATENEA_UNATTENDED_EXECUTION = NOT_QUALIFIED / FAIL
 ```
 
-Policy:
+That failure remains historical evidence and MUST NOT be erased.
 
-- remain uninstalled;
-- no adapters around it;
-- re-evaluate only after a materially changed upstream release;
-- keep Pi → Herdr → OpenCode + Gentle as the accepted baseline.
+Gentle Pi `2.3.0` is a materially changed stable upstream release: it carries Gentle AI `2.5.0`, speaks the stable review contract, executes provider-issued continuations verbatim, includes the acknowledgement lifecycle, exposes a native Herdr bridge/guarded-command permission lifecycle and adds parent-owned edit surfaces.
 
-## Current runtime baseline
+Therefore:
 
-At the 2026-08-30 canonical handoff:
+```text
+GENTLE_PI_2_3_0_FOR_ATENEA = REEVALUATION_ELIGIBLE
+GENTLE_PI_2_3_0_QUALIFIED  = NO
+GENTLE_PI_2_3_0_ADOPTED    = NO
+```
 
-- OpenCode `1.18.25`
-- Gentle AI global `2.5.0-rc.2`
-- Pi routing intact
-- Gentle Pi absent
+The only justified evaluation is one bounded replacement/deletion experiment asking whether `2.3.0` can preserve Atenea's already-qualified properties while removing components or glue. Do not add Gentle Pi as another layer on top of the qualified path.
+
+Until that experiment passes, keep **Pi → Herdr → OpenCode + Gentle** as the accepted architecture.
+
+## Current runtime target
+
+As of 2026-09-01:
+
+- OpenCode remains the qualified implementation runtime;
+- Gentle AI `2.5.0` stable is the operational target;
+- Pi routing remains an operational concern, not architecture;
+- Gentle Pi `2.3.0` is eligible for bounded re-evaluation but is not installed/adopted by qualification policy.
 
 Model/provider/effort values are operational routing facts, not Atenea architecture.
 
 ## Policy consolidation — COMPLETE
 
-KairOS #267/#268 were reconciled against the complete current upstream stack.
+KairOS #267/#268 were reconciled against the current upstream stack.
 
 ### Engineering quality
 
-`CODING_STANDARDS.md` now owns only the horizontal repo-specific delta that upstream methods do not already own.
-
-Composition:
+`CODING_STANDARDS.md` owns Atenea's stable horizontal engineering guardrails.
 
 ```text
-CODING_STANDARDS.md
-+ upstream tdd
-+ upstream codebase-design
-+ upstream domain-modeling
-+ upstream diagnosing-bugs
-+ upstream code-review when useful
-+ justified deterministic tooling
-+ Gentle final exact-candidate RDD authority
+ALWAYS-ON POLICY
+  CODING_STANDARDS.md
+
+TASK-TRIGGERED METHODS
+  upstream tdd
+  upstream codebase-design
+  upstream domain-modeling
+  upstream diagnosing-bugs
+  upstream code-review when semantic/spec-compliance risk warrants it
+
+MACHINE ORACLES
+  justified deterministic tooling
+
+FINAL CANDIDATE LIFECYCLE
+  Gentle native RDD
 ```
 
-No custom Clean Code framework, quality agent or new lifecycle phase is required.
+The Matt methods are not a mandatory execution sequence. No custom Clean Code framework, quality agent or new lifecycle phase is required.
 
 ### Material UI/UX
 
-Harness Contract v1 now defines the surviving #267 policy:
+Harness Contract v1 defines the surviving #267 policy:
 
 - Impeccable only for material UI/UX;
 - applicability decided during human-present shaping before `EXECUTION_READY`;
@@ -182,23 +214,17 @@ These are policy decisions. Natural field use may still provide evidence, but no
 
 ## What is not yet field-qualified
 
-### OpenSpec brownfield authoring
+### Gentle AI 2.5.0 stable natural field use
 
-OpenSpec is the intended brownfield/evolutionary on-ramp, but has not yet completed an end-to-end Atenea field run.
+The core architecture is already qualified. The next real slice should simply record that stable `2.5.0` operates correctly in the existing path, especially provider-issued continuation/re-entry and final acknowledgement semantics.
 
-The bounded test is:
+This is **not** a new qualification stage.
 
-```text
-existing repo/product authority
-→ OpenSpec delta-first shaping
-→ executable GitHub work
-→ human EXECUTION_READY promotion
-→ qualified Pi / Herdr / OpenCode / Gentle path
-```
+### OpenSpec optional brownfield authoring
 
-PASS requires no custom OpenSpec→Gentle translation layer.
+OpenSpec is an optional delta-first brownfield/evolutionary path when it materially adds value. It is not required for already-shaped brownfield work and is not installed merely for conformity.
 
-Use a real bounded brownfield code change, not Atenea's own maintenance.
+If a suitable real delta naturally selects OpenSpec, capture whether its durable output reaches executable GitHub work without a custom OpenSpec→Gentle translation layer.
 
 ### Repository-specific delivery variants
 
@@ -217,7 +243,9 @@ New bounded qualification is justified only when:
 1. a required property has no upstream owner;
 2. a real field run exposes an unresolved seam;
 3. a materially different upstream runtime replaces a failed/qualified lifecycle; or
-4. a new entry path such as OpenSpec needs a compatibility test.
+4. an optional new entry path needs a compatibility test because a real project actually selects it.
+
+Gentle Pi `2.3.0` meets condition 3 for **one bounded re-evaluation only**.
 
 Otherwise use real projects and capture compact evidence.
 
