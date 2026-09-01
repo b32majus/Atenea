@@ -1,6 +1,6 @@
 # Atenea Harness Contract v1
 
-Date: 2026-08-30
+Date: 2026-09-01
 Status: NORMATIVE
 
 ## 1. Purpose
@@ -15,10 +15,10 @@ Atenea MUST prefer supported upstream capabilities before adding glue.
 
 ```text
 Matt Pocock upstream skills
-  greenfield shaping and engineering methods
+  greenfield shaping and task-triggered engineering methods
 
 OpenSpec
-  intended brownfield/evolutionary shaping entry path
+  optional delta-first brownfield/evolutionary shaping path
   field qualification pending
 
 Impeccable
@@ -35,7 +35,8 @@ OpenCode
 
 Gentle AI
   exact candidate integrity, native RDD, reviewer authority/lineage,
-  bounded repair, receipts and mutation invalidation
+  bounded correction, provider-issued continuation/re-entry,
+  acknowledgement/burn, recovery and mutation invalidation
 
 Git / GitHub
   repository history, branches/worktrees, issues/dependencies,
@@ -74,21 +75,21 @@ Matt-generated work does not require an Atenea-specific Agent Brief or custom wo
 
 ### 4.2 Brownfield / evolutionary change
 
-OpenSpec is Atenea's intended entry path for existing systems.
+Preserve accepted repo-native shaping and product authority.
 
-Use it delta-first: describe the behavior being added, modified or removed rather than reverse-documenting the whole existing product before every change.
+OpenSpec is an **optional** delta-first shaping/specification path when it materially improves a new brownfield change. It is not a mandatory migration and Atenea MUST NOT reverse-document an established repository merely to satisfy a universal workflow.
 
-OpenSpec remains a shaping/specification front end. It does not replace Pi supervision, OpenCode/Gentle execution, Gentle RDD, or Git/GitHub authority.
+If OpenSpec is selected, use it delta-first: describe the behavior being added, modified or removed rather than reverse-documenting the whole existing product before every change.
 
-Status: architecturally accepted; end-to-end Atenea field qualification pending.
+OpenSpec does not replace Pi supervision, OpenCode/Gentle execution, Gentle RDD or Git/GitHub authority.
 
-The first qualification MUST use a real bounded brownfield code change, not Atenea's own harness/documentation maintenance.
+Status: architecturally compatible; natural end-to-end Atenea field evidence pending.
 
 ### 4.3 Raw incoming issues
 
-Matt triage remains available for issues that were not created by a shaped greenfield/brownfield path and are not yet executable.
+Matt triage remains available for issues that were not created by an accepted shaping path and are not yet executable.
 
-Do not route already-shaped tickets through triage by ritual.
+Do not route already-shaped tickets through triage, OpenSpec or any other authoring method by ritual.
 
 ## 5. Readiness and authority
 
@@ -129,7 +130,7 @@ An unexpected topology or dirty-state contradiction is a STOP condition, not aut
 
 ## 7. Frontier discovery and supervision
 
-Pi is the trusted thin supervisor.
+Pi is the trusted thin supervisor in the currently qualified architecture.
 
 For each autonomous iteration Pi should:
 
@@ -146,31 +147,41 @@ For each autonomous iteration Pi should:
 
 Do not reintroduce a separate queue, DAG, scheduler, controller or dispatcher unless field evidence proves Pi plus standard repository/tracker primitives cannot provide a required property.
 
+A materially changed upstream runtime MAY be evaluated only as a bounded **replacement/deletion experiment**. Adoption requires evidence that it preserves the already-qualified properties while removing architecture or glue; it MUST NOT be layered on top merely because it exists.
+
 ## 8. Process/session substrate
 
-Herdr owns process/session primitives only.
+Herdr owns process/session primitives only in the currently qualified architecture.
 
-Atenea MUST NOT move product authority, blocker reasoning, publication policy or lifecycle state into bespoke Herdr gates.
+Atenea MUST NOT move product authority, blocker reasoning, publication policy or independent lifecycle state into bespoke Herdr gates.
 
 ## 9. Implementation and engineering methods
 
 OpenCode + Gentle AI is the accepted unattended implementation worker.
 
-Repo engineering quality is composed from:
+Engineering quality is separated into:
 
 ```text
-CODING_STANDARDS.md
-+ upstream Matt tdd
-+ upstream codebase-design
-+ upstream domain-modeling
-+ upstream diagnosing-bugs
-+ upstream code-review when useful
-+ deterministic repo tooling where justified
+ALWAYS-ON POLICY
+  CODING_STANDARDS.md
+
+TASK-TRIGGERED UPSTREAM METHODS
+  Matt tdd
+  Matt codebase-design
+  Matt domain-modeling
+  Matt diagnosing-bugs
+  Matt code-review when semantic/spec-compliance risk warrants it
+
+MACHINE ORACLES
+  deterministic repo tooling where justified
+
+FINAL CANDIDATE LIFECYCLE
+  Gentle native RDD
 ```
 
-`CODING_STANDARDS.md` contains the repo-local horizontal delta. It MUST NOT restate entire upstream methods or become a generic Clean Code framework.
+The Matt skills are not a mandatory execution sequence. `CODING_STANDARDS.md` MUST NOT restate entire upstream methods or become a generic Clean Code framework.
 
-Matt `code-review` is available as an engineering method, but Atenea does not mandate a second LLM reviewer lifecycle after every candidate. Gentle native RDD owns final exact-candidate review authority.
+Matt `code-review` may add value before RDD when semantic/spec-compliance risk warrants it. Atenea does not mandate a second LLM reviewer lifecycle after every candidate. Gentle native RDD owns final exact-candidate review authority.
 
 ## 10. Deterministic evidence before claims
 
@@ -184,16 +195,23 @@ Only adopt checks that are machine-decidable and justified by the repository's s
 
 Gentle AI alone owns the final candidate/RDD lifecycle.
 
-Atenea MUST NOT reconstruct:
+The stable `2.5.0` contract is treated as provider authority. Atenea MUST NOT reconstruct:
 
-- candidate freezing;
+- candidate freezing or exact candidate identity;
 - reviewer lineage/authority;
-- review receipts;
-- mutation invalidation;
-- repair-loop state;
-- acknowledgement/recovery algorithms.
+- provider-issued continuation or re-entry commands;
+- bounded correction state;
+- final causal capture or acknowledgement/burn semantics;
+- recovery/reconciliation algorithms;
+- mutation invalidation.
+
+The orchestrator MUST execute provider-issued lifecycle continuations as returned rather than reconstructing them from prose or local state.
 
 A post-review candidate mutation invalidates prior review evidence according to Gentle's native lifecycle.
+
+RDD closes where Gentle's proof/lifecycle closes. Atenea MUST NOT add a synthetic `FINALIZE`, compact terminal receipt, or delivery gate after Gentle has completed its authority transition.
+
+Delivery remains ordinary repository policy and is separate from RDD approval/evidence.
 
 ## 12. Engineering-quality policy
 
@@ -298,7 +316,7 @@ Atenea does not auto-merge.
 
 The autonomous default MUST NOT use force-push, hidden reset/rebase/history rewrite or destructive recovery to make publication succeed.
 
-If publication partially succeeds (for example push succeeds but PR creation fails), preserve the exact remote state and STOP for adjudication rather than silently inventing recovery semantics.
+If publication partially succeeds, preserve the exact remote state and STOP for adjudication rather than silently inventing recovery semantics.
 
 ## 18. Reconciliation
 
@@ -308,7 +326,7 @@ Where applicable, verify the accepted candidate against current local/upstream/r
 
 Unexpected same-branch drift or contradictory authoritative state is fail-closed.
 
-Work-unit acceptance, PR publication and final merge are distinct repository boundaries.
+Work-unit acceptance, RDD closure, PR publication and final merge are distinct boundaries.
 
 ## 19. STOP conditions
 
@@ -351,12 +369,14 @@ If those questions do not have concrete answers, DO NOT BUILD.
 
 ## 23. Current completion state
 
-The Stage 5–8 runtime path is qualified. Harness Contract v1 deliberately adds no new runtime.
+The Stage 5–8 runtime path remains qualified from historical `2.5.0-rc.2` field evidence. Gentle AI `2.5.0` stable is the current operational target and should obtain natural evidence on the next real slice; this does not justify repeating Stage 5–8.
 
 Remaining evidence should come primarily from real-project use:
 
-- first bounded OpenSpec brownfield change;
+- natural stable-`2.5.0` RDD evidence;
+- optional OpenSpec use only when a real brownfield delta benefits from it;
 - repository-specific PR/human-merge flows where used;
-- first naturally material UI slice using the conditional Impeccable/DESIGN/PRODUCT policy.
+- first naturally material UI slice using the conditional Impeccable/DESIGN/PRODUCT policy;
+- one bounded Gentle Pi `2.3.0` replacement/deletion evaluation because it materially changes the previously failed upstream runtime.
 
-Do not create another large synthetic qualification ladder merely to exercise every optional surface.
+Do not create another large synthetic qualification ladder merely to exercise optional surfaces.
