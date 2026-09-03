@@ -1,12 +1,12 @@
 # Atenea — Qualification Status
 
-Date of current status: 2026-09-01
+Date of current status: 2026-09-03
 
 This document is the current qualification index. Stage-specific files remain frozen evidence. Earlier `NEXT`, `DEFERRED` or `NOT_YET_QUALIFIED` labels are historical when they conflict with this file, `README.md`, `docs/CURRENT_DECISIONS.md` or `docs/ATENEA_HARNESS_CONTRACT_V1.md`.
 
 ## Overall result
 
-Atenea has qualified the upstream-first execution architecture through autonomous frontier exhaustion.
+Atenea qualified the upstream-first execution architecture through autonomous frontier exhaustion on the frozen Stage 5–8 baseline.
 
 ```text
 STAGES_0_4                         PASS
@@ -14,15 +14,15 @@ STAGE5_MATT_GENTLE_COMPOSITION    PASS
 STAGE6_NATIVE_GENTLE_RDD          PASS
 STAGE7_PI_SELF_LAUNCH             PASS
 STAGE8_FRONTIER_DISCOVERY         PASS
-UNATTENDED_EXECUTION              PASS
-ZERO_HUMAN_TOUCH                  PASS
+UNATTENDED_EXECUTION_RC2          PASS
+ZERO_HUMAN_TOUCH_RC2              PASS
 REMOTE_RECONCILIATION             PASS
 FRONTIER_EXHAUSTION_STOP          PASS
 ```
 
 The result is evidence for a thin supervisory contract, not a recommendation to build a larger Atenea runtime.
 
-## Qualification evidence vs current runtime
+## Qualification evidence vs current stable runtime
 
 Do not rewrite historical qualification evidence when upstream advances.
 
@@ -31,12 +31,47 @@ STAGE 5–8 QUALIFICATION EVIDENCE
   Gentle AI 2.5.0-rc.2
   historical and still valid for the properties actually exercised
 
-CURRENT OPERATIONAL TARGET
+CURRENT PRODUCTION OPERATIONAL TARGET
   Gentle AI 2.5.0 stable
-  natural field evidence pending on the next real Atenea slice
+  real-project field evidence captured on Judit #76 / PR #79
+
+BOUNDED ZERO-TOUCH CHARACTERIZATION
+  provider-side canary based exactly on Gentle AI 2.5.0
+  OpenCode 1.18.27
+  Pi 0.84.4
+  Herdr 0.8.2
+  PASS for review-only negotiated-v2 unattended behavior
+  NOT production adoption
 ```
 
-Gentle AI `2.5.0` stable is a compatible upstream progression of the candidate/review owner, not authorization to repeat Stage 5–8. The next real slice should capture compact evidence that the stable provider-issued continuation/re-entry and final acknowledgement lifecycle work naturally in Atenea's OpenCode/Gentle path.
+The Judit field run confirmed that stable `2.5.0` preserves the exact-candidate RDD lifecycle, provider continuation/re-entry on the successful path, approval and exact acknowledgement/burn.
+
+The same investigation corrected an initially over-broad consent diagnosis: stable Gentle still contains provider-owned zero-touch review semantics. The autonomy gap is specifically the released OpenCode negotiated `gentle-ai.review-integration/v2` route, whose provider-issued START transition includes `--consent relay` and therefore selects candidate-scoped human relay semantics.
+
+A downstream provider-side canary then characterized the missing capability without teaching Pi/OpenCode to rewrite the transition. Under the canary policy, Gentle itself generated a no-relay v2 START, OpenCode executed it unchanged, RDD ran, exact acknowledgement burned authority and the full Pi → Herdr → headless OpenCode topology completed with zero human touch after execution authorization.
+
+Current status:
+
+```text
+GENTLE_2_5_STABLE_EXACT_CANDIDATE_RDD       PASS
+STABLE_GENTLE_ZERO_TOUCH_CAPABILITY         PROVEN
+RELEASED_V2_PROVIDER_UNATTENDED_SELECTOR    NOT_AVAILABLE
+NEGOTIATED_V2_UNATTENDED_PROVIDER_CANARY    PASS
+REAL_OPERATOR_TRIGGERED_ATENEA_E2E          PASS   # issue #38
+OPENCODE_HEADLESS_UNATTENDED_ROUTE          PASS
+PI_HERDR_OPENCODE_GENTLE_TOPOLOGY           PASS
+HUMAN_TOUCH_AFTER_EXECUTION_READY           0      # issue #38 real operator-triggered run
+PRODUCTION_GENTLE_MODIFIED                  NO
+LOCAL_CONSUMER_BYPASS                       NO
+UPSTREAM_TRACKING                           Gentleman-Programming/gentle-ai#4109
+ATENEA_TRACKING                             issue #36
+```
+
+This does **not** invalidate historical Stage 7/8 rc.2 evidence and does not claim the downstream canary selector as an upstream API. Production Gentle remains `2.5.0` unchanged; the experimental provider-side selector must disappear when upstream ships an equivalent supported capability. The released stable negotiated-v2 unattended selector remains `NOT_AVAILABLE`; the real operator-triggered Atenea E2E under the bounded canary is PASS but does not replace the upstream resolution still owned by #4109/#36.
+
+Stable field evidence: `docs/JUDIT76_GENTLE25_FIELD_EVIDENCE.md`.
+
+Zero-touch characterization evidence: `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`.
 
 ## Qualified ownership split
 
@@ -52,6 +87,7 @@ Herdr
 
 OpenCode
   qualified implementation runtime
+  autonomous transport uses headless opencode run
 
 Gentle AI
   qualified native RDD / exact-candidate / reviewer / bounded-repair authority
@@ -64,6 +100,8 @@ Atenea repo-local policy
 ```
 
 Pi is not an implementation worker or security sandbox. Herdr is not a policy engine.
+
+The stable field run and final zero-touch canary strengthen this boundary: Pi supervises process/authority/frontier state; the OpenCode/Gentle worker owns all Gentle lifecycle operations and provider-issued review transitions. The canary recorded zero direct Pi Gentle lifecycle calls.
 
 ## Stage 5 — Matt → Gentle/OpenCode composition — PASS
 
@@ -83,7 +121,7 @@ Qualified properties include exact-candidate lifecycle, reviewer authority/linea
 
 Atenea must not recreate them.
 
-The stable `2.5.0` contract now additionally makes provider-owned continuation/re-entry and final acknowledgement/burn semantics explicit. Atenea consumes those upstream semantics; it does not retrofit them into the historical Stage 6 evidence.
+Stable `2.5.0` has now supplied natural field evidence for provider-owned continuation/re-entry and final acknowledgement/burn. The negotiated-v2 canary additionally proved provider-generated unattended START behavior can preserve those semantics without a consumer shim.
 
 ## Stage 7 — Pi self-launch — PASS
 
@@ -94,6 +132,8 @@ Canonical accepted Stage 7 checkpoint:
 `79489688a6c6bd83ba8fd807cb87bdc0a59b94bf`
 
 Frozen evidence: `docs/STAGE7_SELF_LAUNCH_CLOSURE.md`.
+
+The frozen Stage 7 result includes `ZERO_HUMAN_TOUCH` under the `2.5.0-rc.2` path. The exact lower-level consent route used by that frozen run is not recorded strongly enough to claim whether it was negotiated-v2 or the organic/plain path, so current reconciliation does not invent that fact.
 
 ## Stage 8 — autonomous frontier discovery — PASS
 
@@ -129,6 +169,132 @@ worktree clean
 
 Frozen evidence: `docs/STAGE8_FRONTIER_DISCOVERY_EXPERIMENT.md`.
 
+## Stable Gentle 2.5.0 real-project field evidence — PASS with released negotiated-v2 autonomy gap
+
+Judit #76 / PR #79 provided the first natural stable run.
+
+Final accepted PR candidate:
+
+```text
+BASE       b56d749421b08431250e9199772af3b3b46d4e3d
+HEAD       3967e2cfec37e6c8861be2435cf8b53cf67c438e
+FULL TESTS 400/400
+PR         OPEN / MERGEABLE / HUMAN MERGE BOUNDARY
+CORA AUDIT PASS
+```
+
+Stable review lineages reached approved → exact acknowledgement → burned authority, including the final candidate lineage `review-79b5f46c34da40af`.
+
+The field run also produced these horizontal findings:
+
+- Pi MUST NOT execute Gentle review lifecycle commands; worker ownership is explicit.
+- supervisor prompts should express goal/checkpoint/boundaries, not restate lifecycle internals;
+- healthy OpenCode workers should be reused by default for bounded repair on the same issue/PR/worktree;
+- a new source candidate still requires a fresh Gentle review lineage;
+- fixed multi-minute polling is not the normal supervision strategy;
+- already-authorized normal non-force push permissions should not be escalated to the human;
+- the released OpenCode negotiated-v2 path emits candidate consent relay, while stable Gentle itself retains provider-owned unattended review semantics.
+
+Full evidence: `docs/JUDIT76_GENTLE25_FIELD_EVIDENCE.md`.
+
+## Negotiated-v2 zero-touch provider characterization — PASS, bounded / non-production
+
+The canary implementation was based exactly on Gentle `v2.5.0` and changed only the provider's v2 START argument policy under an explicit canary-only environment selector:
+
+```text
+GENTLE_AI_REVIEW_V2_CONSENT_POLICY=unattended
+```
+
+Exact canary identity:
+
+```text
+implementation commit  e326ea77f6d2c77509fe5147841b0f622e38a75e
+binary sha256          bd947d78da858d7f26b185b304a2947e9f1dc335968ee71dc2dcec39dc5f2b7b
+production binary      untouched
+```
+
+Evidence progressed through deterministic provider tests, stock-vs-canary differential cross-lane comparison, low-risk compiled binary review, medium-risk non-zero-lens review, real OpenCode headless review and finally a real Pi → Herdr → OpenCode → Gentle canary.
+
+Final structural result:
+
+```text
+PI_ROLE=NON_IMPLEMENTING_SUPERVISOR
+HERDR_REAL_WORKSPACES_CREATED=1
+HERDR_REAL_PANE_RUNS=1
+HERDR_NATIVE_WAITS=1
+OPENCODE_WORKERS_STARTED=1
+RUNNER_OPENCODE_RUN_COUNT=1
+PI_DIRECT_GENTLE_LIFECYCLE_CALLS=0
+PI_DELIVERY_CALLS=0
+
+GENTLE_STATUS_EXECUTIONS=2
+GENTLE_START_EXECUTIONS=1
+GENTLE_START_CONSENT_ARGUMENT=ABSENT
+GENTLE_RDD=PASS
+GENTLE_ACK_EXECUTIONS=1
+GENTLE_ACK_EXACTLY_ONCE=PASS
+GENTLE_AUTHORITY_BURNED=PASS
+
+OPENCODE_QUESTION_TOOL_CALLS=0
+CONSENT_V3_ENVELOPES=0
+CONSENT_REQUIRED_REASONS=0
+INTENDED_UNTRACKED_SELECTION_REQUIRED=0
+PROVIDER_HUMAN_INPUT_REQUIRED=0
+HUMAN_INTERVENTION_PROVIDED=0
+HUMAN_TOUCH_AFTER_EXECUTION_READY=0
+CANDIDATE_MUTATION=0
+SUPERVISOR_STOPPED=PASS
+ATENEA_ZERO_TOUCH_CANARY_FINAL=PASS
+```
+
+Evidence: `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md` and host report `/srv/kairos-lab/outbox/reports/gentle-zero-touch-v2-canary/atenea-pi-full-20260903-192900`.
+
+The final canary was deliberately **review-only**. It did not exercise implementation, push, PR/checkpoint or frontier exhaustion on a real work item. Issue #38 then exercised those real-work acceptance properties through the actual operator interface (see the operator-triggered real end-to-end result below).
+
+The canary also established the autonomous worker transport choice: use headless `opencode run` through Herdr. TUI prompt injection is not the Atenea unattended transport contract.
+
+## Real operator-triggered Atenea end-to-end — PASS (issue #38)
+
+Issue #38 completed the first real operator-triggered `EXECUTION_READY` run through the actual top-level interface. The human started Pi manually inside Herdr and gave one bounded execution prompt; from that point the accepted run completed without another human answer.
+
+```text
+REAL_OPERATOR_TRIGGERED_ATENEA_E2E=PASS
+INITIAL_HUMAN_EXECUTION_AUTHORIZATION=1
+HUMAN_TOUCH_AFTER_EXECUTION_READY=0
+NORMAL_NON_FORCE_PUBLICATION=PASS
+PR_OR_CHECKPOINT=PASS
+AUTO_MERGE=NO
+FRONTIER_STOP=PASS
+```
+
+The real operator interface is therefore field-proven, not merely the next E2E target. Implementation, deterministic verification, exact-candidate RDD, acknowledgement/burn, pre-publication revalidation, normal non-force publication, PR/checkpoint reconciliation and frontier stop all completed on a real work item under the current headless Pi → Herdr → OpenCode → Gentle path.
+
+The run exposed two non-blocking operator ergonomics refinements, accepted for current use under issue #39: launch the headless OpenCode worker in a dedicated visible Herdr pane and report its pane/tab id/label, and use a bounded authoritative operator prompt for intentionally pinned work. These add no launcher/controller and no new authority.
+
+Issue #39 then executed that bounded operator-ergonomics refinement through the same operator-facing path and is complete:
+
+```text
+ISSUE39_PINNED_BOUNDED_PREFLIGHT=PASS
+ISSUE39_VISIBLE_WORKER_PANE=PASS
+ISSUE39_WORKER_PANE_ID_REPORTED=PASS
+ISSUE39_USEFUL_LIVE_WORKER_STREAM=NOT_YET_PROVEN
+ISSUE39_FIXED_SLEEP_SUPERVISION=OBSERVED_NON_BLOCKING
+```
+
+Issue #39 proved the bounded pinned preflight (no broad archaeology before the worker), the dedicated visible Herdr worker pane and immediate pane/tab id reporting, the post-#38 documentation reconciliation, exact-candidate RDD, acknowledgement/burn, normal non-force publication and PR #37 frontier stop. The visible pane and its reported id are proven; rendering useful live OpenCode/Gentle activity into that pane is `USEFUL_LIVE_WORKER_STREAM=NOT_YET_PROVEN`, the single remaining operator-ergonomics follow-up and non-blocking for PR #37. Repeated fixed `sleep` waits were again observed during #39 supervision and are recorded as non-blocking; issue #39 does not claim a supervision-efficiency property and current policy continues to prefer native/Herdr bounded waits.
+
+Issue #38 evidence comment: PR #37 audit thread and issue #38 comments. The upstream-supported negotiated-v2 unattended API remains unresolved/non-production; upstream `Gentleman-Programming/gentle-ai#4109` and Atenea #36 remain open.
+
+## Observation harness defects — classified and excluded from runtime result
+
+The final canary exposed observation defects that generated false stalls/false negatives but did not change the actual worker result:
+
+- process-substitution `tee` children outlived completed Pi and held the outer wrapper open;
+- CLI `--help` discovery probes were initially counted as real workspace/run/wait executions;
+- textual grep matched `No human input was required` as a positive human-input request.
+
+Corrected audits use structural events, provider schemas/reasons, exact commands and authority state. Observation wrappers are not allowed to become execution dependencies or justify a new controller.
+
 ## GitHub authentication incident — resolved
 
 Intermittent 401 failures were traced to stale `GH_TOKEN` / `GITHUB_TOKEN` values in tmux's global environment overriding valid `gh` credentials.
@@ -157,20 +323,25 @@ GENTLE_PI_2_3_0_QUALIFIED  = NO
 GENTLE_PI_2_3_0_ADOPTED    = NO
 ```
 
-The only justified evaluation is one bounded replacement/deletion experiment asking whether `2.3.0` can preserve Atenea's already-qualified properties while removing components or glue. Do not add Gentle Pi as another layer on top of the qualified path.
+The only justified evaluation remains one bounded replacement/deletion experiment asking whether `2.3.0` can preserve Atenea's qualified properties while removing components or glue. Do not add Gentle Pi as another layer on top of the qualified path.
 
-Until that experiment passes, keep **Pi → Herdr → OpenCode + Gentle** as the accepted architecture.
+The `review-consent-asked` latch present in Gentle Pi `2.3.0` is **not** current evidence of negotiated-v2 zero-touch parity: current integration records it after a grant but does not use it as authority for later provider-issued v2 candidate consent. Issue #36 owns the separate negotiated-v2 capability investigation.
+
+Until a replacement experiment passes, keep **Pi → Herdr → OpenCode + Gentle** as the accepted architecture.
 
 ## Current runtime target
 
-As of 2026-09-01:
+As of 2026-09-03:
 
-- OpenCode remains the qualified implementation runtime;
-- Gentle AI `2.5.0` stable is the operational target;
-- Pi routing remains an operational concern, not architecture;
-- Gentle Pi `2.3.0` is eligible for bounded re-evaluation but is not installed/adopted by qualification policy.
-
-Model/provider/effort values are operational routing facts, not Atenea architecture.
+- Pi `0.84.4` remains the qualified thin supervisor in current field evidence;
+- Herdr `0.8.2` remains the process/session substrate;
+- OpenCode `1.18.27` is the current successfully characterized headless implementation runtime;
+- Gentle AI `2.5.0` stable remains the production operational target;
+- the isolated canary Gentle binary proves negotiated-v2 unattended parity behavior but is not a production release/adoption;
+- stable Gentle contains upstream-owned zero-touch review behavior outside the released forced-relay v2 route;
+- DeepSeek V4 Flash is successful field routing evidence, not an architectural pin;
+- Gentle Pi `2.3.0` is eligible for bounded re-evaluation but is not adopted by qualification policy;
+- upstream `Gentleman-Programming/gentle-ai#4109` remains the provider-owned production-resolution path.
 
 ## Policy consolidation — COMPLETE
 
@@ -212,13 +383,49 @@ Harness Contract v1 defines the surviving #267 policy:
 
 These are policy decisions. Natural field use may still provide evidence, but no runtime qualification is blocked on them.
 
-## What is not yet field-qualified
+## What remains open
 
-### Gentle AI 2.5.0 stable natural field use
+### Real operator-triggered end-to-end path — CLOSED by issue #38
 
-The core architecture is already qualified. The next real slice should simply record that stable `2.5.0` operates correctly in the existing path, especially provider-issued continuation/re-entry and final acknowledgement semantics.
+The real operator-triggered path is field-proven. Issue #38 completed a real `EXECUTION_READY` work item through the actual operator interface:
 
-This is **not** a new qualification stage.
+```text
+human opens/uses Herdr
+→ human starts Pi interactively
+→ human gives one bounded execution prompt
+→ Pi resolves current GitHub/repository authority
+→ Pi creates/reuses headless OpenCode worker through Herdr
+→ OpenCode implements and owns Gentle lifecycle
+→ exact-candidate RDD / bounded correction if needed
+→ acknowledgement/burn
+→ one pre-publication authority revalidation
+→ normal non-force push
+→ PR/checkpoint
+→ exact reconciliation
+→ frontier rediscovery
+→ STOP before human merge / when exhausted
+→ final factual Pi report
+```
+
+Result recorded:
+
+```text
+REAL_OPERATOR_TRIGGERED_ATENEA_E2E=PASS
+INITIAL_HUMAN_EXECUTION_AUTHORIZATION=1
+HUMAN_TOUCH_AFTER_EXECUTION_READY=0
+NORMAL_NON_FORCE_PUBLICATION=PASS
+PR_OR_CHECKPOINT=PASS
+AUTO_MERGE=NO
+FRONTIER_STOP=PASS
+```
+
+The operator-ergonomics refinement is now **complete**: issue #39 completed the bounded pinned preflight and the visible-pane/id-reporting improvements, and recorded `ISSUE39_USEFUL_LIVE_WORKER_STREAM=NOT_YET_PROVEN` as the remaining follow-up (rendering useful live OpenCode/Gentle activity into the visible pane; non-blocking for PR #37). Repeated fixed `sleep` waits observed during #39 supervision are non-blocking; native bounded waits remain the policy. Gentle review consent should not surface when the isolated provider canary policy is deliberately selected for a bounded experiment. Already-authorized normal non-force push permissions should be handled by Pi. Genuine human-owned boundaries or final merge must be relayed and paused; answering them is allowed, but that run must no longer be described as zero-touch.
+
+### Upstream negotiated-v2 provider support
+
+The downstream canary proves the behavioral hypothesis but is not production authority.
+
+Atenea #36 and upstream `Gentleman-Programming/gentle-ai#4109` remain open until a supported upstream provider-owned equivalent is available and characterized. Atenea will not permanently fork Gentle, strip provider tokens or inject consent in the consumer.
 
 ### OpenSpec optional brownfield authoring
 
@@ -228,7 +435,7 @@ If a suitable real delta naturally selects OpenSpec, capture whether its durable
 
 ### Repository-specific delivery variants
 
-Real repositories may end work at an exact remote checkpoint or open a PR awaiting human merge. The core runtime already qualifies normal push/reconciliation; each repository's actual PR/merge policy should be exercised in normal field use.
+Real repositories may end work at an exact remote checkpoint or open a PR awaiting human merge. The core runtime qualified normal push/reconciliation historically, and issue #38 exercised the current headless path through a real repository-specific delivery boundary (PR/checkpoint, no auto-merge). Further real repositories may still exercise their own delivery variants.
 
 ### Naturally material UI slices
 
@@ -240,12 +447,12 @@ Do not create Stage 9/10/... for ceremonial completeness.
 
 New bounded qualification is justified only when:
 
-1. a required property has no upstream owner;
+1. a required property has no current upstream owner;
 2. a real field run exposes an unresolved seam;
 3. a materially different upstream runtime replaces a failed/qualified lifecycle; or
 4. an optional new entry path needs a compatibility test because a real project actually selects it.
 
-Gentle Pi `2.3.0` meets condition 3 for **one bounded re-evaluation only**.
+Gentle Pi `2.3.0` meets condition 3 for **one bounded re-evaluation only**. Issue #36 meets condition 2 as an upstream integration investigation, not a new stage.
 
 Otherwise use real projects and capture compact evidence.
 
@@ -255,5 +462,5 @@ When documentation conflicts:
 
 1. exact repository / GitHub / runtime evidence;
 2. `docs/ATENEA_HARNESS_CONTRACT_V1.md`, current `README.md`, this file and `docs/CURRENT_DECISIONS.md`;
-3. `docs/ATENEA_HANDOFF_20260830.md` and Stage-specific frozen evidence;
+3. `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`, `docs/JUDIT76_GENTLE25_FIELD_EVIDENCE.md`, `docs/ATENEA_HANDOFF_20260830.md` and Stage-specific frozen evidence;
 4. earlier decision files and forward-looking plans.
