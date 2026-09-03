@@ -1,6 +1,6 @@
 # Atenea — Current decisions after Stage 8
 
-Date: 2026-09-01
+Date: 2026-09-03
 
 This file is the short current decision index. Historical `docs/DECISIONS.md`, stage files and `docs/ATENEA_HANDOFF_20260830.md` remain evidence of how Atenea evolved, but their forward-looking status is superseded where it conflicts with this index, `README.md`, `docs/QUALIFICATION.md` or `docs/ATENEA_HARNESS_CONTRACT_V1.md`.
 
@@ -14,7 +14,7 @@ Do not build a custom lifecycle/controller/state-machine architecture absent fie
 
 **Accepted and qualified.**
 
-Pi owns frontier discovery, dependency/blocker/authority decisions, worker supervision, permission relay when required, closure/reconciliation checks and frontier rediscovery. Pi does not implement product code.
+Pi owns frontier discovery, dependency/blocker/authority decisions, worker supervision, genuine human-decision relay, already-authorized operational permission grant, closure/reconciliation checks and frontier rediscovery. Pi does not implement product code and MUST NOT operate the Gentle lifecycle on behalf of the worker.
 
 A future upstream replacement may be adopted only after bounded evidence proves it preserves these properties while deleting architecture or glue.
 
@@ -28,9 +28,9 @@ Herdr provides the process/session surface used by the qualified architecture. D
 
 **Accepted and qualified.**
 
-Gentle owns the exact candidate, native RDD, reviewer lineage/authority, bounded correction, provider-issued continuation/re-entry, final acknowledgement/burn, recovery and mutation invalidation. Atenea must not duplicate those mechanisms.
+Gentle owns the exact candidate, native RDD, reviewer lineage/authority, bounded correction, provider-issued continuation/re-entry, final acknowledgement/burn, recovery and mutation invalidation. The OpenCode/Gentle worker executes those provider-issued transitions. Atenea and the outer Pi supervisor must not duplicate or take over those mechanisms.
 
-Gentle AI `2.5.0` stable is the current operational target. Stage 5–8 evidence remains historical evidence from `2.5.0-rc.2`.
+Gentle AI `2.5.0` stable is the current operational target. Stage 5–8 evidence remains historical evidence from `2.5.0-rc.2`; stable real-project evidence is now recorded in `docs/JUDIT76_GENTLE25_FIELD_EVIDENCE.md`.
 
 ## C-005 — Gentle Pi 2.2.0 failed; 2.3.0 is eligible for one bounded re-evaluation
 
@@ -44,13 +44,17 @@ The `2.2.0` failure remains valid evidence.
 
 Run at most one bounded replacement/deletion evaluation. Success means preserving Atenea's qualified properties while removing components/glue. Do not layer Gentle Pi on top of the current path merely because it is available.
 
+Its clone-local `review-consent-asked` latch is not currently evidence of a zero-touch consent solution: it is recorded after human grant and is not used by current integration code as authorization for later native candidate consent.
+
 Until PASS, the accepted architecture remains Pi → Herdr → OpenCode + Gentle.
 
 ## C-006 — Normal git push is allowed; no publication-permission subsystem
 
 **Accepted.**
 
-Normal non-force publication follows repository policy. If an interactive permission is raised during autonomous execution, the current supervisor may grant an allowed operation.
+Normal non-force publication follows repository policy. If an interactive runtime permission merely asks whether to perform an already-authorized ordinary non-force push, Pi should grant it without escalating to the human.
+
+This does not authorize Pi to answer genuine human decisions, destructive operations, scope changes, current Gentle candidate consent or final merge.
 
 Dangerous/destructive recovery remains outside the autonomous default: no force-push, hidden reset/rebase history rewrite or automatic merge.
 
@@ -106,7 +110,7 @@ The Matt skills are not a mandatory execution sequence. Do not build a custom Cl
 
 **Accepted.**
 
-Gentle native RDD owns final exact-candidate review authority. Matt `code-review` is an optional upstream method; when semantic/spec-compliance risk warrants it, use it before Gentle RDD. A post-Gentle mutation requires a new Gentle candidate lifecycle.
+Gentle native RDD owns final exact-candidate review authority. Matt `code-review` is an optional upstream method; when semantic/spec-compliance risk warrants it, use it before Gentle RDD. A post-Gentle mutation requires the candidate/review transition that current Gentle authority requires.
 
 ## C-012 — Repository delivery policy remains repository-specific
 
@@ -144,12 +148,65 @@ No universal Atenea PRODUCT generator is required.
 
 Use `docs/REAL_PROJECT_ROLLOUT_V1.md`.
 
-Current sequence:
+Judit #76 / PR #79 has now supplied the first stable Gentle `2.5.0` field evidence. Future real work should consume that evidence rather than repeat Stage 5–8.
+
+## C-017 — Stable Gentle 2.5 exact-candidate RDD passes; current zero-touch does not
+
+**Accepted from real-project evidence.**
+
+Judit #76 proved stable exact-candidate RDD, provider continuation/re-entry on the successful path, approval and exact acknowledgement/burn.
+
+It also proved that current stable medium/high consent is candidate-scoped and human-owned. Every new exact candidate asks again. Therefore:
+
+```text
+HISTORICAL_ZERO_HUMAN_TOUCH_RC2=PASS
+STABLE_ZERO_HUMAN_TOUCH_WITH_RDD=NOT_SATISFIED
+CLASSIFICATION=UPSTREAM_CAPABILITY_GAP
+TRACKING=#36
+```
+
+Atenea MUST NOT restore the old property by silently supplying `granted`. Issue #36 owns the upstream-first search for a provider-owned bounded preauthorization mechanism.
+
+## C-018 — Same-work continuation reuses a healthy OpenCode worker by default
+
+**Accepted.**
+
+For the same work item + PR/branch + worktree + effective authority, reuse the existing healthy OpenCode worker for bounded continuation/repair by default.
+
+Create a new worker only for a concrete reason: unavailable/unhealthy worker, materially contaminated context, changed worktree/runtime, or explicit isolation.
+
+This is implementation-context reuse only. A changed source candidate still requires a fresh Gentle review lineage when the provider requires one.
+
+## C-019 — Supervisor prompts state intent/checkpoint/bounds; durable mechanics stay out of the prompt
+
+**Accepted from field evidence.**
+
+The successful Stage 7/8 interface was thin. Judit #76 showed that over-specifying lifecycle internals in Pi's operator prompt can cause responsibility reinterpretation, redundant investigation and unnecessary context growth.
+
+Default prompt contents:
+
+```text
+normal run: work item + worker supervision request + delivery boundary
+resume/repair: exact checkpoint + do-not-redo boundary + one/two incident-specific constraints
+```
+
+Do not teach Pi Gentle command syntax or recovery state machines in ordinary operator prompts. Those mechanics belong to current repo/Atenea/upstream authority.
+
+## C-020 — Pi supervision uses bounded state/wait primitives, not long fixed polling
+
+**Accepted from field evidence.**
+
+Repeated `sleep 180` / `sleep 300` polling materially degraded the failed #76 recovery path.
+
+Pi should use the narrowest existing Herdr/native state and bounded wait primitives appropriate to the current worker state. This does not justify a new scheduler, daemon or event bus.
+
+## Current sequence
 
 1. preserve current repo/product authority and shape only unresolved work;
 2. use Matt/OpenSpec/Impeccable only when their task trigger or value warrants it;
 3. explicitly promote to `EXECUTION_READY`;
-4. run the qualified Pi → Herdr → OpenCode/Gentle path with Gentle AI `2.5.0` stable as operational target;
-5. capture compact stable-contract field evidence rather than repeating Stage 5–8;
-6. separately run one bounded Gentle Pi `2.3.0` replacement/deletion evaluation;
-7. build new Atenea glue only after a real horizontal gap survives the upstream-first change test.
+4. run Pi → Herdr → OpenCode/Gentle with the clarified ownership and worker-reuse rules;
+5. accept current stable candidate-consent prompts as genuine human boundaries until #36 resolves them upstream-first;
+6. grant already-authorized operational permissions such as normal non-force push without unnecessary human escalation;
+7. separately run one bounded Gentle Pi `2.3.0` replacement/deletion evaluation;
+8. build new Atenea glue only after a real horizontal gap survives the upstream-first change test.
