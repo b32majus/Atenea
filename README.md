@@ -1,139 +1,232 @@
 # Atenea
 
-Atenea is an **upstream-first autonomous engineering harness** for executing already-shaped software work safely with minimal custom glue.
+Atenea is an **upstream-first autonomous engineering harness** for taking already-shaped software work from durable repository/tracker authority to a reviewed, published checkpoint with minimal custom glue.
 
-The original laboratory question — whether complete upstream authoring/execution ecosystems could compose without rebuilding their internals — is answered positively through Stage 8. Atenea v1 is therefore a contract and policy layer over qualified upstream tools, not a new orchestration runtime.
+Atenea is a **contract and policy layer over qualified upstream tools**, not a custom orchestration runtime.
 
-## Current architecture
+## Start here
+
+If you are a fresh Cora / planning assistant, or a human returning to a project, do **not** reconstruct Atenea from historical Stage files.
+
+Read in this order:
+
+1. **`README.md`** — this current overview.
+2. **`docs/START_HERE.md`** — project-entry decision procedure for start/continue work.
+3. **`docs/ATENEA_HARNESS_CONTRACT_V1.md`** — **normative execution contract**.
+4. **`docs/CURRENT_DECISIONS.md`** — current accepted decisions and field findings.
+5. **`docs/OPERATOR_RUNBOOK_V1.md`** — how the human starts an `EXECUTION_READY` run.
+6. **`docs/INSTALLATION_AND_OPERATION_V1.md`** — how to provision/verify the current environment.
+7. `docs/QUALIFICATION.md` and historical evidence only when provenance is needed.
+
+Historical handoffs/stage files are evidence. They do not override current authority.
+
+## The two Atenea surfaces
+
+Atenea deliberately separates **preparation** from **execution**.
 
 ```text
-MANUAL / INTERACTIVE SHAPING
-  greenfield: Matt Pocock upstream workflow
-  brownfield: preserve accepted repo-native shaping;
-              OpenSpec delta-first when it materially adds value
-  material UI/UX: conditional Impeccable
-        ↓
-explicit human promotion to EXECUTION_READY
-        ↓
-HUMAN OPERATOR
-  opens/uses Herdr
-  starts Pi interactively
-  gives one bounded execution prompt
-        ↓
-PI — autonomous thin supervisor
-  frontier discovery / blocker + authority decisions
-  worker supervision / genuine human-boundary relay
-        ↓
+HUMAN + CORA / PLANNING CHAT
+  read Atenea + target project
+  determine current stage / repo context
+  understand what already exists
+  choose the minimum shaping path
+  resolve product ambiguity
+  produce durable repository/tracker authority
+            ↓
+  HUMAN explicitly promotes EXECUTION_READY
+            ↓
+HUMAN + HERDR + PI
+  human opens/uses Herdr
+  human starts Pi interactively
+  human gives one bounded execution prompt
+            ↓
+PI — thin non-implementing supervisor
+            ↓
 HERDR — process/session substrate
-        ↓
+            ↓
 HEADLESS OPENCODE (`opencode run`) + GENTLE AI
   implementation + deterministic verification
-  native RDD exact-candidate review / bounded repair
-        ↓
-ONE fresh pre-publication authority revalidation
-        ↓
+  native exact-candidate RDD / bounded correction
+            ↓
+acknowledgement/burn
+            ↓
+one fresh pre-publication authority revalidation
+            ↓
 normal non-force publication
-  exact reconciliation
-  checkpoint or PR according to repo policy
-        ↓
-PI re-discovers frontier
-        ↓
+PR/checkpoint reconciliation
+            ↓
+PI re-discovers compatible frontier
+            ↓
 STOP before human merge / when exhausted
-        ↓
+            ↓
 PI factual final report
 ```
 
-Atenea does **not** require a bespoke queue, scheduler, DAG, lifecycle controller, reviewer wrapper, RDD implementation, execution launcher, Herdr policy gate or state machine.
+**Cora/human decides how work should be understood and shaped before `EXECUTION_READY`. Pi does not choose or invent the development methodology.**
 
-Interactive OpenCode remains valid for human-attended development. It is not the normal unattended transport between Pi/Herdr and the implementation worker; current field evidence selects headless `opencode run --format json` for that path.
+## Project-entry routing before `EXECUTION_READY`
 
-## Qualification status
+The current front-door classification is a planning aid, not a new persisted state machine:
 
 ```text
-STAGES_0_4                         PASS
-STAGE5_MATT_GENTLE_COMPOSITION    PASS
-STAGE6_NATIVE_GENTLE_RDD          PASS
-STAGE7_PI_SELF_LAUNCH             PASS
-STAGE8_FRONTIER_DISCOVERY         PASS
-UNATTENDED_EXECUTION_RC2          PASS
-ZERO_HUMAN_TOUCH_RC2              PASS
-REMOTE_RECONCILIATION             PASS
-FRONTIER_EXHAUSTION_STOP          PASS
-REAL_OPERATOR_TRIGGERED_ATENEA_E2E PASS   # issue #38
+REPO_CONTEXT=
+  GREENFIELD
+  SMALL_BROWNFIELD
+  LARGE_CODE_BROWNFIELD
+  MIXED_CORPUS_BROWNFIELD
 ```
 
-Stage 8 accepted checkpoints:
+### Greenfield
 
-- issue #18 — HEAD `1313b060ce8d22c3eac8bab5258c770af2dd08c0`
-- issue #19 — HEAD `ad1bc950db3c03755ed1632bbf159b6c2f695a73`
-- final Stage 8 tree `18687fcb7d9bfaac157c5ca33a0715ea5c996a6b`
-- 131/131 tests
+Primary authoring path: **Matt Pocock upstream**.
 
-Stage 5–8 qualification remains **historical evidence from Gentle AI `2.5.0-rc.2`**. That evidence is not rewritten when the operational runtime advances.
+Use the complete upstream method that fits the work. Do not copy fragments of third-party skills into Atenea and do not create a parallel Atenea authoring framework.
 
-See `docs/QUALIFICATION.md` and the Stage-specific files for frozen evidence.
+### Small brownfield
 
-## Current upstream/runtime state
+Understand the repository directly and preserve accepted repo-native authority.
 
-As of 2026-09-03:
+Use **OpenSpec delta-first when it materially improves the change contract**. Do not route every existing project through OpenSpec by ritual.
 
-- Gentle AI `2.5.0` is the production stable operational target.
-- Judit #76 / PR #79 proved the stable exact-candidate RDD path, provider continuation/re-entry, approval and exact acknowledgement/burn on real work.
-- Stable Gentle still contains unattended-capable consent semantics; the released OpenCode negotiated `review-integration/v2` path currently forces `--consent relay`, which selects candidate-scoped human consent.
-- A bounded **provider-side canary based exactly on v2.5.0** has now proved negotiated-v2 unattended behavior without Pi/OpenCode rewriting provider transitions.
-- The canary culminated in a real `Pi 0.84.4 → Herdr 0.8.2 → headless OpenCode 1.18.27 → Gentle` review path with `HUMAN_TOUCH_AFTER_EXECUTION_READY=0`, exact RDD and acknowledgement/burn.
-- Issue #38 then completed the first real **operator-triggered** `EXECUTION_READY` end-to-end run through the actual top-level interface: a human started Pi manually inside Herdr, gave one bounded execution prompt, and the accepted run completed with `HUMAN_TOUCH_AFTER_EXECUTION_READY=0`, exact RDD/acknowledgement-burn, normal non-force publication and frontier stop.
-- Production Gentle remained untouched. The canary selector is downstream experimental evidence only; upstream `Gentleman-Programming/gentle-ai#4109` remains the production-resolution path.
-- Atenea does not reconstruct provider-issued continuations, candidate identity, acknowledgement/burn, recovery, reviewer authority or mutation invalidation.
-- Delivery remains ordinary repository policy; RDD does not create an Atenea delivery gate.
-- Gentle Pi `2.3.0` remains eligible for one bounded replacement/deletion re-evaluation and is not adopted.
+### Large code brownfield
 
-The accepted architecture remains **Pi → Herdr → headless OpenCode + Gentle AI** until field evidence proves a simpler upstream replacement preserves the same properties.
+Before broad file-by-file archaeology, Cora may check whether a healthy repository-intelligence index already exists and whether it materially improves understanding.
 
-Zero-touch canary evidence: `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`.
+If none exists, Cora may recommend a qualified upstream provider before shaping the delta. Repository Intelligence is derived evidence, never source/spec/review authority.
 
-## Atenea v1 contract
+### Mixed-corpus brownfield
+
+If understanding depends materially on code + docs/schemas/ADRs/PDFs/images or other first-party knowledge, Cora may recommend a mixed-corpus repository-intelligence provider before shaping.
+
+Current candidates under evaluation include **CodeGraph** for code-heavy repositories and **Graphify** for mixed corpora. Neither is currently a mandatory Atenea dependency or auto-installed runtime component.
+
+Canonical policy and detailed start/continue procedure: `docs/START_HERE.md`.
+
+## Repository Intelligence boundary
+
+```text
+CORA_MAY_RECOMMEND_REPOSITORY_INTELLIGENCE=YES
+PI_MAY_INVENT_REPOSITORY_INTELLIGENCE=NO
+REPOSITORY_INTELLIGENCE_IS_AUTHORITATIVE=NO
+AUTO_INSTALL_OR_AUTO_INDEX_BY_ATENEA=NO
+```
+
+Atenea consumes complete upstream tools through public surfaces when justified. It does not copy pieces of their skills, parsers, graph logic, watchers or control loops into Atenea.
+
+A graph/index may improve understanding and reduce repeated archaeology. It does **not** approve a change, replace tests, replace accepted specs, replace Gentle RDD or authorize merge.
+
+## Current execution architecture
+
+```text
+BEFORE EXECUTION_READY
+  manual + interactive shaping
+  human + Cora/planning surface
+  repo-native authority
+
+FROM EXECUTION_READY
+  human starts Pi in Herdr
+  Pi supervises
+  Herdr provides process/session substrate
+  headless OpenCode implements
+  Gentle owns exact candidate / RDD / reviewer authority / correction / ack-burn
+  Git/GitHub owns publication/checkpoint/merge policy
+```
+
+Atenea does **not** require a bespoke queue, scheduler, DAG, lifecycle controller, reviewer wrapper, execution launcher, Herdr policy gate or Atenea state machine.
+
+Interactive OpenCode remains valid for human-attended development. It is not the accepted unattended transport; field evidence selects headless `opencode run --format json`.
+
+## Normative contract
 
 `docs/ATENEA_HARNESS_CONTRACT_V1.md` is the normative horizontal contract.
 
-Core rules:
+High-frequency rules:
 
-1. **Before `EXECUTION_READY`: manual + interactive + repo-native shaping.**
+1. **Before `EXECUTION_READY`: human-present shaping.**
 2. **From `EXECUTION_READY`: autonomous bounded execution.**
-3. **The human starts Pi and gives one bounded execution prompt; Pi supervises thereafter.**
-4. **Pi supervises; it does not implement or run Gentle lifecycle commands.**
+3. **Human starts Pi and gives one bounded prompt; Pi supervises thereafter.**
+4. **Pi does not implement product code or operate Gentle lifecycle commands.**
 5. **Herdr is substrate, not policy authority.**
-6. **Headless OpenCode owns implementation; Gentle owns exact candidate/RDD/reviewer/repair authority.**
+6. **OpenCode implements; Gentle owns exact-candidate/RDD/reviewer/repair authority.**
 7. **Evidence outranks narration.**
 8. **Normal non-force push is allowed; no force-push, hidden history rewrite or auto-merge.**
-9. **Material ambiguity or unsafe drift => STOP.**
-10. **Any new Atenea glue must prove a real missing upstream owner.**
+9. **Material ambiguity / contradictory authority / unsafe drift => STOP.**
+10. **New Atenea glue requires evidence of a real missing upstream owner.**
 
-## Authoring entry points
+## Field qualification
 
-### Greenfield — Matt Pocock
+Core architecture is field-proven.
 
-Use the complete Matt ecosystem and current repo setup/shaping semantics. Durable repository/tracker authority must be sufficient for a fresh executor; no Atenea Agent Brief/work-unit translation is required.
+```text
+STAGES_0_4                          PASS
+STAGE5_MATT_GENTLE_COMPOSITION     PASS
+STAGE6_NATIVE_GENTLE_RDD           PASS
+STAGE7_PI_SELF_LAUNCH              PASS
+STAGE8_FRONTIER_DISCOVERY          PASS
+UNATTENDED_EXECUTION_RC2           PASS
+ZERO_HUMAN_TOUCH_RC2               PASS
+REMOTE_RECONCILIATION              PASS
+FRONTIER_EXHAUSTION_STOP           PASS
+REAL_OPERATOR_TRIGGERED_ATENEA_E2E PASS   # issue #38
+```
 
-### Brownfield / evolutionary change
+Issue #38 proved the real top-level operator interface end to end:
 
-Preserve accepted repo-native shaping and product authority. **OpenSpec is optional**, not a mandatory migration or universal brownfield phase.
+```text
+human opens Herdr
+→ starts Pi interactively
+→ one bounded execution prompt
+→ Pi → Herdr → headless OpenCode → Gentle
+→ implementation + verification + exact-candidate RDD
+→ acknowledgement/burn
+→ normal non-force publication
+→ PR/checkpoint reconciliation
+→ frontier STOP
+→ final factual report
+```
 
-Use OpenSpec delta-first when a versioned proposal/spec/tasks flow materially improves clarity, auditability or handoff for a new brownfield delta. If existing accepted shaping already provides durable executable authority, do not route it through OpenSpec by ritual.
+Issue #39 proved bounded pinned preflight plus a dedicated visible Herdr worker pane/id. A useful live OpenCode/Gentle stream in that pane remains **not yet proven and non-blocking**; Atenea prefers the functioning headless path over adding fragile observation machinery.
 
-OpenSpec does not replace Pi supervision, Gentle execution/RDD or Git/GitHub authority. It remains unqualified in Atenea field use until a natural real-project run exercises it end-to-end.
+See `docs/QUALIFICATION.md`.
 
-### Material UI/UX — Impeccable
+## Gentle current boundary
 
-Impeccable is conditional. Material UI applicability is decided during human-present shaping, before `EXECUTION_READY`.
+Current truth:
 
-- `DESIGN.md` may own durable visual-system decisions where warranted.
-- For existing verticals whose product truth lives elsewhere, `PRODUCT.md` is a deterministic derived compatibility projection, not a second source of truth.
-- No universal Atenea UX framework or PRODUCT generator is required.
+```text
+Gentle AI production stable                  2.5.0
+STABLE_GENTLE_ZERO_TOUCH_CAPABILITY          PROVEN
+RELEASED_V2_PROVIDER_UNATTENDED_SELECTOR     NOT_AVAILABLE
+NEGOTIATED_V2_UNATTENDED_PROVIDER_CANARY     PASS
+REAL_OPERATOR_TRIGGERED_ATENEA_E2E           PASS
+PRODUCTION_GENTLE_MODIFIED                   NO
+UPSTREAM_REPLACEMENT_STILL_REQUIRED          YES
+```
+
+The bounded downstream canary proved the missing negotiated-v2 unattended behavior without Pi/OpenCode rewriting provider transitions. It remains canary-only; upstream `Gentleman-Programming/gentle-ai#4109` remains the production-resolution owner.
+
+Do not strip provider `relay`, inject `granted`, synthesize START, create a consent DB/controller or turn the canary into a permanent fork.
+
+Evidence: `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`.
+
+## Installation / making Atenea work
+
+Atenea deliberately has **no bespoke installer or launcher**.
+
+For a fresh environment:
+
+1. clone this repository;
+2. read `docs/START_HERE.md`;
+3. install the current upstream runtime stack through supported upstream surfaces;
+4. verify Pi / Herdr / OpenCode / Gentle effective behavior;
+5. shape the target work before `EXECUTION_READY`;
+6. start executable work using `docs/OPERATOR_RUNBOOK_V1.md`.
+
+Current reference stack and verification gates: **`docs/INSTALLATION_AND_OPERATION_V1.md`**.
 
 ## Engineering quality
 
-`CODING_STANDARDS.md` contains Atenea's stable horizontal engineering guardrails.
+`CODING_STANDARDS.md` contains stable horizontal engineering guardrails.
 
 ```text
 ALWAYS-ON POLICY
@@ -153,74 +246,31 @@ FINAL CANDIDATE LIFECYCLE
   Gentle native RDD
 ```
 
-The Matt skills are **not a mandatory execution sequence**. Atenea deliberately does not create a Clean Code agent/framework or a second mandatory reviewer lifecycle.
+The Matt skills are not a mandatory execution sequence.
 
-## Working principles
+## Canonical documentation map
 
-1. **Upstream first.** Verify current upstream before adding glue.
-2. **Evidence over narration.** Tests, exact candidate identity, git refs and tracker state outrank claims.
-3. **Keep repo overlays small.** `AGENTS.md` is pointers/high-frequency invariants; engineering guardrails live in `CODING_STANDARDS.md`; task methods remain upstream skills.
-4. **Scalable means changeable.** No speculative microservices/distribution/abstraction without evidence.
-5. **Debt is explicit.** Intentional debt must be visible, bounded and owned.
-6. **No duplicated authority.** Product/design/runtime facts each have one canonical owner.
+### Current / read first
 
-## What remains
+- `README.md` — current overview and navigation.
+- `docs/START_HERE.md` — Cora/human project-entry and shaping decision procedure.
+- `docs/ATENEA_HARNESS_CONTRACT_V1.md` — **normative execution contract**.
+- `docs/CURRENT_DECISIONS.md` — current accepted decisions.
+- `docs/INSTALLATION_AND_OPERATION_V1.md` — current environment/install/verification guide.
+- `docs/OPERATOR_RUNBOOK_V1.md` — practical `EXECUTION_READY` operator path.
+- `docs/QUALIFICATION.md` — field-qualified boundaries.
+- `docs/REAL_PROJECT_ROLLOUT_V1.md` — real-project rollout evidence/policy.
 
-Atenea v1 does not need another large synthetic qualification ladder.
+### Current evidence / adoption boundaries
 
-The first real operator-triggered `EXECUTION_READY` slice through the actual top-level interface is **complete** — issue #38 ran the full path:
+- `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md` — zero-touch provider/OpenCode/Pi evidence and non-production boundary.
+- `docs/JUDIT76_GENTLE25_FIELD_EVIDENCE.md` — first real stable Gentle field run.
 
-```text
-human opens Herdr
-→ starts Pi interactively
-→ one bounded execution prompt
-→ Pi → Herdr → headless OpenCode → Gentle
-→ implementation + verification + exact-candidate RDD
-→ acknowledgement/burn
-→ pre-publication authority revalidation
-→ normal non-force push
-→ PR/checkpoint
-→ exact reconciliation
-→ frontier rediscovery
-→ STOP before human merge / when exhausted
-→ final Pi report
-```
+### Historical evidence
 
-That run closed the real-work acceptance properties:
-
-```text
-INITIAL_HUMAN_EXECUTION_AUTHORIZATION=1
-HUMAN_TOUCH_AFTER_EXECUTION_READY=0
-GENTLE_EXACT_CANDIDATE_RDD=PASS
-ACKNOWLEDGEMENT_BURN=PASS
-NORMAL_NON_FORCE_PUBLICATION=PASS
-PR_OR_CHECKPOINT=PASS
-AUTO_MERGE=NO
-FRONTIER_STOP=PASS
-```
-
-The run exposed two operator ergonomics refinements, tracked as issue #39 and now completed for current use: launch the headless OpenCode worker in a dedicated human-visible Herdr pane and report its pane id/label immediately (proven under #39), and use a bounded authoritative operator prompt for intentionally pinned work. These are operator/supervision ergonomics, not a new architecture layer. Issue #39 proved the visible pane and immediate pane/id reporting; rendering useful live OpenCode/Gentle activity into that pane is `USEFUL_LIVE_WORKER_STREAM=NOT_YET_PROVEN`, a non-blocking follow-up for PR #37.
-
-For any bounded experiment using the isolated negotiated-v2 provider canary, it may be used exactly as documented in `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`; production Gentle remains untouched and upstream #4109 remains open.
-
-The operator may answer a genuine human-owned decision if one actually appears, but that intervention must be recorded and the run must not then be silently reported as zero-touch. Already-authorized operational permissions such as normal non-force push should be handled by Pi. Final merge remains a human boundary.
-
-Separately, Gentle Pi `2.3.0` remains eligible for one bounded replacement/deletion experiment whose success criterion is **removing architecture/glue**, not adding another layer.
-
-See `docs/REAL_PROJECT_ROLLOUT_V1.md`.
-
-## Canonical documentation
-
-- `docs/ATENEA_HARNESS_CONTRACT_V1.md` — normative Atenea v1 contract.
-- `CODING_STANDARDS.md` — repo-local engineering guardrails.
-- `docs/REAL_PROJECT_ROLLOUT_V1.md` — real-project operator path and bounded experiments.
-- `docs/OPERATOR_RUNBOOK_V1.md` — practical operator runbook for starting a normal Atenea run.
-- `docs/CURRENT_DECISIONS.md` — current short decision index.
-- `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md` — bounded zero-touch provider/OpenCode/Pi evidence and adoption boundary.
-- `docs/JUDIT76_GENTLE25_FIELD_EVIDENCE.md` — first real stable Gentle field run (historical).
-- `docs/ATENEA_HANDOFF_20260830.md` — historical post-Stage-8 handoff/evidence map.
-- `docs/QUALIFICATION.md` — qualification status and field-qualified boundaries.
-- `docs/STAGE7_SELF_LAUNCH_CLOSURE.md` — Pi self-launch evidence.
-- `docs/STAGE8_FRONTIER_DISCOVERY_EXPERIMENT.md` — autonomous frontier evidence.
+- `docs/ATENEA_HANDOFF_20260830.md` — historical post-Stage-8 handoff.
+- Stage-specific files — frozen qualification evidence.
+- `docs/DECISIONS.md` — historical decision log.
 - `docs/REJECTED.md` — rejected/deferred architecture and supersession notes.
-- older decision/stage files — historical evidence; current authority above supersedes stale forward-looking labels.
+
+If a fresh Cora has to mine historical files to discover the current contract or normal operator path, treat that as a documentation regression.
