@@ -67,6 +67,21 @@ The currently selected OpenCode negotiated `review-integration/v2` path may stil
 
 This is a path-specific current limitation, not a statement that stable Gentle globally lacks zero-touch review semantics. Issue #36 owns the upstream-first restoration of zero-touch on the negotiated OpenCode path.
 
+Current completion state, explicitly distinguished:
+
+```text
+RELEASED_V2_PROVIDER_UNATTENDED_SELECTOR=NOT_AVAILABLE
+NEGOTIATED_V2_UNATTENDED_PROVIDER_CANARY=PASS
+REAL_OPERATOR_TRIGGERED_ATENEA_E2E=PASS        # issue #38, under the bounded canary
+UPSTREAM_REPLACEMENT_STILL_REQUIRED=YES        # Gentleman-Programming/gentle-ai#4109
+```
+
+The released stable negotiated v2 still lacks a supported unattended selector. The downstream provider canary proved the behavioral hypothesis, and the real operator-triggered Atenea E2E (issue #38) completed under that bounded canary. Neither closes the upstream requirement: `UPSTREAM_REPLACEMENT_STILL_REQUIRED=YES` until a supported provider-owned equivalent exists.
+
+### 3.1 Operator/supervision ergonomics — no new authority
+
+Bounded/pinned preflight guidance and visible worker observability are operator/supervision ergonomics only. They create no new authority, lifecycle ownership, daemon, scheduler or observation-harness dependency. Pi may launch the headless OpenCode worker in a dedicated visible Herdr pane and report its pane/tab id/label for human observation; OpenCode remains headless/non-interactive and Pi remains non-implementing. For intentionally pinned work, the operator prompt may state the repository/issue/branch-PR checkpoint/role/transport/publication/STOP boundary so Pi performs a bounded preflight instead of broad rediscovery.
+
 ## 4. Authoring entry paths
 
 ### 4.1 Greenfield
@@ -481,11 +496,13 @@ Before adding any Atenea glue, answer all of these:
 
 If those questions do not have concrete answers, DO NOT BUILD.
 
-For zero-touch RDD, stable Gentle already owns the underlying silent/one-time consent behavior; the unresolved seam is negotiated-v2 policy selection. The next action is current-upstream integration verification / smallest upstream parity proposal, not an Atenea consent bypass.
+For zero-touch RDD, stable Gentle already owns the underlying silent/one-time consent behavior; the unresolved seam is negotiated-v2 policy selection. The downstream provider canary proved the behavioral parity and the real operator-triggered Atenea E2E (issue #38) completed under it, but the current action remains upstream integration verification / smallest upstream parity proposal (`Gentleman-Programming/gentle-ai#4109`), not an Atenea consent bypass and not permanent adoption of the downstream canary.
 
 ## 23. Current completion state
 
 The Stage 5–8 runtime path remains qualified from historical `2.5.0-rc.2` evidence. Gentle AI `2.5.0` stable now has natural real-project field evidence from Judit #76 / PR #79; repeating Stage 5–8 is not justified.
+
+Issue #38 completed the first real operator-triggered Atenea end-to-end run through the actual top-level interface under the bounded downstream canary. The real operator interface is field-proven, and the two operator ergonomics it exposed (visible Herdr worker pane; bounded authoritative pinned prompt) are accepted for current use as operator/supervision ergonomics, tracked by issue #39.
 
 Current stable status:
 
@@ -495,13 +512,18 @@ PROVIDER_CONTINUATION_REENTRY          PASS_ON_SUCCESSFUL_FIELD_PATH
 ACKNOWLEDGEMENT_BURN                   PASS
 PR_STOP_BEFORE_HUMAN_MERGE             PASS
 STABLE_GENTLE_ZERO_TOUCH_CAPABILITY    EXISTS
+RELEASED_V2_PROVIDER_UNATTENDED_SELECTOR=NOT_AVAILABLE
+NEGOTIATED_V2_UNATTENDED_PROVIDER_CANARY=PASS
+REAL_OPERATOR_TRIGGERED_ATENEA_E2E=PASS          # issue #38
+UPSTREAM_REPLACEMENT_STILL_REQUIRED=YES          # Gentleman-Programming/gentle-ai#4109
 OPENCODE_NEGOTIATED_V2_ZERO_TOUCH      NOT_SATISFIED
 ZERO_TOUCH_BLOCKER                     V2_NEXT_TRANSITION_FORCES_CONSENT_RELAY
 ```
 
 Remaining evidence/work should come primarily from real-project use:
 
-- Issue #36: upstream-first restoration of zero-touch on the negotiated OpenCode review path without rewriting provider transitions;
+- Issue #36 / upstream `Gentleman-Programming/gentle-ai#4109`: upstream-supported restoration of zero-touch on the negotiated OpenCode review path without rewriting provider transitions (still open);
+- issue #39 operator-ergonomics refinement (visible worker pane + bounded pinned prompt) for current runs;
 - optional OpenSpec use only when a real brownfield delta benefits from it;
 - first naturally material UI slice using conditional Impeccable/DESIGN/PRODUCT policy;
 - one bounded Gentle Pi `2.3.0` replacement/deletion evaluation because it materially changes the previously failed upstream runtime.

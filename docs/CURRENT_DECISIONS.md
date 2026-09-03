@@ -144,13 +144,13 @@ For established verticals whose canonical product authority lives elsewhere, any
 
 No universal Atenea PRODUCT generator is required.
 
-## C-016 — Real-project rollout remains the primary test harness
+## C-016 — Real-project rollout is the field-proven primary test harness
 
-**Accepted.**
+**Accepted and field-proven by issue #38.**
 
 Use `docs/REAL_PROJECT_ROLLOUT_V1.md`.
 
-Judit #76 / PR #79 supplied the first stable Gentle `2.5.0` field evidence. The zero-touch investigation then supplied bounded provider/binary/OpenCode/Pi canary evidence. The next validation is a small real `EXECUTION_READY` issue launched by the human through the actual Pi operator interface; do not repeat plumbing canaries.
+Judit #76 / PR #79 supplied the first stable Gentle `2.5.0` field evidence. The zero-touch investigation then supplied bounded provider/binary/OpenCode/Pi canary evidence. Issue #38 completed the small real `EXECUTION_READY` issue launched by the human through the actual Pi operator interface. Do not repeat plumbing canaries; real operator-triggered end-to-end runs are now the normal path.
 
 ## C-017 — Stable Gentle zero-touch capability is proven; negotiated-v2 unattended parity is canary-proven but not upstream-adopted
 
@@ -180,7 +180,7 @@ ATENEA_TRACKING=#36
 
 The canary selector is `GENTLE_AI_REVIEW_V2_CONSENT_POLICY=unattended`, but that spelling is downstream experimental evidence only. It MUST NOT be documented as an upstream API or become a permanent Atenea fork.
 
-Atenea MUST NOT restore the property by stripping `relay`, supplying `granted`, or reconstructing START. Issue #36 remains open until an upstream-supported equivalent exists and/or the real end-to-end acceptance set is completed.
+Atenea MUST NOT restore the property by stripping `relay`, supplying `granted`, or reconstructing START. Issue #36 remains open until an upstream-supported equivalent exists. The downstream canary proved the missing behavioral parity, and issue #38 then completed the real operator-triggered Atenea end-to-end run under that bounded canary; upstream `Gentleman-Programming/gentle-ai#4109` remains the production-resolution owner and is still open.
 
 `review-integration/v1` is frozen/legacy and is not a durable production answer.
 
@@ -240,9 +240,9 @@ The final canary proved exactly one real Herdr workspace/run/wait, exactly one `
 
 ## C-022 — The real operator interface is human → Herdr → interactive Pi; autonomy begins after the one execution prompt
 
-**Accepted as the next real-run contract.**
+**Accepted and field-proven by issue #38.**
 
-The intended human experience is:
+The real operator experience is:
 
 ```text
 human opens/uses Herdr
@@ -253,6 +253,22 @@ human opens/uses Herdr
 ```
 
 The initial Pi launch/prompt is the expected human execution authorization. After `EXECUTION_READY`, Pi should not ask for already-authorized operational actions such as normal non-force push.
+
+Issue #38 exercised this interface end to end on a real `EXECUTION_READY` documentation work item and recorded:
+
+```text
+REAL_OPERATOR_TRIGGERED_ATENEA_E2E=PASS
+INITIAL_HUMAN_EXECUTION_AUTHORIZATION=1
+HUMAN_TOUCH_AFTER_EXECUTION_READY=0
+GENTLE_EXACT_CANDIDATE_RDD=PASS
+ACKNOWLEDGEMENT_BURN=PASS
+NORMAL_NON_FORCE_PUBLICATION=PASS
+PR_OR_CHECKPOINT=PASS
+AUTO_MERGE=NO
+FRONTIER_STOP=PASS
+```
+
+The real operator interface is therefore **field-proven**, not merely the next-run contract.
 
 If a genuine human-owned boundary appears — material product ambiguity, destructive action, external authority decision, or final merge — Pi must relay it and pause. A human response is permitted, but it must be recorded as a real post-`EXECUTION_READY` intervention; Atenea must not silently count that run as zero-touch.
 
@@ -270,15 +286,26 @@ The final zero-touch canary exposed three observation-only defects:
 
 These do not belong in the runtime architecture. Structured evidence should be written directly to files and audited structurally. Do not add a wrapper/controller merely to observe the already-qualified path.
 
+## C-024 — Visible Herdr worker pane + bounded pinned operator prompt are accepted operator ergonomics, not architecture
+
+**Accepted from post-#38 operator evidence (issue #39).**
+
+The #38 run proved the real operator interface but exposed two operator ergonomics improvements, both accepted for current use without introducing any launcher/controller:
+
+1. **Visible headless worker pane.** Pi launches headless `opencode run` through a dedicated Herdr pane/tab that the human can observe live, and Pi reports the worker pane/tab id/label immediately. This is visibility, not interactivity: OpenCode remains headless/non-interactive and human observation does not become worker interaction or review authority. Do not regress to OpenCode TUI automation.
+2. **Bounded authoritative pinned prompt.** For intentionally pinned work, the operator prompt states repository, exact issue/work item, declared branch/PR checkpoint, Pi supervisor role, Herdr → visible headless OpenCode/Gentle transport, normal non-force publication authorization and the STOP-before-merge boundary. Pi then performs only the bounded preflight needed to validate those anchors before launching the worker, deferring broad frontier rediscovery until after the accepted checkpoint.
+
+These are operator/supervision ergonomics only. They create no new authority, lifecycle ownership, daemon, scheduler or observation harness dependency.
+
 ## Current sequence
 
 1. preserve current repo/product authority and shape only unresolved work;
 2. use Matt/OpenSpec/Impeccable only when their task trigger or value warrants it;
 3. explicitly promote a bounded real work item to `EXECUTION_READY`;
-4. human opens/uses Herdr, starts Pi interactively and gives one bounded Atenea execution prompt;
-5. Pi resolves current authority/frontier and creates or reuses a headless OpenCode worker through Herdr;
+4. human opens/uses Herdr, starts Pi interactively and gives one bounded Atenea execution prompt (pinned prompts name the repository/issue/branch/PR checkpoint per C-024);
+5. Pi resolves the declared anchors with a bounded preflight, creates or reuses a headless OpenCode worker in a dedicated visible Herdr pane and reports the pane/tab id/label;
 6. OpenCode owns implementation, deterministic verification and every Gentle lifecycle transition; Pi MUST NOT operate Gentle directly;
-7. for the current bounded zero-touch experiment only, the isolated canary Gentle provider policy may be used exactly as documented in `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`; production Gentle remains untouched and the upstream issue remains open;
+7. for any bounded zero-touch experiment, the isolated canary Gentle provider policy may be used exactly as documented in `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`; production Gentle remains untouched and the upstream issue remains open;
 8. Pi grants already-authorized operational permissions such as normal non-force push without unnecessary human escalation;
 9. genuine human-owned decisions are relayed and pause the run; final merge remains human;
 10. after exact RDD acknowledgement/burn, one fresh pre-publication authority revalidation, normal publication and reconciliation, Pi rediscovers frontier and stops when exhausted;

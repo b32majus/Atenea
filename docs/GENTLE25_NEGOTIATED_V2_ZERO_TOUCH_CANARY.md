@@ -313,40 +313,45 @@ LOCAL_CONSUMER_BYPASS=NO
 PRODUCTION_GENTLE_MODIFIED=NO
 ```
 
-## What is not yet proven or adopted
+## What remains not yet proven or adopted upstream
 
-The canary was intentionally review-only. It did **not** exercise implementation, normal push, PR/checkpoint publication or frontier rediscovery/exhaustion on a real work item.
+This document's review-only canary sections remain historical evidence for what the canary itself proved.
 
-Therefore the complete Issue #36 acceptance set is not closed yet:
+The canary was intentionally review-only: it did **not** exercise implementation, normal push, PR/checkpoint publication or frontier rediscovery/exhaustion on a real work item. Those properties were then exercised by the real operator-triggered Atenea end-to-end run, issue #38, which recorded:
 
 ```text
-INITIAL_HUMAN_EXECUTION_AUTHORIZATION=1                 next real run
-HUMAN_TOUCH_AFTER_EXECUTION_READY=0                     proven for review path
-RDD_CANDIDATE_COUNT>=1                                  proven
-NEW_CANDIDATE_AFTER_BOUNDED_CORRECTION=ZERO_TOUCH       binary/unit evidence; natural real repair still desirable
-PROVIDER_ISSUED_TRANSITIONS_UNMODIFIED=PASS              proven
-GENTLE_EXACT_CANDIDATE_RDD=PASS                         proven
-ACKNOWLEDGEMENT_BURN=PASS                               proven
-NORMAL_NON_FORCE_PUBLICATION=PASS                       next real run
-PR_OR_CHECKPOINT=PASS                                   next real run
-AUTO_MERGE=NO                                           next real run
-FRONTIER_STOP=PASS                                      next real run
+INITIAL_HUMAN_EXECUTION_AUTHORIZATION=1
+HUMAN_TOUCH_AFTER_EXECUTION_READY=0
+RDD_CANDIDATE_COUNT>=1                                  real run
+NEW_CANDIDATE_AFTER_BOUNDED_CORRECTION=ZERO_TOUCH       binary/unit evidence; natural real repair not yet observed
+PROVIDER_ISSUED_TRANSITIONS_UNMODIFIED=PASS
+GENTLE_EXACT_CANDIDATE_RDD=PASS
+ACKNOWLEDGEMENT_BURN=PASS
+NORMAL_NON_FORCE_PUBLICATION=PASS                       issue #38
+PR_OR_CHECKPOINT=PASS                                   issue #38
+AUTO_MERGE=NO                                           issue #38
+FRONTIER_STOP=PASS                                      issue #38
 ```
 
-The provider-side environment variable name is **downstream canary-only**. It is not claimed as an upstream API and MUST be deleted when Gentle ships an equivalent supported provider-owned capability.
+What remains genuinely open is **upstream adoption**, not the Atenea execution path:
 
-Upstream implementation remains governed by `Gentleman-Programming/gentle-ai#4109` and its maintainer process; do not open an upstream implementation PR before the required upstream approval state.
+- the released stable negotiated-v2 provider unattended selector remains `NOT_AVAILABLE`;
+- the downstream real E2E PASS under the bounded canary does not change that;
+- `GENTLE_AI_REVIEW_V2_CONSENT_POLICY=unattended` remains a **downstream-canary-only** spelling. It is not claimed as an upstream API and MUST be deleted when Gentle ships an equivalent supported provider-owned capability;
+- upstream implementation remains governed by `Gentleman-Programming/gentle-ai#4109` and its maintainer process; do not open an upstream implementation PR before the required upstream approval state;
+- Atenea #36 tracks the upstream-first restoration of negotiated-v2 zero-touch and stays open with #4109.
 
-## Qualified next experiment: operator-triggered real end-to-end run
+## Qualified next experiment: operator-ergonomics refinement (issue #39)
 
-The next test is no longer a plumbing canary. It should be one small real `EXECUTION_READY` issue and should begin from the operator's actual interface:
+The real operator-triggered end-to-end run (issue #38) is complete and PASS. The next test is the bounded operator-ergonomics refinement that run exposed, still beginning from the operator's actual interface:
 
 ```text
 human opens/uses Herdr
 → human starts Pi interactively
-→ human gives one bounded Atenea execution prompt
-→ Pi resolves current repository/GitHub authority
-→ Pi creates/reuses headless OpenCode worker through Herdr
+→ human gives one bounded authoritative Atenea execution prompt (pinned: repository, issue, branch/PR checkpoint, role, transport, publication, STOP boundary)
+→ Pi reports the visible Herdr worker pane/tab id/label
+→ Pi resolves current repository/GitHub authority with a bounded preflight
+→ Pi creates/reuses headless OpenCode worker in a dedicated visible Herdr pane
 → OpenCode implements and owns all Gentle lifecycle operations
 → Gentle exact-candidate RDD
 → bounded correction if naturally required
@@ -360,7 +365,7 @@ human opens/uses Herdr
 → Pi returns one final factual report
 ```
 
-Human interaction policy for that run:
+Human interaction policy for real runs:
 
 ```text
 initial manual Pi launch + execution prompt

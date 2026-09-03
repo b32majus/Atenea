@@ -11,12 +11,15 @@ The Stage 5–8 execution architecture is already qualified. Real-project rollou
 
 Judit #76 / PR #79 supplied the first real Gentle AI `2.5.0` stable field evidence. The negotiated-v2 zero-touch investigation then proved the missing unattended behavior through a bounded provider-side canary without modifying production Gentle or rewriting provider transitions in Pi/OpenCode.
 
+Issue #38 then completed the first **real operator-triggered end-to-end run** through the actual operator interface on a real `EXECUTION_READY` documentation work item. The human started Pi manually inside Herdr and gave one bounded execution prompt; from that point the accepted run completed with exact-candidate RDD, acknowledgement/burn, normal non-force publication, PR/checkpoint reconciliation and frontier stop.
+
 Evidence:
 
 - `docs/JUDIT76_GENTLE25_FIELD_EVIDENCE.md`
 - `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`
+- issue #38 / PR #37 audit thread
 
-The next run is therefore **real work through the actual operator interface**, not another plumbing canary.
+The real operator path described below is therefore the **normal operator path**, not a one-off experiment.
 
 ## 1. Select the project and slice
 
@@ -27,11 +30,11 @@ Prefer a real repository that has:
 - no need for destructive migration or emergency production intervention;
 - enough testability/deterministic evidence to distinguish success from narration;
 - a normal GitHub delivery path;
-- a human merge boundary for the first real run.
+- a human merge boundary for real runs.
 
 Do not invent work merely to exercise an optional tool.
 
-For the first operator-triggered end-to-end run, prefer a small issue whose implementation can naturally reach a normal non-force push + PR/checkpoint without requiring infrastructure migration, secrets rotation, production deployment or irreversible actions.
+A normal run is a small bounded real issue whose implementation can naturally reach a normal non-force push + PR/checkpoint without requiring infrastructure migration, secrets rotation, production deployment or irreversible actions.
 
 ## 2. Repo onboarding audit
 
@@ -126,11 +129,11 @@ Before promotion, verify that current durable authority resolves:
 
 Unresolved material decisions stay before the autonomy boundary.
 
-For the next real run, the human's explicit decision to start Pi on one `EXECUTION_READY` issue is the one expected execution authorization. That launch does not authorize destructive recovery, material product redesign or final merge.
+The human's explicit decision to start Pi on one `EXECUTION_READY` issue is the one expected execution authorization. That launch does not authorize destructive recovery, material product redesign or final merge.
 
 ## 6. Actual operator-triggered execution path
 
-The intended human experience is now explicit:
+The real human experience, field-proven by issue #38, is now explicit:
 
 ```text
 human opens/uses Herdr
@@ -160,11 +163,11 @@ Herdr remains process/session substrate only. Pi remains non-implementing. OpenC
 
 ### 6.1 The human starts Pi manually
 
-This is intentional, not a workaround.
+This is the **normal operator path**, not a workaround or a one-off test.
 
-The first real test SHOULD be performed by the operator directly inside Herdr so the tested top-level interface is the one intended for normal use.
+The run is performed by the operator directly inside Herdr so the tested top-level interface is the one used for normal work. Issue #38 field-proved this path.
 
-A suitable thin operator prompt is:
+A suitable normal operator prompt is:
 
 ```text
 Execute the current EXECUTION_READY issue end to end under the Atenea contract.
@@ -173,9 +176,11 @@ Proceed through implementation, deterministic verification, Gentle RDD, bounded 
 Do not merge. Stop on any genuine human-owned decision or when the compatible frontier is exhausted, and return the final factual report.
 ```
 
-If the target issue number is not uniquely discoverable from current repo authority, the prompt may name the issue explicitly. Do not paste Gentle lifecycle command syntax, candidate lineage mechanics, recovery algorithms or historical harness details into the operator prompt.
+For intentionally pinned work (issue #39 ergonomics), the prompt is **bounded and authoritative** rather than vague: name the repository, the exact issue/work item, the declared execution branch/PR checkpoint, Pi's non-implementing supervisor role, the Herdr → visible headless OpenCode/Gentle transport, normal non-force publication authorization and the STOP-before-merge boundary. Pi then performs only the minimum preflight needed to validate those anchors before launching the worker (exact issue/current GitHub state, declared branch/PR checkpoint, canonical authority files referenced by the issue, runtime compatibility), and defers broad frontier rediscovery until after the accepted checkpoint.
 
-### 6.2 Autonomous OpenCode transport
+Do not paste Gentle lifecycle command syntax, candidate lineage mechanics, recovery algorithms or historical harness details into the operator prompt. Do not broadly scan sibling repositories, historical worktrees, unrelated open issues or the whole repository merely to rediscover already-declared execution mechanics; expand only if a concrete contradiction requires it.
+
+### 6.2 Autonomous OpenCode transport and visible worker pane
 
 For unattended work:
 
@@ -190,11 +195,21 @@ Interactive OpenCode remains available for human-attended development but is not
 
 Do not use `herdr agent prompt` to robotically drive an OpenCode TUI as the normal execution path.
 
-### 6.3 Current bounded zero-touch provider experiment
+For current runs (issue #39 ergonomics), Pi launches the headless worker in a **dedicated visible/inspectable Herdr pane/tab** and reports the worker pane/tab id/label to the operator immediately so the human can observe the headless worker live:
+
+```text
+Herdr workspace
+├─ Pi supervisor pane     # interactive with the human
+└─ OpenCode worker pane   # headless/non-interactive, visible live to the human
+```
+
+This is visibility, not interactivity: OpenCode remains headless/non-interactive, and human observation does not become worker interaction or review authority. Genuine human-owned decisions still return through Pi. Preserve structured evidence without a process-substitution/tee observation dependency; prefer native Herdr pane output/scrollback or the smallest primitive that preserves process exit semantics.
+
+### 6.3 Bounded downstream provider-canary boundary
 
 Production Gentle remains `/home/hermes/.local/bin/gentle-ai` v2.5.0 and is not modified.
 
-For the next **bounded real end-to-end experiment only**, the isolated canary provider may be deliberately selected as documented in `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`:
+The isolated canary provider documented in `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md` is the bounded downstream boundary used by the current real operator-triggered runs (issue #38 used it; issue #39 uses it for this repair):
 
 ```text
 canary binary directory:
@@ -209,7 +224,7 @@ GENTLE_AI_REVIEW_V2_CONSENT_POLICY=unattended
 
 Pi/OpenCode MUST NOT remove `relay`, add `granted` or reconstruct Gentle lifecycle commands. The worker simply runs in an isolated environment where the canary provider itself generates/validates the unattended v2 transition.
 
-This selector is downstream experimental spelling, not a claimed upstream API. Upstream `Gentleman-Programming/gentle-ai#4109` remains the production-resolution path.
+This selector is downstream experimental spelling, not a claimed upstream API. Upstream `Gentleman-Programming/gentle-ai#4109` remains the production-resolution path and is not replaced by the downstream canary or by the real E2E runs under it.
 
 ### 6.4 Worker continuity
 
@@ -275,13 +290,14 @@ For each real slice, keep compact factual evidence:
 
 Evidence should answer a question, not become a reporting bureaucracy.
 
-For the first real end-to-end run, the final Pi report should at minimum state:
+For each real end-to-end run, the final Pi report should at minimum state:
 
 ```text
 WORK_ITEM=<repo#issue>
 INITIAL_HUMAN_EXECUTION_AUTHORIZATION=1
 PI_ROLE=NON_IMPLEMENTING_SUPERVISOR
 OPENCODE_WORKERS_STARTED=<n>
+WORKER_PANE_ID_REPORTED=PASS|FAIL
 GENTLE_EXACT_CANDIDATE_RDD=PASS|FAIL
 BOUNDED_CORRECTIONS=<n>
 ACKNOWLEDGEMENT_BURN=PASS|FAIL
@@ -292,6 +308,8 @@ AUTO_MERGE=NO
 FRONTIER_STOP=PASS|FAIL|NOT_REACHED
 FINAL_STOP_REASON=<reason>
 ```
+
+Issue #38 recorded the reference values of these fields on a real operator-triggered run. When the worker runs headless inside Herdr, also record the worker pane/tab id/label so the operator can observe it live.
 
 ## 8. Gentle AI 2.5.0 stable field evidence — CAPTURED
 
@@ -347,9 +365,51 @@ LOCAL_CONSUMER_BYPASS=NO
 PRODUCTION_GENTLE_MODIFIED=NO
 ```
 
-The canary intentionally did not implement, push, open a PR or rediscover a real frontier. Those properties move into the next real operator-triggered run.
+The canary intentionally did not implement, push, open a PR or rediscover a real frontier. Issue #38 then exercised those real-work properties through the actual operator interface and recorded `NORMAL_NON_FORCE_PUBLICATION=PASS`, `PR_OR_CHECKPOINT=PASS`, `AUTO_MERGE=NO` and `FRONTIER_STOP=PASS`.
 
 Full evidence: `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`.
+
+### 9.1 Rollout finding classification
+
+Classify every real-run finding into exactly one of:
+
+```text
+NO_GAP
+  → keep Atenea v1 unchanged
+
+REPO_LOCAL_GAP
+  → fix only that repo's policy/config
+
+UPSTREAM_CAPABILITY_GAP
+  → verify current upstream before adding anything
+
+ATENEA_HORIZONTAL_GAP
+  → only then propose minimal shared glue with deletion criteria
+```
+
+Default outcome should be `NO_GAP` or `REPO_LOCAL_GAP`. A real run that exposes no gap keeps the current architecture; a gap names the narrow seam rather than authorizing replacement of the whole runtime.
+
+Current example: the released OpenCode negotiated-v2 unattended selector is an `UPSTREAM_CAPABILITY_GAP` (tracked as upstream `Gentleman-Programming/gentle-ai#4109` and Atenea #36), while the #38 real E2E run itself recorded PASS on every operator-path acceptance property under the documented bounded canary boundary — no Atenea horizontal gap was found, and the two operator ergonomics it exposed are refinements, not gaps.
+
+### 9.2 What not to do
+
+Do not use real-project rollout as an excuse to reintroduce:
+
+- custom execute-Issue launcher;
+- Herdr policy gates;
+- scheduler/DAG/controller/daemon/queue;
+- custom RDD/reviewer/receipt machinery;
+- process-substitution/tee observation harness as an execution dependency;
+- OpenCode TUI prompt automation as the unattended transport;
+- automatic merge;
+- force-push/reset/rebase recovery;
+- mandatory Impeccable for non-UI work;
+- a second product truth in `PRODUCT.md`;
+- a new Clean Code/quality agent;
+- a Stage 9/10 ladder for optional features;
+- permanent adoption of the downstream provider canary.
+
+These guardrails remain current policy after the #38 real E2E run and the #39 operator-ergonomics refinement.
 
 ## 10. Gentle Pi 2.3.0 — one bounded replacement/deletion evaluation
 

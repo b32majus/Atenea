@@ -57,16 +57,17 @@ GENTLE_2_5_STABLE_EXACT_CANDIDATE_RDD       PASS
 STABLE_GENTLE_ZERO_TOUCH_CAPABILITY         PROVEN
 RELEASED_V2_PROVIDER_UNATTENDED_SELECTOR    NOT_AVAILABLE
 NEGOTIATED_V2_UNATTENDED_PROVIDER_CANARY    PASS
+REAL_OPERATOR_TRIGGERED_ATENEA_E2E          PASS   # issue #38
 OPENCODE_HEADLESS_UNATTENDED_ROUTE          PASS
 PI_HERDR_OPENCODE_GENTLE_TOPOLOGY           PASS
-HUMAN_TOUCH_AFTER_EXECUTION_READY           0   # bounded review-only canary
+HUMAN_TOUCH_AFTER_EXECUTION_READY           0      # issue #38 real operator-triggered run
 PRODUCTION_GENTLE_MODIFIED                  NO
 LOCAL_CONSUMER_BYPASS                       NO
 UPSTREAM_TRACKING                           Gentleman-Programming/gentle-ai#4109
 ATENEA_TRACKING                             issue #36
 ```
 
-This does **not** invalidate historical Stage 7/8 rc.2 evidence and does not claim the downstream canary selector as an upstream API. Production Gentle remains `2.5.0` unchanged; the experimental provider-side selector must disappear when upstream ships an equivalent supported capability.
+This does **not** invalidate historical Stage 7/8 rc.2 evidence and does not claim the downstream canary selector as an upstream API. Production Gentle remains `2.5.0` unchanged; the experimental provider-side selector must disappear when upstream ships an equivalent supported capability. The released stable negotiated-v2 unattended selector remains `NOT_AVAILABLE`; the real operator-triggered Atenea E2E under the bounded canary is PASS but does not replace the upstream resolution still owned by #4109/#36.
 
 Stable field evidence: `docs/JUDIT76_GENTLE25_FIELD_EVIDENCE.md`.
 
@@ -248,9 +249,29 @@ ATENEA_ZERO_TOUCH_CANARY_FINAL=PASS
 
 Evidence: `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md` and host report `/srv/kairos-lab/outbox/reports/gentle-zero-touch-v2-canary/atenea-pi-full-20260903-192900`.
 
-The final canary was deliberately **review-only**. It did not exercise implementation, push, PR/checkpoint or frontier exhaustion on a real work item. Those remain the next real end-to-end acceptance target.
+The final canary was deliberately **review-only**. It did not exercise implementation, push, PR/checkpoint or frontier exhaustion on a real work item. Issue #38 then exercised those real-work acceptance properties through the actual operator interface (see the operator-triggered real end-to-end result below).
 
 The canary also established the autonomous worker transport choice: use headless `opencode run` through Herdr. TUI prompt injection is not the Atenea unattended transport contract.
+
+## Real operator-triggered Atenea end-to-end — PASS (issue #38)
+
+Issue #38 completed the first real operator-triggered `EXECUTION_READY` run through the actual top-level interface. The human started Pi manually inside Herdr and gave one bounded execution prompt; from that point the accepted run completed without another human answer.
+
+```text
+REAL_OPERATOR_TRIGGERED_ATENEA_E2E=PASS
+INITIAL_HUMAN_EXECUTION_AUTHORIZATION=1
+HUMAN_TOUCH_AFTER_EXECUTION_READY=0
+NORMAL_NON_FORCE_PUBLICATION=PASS
+PR_OR_CHECKPOINT=PASS
+AUTO_MERGE=NO
+FRONTIER_STOP=PASS
+```
+
+The real operator interface is therefore field-proven, not merely the next E2E target. Implementation, deterministic verification, exact-candidate RDD, acknowledgement/burn, pre-publication revalidation, normal non-force publication, PR/checkpoint reconciliation and frontier stop all completed on a real work item under the current headless Pi → Herdr → OpenCode → Gentle path.
+
+The run exposed two non-blocking operator ergonomics refinements, accepted for current use under issue #39: launch the headless OpenCode worker in a dedicated visible Herdr pane and report its pane/tab id/label, and use a bounded authoritative operator prompt for intentionally pinned work. These add no launcher/controller and no new authority.
+
+Issue #38 evidence comment: PR #37 audit thread and issue #38 comments. The upstream-supported negotiated-v2 unattended API remains unresolved/non-production; upstream `Gentleman-Programming/gentle-ai#4109` and Atenea #36 remain open.
 
 ## Observation harness defects — classified and excluded from runtime result
 
@@ -352,11 +373,9 @@ These are policy decisions. Natural field use may still provide evidence, but no
 
 ## What remains open
 
-### Operator-triggered real end-to-end acceptance
+### Real operator-triggered end-to-end path — CLOSED by issue #38
 
-The next test is a **real small `EXECUTION_READY` work item**, not another plumbing canary.
-
-The operator interface under test is:
+The real operator-triggered path is field-proven. Issue #38 completed a real `EXECUTION_READY` work item through the actual operator interface:
 
 ```text
 human opens/uses Herdr
@@ -376,18 +395,19 @@ human opens/uses Herdr
 → final factual Pi report
 ```
 
-This run should close the still-unexercised real-work acceptance properties:
+Result recorded:
 
 ```text
+REAL_OPERATOR_TRIGGERED_ATENEA_E2E=PASS
 INITIAL_HUMAN_EXECUTION_AUTHORIZATION=1
-HUMAN_TOUCH_AFTER_EXECUTION_READY=0              desired; any real human turn must be recorded
+HUMAN_TOUCH_AFTER_EXECUTION_READY=0
 NORMAL_NON_FORCE_PUBLICATION=PASS
 PR_OR_CHECKPOINT=PASS
 AUTO_MERGE=NO
 FRONTIER_STOP=PASS
 ```
 
-Gentle review consent should not surface when the isolated provider canary policy is deliberately selected for this bounded experiment. Already-authorized normal non-force push permissions should be handled by Pi. Genuine human-owned boundaries or final merge must be relayed and paused; answering them is allowed, but that run must no longer be described as zero-touch.
+Remaining work here is operator ergonomics refinement (issue #39): visible Herdr worker pane + bounded pinned prompt for current use. Gentle review consent should not surface when the isolated provider canary policy is deliberately selected for a bounded experiment. Already-authorized normal non-force push permissions should be handled by Pi. Genuine human-owned boundaries or final merge must be relayed and paused; answering them is allowed, but that run must no longer be described as zero-touch.
 
 ### Upstream negotiated-v2 provider support
 
@@ -403,7 +423,7 @@ If a suitable real delta naturally selects OpenSpec, capture whether its durable
 
 ### Repository-specific delivery variants
 
-Real repositories may end work at an exact remote checkpoint or open a PR awaiting human merge. The core runtime qualifies normal push/reconciliation historically; the next operator-triggered real run should exercise the current headless path through a real repository-specific delivery boundary.
+Real repositories may end work at an exact remote checkpoint or open a PR awaiting human merge. The core runtime qualified normal push/reconciliation historically, and issue #38 exercised the current headless path through a real repository-specific delivery boundary (PR/checkpoint, no auto-merge). Further real repositories may still exercise their own delivery variants.
 
 ### Naturally material UI slices
 

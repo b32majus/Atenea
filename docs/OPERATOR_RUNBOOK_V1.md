@@ -11,11 +11,13 @@ contract conflict, the contract wins.
 
 ## Purpose
 
-Close the gap between the normative Atenea contract and the human interface
-proven by the 2026-09-03 zero-touch canary: a small, practical operator
-runbook usable to start a normal Atenea run from inside Herdr without
-replaying investigation history or embedding Gentle lifecycle mechanics in the
-operator prompt.
+Record the practical operator-facing path for starting a normal Atenea run from
+inside Herdr. The human interface was first proven by the 2026-09-03 zero-touch
+canary and then **field-proven end to end by the real operator-triggered run,
+issue #38**, which started Pi manually, gave one bounded execution prompt and
+completed with zero additional human touch. This runbook is the normal operator
+path, not a one-off experiment, and does not replay investigation history or
+embed Gentle lifecycle mechanics in the operator prompt.
 
 This runbook intentionally adds **no launcher, wrapper, daemon, queue,
 controller, scheduler or consent state machine**. The human starts Pi
@@ -68,6 +70,11 @@ Confirm before starting a run:
 - **No destructive cleanup to manufacture readiness.** An unexpected
   dirty/topology contradiction is a STOP condition, not authorization for
   reset, clean, rebase, force-push or other destructive recovery.
+- **Worker pane expectation (issue #39 ergonomics).** Pi will launch the
+  headless OpenCode worker in a dedicated visible Herdr pane/tab and report
+  the pane/tab id/label immediately so the operator can observe the worker
+  live. The worker stays headless/non-interactive; observation does not become
+  interaction or review authority.
 
 ## 2. Starting Pi manually
 
@@ -88,7 +95,7 @@ pi
   operational routing evidence, not architectural authority — record what you
   use for evidence but do not hard-code the harness around a specific model.
 
-## 3. Thin operator prompt
+## 3. Operator prompt (thin normal run; bounded authoritative when pinned)
 
 Give one bounded execution prompt. It states **intent and bounded context**;
 it does not reimplement the harness contract or teach Gentle mechanics in
@@ -106,11 +113,45 @@ Do not merge. Stop on any genuine human-owned decision or when the compatible
 frontier is exhausted, and return the final factual report.
 ```
 
-When the frontier is intentionally pinned, name the issue explicitly (for
-example, `Execute Atenea issue #N ...`). Do not paste Gentle command syntax,
-lineage reconstruction, recovery algorithms or detailed historical exclusions
-into the operator prompt; durable mechanics belong in current
-repo/Atenea/upstream authority.
+When the frontier is intentionally pinned, name the work item explicitly and
+use the **bounded authoritative pinned-prompt template** below. Bounded and
+authoritative beats vague: the prompt may state already-declared mechanics so
+Pi validates rather than broadly rediscovers them.
+
+```text
+Execute <repository>#<issue> end to end under current repository and Atenea
+authority. Treat Issue #<issue> and its explicitly referenced current
+authority as the primary execution contract.
+Use branch <declared execution branch> and existing PR <checkpoint PR> if their
+current GitHub state remains compatible with the declared handoff HEAD; revalidate
+them but do not redesign the topology when they are compatible.
+Remain a non-implementing Pi supervisor.
+Launch and supervise exactly the needed headless OpenCode/Gentle worker through a
+dedicated visible Herdr pane and report the pane/tab id and label immediately so
+the operator can observe it live.
+Use the bounded unattended provider-canary authority already documented in the
+repository; production Gentle remains untouched and OpenCode/Gentle owns every
+Gentle lifecycle transition.
+Normal non-force publication to the current delivery branch is authorized.
+Do not merge.
+Before launching the worker, perform only the bounded authority/runtime checks
+required for this work item; do not do broad repo/host archaeology unless a
+concrete contradiction requires it.
+After the accepted checkpoint, rediscover only the compatible frontier and stop
+when exhausted.
+Return the final factual acceptance report.
+```
+
+The template names: work item, declared branch/PR checkpoint, Pi supervisor
+role, visible Herdr headless worker, normal non-force publication
+authorization and STOP-before-merge boundary. Pi's bounded preflight validates
+exactly those anchors — exact issue/current GitHub state, declared
+branch/PR checkpoint, canonical authority files referenced by the issue, and
+runtime compatibility — before launching the worker.
+
+Do not paste Gentle command syntax, lineage reconstruction, recovery
+algorithms or detailed historical exclusions into the operator prompt; durable
+mechanics belong in current repo/Atenea/upstream authority.
 
 ## 4. Autonomous worker transport
 
@@ -127,6 +168,11 @@ Pi
 
 - Unattended OpenCode runs headless: `opencode run --agent
   gentle-orchestrator --format json`.
+- Pi launches the headless worker in a **dedicated visible/inspectable Herdr
+  pane/tab** and reports the worker pane/tab id/label to the operator
+  **immediately** so the human can observe the headless worker live. This is
+  visibility, not interactivity: OpenCode remains headless/non-interactive and
+  human observation does not become worker interaction or review authority.
 - Do not robotically drive an OpenCode TUI (`herdr agent prompt` prompt
   injection) as the normal autonomous path. Interactive OpenCode remains valid
   for human-attended work only.
@@ -140,13 +186,14 @@ Pi
 - The worker executes provider-issued lifecycle continuations as returned.
   Do not strip `relay`, add `granted` or reconstruct transitions.
 
-## 5. Bounded provider-canary note (current end-to-end experiment only)
+## 5. Bounded provider-canary note
 
 - Production Gentle `2.5.0` remains untouched (`/home/hermes/.local/bin/gentle-ai`).
-- For the explicitly bounded current end-to-end experiment only, reference the
-  isolated canary/provider policy documented in
-  `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md` instead of duplicating
-  its implementation details here.
+- For any bounded run that deliberately selects the isolated canary/provider
+  policy, reference `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md` instead
+  of duplicating its implementation details here. Issue #38 completed the first
+  real operator-triggered end-to-end run under this boundary; the canary
+  remains downstream-canary-only and is not adopted as production.
 - The environment-variable spelling used by that canary is
   **downstream-canary-only**; it is not a claimed upstream API. Upstream
   `Gentleman-Programming/gentle-ai#4109` remains the production-resolution
@@ -191,6 +238,7 @@ WORK_ITEM=
 INITIAL_HUMAN_EXECUTION_AUTHORIZATION=1
 PI_ROLE=NON_IMPLEMENTING_SUPERVISOR
 OPENCODE_WORKERS_STARTED=
+WORKER_PANE_ID_REPORTED=
 GENTLE_EXACT_CANDIDATE_RDD=
 BOUNDED_CORRECTIONS=
 ACKNOWLEDGEMENT_BURN=
@@ -201,6 +249,9 @@ AUTO_MERGE=NO
 FRONTIER_STOP=
 FINAL_STOP_REASON=
 ```
+
+When the worker runs headless inside Herdr, record the worker pane/tab
+id/label in the report so the operator can observe it live.
 
 Evidence answers a question; it does not become a reporting bureaucracy.
 Where useful, record exact runtime versions, the issue/PR identifiers, the
