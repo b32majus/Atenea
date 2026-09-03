@@ -27,11 +27,11 @@ Final deterministic evidence reported and independently re-audited:
 
 ```text
 focused Training proposal tests = 26/26
-full npm test                  = 400/400, 99 suites
-build                          = PASS
-tsc --noEmit                   = PASS
-git diff --check               = PASS
-migration fresh-init           = v12 PASS
+full npm test                    = 400/400, 99 suites
+build                            = PASS
+tsc --noEmit                     = PASS
+git diff --check                 = PASS
+migration fresh-init             = v12 PASS
 ```
 
 The two Cora repairs after the initial implementation were evidence/test-only. No product code changed in either repair.
@@ -72,13 +72,9 @@ ACKNOWLEDGEMENT_BURN=PASS
 ATENEA_FINALIZE_LAYER_REQUIRED=NO
 ```
 
-## Zero-human-touch delta from Stage 7/8
+## Zero-human-touch finding — corrected diagnosis
 
-The stable contract introduced/foregrounded a material human boundary that differs from the historical Stage 7/8 rc.2 behavior.
-
-For every new medium/high exact candidate, native START returned a blocking consent envelope and required the human to select `granted` / `Run the review now` or decline.
-
-The real #76 path therefore required repeated human consent when the candidate changed:
+The real #76 **OpenCode negotiated-v2 path** required repeated human consent when the exact candidate changed:
 
 ```text
 initial candidate       → human review consent
@@ -86,18 +82,48 @@ first evidence repair   → new candidate → human review consent
 final evidence repair   → new candidate → human review consent
 ```
 
-Current upstream Gentle source states that `granted` reviews **this exact frozen candidate only** and grants nothing to later candidates; later medium/high candidates ask again. Current generated review guidance also states that global RDD enablement permits review but does not grant consent to the candidate.
+The first interpretation was too broad. Stable Gentle `2.5.0` has **not** removed zero-touch review semantics globally.
 
-Consequently:
+Current stable upstream preserves two distinct consent paths:
+
+### Organic/plain START
+
+Gentle's own review-mode path still has one-time clone/work consent semantics. Accepting the organic consent question records the provider-owned latch and later candidates can be reviewed silently. Stable code/tests explicitly preserve that behavior.
+
+Stable also authorizes an undeclared negotiated START silently when the caller is non-interactive.
+
+### OpenCode negotiated `review-integration/v2`
+
+The provider's v2 next-transition builder currently appends:
+
+```text
+--consent relay
+```
+
+to START whenever `contract == gentle-ai.review-integration/v2`.
+
+That declaration intentionally selects candidate-scoped negotiated semantics:
+
+- `relay` returns the typed human question;
+- `granted` applies only to the exact frozen candidate;
+- later medium/high candidates ask again;
+- the negotiated grant does not consume/persist Gentle's legacy/organic clone-wide latch.
+
+Therefore the accurate status is:
 
 ```text
 HISTORICAL_RC2_ZERO_HUMAN_TOUCH=PASS
-STABLE_2_5_ZERO_HUMAN_TOUCH_WITH_RDD=NOT_SATISFIED
-CAUSE=UPSTREAM_CANDIDATE_SCOPED_HUMAN_CONSENT
-CLASSIFICATION=UPSTREAM_CAPABILITY_GAP
+STABLE_GENTLE_ZERO_TOUCH_CAPABILITY=EXISTS
+CURRENT_OPENCODE_NEGOTIATED_V2_ZERO_TOUCH=NOT_SATISFIED
+CAUSE=V2_NEXT_TRANSITION_FORCES_CONSENT_RELAY
+CLASSIFICATION=UPSTREAM_INTEGRATION_CAPABILITY_GAP
 ```
 
-Atenea MUST NOT close this gap by silently injecting `--consent granted` or impersonating a human decision. Issue #36 owns the upstream-first investigation for a provider-owned preauthorization policy.
+Atenea MUST NOT close this gap by removing `--consent relay`, injecting `--consent granted`, or reconstructing START. Provider-issued transitions remain exact/opaque.
+
+Issue #36 owns the upstream-first investigation for **negotiated-v2 consent-policy parity** or another supported provider-owned route that preserves the qualified properties.
+
+`review-integration/v1` is not a durable escape hatch: stable upstream marks v1 frozen/legacy/read-execute compatibility only and plans its retirement; new-lineage behavior consumes v2 exclusively.
 
 ## Supervisor ownership finding
 
@@ -150,8 +176,6 @@ Durable lifecycle mechanics belong in repository/Atenea authority, not in the op
 
 During Cora repair rounds Pi created a fresh OpenCode worker instead of reusing the already-healthy worker bound to the same issue/PR/worktree.
 
-This behavior is currently unspecified.
-
 Preferred default:
 
 ```text
@@ -175,7 +199,7 @@ Normal non-force push was already authorized by Atenea repository policy, yet th
 
 This is not a human product decision. Pi SHOULD grant already-authorized operational permissions itself when the runtime exposes them safely.
 
-Human relay remains mandatory for actual human-decision envelopes such as current Gentle candidate consent and final merge.
+Human relay remains mandatory for genuine human-decision envelopes emitted by the current selected provider path and final merge. If Issue #36 identifies a supported provider-owned zero-touch negotiated path, no Atenea auto-consent layer is required.
 
 ## Legacy authority escape
 
@@ -192,7 +216,8 @@ SUPERVISOR_LIFECYCLE_BOUNDARY=CLARIFY
 WORKER_REUSE_POLICY=DEFINE
 FIXED_POLLING_DEFAULT=REJECT
 NORMAL_PUSH_HUMAN_PERMISSION=REMOVE_WHEN_ALREADY_AUTHORIZED
-ZERO_HUMAN_TOUCH_WITH_RDD=OPEN_UPSTREAM_CAPABILITY_GAP
+STABLE_GENTLE_ZERO_TOUCH_CAPABILITY=EXISTS
+OPENCODE_NEGOTIATED_V2_ZERO_TOUCH=OPEN_UPSTREAM_INTEGRATION_GAP
 ```
 
 Real use remains the test harness. Do not create a synthetic Stage 9 to restate these findings.
