@@ -63,7 +63,9 @@ Product decisions, unresolved material ambiguity and shaping questions belong be
 
 Promotion to `EXECUTION_READY` is an explicit human authority transition. Atenea MUST NOT automate the design conversation merely to make a ticket executable.
 
-Current Gentle AI `2.5.0` stable may still introduce explicit **runtime human-decision envelopes** after `EXECUTION_READY` (notably medium/high exact-candidate review consent). Those are upstream-owned decision boundaries and MUST be relayed losslessly unless a supported upstream preauthorization mechanism explicitly owns them. They are not permission for Pi to impersonate the human.
+The currently selected OpenCode negotiated `review-integration/v2` path may still emit explicit provider-owned human-decision envelopes after `EXECUTION_READY`, notably medium/high exact-candidate review consent. Those envelopes MUST be relayed losslessly while that path is selected. They are not permission for Pi to impersonate the human or rewrite the provider transition.
+
+This is a path-specific current limitation, not a statement that stable Gentle globally lacks zero-touch review semantics. Issue #36 owns the upstream-first restoration of zero-touch on the negotiated OpenCode path.
 
 ## 4. Authoring entry paths
 
@@ -142,7 +144,7 @@ For each autonomous iteration Pi should:
 4. select one eligible work item;
 5. create or reuse and supervise the implementation worker through Herdr;
 6. remain non-implementing;
-7. relay genuine human-decision envelopes losslessly;
+7. relay genuine provider-owned human-decision envelopes losslessly when the selected path requires them;
 8. grant already-authorized operational runtime permissions when the runtime safely exposes them;
 9. verify accepted closure/reconciliation evidence;
 10. rediscover the frontier after each accepted checkpoint;
@@ -156,7 +158,7 @@ Pi MUST NOT run, reconstruct or own Gentle review lifecycle commands on behalf o
 Pi
   authority/frontier decisions
   worker lifecycle supervision
-  lossless human-decision relay
+  lossless human-decision relay when provider path requires it
   already-authorized operational permission grant
 
 OpenCode + Gentle worker
@@ -279,22 +281,41 @@ The stable `2.5.0` contract is treated as provider authority. Atenea MUST NOT re
 
 The OpenCode/Gentle worker MUST execute provider-issued lifecycle continuations as returned rather than reconstructing them from prose or local state. Pi observes/supervises that lifecycle and MUST NOT substitute itself as the Gentle orchestrator.
 
-A post-review candidate mutation invalidates or supersedes prior review evidence according to Gentle's native lifecycle and may require a new candidate-scoped review lineage.
+A post-review candidate mutation invalidates or supersedes prior review evidence according to Gentle's native lifecycle and may require a new exact-candidate review lineage.
 
-### 11.1 Stable 2.5 candidate consent
+### 11.1 Stable 2.5 consent paths and current negotiated-v2 gap
 
-Current stable Gentle medium/high review consent is a provider-owned **human decision for the exact frozen candidate**.
+Stable Gentle `2.5.0` retains multiple provider-owned consent behaviors.
 
-Global RDD enablement permits review but does not grant consent to a future candidate. Current stable provider guidance requires later medium/high candidates to ask again.
+**Organic/plain START** preserves one-time clone/work consent semantics: an accepted interactive consent can be latched so later candidates review silently.
 
-Until upstream provides a supported preauthorization mechanism:
+**Undeclared non-interactive negotiated START** is also authorized silently by stable Gentle.
 
-- Pi MUST relay the complete consent envelope to the human;
-- Pi MUST NOT inject `granted`, auto-click, infer approval from `EXECUTION_READY`, or reuse a historical consent latch as candidate authorization;
+However, the current `gentle-ai.review-integration/v2` next-transition builder appends `--consent relay` to provider-issued START. That explicitly selects candidate-scoped negotiated semantics: relay returns the typed question; `granted` applies only to that frozen candidate; later changed medium/high candidates ask again.
+
+Therefore:
+
+```text
+STABLE_GENTLE_ZERO_TOUCH_CAPABILITY=EXISTS
+OPENCODE_NEGOTIATED_V2_ZERO_TOUCH=NOT_SATISFIED
+CAUSE=V2_NEXT_TRANSITION_FORCES_CONSENT_RELAY
+```
+
+While this v2 route remains selected:
+
+- Pi MUST relay the complete provider-issued consent envelope to the human;
+- Pi MUST NOT inject `granted`, auto-click, remove `relay`, infer approval from `EXECUTION_READY`, or reconstruct START;
 - a candidate-scoped decline remains distinct from disabling RDD;
-- `ZERO_HUMAN_TOUCH_WITH_RDD` on stable is an open upstream capability gap tracked by Issue #36.
+- provider-issued lifecycle arguments remain exact/opaque.
 
-Atenea MAY consume a future provider-owned run/clone/work-item preauthorization if upstream explicitly defines it and bounded evidence proves that exact-candidate authority and human control remain intact. Atenea MUST NOT create its own parallel consent state machine to simulate that feature.
+Issue #36 owns the upstream-first resolution. Preferred order:
+
+1. determine whether current v2 already exposes a supported unattended/no-relay consent policy;
+2. determine whether an existing provider-owned organic path can preserve all required modern OpenCode/Gentle properties;
+3. use v1 only for characterization if useful, never as a durable dependency because v1 is frozen/legacy;
+4. if no supported current path exists, request the smallest upstream negotiated-v2 consent-policy parity feature.
+
+Atenea MAY consume a future provider-owned v2 unattended policy after bounded evidence proves exact candidate identity, provider-issued transitions, acknowledgement/burn and human control remain intact. Atenea MUST NOT create its own parallel consent state machine.
 
 RDD closes where Gentle's proof/lifecycle closes. Atenea MUST NOT add a synthetic `FINALIZE`, compact terminal receipt, or delivery gate after Gentle has completed its authority transition.
 
@@ -394,7 +415,7 @@ Normal non-force `git push` is allowed in the accepted autonomous path.
 
 When an interactive runtime permission asks only whether to perform an operation that current repository/Atenea authority already authorizes — such as the ordinary non-force push for the current branch — Pi SHOULD grant that operational permission without escalating it to the human.
 
-This rule does **not** apply to genuine human decisions, destructive/high-risk operations, scope changes, final merge or current Gentle candidate consent. Those remain subject to their owning authority.
+This rule does **not** apply to genuine human decisions, destructive/high-risk operations, scope changes, final merge or provider-owned consent envelopes emitted by the selected Gentle route. Those remain subject to their owning authority.
 
 Do not add a second Herdr/publication permission subsystem solely to mediate normal push.
 
@@ -460,7 +481,7 @@ Before adding any Atenea glue, answer all of these:
 
 If those questions do not have concrete answers, DO NOT BUILD.
 
-The stable zero-touch RDD gap has passed questions 1–3 as an upstream capability gap. The next action is current-upstream verification / smallest upstream feature proposal, not an Atenea consent bypass.
+For zero-touch RDD, stable Gentle already owns the underlying silent/one-time consent behavior; the unresolved seam is negotiated-v2 policy selection. The next action is current-upstream integration verification / smallest upstream parity proposal, not an Atenea consent bypass.
 
 ## 23. Current completion state
 
@@ -469,17 +490,18 @@ The Stage 5–8 runtime path remains qualified from historical `2.5.0-rc.2` evid
 Current stable status:
 
 ```text
-EXACT_CANDIDATE_RDD                 PASS
-PROVIDER_CONTINUATION_REENTRY       PASS_ON_SUCCESSFUL_FIELD_PATH
-ACKNOWLEDGEMENT_BURN                PASS
-PR_STOP_BEFORE_HUMAN_MERGE          PASS
-ZERO_HUMAN_TOUCH_WITH_RDD           NOT_SATISFIED
-ZERO_TOUCH_BLOCKER                  CANDIDATE_SCOPED_HUMAN_CONSENT
+EXACT_CANDIDATE_RDD                    PASS
+PROVIDER_CONTINUATION_REENTRY          PASS_ON_SUCCESSFUL_FIELD_PATH
+ACKNOWLEDGEMENT_BURN                   PASS
+PR_STOP_BEFORE_HUMAN_MERGE             PASS
+STABLE_GENTLE_ZERO_TOUCH_CAPABILITY    EXISTS
+OPENCODE_NEGOTIATED_V2_ZERO_TOUCH      NOT_SATISFIED
+ZERO_TOUCH_BLOCKER                     V2_NEXT_TRANSITION_FORCES_CONSENT_RELAY
 ```
 
 Remaining evidence/work should come primarily from real-project use:
 
-- Issue #36: upstream-first restoration of zero-human-touch RDD without bypassing candidate consent;
+- Issue #36: upstream-first restoration of zero-touch on the negotiated OpenCode review path without rewriting provider transitions;
 - optional OpenSpec use only when a real brownfield delta benefits from it;
 - first naturally material UI slice using conditional Impeccable/DESIGN/PRODUCT policy;
 - one bounded Gentle Pi `2.3.0` replacement/deletion evaluation because it materially changes the previously failed upstream runtime.
