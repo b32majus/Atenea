@@ -44,7 +44,7 @@ The `2.2.0` failure remains valid evidence.
 
 Run at most one bounded replacement/deletion evaluation. Success means preserving Atenea's qualified properties while removing components/glue. Do not layer Gentle Pi on top of the current path merely because it is available.
 
-Its clone-local `review-consent-asked` latch is not currently evidence of a zero-touch consent solution: it is recorded after human grant and is not used by current integration code as authorization for later native candidate consent.
+Its clone-local `review-consent-asked` latch is not currently evidence of negotiated-v2 consent parity: current integration code records it after human grant but does not use it as authority for later provider-issued v2 candidate consent.
 
 Until PASS, the accepted architecture remains Pi → Herdr → OpenCode + Gentle.
 
@@ -54,7 +54,7 @@ Until PASS, the accepted architecture remains Pi → Herdr → OpenCode + Gentle
 
 Normal non-force publication follows repository policy. If an interactive runtime permission merely asks whether to perform an already-authorized ordinary non-force push, Pi should grant it without escalating to the human.
 
-This does not authorize Pi to answer genuine human decisions, destructive operations, scope changes, current Gentle candidate consent or final merge.
+This does not authorize Pi to answer genuine human decisions, destructive operations, scope changes, provider-owned consent envelopes emitted by the selected Gentle path or final merge.
 
 Dangerous/destructive recovery remains outside the autonomous default: no force-push, hidden reset/rebase history rewrite or automatic merge.
 
@@ -150,22 +150,30 @@ Use `docs/REAL_PROJECT_ROLLOUT_V1.md`.
 
 Judit #76 / PR #79 has now supplied the first stable Gentle `2.5.0` field evidence. Future real work should consume that evidence rather than repeat Stage 5–8.
 
-## C-017 — Stable Gentle 2.5 exact-candidate RDD passes; current zero-touch does not
+## C-017 — Stable Gentle retains zero-touch semantics; negotiated OpenCode v2 currently forces relay
 
-**Accepted from real-project evidence.**
+**Accepted from real-project evidence + upstream source audit.**
 
 Judit #76 proved stable exact-candidate RDD, provider continuation/re-entry on the successful path, approval and exact acknowledgement/burn.
 
-It also proved that current stable medium/high consent is candidate-scoped and human-owned. Every new exact candidate asks again. Therefore:
+The real OpenCode path asked the human again for every changed medium/high candidate. Upstream source explains why: `review-integration/v2` currently appends `--consent relay` to the provider-issued START transition, selecting candidate-scoped negotiated consent.
+
+Stable Gentle itself still contains zero-touch-capable semantics: organic/plain one-time consent can persist for later candidates, and an undeclared non-interactive negotiated START is authorized silently.
+
+Therefore:
 
 ```text
 HISTORICAL_ZERO_HUMAN_TOUCH_RC2=PASS
-STABLE_ZERO_HUMAN_TOUCH_WITH_RDD=NOT_SATISFIED
-CLASSIFICATION=UPSTREAM_CAPABILITY_GAP
+STABLE_GENTLE_ZERO_TOUCH_CAPABILITY=EXISTS
+OPENCODE_NEGOTIATED_V2_ZERO_TOUCH=NOT_SATISFIED
+CAUSE=V2_NEXT_TRANSITION_FORCES_CONSENT_RELAY
+CLASSIFICATION=UPSTREAM_INTEGRATION_CAPABILITY_GAP
 TRACKING=#36
 ```
 
-Atenea MUST NOT restore the old property by silently supplying `granted`. Issue #36 owns the upstream-first search for a provider-owned bounded preauthorization mechanism.
+Atenea MUST NOT restore the property by stripping `relay`, supplying `granted`, or reconstructing START. Issue #36 owns the upstream-first search for a supported v2 unattended policy / organic-path compatibility, with the smallest upstream parity request if no supported current path preserves all required properties.
+
+`review-integration/v1` is frozen/legacy and is not a durable production answer.
 
 ## C-018 — Same-work continuation reuses a healthy OpenCode worker by default
 
@@ -206,7 +214,7 @@ Pi should use the narrowest existing Herdr/native state and bounded wait primiti
 2. use Matt/OpenSpec/Impeccable only when their task trigger or value warrants it;
 3. explicitly promote to `EXECUTION_READY`;
 4. run Pi → Herdr → OpenCode/Gentle with the clarified ownership and worker-reuse rules;
-5. accept current stable candidate-consent prompts as genuine human boundaries until #36 resolves them upstream-first;
+5. on the current negotiated-v2 route, relay provider-issued consent exactly until #36 identifies a supported zero-touch route; do not rewrite the transition locally;
 6. grant already-authorized operational permissions such as normal non-force push without unnecessary human escalation;
 7. separately run one bounded Gentle Pi `2.3.0` replacement/deletion evaluation;
 8. build new Atenea glue only after a real horizontal gap survives the upstream-first change test.
