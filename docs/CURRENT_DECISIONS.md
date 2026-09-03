@@ -1,6 +1,6 @@
 # Atenea — Current decisions after Stage 8
 
-Date: 2026-09-03
+Date: 2026-09-04
 
 This file is the short current decision index. Historical `docs/DECISIONS.md`, stage files and `docs/ATENEA_HANDOFF_20260830.md` remain evidence of how Atenea evolved, but their forward-looking status is superseded where it conflicts with this index, `README.md`, `docs/QUALIFICATION.md` or `docs/ATENEA_HARNESS_CONTRACT_V1.md`.
 
@@ -292,21 +292,97 @@ These do not belong in the runtime architecture. Structured evidence should be w
 
 The #38 run proved the real operator interface but exposed two operator ergonomics improvements, both executed by issue #39 and accepted for current use without introducing any launcher/controller:
 
-1. **Visible headless worker pane.** Pi launches headless `opencode run` through a dedicated Herdr pane/tab that is visible to the human, and Pi reports the worker pane/tab id/label immediately. Issue #39 proved the dedicated visible pane exists and its pane/tab id is reported (`ISSUE39_VISIBLE_WORKER_PANE=PASS`, `ISSUE39_WORKER_PANE_ID_REPORTED=PASS`). This is visibility, not interactivity: OpenCode remains headless/non-interactive and human observation does not become worker interaction or review authority. Do not regress to OpenCode TUI automation. Issue #39 does **not** prove a useful live worker activity stream: operator screenshots show the pane carrying the shell runner invocation and completion markers while OpenCode JSONL activity is redirected to the evidence file. Rendering useful live OpenCode/Gentle activity into the visible pane is `USEFUL_LIVE_WORKER_STREAM=NOT_YET_PROVEN` — accepted future ergonomics, non-blocking for PR #37.
+1. **Visible headless worker pane.** Pi launches headless `opencode run` through a dedicated Herdr pane/tab that is visible to the human, and Pi reports the worker pane/tab id/label immediately. Issue #39 proved the dedicated visible pane exists and its pane/tab id is reported (`ISSUE39_VISIBLE_WORKER_PANE=PASS`, `ISSUE39_WORKER_PANE_ID_REPORTED=PASS`). This is visibility, not interactivity: OpenCode remains headless/non-interactive and human observation does not become worker interaction or review authority. Do not regress to OpenCode TUI automation. Issue #39 does **not** prove a useful live worker activity stream: operator screenshots show the pane carrying the shell runner invocation and completion markers while OpenCode JSONL activity is redirected to the evidence file. Rendering useful live OpenCode/Gentle activity into the visible pane is `USEFUL_LIVE_WORKER_STREAM=NOT_YET_PROVEN` — accepted future ergonomics, non-blocking.
 2. **Bounded authoritative pinned prompt.** For intentionally pinned work, the operator prompt states repository, exact issue/work item, declared branch/PR checkpoint, Pi supervisor role, Herdr → visible headless OpenCode/Gentle transport, normal non-force publication authorization and the STOP-before-merge boundary. Pi then performs only the bounded preflight needed to validate those anchors before launching the worker, deferring broad frontier rediscovery until after the accepted checkpoint. Issue #39 proved that bounded pinned preflight (`ISSUE39_PINNED_BOUNDED_PREFLIGHT=PASS`).
 
 These are operator/supervision ergonomics only. They create no new authority, lifecycle ownership, daemon, scheduler or observation harness dependency. No new controller/poller is authorized to render the not-yet-proven live worker activity stream.
 
+## C-025 — Human + Cora/planning surface owns project-entry classification before execution
+
+**Accepted.**
+
+The decision about how a new or resumed project should be understood and shaped belongs **before `EXECUTION_READY`**, in the human-present Cora/planning conversation. It is not a Pi responsibility and must not be rediscovered as an execution-time methodology decision.
+
+The current front-door working classification is:
+
+```text
+REPO_CONTEXT=
+  GREENFIELD
+  SMALL_BROWNFIELD
+  LARGE_CODE_BROWNFIELD
+  MIXED_CORPUS_BROWNFIELD
+
+CURRENT_STAGE=
+  DISCOVERY
+  SHAPING_IN_PROGRESS
+  SPEC_READY
+  EXECUTION_READY
+  EXECUTION_IN_PROGRESS
+  DELIVERY_CHECKPOINT
+  MAINTENANCE
+```
+
+These are planning aids, not an Atenea state machine.
+
+Routing intent:
+
+```text
+GREENFIELD
+→ complete Matt Pocock upstream shaping
+
+SMALL_BROWNFIELD
+→ direct repo understanding
+→ OpenSpec delta-first when it materially adds value
+
+LARGE_CODE_BROWNFIELD
+→ consider existing/needed Repository Intelligence
+→ repo-native/OpenSpec shaping
+
+MIXED_CORPUS_BROWNFIELD
+→ consider mixed-corpus Repository Intelligence
+→ repo-native/OpenSpec shaping
+```
+
+When continuing a project, first reuse valid existing authority/specs/indexes/checkpoints. Do not restart discovery or regenerate artifacts by ritual.
+
+Operational front door: `docs/START_HERE.md`.
+
+## C-026 — Repository Intelligence is optional derived pre-shaping evidence, not an Atenea runtime layer
+
+**Accepted as policy; provider qualification pending.**
+
+For sufficiently large/complex brownfields, Cora may recommend an upstream repository-intelligence tool to reduce repeated file-by-file archaeology and improve understanding before shaping the delta.
+
+Repository Intelligence MUST remain:
+
+```text
+OPTIONAL=YES
+PRE_EXECUTION=YES
+DERIVED_EVIDENCE=YES
+AUTHORITATIVE=NO
+AUTO_INSTALL_BY_ATENEA=NO
+PI_METHODOLOGY_DECISION=NO
+```
+
+Before creating an index/graph, determine whether one already exists, whether it is healthy/current enough for the task, whether code-only intelligence is sufficient, and whether the tool stays isolated/removable.
+
+Current candidates under evaluation include CodeGraph for code-heavy repositories and Graphify for mixed code/document corpora. Neither is adopted as a mandatory Atenea dependency.
+
+Atenea MUST NOT copy pieces of their skills, parsers, graph logic, watchers, prompts or control loops into Atenea. If a provider is later qualified, prefer the complete upstream tool through its supported public CLI/MCP surface.
+
+A graph/index never outranks source code, accepted product/spec authority, deterministic repository checks, Gentle exact-candidate RDD or Git/GitHub delivery authority.
+
 ## Current sequence
 
-1. preserve current repo/product authority and shape only unresolved work;
-2. use Matt/OpenSpec/Impeccable only when their task trigger or value warrants it;
-3. explicitly promote a bounded real work item to `EXECUTION_READY`;
-4. human opens/uses Herdr, starts Pi interactively and gives one bounded Atenea execution prompt (pinned prompts name the repository/issue/branch/PR checkpoint per C-024);
-5. Pi resolves the declared anchors with a bounded preflight, creates or reuses a headless OpenCode worker in a dedicated visible Herdr pane and reports the pane/tab id/label;
-6. OpenCode owns implementation, deterministic verification and every Gentle lifecycle transition; Pi MUST NOT operate Gentle directly;
-7. for any bounded zero-touch experiment, the isolated canary Gentle provider policy may be used exactly as documented in `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`; production Gentle remains untouched and the upstream issue remains open;
-8. Pi grants already-authorized operational permissions such as normal non-force push without unnecessary human escalation;
-9. genuine human-owned decisions are relayed and pause the run; final merge remains human;
-10. after exact RDD acknowledgement/burn, one fresh pre-publication authority revalidation, normal publication and reconciliation, Pi rediscovers frontier and stops when exhausted;
-11. build new Atenea glue only after a real horizontal gap survives the upstream-first change test.
+1. human + Cora read current Atenea authority and the target project's current authority/state;
+2. classify only enough to choose the minimum shaping path; reuse valid existing specs/indexes/checkpoints rather than regenerate them;
+3. use Matt/OpenSpec/Impeccable and optional Repository Intelligence only when their task trigger/value warrants it;
+4. explicitly promote a bounded real work item to `EXECUTION_READY`;
+5. human opens/uses Herdr, starts Pi interactively and gives one bounded Atenea execution prompt (pinned prompts name the repository/issue/branch/PR checkpoint per C-024);
+6. Pi resolves the declared anchors with a bounded preflight, creates or reuses a headless OpenCode worker in a dedicated visible Herdr pane and reports the pane/tab id/label;
+7. OpenCode owns implementation, deterministic verification and every Gentle lifecycle transition; Pi MUST NOT operate Gentle directly;
+8. for any bounded zero-touch experiment, the isolated canary Gentle provider policy may be used exactly as documented in `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`; production Gentle remains untouched and the upstream issue remains open;
+9. Pi grants already-authorized operational permissions such as normal non-force push without unnecessary human escalation;
+10. genuine human-owned decisions are relayed and pause the run; final merge remains human;
+11. after exact RDD acknowledgement/burn, one fresh pre-publication authority revalidation, normal publication and reconciliation, Pi rediscovers frontier and stops when exhausted;
+12. build new Atenea glue only after a real horizontal gap survives the upstream-first change test.
