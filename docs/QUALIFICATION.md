@@ -1,12 +1,12 @@
 # Atenea — Qualification Status
 
-Date of current status: 2026-09-01
+Date of current status: 2026-09-03
 
 This document is the current qualification index. Stage-specific files remain frozen evidence. Earlier `NEXT`, `DEFERRED` or `NOT_YET_QUALIFIED` labels are historical when they conflict with this file, `README.md`, `docs/CURRENT_DECISIONS.md` or `docs/ATENEA_HARNESS_CONTRACT_V1.md`.
 
 ## Overall result
 
-Atenea has qualified the upstream-first execution architecture through autonomous frontier exhaustion.
+Atenea qualified the upstream-first execution architecture through autonomous frontier exhaustion on the frozen Stage 5–8 baseline.
 
 ```text
 STAGES_0_4                         PASS
@@ -14,15 +14,15 @@ STAGE5_MATT_GENTLE_COMPOSITION    PASS
 STAGE6_NATIVE_GENTLE_RDD          PASS
 STAGE7_PI_SELF_LAUNCH             PASS
 STAGE8_FRONTIER_DISCOVERY         PASS
-UNATTENDED_EXECUTION              PASS
-ZERO_HUMAN_TOUCH                  PASS
+UNATTENDED_EXECUTION_RC2          PASS
+ZERO_HUMAN_TOUCH_RC2              PASS
 REMOTE_RECONCILIATION             PASS
 FRONTIER_EXHAUSTION_STOP          PASS
 ```
 
 The result is evidence for a thin supervisory contract, not a recommendation to build a larger Atenea runtime.
 
-## Qualification evidence vs current runtime
+## Qualification evidence vs current stable runtime
 
 Do not rewrite historical qualification evidence when upstream advances.
 
@@ -33,10 +33,24 @@ STAGE 5–8 QUALIFICATION EVIDENCE
 
 CURRENT OPERATIONAL TARGET
   Gentle AI 2.5.0 stable
-  natural field evidence pending on the next real Atenea slice
+  real-project field evidence captured on Judit #76 / PR #79
 ```
 
-Gentle AI `2.5.0` stable is a compatible upstream progression of the candidate/review owner, not authorization to repeat Stage 5–8. The next real slice should capture compact evidence that the stable provider-issued continuation/re-entry and final acknowledgement lifecycle work naturally in Atenea's OpenCode/Gentle path.
+The Judit field run confirmed that stable `2.5.0` preserves the exact-candidate RDD lifecycle, provider continuation/re-entry on the successful path, approval and exact acknowledgement/burn. It also exposed one material semantic difference for Atenea autonomy: current stable medium/high review consent is human and candidate-scoped.
+
+Therefore current status is:
+
+```text
+GENTLE_2_5_STABLE_EXACT_CANDIDATE_RDD    PASS
+STABLE_UNATTENDED_IMPLEMENTATION         PASS_WITH_HUMAN_DECISION_BOUNDARIES
+ZERO_HUMAN_TOUCH_WITH_RDD_STABLE         NOT_SATISFIED
+CAUSE                                    UPSTREAM_CANDIDATE_SCOPED_HUMAN_CONSENT
+TRACKING                                 issue #36
+```
+
+This does **not** invalidate the historical Stage 7/8 rc.2 evidence. It means that `ZERO_HUMAN_TOUCH` must not be projected from that prerelease baseline onto the current stable provider contract without a new supported authorization mechanism.
+
+Field evidence: `docs/JUDIT76_GENTLE25_FIELD_EVIDENCE.md`.
 
 ## Qualified ownership split
 
@@ -65,6 +79,8 @@ Atenea repo-local policy
 
 Pi is not an implementation worker or security sandbox. Herdr is not a policy engine.
 
+The stable field run strengthens this boundary: Pi relays genuine human-decision envelopes and supervises the worker; the OpenCode/Gentle worker owns all Gentle lifecycle operations and provider-issued review transitions.
+
 ## Stage 5 — Matt → Gentle/OpenCode composition — PASS
 
 Complete Matt project skills and complete Gentle/OpenCode compose through durable repository/tracker authority without a custom work-unit schema or Agent Brief translation.
@@ -83,7 +99,7 @@ Qualified properties include exact-candidate lifecycle, reviewer authority/linea
 
 Atenea must not recreate them.
 
-The stable `2.5.0` contract now additionally makes provider-owned continuation/re-entry and final acknowledgement/burn semantics explicit. Atenea consumes those upstream semantics; it does not retrofit them into the historical Stage 6 evidence.
+Stable `2.5.0` has now supplied natural field evidence for its provider-owned continuation/re-entry and final acknowledgement/burn lifecycle. Atenea consumes those semantics; it does not retrofit them into historical Stage 6 evidence.
 
 ## Stage 7 — Pi self-launch — PASS
 
@@ -94,6 +110,8 @@ Canonical accepted Stage 7 checkpoint:
 `79489688a6c6bd83ba8fd807cb87bdc0a59b94bf`
 
 Frozen evidence: `docs/STAGE7_SELF_LAUNCH_CLOSURE.md`.
+
+The frozen Stage 7 result includes `ZERO_HUMAN_TOUCH` under the `2.5.0-rc.2` contract. Current stable candidate-scoped consent is a later provider semantic and is recorded separately rather than rewriting Stage 7.
 
 ## Stage 8 — autonomous frontier discovery — PASS
 
@@ -129,6 +147,34 @@ worktree clean
 
 Frozen evidence: `docs/STAGE8_FRONTIER_DISCOVERY_EXPERIMENT.md`.
 
+## Stable Gentle 2.5.0 real-project field evidence — PASS with autonomy gap
+
+Judit #76 / PR #79 provided the first natural stable run.
+
+Final accepted PR candidate:
+
+```text
+BASE       b56d749421b08431250e9199772af3b3b46d4e3d
+HEAD       3967e2cfec37e6c8861be2435cf8b53cf67c438e
+FULL TESTS 400/400
+PR         OPEN / MERGEABLE / HUMAN MERGE BOUNDARY
+CORA AUDIT PASS
+```
+
+Stable review lineages reached approved → exact acknowledgement → burned authority, including the final candidate lineage `review-79b5f46c34da40af`.
+
+The field run also produced these horizontal findings:
+
+- Pi MUST NOT execute Gentle review lifecycle commands; worker ownership is explicit.
+- supervisor prompts should express goal/checkpoint/boundaries, not restate lifecycle internals;
+- healthy OpenCode workers should be reused by default for bounded repair on the same issue/PR/worktree;
+- a new source candidate still requires a fresh Gentle review lineage;
+- fixed multi-minute polling is not the normal supervision strategy;
+- already-authorized normal non-force push permissions should not be escalated to the human;
+- current Gentle stable candidate consent remains a genuine human decision and cannot be auto-granted by Atenea.
+
+Full evidence: `docs/JUDIT76_GENTLE25_FIELD_EVIDENCE.md`.
+
 ## GitHub authentication incident — resolved
 
 Intermittent 401 failures were traced to stale `GH_TOKEN` / `GITHUB_TOKEN` values in tmux's global environment overriding valid `gh` credentials.
@@ -157,20 +203,22 @@ GENTLE_PI_2_3_0_QUALIFIED  = NO
 GENTLE_PI_2_3_0_ADOPTED    = NO
 ```
 
-The only justified evaluation is one bounded replacement/deletion experiment asking whether `2.3.0` can preserve Atenea's already-qualified properties while removing components or glue. Do not add Gentle Pi as another layer on top of the qualified path.
+The only justified evaluation remains one bounded replacement/deletion experiment asking whether `2.3.0` can preserve Atenea's qualified properties while removing components or glue. Do not add Gentle Pi as another layer on top of the qualified path.
 
-Until that experiment passes, keep **Pi → Herdr → OpenCode + Gentle** as the accepted architecture.
+The `review-consent-asked` latch present in Gentle Pi `2.3.0` is **not** current evidence of a zero-touch consent solution: the integration records it after `granted`, but current code does not use that latch to authorize later native candidate consent. Issue #36 owns the separate zero-touch capability investigation.
+
+Until a replacement experiment passes, keep **Pi → Herdr → OpenCode + Gentle** as the accepted architecture.
 
 ## Current runtime target
 
-As of 2026-09-01:
+As of 2026-09-03:
 
 - OpenCode remains the qualified implementation runtime;
-- Gentle AI `2.5.0` stable is the operational target;
+- Gentle AI `2.5.0` stable has natural real-project field evidence and remains the operational target;
 - Pi routing remains an operational concern, not architecture;
-- Gentle Pi `2.3.0` is eligible for bounded re-evaluation but is not installed/adopted by qualification policy.
-
-Model/provider/effort values are operational routing facts, not Atenea architecture.
+- DeepSeek V4 Flash is successful field routing evidence, not an architectural pin;
+- Gentle Pi `2.3.0` is eligible for bounded re-evaluation but is not adopted by qualification policy;
+- `ZERO_HUMAN_TOUCH_WITH_RDD` on current stable remains an open upstream capability gap (#36).
 
 ## Policy consolidation — COMPLETE
 
@@ -212,13 +260,13 @@ Harness Contract v1 defines the surviving #267 policy:
 
 These are policy decisions. Natural field use may still provide evidence, but no runtime qualification is blocked on them.
 
-## What is not yet field-qualified
+## What remains open
 
-### Gentle AI 2.5.0 stable natural field use
+### Restore zero-human-touch RDD on current stable
 
-The core architecture is already qualified. The next real slice should simply record that stable `2.5.0` operates correctly in the existing path, especially provider-issued continuation/re-entry and final acknowledgement semantics.
+Historical rc.2 qualification proved the desired operator property. Stable `2.5.0` now requires a human candidate-scoped consent decision for each medium/high exact candidate.
 
-This is **not** a new qualification stage.
+Atenea will not bypass that contract. Issue #36 asks whether a provider-owned, auditable run/clone/work-item preauthorization can restore zero human touch while preserving exact candidate semantics and human revocability. If no supported upstream capability exists, the next action is the smallest upstream feature request, not Atenea auto-consent glue.
 
 ### OpenSpec optional brownfield authoring
 
@@ -228,7 +276,7 @@ If a suitable real delta naturally selects OpenSpec, capture whether its durable
 
 ### Repository-specific delivery variants
 
-Real repositories may end work at an exact remote checkpoint or open a PR awaiting human merge. The core runtime already qualifies normal push/reconciliation; each repository's actual PR/merge policy should be exercised in normal field use.
+Real repositories may end work at an exact remote checkpoint or open a PR awaiting human merge. The core runtime qualifies normal push/reconciliation; each repository's actual PR/merge policy should be exercised in normal field use.
 
 ### Naturally material UI slices
 
@@ -245,7 +293,7 @@ New bounded qualification is justified only when:
 3. a materially different upstream runtime replaces a failed/qualified lifecycle; or
 4. an optional new entry path needs a compatibility test because a real project actually selects it.
 
-Gentle Pi `2.3.0` meets condition 3 for **one bounded re-evaluation only**.
+Gentle Pi `2.3.0` meets condition 3 for **one bounded re-evaluation only**. Issue #36 meets conditions 1–2 as an upstream capability investigation, not a new stage.
 
 Otherwise use real projects and capture compact evidence.
 
@@ -255,5 +303,5 @@ When documentation conflicts:
 
 1. exact repository / GitHub / runtime evidence;
 2. `docs/ATENEA_HARNESS_CONTRACT_V1.md`, current `README.md`, this file and `docs/CURRENT_DECISIONS.md`;
-3. `docs/ATENEA_HANDOFF_20260830.md` and Stage-specific frozen evidence;
+3. `docs/JUDIT76_GENTLE25_FIELD_EVIDENCE.md`, `docs/ATENEA_HANDOFF_20260830.md` and Stage-specific frozen evidence;
 4. earlier decision files and forward-looking plans.
