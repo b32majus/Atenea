@@ -199,7 +199,7 @@ AUTO_MERGE=NO
 FRONTIER_STOP=PASS
 ```
 
-The run exposed two operator ergonomics refinements, tracked as issue #39 and accepted for current use: launch the headless OpenCode worker in a dedicated human-visible Herdr pane and report its pane id/label immediately, and use a bounded authoritative operator prompt for intentionally pinned work. These are operator/supervision ergonomics, not a new architecture layer.
+The run exposed two operator ergonomics refinements, tracked as issue #39 and now completed for current use: launch the headless OpenCode worker in a dedicated human-visible Herdr pane and report its pane id/label immediately (proven under #39), and use a bounded authoritative operator prompt for intentionally pinned work. These are operator/supervision ergonomics, not a new architecture layer. Issue #39 proved the visible pane and immediate pane/id reporting; rendering useful live OpenCode/Gentle activity into that pane is `USEFUL_LIVE_WORKER_STREAM=NOT_YET_PROVEN`, a non-blocking follow-up for PR #37.
 
 For any bounded experiment using the isolated negotiated-v2 provider canary, it may be used exactly as documented in `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`; production Gentle remains untouched and upstream #4109 remains open.
 

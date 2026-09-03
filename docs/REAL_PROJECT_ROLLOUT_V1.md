@@ -195,15 +195,17 @@ Interactive OpenCode remains available for human-attended development but is not
 
 Do not use `herdr agent prompt` to robotically drive an OpenCode TUI as the normal execution path.
 
-For current runs (issue #39 ergonomics), Pi launches the headless worker in a **dedicated visible/inspectable Herdr pane/tab** and reports the worker pane/tab id/label to the operator immediately so the human can observe the headless worker live:
+For current runs (issue #39 ergonomics), Pi launches the headless worker in a **dedicated visible/inspectable Herdr pane/tab** and reports the worker pane/tab id/label to the operator immediately (proven under issue #39: `ISSUE39_VISIBLE_WORKER_PANE=PASS`, `ISSUE39_WORKER_PANE_ID_REPORTED=PASS`):
 
 ```text
 Herdr workspace
 ├─ Pi supervisor pane     # interactive with the human
-└─ OpenCode worker pane   # headless/non-interactive, visible live to the human
+└─ OpenCode worker pane   # headless/non-interactive, visible to the human
+                         # pane shows runner invocation + completion markers
+                         # useful live OpenCode/Gentle activity NOT_YET_PROVEN
 ```
 
-This is visibility, not interactivity: OpenCode remains headless/non-interactive, and human observation does not become worker interaction or review authority. Genuine human-owned decisions still return through Pi. Preserve structured evidence without a process-substitution/tee observation dependency; prefer native Herdr pane output/scrollback or the smallest primitive that preserves process exit semantics.
+The dedicated pane/tab is visible and its id/label is reported immediately; operator screenshots show the pane carrying the shell runner invocation and completion markers while OpenCode JSONL activity is redirected to the structured evidence file. Rendering useful live OpenCode/Gentle activity into that pane is `USEFUL_LIVE_WORKER_STREAM=NOT_YET_PROVEN` and is not claimed here. This is visibility, not interactivity: OpenCode remains headless/non-interactive, and human observation does not become worker interaction or review authority. Genuine human-owned decisions still return through Pi. Preserve structured evidence without a process-substitution/tee observation dependency; prefer native Herdr pane output/scrollback or the smallest primitive that preserves process exit semantics.
 
 ### 6.3 Bounded downstream provider-canary boundary
 
@@ -309,7 +311,7 @@ FRONTIER_STOP=PASS|FAIL|NOT_REACHED
 FINAL_STOP_REASON=<reason>
 ```
 
-Issue #38 recorded the reference values of these fields on a real operator-triggered run. When the worker runs headless inside Herdr, also record the worker pane/tab id/label so the operator can observe it live.
+Issue #38 recorded the reference values of these fields on a real operator-triggered run. When the worker runs headless inside Herdr, also record the worker pane/tab id/label so the operator can observe the visible pane and its completion markers; do not claim a useful live OpenCode/Gentle activity stream (`USEFUL_LIVE_WORKER_STREAM=NOT_YET_PROVEN`).
 
 ## 8. Gentle AI 2.5.0 stable field evidence — CAPTURED
 

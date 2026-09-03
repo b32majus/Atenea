@@ -72,9 +72,14 @@ Confirm before starting a run:
   reset, clean, rebase, force-push or other destructive recovery.
 - **Worker pane expectation (issue #39 ergonomics).** Pi will launch the
   headless OpenCode worker in a dedicated visible Herdr pane/tab and report
-  the pane/tab id/label immediately so the operator can observe the worker
-  live. The worker stays headless/non-interactive; observation does not become
-  interaction or review authority.
+  the pane/tab id/label immediately (proven under issue #39:
+  `ISSUE39_VISIBLE_WORKER_PANE=PASS`,
+  `ISSUE39_WORKER_PANE_ID_REPORTED=PASS`). The pane carries the runner
+  invocation and completion markers; rendering useful live OpenCode/Gentle
+  activity into that pane is `USEFUL_LIVE_WORKER_STREAM=NOT_YET_PROVEN`. The
+  operator observes the visible pane/id and the final factual report, not a
+  live OpenCode/Gentle activity stream. The worker stays headless/non-interactive;
+  observation does not become interaction or review authority.
 
 ## 2. Starting Pi manually
 
@@ -128,7 +133,7 @@ them but do not redesign the topology when they are compatible.
 Remain a non-implementing Pi supervisor.
 Launch and supervise exactly the needed headless OpenCode/Gentle worker through a
 dedicated visible Herdr pane and report the pane/tab id and label immediately so
-the operator can observe it live.
+the operator can observe the visible pane and its completion markers.
 Use the bounded unattended provider-canary authority already documented in the
 repository; production Gentle remains untouched and OpenCode/Gentle owns every
 Gentle lifecycle transition.
@@ -170,7 +175,12 @@ Pi
   gentle-orchestrator --format json`.
 - Pi launches the headless worker in a **dedicated visible/inspectable Herdr
   pane/tab** and reports the worker pane/tab id/label to the operator
-  **immediately** so the human can observe the headless worker live. This is
+  **immediately** (proven under issue #39:
+  `ISSUE39_VISIBLE_WORKER_PANE=PASS`,
+  `ISSUE39_WORKER_PANE_ID_REPORTED=PASS`). The visible pane shows the shell
+  runner invocation and completion markers; rendering useful live
+  OpenCode/Gentle activity into that pane is
+  `USEFUL_LIVE_WORKER_STREAM=NOT_YET_PROVEN` and is not claimed here. This is
   visibility, not interactivity: OpenCode remains headless/non-interactive and
   human observation does not become worker interaction or review authority.
 - Do not robotically drive an OpenCode TUI (`herdr agent prompt` prompt
@@ -251,7 +261,9 @@ FINAL_STOP_REASON=
 ```
 
 When the worker runs headless inside Herdr, record the worker pane/tab
-id/label in the report so the operator can observe it live.
+id/label in the report so the operator can observe the visible pane and its
+completion markers; do not claim a useful live OpenCode/Gentle activity stream
+(`USEFUL_LIVE_WORKER_STREAM=NOT_YET_PROVEN`).
 
 Evidence answers a question; it does not become a reporting bureaucracy.
 Where useful, record exact runtime versions, the issue/PR identifiers, the

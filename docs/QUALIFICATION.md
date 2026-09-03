@@ -271,6 +271,18 @@ The real operator interface is therefore field-proven, not merely the next E2E t
 
 The run exposed two non-blocking operator ergonomics refinements, accepted for current use under issue #39: launch the headless OpenCode worker in a dedicated visible Herdr pane and report its pane/tab id/label, and use a bounded authoritative operator prompt for intentionally pinned work. These add no launcher/controller and no new authority.
 
+Issue #39 then executed that bounded operator-ergonomics refinement through the same operator-facing path and is complete:
+
+```text
+ISSUE39_PINNED_BOUNDED_PREFLIGHT=PASS
+ISSUE39_VISIBLE_WORKER_PANE=PASS
+ISSUE39_WORKER_PANE_ID_REPORTED=PASS
+ISSUE39_USEFUL_LIVE_WORKER_STREAM=NOT_YET_PROVEN
+ISSUE39_FIXED_SLEEP_SUPERVISION=OBSERVED_NON_BLOCKING
+```
+
+Issue #39 proved the bounded pinned preflight (no broad archaeology before the worker), the dedicated visible Herdr worker pane and immediate pane/tab id reporting, the post-#38 documentation reconciliation, exact-candidate RDD, acknowledgement/burn, normal non-force publication and PR #37 frontier stop. The visible pane and its reported id are proven; rendering useful live OpenCode/Gentle activity into that pane is `USEFUL_LIVE_WORKER_STREAM=NOT_YET_PROVEN`, the single remaining operator-ergonomics follow-up and non-blocking for PR #37. Repeated fixed `sleep` waits were again observed during #39 supervision and are recorded as non-blocking; issue #39 does not claim a supervision-efficiency property and current policy continues to prefer native/Herdr bounded waits.
+
 Issue #38 evidence comment: PR #37 audit thread and issue #38 comments. The upstream-supported negotiated-v2 unattended API remains unresolved/non-production; upstream `Gentleman-Programming/gentle-ai#4109` and Atenea #36 remain open.
 
 ## Observation harness defects — classified and excluded from runtime result
@@ -407,7 +419,7 @@ AUTO_MERGE=NO
 FRONTIER_STOP=PASS
 ```
 
-Remaining work here is operator ergonomics refinement (issue #39): visible Herdr worker pane + bounded pinned prompt for current use. Gentle review consent should not surface when the isolated provider canary policy is deliberately selected for a bounded experiment. Already-authorized normal non-force push permissions should be handled by Pi. Genuine human-owned boundaries or final merge must be relayed and paused; answering them is allowed, but that run must no longer be described as zero-touch.
+The operator-ergonomics refinement is now **complete**: issue #39 completed the bounded pinned preflight and the visible-pane/id-reporting improvements, and recorded `ISSUE39_USEFUL_LIVE_WORKER_STREAM=NOT_YET_PROVEN` as the remaining follow-up (rendering useful live OpenCode/Gentle activity into the visible pane; non-blocking for PR #37). Repeated fixed `sleep` waits observed during #39 supervision are non-blocking; native bounded waits remain the policy. Gentle review consent should not surface when the isolated provider canary policy is deliberately selected for a bounded experiment. Already-authorized normal non-force push permissions should be handled by Pi. Genuine human-owned boundaries or final merge must be relayed and paused; answering them is allowed, but that run must no longer be described as zero-touch.
 
 ### Upstream negotiated-v2 provider support
 

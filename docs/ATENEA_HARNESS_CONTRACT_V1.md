@@ -502,7 +502,7 @@ For zero-touch RDD, stable Gentle already owns the underlying silent/one-time co
 
 The Stage 5–8 runtime path remains qualified from historical `2.5.0-rc.2` evidence. Gentle AI `2.5.0` stable now has natural real-project field evidence from Judit #76 / PR #79; repeating Stage 5–8 is not justified.
 
-Issue #38 completed the first real operator-triggered Atenea end-to-end run through the actual top-level interface under the bounded downstream canary. The real operator interface is field-proven, and the two operator ergonomics it exposed (visible Herdr worker pane; bounded authoritative pinned prompt) are accepted for current use as operator/supervision ergonomics, tracked by issue #39.
+Issue #38 completed the first real operator-triggered Atenea end-to-end run through the actual top-level interface under the bounded downstream canary. The real operator interface is field-proven. Issue #39 then completed the operator-ergonomics refinements it exposed: the bounded pinned preflight, the dedicated visible Herdr worker pane and immediate pane/tab id reporting are proven (`ISSUE39_PINNED_BOUNDED_PREFLIGHT=PASS`, `ISSUE39_VISIBLE_WORKER_PANE=PASS`, `ISSUE39_WORKER_PANE_ID_REPORTED=PASS`). Rendering useful live OpenCode/Gentle activity into that visible pane remains `USEFUL_LIVE_WORKER_STREAM=NOT_YET_PROVEN` — a follow-up, non-blocking for PR #37. Repeated fixed `sleep` waits observed during #39 supervision are non-blocking; native/Herdr bounded waits remain the policy under section 7.4.
 
 Current stable status:
 
@@ -523,7 +523,7 @@ ZERO_TOUCH_BLOCKER                     V2_NEXT_TRANSITION_FORCES_CONSENT_RELAY
 Remaining evidence/work should come primarily from real-project use:
 
 - Issue #36 / upstream `Gentleman-Programming/gentle-ai#4109`: upstream-supported restoration of zero-touch on the negotiated OpenCode review path without rewriting provider transitions (still open);
-- issue #39 operator-ergonomics refinement (visible worker pane + bounded pinned prompt) for current runs;
+- issue #39 operator-ergonomics refinement (visible worker pane + bounded pinned prompt): **completed** for the bounded pinned preflight, visible worker pane and immediate pane/tab id reporting; `USEFUL_LIVE_WORKER_STREAM=NOT_YET_PROVEN` remains the follow-up (rendering useful live OpenCode/Gentle activity into the visible pane, non-blocking);
 - optional OpenSpec use only when a real brownfield delta benefits from it;
 - first naturally material UI slice using conditional Impeccable/DESIGN/PRODUCT policy;
 - one bounded Gentle Pi `2.3.0` replacement/deletion evaluation because it materially changes the previously failed upstream runtime.

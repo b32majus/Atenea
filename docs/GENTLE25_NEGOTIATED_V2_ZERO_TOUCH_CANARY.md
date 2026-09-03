@@ -341,29 +341,21 @@ What remains genuinely open is **upstream adoption**, not the Atenea execution p
 - upstream implementation remains governed by `Gentleman-Programming/gentle-ai#4109` and its maintainer process; do not open an upstream implementation PR before the required upstream approval state;
 - Atenea #36 tracks the upstream-first restoration of negotiated-v2 zero-touch and stays open with #4109.
 
-## Qualified next experiment: operator-ergonomics refinement (issue #39)
+## Operator-ergonomics refinement (issue #39) — completed; live worker activity stream not yet proven
 
-The real operator-triggered end-to-end run (issue #38) is complete and PASS. The next test is the bounded operator-ergonomics refinement that run exposed, still beginning from the operator's actual interface:
+The real operator-triggered end-to-end run (issue #38) is complete and PASS. The bounded operator-ergonomics refinement that run exposed has since been executed as issue #39 through the same operator-facing path and is complete:
 
 ```text
-human opens/uses Herdr
-→ human starts Pi interactively
-→ human gives one bounded authoritative Atenea execution prompt (pinned: repository, issue, branch/PR checkpoint, role, transport, publication, STOP boundary)
-→ Pi reports the visible Herdr worker pane/tab id/label
-→ Pi resolves current repository/GitHub authority with a bounded preflight
-→ Pi creates/reuses headless OpenCode worker in a dedicated visible Herdr pane
-→ OpenCode implements and owns all Gentle lifecycle operations
-→ Gentle exact-candidate RDD
-→ bounded correction if naturally required
-→ exact acknowledgement/burn
-→ one fresh pre-publication authority revalidation
-→ normal non-force push
-→ PR/checkpoint according to repository policy
-→ Pi reconciles remote state
-→ Pi rediscovers frontier
-→ STOP before human merge / when compatible frontier is exhausted
-→ Pi returns one final factual report
+ISSUE39_PINNED_BOUNDED_PREFLIGHT=PASS
+ISSUE39_VISIBLE_WORKER_PANE=PASS
+ISSUE39_WORKER_PANE_ID_REPORTED=PASS
+ISSUE39_USEFUL_LIVE_WORKER_STREAM=NOT_YET_PROVEN
+ISSUE39_FIXED_SLEEP_SUPERVISION=OBSERVED_NON_BLOCKING
 ```
+
+Issue #39 completed the bounded pinned preflight (no broad archaeology before the worker), launched the headless OpenCode worker in a dedicated visible Herdr pane/tab and reported the pane/tab id/label immediately, completed the post-#38 documentation reconciliation, and ran the full exact-candidate RDD, acknowledgement/burn, normal non-force push, PR #37 reconciliation and frontier stop. The dedicated pane/tab itself is visible and its id/label is reported, which proves `ISSUE39_VISIBLE_WORKER_PANE=PASS` and `ISSUE39_WORKER_PANE_ID_REPORTED=PASS`; operator screenshots show the pane displaying the shell runner invocation and completion markers while OpenCode JSONL activity is redirected to the structured evidence file. Rendering useful live OpenCode/Gentle activity into that visible pane is therefore recorded as `USEFUL_LIVE_WORKER_STREAM=NOT_YET_PROVEN` — the single remaining operator-ergonomics follow-up, non-blocking and not a merge blocker for PR #37.
+
+Supervision during #39 again used repeated fixed `sleep` waits (e.g. 40–110s). That observation is recorded honestly as non-blocking: current policy already prefers native/Herdr bounded waits (`docs/ATENEA_HARNESS_CONTRACT_V1.md` section 7.4; `docs/CURRENT_DECISIONS.md` C-020), and issue #39 does not claim to have proven any supervision-efficiency property. No new controller or poller is authorized.
 
 Human interaction policy for real runs:
 
