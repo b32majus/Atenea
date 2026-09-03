@@ -116,7 +116,7 @@ Before promotion, verify that current durable authority resolves:
 
 Unresolved material decisions stay before the autonomy boundary.
 
-Current stable Gentle may later surface an explicit candidate-consent decision. That is a provider-owned human boundary, not evidence that shaping/readiness failed.
+The currently selected OpenCode negotiated-v2 review path may later surface a provider-owned candidate consent envelope. That is an integration-path boundary, not evidence that shaping/readiness failed and not evidence that stable Gentle globally lacks zero-touch semantics.
 
 ## 6. Run the qualified autonomous path
 
@@ -140,7 +140,7 @@ Pi discovers frontier
 → STOP when exhausted
 ```
 
-Gentle AI `2.5.0` stable is the operational target. Provider-issued lifecycle continuations are executed by the OpenCode/Gentle worker as returned; Pi MUST NOT take over the Gentle lifecycle. RDD does not create a delivery gate after its authority closes.
+Gentle AI `2.5.0` stable is the operational target. Provider-issued lifecycle continuations are executed by the OpenCode/Gentle worker as returned; Pi MUST NOT take over or rewrite the Gentle lifecycle. RDD does not create a delivery gate after its authority closes.
 
 ### 6.1 Operator prompt
 
@@ -164,7 +164,7 @@ Prefer narrow Herdr/native status and bounded waits. Multi-minute fixed sleep po
 
 ### 6.4 Human decisions vs operational permissions
 
-Pi relays genuine human-decision envelopes losslessly.
+Pi relays genuine human-decision envelopes emitted by the selected provider path losslessly.
 
 Pi should grant runtime permission for already-authorized operational actions, such as the normal non-force push for the current delivery branch, when the runtime safely exposes that permission decision.
 
@@ -186,7 +186,8 @@ For each real slice, keep compact factual evidence:
 - deterministic verification results;
 - Gentle review lineage/state or final causal evidence where available;
 - bounded correction count;
-- human interventions after `EXECUTION_READY`, distinguishing genuine human decisions from avoidable runtime permissions;
+- human interventions after `EXECUTION_READY`, distinguishing genuine provider decision envelopes from avoidable runtime permissions;
+- exact review integration contract/path when autonomy behavior depends on it;
 - worker reuse vs fresh-worker choice and reason when it matters;
 - pre-publication authority revalidation result;
 - publication result;
@@ -219,26 +220,31 @@ STABLE_ACKNOWLEDGEMENT_BURN=PASS
 STABLE_PR_STOP_BEFORE_MERGE=PASS
 ```
 
-But the same run exposed a new stable semantic boundary:
+The same run exposed a path-specific autonomy gap:
 
 ```text
-medium/high candidate
-→ native consent envelope
-→ human selects granted/declined for that exact candidate
-→ next changed candidate asks again
+OpenCode negotiated review-integration/v2
+→ provider next-transition adds --consent relay
+→ medium/high exact candidate returns typed human consent envelope
+→ explicit granted applies to that exact candidate
+→ changed candidate asks again
 ```
 
-Current upstream source explicitly says global RDD enablement does not grant consent to a candidate and later medium/high candidates ask again.
+Upstream source audit also shows that stable Gentle retains zero-touch-capable semantics outside this forced-relay v2 route: organic/plain consent can be persisted and an undeclared non-interactive negotiated START authorizes silently.
 
 Classification:
 
 ```text
-UPSTREAM_CAPABILITY_GAP — ZERO_HUMAN_TOUCH_WITH_RDD
+STABLE_GENTLE_ZERO_TOUCH_CAPABILITY=EXISTS
+OPENCODE_NEGOTIATED_V2_ZERO_TOUCH=NOT_SATISFIED
+UPSTREAM_INTEGRATION_CAPABILITY_GAP — negotiated-v2 consent-policy parity
 ```
 
 Tracking: Atenea Issue #36.
 
-Atenea MUST NOT auto-answer `granted`. The desired solution is a supported provider-owned human preauthorization policy, or the smallest upstream feature request if current upstream has no such capability.
+Atenea MUST NOT auto-answer `granted`, remove `relay` or reconstruct START. The desired solution is a supported provider-owned v2 unattended policy or another provider-owned path that preserves all modern exact-candidate/transport/acknowledgement properties.
+
+`review-integration/v1` may be characterized if useful but is frozen/legacy and is not a durable production dependency.
 
 ## 9. Gentle Pi 2.3.0 — one bounded replacement/deletion evaluation
 
@@ -280,7 +286,7 @@ FAIL / ambiguity / added fragility
 
 Do not layer Gentle Pi on top of the existing architecture as another mandatory component.
 
-Gentle Pi `2.3.0` does contain a clone-local accept-only `review-consent-asked` latch. Current code writes it after a human grant but does not read it to authorize later native candidate consent; do not treat it as a solution to Issue #36 without new upstream evidence.
+Gentle Pi `2.3.0` contains a clone-local accept-only `review-consent-asked` latch. Current integration code writes it after a human grant but does not read it as authority for later provider-issued v2 candidate consent; do not treat it as a solution to Issue #36 without new upstream evidence.
 
 This experiment is **not Stage 9**.
 
@@ -354,17 +360,17 @@ ATENEA_HORIZONTAL_GAP — ownership wording / operator interface
 
 Resolution: explicit contract boundary (`Pi relays; OpenCode/Gentle owns lifecycle`) plus bounded operator-prompt guidance. No new runtime component.
 
-### Field finding — stable candidate consent
+### Field finding — negotiated-v2 consent
 
-Stable Gentle exact-candidate consent is human-scoped per medium/high candidate.
+Stable Gentle retains zero-touch review semantics, but the currently selected OpenCode `review-integration/v2` next-transition forces `--consent relay`.
 
 Classification:
 
 ```text
-UPSTREAM_CAPABILITY_GAP — zero-human-touch RDD
+UPSTREAM_INTEGRATION_CAPABILITY_GAP — negotiated-v2 zero-touch parity
 ```
 
-Resolution path: Issue #36. No Atenea auto-consent bypass.
+Resolution path: Issue #36. No Atenea auto-consent or transition-rewrite bypass.
 
 ### Field finding — worker continuity
 
@@ -401,6 +407,7 @@ Do not use rollout as an excuse to reintroduce:
 - scheduler/DAG/controller;
 - custom RDD/reviewer/finalize/receipt machinery;
 - Atenea-owned candidate-consent database or auto-grant shim;
+- local rewriting/removal of provider-issued consent arguments;
 - automatic merge;
 - force-push/reset/rebase recovery;
 - mandatory OpenSpec for brownfield work;
