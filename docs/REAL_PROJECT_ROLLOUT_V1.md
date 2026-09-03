@@ -1,13 +1,15 @@
 # Atenea Real-Project Rollout v1
 
-Date: 2026-09-01
-Status: PLAN
+Date: 2026-09-03
+Status: ACTIVE
 
 ## Goal
 
 Move from synthetic qualification to real project work without turning optional surfaces or upstream releases into another qualification ladder.
 
-The Stage 5–8 execution architecture is already qualified. Real-project rollout should validate only repo-specific seams and materially changed upstream replacements that have not yet been exercised naturally.
+The Stage 5–8 execution architecture is already qualified. Real-project rollout validates repo-specific seams and materially changed upstream behavior that has not yet been exercised naturally.
+
+Judit #76 / PR #79 has now supplied the first real Gentle AI `2.5.0` stable field evidence. See `docs/JUDIT76_GENTLE25_FIELD_EVIDENCE.md`.
 
 ## 1. Select the project and slice
 
@@ -114,6 +116,8 @@ Before promotion, verify that current durable authority resolves:
 
 Unresolved material decisions stay before the autonomy boundary.
 
+Current stable Gentle may later surface an explicit candidate-consent decision. That is a provider-owned human boundary, not evidence that shaping/readiness failed.
+
 ## 6. Run the qualified autonomous path
 
 After `EXECUTION_READY`:
@@ -121,11 +125,12 @@ After `EXECUTION_READY`:
 ```text
 Pi discovers frontier
 → validates authority/blockers/runtime
+→ reuses a healthy matching OpenCode worker or creates one when needed
 → supervises worker through Herdr
 → OpenCode + Gentle implements
 → repo deterministic verification
 → optional Matt code-review only if semantic/spec risk warrants it
-→ Gentle native exact-candidate RDD / bounded correction
+→ OpenCode/Gentle owns native exact-candidate RDD / bounded correction
 → provider-owned final capture / acknowledgement lifecycle
 → ONE fresh pre-publication authority revalidation
 → normal push
@@ -135,7 +140,35 @@ Pi discovers frontier
 → STOP when exhausted
 ```
 
-Gentle AI `2.5.0` stable is the operational target. Provider-issued lifecycle continuations are executed as returned; Atenea does not reconstruct them. RDD does not create a delivery gate after its authority closes.
+Gentle AI `2.5.0` stable is the operational target. Provider-issued lifecycle continuations are executed by the OpenCode/Gentle worker as returned; Pi MUST NOT take over the Gentle lifecycle. RDD does not create a delivery gate after its authority closes.
+
+### 6.1 Operator prompt
+
+Keep the operator prompt bounded.
+
+Normal run should normally identify the work item, request OpenCode/Gentle supervision through Herdr and state the delivery STOP boundary.
+
+A resume/repair prompt may additionally identify the exact checkpoint and what already-accepted work must not be redone.
+
+Do not paste Gentle lifecycle algorithms, recovery command syntax or historical harness archaeology into ordinary Pi prompts. Real #76 evidence showed that over-specified prompts can make the supervisor reinterpret ownership and waste context.
+
+### 6.2 Worker continuity
+
+For the same issue + PR/branch + worktree + authority, prefer reusing the healthy OpenCode worker. This preserves implementation context across audit repairs.
+
+A new source candidate still receives a fresh Gentle review lineage when required. Worker reuse is never review-authority reuse.
+
+### 6.3 Supervision efficiency
+
+Prefer narrow Herdr/native status and bounded waits. Multi-minute fixed sleep polling is not the default and does not justify a new scheduler/polling layer.
+
+### 6.4 Human decisions vs operational permissions
+
+Pi relays genuine human-decision envelopes losslessly.
+
+Pi should grant runtime permission for already-authorized operational actions, such as the normal non-force push for the current delivery branch, when the runtime safely exposes that permission decision.
+
+Do not conflate shell permission with human product/review/merge authority.
 
 The pre-publication revalidation is one bounded fresh read, not polling and not a Herdr gate. Material authority change means STOP rather than publishing a stale candidate.
 
@@ -153,7 +186,8 @@ For each real slice, keep compact factual evidence:
 - deterministic verification results;
 - Gentle review lineage/state or final causal evidence where available;
 - bounded correction count;
-- human interventions after `EXECUTION_READY`;
+- human interventions after `EXECUTION_READY`, distinguishing genuine human decisions from avoidable runtime permissions;
+- worker reuse vs fresh-worker choice and reason when it matters;
 - pre-publication authority revalidation result;
 - publication result;
 - reconciliation result;
@@ -162,23 +196,49 @@ For each real slice, keep compact factual evidence:
 
 Evidence should answer a question, not become a reporting bureaucracy.
 
-## 8. Gentle AI 2.5.0 stable field evidence
+## 8. Gentle AI 2.5.0 stable field evidence — CAPTURED
 
 Do not repeat Stage 5–8.
 
-On the next real Atenea slice, capture only the natural delta from the historical `2.5.0-rc.2` qualification baseline:
+Judit #76 / PR #79 naturally exercised the stable delta:
 
 ```text
 stable 2.5.0 selected
-→ exact candidate frozen
-→ provider-issued continuation/re-entry executed verbatim if emitted
-→ bounded correction at most once under native authority
-→ final causal capture / acknowledgement completes natively
+→ exact candidates frozen
+→ provider-owned review lifecycle completed
+→ final causal capture / acknowledgement burned authority
 → no Atenea FINALIZE / compact receipt / delivery gate added
-→ ordinary repo delivery proceeds separately
+→ ordinary PR delivery remained separate
 ```
 
-A successful real slice is sufficient evidence unless it exposes a new seam.
+Result:
+
+```text
+STABLE_EXACT_CANDIDATE_RDD=PASS
+STABLE_ACKNOWLEDGEMENT_BURN=PASS
+STABLE_PR_STOP_BEFORE_MERGE=PASS
+```
+
+But the same run exposed a new stable semantic boundary:
+
+```text
+medium/high candidate
+→ native consent envelope
+→ human selects granted/declined for that exact candidate
+→ next changed candidate asks again
+```
+
+Current upstream source explicitly says global RDD enablement does not grant consent to a candidate and later medium/high candidates ask again.
+
+Classification:
+
+```text
+UPSTREAM_CAPABILITY_GAP — ZERO_HUMAN_TOUCH_WITH_RDD
+```
+
+Tracking: Atenea Issue #36.
+
+Atenea MUST NOT auto-answer `granted`. The desired solution is a supported provider-owned human preauthorization policy, or the smallest upstream feature request if current upstream has no such capability.
 
 ## 9. Gentle Pi 2.3.0 — one bounded replacement/deletion evaluation
 
@@ -219,6 +279,8 @@ FAIL / ambiguity / added fragility
 ```
 
 Do not layer Gentle Pi on top of the existing architecture as another mandatory component.
+
+Gentle Pi `2.3.0` does contain a clone-local accept-only `review-consent-asked` latch. Current code writes it after a human grant but does not read it to authorize later native candidate consent; do not treat it as a solution to Issue #36 without new upstream evidence.
 
 This experiment is **not Stage 9**.
 
@@ -280,7 +342,55 @@ ATENEA_HORIZONTAL_GAP — authority-resolution boundary
 
 Resolution: normative fail-closed authority-resolution rule only. No new launcher, controller, dispatcher, scheduler or runtime layer.
 
-Default outcome should be `NO_GAP` or `REPO_LOCAL_GAP`.
+### Field finding — supervisor lifecycle ownership
+
+An over-specified #76 prompt caused Pi to execute Gentle lifecycle commands itself.
+
+Classification:
+
+```text
+ATENEA_HORIZONTAL_GAP — ownership wording / operator interface
+```
+
+Resolution: explicit contract boundary (`Pi relays; OpenCode/Gentle owns lifecycle`) plus bounded operator-prompt guidance. No new runtime component.
+
+### Field finding — stable candidate consent
+
+Stable Gentle exact-candidate consent is human-scoped per medium/high candidate.
+
+Classification:
+
+```text
+UPSTREAM_CAPABILITY_GAP — zero-human-touch RDD
+```
+
+Resolution path: Issue #36. No Atenea auto-consent bypass.
+
+### Field finding — worker continuity
+
+Fresh OpenCode workers were created for each Cora repair although the issue/PR/worktree/authority remained the same.
+
+Classification:
+
+```text
+ATENEA_HORIZONTAL_GAP — worker reuse policy unspecified
+```
+
+Resolution: reuse healthy same-work worker by default; fresh Gentle lineage still follows changed candidate semantics. No worker registry/state machine required beyond current Herdr/process visibility.
+
+### Field finding — supervision efficiency
+
+Fixed multi-minute polling caused unnecessary latency/context growth.
+
+Classification:
+
+```text
+ATENEA_HORIZONTAL_GAP — supervision strategy wording
+```
+
+Resolution: prefer existing bounded state/wait primitives; no polling subsystem.
+
+Default outcome should remain `NO_GAP` or `REPO_LOCAL_GAP`.
 
 ## 13. What not to do
 
@@ -290,6 +400,7 @@ Do not use rollout as an excuse to reintroduce:
 - Herdr policy gates;
 - scheduler/DAG/controller;
 - custom RDD/reviewer/finalize/receipt machinery;
+- Atenea-owned candidate-consent database or auto-grant shim;
 - automatic merge;
 - force-push/reset/rebase recovery;
 - mandatory OpenSpec for brownfield work;
