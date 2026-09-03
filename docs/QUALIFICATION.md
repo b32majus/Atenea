@@ -36,19 +36,22 @@ CURRENT OPERATIONAL TARGET
   real-project field evidence captured on Judit #76 / PR #79
 ```
 
-The Judit field run confirmed that stable `2.5.0` preserves the exact-candidate RDD lifecycle, provider continuation/re-entry on the successful path, approval and exact acknowledgement/burn. It also exposed one material semantic difference for Atenea autonomy: current stable medium/high review consent is human and candidate-scoped.
+The Judit field run confirmed that stable `2.5.0` preserves the exact-candidate RDD lifecycle, provider continuation/re-entry on the successful path, approval and exact acknowledgement/burn.
 
-Therefore current status is:
+The same investigation corrected an initially over-broad consent diagnosis: stable Gentle still contains provider-owned zero-touch review semantics. The current autonomy gap is specifically the **OpenCode negotiated `gentle-ai.review-integration/v2` route**, whose provider-issued START transition currently includes `--consent relay` and therefore selects candidate-scoped human relay semantics.
+
+Current status:
 
 ```text
 GENTLE_2_5_STABLE_EXACT_CANDIDATE_RDD    PASS
-STABLE_UNATTENDED_IMPLEMENTATION         PASS_WITH_HUMAN_DECISION_BOUNDARIES
-ZERO_HUMAN_TOUCH_WITH_RDD_STABLE         NOT_SATISFIED
-CAUSE                                    UPSTREAM_CANDIDATE_SCOPED_HUMAN_CONSENT
-TRACKING                                 issue #36
+STABLE_GENTLE_ZERO_TOUCH_CAPABILITY      EXISTS
+OPENCODE_NEGOTIATED_V2_ZERO_TOUCH        NOT_SATISFIED
+CAUSE                                     V2_NEXT_TRANSITION_FORCES_CONSENT_RELAY
+CLASSIFICATION                            UPSTREAM_INTEGRATION_CAPABILITY_GAP
+TRACKING                                  issue #36
 ```
 
-This does **not** invalidate the historical Stage 7/8 rc.2 evidence. It means that `ZERO_HUMAN_TOUCH` must not be projected from that prerelease baseline onto the current stable provider contract without a new supported authorization mechanism.
+This does **not** invalidate the historical Stage 7/8 rc.2 evidence and does not mean stable Gentle globally lost zero-touch semantics. It means the currently selected negotiated-v2 OpenCode transport does not expose a supported way to select Gentle's unattended consent behavior while preserving provider-issued transitions exactly.
 
 Field evidence: `docs/JUDIT76_GENTLE25_FIELD_EVIDENCE.md`.
 
@@ -79,7 +82,7 @@ Atenea repo-local policy
 
 Pi is not an implementation worker or security sandbox. Herdr is not a policy engine.
 
-The stable field run strengthens this boundary: Pi relays genuine human-decision envelopes and supervises the worker; the OpenCode/Gentle worker owns all Gentle lifecycle operations and provider-issued review transitions.
+The stable field run strengthens this boundary: Pi supervises and relays genuine decision envelopes emitted by the selected provider path; the OpenCode/Gentle worker owns all Gentle lifecycle operations and provider-issued review transitions.
 
 ## Stage 5 — Matt → Gentle/OpenCode composition — PASS
 
@@ -111,7 +114,7 @@ Canonical accepted Stage 7 checkpoint:
 
 Frozen evidence: `docs/STAGE7_SELF_LAUNCH_CLOSURE.md`.
 
-The frozen Stage 7 result includes `ZERO_HUMAN_TOUCH` under the `2.5.0-rc.2` contract. Current stable candidate-scoped consent is a later provider semantic and is recorded separately rather than rewriting Stage 7.
+The frozen Stage 7 result includes `ZERO_HUMAN_TOUCH` under the `2.5.0-rc.2` path. The exact lower-level consent route used by that frozen run is not recorded strongly enough to claim whether it was negotiated-v2 or the organic/plain path, so current reconciliation does not invent that fact.
 
 ## Stage 8 — autonomous frontier discovery — PASS
 
@@ -147,7 +150,7 @@ worktree clean
 
 Frozen evidence: `docs/STAGE8_FRONTIER_DISCOVERY_EXPERIMENT.md`.
 
-## Stable Gentle 2.5.0 real-project field evidence — PASS with autonomy gap
+## Stable Gentle 2.5.0 real-project field evidence — PASS with negotiated-v2 autonomy gap
 
 Judit #76 / PR #79 provided the first natural stable run.
 
@@ -171,7 +174,7 @@ The field run also produced these horizontal findings:
 - a new source candidate still requires a fresh Gentle review lineage;
 - fixed multi-minute polling is not the normal supervision strategy;
 - already-authorized normal non-force push permissions should not be escalated to the human;
-- current Gentle stable candidate consent remains a genuine human decision and cannot be auto-granted by Atenea.
+- the currently selected OpenCode negotiated-v2 path emits candidate consent relay, but stable Gentle itself still has upstream-owned unattended review semantics.
 
 Full evidence: `docs/JUDIT76_GENTLE25_FIELD_EVIDENCE.md`.
 
@@ -205,7 +208,7 @@ GENTLE_PI_2_3_0_ADOPTED    = NO
 
 The only justified evaluation remains one bounded replacement/deletion experiment asking whether `2.3.0` can preserve Atenea's qualified properties while removing components or glue. Do not add Gentle Pi as another layer on top of the qualified path.
 
-The `review-consent-asked` latch present in Gentle Pi `2.3.0` is **not** current evidence of a zero-touch consent solution: the integration records it after `granted`, but current code does not use that latch to authorize later native candidate consent. Issue #36 owns the separate zero-touch capability investigation.
+The `review-consent-asked` latch present in Gentle Pi `2.3.0` is **not** current evidence of negotiated-v2 zero-touch parity: current integration records it after a grant but does not use it to authorize later provider-issued v2 candidate consent. Issue #36 owns the separate negotiated-v2 capability investigation.
 
 Until a replacement experiment passes, keep **Pi → Herdr → OpenCode + Gentle** as the accepted architecture.
 
@@ -215,10 +218,11 @@ As of 2026-09-03:
 
 - OpenCode remains the qualified implementation runtime;
 - Gentle AI `2.5.0` stable has natural real-project field evidence and remains the operational target;
+- stable Gentle contains upstream-owned zero-touch review behavior outside the forced-relay negotiated-v2 route;
 - Pi routing remains an operational concern, not architecture;
 - DeepSeek V4 Flash is successful field routing evidence, not an architectural pin;
 - Gentle Pi `2.3.0` is eligible for bounded re-evaluation but is not adopted by qualification policy;
-- `ZERO_HUMAN_TOUCH_WITH_RDD` on current stable remains an open upstream capability gap (#36).
+- zero-touch on the current OpenCode negotiated-v2 path remains an upstream integration capability gap (#36).
 
 ## Policy consolidation — COMPLETE
 
@@ -262,11 +266,13 @@ These are policy decisions. Natural field use may still provide evidence, but no
 
 ## What remains open
 
-### Restore zero-human-touch RDD on current stable
+### Restore zero-human-touch RDD on the current negotiated OpenCode path
 
-Historical rc.2 qualification proved the desired operator property. Stable `2.5.0` now requires a human candidate-scoped consent decision for each medium/high exact candidate.
+Historical rc.2 qualification proved the desired operator property. Stable `2.5.0` still contains provider-owned zero-touch review semantics, including an organic/plain one-time consent path and silent non-interactive negotiated authorization when no explicit consent declaration is supplied.
 
-Atenea will not bypass that contract. Issue #36 asks whether a provider-owned, auditable run/clone/work-item preauthorization can restore zero human touch while preserving exact candidate semantics and human revocability. If no supported upstream capability exists, the next action is the smallest upstream feature request, not Atenea auto-consent glue.
+However, `review-integration/v2` currently emits START with `--consent relay`, selecting candidate-scoped human relay. Atenea will not remove or rewrite that provider-issued argument.
+
+Issue #36 asks whether current v2 already exposes a supported unattended policy, whether the organic provider-owned route can preserve all required OpenCode/Gentle properties, or—if neither is true—whether upstream should add the smallest v2 consent-policy parity surface. `review-integration/v1` is frozen/legacy and is not a durable production answer.
 
 ### OpenSpec optional brownfield authoring
 
@@ -288,12 +294,12 @@ Do not create Stage 9/10/... for ceremonial completeness.
 
 New bounded qualification is justified only when:
 
-1. a required property has no upstream owner;
+1. a required property has no current upstream owner;
 2. a real field run exposes an unresolved seam;
 3. a materially different upstream runtime replaces a failed/qualified lifecycle; or
 4. an optional new entry path needs a compatibility test because a real project actually selects it.
 
-Gentle Pi `2.3.0` meets condition 3 for **one bounded re-evaluation only**. Issue #36 meets conditions 1–2 as an upstream capability investigation, not a new stage.
+Gentle Pi `2.3.0` meets condition 3 for **one bounded re-evaluation only**. Issue #36 meets condition 2 as an upstream integration investigation, not a new stage.
 
 Otherwise use real projects and capture compact evidence.
 
