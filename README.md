@@ -210,6 +210,7 @@ See `docs/REAL_PROJECT_ROLLOUT_V1.md`.
 - `docs/ATENEA_HARNESS_CONTRACT_V1.md` — normative Atenea v1 contract.
 - `CODING_STANDARDS.md` — repo-local engineering guardrails.
 - `docs/REAL_PROJECT_ROLLOUT_V1.md` — real-project operator path and bounded experiments.
+- `docs/OPERATOR_RUNBOOK_V1.md` — practical operator runbook for starting a normal Atenea run.
 - `docs/CURRENT_DECISIONS.md` — current short decision index.
 - `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md` — bounded zero-touch provider/OpenCode/Pi evidence and adoption boundary.
 - `docs/JUDIT76_GENTLE25_FIELD_EVIDENCE.md` — first real stable Gentle field run.
