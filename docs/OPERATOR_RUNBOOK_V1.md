@@ -20,20 +20,19 @@ path, not a one-off experiment, and does not replay investigation history or
 embed Gentle lifecycle mechanics in the operator prompt.
 
 This runbook intentionally adds **no launcher, wrapper, daemon, queue,
-controller, scheduler or consent state machine**. The human starts Pi
-manually; there is no Atenea custom launcher.
+controller, scheduler or consent state machine**. Explicit human execution authorization is mandatory; the mechanical Pi-supervisor launch may be performed by the human or by Cora/DC under that authorization. There is no Atenea custom launcher.
 
 ## The operator path at a glance
 
 ```text
-human opens/uses Herdr
-→ enters target repository context
-→ starts Pi interactively
-→ gives one bounded Atenea execution prompt
+explicit human execution authorization
+→ human or Cora/DC enters the target Herdr/repository context
+→ mechanically starts the normal Pi supervisor
+→ submits one bounded Atenea execution/train prompt
 → Pi resolves repo/GitHub authority
-→ Pi supervises Herdr → headless OpenCode (opencode run) → Gentle
-→ implementation / deterministic verification
-→ exact-candidate RDD / bounded correction if required
+→ Pi supervisor creates one separate Pi/Gentle-Pi worker using the pinned spawn recipe
+→ worker implementation / deterministic verification
+→ native exact-candidate RDD / bounded correction if required
 → exact acknowledgement/burn
 → one pre-publication authority revalidation
 → normal non-force publication
@@ -43,9 +42,23 @@ human opens/uses Herdr
 → Pi final factual report
 ```
 
-Pi remains interactive to the operator; the implementation worker does not.
-The accepted autonomous worker transport is headless `opencode run`, not
-robotic prompt injection into an OpenCode TUI.
+Pi remains interactive to the operator; the worker runs in a separate visible Herdr pane. The adopted unattended worker is Pi + Gentle Pi; OpenCode is optional/alternate, not required.
+
+Pinned runs MUST use `docs/SPAWN_RECIPE_GENTLE_PI_WORKER_V1.md`. The planning/launch surface resolves literal model parameters before launch. The supervisor does not rediscover models/CLI mechanics, does not implement product code, and after worker creation ends its turn until pi-intercom wakes it for a bounded decision or FINAL.
+
+## Current adopted worker transport
+
+```text
+normal Pi supervisor (Gentle Pi OFF; pi-intercom ON)
+→ Herdr separate pane with explicit autonomous env
+→ fresh Pi worker (normal extensions, Gentle Pi 2.4)
+→ implementation / delegated bounded writer as Gentle routes it
+→ deterministic checks / native Gentle RDD / acknowledgement-burn
+→ authorized normal non-force publication
+→ supervisor remote reconciliation / fresh frontier read / next worker or STOP
+```
+
+No fixed sleeps, polling loops, long waits or `agent_status` lifecycle inference. A rejected pinned model/flag fails closed before product mutation. Final merge remains human unless separately authorized.
 
 ## 1. Preflight
 
@@ -81,19 +94,13 @@ Confirm before starting a run:
   live OpenCode/Gentle activity stream. The worker stays headless/non-interactive;
   observation does not become interaction or review authority.
 
-## 2. Starting Pi manually
+## 2. Starting the Pi supervisor after explicit authorization
 
-At a shell **inside Herdr**, start Pi interactively in the target repository
-context. This is the normal operator interface; there is no Atenea custom
-launcher and Pi is not started by a daemon or scheduler.
+After explicit human authorization, start the normal Pi supervisor in the target repository context through the existing Herdr surface. The human may do this directly, or Cora/DC may perform the same mechanical launch. No daemon, scheduler or custom Atenea launcher is introduced.
 
-```text
-# inside Herdr, in the target repository context
-pi
-```
+The supervisor process MUST be normal Pi with Gentle Pi disabled and pi-intercom explicitly loaded. Any model route used for the supervisor is a pre-resolved operational parameter, not architectural authority.
 
-- The human starts Pi; the run's execution authorization is this manual
-  launch plus the one bounded execution prompt in the next section.
+- The human authorization plus the one bounded execution/train prompt defines the execution boundary. Mechanical launch by Cora/DC does not create authority by itself.
 - Routing/model flags may be added as an example/current field choice when a
   specific provider/model is desired (the 2026-09-03 canary ran Pi with
   `--provider commandcode --model deepseek/deepseek-v4-flash`). That is
@@ -157,6 +164,8 @@ runtime compatibility — before launching the worker.
 Do not paste Gentle command syntax, lineage reconstruction, recovery
 algorithms or detailed historical exclusions into the operator prompt; durable
 mechanics belong in current repo/Atenea/upstream authority.
+
+> **Historical/alternate OpenCode transport below.** After cutover #45, this section is retained only for reproducing earlier OpenCode field evidence or explicitly selected alternate/attended workflows. It does not define the current normal unattended path.
 
 ## 4. Autonomous worker transport
 

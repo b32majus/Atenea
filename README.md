@@ -35,27 +35,25 @@ HUMAN + CORA / PLANNING CHAT
             ↓
   HUMAN explicitly promotes EXECUTION_READY
             ↓
-HUMAN + HERDR + PI
-  human opens/uses Herdr
-  human starts Pi interactively
-  human gives one bounded execution prompt
+HUMAN AUTHORIZATION + HERDR + PI
+  explicit human execution authorization
+  human or Cora/DC performs the mechanical supervisor launch
+  one bounded execution/train prompt
             ↓
 PI — thin non-implementing supervisor
+  Gentle Pi OFF; pi-intercom ON; event-driven
             ↓
 HERDR — process/session substrate
             ↓
-HEADLESS OPENCODE (`opencode run`) + GENTLE AI
+FRESH PI WORKER + GENTLE PI 2.4 / GENTLE AI
   implementation + deterministic verification
   native exact-candidate RDD / bounded correction
+  acknowledgement/burn
             ↓
-acknowledgement/burn
-            ↓
-one fresh pre-publication authority revalidation
-            ↓
-normal non-force publication
-PR/checkpoint reconciliation
+normal non-force publication / remote checkpoint reconciliation
             ↓
 PI re-discovers compatible frontier
+  fresh worker for next compatible ticket OR STOP
             ↓
 STOP before human merge / when exhausted
             ↓
@@ -124,17 +122,21 @@ BEFORE EXECUTION_READY
   repo-native authority
 
 FROM EXECUTION_READY
-  human starts Pi in Herdr
-  Pi supervises
-  Herdr provides process/session substrate
-  headless OpenCode implements
-  Gentle owns exact candidate / RDD / reviewer authority / correction / ack-burn
-  Git/GitHub owns publication/checkpoint/merge policy
+  explicit human execution authorization
+  → Cora/DC or human mechanical launch
+  → normal Pi supervisor (non-implementing; Gentle Pi OFF; pi-intercom ON)
+  → Herdr separate visible worker pane
+  → Pi worker + Gentle Pi 2.4 / Gentle AI native RDD
+  → deterministic checks / acknowledgement-burn / normal non-force publication
+  → supervisor fresh frontier rediscovery / next compatible ticket or STOP
+  → human merge boundary
 ```
 
 Atenea does **not** require a bespoke queue, scheduler, DAG, lifecycle controller, reviewer wrapper, execution launcher, Herdr policy gate or Atenea state machine.
 
-Interactive OpenCode remains valid for human-attended development. It is not the accepted unattended transport; field evidence selects headless `opencode run --format json`.
+This Gentle-Pi worker path is the **adopted unattended workflow** after issue #35 `PASS_DELETE` and operator-authorized cutover #45. OpenCode remains installed and valid for attended/alternate work and as historical qualification evidence, but is no longer required by the normal unattended path.
+
+Pinned worker creation follows `docs/SPAWN_RECIPE_GENTLE_PI_WORKER_V1.md`; model literals are resolved before supervisor launch and the supervisor does not rediscover/substitute them.
 
 ## Normative contract
 
@@ -144,10 +146,10 @@ High-frequency rules:
 
 1. **Before `EXECUTION_READY`: human-present shaping.**
 2. **From `EXECUTION_READY`: autonomous bounded execution.**
-3. **Human starts Pi and gives one bounded prompt; Pi supervises thereafter.**
+3. **Human authorization is mandatory; human or Cora/DC may perform the mechanical Pi-supervisor launch, then one bounded prompt starts autonomous supervision.**
 4. **Pi does not implement product code or operate Gentle lifecycle commands.**
 5. **Herdr is substrate, not policy authority.**
-6. **OpenCode implements; Gentle owns exact-candidate/RDD/reviewer/repair authority.**
+6. **The separate Pi/Gentle-Pi worker implements; Gentle owns exact-candidate/RDD/reviewer/repair authority.**
 7. **Evidence outranks narration.**
 8. **Normal non-force push is allowed; no force-push, hidden history rewrite or auto-merge.**
 9. **Material ambiguity / contradictory authority / unsafe drift => STOP.**
@@ -209,7 +211,7 @@ Do not strip provider `relay`, inject `granted`, synthesize START, create a cons
 
 Evidence: `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`.
 
-A bounded replacement/deletion reevaluation under Atenea #35 is now exercising **Gentle Pi 2.4.0** on real PROMueve repairs. T4 produced an execution-path zero-touch PASS with a normal Pi supervisor + separate Gentle Pi worker. T5 final qualification plus a fresh read-only frontier rediscovery by the same non-implementing supervisor closed the remaining #35 continuity/frontier gate: it identified #298 as the next executable frontier and stopped without launching T6. The bounded replacement experiment therefore resolves `RESULT=PASS_DELETE`; adoption remains a separate human review decision. The currently adopted normal path is unchanged until that decision is made. Evidence: `docs/GENTLE_PI_24_REPLACEMENT_FIELD_EVIDENCE_20260905.md`.
+A bounded replacement/deletion reevaluation under Atenea #35 exercised **Gentle Pi 2.4.0** on real PROMueve repairs and final T5 qualification. It closed zero-touch execution, native RDD delegation/ack-burn, normal publication, composed continuity and fresh frontier rediscovery/STOP with `RESULT=PASS_DELETE`. Operator-authorized cutover #45 adopts that smaller path as the normal unattended workflow. Evidence: `docs/GENTLE_PI_24_REPLACEMENT_FIELD_EVIDENCE_20260905.md`.
 
 ## Installation / making Atenea work
 

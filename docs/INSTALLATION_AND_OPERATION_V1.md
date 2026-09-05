@@ -31,6 +31,22 @@ README.md
 
 Do not start from historical Stage files.
 
+## Adopted unattended runtime — 2026-09-05 cutover
+
+The normal unattended path now requires Pi + Herdr + pi-intercom + Gentle Pi 2.4 / Gentle AI. OpenCode is not a required component of that path; keep it only for attended/alternate use or historical reproduction.
+
+Current field epoch used to qualify the cutover:
+
+```text
+Pi          0.85.1
+Herdr       0.8.2
+Gentle Pi   2.4.0
+Gentle AI   2.6.0
+pi-intercom 0.13.0
+```
+
+Provision the worker so Gentle Pi can discover normally, and use `docs/SPAWN_RECIPE_GENTLE_PI_WORKER_V1.md` for pinned worker creation. Routing/model literals are verified operational parameters, not architectural pins.
+
 ## 2. Current qualified reference stack
 
 The field-proven reference environment as of 2026-09-03/04 is:

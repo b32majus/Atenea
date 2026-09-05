@@ -22,6 +22,16 @@ FRONTIER_EXHAUSTION_STOP          PASS
 
 The result is evidence for a thin supervisory contract, not a recommendation to build a larger Atenea runtime.
 
+## Adopted replacement result — 2026-09-05
+
+Atenea #35 completed with `PASS_DELETE`, and operator-authorized cutover #45 adopts the smaller normal unattended path:
+
+```text
+normal Pi supervisor → Herdr → separate Pi/Gentle-Pi worker → Gentle native RDD → Git/GitHub checkpoint → frontier rediscovery/STOP
+```
+
+PROMueve T4/T5 plus atomic repairs demonstrated zero-touch execution, independent product rejection/repair, native RDD acknowledgement/burn, normal non-force publication, composed continuity and supervisor-owned frontier rediscovery. OpenCode qualification below remains valid historical/alternate evidence but no longer defines the current unattended runtime.
+
 ## Qualification evidence vs current stable runtime
 
 Do not rewrite historical qualification evidence when upstream advances.
@@ -333,7 +343,7 @@ GENTLE_PI_2_4_FULL_REPLACEMENT_QUALIFICATION      = PASS_DELETE
 GENTLE_PI_2_4_ADOPTION_DECISION                    = PENDING_HUMAN_REVIEW
 ```
 
-T4 demonstrated meaningful deletion potential because the worker path did not use OpenCode or the downstream negotiated-v2 OpenCode consent-policy canary. T5 then exercised the composed path; after two atomic product repairs, final qualification at `5ae810aee2ec1cf832aff74aed888ec04c3c6bee` passed the full deterministic suite, native high-risk four-lens RDD, acknowledgement/burn and exact remote reconciliation. The same non-implementing supervisor then performed a fresh read-only GitHub authority check of #292/#298, identified `NEXT_FRONTIER=#298`, launched no T6 worker and STOPped. The bounded #35 experiment therefore satisfies `PASS_DELETE`. Keep the currently adopted Pi → Herdr → headless OpenCode + Gentle path until the human adoption review explicitly approves the cutover.
+T4 demonstrated meaningful deletion potential because the worker path did not use OpenCode or the downstream negotiated-v2 OpenCode consent-policy canary. T5 then exercised the composed path; after two atomic product repairs, final qualification at `5ae810aee2ec1cf832aff74aed888ec04c3c6bee` passed the full deterministic suite, native high-risk four-lens RDD, acknowledgement/burn and exact remote reconciliation. The same non-implementing supervisor then performed a fresh read-only GitHub authority check of #292/#298, identified `NEXT_FRONTIER=#298`, launched no T6 worker and STOPped. The bounded #35 experiment therefore satisfies `PASS_DELETE`. Operator-authorized cutover #45 adopts the Pi supervisor → Herdr → separate Pi/Gentle-Pi worker path as the normal unattended workflow.
 
 Evidence: `docs/GENTLE_PI_24_REPLACEMENT_FIELD_EVIDENCE_20260905.md`.
 
@@ -358,7 +368,7 @@ Qualified baseline as of 2026-09-03, with bounded replacement evidence added 202
 - the isolated canary Gentle binary proves negotiated-v2 unattended parity behavior but is not a production release/adoption;
 - stable Gentle contains upstream-owned zero-touch review behavior outside the released forced-relay v2 route;
 - DeepSeek V4 Flash is successful field routing evidence, not an architectural pin;
-- Gentle Pi `2.4.0` has completed the bounded #35 replacement experiment with `PASS_DELETE` but is not yet adopted; the remaining step is the explicit human adoption/cutover decision;
+- Gentle Pi `2.4.0` completed the bounded #35 replacement experiment with `PASS_DELETE` and is adopted for the normal unattended path under cutover #45;
 - upstream `Gentleman-Programming/gentle-ai#4109` remains the provider-owned production-resolution path.
 
 ## Policy consolidation — COMPLETE
