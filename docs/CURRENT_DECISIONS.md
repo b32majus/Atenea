@@ -85,6 +85,14 @@ For pinned clinical/semantic work, launch authority freezes the principal oracle
 
 Repository `AGENTS.md` + coding standards are mandatory pre-write inputs for each fresh worker and must be propagated to bounded writers. Event-driven supervision from C-020 remains mandatory.
 
+## C-027 — Bounded RDD consent is relayed worker → supervisor through pi-intercom
+
+**Accepted from T6 train v2 field evidence, 2026-09-05.**
+
+A T6 worker reached a valid native Gentle RDD consent envelope but its synthesized worker brief had lost the explicit relay clause; the worker called `ask_user_choice` and required one manual consent. Later pi-intercom messaging worked normally. The supported interpretation is therefore a brief/relay-contract defect, not evidence of a Gentle provider failure.
+
+For already-authorized bounded RDD consent, the worker prompt must explicitly prohibit direct human prompting, relay the exact envelope via pi-intercom ASK to the named supervisor, and keep provider answer-consent plus acknowledgement/burn inside the worker. The supervisor performs no Gentle lifecycle command. Missing relay route fails closed. Genuine human-owned decisions remain human.
+
 ## C-006 — Normal git push is allowed; no publication-permission subsystem
 
 **Accepted.**

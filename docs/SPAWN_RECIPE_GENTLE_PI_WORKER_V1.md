@@ -79,6 +79,28 @@ herdr agent prompt "$WORKER_NAME" "$(cat "$WORKER_PROMPT_FILE")"
 `--timeout` is valid only together with `--wait`. Do not add `--wait` merely to monitor worker completion; worker lifecycle is event-driven through pi-intercom.
 
 After accepted submission, the supervisor ends its turn. No fixed sleeps, polling loops, periodic pane reads, long `herdr agent wait`, or `agent_status` lifecycle inference.
+
+## Mandatory bounded-RDD consent relay in the worker prompt
+
+For already-authorized bounded RDD consent, the prebuilt worker prompt MUST state all of the following explicitly; the supervisor must not paraphrase these clauses away when materializing a ticket brief:
+
+- `DO NOT call ask_user_choice` and do not ask the human directly for bounded RDD consent.
+- Send the exact Gentle consent envelope to the named supervisor via **pi-intercom ASK**.
+- Wait for the supervisor's bounded `GRANTED` / `DECLINED` decision.
+- If granted, the **worker** executes the provider-issued answer-consent transition and remains owner of correction/review/acknowledgement/burn.
+- The supervisor executes **zero `gentle-ai` commands**.
+- Missing supervisor alias or unavailable pi-intercom route means FAIL CLOSED / STOP; do not fall back to direct human prompting or another runtime.
+
+Before prompt delivery, the supervisor MUST run a deterministic presence check against `WORKER_PROMPT_FILE`:
+
+```bash
+grep -Fq 'DO NOT call ask_user_choice' "$WORKER_PROMPT_FILE" || exit 41
+grep -Fq 'pi-intercom ASK' "$WORKER_PROMPT_FILE" || exit 42
+grep -Fq 'worker executes the provider' "$WORKER_PROMPT_FILE" || exit 43
+grep -Fq 'supervisor executes zero' "$WORKER_PROMPT_FILE" || exit 44
+```
+
+These checks validate that the fixed relay contract is present; they do not authorize the supervisor to reconstruct Gentle lifecycle syntax or answer a genuinely human-owned product/authority decision.
 ## Failure behavior
 
 If Herdr or Pi rejects any pinned parameter — including `WORKER_MODEL` — the supervisor MUST fail closed before product mutation. It MUST NOT run model discovery, substitute another model, rewrite the spawn command, or infer a fallback route.

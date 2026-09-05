@@ -195,6 +195,8 @@ Pi + Gentle Pi worker
 
 When Gentle returns provider-issued lifecycle transitions, the **Pi/Gentle-Pi worker** is the orchestrator that executes them. The phrase “orchestrator executes provider-issued transitions” in Gentle documentation MUST NOT be interpreted as permission for the outer Pi supervisor to take over that lifecycle.
 
+For an already-authorized bounded RDD consent envelope, the worker MUST NOT use `ask_user_choice` or otherwise ask the human directly. It relays the exact envelope through pi-intercom ASK to the named supervisor. The supervisor may return only the bounded `GRANTED`/`DECLINED` decision supported by current execution authority; the worker then executes any provider-issued answer-consent transition and continues to own review, correction and acknowledgement/burn. Missing intercom/alias or any scope mismatch fails closed. Genuine human-owned product/authority decisions remain human boundaries and are not converted into supervisor consent.
+
 ### 7.2 Worker continuity policy
 
 For a bounded continuation or repair of the **same work item**, Pi MAY reuse an existing healthy Pi/Gentle-Pi worker when all of these remain true:

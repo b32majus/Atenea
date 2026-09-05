@@ -60,6 +60,8 @@ normal Pi supervisor (Gentle Pi OFF; pi-intercom ON)
 
 No fixed sleeps, polling loops, long waits or `agent_status` lifecycle inference. A rejected pinned model/flag fails closed before product mutation. Final merge remains human unless separately authorized.
 
+Bounded RDD consent is also event-driven: the worker must relay the exact consent envelope to the named supervisor via pi-intercom ASK and must not call `ask_user_choice` for an already-authorized bounded consent. The supervisor returns only the bounded decision; the worker performs the provider transition and owns the remaining Gentle lifecycle. Missing intercom/alias is STOP, not a reason to ask the human directly or switch runtime.
+
 ## 1. Preflight
 
 Confirm before starting a run:
