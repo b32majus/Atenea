@@ -327,9 +327,9 @@ verify exact predecessor checkpoints/blobs
 
 This is a composition gate, not a requirement to merge each predecessor into a protected/integration branch.
 
-## Pinned supervisor spawn recipe finding — two separate fail-closed defects
+## Pinned worker-spawn contract finding — two separate fail-closed defects
 
-Two supervisor startup defects were observed. They share one ergonomics root — reconstructing a pinned launch from prose — but are distinct failures:
+Two startup defects were observed. Only the first is a supervisor-behavior defect; the second is a bad pinned launch parameter supplied before the worker started:
 
 ```text
 DEFECT_S1_SUPERVISOR_BOOTSTRAP_REDISCOVERY
@@ -338,16 +338,18 @@ DEFECT_S1_SUPERVISOR_BOOTSTRAP_REDISCOVERY
   consequence: wasted time / possible stall before worker creation
   classification: operator-ergonomics / spawn-contract defect, not product or Gentle lifecycle failure
 
-DEFECT_S2_SPAWN_MODEL_IDENTIFIER_FAILURE
-  observed: final-qualification first spawn attempt reconstructed a model identifier that failed at runtime
+DEFECT_S2_INVALID_PINNED_WORKER_MODEL_PARAMETER
+  observed: the final-qualification spawn command was supplied with literal `code/deepseek/deepseek-v4-flash`, which the runtime rejected as Model not found
+  supervisor behavior: CORRECT_FAIL_CLOSED — no model discovery, substitution or retry with a guessed route
   product mutation: NONE
   RDD reached: NO
-  consequence: worker never became execution-ready; attempt failed closed
+  consequence: worker never became execution-ready
   evidence: `outbox/reports/promueve-t5-final-qualification-20260905/spawn-fail-supervisor.txt`
-  recovery: fresh launch using the exact verified recipe; final qualification then completed unattended
+  ownership: launch/planning parameter resolution, not worker lifecycle or supervisor inference
+  recovery: Cora supplied the verified literal worker model and a fresh launch completed unattended
 ```
 
-A prose instruction saying “do not rediscover the harness” is therefore insufficient. Pinned work should consume a small **versioned exact worker-spawn recipe** containing the already-qualified Herdr pane/start syntax, required environment injection, extension flags and the exact model route selected for that run. The supervisor validates the recipe against current runtime availability; it does not regenerate command syntax or model identifiers from memory.
+A prose instruction saying “do not rediscover the harness” is insufficient for spawn mechanics. Pinned work should consume a small **versioned exact worker-spawn recipe** containing the already-qualified Herdr pane/start syntax, required environment injection and extension flags. The planning/launch surface resolves and verifies the literal `WORKER_MODEL` before supervisor launch; the supervisor consumes that literal unchanged and does not run model discovery or substitute another route. A runtime rejection therefore fails closed instead of triggering rediscovery.
 
 This requirement does **not** authorize a daemon, scheduler, launcher service, DAG/controller or KairOS-style state machine. It is deterministic repo-local operator configuration, not a new runtime layer.
 
@@ -443,4 +445,4 @@ GENTLE_PI_2_4_ADOPTED=NO
 ADOPTION_DECISION=PENDING_HUMAN_REVIEW
 ```
 
-The successful qualification also exposed operator-ergonomics debt that does not invalidate PASS_DELETE: supervisor LLMs may rediscover Herdr syntax or rewrite a model identifier even when told not to. The first final-qualification spawn attempt failed closed with zero product mutation; the second self-corrected and completed unattended. This strengthens the requirement for a small versioned/pinned worker-spawn recipe inside the harness rather than repeated prose reconstruction. That recipe must not become a new daemon, scheduler or KairOS-style controller.
+The successful qualification also exposed bounded spawn ergonomics debt that does not invalidate PASS_DELETE: a supervisor may rediscover Herdr syntax when given only descriptive orchestration prose, while an invalid worker-model literal supplied by the launch surface correctly fails closed. This strengthens the requirement for a small versioned/pinned worker-spawn recipe plus pre-resolved model parameters rather than repeated prose reconstruction. That recipe must not become a new daemon, scheduler or KairOS-style controller.
