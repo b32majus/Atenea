@@ -49,21 +49,7 @@ Provision the worker so Gentle Pi can discover normally, and use `docs/SPAWN_REC
 
 ## 2. Current qualified reference stack
 
-The field-proven reference environment as of 2026-09-03/04 is:
-
-```text
-Pi          0.84.4
-Herdr       0.8.2
-OpenCode    1.18.27
-Gentle AI   2.5.0 production stable
-Engram      1.20.0 stable reference
-```
-
-The real operator-triggered Atenea E2E was proven with Pi → Herdr → headless OpenCode → Gentle and normal non-force publication.
-
-These versions are **reference evidence**, not a claim that Atenea must forever pin them. A newer upstream runtime must be treated according to current compatibility/qualification evidence, not silently assumed equivalent.
-
-A bounded replacement experiment under issue #35 is currently exercising a newer non-adopted epoch:
+The **adopted unattended reference epoch** is:
 
 ```text
 Pi          0.85.1
@@ -73,29 +59,46 @@ Gentle AI   2.6.0
 pi-intercom 0.13.0
 ```
 
-PROMueve T4 produced an execution-path zero-touch PASS on that epoch; T5 final qualification plus supervisor-owned read-only frontier rediscovery (`NEXT_FRONTIER=#298`, no T6 launch) closed the remaining #35 preservation gate, yielding `PASS_DELETE`. Do **not** treat this block as the normal installation baseline until the human adoption decision explicitly approves the cutover. See `docs/GENTLE_PI_24_REPLACEMENT_FIELD_EVIDENCE_20260905.md`.
+PROMueve T4 plus the final T5 qualification/frontier reconciliation qualified this path and the human adoption decision was integrated in PR #47. Treat these versions as field evidence, not permanent architectural pins; newer upstream versions require compatibility evidence before silently replacing them.
+
+The earlier 2026-09-03/04 stack remains **historical qualification evidence only**:
+
+```text
+Pi          0.84.4
+Herdr       0.8.2
+OpenCode    1.18.27
+Gentle AI   2.5.0
+Engram      1.20.0
+```
+
+That epoch proved Pi → Herdr → headless OpenCode → Gentle, but OpenCode is no longer a required dependency of the adopted unattended path. Preserve the evidence; do not recover it as current policy. See `docs/GENTLE_PI_24_REPLACEMENT_FIELD_EVIDENCE_20260905.md` for the replacement qualification.
 
 ## 3. Install upstream runtimes, not Atenea replacements
 
-Install Pi, Herdr, OpenCode and Gentle AI using their current official upstream instructions.
+Install Pi, Herdr, Gentle Pi / Gentle AI and pi-intercom using their current supported upstream installation surfaces. OpenCode may remain installed for attended/alternate use or historical reproduction, but it is not a prerequisite of the adopted unattended path.
 
 Atenea MUST NOT introduce a custom bootstrapper merely to wrap upstream installation.
-
-The Gentle/OpenCode configuration must expose the managed Gentle integration used by the accepted worker path. Historical qualification installed Gentle globally for OpenCode using the upstream `full-gentleman` preset after the workspace-scope surface proved undiscoverable in that runtime generation. The historical command/evidence is preserved in `docs/STAGE2_INSTALL.md`; verify current Gentle help/upstream documentation before repeating an old command verbatim on a new machine.
 
 The current conceptual requirement is:
 
 ```text
-OpenCode
-  gentle-orchestrator available
-  managed Gentle review/RDD integration available
-  Engram/current managed dependencies healthy where required
+plain Pi supervisor
+  Gentle Pi OFF
+  pi-intercom explicitly available
+  explicit Pi --name + run-scoped PI_INTERCOM_SCOPE_ID
+
+Pi + Gentle Pi worker
+  Gentle Pi discoverable/healthy
+  Gentle native review/RDD effective
+  explicit Pi --name in the same intercom scope
+  versioned Atenea RDD relay extension loaded for pinned unattended work
 
 Gentle AI
-  production stable binary installed
-  doctor healthy
-  RDD effective for the selected execution environment
+  compatible binary installed
+  doctor/runtime healthy
 ```
+
+Historical OpenCode/Gentle installation commands are preserved in `docs/STAGE2_INSTALL.md`; they are not the current installation recipe.
 
 Do not install CodeGraph, Graphify, OpenSpec, Impeccable or any other optional shaping/repository-intelligence tool simply because Atenea can use it. Those are selected during pre-`EXECUTION_READY` shaping only when the target project warrants them.
 
@@ -108,50 +111,46 @@ At minimum:
 ```bash
 pi --version
 herdr --version
-opencode --version
 gentle-ai --version
 gentle-ai doctor
 ```
 
-Then verify OpenCode can see the managed Gentle worker surface using the currently supported OpenCode diagnostic commands. Historical qualification used surfaces such as:
+Then verify the effective Pi worker can load Gentle Pi and pi-intercom, and that the pinned Atenea recipe can supply explicit supervisor/worker names, one shared intercom scope and the versioned RDD relay extension. Exact upstream diagnostic syntax can evolve; the invariant is the result:
 
 ```text
-opencode agent list
-opencode mcp list
-opencode debug agent gentle-orchestrator --pure
-opencode debug skill --pure
-```
-
-Exact diagnostic syntax can evolve upstream; the invariant is the result:
-
-```text
-GENTLE_ORCHESTRATOR_EFFECTIVE=YES
+PI_SUPERVISOR_PLAIN=YES
+PI_INTERCOM_EFFECTIVE=YES
+PI_GENTLE_WORKER_EFFECTIVE=YES
 GENTLE_RUNTIME_HEALTHY=YES
-REQUIRED_MANAGED_GENTLE_SURFACES=DISCOVERABLE
+NAMED_SCOPED_INTERCOM_IDENTITY=YES
+ATENEA_RDD_RELAY_EXTENSION_LOADABLE=YES
 ```
+
+If OpenCode is intentionally used as an alternate/attended path, verify that installation separately; its diagnostics are not a gate for the normal unattended route.
 
 Do not “fix” a failed verification by copying old generated files, moving managed assets between undocumented directories or adding an Atenea wrapper. Diagnose upstream first.
 
 ## 5. RDD and the current zero-touch boundary
 
-Gentle native RDD is part of the accepted final-candidate lifecycle.
-
-Production Gentle `2.5.0` remains the production stable operational target, but released negotiated `review-integration/v2` still lacks the supported provider-owned unattended selector required for the proven zero-human-touch OpenCode route.
+Gentle native RDD is part of the accepted final-candidate lifecycle. The adopted worker is Pi + Gentle Pi; the outer supervisor executes zero Gentle lifecycle commands.
 
 Current truth:
 
 ```text
-STABLE_GENTLE_ZERO_TOUCH_CAPABILITY=PROVEN
-RELEASED_V2_PROVIDER_UNATTENDED_SELECTOR=NOT_AVAILABLE
-NEGOTIATED_V2_UNATTENDED_PROVIDER_CANARY=PASS
-REAL_OPERATOR_TRIGGERED_ATENEA_E2E=PASS
-PRODUCTION_GENTLE_MODIFIED=NO
-UPSTREAM_REPLACEMENT_STILL_REQUIRED=YES
+GENTLE_PI_2_4_UNATTENDED_PATH=ADOPTED
+NATIVE_GENTLE_EXACT_CANDIDATE_RDD=REQUIRED
+SUPERVISOR_GENTLE_COMMANDS=0
+BOUNDED_CONSENT_DECISION=SUPERVISOR_ONLY_WHEN_ALREADY_AUTHORIZED
+PROVIDER_ANSWER_CONSENT_AND_ACK_BURN=WORKER_OWNED
+NORMAL_NON_FORCE_PUBLICATION=ALLOWED_BY_REPOSITORY_POLICY
+FINAL_MERGE=HUMAN_BOUNDARY
 ```
 
-The bounded downstream provider canary is documented in `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`. Its environment selector is experimental evidence, not an upstream API and not a permanent production fork.
+For pinned unattended work, supervisor and worker have explicit Pi names inside one run-scoped pi-intercom scope. `extensions/atenea-rdd-consent-relay.mjs` transports the exact provider-produced consent payload mechanically through pi-intercom's public outbox; the model must not reconstruct or reserialize that envelope. Any name/scope/payload identity mismatch fails closed.
 
-Do not restore zero-touch by stripping `relay`, injecting `granted`, reconstructing START or adding a consent database/controller.
+The older OpenCode negotiated-v2 canary remains historical evidence in `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`; it is not a current operational gate.
+
+Do not manufacture zero-touch by stripping `relay`, injecting `granted`, reconstructing provider START/envelopes, or adding a consent database/controller.
 
 ## 6. Matt / OpenSpec / Repository Intelligence are not installation prerequisites
 
@@ -184,12 +183,12 @@ Once a work item is explicitly `EXECUTION_READY`, the human uses the normal oper
 
 ```text
 1. Open/use Herdr in the target repository context.
-2. Start Pi interactively.
-3. Give one bounded Atenea execution prompt.
-4. Pi performs the bounded preflight and supervises the worker.
-5. Pi launches/reuses headless OpenCode through Herdr.
-6. OpenCode + Gentle owns implementation, verification and Gentle lifecycle.
-7. Pi reconciles publication/frontier and returns the factual final report.
+2. Human or Cora/DC mechanically starts the plain Pi supervisor with its pre-resolved model, explicit Pi name, run-scoped intercom scope and pi-intercom enabled; Gentle Pi remains OFF in the supervisor.
+3. Give one bounded Atenea execution/train prompt.
+4. Pi performs the bounded preflight and consumes the pinned spawn parameters unchanged.
+5. Pi launches one separate visible, explicitly named/scoped Pi + Gentle Pi worker through Herdr using `docs/SPAWN_RECIPE_GENTLE_PI_WORKER_V1.md`.
+6. The worker owns implementation, verification, native Gentle RDD, provider transitions, acknowledgement/burn and authorized normal non-force publication; the versioned Atenea relay handles exact bounded-consent transport.
+7. Pi reconciles publication/frontier and returns the factual final report or launches a fresh compatible worker when the authorized train permits it.
 8. Final merge remains a human boundary unless separately authorized.
 ```
 
@@ -200,7 +199,11 @@ Use `docs/OPERATOR_RUNBOOK_V1.md` for the exact operator guidance and prompt tem
 ```text
 PI_ROLE=NON_IMPLEMENTING_SUPERVISOR
 HERDR_ROLE=PROCESS_SESSION_SUBSTRATE
-OPENCODE_TRANSPORT=HEADLESS_RUN
+SUPERVISOR_PI_NAME=EXPLICIT
+WORKER_PI_NAME=EXPLICIT
+PI_INTERCOM_SCOPE=RUN_SCOPED_AND_SHARED
+WORKER_RUNTIME=PI_PLUS_GENTLE_PI
+ATENEA_RDD_RELAY=VERSIONED_AND_MECHANICAL
 PI_DIRECT_GENTLE_LIFECYCLE_CALLS=0
 GENTLE_EXACT_CANDIDATE_RDD=PASS
 ACKNOWLEDGEMENT_BURN=PASS
@@ -229,7 +232,7 @@ Who chooses greenfield/brownfield shaping?
 → human + Cora/planning surface before EXECUTION_READY
 
 Who executes after EXECUTION_READY?
-→ Pi supervises Herdr → headless OpenCode + Gentle
+→ plain Pi supervisor → Herdr → separate named/scoped Pi + Gentle Pi worker
 
 Who owns final review authority?
 → Gentle native exact-candidate RDD lifecycle
