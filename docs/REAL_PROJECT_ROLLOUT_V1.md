@@ -1,6 +1,6 @@
 # Atenea Real-Project Rollout v1
 
-Date: 2026-09-03
+Date: 2026-09-05
 Status: ACTIVE
 
 ## Goal
@@ -413,47 +413,58 @@ Do not use real-project rollout as an excuse to reintroduce:
 
 These guardrails remain current policy after the #38 real E2E run and the #39 operator-ergonomics refinement.
 
-## 10. Gentle Pi 2.3.0 — one bounded replacement/deletion evaluation
+## 10. Gentle Pi 2.4.0 — bounded replacement/deletion evaluation = PASS_DELETE; adoption pending
 
-Gentle Pi `2.2.0` remains a historical Atenea FAIL. Stable `2.3.0` is materially changed and therefore qualifies for one bounded re-evaluation under the existing no-large-ladder rule.
+Gentle Pi `2.2.0` remains a historical Atenea FAIL. The materially changed upstream line was eligible for one bounded reevaluation under issue #35; the current real field epoch is `2.4.0`.
 
-The experiment asks exactly:
-
-> Can Gentle Pi `2.3.0` preserve the already-qualified Atenea properties while deleting architecture or glue from the current Pi → Herdr → OpenCode + Gentle composition?
-
-Required properties to preserve:
+PROMueve T3/T4 are the natural real-project evidence surface. T3 diagnosed the remaining seams. T4 then demonstrated the corrected topology:
 
 ```text
-frontier discovery from current repository/tracker authority
-fail-closed blocker/authority handling
-no host-archaeology authority escape
-non-destructive repository isolation
-bounded implementation/edit surface
-stable Gentle 2.5.0 exact-candidate RDD lifecycle
-provider-issued continuation/re-entry verbatim
-permission/blocker relay compatible with Herdr where needed
-normal non-force repository delivery
-exact remote reconciliation
-frontier rediscovery and exhaustion STOP
-no automatic merge
+normal Pi supervisor (Gentle Pi OFF; pi-intercom ON)
+→ Herdr separate worker pane
+→ Pi worker + Gentle Pi 2.4.0
+   GENTLE_PI_AUTONOMOUS_MODE=1 injected in worker pane
+   --no-skill-registry
+→ implementation / deterministic verification
+→ native Gentle RDD
+→ supervisor consumes bounded preauthorized RDD decision
+→ acknowledgement/burn
+→ normal non-force publication
 ```
 
-Decision:
+T4 result:
 
 ```text
-PASS + meaningful deletion
-  → propose the smaller architecture and identify exactly what disappears
-
-PASS but no meaningful deletion
-  → keep current qualified architecture; no reason to switch
-
-FAIL / ambiguity / added fragility
-  → keep current qualified architecture; record the narrow failure
+REAL_BOUNDED_REPAIR=PASS
+EXTERNAL_TOUCH_AFTER_CORA_LAUNCH=0
+SUPERVISOR_SELF_RDD_REQUESTS=0
+GENTLE_RDD=PASS
+ACKNOWLEDGEMENT_BURN=PASS
+NORMAL_NON_FORCE_PUBLICATION=PASS
+REMOTE_CHECKPOINT=d5e71247aaa4c57bb4b066313e679ab21ceb6d1e
 ```
 
-Do not layer Gentle Pi on top of the existing architecture as another mandatory component.
+T5 supplied the continuation evidence: its initial candidate was rejected by independent product audit despite unattended/RDD PASS; atomic repairs #303/#304 then produced the final `5ae810a…` candidate, whose fresh qualification passed predecessor/T5 batteries, high-risk four-lens native RDD, acknowledgement/burn and remote reconciliation. A subsequent fresh GitHub read identified T6 #298 as the next executable frontier and stopped without launching it. Therefore #35 resolves `PASS_DELETE`. Do not change the normal operator front door until the explicit human adoption/cutover decision is reviewed.
 
-This experiment is **not Stage 9**.
+Evidence: `docs/GENTLE_PI_24_REPLACEMENT_FIELD_EVIDENCE_20260905.md`.
+
+Field hardening demonstrated after T4:
+
+```text
+SUPERVISION = event-driven pi-intercom, no fixed polling
+PRODUCT_ACCEPTANCE = separate from unattended lifecycle PASS
+INTEGRATION_PRECHECK = compose accepted siblings + predecessor contract gate
+PI_LENS = diagnostic-only (--no-autoformat --no-autofix)
+WORKER_ROUTE = selected by current route health; Muse Spark 1.3 / Console Go was degraded by repeated 429s in this epoch
+SPAWN = consume an exact versioned recipe for pinned work; do not rediscover CLI/model syntax per ticket
+CONTINUITY = PASS on final T5 qualification (5ae810a)
+FRONTIER_REDISCOVERY_STOP = PASS (NEXT_FRONTIER=#298; T6 not launched)
+FULL_REPLACEMENT_QUALIFICATION = PASS_DELETE
+ADOPTION = PENDING_HUMAN_REVIEW
+```
+
+These are field-proven findings from the completed bounded #35 evaluation. They are not permission to introduce a new controller/daemon/scheduler. The adopted OpenCode front door remains unchanged until the explicit human adoption/cutover decision.
+
 
 ## 11. Optional OpenSpec field evidence
 

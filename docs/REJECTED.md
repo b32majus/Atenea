@@ -10,7 +10,7 @@ Several entries below originated before Stage 7/8 and are preserved as historica
 - Pi is **qualified as Atenea's thin supervisor** through Stage 7/8.
 - Herdr is the **process/session substrate**, not a policy/gating controller.
 - OpenCode + Gentle remains the accepted implementation worker.
-- Gentle Pi `2.2.0` is **not qualified** and remains uninstalled.
+- Gentle Pi `2.2.0` remains **not qualified** historical evidence; Gentle Pi `2.4.0` is installed only for the bounded #35 replacement reevaluation and is not yet adopted.
 - no custom execute-Issue launcher/controller is to be rebuilt from KairOS #271.
 
 Historical entries remain useful because they explain why the architecture converged.
@@ -155,7 +155,7 @@ The incident was caused by stale `GH_TOKEN` / `GITHUB_TOKEN` values in tmux's gl
 
 Clean and isolated runs still failed the complete unattended ticket lifecycle reliably. Failure classes included child model-routing inheritance gaps, RDD integration gaps and package-private/global Gentle lifecycle incompatibilities.
 
-Gentle Pi remains uninstalled. Do not build adapters around it. Revisit only after a materially changed upstream release.
+Do not build adapters around the failed `2.2.0` path. A materially changed upstream line has since been revisited: `2.4.0` is installed for the bounded #35 replacement experiment, which now resolves `PASS_DELETE` after PROMueve T4/T5 plus supervisor-owned frontier rediscovery/STOP; adoption remains pending an explicit human cutover decision. Preserve this R-022 entry as the historical `2.2.0` failure rather than rewriting it into a `2.4.0` rejection.
 
 ## R-023 — Rebuild KairOS #271 custom execute-Issue seam
 

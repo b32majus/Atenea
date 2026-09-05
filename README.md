@@ -209,6 +209,8 @@ Do not strip provider `relay`, inject `granted`, synthesize START, create a cons
 
 Evidence: `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`.
 
+A bounded replacement/deletion reevaluation under Atenea #35 is now exercising **Gentle Pi 2.4.0** on real PROMueve repairs. T4 produced an execution-path zero-touch PASS with a normal Pi supervisor + separate Gentle Pi worker. T5 final qualification plus a fresh read-only frontier rediscovery by the same non-implementing supervisor closed the remaining #35 continuity/frontier gate: it identified #298 as the next executable frontier and stopped without launching T6. The bounded replacement experiment therefore resolves `RESULT=PASS_DELETE`; adoption remains a separate human review decision. The currently adopted normal path is unchanged until that decision is made. Evidence: `docs/GENTLE_PI_24_REPLACEMENT_FIELD_EVIDENCE_20260905.md`.
+
 ## Installation / making Atenea work
 
 Atenea deliberately has **no bespoke installer or launcher**.
