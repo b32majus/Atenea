@@ -355,7 +355,22 @@ Candidate-path field lessons after PROMueve T5 and atomic repairs:
 - pi-lens should run diagnostic-only with `--no-autoformat --no-autofix` unless mutation is explicitly in scope.
 - repeated 429s on `opencode-go/muse-spark-1.3-contributor` make that worker route degraded in this field epoch; cause is unresolved and provider separation is not an architectural requirement.
 - pinned supervisor work should use an exact versioned spawn recipe rather than CLI/model rediscovery; prose prohibition alone did not prevent rediscovery in field use.
+- T5 reviewer continuation is now a golden regression under Atenea #56: provider `collectBindings` remain opaque; multi-lens work uses the native group capture; `reviewer-model-run-forecast` requires bounded ACK; the exact same capture is resumed with `reviewerRunAcknowledged=true`; acknowledged capture remains in flight until its tool call returns; all required lenses and native acknowledgement/burn precede publication. This restores behavior T5 had already demonstrated rather than adding a second review lifecycle.
 
+Deterministic restoration evidence for #56:
+
+```text
+ATENEA_REVIEWER_LIFECYCLE_CHECK=PASS
+T5_GOLDEN_BINDING_GROUP=4_LENSES
+T5_GROUP_DIGEST=d5f9e657ac02be061df87673e0c8e869522e3f22e3de4b57d09bd521d7aff629
+T5_REVIEW_TRANSPORT=pi_host_relay
+T5_REVIEWER_MODEL_RUNS=4
+SINGLE_LENS_CONTINUATION=PASS
+IN_FLIGHT_STOP_NEGATIVE=PASS
+MISSING_REQUIRED_LENS_NEGATIVE=PASS
+ACK_MISMATCH_NEGATIVE=PASS
+ACK_BURN_REQUIRED=PASS
+```
 
 ## Current runtime target
 
@@ -366,7 +381,7 @@ Adopted field epoch after cutover #45 / PR #47:
 - Gentle Pi `2.4.0` is the adopted normal unattended implementation/orchestration worker runtime;
 - Gentle AI `2.6.0` is the current field epoch behind that Gentle-Pi path;
 - pi-intercom `0.13.0` is the event-driven supervisor/worker control plane;
-- pinned runs require explicit Pi names, one shared run-scoped intercom identity and the versioned Atenea mechanical RDD relay extension;
+- pinned runs require explicit Pi names, one shared run-scoped intercom identity, the versioned Atenea mechanical RDD relay extension and the T5-proven reviewer continuation contract loaded from the same Atenea checkpoint root;
 - OpenCode `1.18.x` + Gentle `2.5.x` and the negotiated-v2 canary remain characterized historical/alternate evidence, not the normal unattended runtime;
 - model/provider routes are operational parameters selected by current health/cost/capability, not architecture pins;
 - upstream `Gentleman-Programming/gentle-ai#4109` remains relevant only for optional parity of the alternate OpenCode route and does not block the adopted path.

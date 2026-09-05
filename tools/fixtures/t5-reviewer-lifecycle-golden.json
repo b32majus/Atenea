@@ -1,0 +1,47 @@
+{
+  "schema": "atenea.t5-reviewer-lifecycle-golden/v1",
+  "source": "PROMueve T5 final qualification transcript + published field evidence, 2026-09-05",
+  "lineage_id": "review-e8412b793c0d303a",
+  "target_identity": "sha256:92e176857c4bba8588a134f04df9f48d540ddc3f791488c92b3ba0a30d86f3a6",
+  "binding_group": {
+    "count": 4,
+    "ordered_lenses": [
+      "review-risk",
+      "review-resilience",
+      "review-readability",
+      "review-reliability"
+    ],
+    "binding_sha256": [
+      "8fbb1276d4379fe3c78e194578071870ae3ba36bfa50d226c5b36e906e60c2ca",
+      "2b238f8cca63f8865aa1e418d84f41ea7d8ec9cd63f461e40d8c249cf12bc88f",
+      "d384e7b087609d910e24a5401cdc5a10d893aa727da6ddf3b5029d431d2db072",
+      "0686118960addbf04f31dc169dc8bb354a4a2468c42c454827e3d3ca449c74cd"
+    ],
+    "group_sha256": "d5f9e657ac02be061df87673e0c8e869522e3f22e3de4b57d09bd521d7aff629"
+  },
+  "forecast": {
+    "status": "blocked",
+    "outcome": "reviewer-model-run-forecast",
+    "transport": "pi_host_relay",
+    "model_runs": 4,
+    "ordered_lenses": [
+      "review-risk",
+      "review-resilience",
+      "review-readability",
+      "review-reliability"
+    ]
+  },
+  "acknowledged_capture": {
+    "same_binding_group": true,
+    "reviewerRunAcknowledged": true,
+    "terminal_status": "closed",
+    "terminal_outcome": "native-last-event-closure"
+  },
+  "review": {
+    "required_lenses_terminal": 4,
+    "state": "approved",
+    "ack_operation": "acknowledge-approved",
+    "ack_terminal_status": "closed",
+    "ack_terminal_outcome": "native-approved-acknowledgement-completed"
+  }
+}

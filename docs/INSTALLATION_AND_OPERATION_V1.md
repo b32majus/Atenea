@@ -115,7 +115,7 @@ gentle-ai --version
 gentle-ai doctor
 ```
 
-Then verify the effective Pi worker can load Gentle Pi and pi-intercom, and that the pinned Atenea recipe can supply explicit supervisor/worker names, one shared intercom scope and the versioned RDD relay extension. Exact upstream diagnostic syntax can evolve; the invariant is the result:
+Then verify the effective Pi worker can load Gentle Pi and pi-intercom, and that the pinned Atenea recipe can supply explicit supervisor/worker names, one shared intercom scope, the versioned RDD relay extension and the reviewer continuation contract through Pi `--append-system-prompt`. Exact upstream diagnostic syntax can evolve; the invariant is the result:
 
 ```text
 PI_SUPERVISOR_PLAIN=YES
@@ -124,6 +124,8 @@ PI_GENTLE_WORKER_EFFECTIVE=YES
 GENTLE_RUNTIME_HEALTHY=YES
 NAMED_SCOPED_INTERCOM_IDENTITY=YES
 ATENEA_RDD_RELAY_EXTENSION_LOADABLE=YES
+PI_APPEND_SYSTEM_PROMPT_FILE=YES
+ATENEA_REVIEWER_CONTINUATION_CHECK=PASS
 ```
 
 If OpenCode is intentionally used as an alternate/attended path, verify that installation separately; its diagnostics are not a gate for the normal unattended route.
@@ -142,11 +144,14 @@ NATIVE_GENTLE_EXACT_CANDIDATE_RDD=REQUIRED
 SUPERVISOR_GENTLE_COMMANDS=0
 BOUNDED_CONSENT_DECISION=SUPERVISOR_ONLY_WHEN_ALREADY_AUTHORIZED
 PROVIDER_ANSWER_CONSENT_AND_ACK_BURN=WORKER_OWNED
+T5_REVIEWER_CONTINUATION_CONTRACT=REQUIRED_FOR_PINNED_RUNS
+REVIEWER_BINDINGS=OPAQUE_PROVIDER_STATE
+ACKNOWLEDGED_REVIEWER_CAPTURE_IN_FLIGHT=NOT_A_STOP_CONDITION
 NORMAL_NON_FORCE_PUBLICATION=ALLOWED_BY_REPOSITORY_POLICY
 FINAL_MERGE=HUMAN_BOUNDARY
 ```
 
-For pinned unattended work, supervisor and worker have explicit Pi names inside one run-scoped pi-intercom scope. `extensions/atenea-rdd-consent-relay.mjs` transports the exact provider-produced consent payload mechanically through pi-intercom's public outbox; the model must not reconstruct or reserialize that envelope. Any name/scope/payload identity mismatch fails closed.
+For pinned unattended work, supervisor and worker have explicit Pi names inside one run-scoped pi-intercom scope. `extensions/atenea-rdd-consent-relay.mjs` transports the exact provider-produced consent payload mechanically through pi-intercom's public outbox; the model must not reconstruct or reserialize that envelope. The same Atenea checkpoint root supplies `docs/GENTLE_REVIEWER_CONTINUATION_V1.md`, loaded by Pi from the first token. Any name/scope/payload identity mismatch fails closed.
 
 The older OpenCode negotiated-v2 canary remains historical evidence in `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`; it is not a current operational gate.
 

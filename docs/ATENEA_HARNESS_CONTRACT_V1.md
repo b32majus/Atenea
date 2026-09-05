@@ -199,6 +199,14 @@ When Gentle returns provider-issued lifecycle transitions, the **Pi/Gentle-Pi wo
 
 For an already-authorized bounded RDD consent envelope, the worker MUST NOT use `ask_user_choice` or otherwise ask the human directly. Atenea transports the exact provider text mechanically through the versioned worker-side RDD relay extension and pi-intercom outbox; the model MUST NOT reconstruct or reserialize the envelope. Supervisor and worker use explicit Pi `--name` identities inside one pre-resolved `PI_INTERCOM_SCOPE_ID`. The supervisor may return only the bounded `GRANTED`/`DECLINED` decision supported by current execution authority; the worker then executes any provider-issued answer-consent transition with the original opaque binding and continues to own review, correction and acknowledgement/burn. Missing/mismatched identity, scope, relay transport or candidate identity fails closed. Genuine human-owned product/authority decisions remain human boundaries and are not converted into supervisor consent.
 
+#### 7.1.1 Native reviewer continuation is provider-owned and T5-golden
+
+Pinned workers load `docs/GENTLE_REVIEWER_CONTINUATION_V1.md` from the same Atenea checkpoint as the RDD relay through Pi's supported `--append-system-prompt` file surface. The supervisor/ticket brief MUST NOT restate or paraphrase this lifecycle as authority.
+
+When native status requires reviewer collection, every `collectBinding` and continuation value is opaque. More than one binding uses the provider-native group capture; one binding uses the provider-native single capture. A `reviewer-model-run-forecast` is a bounded authorization transition, not review failure or Atenea STOP. If authorized, the worker repeats the exact same capture/binding group with `reviewerRunAcknowledged=true` and waits for that tool call to return. A recognized acknowledged capture in flight is not a STOP condition and must not be superseded by another same-slot capture or external observation timeout.
+
+Approval is not publishable until all required lenses are terminal for the current revision and provider-native `acknowledge-approved` / burn completes. Atenea never synthesizes reviewer results, bindings, acknowledgement tokens or missing lens completion. `UNATTENDED_PASS` and independent product acceptance remain separate gates.
+
 ### 7.2 Worker continuity policy
 
 For a bounded continuation or repair of the **same work item**, Pi MAY reuse an existing healthy Pi/Gentle-Pi worker when all of these remain true:

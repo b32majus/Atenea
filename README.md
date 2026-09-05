@@ -201,13 +201,14 @@ NATIVE_GENTLE_EXACT_CANDIDATE_RDD               REQUIRED
 SUPERVISOR_GENTLE_COMMANDS                       0
 NAMED_SCOPED_PI_INTERCOM_IDENTITY                REQUIRED_FOR_PINNED_RUNS
 ATENEA_MECHANICAL_RDD_CONSENT_RELAY              REQUIRED_FOR_PINNED_RUNS
+ATENEA_GENTLE_REVIEWER_CONTINUATION_V1            REQUIRED_FOR_PINNED_RUNS
 NORMAL_NON_FORCE_PUBLICATION                     REPOSITORY_POLICY
 FINAL_MERGE                                      HUMAN_BOUNDARY
 ```
 
 The older negotiated-v2/OpenCode provider-selector gap remains tracked only for that alternate/historical OpenCode route. It does **not** block the adopted Pi/Gentle-Pi unattended workflow and is not a global Atenea replacement requirement.
 
-Do not strip provider `relay`, inject `granted`, synthesize START/envelopes, create a consent DB/controller or turn historical canary behavior into a permanent fork. Pinned runs use the versioned spawn recipe and mechanical RDD relay instead.
+Do not strip provider `relay`, inject `granted`, synthesize START/envelopes, create a consent DB/controller or turn historical canary behavior into a permanent fork. Pinned runs use the versioned spawn recipe, mechanical RDD relay and the T5-proven reviewer continuation contract instead. Opaque reviewer bindings are never reconstructed by the supervisor or ticket brief.
 
 Evidence: `docs/GENTLE_PI_24_REPLACEMENT_FIELD_EVIDENCE_20260905.md`; historical OpenCode canary: `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`.
 

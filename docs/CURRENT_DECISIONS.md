@@ -103,6 +103,16 @@ Pinned runs therefore use one explicit logical name per supervisor/worker across
 
 C-027 remains the ownership rule (worker→supervisor bounded decision; worker owns provider/Gentle lifecycle), but its earlier literal `pi-intercom ASK` transport wording is superseded by this mechanical outbox relay.
 
+## C-029 — T5-proven reviewer continuation is a versioned worker contract
+
+**Accepted from recovered T5 final-qualification evidence and reconciled under issue #56, 2026-09-06.**
+
+T5 did not bypass Reliability or make reviewer lenses optional. Native status returned four opaque `collectBindings`; the worker used `gentle_review_capture_group`, received a four-run `pi_host_relay` forecast, obtained bounded supervisor ACK, then re-submitted the exact same ordered binding group with `reviewerRunAcknowledged=true`. The acknowledged capture completed, all four required lenses reached APPROVED, and native acknowledgement/burn completed.
+
+The cutover #45/#47 preserved the macro topology but did not version this micro-protocol. Later workers therefore had to rediscover reviewer continuation and could reconstruct bindings or misclassify an in-flight capture as failure. This is classified primarily as lost operational contract, not a new Gentle Reliability defect.
+
+`docs/GENTLE_REVIEWER_CONTINUATION_V1.md` is now the durable reviewer continuation contract. Pinned Pi/Gentle-Pi workers receive it through Pi `--append-system-prompt` from the same Atenea checkpoint root as the mechanical consent relay. `tools/check-atenea-reviewer-lifecycle.mjs` freezes the T5 group/forecast/ACK/in-flight/approval/burn behavior plus single-lens and negative cases. Atenea still does not own or replace Gentle's reviewer lifecycle.
+
 ## C-006 — Normal git push is allowed; no publication-permission subsystem
 
 **Accepted.**

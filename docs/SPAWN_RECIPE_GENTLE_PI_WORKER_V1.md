@@ -19,6 +19,8 @@ Purpose: remove spawn ambiguity from the supervisor. The planning/launch surface
 - `WORKER_PROMPT_FILE`: exact prebuilt bounded worker prompt file.
 - `REQUIRED_ORACLE_PATH` + `REQUIRED_ORACLE_SHA256`: mandatory when repository/work-item authority requires a frozen principal acceptance oracle.
 
+The reviewer continuation contract and its checker are derived from the same Atenea checkpoint root as `ATENEA_RDD_RELAY_EXTENSION`; mixing harness components from different Atenea checkpoints is not supported.
+
 Do not ask the supervisor to discover models, Pi flags, Herdr syntax, plugins or extensions for pinned work.
 
 Identity inputs are fail-closed:
@@ -28,11 +30,18 @@ test -n "$SUPERVISOR_NAME" || exit 11
 test -n "$WORKER_NAME" || exit 12
 test -n "$INTERCOM_SCOPE_ID" || exit 13
 test -f "$ATENEA_RDD_RELAY_EXTENSION" || exit 14
+ATENEA_CHECKPOINT_ROOT="$(cd "$(dirname "$ATENEA_RDD_RELAY_EXTENSION")/.." && pwd)"
+ATENEA_REVIEWER_LIFECYCLE_CONTRACT="$ATENEA_CHECKPOINT_ROOT/docs/GENTLE_REVIEWER_CONTINUATION_V1.md"
+test -f "$ATENEA_REVIEWER_LIFECYCLE_CONTRACT" || exit 19
+grep -Fq "ATENEA_GENTLE_REVIEWER_CONTINUATION_V1" "$ATENEA_REVIEWER_LIFECYCLE_CONTRACT" || exit 19
 test "${#SUPERVISOR_NAME}" -le 32 || exit 15
 test "${#WORKER_NAME}" -le 32 || exit 16
 ATENEA_INTERCOM_CONFIG_CHECK="$(cd "$(dirname "$ATENEA_RDD_RELAY_EXTENSION")/.." && pwd)/tools/check-pi-intercom-unattended-config.mjs"
 test -f "$ATENEA_INTERCOM_CONFIG_CHECK" || exit 17
 node "$ATENEA_INTERCOM_CONFIG_CHECK" || exit 18
+ATENEA_REVIEWER_LIFECYCLE_CHECK="$ATENEA_CHECKPOINT_ROOT/tools/check-atenea-reviewer-lifecycle.mjs"
+test -f "$ATENEA_REVIEWER_LIFECYCLE_CHECK" || exit 19
+node "$ATENEA_REVIEWER_LIFECYCLE_CHECK" || exit 19
 ```
 
 The config check is read-only and requires pi-intercom `enabled=true`, `confirmSend=false` and `inboundTrigger=always`; incompatible machine-global config is STOP before worker launch and is never mutated by Atenea.
@@ -102,12 +111,13 @@ herdr agent start "$WORKER_NAME" --kind pi --pane "$WORKER_PANE" -- \
   --thinking "$WORKER_THINKING" \
   --name "$WORKER_NAME" \
   -e "$ATENEA_RDD_RELAY_EXTENSION" \
+  --append-system-prompt "$ATENEA_REVIEWER_LIFECYCLE_CONTRACT" \
   --no-skill-registry \
   --no-autoformat \
   --no-autofix
 ```
 
-Normal extension discovery remains enabled for the worker so Gentle Pi loads normally. Pi-lens remains diagnostic-only because autoformat/autofix are disabled. The worker must read repository `AGENTS.md` and coding standards before product write; if Gentle delegates to a bounded writer, the handoff must carry the applicable project constraints.
+Normal extension discovery remains enabled for the worker so Gentle Pi loads normally. Pi-lens remains diagnostic-only because autoformat/autofix are disabled. The reviewer continuation contract is loaded by Pi through the supported `--append-system-prompt` file surface, so the T5-proven lifecycle is present from the worker's first token and is not reconstructed by the supervisor or ticket brief. The worker must read repository `AGENTS.md` and coding standards before product write; if Gentle delegates to a bounded writer, the handoff must carry the applicable project constraints.
 
 ## Prompt delivery
 

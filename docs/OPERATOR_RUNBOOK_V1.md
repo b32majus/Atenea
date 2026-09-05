@@ -62,6 +62,8 @@ No fixed sleeps, polling loops, long waits or `agent_status` lifecycle inference
 
 Bounded RDD consent is also event-driven, but the model is not the serializer. The versioned Atenea worker relay extension forwards the exact `gentle_review` consent payload through pi-intercom outbox to the named/scoped supervisor and blocks direct `ask_user_choice` while that consent is pending. The supervisor returns only the bounded decision; the worker performs the provider transition and owns the remaining Gentle lifecycle. Missing/mismatched name, scope, relay extension or intercom route is STOP, not a reason to ask the human directly, manually reconstruct the envelope or switch runtime.
 
+Reviewer continuation after consent follows `docs/GENTLE_REVIEWER_CONTINUATION_V1.md`, loaded into the worker by the pinned recipe through Pi `--append-system-prompt`. `collectBindings` stay opaque; group/single capture follows the provider-returned collection shape; `reviewer-model-run-forecast` is a bounded cost authorization transition; ACK repeats the exact same capture with `reviewerRunAcknowledged=true`; an acknowledged capture remains in flight until its tool call returns; all required lenses plus native acknowledgement/burn are required before publication. The operator/supervisor does not infer reviewer failure from wall-clock observation.
+
 ## 1. Preflight
 
 Confirm before starting a run:
