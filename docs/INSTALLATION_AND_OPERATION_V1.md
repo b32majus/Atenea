@@ -47,6 +47,18 @@ The real operator-triggered Atenea E2E was proven with Pi → Herdr → headless
 
 These versions are **reference evidence**, not a claim that Atenea must forever pin them. A newer upstream runtime must be treated according to current compatibility/qualification evidence, not silently assumed equivalent.
 
+A bounded replacement experiment under issue #35 is currently exercising a newer non-adopted epoch:
+
+```text
+Pi          0.85.1
+Herdr       0.8.2
+Gentle Pi   2.4.0
+Gentle AI   2.6.0
+pi-intercom 0.13.0
+```
+
+PROMueve T4 produced an execution-path zero-touch PASS on that epoch; T5 final qualification plus supervisor-owned read-only frontier rediscovery (`NEXT_FRONTIER=#298`, no T6 launch) closed the remaining #35 preservation gate, yielding `PASS_DELETE`. Do **not** treat this block as the normal installation baseline until the human adoption decision explicitly approves the cutover. See `docs/GENTLE_PI_24_REPLACEMENT_FIELD_EVIDENCE_20260905.md`.
+
 ## 3. Install upstream runtimes, not Atenea replacements
 
 Install Pi, Herdr, OpenCode and Gentle AI using their current official upstream instructions.

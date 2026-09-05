@@ -1,6 +1,6 @@
 # Atenea — Qualification Status
 
-Date of current status: 2026-09-03
+Date of current status: 2026-09-05
 
 This document is the current qualification index. Stage-specific files remain frozen evidence. Earlier `NEXT`, `DEFERRED` or `NOT_YET_QUALIFIED` labels are historical when they conflict with this file, `README.md`, `docs/CURRENT_DECISIONS.md` or `docs/ATENEA_HARNESS_CONTRACT_V1.md`.
 
@@ -303,35 +303,53 @@ The root fix was removing those stale variables. New panes were verified clean a
 
 Do not reintroduce `env -u GH_TOKEN -u GITHUB_TOKEN ...` wrappers or an authentication shim without new evidence.
 
-## Gentle Pi — historical FAIL; 2.3.0 REEVALUATION_ELIGIBLE
+## Gentle Pi — historical 2.2.0 FAIL; 2.4.0 bounded replacement PASS_DELETE, adoption pending human review
 
-Gentle Pi `2.2.0` did not complete the full unattended lifecycle reliably even after isolated-home bootstrapping.
+Gentle Pi `2.2.0` did not complete the full unattended lifecycle reliably. That historical failure remains valid evidence.
+
+Atenea #35 permits one bounded replacement/deletion reevaluation after a materially changed upstream release. The current field epoch is:
+
+```text
+Pi          0.85.1
+Herdr       0.8.2
+Gentle Pi   2.4.0
+Gentle AI   2.6.0
+pi-intercom 0.13.0
+```
+
+PROMueve T3 was diagnostic: exact-candidate RDD delegation from the Gentle Pi worker to the Pi supervisor worked, but the supervisor also loaded Gentle Pi and generated self-RDD prompts from the shared worktree; the worker also lacked explicit autonomous-mode env propagation.
+
+PROMueve T4 corrected those two seams and completed a real bounded repair with zero external touch after Cora/DC launch. T5 then supplied composed integration evidence: initial SHA `13d759e…` was unattended/RDD/published but failed independent product acceptance; atomic Repairs A/B closed the defects; final SHA `5ae810a…` passed T2 `422/422`, T3 `71/71` + oracle `22/22`, T4 `169/169`, T5 `157/157`, syntax/diff checks, exact predecessor blob identity and native 4-lens RDD with acknowledgement/burn. Final qualification made no product mutation and required zero external touch.
 
 ```text
 GENTLE_PI_2_2_0_FOR_ATENEA_UNATTENDED_EXECUTION = NOT_QUALIFIED / FAIL
+GENTLE_PI_2_4_EXECUTION_PATH_CANDIDATE           = PASS
+GENTLE_PI_2_4_ZERO_TOUCH_REAL_REPAIR             = PASS
+GENTLE_PI_2_4_NORMAL_PUBLICATION                  = PASS
+GENTLE_PI_2_4_COMPOSED_T5_QUALIFICATION           = PASS
+GENTLE_PI_2_4_FRONTIER_REDISCOVERY_STOP            = PASS
+GENTLE_PI_2_4_ADOPTED                             = NO
+GENTLE_PI_2_4_FULL_REPLACEMENT_QUALIFICATION      = PASS_DELETE
+GENTLE_PI_2_4_ADOPTION_DECISION                    = PENDING_HUMAN_REVIEW
 ```
 
-That failure remains historical evidence and MUST NOT be erased.
+T4 demonstrated meaningful deletion potential because the worker path did not use OpenCode or the downstream negotiated-v2 OpenCode consent-policy canary. T5 then exercised the composed path; after two atomic product repairs, final qualification at `5ae810aee2ec1cf832aff74aed888ec04c3c6bee` passed the full deterministic suite, native high-risk four-lens RDD, acknowledgement/burn and exact remote reconciliation. The same non-implementing supervisor then performed a fresh read-only GitHub authority check of #292/#298, identified `NEXT_FRONTIER=#298`, launched no T6 worker and STOPped. The bounded #35 experiment therefore satisfies `PASS_DELETE`. Keep the currently adopted Pi → Herdr → headless OpenCode + Gentle path until the human adoption review explicitly approves the cutover.
 
-Gentle Pi `2.3.0` is a materially changed stable upstream release: it carries Gentle AI `2.5.0`, speaks the stable review contract, executes provider-issued continuations verbatim, includes the acknowledgement lifecycle, exposes a native Herdr bridge/guarded-command permission lifecycle and adds parent-owned edit surfaces.
+Evidence: `docs/GENTLE_PI_24_REPLACEMENT_FIELD_EVIDENCE_20260905.md`.
 
-Therefore:
+Candidate-path field lessons after PROMueve T5 and atomic repairs:
 
-```text
-GENTLE_PI_2_3_0_FOR_ATENEA = REEVALUATION_ELIGIBLE
-GENTLE_PI_2_3_0_QUALIFIED  = NO
-GENTLE_PI_2_3_0_ADOPTED    = NO
-```
+- `UNATTENDED_PASS` and product acceptance are independent gates; T5 `13d759e` was unattended/RDD/published but rejected by independent semantic audit.
+- supervisor coordination must be event-driven through pi-intercom; fixed sleeps/polling and Herdr `agent_status` as a lifecycle clock are not qualified behavior.
+- integration tickets that compose sibling checkpoints should run a read-only predecessor composition/contract gate before builder work; this does not require merging predecessors to a protected branch.
+- pi-lens should run diagnostic-only with `--no-autoformat --no-autofix` unless mutation is explicitly in scope.
+- repeated 429s on `opencode-go/muse-spark-1.3-contributor` make that worker route degraded in this field epoch; cause is unresolved and provider separation is not an architectural requirement.
+- pinned supervisor work should use an exact versioned spawn recipe rather than CLI/model rediscovery; prose prohibition alone did not prevent rediscovery in field use.
 
-The only justified evaluation remains one bounded replacement/deletion experiment asking whether `2.3.0` can preserve Atenea's qualified properties while removing components or glue. Do not add Gentle Pi as another layer on top of the qualified path.
-
-The `review-consent-asked` latch present in Gentle Pi `2.3.0` is **not** current evidence of negotiated-v2 zero-touch parity: current integration records it after a grant but does not use it as authority for later provider-issued v2 candidate consent. Issue #36 owns the separate negotiated-v2 capability investigation.
-
-Until a replacement experiment passes, keep **Pi → Herdr → OpenCode + Gentle** as the accepted architecture.
 
 ## Current runtime target
 
-As of 2026-09-03:
+Qualified baseline as of 2026-09-03, with bounded replacement evidence added 2026-09-05:
 
 - Pi `0.84.4` remains the qualified thin supervisor in current field evidence;
 - Herdr `0.8.2` remains the process/session substrate;
@@ -340,7 +358,7 @@ As of 2026-09-03:
 - the isolated canary Gentle binary proves negotiated-v2 unattended parity behavior but is not a production release/adoption;
 - stable Gentle contains upstream-owned zero-touch review behavior outside the released forced-relay v2 route;
 - DeepSeek V4 Flash is successful field routing evidence, not an architectural pin;
-- Gentle Pi `2.3.0` is eligible for bounded re-evaluation but is not adopted by qualification policy;
+- Gentle Pi `2.4.0` has completed the bounded #35 replacement experiment with `PASS_DELETE` but is not yet adopted; the remaining step is the explicit human adoption/cutover decision;
 - upstream `Gentleman-Programming/gentle-ai#4109` remains the provider-owned production-resolution path.
 
 ## Policy consolidation — COMPLETE
@@ -452,7 +470,7 @@ New bounded qualification is justified only when:
 3. a materially different upstream runtime replaces a failed/qualified lifecycle; or
 4. an optional new entry path needs a compatibility test because a real project actually selects it.
 
-Gentle Pi `2.3.0` meets condition 3 for **one bounded re-evaluation only**. Issue #36 meets condition 2 as an upstream integration investigation, not a new stage.
+The Gentle Pi replacement line meets condition 3 for **one bounded re-evaluation only**. The current `2.4.0` epoch has completed that bounded experiment with `PASS_DELETE`; #35 evidence is complete and the remaining boundary is explicit human adoption/cutover review. Issue #36 remains the OpenCode negotiated-v2 upstream integration investigation, not a new stage.
 
 Otherwise use real projects and capture compact evidence.
 

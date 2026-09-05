@@ -1,6 +1,6 @@
 # Atenea — Current decisions after Stage 8
 
-Date: 2026-09-04
+Date: 2026-09-05
 
 This file is the short current decision index. Historical `docs/DECISIONS.md`, stage files and `docs/ATENEA_HANDOFF_20260830.md` remain evidence of how Atenea evolved, but their forward-looking status is superseded where it conflicts with this index, `README.md`, `docs/QUALIFICATION.md` or `docs/ATENEA_HARNESS_CONTRACT_V1.md`.
 
@@ -34,21 +34,27 @@ Gentle AI `2.5.0` stable is the current production operational target. Stage 5�
 
 The bounded negotiated-v2 unattended characterization is recorded separately in `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`. Its provider-side environment selector is canary-only and is not yet a supported production Gentle API.
 
-## C-005 — Gentle Pi 2.2.0 failed; 2.3.0 is eligible for one bounded re-evaluation
+## C-005 — Gentle Pi 2.2.0 failed; Gentle Pi 2.4.0 bounded replacement evaluation = PASS_DELETE, adoption pending human review
 
-**Historical `2.2.0`: rejected / not qualified.**
+**Historical `2.2.0`: rejected / not qualified.** The failure remains valid evidence and MUST NOT be erased.
 
-The `2.2.0` failure remains valid evidence.
+`2.3.0` established that a materially changed upstream release was eligible for one bounded replacement/deletion reevaluation. The current field epoch is `2.4.0` with Pi `0.85.1`, Herdr `0.8.2`, Gentle AI `2.6.0` and pi-intercom `0.13.0`.
 
-**Current `2.3.0`: `REEVALUATION_ELIGIBLE`, not qualified or adopted.**
+PROMueve T3 supplied diagnostic evidence: worker → supervisor exact-candidate RDD delegation worked, while supervisor-self RDD hooks and missing worker env propagation prevented zero-touch. PROMueve T4 then corrected exactly those seams and completed a real repair with zero external touch. T5 subsequently exercised a composed integration ticket: its first unattended candidate was correctly rejected by an independent product gate, atomic Repairs A/B closed the findings, and a fresh qualification of final SHA `5ae810a…` passed all predecessor/T5 batteries plus native RDD/ack-burn with zero external touch and no product mutation during qualification.
 
-`2.3.0` is materially changed upstream: stable Gentle `2.5.0`, provider-issued continuations executed verbatim, final acknowledgement lifecycle, native Herdr bridge/guarded-command permissions and parent-owned edit surfaces.
+```text
+GENTLE_PI_2_4_EXECUTION_PATH_CANDIDATE=PASS
+GENTLE_PI_2_4_ZERO_TOUCH_REAL_REPAIR=PASS
+GENTLE_PI_2_4_COMPOSED_T5_QUALIFICATION=PASS
+GENTLE_PI_2_4_FRONTIER_REDISCOVERY_STOP=PASS
+GENTLE_PI_2_4_ADOPTED=NO
+FULL_REPLACEMENT_QUALIFICATION=PASS_DELETE
+ADOPTION_DECISION=PENDING_HUMAN_REVIEW
+```
 
-Run at most one bounded replacement/deletion evaluation. Success means preserving Atenea's qualified properties while removing components/glue. Do not layer Gentle Pi on top of the current path merely because it is available.
+This is meaningful replacement/deletion evidence because OpenCode and the downstream negotiated-v2 OpenCode consent canary were not used by the Gentle Pi worker path. After T5 final qualification, the same non-implementing supervisor freshly re-read parent #292 and issue #298, confirmed #298 was OPEN + approved + ready-for-agent with its T5 dependency satisfied by `5ae810a…`, reported `NEXT_FRONTIER=#298`, launched nothing, and STOPped. The bounded #35 experiment therefore resolves `PASS_DELETE`. Do not change the normal Atenea front door until the human adoption review explicitly approves the cutover.
 
-Its clone-local `review-consent-asked` latch is not currently evidence of negotiated-v2 consent parity: current integration code records it after human grant but does not use it as authority for later provider-issued v2 candidate consent.
-
-Until PASS, the accepted architecture remains Pi → Herdr → OpenCode + Gentle.
+Evidence: `docs/GENTLE_PI_24_REPLACEMENT_FIELD_EVIDENCE_20260905.md`.
 
 ## C-006 — Normal git push is allowed; no publication-permission subsystem
 
@@ -126,7 +132,7 @@ RDD evidence/approval is separate from delivery. A work unit may end at an accep
 
 Stage 5–8 already qualify the core architecture. New surfaces should be validated through bounded real-project evidence.
 
-Gentle Pi `2.3.0` qualifies for one bounded re-evaluation because it is a materially changed replacement candidate for a previously failed runtime. This is not Stage 9.
+The materially changed Gentle Pi line qualified for one bounded replacement/deletion re-evaluation because `2.2.0` failed historically. The current field epoch is `2.4.0`: PROMueve T4 established execution-path PASS and T5 plus fresh frontier rediscovery closed the remaining continuity/frontier gate. Result: `PASS_DELETE`; adoption remains a separate human review decision. This is not Stage 9.
 
 ## C-014 — Harness Contract v1 is the normative horizontal boundary
 
@@ -211,13 +217,15 @@ resume/repair: exact checkpoint + do-not-redo boundary + one/two incident-specif
 
 Do not teach Pi Gentle command syntax or recovery state machines in ordinary operator prompts. Those mechanics belong to current repo/Atenea/upstream authority.
 
-## C-020 — Pi supervision uses bounded state/wait primitives, not long fixed polling
+## C-020 — Pi supervision is event-driven where the worker exposes an inbound control plane; never long fixed polling
 
-**Accepted from field evidence.**
+**Accepted from repeated field evidence.**
 
-Repeated `sleep 180` / `sleep 300` polling materially degraded the failed #76 recovery path.
+Repeated `sleep 180` / `sleep 300` polling degraded #76, and a T5 supervisor later recreated the same failure mode with `sleep 50` loops while the worker was already blocked on pi-intercom. Herdr `agent_status` also reported `idle` while Pi remained actively working, so it is not a lifecycle clock.
 
-Pi should use the narrowest existing Herdr/native state and bounded wait primitives appropriate to the current worker state. This does not justify a new scheduler, daemon or event bus.
+For the Gentle Pi candidate path, the proven supervision pattern is: launch/prompt worker → supervisor ends its turn → pi-intercom inbound wakes the supervisor only for bounded decisions or FINAL → supervisor replies/verifies → ends its turn again. Fixed `sleep`, `for`/`while` polling, periodic pane reads and long `herdr agent wait` are prohibited for this path.
+
+For runtimes without an inbound event surface, use the narrowest one-shot Herdr/native wait/state primitive necessary; never build a scheduler, daemon or polling controller to compensate.
 
 ## C-021 — Autonomous OpenCode transport is headless `opencode run`; TUI automation is not the runtime contract
 
