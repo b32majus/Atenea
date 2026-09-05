@@ -30,7 +30,12 @@ test -n "$INTERCOM_SCOPE_ID" || exit 13
 test -f "$ATENEA_RDD_RELAY_EXTENSION" || exit 14
 test "${#SUPERVISOR_NAME}" -le 32 || exit 15
 test "${#WORKER_NAME}" -le 32 || exit 16
+ATENEA_INTERCOM_CONFIG_CHECK="$(cd "$(dirname "$ATENEA_RDD_RELAY_EXTENSION")/.." && pwd)/tools/check-pi-intercom-unattended-config.mjs"
+test -f "$ATENEA_INTERCOM_CONFIG_CHECK" || exit 17
+node "$ATENEA_INTERCOM_CONFIG_CHECK" || exit 18
 ```
+
+The config check is read-only and requires pi-intercom `enabled=true`, `confirmSend=false` and `inboundTrigger=always`; incompatible machine-global config is STOP before worker launch and is never mutated by Atenea.
 
 The Herdr label is not an intercom identity. A supervisor or worker started without the matching Pi `--name` is invalid even if Herdr displays the expected agent label.
 
