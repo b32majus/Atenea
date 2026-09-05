@@ -32,7 +32,7 @@ Do not recover current execution policy from historical Stage files or `docs/ATE
 - Greenfield defaults to complete Matt Pocock upstream shaping.
 - Brownfield preserves repo-native authority; OpenSpec is delta-first when it materially adds value, not by ritual.
 - Repository Intelligence is optional derived evidence for sufficiently complex brownfields. Cora may recommend it; Pi must not invent/install it as an execution-time methodology decision.
-- From `EXECUTION_READY`: Pi supervises; Herdr is process substrate; headless OpenCode + Gentle implements/reviews.
+- From `EXECUTION_READY`: explicit human authority remains the boundary; a plain non-implementing Pi supervisor uses Herdr to launch a separate named/scoped Pi + Gentle Pi worker, which owns implementation, deterministic checks, native exact-candidate RDD, acknowledgement/burn and authorized normal non-force delivery. Final merge remains human unless separately authorized. OpenCode remains available as an alternate/historical path, not the normal unattended dependency.
 - Pi does not implement product code or operate Gentle lifecycle commands.
 - Gentle owns final exact-candidate/RDD/reviewer/repair authority.
 - Normal non-force push is allowed. No automatic merge or destructive history recovery.
