@@ -8,7 +8,10 @@ Purpose: remove spawn ambiguity from the supervisor. The planning/launch surface
 ## Inputs resolved before supervisor launch
 
 - `WORKTREE`: absolute isolated target worktree path.
-- `WORKER_NAME`: unique Herdr/Pi agent name.
+- `SUPERVISOR_NAME`: unique supervisor identity; this exact value is used as Pi `--name` and the worker relay target.
+- `WORKER_NAME`: unique worker identity; this exact value is used as both Herdr agent name and Pi `--name`.
+- `INTERCOM_SCOPE_ID`: unique opaque scope for this unattended run; supervisor, worker and relay use the same value.
+- `ATENEA_RDD_RELAY_EXTENSION`: absolute path to the versioned `extensions/atenea-rdd-consent-relay.mjs` from the approved Atenea checkpoint.
 - `WORKER_MODEL`: exact Pi-supported literal model id, verified before launch.
 - `WORKER_THINKING`: exact Pi thinking level.
 - `WORK_ITEM`: exact approved issue/work item.
@@ -17,6 +20,32 @@ Purpose: remove spawn ambiguity from the supervisor. The planning/launch surface
 - `REQUIRED_ORACLE_PATH` + `REQUIRED_ORACLE_SHA256`: mandatory when repository/work-item authority requires a frozen principal acceptance oracle.
 
 Do not ask the supervisor to discover models, Pi flags, Herdr syntax, plugins or extensions for pinned work.
+
+Identity inputs are fail-closed:
+
+```bash
+test -n "$SUPERVISOR_NAME" || exit 11
+test -n "$WORKER_NAME" || exit 12
+test -n "$INTERCOM_SCOPE_ID" || exit 13
+test -f "$ATENEA_RDD_RELAY_EXTENSION" || exit 14
+test "${#SUPERVISOR_NAME}" -le 32 || exit 15
+test "${#WORKER_NAME}" -le 32 || exit 16
+```
+
+The Herdr label is not an intercom identity. A supervisor or worker started without the matching Pi `--name` is invalid even if Herdr displays the expected agent label.
+
+## Supervisor identity before worker launch
+
+The mechanically launched plain Pi supervisor MUST use the pre-resolved name and scope:
+
+```text
+PI_INTERCOM_SCOPE_ID=$INTERCOM_SCOPE_ID
+Pi --name $SUPERVISOR_NAME
+Gentle Pi OFF
+pi-intercom ON
+```
+
+Before worker creation, the supervisor verifies through pi-intercom that its current session is connected under exactly `SUPERVISOR_NAME`. A runtime fallback alias such as `subagent-chat-*`, a duplicate/ambiguous name, or a different scope is STOP before worker launch.
 
 ## Frozen-oracle gate when required
 
@@ -38,6 +67,11 @@ From the supervisor's current visible Herdr pane, create one separate worker pan
 WORKER_PANE_JSON="$(herdr pane split --current --direction right --cwd "$WORKTREE" \
   --env GENTLE_PI_AUTONOMOUS_MODE=1 \
   --env GENTLE_PI_NO_SKILL_REGISTRY=1 \
+  --env PI_INTERCOM_SCOPE_ID="$INTERCOM_SCOPE_ID" \
+  --env ATENEA_INTERCOM_SCOPE_ID="$INTERCOM_SCOPE_ID" \
+  --env ATENEA_SUPERVISOR_NAME="$SUPERVISOR_NAME" \
+  --env ATENEA_WORKER_NAME="$WORKER_NAME" \
+  --env ATENEA_RDD_RELAY_REQUIRED=1 \
   --no-focus)" || exit 20
 WORKER_PANE="$(printf '%s' "$WORKER_PANE_JSON" | python3 -c 'import json,sys
 d=json.load(sys.stdin)
@@ -61,6 +95,8 @@ Do **not** pass the raw JSON object returned by `herdr pane split` to `herdr age
 herdr agent start "$WORKER_NAME" --kind pi --pane "$WORKER_PANE" -- \
   --model "$WORKER_MODEL" \
   --thinking "$WORKER_THINKING" \
+  --name "$WORKER_NAME" \
+  -e "$ATENEA_RDD_RELAY_EXTENSION" \
   --no-skill-registry \
   --no-autoformat \
   --no-autofix
@@ -85,19 +121,22 @@ After accepted submission, the supervisor ends its turn. No fixed sleeps, pollin
 For already-authorized bounded RDD consent, the prebuilt worker prompt MUST state all of the following explicitly; the supervisor must not paraphrase these clauses away when materializing a ticket brief:
 
 - `DO NOT call ask_user_choice` and do not ask the human directly for bounded RDD consent.
-- Send the exact Gentle consent envelope to the named supervisor via **pi-intercom ASK**.
-- Wait for the supervisor's bounded `GRANTED` / `DECLINED` decision.
-- If granted, the **worker** executes the provider-issued answer-consent transition and remains owner of correction/review/acknowledgement/burn.
+- The versioned Atenea RDD relay extension owns worker→supervisor transport. The worker MUST NOT reconstruct, reserialize, summarize or manually resend the Gentle consent envelope.
+- When the extension reports that the exact provider payload was relayed mechanically, the worker ends its turn and waits for the supervisor's `GRANTED` / `DECLINED` intercom reply.
+- If granted, the **worker** executes the provider-issued answer-consent transition with the original opaque `consentBinding` and remains owner of correction/review/acknowledgement/burn.
 - The supervisor executes **zero `gentle-ai` commands**.
-- Missing supervisor alias or unavailable pi-intercom route means FAIL CLOSED / STOP; do not fall back to direct human prompting or another runtime.
+- Missing/mismatched session name, scope, relay extension or intercom route means FAIL CLOSED / STOP; do not fall back to direct human prompting, manual envelope copying or another runtime.
 
-Before prompt delivery, the supervisor MUST run a deterministic presence check against `WORKER_PROMPT_FILE`:
+`extensions/atenea-rdd-consent-relay.mjs` listens to the actual `gentle_review` tool result. For a typed `gentle-ai.review-integration.consent/v3` result it validates that every choice remains bound to the provider target, computes a SHA256 over the exact provider text, and emits that text through pi-intercom's public extension outbox from the worker session. It also blocks `ask_user_choice` while that consent is pending. The model is not the transport serializer.
+
+Before prompt delivery, the supervisor MUST run deterministic checks against `WORKER_PROMPT_FILE` and the relay extension:
 
 ```bash
 grep -Fq 'DO NOT call ask_user_choice' "$WORKER_PROMPT_FILE" || exit 41
-grep -Fq 'pi-intercom ASK' "$WORKER_PROMPT_FILE" || exit 42
+grep -Fq 'MUST NOT reconstruct' "$WORKER_PROMPT_FILE" || exit 42
 grep -Fq 'worker executes the provider' "$WORKER_PROMPT_FILE" || exit 43
 grep -Fq 'supervisor executes zero' "$WORKER_PROMPT_FILE" || exit 44
+node --check "$ATENEA_RDD_RELAY_EXTENSION" || exit 45
 ```
 
 These checks validate that the fixed relay contract is present; they do not authorize the supervisor to reconstruct Gentle lifecycle syntax or answer a genuinely human-owned product/authority decision.

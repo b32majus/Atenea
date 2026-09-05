@@ -60,7 +60,7 @@ normal Pi supervisor (Gentle Pi OFF; pi-intercom ON)
 
 No fixed sleeps, polling loops, long waits or `agent_status` lifecycle inference. A rejected pinned model/flag fails closed before product mutation. Final merge remains human unless separately authorized.
 
-Bounded RDD consent is also event-driven: the worker must relay the exact consent envelope to the named supervisor via pi-intercom ASK and must not call `ask_user_choice` for an already-authorized bounded consent. The supervisor returns only the bounded decision; the worker performs the provider transition and owns the remaining Gentle lifecycle. Missing intercom/alias is STOP, not a reason to ask the human directly or switch runtime.
+Bounded RDD consent is also event-driven, but the model is not the serializer. The versioned Atenea worker relay extension forwards the exact `gentle_review` consent payload through pi-intercom outbox to the named/scoped supervisor and blocks direct `ask_user_choice` while that consent is pending. The supervisor returns only the bounded decision; the worker performs the provider transition and owns the remaining Gentle lifecycle. Missing/mismatched name, scope, relay extension or intercom route is STOP, not a reason to ask the human directly, manually reconstruct the envelope or switch runtime.
 
 ## 1. Preflight
 
@@ -85,7 +85,7 @@ Confirm before starting a run:
 - **No destructive cleanup to manufacture readiness.** An unexpected
   dirty/topology contradiction is a STOP condition, not authorization for
   reset, clean, rebase, force-push or other destructive recovery.
-- **Worker pane expectation.** Pi launches a separate visible Pi/Gentle-Pi worker pane using `docs/SPAWN_RECIPE_GENTLE_PI_WORKER_V1.md`, extracts the actual `pane_id` from Herdr JSON before `agent start`, and reports pane/name immediately. Observation never becomes review authority.
+- **Session identity + worker pane expectation.** Supervisor and worker use pre-resolved Pi `--name` values plus one shared `PI_INTERCOM_SCOPE_ID`; Herdr labels alone are not routing identity. Pi launches a separate visible Pi/Gentle-Pi worker pane using `docs/SPAWN_RECIPE_GENTLE_PI_WORKER_V1.md`, extracts the actual `pane_id` from Herdr JSON before `agent start`, loads the versioned Atenea RDD relay extension, and reports pane/name immediately. Observation never becomes review authority.
 - **Frozen oracle when required.** For semantic/clinical work whose repository authority requires a principal oracle, launch authority must supply a frozen oracle path + SHA256 before the implementation worker exists. Missing/mismatched oracle is STOP; no alternate-runtime/oracle-author fallback inside the implementation run.
 
 ## 2. Starting the Pi supervisor after explicit authorization

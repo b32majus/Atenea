@@ -91,7 +91,17 @@ Repository `AGENTS.md` + coding standards are mandatory pre-write inputs for eac
 
 A T6 worker reached a valid native Gentle RDD consent envelope but its synthesized worker brief had lost the explicit relay clause; the worker called `ask_user_choice` and required one manual consent. Later pi-intercom messaging worked normally. The supported interpretation is therefore a brief/relay-contract defect, not evidence of a Gentle provider failure.
 
-For already-authorized bounded RDD consent, the worker prompt must explicitly prohibit direct human prompting, relay the exact envelope via pi-intercom ASK to the named supervisor, and keep provider answer-consent plus acknowledgement/burn inside the worker. The supervisor performs no Gentle lifecycle command. Missing relay route fails closed. Genuine human-owned decisions remain human.
+For already-authorized bounded RDD consent, the worker prompt must explicitly prohibit direct human prompting and keep provider answer-consent plus acknowledgement/burn inside the worker. The original T6-v2 field remedy used a pi-intercom ASK; C-028 supersedes that transport detail with the mechanical Atenea outbox relay so the model is no longer responsible for reproducing the provider envelope. The supervisor performs no Gentle lifecycle command. Missing relay route fails closed. Genuine human-owned decisions remain human.
+
+## C-028 — RDD relay identity is explicit and provider payload transport is mechanical
+
+**Accepted from T6-D12 repair field evidence, 2026-09-05.**
+
+Herdr agent labels are not Pi/intercom identities. A repair run proved that `herdr agent start t6d12-supervisor-r2` without Pi `--name t6d12-supervisor-r2` leaves pi-intercom advertising a runtime fallback alias (`subagent-chat-*`), so an otherwise healthy idle supervisor cannot be addressed by the Herdr label. A subsequent manual model reconstruction of the long consent envelope corrupted one target hash; the supervisor correctly declined the inconsistent request.
+
+Pinned runs therefore use one explicit logical name per supervisor/worker across Herdr and Pi `--name`, plus one shared opaque `PI_INTERCOM_SCOPE_ID`. Bounded RDD consent payloads are transported by the versioned Atenea worker relay extension through pi-intercom's public outbox API. The extension consumes the actual `gentle_review` tool result, validates choice/target consistency, hashes the exact provider text and sends that exact text without model reserialization. Direct `ask_user_choice` is blocked while such consent is pending. Any identity/scope/transport mismatch fails closed.
+
+C-027 remains the ownership rule (worker→supervisor bounded decision; worker owns provider/Gentle lifecycle), but its earlier literal `pi-intercom ASK` transport wording is superseded by this mechanical outbox relay.
 
 ## C-006 — Normal git push is allowed; no publication-permission subsystem
 
