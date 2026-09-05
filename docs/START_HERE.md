@@ -42,15 +42,17 @@ HUMAN + CORA / PLANNING CHAT
   HUMAN explicitly promotes EXECUTION_READY
             ↓
 HUMAN + HERDR + PI
-  human opens Herdr
-  human starts Pi interactively
-  human gives one bounded execution prompt
+  explicit human execution authorization
+  human or Cora/DC mechanically starts the normal Pi supervisor
+  supervisor receives one bounded execution/train prompt
             ↓
-PI → Herdr → headless OpenCode → Gentle/RDD
+PI SUPERVISOR → HERDR → FRESH PI/GENTLE-PI WORKER
+  worker owns implementation/tests/native RDD/ack-burn/publication
+  supervisor is event-driven through pi-intercom and does not implement
             ↓
-normal publication → PR/checkpoint → frontier STOP
+accepted remote checkpoint → fresh frontier rediscovery → next compatible worker or STOP
             ↓
-Pi factual final report
+Pi factual final report; merge remains human
 ```
 
 **Cora/human owns the pre-`EXECUTION_READY` interpretation. Pi does not decide which software-development methodology should be invented or installed.** Pi receives already-shaped work and supervises bounded execution.

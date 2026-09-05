@@ -30,13 +30,17 @@ Pi
 Herdr
   process/session substrate
 
-OpenCode
-  implementation runtime
+Pi + Gentle Pi worker
+  implementation runtime and Gentle lifecycle host in a separate Herdr pane
 
 Gentle AI
   exact candidate integrity, native RDD, reviewer authority/lineage,
   bounded correction, provider-issued continuation/re-entry,
   acknowledgement/burn, recovery and mutation invalidation
+
+OpenCode
+  attended/alternate implementation runtime and historical qualification surface;
+  not required by the adopted unattended path
 
 Git / GitHub
   repository history, branches/worktrees, issues/dependencies,
@@ -63,9 +67,9 @@ Product decisions, unresolved material ambiguity and shaping questions belong be
 
 Promotion to `EXECUTION_READY` is an explicit human authority transition. Atenea MUST NOT automate the design conversation merely to make a ticket executable.
 
-The currently selected OpenCode negotiated `review-integration/v2` path may still emit explicit provider-owned human-decision envelopes after `EXECUTION_READY`, notably medium/high exact-candidate review consent. Those envelopes MUST be relayed losslessly while that path is selected. They are not permission for Pi to impersonate the human or rewrite the provider transition.
+The adopted unattended path uses a separate Pi/Gentle-Pi worker with Gentle native review authority. Provider-owned consent/continuation remains owned by the worker's Gentle session; the outer Pi supervisor may consume only an already-authorized bounded decision relayed through pi-intercom and MUST NOT run/reconstruct the Gentle lifecycle itself.
 
-This is a path-specific current limitation, not a statement that stable Gentle globally lacks zero-touch review semantics. Issue #36 owns the upstream-first restoration of zero-touch on the negotiated OpenCode path.
+The historical OpenCode negotiated `review-integration/v2` relay limitation remains tracked by issue #36 for the alternate OpenCode path. It no longer blocks the adopted Atenea unattended workflow.
 
 Current completion state, explicitly distinguished:
 
@@ -246,7 +250,7 @@ Atenea MUST NOT move product authority, blocker reasoning, publication policy or
 
 ## 9. Implementation and engineering methods
 
-OpenCode + Gentle AI is the accepted unattended implementation worker.
+A separate Pi worker with Gentle Pi + Gentle AI is the accepted unattended implementation worker. OpenCode is an attended/alternate runtime, not a required component of the normal unattended path.
 
 Engineering quality is separated into:
 
