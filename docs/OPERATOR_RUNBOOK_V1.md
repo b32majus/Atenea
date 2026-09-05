@@ -83,16 +83,8 @@ Confirm before starting a run:
 - **No destructive cleanup to manufacture readiness.** An unexpected
   dirty/topology contradiction is a STOP condition, not authorization for
   reset, clean, rebase, force-push or other destructive recovery.
-- **Worker pane expectation (issue #39 ergonomics).** Pi will launch the
-  headless OpenCode worker in a dedicated visible Herdr pane/tab and report
-  the pane/tab id/label immediately (proven under issue #39:
-  `ISSUE39_VISIBLE_WORKER_PANE=PASS`,
-  `ISSUE39_WORKER_PANE_ID_REPORTED=PASS`). The pane carries the runner
-  invocation and completion markers; rendering useful live OpenCode/Gentle
-  activity into that pane is `USEFUL_LIVE_WORKER_STREAM=NOT_YET_PROVEN`. The
-  operator observes the visible pane/id and the final factual report, not a
-  live OpenCode/Gentle activity stream. The worker stays headless/non-interactive;
-  observation does not become interaction or review authority.
+- **Worker pane expectation.** Pi launches a separate visible Pi/Gentle-Pi worker pane using `docs/SPAWN_RECIPE_GENTLE_PI_WORKER_V1.md`, extracts the actual `pane_id` from Herdr JSON before `agent start`, and reports pane/name immediately. Observation never becomes review authority.
+- **Frozen oracle when required.** For semantic/clinical work whose repository authority requires a principal oracle, launch authority must supply a frozen oracle path + SHA256 before the implementation worker exists. Missing/mismatched oracle is STOP; no alternate-runtime/oracle-author fallback inside the implementation run.
 
 ## 2. Starting the Pi supervisor after explicit authorization
 
@@ -117,12 +109,10 @@ Normal-run prompt template:
 
 ```text
 Execute the current EXECUTION_READY issue end to end under the Atenea contract.
-Use Herdr to create or reuse the headless OpenCode/Gentle worker.
-Proceed through implementation, deterministic verification, Gentle RDD,
-bounded correction if required, normal non-force publication and
-PR/checkpoint reconciliation.
-Do not merge. Stop on any genuine human-owned decision or when the compatible
-frontier is exhausted, and return the final factual report.
+Use the pinned spawn recipe to create the separate Pi/Gentle-Pi worker after verifying any required frozen oracle path/hash.
+Remain non-implementing and execute zero Gentle lifecycle commands in the supervisor.
+Proceed event-driven through implementation, deterministic verification, native Gentle RDD, bounded correction if required, normal non-force publication and checkpoint reconciliation.
+Do not merge. After an accepted checkpoint, freshly rediscover the compatible frontier, create a fresh worker for the next ticket, or STOP when exhausted. Return the final factual report.
 ```
 
 When the frontier is intentionally pinned, name the work item explicitly and
@@ -138,12 +128,9 @@ Use branch <declared execution branch> and existing PR <checkpoint PR> if their
 current GitHub state remains compatible with the declared handoff HEAD; revalidate
 them but do not redesign the topology when they are compatible.
 Remain a non-implementing Pi supervisor.
-Launch and supervise exactly the needed headless OpenCode/Gentle worker through a
-dedicated visible Herdr pane and report the pane/tab id and label immediately so
-the operator can observe the visible pane and its completion markers.
-Use the bounded unattended provider-canary authority already documented in the
-repository; production Gentle remains untouched and OpenCode/Gentle owns every
-Gentle lifecycle transition.
+Consume the pre-resolved pinned spawn parameters unchanged. Verify the required frozen oracle path/hash when the work item requires one.
+Launch exactly one separate Pi/Gentle-Pi worker through a dedicated visible Herdr pane, parse the returned Herdr JSON to the actual pane id before `agent start`, and report pane/name immediately.
+Execute zero `gentle-ai` commands in the supervisor; the worker owns every Gentle lifecycle transition. Never use OpenCode or another runtime as a fallback for missing oracle/spawn prerequisites.
 Normal non-force publication to the current delivery branch is authorized.
 Do not merge.
 Before launching the worker, perform only the bounded authority/runtime checks
@@ -167,7 +154,7 @@ mechanics belong in current repo/Atenea/upstream authority.
 
 > **Historical/alternate OpenCode transport below.** After cutover #45, this section is retained only for reproducing earlier OpenCode field evidence or explicitly selected alternate/attended workflows. It does not define the current normal unattended path.
 
-## 4. Autonomous worker transport
+## 4. Historical OpenCode autonomous worker transport
 
 After the one prompt, Pi supervises the rest; Pi does not implement product
 code and does not operate the Gentle lifecycle.
@@ -256,7 +243,9 @@ The final factual report states at minimum these fields:
 WORK_ITEM=
 INITIAL_HUMAN_EXECUTION_AUTHORIZATION=1
 PI_ROLE=NON_IMPLEMENTING_SUPERVISOR
-OPENCODE_WORKERS_STARTED=
+PI_GENTLE_PI_WORKERS_STARTED=
+FROZEN_ORACLE_SHA256=
+SUPERVISOR_GENTLE_COMMANDS=0
 WORKER_PANE_ID_REPORTED=
 GENTLE_EXACT_CANDIDATE_RDD=
 BOUNDED_CORRECTIONS=
@@ -292,8 +281,9 @@ STOP and report rather than improvise when any of these appears:
   action or an external authority decision; relay it and pause.
 - **Destructive recovery requirement** — force-push, reset, rebase, hidden
   history rewrite or destructive cleanup being required to make progress.
-- **Provider/runtime mismatch** — incompatible runtime assumption or
-  candidate/review state inconsistent with Gentle authority.
+- **Pinned spawn/oracle mismatch** — required oracle missing/hash mismatch, invalid pinned model/flag, or Herdr pane id cannot be extracted deterministically. STOP before product mutation; do not rediscover/substitute/fallback.
+- **Supervisor ownership violation** — any need for the supervisor to execute `gentle-ai` or author implementation/oracle content is a STOP; those belong outside or inside the worker as explicitly governed.
+- **Provider/runtime mismatch** — incompatible runtime assumption or candidate/review state inconsistent with Gentle authority.
 - **Publication authority changed during pre-publication revalidation** — the
   single fresh read immediately before publication shows blockers, scope,
   product authority or repository delivery instructions changed materially

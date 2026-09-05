@@ -84,7 +84,7 @@ The released stable negotiated v2 still lacks a supported unattended selector. T
 
 ### 3.1 Operator/supervision ergonomics — no new authority
 
-Bounded/pinned preflight guidance and visible worker observability are operator/supervision ergonomics only. They create no new authority, lifecycle ownership, daemon, scheduler or observation-harness dependency. Pi may launch the headless OpenCode worker in a dedicated visible Herdr pane and report its pane/tab id/label for human observation; OpenCode remains headless/non-interactive and Pi remains non-implementing. For intentionally pinned work, the operator prompt may state the repository/issue/branch-PR checkpoint/role/transport/publication/STOP boundary so Pi performs a bounded preflight instead of broad rediscovery.
+Bounded/pinned preflight guidance and visible worker observability are operator/supervision ergonomics only. They create no new authority, lifecycle ownership, daemon, scheduler or observation-harness dependency. Pi launches a separate Pi/Gentle-Pi worker in a dedicated visible Herdr pane using the pinned spawn recipe and reports its pane/tab id/label. For intentionally pinned work, launch authority resolves literal runtime/model/oracle parameters before supervisor launch so Pi validates them instead of rediscovering mechanics. Pi remains non-implementing and executes zero Gentle lifecycle commands.
 
 ## 4. Authoring entry paths
 
@@ -104,7 +104,7 @@ OpenSpec is an **optional** delta-first shaping/specification path when it mater
 
 If OpenSpec is selected, use it delta-first: describe the behavior being added, modified or removed rather than reverse-documenting the whole existing product before every change.
 
-OpenSpec does not replace Pi supervision, OpenCode/Gentle execution, Gentle RDD or Git/GitHub authority.
+OpenSpec does not replace Pi supervision, Pi/Gentle-Pi execution, Gentle RDD or Git/GitHub authority.
 
 Status: architecturally compatible; natural end-to-end Atenea field evidence pending.
 
@@ -174,14 +174,17 @@ For each autonomous iteration Pi should:
 Pi MUST NOT run, reconstruct or own Gentle review lifecycle commands on behalf of the implementation worker.
 
 ```text
-Pi
+Pi supervisor
   authority/frontier decisions
-  worker lifecycle supervision
+  pinned spawn/oracle verification
+  event-driven worker supervision through pi-intercom
   lossless human-decision relay when provider path requires it
-  already-authorized operational permission grant
+  already-authorized bounded operational decision grant
+  ZERO gentle-ai lifecycle commands
 
-OpenCode + Gentle worker
-  implementation
+Pi + Gentle Pi worker
+  repository-instruction read before product write
+  implementation / bounded-writer delegation
   deterministic verification
   all Gentle lifecycle operations
   exact provider-issued continuation/re-entry
@@ -190,11 +193,11 @@ OpenCode + Gentle worker
   publication allowed by repository policy
 ```
 
-When Gentle returns provider-issued lifecycle transitions, the **OpenCode/Gentle worker** is the orchestrator that executes them. The phrase “orchestrator executes provider-issued transitions” in Gentle documentation MUST NOT be interpreted as permission for the outer Pi supervisor to take over that lifecycle.
+When Gentle returns provider-issued lifecycle transitions, the **Pi/Gentle-Pi worker** is the orchestrator that executes them. The phrase “orchestrator executes provider-issued transitions” in Gentle documentation MUST NOT be interpreted as permission for the outer Pi supervisor to take over that lifecycle.
 
 ### 7.2 Worker continuity policy
 
-For a bounded continuation or repair, Pi SHOULD reuse an existing healthy OpenCode worker when all of these remain true:
+For a bounded continuation or repair of the **same work item**, Pi MAY reuse an existing healthy Pi/Gentle-Pi worker when all of these remain true:
 
 ```text
 same work item
@@ -205,9 +208,9 @@ compatible runtime/configuration
 worker healthy and available
 ```
 
-Create a fresh worker when the previous worker is unavailable/unhealthy, its context is materially contaminated, the worktree/branch/runtime changed, or explicit isolation is required.
+Create a fresh worker for every newly selected work item/frontier ticket. Also create a fresh worker when the previous worker is unavailable/unhealthy, its context is materially contaminated, the worktree/branch/runtime changed, or explicit isolation is required.
 
-Worker reuse preserves implementation context only. A changed candidate MUST still receive whatever fresh Gentle candidate/review lineage the provider requires. Never reuse prior review authority merely because the OpenCode process is reused.
+Worker reuse preserves same-ticket implementation context only. A changed candidate MUST still receive whatever fresh Gentle candidate/review lineage the provider requires. Never reuse prior review authority merely because a Pi process is reused.
 
 ### 7.3 Supervisor prompt surface
 
@@ -217,7 +220,7 @@ Normal run:
 
 ```text
 work item / goal
-create-or-reuse and supervise OpenCode/Gentle through Herdr
+verify pinned oracle/runtime inputs; create and supervise separate Pi/Gentle-Pi worker through Herdr
 repository delivery boundary / STOP before human merge
 ```
 
@@ -234,9 +237,9 @@ Do not routinely place Gentle command syntax, lineage reconstruction, recovery a
 
 ### 7.4 Supervision efficiency
 
-Pi SHOULD prefer native/Herdr state reads and bounded waits over fixed long sleeps. Multi-minute `sleep` polling MUST NOT be the normal supervision strategy.
+The adopted Gentle-Pi path is event-driven: after accepted worker prompt delivery the supervisor ends its turn; pi-intercom wakes it for bounded decisions or FINAL. Fixed `sleep`, `for`/`while` polling, periodic pane reads, long `herdr agent wait` and `agent_status` lifecycle inference are prohibited.
 
-This does not authorize a new polling daemon, scheduler or event bus. Use the smallest existing upstream process/session primitive that exposes the required state.
+This does not authorize a new polling daemon, scheduler or event bus. One-shot process reads are diagnostic only, not the normal lifecycle clock.
 
 Do not reintroduce a separate queue, DAG, scheduler, controller or dispatcher unless field evidence proves Pi plus standard repository/tracker primitives cannot provide a required property.
 
@@ -298,7 +301,7 @@ The stable `2.5.0` contract is treated as provider authority. Atenea MUST NOT re
 - recovery/reconciliation algorithms;
 - mutation invalidation.
 
-The OpenCode/Gentle worker MUST execute provider-issued lifecycle continuations as returned rather than reconstructing them from prose or local state. Pi observes/supervises that lifecycle and MUST NOT substitute itself as the Gentle orchestrator.
+The Pi/Gentle-Pi worker MUST execute provider-issued lifecycle continuations as returned rather than reconstructing them from prose or local state. The outer Pi supervisor observes via pi-intercom and MUST NOT substitute itself as the Gentle orchestrator or execute any `gentle-ai` command.
 
 A post-review candidate mutation invalidates or supersedes prior review evidence according to Gentle's native lifecycle and may require a new exact-candidate review lineage.
 

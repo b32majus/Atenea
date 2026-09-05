@@ -13,20 +13,49 @@ Purpose: remove spawn ambiguity from the supervisor. The planning/launch surface
 - `WORKER_THINKING`: exact Pi thinking level.
 - `WORK_ITEM`: exact approved issue/work item.
 - `START_HEAD`: expected clean starting checkpoint.
+- `WORKER_PROMPT_FILE`: exact prebuilt bounded worker prompt file.
+- `REQUIRED_ORACLE_PATH` + `REQUIRED_ORACLE_SHA256`: mandatory when repository/work-item authority requires a frozen principal acceptance oracle.
 
 Do not ask the supervisor to discover models, Pi flags, Herdr syntax, plugins or extensions for pinned work.
+
+## Frozen-oracle gate when required
+
+For clinical/semantic work whose repository authority requires a principal acceptance oracle, the planning/launch surface freezes that oracle in an independent context **before the implementation worker exists**. The supervisor receives the literal path + SHA256 and only verifies them:
+
+```bash
+test -f "$REQUIRED_ORACLE_PATH" || exit 31
+ACTUAL_ORACLE_SHA256="$(sha256sum "$REQUIRED_ORACLE_PATH" | awk '{print $1}')"
+test "$ACTUAL_ORACLE_SHA256" = "$REQUIRED_ORACLE_SHA256" || exit 32
+```
+
+Missing/mismatched oracle means FAIL CLOSED / STOP before product mutation. The supervisor MUST NOT author the oracle, ask the implementation worker to author it, launch OpenCode/another agent as a fallback, or weaken the gate.
 
 ## Worker pane
 
 From the supervisor's current visible Herdr pane, create one separate worker pane in the same worktree:
 
 ```bash
-herdr pane split --current --direction right --cwd "$WORKTREE" \
+WORKER_PANE_JSON="$(herdr pane split --current --direction right --cwd "$WORKTREE" \
   --env GENTLE_PI_AUTONOMOUS_MODE=1 \
   --env GENTLE_PI_NO_SKILL_REGISTRY=1 \
-  --no-focus
+  --no-focus)" || exit 20
+WORKER_PANE="$(printf '%s' "$WORKER_PANE_JSON" | python3 -c 'import json,sys
+d=json.load(sys.stdin)
+stack=[d]; ids=[]
+while stack:
+    x=stack.pop()
+    if isinstance(x,dict):
+        v=x.get("pane_id")
+        if isinstance(v,str): ids.append(v)
+        stack.extend(x.values())
+    elif isinstance(x,list): stack.extend(x)
+ids=list(dict.fromkeys(ids))
+if len(ids)!=1: raise SystemExit("expected exactly one pane_id")
+print(ids[0])')" || exit 20
+test -n "$WORKER_PANE" || exit 20
 ```
-Capture the returned pane id. Start Pi in that exact pane:
+
+Do **not** pass the raw JSON object returned by `herdr pane split` to `herdr agent start`. Start Pi in the extracted pane id:
 
 ```bash
 herdr agent start "$WORKER_NAME" --kind pi --pane "$WORKER_PANE" -- \
@@ -37,7 +66,7 @@ herdr agent start "$WORKER_NAME" --kind pi --pane "$WORKER_PANE" -- \
   --no-autofix
 ```
 
-Normal extension discovery remains enabled for the worker so Gentle Pi loads normally. Pi-lens remains diagnostic-only because autoformat/autofix are disabled.
+Normal extension discovery remains enabled for the worker so Gentle Pi loads normally. Pi-lens remains diagnostic-only because autoformat/autofix are disabled. The worker must read repository `AGENTS.md` and coding standards before product write; if Gentle delegates to a bounded writer, the handoff must carry the applicable project constraints.
 
 ## Prompt delivery
 
@@ -58,7 +87,7 @@ The planning/launch surface may correct a bad literal and start a fresh worker o
 
 ## Supervisor contract after launch
 
-The supervisor is a normal Pi process with Gentle Pi disabled and pi-intercom loaded explicitly. It remains non-implementing.
+The supervisor is a normal Pi process with Gentle Pi disabled and pi-intercom loaded explicitly. It remains non-implementing. It MUST execute zero `gentle-ai` commands: no review-mode enable/disable, no inspect/start/consent/acknowledgement and no recovery commands.
 
 Worker → supervisor pi-intercom is the inbound control plane for bounded consent/authority questions and FINAL. The worker owns implementation, deterministic checks, Gentle native RDD, provider transitions, acknowledgement/burn and authorized normal non-force publication.
 

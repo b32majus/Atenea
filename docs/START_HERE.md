@@ -220,16 +220,16 @@ Once the work item is `EXECUTION_READY`, stop expanding the shaping stack. Use `
 The normal top-level interface is:
 
 ```text
-human opens Herdr
-→ starts Pi interactively
-→ gives one bounded authoritative execution prompt
-→ Pi performs bounded preflight
-→ Pi supervises Herdr → headless OpenCode + Gentle
-→ RDD / bounded correction
-→ acknowledgement/burn
-→ normal non-force publication
-→ PR/checkpoint reconciliation
-→ frontier rediscovery
+explicit human execution authorization
+→ human or Cora/DC mechanically starts plain Pi supervisor
+→ one bounded authoritative execution/train prompt
+→ supervisor verifies pinned worktree/runtime + required frozen oracle hash
+→ supervisor creates separate Pi/Gentle-Pi worker via pinned spawn recipe
+→ worker reads project instructions before product write
+→ worker owns implementation / native RDD / bounded correction / acknowledgement-burn / authorized publication
+→ supervisor remains event-driven and executes zero Gentle lifecycle commands
+→ checkpoint reconciliation
+→ fresh frontier rediscovery → fresh worker for next compatible ticket or STOP
 → STOP before merge / when exhausted
 → factual report
 ```
