@@ -71,16 +71,18 @@ The adopted unattended path uses a separate Pi/Gentle-Pi worker with Gentle nati
 
 The historical OpenCode negotiated `review-integration/v2` relay limitation remains tracked by issue #36 for the alternate OpenCode path. It no longer blocks the adopted Atenea unattended workflow.
 
-Current completion state, explicitly distinguished:
+Current completion state, explicitly distinguishing the adopted path from the historical OpenCode path:
 
 ```text
-RELEASED_V2_PROVIDER_UNATTENDED_SELECTOR=NOT_AVAILABLE
-NEGOTIATED_V2_UNATTENDED_PROVIDER_CANARY=PASS
-REAL_OPERATOR_TRIGGERED_ATENEA_E2E=PASS        # issue #38, under the bounded canary
-UPSTREAM_REPLACEMENT_STILL_REQUIRED=YES        # Gentleman-Programming/gentle-ai#4109
+ADOPTED_UNATTENDED_WORKER=PI_PLUS_GENTLE_PI_2_4
+ADOPTED_PATH_NATIVE_RDD=REQUIRED
+ADOPTED_PATH_BLOCKED_BY_OPENCODE_V2_GAP=NO
+OPENCODE_RELEASED_V2_PROVIDER_UNATTENDED_SELECTOR=NOT_AVAILABLE
+OPENCODE_NEGOTIATED_V2_UNATTENDED_PROVIDER_CANARY=PASS
+OPENCODE_UPSTREAM_PARITY_GAP=OPEN_NON_BLOCKING_ALTERNATE_PATH
 ```
 
-The released stable negotiated v2 still lacks a supported unattended selector. The downstream provider canary proved the behavioral hypothesis, and the real operator-triggered Atenea E2E (issue #38) completed under that bounded canary. Neither closes the upstream requirement: `UPSTREAM_REPLACEMENT_STILL_REQUIRED=YES` until a supported provider-owned equivalent exists.
+The released negotiated-v2 selector gap remains useful upstream/alternate-OpenCode work, but it is no longer a global Atenea completion blocker after the Gentle-Pi replacement qualification and cutover #45/#47.
 
 ### 3.1 Operator/supervision ergonomics — no new authority
 
@@ -307,7 +309,7 @@ The Pi/Gentle-Pi worker MUST execute provider-issued lifecycle continuations as 
 
 A post-review candidate mutation invalidates or supersedes prior review evidence according to Gentle's native lifecycle and may require a new exact-candidate review lineage.
 
-### 11.1 Stable 2.5 consent paths and current negotiated-v2 gap
+### 11.1 Historical/alternate OpenCode negotiated-v2 consent characterization
 
 Stable Gentle `2.5.0` retains multiple provider-owned consent behaviors.
 
@@ -315,7 +317,7 @@ Stable Gentle `2.5.0` retains multiple provider-owned consent behaviors.
 
 **Undeclared non-interactive negotiated START** is also authorized silently by stable Gentle.
 
-However, the current `gentle-ai.review-integration/v2` next-transition builder appends `--consent relay` to provider-issued START. That explicitly selects candidate-scoped negotiated semantics: relay returns the typed question; `granted` applies only to that frozen candidate; later changed medium/high candidates ask again.
+In the characterized OpenCode/Gentle 2.5 negotiated-v2 route, the next-transition builder appended `--consent relay` to provider-issued START. That selected candidate-scoped negotiated semantics: relay returned the typed question; `granted` applied only to that frozen candidate; later changed medium/high candidates asked again. This subsection preserves that alternate-path evidence; it does not define the adopted Pi/Gentle-Pi consent transport.
 
 Therefore:
 
@@ -325,14 +327,15 @@ OPENCODE_NEGOTIATED_V2_ZERO_TOUCH=NOT_SATISFIED
 CAUSE=V2_NEXT_TRANSITION_FORCES_CONSENT_RELAY
 ```
 
-While this v2 route remains selected:
+If that historical/alternate OpenCode v2 route is explicitly selected:
 
-- Pi MUST relay the complete provider-issued consent envelope to the human;
-- Pi MUST NOT inject `granted`, auto-click, remove `relay`, infer approval from `EXECUTION_READY`, or reconstruct START;
+- its consumer MUST preserve the complete provider-issued consent semantics and MUST NOT inject `granted`, auto-click, remove `relay`, infer approval from `EXECUTION_READY`, or reconstruct START;
 - a candidate-scoped decline remains distinct from disabling RDD;
 - provider-issued lifecycle arguments remain exact/opaque.
 
-Issue #36 owns the upstream-first resolution. Preferred order:
+The adopted Pi/Gentle-Pi path instead follows §7.1 plus the versioned named/scoped mechanical Atenea RDD relay; it does not reuse this historical direct-human relay prescription.
+
+Issue #36 owns any optional upstream-first parity work for the alternate OpenCode route. Preferred order if that parity work is pursued:
 
 1. determine whether current v2 already exposes a supported unattended/no-relay consent policy;
 2. determine whether an existing provider-owned organic path can preserve all required modern OpenCode/Gentle properties;
@@ -505,7 +508,7 @@ Before adding any Atenea glue, answer all of these:
 
 If those questions do not have concrete answers, DO NOT BUILD.
 
-For zero-touch RDD, stable Gentle already owns the underlying silent/one-time consent behavior; the unresolved seam is negotiated-v2 policy selection. The downstream provider canary proved the behavioral parity and the real operator-triggered Atenea E2E (issue #38) completed under it, but the current action remains upstream integration verification / smallest upstream parity proposal (`Gentleman-Programming/gentle-ai#4109`), not an Atenea consent bypass and not permanent adoption of the downstream canary.
+For the adopted unattended path, Gentle Pi + Gentle native RDD owns review lifecycle and the Atenea worker-side relay preserves already-authorized bounded consent transport without reconstructing provider envelopes. The historical negotiated-v2/OpenCode policy-selection seam remains an optional upstream parity item (`Gentleman-Programming/gentle-ai#4109`) for that alternate route, not an Atenea consent bypass and not a blocker for current execution.
 
 ## 23. Current completion state
 
@@ -516,25 +519,23 @@ Issue #38 completed the first real operator-triggered Atenea end-to-end run thro
 Current stable status:
 
 ```text
+ADOPTED_UNATTENDED_WORKER              PI_PLUS_GENTLE_PI_2_4
 EXACT_CANDIDATE_RDD                    PASS
 PROVIDER_CONTINUATION_REENTRY          PASS_ON_SUCCESSFUL_FIELD_PATH
 ACKNOWLEDGEMENT_BURN                   PASS
+NORMAL_NON_FORCE_PUBLICATION           PASS
 PR_STOP_BEFORE_HUMAN_MERGE             PASS
-STABLE_GENTLE_ZERO_TOUCH_CAPABILITY    EXISTS
-RELEASED_V2_PROVIDER_UNATTENDED_SELECTOR=NOT_AVAILABLE
-NEGOTIATED_V2_UNATTENDED_PROVIDER_CANARY=PASS
-REAL_OPERATOR_TRIGGERED_ATENEA_E2E=PASS          # issue #38
-UPSTREAM_REPLACEMENT_STILL_REQUIRED=YES          # Gentleman-Programming/gentle-ai#4109
-OPENCODE_NEGOTIATED_V2_ZERO_TOUCH      NOT_SATISFIED
-ZERO_TOUCH_BLOCKER                     V2_NEXT_TRANSITION_FORCES_CONSENT_RELAY
+NAMED_SCOPED_INTERCOM_IDENTITY         REQUIRED_FOR_PINNED_RUNS
+MECHANICAL_RDD_CONSENT_RELAY           CURRENT_PINNED_TRANSPORT
+OPENCODE_NEGOTIATED_V2_ZERO_TOUCH      LEGACY_ALT_PATH_NOT_SATISFIED
+OPENCODE_UPSTREAM_PARITY_GAP           OPEN_NON_BLOCKING
 ```
 
 Remaining evidence/work should come primarily from real-project use:
 
-- Issue #36 / upstream `Gentleman-Programming/gentle-ai#4109`: upstream-supported restoration of zero-touch on the negotiated OpenCode review path without rewriting provider transitions (still open);
-- issue #39 operator-ergonomics refinement (visible worker pane + bounded pinned prompt): **completed** for the bounded pinned preflight, visible worker pane and immediate pane/tab id reporting; `USEFUL_LIVE_WORKER_STREAM=NOT_YET_PROVEN` remains the follow-up (rendering useful live OpenCode/Gentle activity into the visible pane, non-blocking);
+- natural field qualification of the adopted named/scoped Pi/Gentle-Pi path and its mechanical RDD relay;
+- Issue #36 / upstream `Gentleman-Programming/gentle-ai#4109` only if continued parity for the alternate OpenCode route is valuable; it does not block the adopted path;
 - optional OpenSpec use only when a real brownfield delta benefits from it;
-- first naturally material UI slice using conditional Impeccable/DESIGN/PRODUCT policy;
-- one bounded Gentle Pi `2.3.0` replacement/deletion evaluation because it materially changes the previously failed upstream runtime.
+- first naturally material UI slice using conditional Impeccable/DESIGN/PRODUCT policy.
 
 Do not create another large synthetic qualification ladder merely to exercise optional surfaces.

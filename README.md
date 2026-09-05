@@ -172,46 +172,44 @@ FRONTIER_EXHAUSTION_STOP           PASS
 REAL_OPERATOR_TRIGGERED_ATENEA_E2E PASS   # issue #38
 ```
 
-Issue #38 proved the real top-level operator interface end to end:
+Issue #38 historically proved the top-level human authorization/operator boundary end to end using the then-qualified OpenCode worker topology. That proof remains valid evidence, but its worker transport is no longer the current contract. T4/T5 plus the adopted cutover #45/#47 qualified the smaller current path:
 
 ```text
-human opens Herdr
-→ starts Pi interactively
-→ one bounded execution prompt
-→ Pi → Herdr → headless OpenCode → Gentle
-→ implementation + verification + exact-candidate RDD
+explicit human execution authorization
+→ human or Cora/DC mechanically starts the plain Pi supervisor
+→ named/scoped Pi supervisor → Herdr → fresh named/scoped Pi + Gentle Pi worker
+→ implementation + deterministic verification + exact-candidate native RDD
 → acknowledgement/burn
 → normal non-force publication
-→ PR/checkpoint reconciliation
-→ frontier STOP
-→ final factual report
+→ checkpoint reconciliation / fresh compatible frontier or STOP
+→ human merge boundary
 ```
 
-Issue #39 proved bounded pinned preflight plus a dedicated visible Herdr worker pane/id. A useful live OpenCode/Gentle stream in that pane remains **not yet proven and non-blocking**; Atenea prefers the functioning headless path over adding fragile observation machinery.
+Issue #39's bounded-preflight/visible-pane findings remain useful historical ergonomics evidence; OpenCode-specific live-stream work is not a gate for the adopted Pi/Gentle-Pi path.
 
 See `docs/QUALIFICATION.md`.
 
 ## Gentle current boundary
 
-Current truth:
+Current truth for the adopted unattended path:
 
 ```text
-Gentle AI production stable                  2.5.0
-STABLE_GENTLE_ZERO_TOUCH_CAPABILITY          PROVEN
-RELEASED_V2_PROVIDER_UNATTENDED_SELECTOR     NOT_AVAILABLE
-NEGOTIATED_V2_UNATTENDED_PROVIDER_CANARY     PASS
-REAL_OPERATOR_TRIGGERED_ATENEA_E2E           PASS
-PRODUCTION_GENTLE_MODIFIED                   NO
-UPSTREAM_REPLACEMENT_STILL_REQUIRED          YES
+Pi                                               0.85.1 field epoch
+Gentle Pi                                        2.4.0 ADOPTED
+Gentle AI                                        2.6.0 field epoch
+NATIVE_GENTLE_EXACT_CANDIDATE_RDD               REQUIRED
+SUPERVISOR_GENTLE_COMMANDS                       0
+NAMED_SCOPED_PI_INTERCOM_IDENTITY                REQUIRED_FOR_PINNED_RUNS
+ATENEA_MECHANICAL_RDD_CONSENT_RELAY              REQUIRED_FOR_PINNED_RUNS
+NORMAL_NON_FORCE_PUBLICATION                     REPOSITORY_POLICY
+FINAL_MERGE                                      HUMAN_BOUNDARY
 ```
 
-The bounded downstream canary proved the missing negotiated-v2 unattended behavior without Pi/OpenCode rewriting provider transitions. It remains canary-only; upstream `Gentleman-Programming/gentle-ai#4109` remains the production-resolution owner.
+The older negotiated-v2/OpenCode provider-selector gap remains tracked only for that alternate/historical OpenCode route. It does **not** block the adopted Pi/Gentle-Pi unattended workflow and is not a global Atenea replacement requirement.
 
-Do not strip provider `relay`, inject `granted`, synthesize START, create a consent DB/controller or turn the canary into a permanent fork.
+Do not strip provider `relay`, inject `granted`, synthesize START/envelopes, create a consent DB/controller or turn historical canary behavior into a permanent fork. Pinned runs use the versioned spawn recipe and mechanical RDD relay instead.
 
-Evidence: `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`.
-
-A bounded replacement/deletion reevaluation under Atenea #35 exercised **Gentle Pi 2.4.0** on real PROMueve repairs and final T5 qualification. It closed zero-touch execution, native RDD delegation/ack-burn, normal publication, composed continuity and fresh frontier rediscovery/STOP with `RESULT=PASS_DELETE`. Operator-authorized cutover #45 adopts that smaller path as the normal unattended workflow. Evidence: `docs/GENTLE_PI_24_REPLACEMENT_FIELD_EVIDENCE_20260905.md`.
+Evidence: `docs/GENTLE_PI_24_REPLACEMENT_FIELD_EVIDENCE_20260905.md`; historical OpenCode canary: `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`.
 
 ## Installation / making Atenea work
 
@@ -222,7 +220,7 @@ For a fresh environment:
 1. clone this repository;
 2. read `docs/START_HERE.md`;
 3. install the current upstream runtime stack through supported upstream surfaces;
-4. verify Pi / Herdr / OpenCode / Gentle effective behavior;
+4. verify Pi / Herdr / Gentle Pi / Gentle AI / pi-intercom effective behavior; treat OpenCode verification as optional for explicitly selected alternate/historical use;
 5. shape the target work before `EXECUTION_READY`;
 6. start executable work using `docs/OPERATOR_RUNBOOK_V1.md`.
 
