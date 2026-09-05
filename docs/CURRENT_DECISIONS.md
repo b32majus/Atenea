@@ -24,9 +24,9 @@ A future upstream replacement may be adopted only after bounded evidence proves 
 
 Herdr provides the process/session surface used by the qualified architecture. Do not reintroduce Herdr-specific policy gates or make Herdr an independent authority controller.
 
-## C-004 — OpenCode + Gentle is the accepted implementation worker
+## C-004 — Historical OpenCode + Gentle implementation worker
 
-**Accepted and qualified.**
+**SUPERSEDED for the normal unattended path by C-025; preserved as historical/alternate qualified evidence.**
 
 Gentle owns the exact candidate, native RDD, reviewer lineage/authority, bounded correction, provider-issued continuation/re-entry, final acknowledgement/burn, recovery and mutation invalidation. The OpenCode/Gentle worker executes those provider-issued transitions. Atenea and the outer Pi supervisor must not duplicate or take over those mechanisms.
 
@@ -34,7 +34,7 @@ Gentle AI `2.5.0` stable is the current production operational target. Stage 5�
 
 The bounded negotiated-v2 unattended characterization is recorded separately in `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`. Its provider-side environment selector is canary-only and is not yet a supported production Gentle API.
 
-## C-005 — Gentle Pi 2.2.0 failed; Gentle Pi 2.4.0 bounded replacement evaluation = PASS_DELETE, adoption pending human review
+## C-005 — Gentle Pi 2.2.0 failed historically; Gentle Pi 2.4.0 replacement evaluation = PASS_DELETE and is now adopted by C-025
 
 **Historical `2.2.0`: rejected / not qualified.** The failure remains valid evidence and MUST NOT be erased.
 
@@ -47,14 +47,33 @@ GENTLE_PI_2_4_EXECUTION_PATH_CANDIDATE=PASS
 GENTLE_PI_2_4_ZERO_TOUCH_REAL_REPAIR=PASS
 GENTLE_PI_2_4_COMPOSED_T5_QUALIFICATION=PASS
 GENTLE_PI_2_4_FRONTIER_REDISCOVERY_STOP=PASS
-GENTLE_PI_2_4_ADOPTED=NO
+GENTLE_PI_2_4_ADOPTED=YES
 FULL_REPLACEMENT_QUALIFICATION=PASS_DELETE
-ADOPTION_DECISION=PENDING_HUMAN_REVIEW
+ADOPTION_DECISION=APPROVED_CUTOVER_45
 ```
 
-This is meaningful replacement/deletion evidence because OpenCode and the downstream negotiated-v2 OpenCode consent canary were not used by the Gentle Pi worker path. After T5 final qualification, the same non-implementing supervisor freshly re-read parent #292 and issue #298, confirmed #298 was OPEN + approved + ready-for-agent with its T5 dependency satisfied by `5ae810a…`, reported `NEXT_FRONTIER=#298`, launched nothing, and STOPped. The bounded #35 experiment therefore resolves `PASS_DELETE`. Do not change the normal Atenea front door until the human adoption review explicitly approves the cutover.
+This is meaningful replacement/deletion evidence because OpenCode and the downstream negotiated-v2 OpenCode consent canary were not used by the Gentle Pi worker path. After T5 final qualification, the same non-implementing supervisor freshly re-read parent #292 and issue #298, confirmed #298 was OPEN + approved + ready-for-agent with its T5 dependency satisfied by `5ae810a…`, reported `NEXT_FRONTIER=#298`, launched nothing, and STOPped. The bounded #35 experiment therefore resolves `PASS_DELETE`. Operator authorization on 2026-09-05 approved the cutover; C-025 records the adopted workflow.
 
 Evidence: `docs/GENTLE_PI_24_REPLACEMENT_FIELD_EVIDENCE_20260905.md`.
+
+## C-025 — Pi supervisor → separate Pi/Gentle-Pi worker is the adopted unattended workflow
+
+**Accepted, qualified and adopted 2026-09-05 under issue #45.**
+
+```text
+explicit human execution authorization
+→ Cora/DC or human mechanical launch
+→ normal Pi supervisor (Gentle Pi OFF; pi-intercom ON; non-implementing)
+→ Herdr separate visible worker pane
+→ fresh Pi worker + Gentle Pi 2.4 / Gentle AI native RDD
+→ deterministic checks / acknowledgement-burn / normal non-force publication
+→ supervisor fresh frontier rediscovery / fresh worker for next compatible ticket or STOP
+→ human merge boundary
+```
+
+Pinned worker creation MUST follow `docs/SPAWN_RECIPE_GENTLE_PI_WORKER_V1.md`. The planning/launch surface verifies exact model literals and runtime parameters before supervisor launch; the supervisor consumes them unchanged and fails closed instead of rediscovering/substituting. Supervision is event-driven through pi-intercom; fixed sleeps/polling and `agent_status` lifecycle inference are prohibited.
+
+OpenCode remains installed/usable for attended or alternate workflows and as frozen historical qualification evidence, but is no longer required by the normal unattended path.
 
 ## C-006 — Normal git push is allowed; no publication-permission subsystem
 
@@ -132,7 +151,7 @@ RDD evidence/approval is separate from delivery. A work unit may end at an accep
 
 Stage 5–8 already qualify the core architecture. New surfaces should be validated through bounded real-project evidence.
 
-The materially changed Gentle Pi line qualified for one bounded replacement/deletion re-evaluation because `2.2.0` failed historically. The current field epoch is `2.4.0`: PROMueve T4 established execution-path PASS and T5 plus fresh frontier rediscovery closed the remaining continuity/frontier gate. Result: `PASS_DELETE`; adoption remains a separate human review decision. This is not Stage 9.
+The materially changed Gentle Pi line qualified for one bounded replacement/deletion re-evaluation because `2.2.0` failed historically. The current field epoch is `2.4.0`: PROMueve T4 established execution-path PASS and T5 plus fresh frontier rediscovery closed the remaining continuity/frontier gate. Result: `PASS_DELETE`; operator-authorized cutover #45 adopts the replacement path. This is not Stage 9.
 
 ## C-014 — Harness Contract v1 is the normative horizontal boundary
 
@@ -227,9 +246,9 @@ For the Gentle Pi candidate path, the proven supervision pattern is: launch/prom
 
 For runtimes without an inbound event surface, use the narrowest one-shot Herdr/native wait/state primitive necessary; never build a scheduler, daemon or polling controller to compensate.
 
-## C-021 — Autonomous OpenCode transport is headless `opencode run`; TUI automation is not the runtime contract
+## C-021 — Historical autonomous OpenCode transport used headless `opencode run`
 
-**Accepted from real transport evidence.**
+**SUPERSEDED for the normal unattended path by C-025; preserved as historical/alternate transport evidence.**
 
 The interactive OpenCode TUI remains valid for human-attended work. It is not the accepted autonomous transport between Pi/Herdr and the implementation worker.
 
@@ -246,9 +265,9 @@ Pi
 
 The final canary proved exactly one real Herdr workspace/run/wait, exactly one `opencode run`, zero direct Pi Gentle lifecycle calls and zero Pi delivery calls.
 
-## C-022 — The real operator interface is human → Herdr → interactive Pi; autonomy begins after the one execution prompt
+## C-022 — Historical human → Herdr → interactive Pi operator interface
 
-**Accepted and field-proven by issue #38.**
+**SUPERSEDED in launch mechanics by C-025; issue #38 remains historical proof that one explicit execution authorization can bound a zero-touch run.**
 
 The real operator experience is:
 
@@ -294,9 +313,9 @@ The final zero-touch canary exposed three observation-only defects:
 
 These do not belong in the runtime architecture. Structured evidence should be written directly to files and audited structurally. Do not add a wrapper/controller merely to observe the already-qualified path.
 
-## C-024 — Visible Herdr worker pane + bounded pinned operator prompt are accepted operator ergonomics, not architecture
+## C-024 — Visible Herdr worker pane + bounded pinned prompt remain accepted ergonomics
 
-**Accepted from post-#38 operator evidence (issue #39).**
+**PARTIALLY SUPERSEDED by C-025:** the visible-pane and bounded-prompt principles remain; OpenCode-specific worker mechanics are historical/alternate.
 
 The #38 run proved the real operator interface but exposed two operator ergonomics improvements, both executed by issue #39 and accepted for current use without introducing any launcher/controller:
 

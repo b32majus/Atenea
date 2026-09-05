@@ -21,6 +21,12 @@ Evidence:
 
 The real operator path described below is therefore the **normal operator path**, not a one-off experiment.
 
+## Current unattended rollout path after cutover #45
+
+Real-project unattended execution now uses a persistent normal Pi supervisor plus a fresh separate Pi/Gentle-Pi worker for each compatible ticket. The supervisor is event-driven through pi-intercom and freshly rediscovers repository/GitHub frontier only after an accepted durable checkpoint. Pinned worker creation uses `docs/SPAWN_RECIPE_GENTLE_PI_WORKER_V1.md`.
+
+OpenCode-specific sections later in this document describe historical/alternate field evidence and must not be read as the current required transport.
+
 ## 1. Select the project and slice
 
 Prefer a real repository that has:
@@ -157,7 +163,7 @@ human opens/uses Herdr
 → Pi returns one factual final report
 ```
 
-Pi remains interactive to the operator; the **implementation worker does not**. The accepted autonomous worker transport is headless `opencode run --format json` under Herdr rather than robotic prompt injection into an OpenCode TUI.
+Pi remains interactive to the operator; the **implementation worker is a separate Pi/Gentle-Pi process in a visible Herdr pane**. OpenCode headless transport below is preserved as historical/alternate evidence, not the current required unattended transport.
 
 Herdr remains process/session substrate only. Pi remains non-implementing. OpenCode/Gentle owns every Gentle lifecycle command and provider-issued review transition.
 
