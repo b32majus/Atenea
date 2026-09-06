@@ -20,6 +20,7 @@ REMOTE_RECONCILIATION             PASS
 FRONTIER_EXHAUSTION_STOP          PASS
 GOLDEN_E2E_MULTI_TICKET_FIELD       PASS
 ZERO_HUMAN_TOUCH_MULTI_TICKET       PASS
+HERDR_START_READINESS_NO_SLEEP       PASS
 ```
 
 The result is evidence for a thin supervisory contract, not a recommendation to build a larger Atenea runtime.
@@ -53,7 +54,15 @@ GOLDEN_E2E_MULTI_TICKET_FIELD           PASS
 
 The run exercised the C-029 reviewer continuation contract on live T8/T9 candidates. T8 had one reviewer-result admission refusal with zero authority progress; Gentle reoffered the exact slot and one bounded retry completed APPROVED → acknowledgement/burn without human intervention. T9 completed one forecast/ACK/reviewer run → APPROVED → burn. T10 correctly created no review/no-op commit because the final gate required no mutation.
 
-Two non-blocking harness debts remain visible rather than normalized: the supervisor used one short startup `sleep 6` before T8 prompt delivery even though the current Harness Contract already prohibits fixed sleeps/polling as the normal lifecycle clock; and reviewer-result admission was not error-free on the first T8 run. Neither defect required a new controller or broadened authority.
+The PROMueve run originally exposed two non-blocking harness debts: one startup `sleep 6`, and one T8 reviewer-result admission refusal recovered by bounded retry. WO #59 subsequently resolved the startup-readiness debt without new runtime code: on Herdr `0.8.2`, `herdr agent start` returned `interactive_ready=true`; the first prompt was submitted 17 ms later with **zero sleep**, and the fresh Pi worker produced `READINESS_CANARY_PASS`. The initial literal output wait matched the echoed prompt and was therefore not used as proof; the subsequent pane read confirmed the actual model response. The reviewer-admission reliability debt remains separate/open-nonblocking.
+
+```text
+HERDR_AGENT_START_READINESS_BARRIER    PASS
+ZERO_SLEEP_BEFORE_FIRST_PROMPT         PASS
+WORKER_FINAL_VIA_INTERCOM              NORMATIVE
+POST_FINAL_HOST_ARCHAEOLOGY            NORMAL_PATH_PROHIBITED
+REVIEWER_ADMISSION_RETRY_DEBT          OPEN_NON_BLOCKING
+```
 
 Canonical field evidence: `docs/PROMUEVE_UNIFIED_INTAKE_GOLDEN_E2E_FIELD_EVIDENCE_20260906.md`.
 
