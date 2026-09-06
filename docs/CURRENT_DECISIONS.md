@@ -136,7 +136,7 @@ Field result: T8 `08703a6…` accepted; T9 `fbaaef0…` accepted; T10 final gate
 
 This closes the Golden E2E multi-ticket qualification gap without changing the ownership model or adding runtime architecture. C-025–C-029 remain normative for topology, fail-closed launch, bounded consent relay, explicit identity/scope and reviewer continuation.
 
-The field run does not relax C-025's event-driven rule. One observed startup `sleep 6` is recorded as non-blocking harness debt, not accepted behavior. A T8 reviewer admission refusal recovered through a provider-owned bounded reoffer/retry is likewise reliability debt, not justification for a second reviewer controller.
+The field run does not relax C-025's event-driven rule. It originally exposed one startup `sleep 6`; WO #59 subsequently resolved that debt with a real Herdr `0.8.2` readiness canary: successful `herdr agent start` is the readiness barrier and the first prompt followed 17 ms later with zero sleep. The separate T8 reviewer admission refusal recovered through a provider-owned bounded reoffer/retry remains non-blocking reliability debt, not justification for a second reviewer controller.
 
 Evidence: `docs/PROMUEVE_UNIFIED_INTAKE_GOLDEN_E2E_FIELD_EVIDENCE_20260906.md`.
 
@@ -147,6 +147,18 @@ Evidence: `docs/PROMUEVE_UNIFIED_INTAKE_GOLDEN_E2E_FIELD_EVIDENCE_20260906.md`.
 For high-risk composition/promotion decisions, the human/Cora planning surface may require `docs/PROMOTION_REVIEW_V1.md`: one fresh read-only Pi reviewer, an exact base/head evidence pack, the complete diff plus an explicit high-risk subset, and three separate axes (Spec/clinical semantics, Standards/Clean Code, Adversarial/Safety & failure ordering). Any blocking finding means FAIL. The reviewer model route is explicit at launch and cannot silently fall back.
 
 This does not weaken C-011. Gentle native RDD remains the sole exact-candidate review authority and Matt `code-review` remains an upstream task-triggered engineering method. Promotion Review is conditional at the human promotion boundary, creates no lineage/acknowledgement authority, performs no mutation and never auto-authorizes merge.
+
+## C-032 — Newcomer front door makes scopes, Matt setup and operational routing explicit without new runtime architecture
+
+**Accepted for WO #63, 2026-09-06.**
+
+`docs/NEWCOMER_QUICKSTART_V1.md` is the fast non-normative map for a fresh operator/agent. `docs/INSTALLATION_AND_OPERATION_V1.md` remains the installation/verification authority and now distinguishes machine-global runtime, the versioned Atenea checkpoint and target-repo authority/configuration.
+
+For a target repo that selects the Matt ecosystem under current Pi, use the complete upstream project-local install surface and run `setup-matt-pocock-skills` once before first use; do not treat Atenea's historical `.agents/skills/` location as the current target-Pi recipe. Greenfield shaping exposes `to-spec` and `to-tickets`; engineering methods remain task-triggered by their upstream definitions.
+
+Current model choices remain operational rather than architectural. The field-proven default profile is DeepSeek V4 Flash medium for the Pi supervisor and high for the Pi/Gentle-Pi worker; pinned launches must use explicit literals and never silently inherit/fallback to a machine-global default. Gentle reviewer routing remains provider-owned and Promotion Review pins its route per invocation.
+
+The adopted Golden E2E path does **not** require `pi-subagents`, a delegated `gentle-ai-worker`, Luna-specific writer routing, a context-budget controller, supervisor-invariants duplication, an Atenea-supervisor skill or a generic worker-template engine. Those may only be revisited after a concrete gap/qualification; they are not latent completion requirements.
 
 ## C-006 — Normal git push is allowed; no publication-permission subsystem
 

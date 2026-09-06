@@ -24,12 +24,25 @@ Then read:
 
 ```text
 README.md
+→ docs/NEWCOMER_QUICKSTART_V1.md
 → docs/START_HERE.md
 → docs/ATENEA_HARNESS_CONTRACT_V1.md
 → docs/CURRENT_DECISIONS.md
 ```
 
 Do not start from historical Stage files.
+
+### 1.1 Three configuration scopes
+
+Keep these ownership surfaces separate:
+
+| Scope | Current responsibility |
+|---|---|
+| **Machine/global** | Pi, Herdr, Gentle Pi, Gentle AI, pi-intercom and supported runtime/provider configuration. |
+| **Atenea clone/checkpoint** | versioned harness contract, runbook, spawn recipe, RDD relay, reviewer continuation, Promotion Review and deterministic checkers. |
+| **Target repo/worktree** | product/repository authority, `AGENTS.md`, coding standards, specs/issues, tests/oracles, delivery branch/worktree and any repo-local shaping skills/config selected before `EXECUTION_READY`. |
+
+Atenea never promotes machine-global defaults into product authority. A pinned run uses one exact Atenea checkpoint and must not mix relay/reviewer/runtime assets across Atenea SHAs.
 
 ## Adopted unattended runtime — 2026-09-05 cutover
 
@@ -72,6 +85,23 @@ Engram      1.20.0
 ```
 
 That epoch proved Pi → Herdr → headless OpenCode → Gentle, but OpenCode is no longer a required dependency of the adopted unattended path. Preserve the evidence; do not recover it as current policy. See `docs/GENTLE_PI_24_REPLACEMENT_FIELD_EVIDENCE_20260905.md` for the replacement qualification.
+
+### 2.1 Current operational routing profile
+
+Routing is replaceable operational configuration, not Atenea architecture. For pinned work the planning/launch surface resolves literal routes before the supervisor starts; the supervisor never discovers/substitutes another model after rejection.
+
+Current field-proven Golden E2E defaults:
+
+| Role | Route | Thinking |
+|---|---|---|
+| Pi supervisor | `commandcode/deepseek/deepseek-v4-flash` | `medium` |
+| Pi + Gentle Pi worker | `commandcode/deepseek/deepseek-v4-flash` | `high` |
+| Gentle native reviewer lenses | provider-owned | provider-owned/current Gentle authority |
+| Promotion Review | explicit literal in evidence pack | explicit literal; no silent fallback |
+
+Human/Cora shaping has no Atenea model pin because it sits outside the autonomous runtime. Do not use the machine-global Pi default as an implicit pinned-run route.
+
+`pi-subagents`, delegated `gentle-ai-worker`, Luna-specific writer routing and a context-budget guard are not required by the adopted path and are not installed/enabled by Atenea policy. The Golden E2E train passed without them. Qualify them separately only if a real efficiency/context gap later warrants a routing change.
 
 ## 3. Install upstream runtimes, not Atenea replacements
 
@@ -157,30 +187,49 @@ The older OpenCode negotiated-v2 canary remains historical evidence in `docs/GEN
 
 Do not manufacture zero-touch by stripping `relay`, injecting `granted`, reconstructing provider START/envelopes, or adding a consent database/controller.
 
-## 6. Matt / OpenSpec / Repository Intelligence are not installation prerequisites
+## 6. Matt / OpenSpec / Repository Intelligence are shaping choices, not unattended runtime prerequisites
 
-Atenea's shaping choices are selected by the human + Cora/planning surface before autonomous execution:
+Atenea's shaping choices are selected by the human + Cora/planning surface before autonomous execution. Matt is the normal greenfield upstream authoring ecosystem; it does **not** need to be loaded into the adopted unattended Pi/Gentle-Pi worker.
+
+When a target repo will use Matt with Pi, install the complete upstream set **project-locally** instead of copying selected skill files. Verified current surface (`skills` 1.5.23, 2026-09-06):
+
+```bash
+cd <target-repo>
+npx --yes skills add mattpocock/skills --skill '*' --agent pi --yes --full-depth
+```
+
+Current expected result is 37 skills under `.pi/skills/` plus `skills-lock.json`. This was reverified in an isolated temporary repo during WO #63. If the upstream CLI changes, use its current supported Pi surface and re-verify the result instead of preserving obsolete installation glue. Historical Atenea `.agents/skills/` paths are provenance from the earlier OpenCode-oriented setup, not the target-Pi installation recipe.
+
+Run upstream `setup-matt-pocock-skills` once in a target repo before first use of the other Matt engineering skills when that repo is adopting the ecosystem. It configures the repo's issue-tracker, triage-label and domain-doc conventions. Existing configured brownfields do not rerun it by ritual.
 
 ```text
 GREENFIELD
-→ Matt Pocock upstream shaping
+→ full Matt repo-local setup for Pi when selected
+→ setup-matt-pocock-skills once
+→ product/domain shaping / grill-with-docs when useful
+→ to-spec
+→ independent spec/readiness challenge when warranted
+→ to-tickets
+→ ticket readiness
 
 SMALL_BROWNFIELD
 → repo-native understanding
-→ OpenSpec delta-first when useful
+→ Matt task-triggered methods and/or OpenSpec delta-first only when useful
 
 LARGE_CODE_BROWNFIELD
 → optional Repository Intelligence if justified
-→ OpenSpec/repo-native shaping
+→ repo-native/OpenSpec/Matt delta shaping as needed
 
 MIXED_CORPUS_BROWNFIELD
 → optional mixed-corpus Repository Intelligence if justified
-→ OpenSpec/repo-native shaping
+→ repo-native/OpenSpec/Matt delta shaping as needed
 ```
 
-Repository Intelligence candidates such as CodeGraph or Graphify are not yet mandatory Atenea dependencies. Do not auto-install them globally as part of Atenea setup.
+Task-triggered Matt methods (`domain-modeling`, `codebase-design`, `tdd`, `diagnosing-bugs`, `code-review`) follow their own upstream triggers; Atenea does not copy their internals or force them into every run.
 
-See `docs/START_HERE.md`.
+Repository Intelligence candidates such as CodeGraph or Graphify are not mandatory Atenea dependencies. Do not auto-install them globally as part of Atenea setup.
+
+See `docs/NEWCOMER_QUICKSTART_V1.md` and `docs/START_HERE.md`.
 
 ## 7. Normal human start path
 

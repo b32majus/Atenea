@@ -11,12 +11,15 @@ If you are a fresh Cora / planning assistant, or a human returning to a project,
 Read in this order:
 
 1. **`README.md`** — this current overview.
-2. **`docs/START_HERE.md`** — project-entry decision procedure for start/continue work.
-3. **`docs/ATENEA_HARNESS_CONTRACT_V1.md`** — **normative execution contract**.
-4. **`docs/CURRENT_DECISIONS.md`** — current accepted decisions and field findings.
-5. **`docs/OPERATOR_RUNBOOK_V1.md`** — how the human starts an `EXECUTION_READY` run.
-6. **`docs/INSTALLATION_AND_OPERATION_V1.md`** — how to provision/verify the current environment.
-7. `docs/QUALIFICATION.md` and historical evidence only when provenance is needed.
+2. **`docs/NEWCOMER_QUICKSTART_V1.md`** — one-page map of scopes, Matt setup, current routing and execution boundaries.
+3. **`docs/START_HERE.md`** — project-entry decision procedure for start/continue work.
+4. **`docs/ATENEA_HARNESS_CONTRACT_V1.md`** — **normative execution contract**.
+5. **`docs/CURRENT_DECISIONS.md`** — current accepted decisions and field findings.
+6. **`docs/INSTALLATION_AND_OPERATION_V1.md`** — provisioning, global/Atenea/target scopes and runtime verification.
+7. **`docs/OPERATOR_RUNBOOK_V1.md`** — how the human starts an `EXECUTION_READY` run.
+8. `docs/QUALIFICATION.md` and historical evidence only when provenance is needed.
+
+If you only need the operational map first, read the newcomer quickstart before opening historical evidence.
 
 Historical handoffs/stage files are evidence. They do not override current authority.
 
@@ -256,6 +259,7 @@ The Matt skills are not a mandatory execution sequence.
 ### Current / read first
 
 - `README.md` — current overview and navigation.
+- `docs/NEWCOMER_QUICKSTART_V1.md` — fast scope/setup/skills/routing/execution map for a fresh operator or agent.
 - `docs/START_HERE.md` — Cora/human project-entry and shaping decision procedure.
 - `docs/ATENEA_HARNESS_CONTRACT_V1.md` — **normative execution contract**.
 - `docs/CURRENT_DECISIONS.md` — current accepted decisions.

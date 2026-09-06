@@ -7,16 +7,18 @@ Atenea is an upstream-first autonomous engineering harness. Do not invent a new 
 If you are a fresh agent/Cora trying to understand how Atenea currently works, read:
 
 1. `README.md`
-2. `docs/START_HERE.md`
-3. `docs/ATENEA_HARNESS_CONTRACT_V1.md`
-4. `docs/CURRENT_DECISIONS.md`
-5. `docs/OPERATOR_RUNBOOK_V1.md` only when work is already `EXECUTION_READY`
-6. `docs/INSTALLATION_AND_OPERATION_V1.md` for environment setup/verification
+2. `docs/NEWCOMER_QUICKSTART_V1.md`
+3. `docs/START_HERE.md`
+4. `docs/ATENEA_HARNESS_CONTRACT_V1.md`
+5. `docs/CURRENT_DECISIONS.md`
+6. `docs/INSTALLATION_AND_OPERATION_V1.md` for scopes/setup/verification
+7. `docs/OPERATOR_RUNBOOK_V1.md` only when work is already `EXECUTION_READY`
 
 Do not recover current execution policy from historical Stage files or `docs/ATENEA_HANDOFF_20260830.md`. They are evidence, not current forward-looking authority.
 
 ## Current authority
 
+- Fast newcomer map (non-normative): `docs/NEWCOMER_QUICKSTART_V1.md`
 - Normative harness/runtime boundaries: `docs/ATENEA_HARNESS_CONTRACT_V1.md`
 - Project-entry / start-or-continue procedure: `docs/START_HERE.md`
 - Current decisions: `docs/CURRENT_DECISIONS.md`

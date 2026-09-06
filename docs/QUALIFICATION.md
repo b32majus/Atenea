@@ -68,6 +68,33 @@ Canonical field evidence: `docs/PROMUEVE_UNIFIED_INTAKE_GOLDEN_E2E_FIELD_EVIDENC
 
 This qualification proves the adopted harness behavior. It does **not** merge PR #49, merge PROMueve product branches, or claim PROMueve pilot/production readiness.
 
+## Newcomer front-door qualification — PASS — 2026-09-06
+
+WO #63 tested the current documentation as a product surface rather than assuming that information existing somewhere in the repository was sufficient. A fresh Pi reviewer with no prior conversation/memory, `--no-extensions`, `--no-skills`, `--no-prompt-templates` and read-only tools followed only the current README-prescribed front door and was forbidden from using historical Stage/Handoff archaeology for normal operation.
+
+It independently reconstructed:
+
+```text
+PROTOCOL_AND_HUMAN_BOUNDARIES        PASS
+THREE_CONFIGURATION_SCOPES           PASS
+FRESH_MACHINE_SETUP_AND_VERIFY        PASS
+MATT_PI_PROJECT_LOCAL_SETUP           PASS
+GREENFIELD_SPEC_TICKET_DIRECTION      PASS
+TASK_TRIGGERED_ENGINEERING_METHODS    PASS
+CURRENT_OPERATIONAL_ROUTING           PASS
+NO_SILENT_MODEL_FALLBACK              PASS
+RDD_RELAY_REVIEWER_ACK_BURN_FINAL     PASS
+PROMOTION_REVIEW_AND_HUMAN_MERGE      PASS
+PI_SUBAGENTS_REQUIRED                 NO
+DELEGATED_WRITER_REQUIRED             NO
+STARTUP_SLEEP_DEBT                    RESOLVED_BY_59
+ATENEA_NEWCOMER_READY                 PASS
+```
+
+The onboarding authority is now explicit without adding a runtime layer: `docs/NEWCOMER_QUICKSTART_V1.md` is a non-normative fast map; `docs/INSTALLATION_AND_OPERATION_V1.md` owns provisioning/scopes and the current replaceable operational routing profile; `docs/START_HERE.md` owns shaping choice; the harness contract remains normative for execution. Current Pi-target Matt installation was separately canaried with upstream `skills` 1.5.23 and produced the full 37-skill project-local `.pi/skills/` set plus `skills-lock.json`.
+
+The qualification deliberately does **not** activate `pi-subagents`, delegated `gentle-ai-worker`, Luna writer routing, a context-budget controller, supervisor-invariants duplication, a supervisor skill or a worker-template engine. The Golden E2E path does not require them; future adoption requires separate real-gap evidence/qualification.
+
 ## Qualification evidence vs current stable runtime
 
 Do not rewrite historical qualification evidence when upstream advances.
