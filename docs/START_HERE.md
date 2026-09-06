@@ -17,13 +17,15 @@ This is a navigation and decision guide, not a second runtime contract. If anyth
 Do not reconstruct Atenea from historical stage files. Read in this order:
 
 1. `README.md` — current architecture and front-door summary.
-2. `docs/START_HERE.md` — this project-entry procedure.
-3. `docs/ATENEA_HARNESS_CONTRACT_V1.md` — **normative execution contract**.
-4. `docs/CURRENT_DECISIONS.md` — current accepted decisions and field findings.
-5. `docs/UI_UX_UPSTREAM_ADJUDICATION_20260904.md` — **when the target work has material frontend/UI/UX decisions**; current UI/UX shaping order, upstream-integrity rule and active adjudication boundary.
-6. `docs/OPERATOR_RUNBOOK_V1.md` — only when a work item is already `EXECUTION_READY` or the human is about to run it.
-7. `docs/QUALIFICATION.md` — what has actually been field-proven.
-8. Historical stage/evidence documents only when a current claim needs provenance.
+2. `docs/NEWCOMER_QUICKSTART_V1.md` — fast map of three scopes, Matt setup, current routing and execution boundaries.
+3. `docs/START_HERE.md` — this project-entry procedure.
+4. `docs/ATENEA_HARNESS_CONTRACT_V1.md` — **normative execution contract**.
+5. `docs/CURRENT_DECISIONS.md` — current accepted decisions and field findings.
+6. `docs/UI_UX_UPSTREAM_ADJUDICATION_20260904.md` — **when the target work has material frontend/UI/UX decisions**; current UI/UX shaping order, upstream-integrity rule and active adjudication boundary.
+7. `docs/INSTALLATION_AND_OPERATION_V1.md` — when provisioning/verifying a machine or target repo.
+8. `docs/OPERATOR_RUNBOOK_V1.md` — only when a work item is already `EXECUTION_READY` or the human is about to run it.
+9. `docs/QUALIFICATION.md` — what has actually been field-proven.
+10. Historical stage/evidence documents only when a current claim needs provenance.
 
 `docs/ATENEA_HANDOFF_20260830.md`, stage files and older decision files are historical evidence. They are not the place to recover current forward-looking authority when current documents exist.
 
@@ -92,7 +94,7 @@ These labels are planning aids, not a new state machine and not fields Pi must p
 
 Primary shaping path: **Matt Pocock upstream**.
 
-Use the complete upstream method that fits the problem (domain modeling, codebase design, PRD/spec/tickets, TDD, etc.). Do not copy fragments of third-party skills into Atenea and do not build an Atenea-specific authoring framework.
+Use the complete upstream method that fits the problem (domain modeling, codebase design, spec/tickets, TDD, etc.). Do not copy fragments of third-party skills into Atenea and do not build an Atenea-specific authoring framework. The current Pi-oriented repo-local installation/setup surface is summarized in `docs/NEWCOMER_QUICKSTART_V1.md` and detailed in `docs/INSTALLATION_AND_OPERATION_V1.md`; upstream skill definitions remain the authority for their own triggers/procedures.
 
 When the work has material UI/UX, product/domain meaning comes first. Do not ask a design workflow to invent the feature before product shaping has established enough of the `WHAT / WHY`.
 
@@ -100,14 +102,18 @@ Normal direction:
 
 ```text
 idea
+→ if target adopts Matt and is not configured: install full upstream Matt set repo-locally for Pi + run setup-matt-pocock-skills once
 → Matt upstream product/domain shaping
 → grill-with-docs or current upstream equivalent when applicable
 → understand feature semantics
 → UI_UX_MATERIAL?
-     ├─ NO  → continue spec/tickets
+     ├─ NO  → continue
      └─ YES → selected complete UI/UX upstream capability
               → return any PRODUCT_SEMANTIC_GAP upward
-              → continue spec/tickets
+→ to-spec
+→ independent spec/readiness challenge when risk or ambiguity warrants it
+→ to-tickets
+→ verify selected tickets are bounded/falsifiable/ready-for-agent
 → durable repo/tracker/design authority
 → human acceptance
 → EXECUTION_READY
