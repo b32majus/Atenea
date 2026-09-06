@@ -90,6 +90,12 @@ REPOSITORY_INTELLIGENCE=
 
 These labels are planning aids, not a new state machine and not fields Pi must persist.
 
+### Repository-entry reconciliation before shaping
+
+If the target contains prior product/tooling/harness signals, or its status is not obviously clean greenfield, run `docs/REPOSITORY_ENTRY_RECONCILIATION_V1.md` **read-only** before normal shaping. Identify current authority, inventory relevant Atenea/KairOS/OpenCode/Pi/Gentle/skills/launcher/worktree signals, and classify them `CURRENT`, `COMPATIBILITY_REQUIRED`, `HISTORICAL` or `STALE_OR_UNKNOWN`. A contradiction is a pre-`EXECUTION_READY` STOP.
+
+`GREENFIELD` never means “delete files until the folder looks new”. Detecting legacy grants no cleanup/migration authority. Any technical removal/migration needs separate bounded authorization.
+
 ### GREENFIELD
 
 Primary shaping path: **Matt Pocock upstream**.

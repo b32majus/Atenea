@@ -156,9 +156,19 @@ This does not weaken C-011. Gentle native RDD remains the sole exact-candidate r
 
 For a target repo that selects the Matt ecosystem under current Pi, use the complete upstream project-local install surface and run `setup-matt-pocock-skills` once before first use; do not treat Atenea's historical `.agents/skills/` location as the current target-Pi recipe. Greenfield shaping exposes `to-spec` and `to-tickets`; engineering methods remain task-triggered by their upstream definitions.
 
-Current model choices remain operational rather than architectural. The field-proven default profile is DeepSeek V4 Flash medium for the Pi supervisor and high for the Pi/Gentle-Pi worker; pinned launches must use explicit literals and never silently inherit/fallback to a machine-global default. Gentle reviewer routing remains provider-owned and Promotion Review pins its route per invocation.
+Current model choices remain operational rather than architectural. DeepSeek V4 Flash medium is field-proven for the **Atenea Pi supervisor**. The Golden Pi/Gentle-Pi worker used V4 Flash high in collapsed coordinator+implementation mode; this must not be confused with supervisor routing. Native Gentle reviewer/refuter model selection remains provider lifecycle-owned but its current **model route is unqualified/not sufficiently pinned or observable by Atenea**; old subagent pins are not current authority. Promotion Review pins its route per invocation. See `docs/ROUTING_EVIDENCE_LEDGER_V1.md`.
 
 The adopted Golden E2E path does **not** require `pi-subagents`, a delegated `gentle-ai-worker`, Luna-specific writer routing, a context-budget controller, supervisor-invariants duplication, an Atenea-supervisor skill or a generic worker-template engine. Those may only be revisited after a concrete gap/qualification; they are not latent completion requirements.
+
+## C-033 — Repository entry and model routing are reconciled by current authority/evidence class, never by historical residue
+
+**Accepted for WO #67, 2026-09-06.**
+
+Before normal shaping, a target repo with prior product/tooling signals uses `docs/REPOSITORY_ENTRY_RECONCILIATION_V1.md`: classify current context, identify current authority, inventory legacy signals read-only, classify them `CURRENT` / `COMPATIBILITY_REQUIRED` / `HISTORICAL` / `STALE_OR_UNKNOWN`, and STOP on material contradiction. Legacy detection grants no cleanup/migration authority. Greenfield means no prior product/authority that must be preserved, not an empty directory.
+
+Runtime/model evidence uses `docs/ROUTING_EVIDENCE_LEDGER_V1.md`. The Atenea Pi supervisor and the Gentle-Pi Pi parent/Gentleman coordinator are different roles. V4 Flash medium is field-proven for the supervisor. GLM 5.3 Flash high is A/B-validated as a **coordinator candidate** from two real bounded PROMueve comparisons; it is not a supervisor result and not yet Golden field qualification. The Golden V4-high Pi/Gentle worker was a collapsed coordinator+implementation path because no delegated writer was active.
+
+Native Gentle lens/refuter/targeted-validator model routing remains currently unqualified. Historical V4 reviewer and Qwen 3.8 refuter pins from the earlier subagent architecture are `HISTORICAL_DISCONNECTED`, not current routing decisions. Issue #66 is `ABORTED_NON_AUTHORITY` because it tested the wrong whole-worker role after a supervisor/coordinator conflation; it must not be used for routing conclusions.
 
 ## C-006 — Normal git push is allowed; no publication-permission subsystem
 
@@ -409,7 +419,7 @@ The #38 run proved the real operator interface but exposed two operator ergonomi
 
 These are operator/supervision ergonomics only. They create no new authority, lifecycle ownership, daemon, scheduler or observation harness dependency. No new controller/poller is authorized to render the not-yet-proven live worker activity stream.
 
-## C-025 — Human + Cora/planning surface owns project-entry classification before execution
+## C-034 — Human + Cora/planning surface owns project-entry classification before execution
 
 **Accepted.**
 
@@ -459,7 +469,7 @@ When continuing a project, first reuse valid existing authority/specs/indexes/ch
 
 Operational front door: `docs/START_HERE.md`.
 
-## C-026 — Repository Intelligence is optional derived pre-shaping evidence, not an Atenea runtime layer
+## C-035 — Repository Intelligence is optional derived pre-shaping evidence, not an Atenea runtime layer
 
 **Accepted as policy; provider qualification pending.**
 

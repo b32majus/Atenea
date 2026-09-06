@@ -19,6 +19,8 @@ Do not recover current execution policy from historical Stage files or `docs/ATE
 ## Current authority
 
 - Fast newcomer map (non-normative): `docs/NEWCOMER_QUICKSTART_V1.md`
+- Safe target-repository entry reconciliation: `docs/REPOSITORY_ENTRY_RECONCILIATION_V1.md`
+- Current role/model evidence ledger: `docs/ROUTING_EVIDENCE_LEDGER_V1.md`
 - Normative harness/runtime boundaries: `docs/ATENEA_HARNESS_CONTRACT_V1.md`
 - Project-entry / start-or-continue procedure: `docs/START_HERE.md`
 - Current decisions: `docs/CURRENT_DECISIONS.md`

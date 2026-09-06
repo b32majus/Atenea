@@ -38,12 +38,14 @@ For a new project or a resumed project:
 
 1. `README.md`
 2. `docs/NEWCOMER_QUICKSTART_V1.md` — this page
-3. `docs/START_HERE.md` — start/continue and shaping decision procedure
-4. `docs/ATENEA_HARNESS_CONTRACT_V1.md` — normative execution contract
-5. `docs/CURRENT_DECISIONS.md` — current accepted decisions
-6. `docs/INSTALLATION_AND_OPERATION_V1.md` — provisioning, scopes and runtime verification
-7. `docs/OPERATOR_RUNBOOK_V1.md` — only once work is `EXECUTION_READY`
-8. `docs/QUALIFICATION.md` — field evidence/proven boundaries when needed
+3. `docs/REPOSITORY_ENTRY_RECONCILIATION_V1.md` — when entering/resuming a repo with any prior tooling/authority ambiguity
+4. `docs/START_HERE.md` — start/continue and shaping decision procedure
+5. `docs/ATENEA_HARNESS_CONTRACT_V1.md` — normative execution contract
+6. `docs/CURRENT_DECISIONS.md` — current accepted decisions
+7. `docs/INSTALLATION_AND_OPERATION_V1.md` — provisioning, scopes and runtime verification
+8. `docs/ROUTING_EVIDENCE_LEDGER_V1.md` — current routing evidence classes and unresolved model-routing gaps
+9. `docs/OPERATOR_RUNBOOK_V1.md` — only once work is `EXECUTION_READY`
+10. `docs/QUALIFICATION.md` — field evidence/proven boundaries when needed
 
 ## 3. Three scopes — do not mix them
 
@@ -110,17 +112,19 @@ The upstream skill's own trigger and procedure remain authoritative; Atenea does
 
 Model/provider/reasoning choices are operational routing, **not Atenea architecture**. Planning resolves literal routes before launch; the supervisor consumes them unchanged. A rejected literal is STOP, never a reason for silent model fallback.
 
-Current field-proven default profile from the PROMueve Golden E2E epoch:
+Do not collapse runtime roles when discussing routing:
 
-| Role | Current field-proven route | Thinking |
-|---|---|---|
-| Human/Cora shaping | no Atenea model pin | choose appropriate planning model outside autonomous runtime |
-| Pi supervisor | `commandcode/deepseek/deepseek-v4-flash` | `medium` |
-| Pi + Gentle Pi worker | `commandcode/deepseek/deepseek-v4-flash` | `high` |
-| Gentle native reviewer lenses | provider-owned | follow current Gentle authority; do not reconstruct/hard-code in supervisor |
-| Promotion Review | explicit per run | explicit per run; no silent fallback |
+```text
+Atenea Pi supervisor
+  != Gentle-Pi Pi parent / Gentleman coordinator
+  != optional delegated builder/writer
+  != native Gentle lens/refuter/targeted-validator
+  != Promotion Review
+```
 
-Do **not** depend on the machine-global Pi default model for pinned Atenea work.
+The field-proven supervisor baseline is `commandcode/deepseek/deepseek-v4-flash` at `medium`. The Golden E2E Pi/Gentle worker used V4 Flash `high` in a **collapsed mode** where the same Pi parent coordinated and implemented because no delegated writer was active. Separate coordinator A/B evidence favors GLM 5.3 Flash as a candidate, but that is not supervisor evidence and not yet Golden field qualification. Native Gentle reviewer/refuter model routing remains currently unqualified rather than silently inherited from old subagent config.
+
+See `docs/ROUTING_EVIDENCE_LEDGER_V1.md` for the current evidence class of every role. Do **not** depend on the machine-global Pi default model for pinned Atenea work.
 
 `pi-subagents`, a delegated `gentle-ai-worker`, Luna-specific writer routing and a context-budget guard are **not requirements of the adopted Atenea path**. The Golden E2E multi-ticket train passed without them. They may be qualified later only if a real efficiency/context problem justifies changing the current profile.
 
