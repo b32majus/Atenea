@@ -1,6 +1,6 @@
 # Atenea — Current decisions after Stage 8
 
-Date: 2026-09-05
+Date: 2026-09-06
 
 This file is the short current decision index. Historical `docs/DECISIONS.md`, stage files and `docs/ATENEA_HANDOFF_20260830.md` remain evidence of how Atenea evolved, but their forward-looking status is superseded where it conflicts with this index, `README.md`, `docs/QUALIFICATION.md` or `docs/ATENEA_HARNESS_CONTRACT_V1.md`.
 
@@ -74,6 +74,71 @@ explicit human execution authorization
 Pinned worker creation MUST follow `docs/SPAWN_RECIPE_GENTLE_PI_WORKER_V1.md`. The planning/launch surface verifies exact model literals and runtime parameters before supervisor launch; the supervisor consumes them unchanged and fails closed instead of rediscovering/substituting. Supervision is event-driven through pi-intercom; fixed sleeps/polling and `agent_status` lifecycle inference are prohibited.
 
 OpenCode remains installed/usable for attended or alternate workflows and as frozen historical qualification evidence, but is no longer required by the normal unattended path.
+
+## C-026 — Pinned train launch fails closed on oracle/spawn prerequisites; supervisor owns no Gentle lifecycle
+
+**Accepted from T6 train attempt-1 precondition failure, 2026-09-05.**
+
+A clean T6 attempt exposed four launch-contract defects before product mutation: project runtime instructions can lag the Atenea cutover; a required principal acceptance oracle may be missing; raw `herdr pane split` JSON must not be passed as a pane id; and the plain supervisor must not execute `gentle-ai review mode enable` or any other Gentle lifecycle command.
+
+For pinned clinical/semantic work, launch authority freezes the principal oracle independently before the implementation worker exists and supplies its path/SHA256. The supervisor verifies that hash, consumes literal spawn/model parameters, extracts exactly one `pane_id` from Herdr JSON, launches the separate worker, then ends its turn. Missing/mismatched oracle or rejected spawn parameter => FAIL CLOSED / STOP with zero product mutation. No OpenCode/alternate-runtime oracle fallback is allowed.
+
+Repository `AGENTS.md` + coding standards are mandatory pre-write inputs for each fresh worker and must be propagated to bounded writers. Event-driven supervision from C-020 remains mandatory.
+
+## C-027 — Bounded RDD consent is relayed worker → supervisor through pi-intercom
+
+**Accepted from T6 train v2 field evidence, 2026-09-05.**
+
+A T6 worker reached a valid native Gentle RDD consent envelope but its synthesized worker brief had lost the explicit relay clause; the worker called `ask_user_choice` and required one manual consent. Later pi-intercom messaging worked normally. The supported interpretation is therefore a brief/relay-contract defect, not evidence of a Gentle provider failure.
+
+For already-authorized bounded RDD consent, the worker prompt must explicitly prohibit direct human prompting and keep provider answer-consent plus acknowledgement/burn inside the worker. The original T6-v2 field remedy used a pi-intercom ASK; C-028 supersedes that transport detail with the mechanical Atenea outbox relay so the model is no longer responsible for reproducing the provider envelope. The supervisor performs no Gentle lifecycle command. Missing relay route fails closed. Genuine human-owned decisions remain human.
+
+## C-028 — RDD relay identity is explicit and provider payload transport is mechanical
+
+**Accepted from T6-D12 repair field evidence, 2026-09-05.**
+
+Herdr agent labels are not Pi/intercom identities. A repair run proved that `herdr agent start t6d12-supervisor-r2` without Pi `--name t6d12-supervisor-r2` leaves pi-intercom advertising a runtime fallback alias (`subagent-chat-*`), so an otherwise healthy idle supervisor cannot be addressed by the Herdr label. A subsequent manual model reconstruction of the long consent envelope corrupted one target hash; the supervisor correctly declined the inconsistent request.
+
+Pinned runs therefore use one explicit logical name per supervisor/worker across Herdr and Pi `--name`, plus one shared opaque `PI_INTERCOM_SCOPE_ID`. Bounded RDD consent payloads are transported by the versioned Atenea worker relay extension through pi-intercom's public outbox API. The extension consumes the actual `gentle_review` tool result, validates choice/target consistency, hashes the exact provider text and sends that exact text without model reserialization. Direct `ask_user_choice` is blocked while such consent is pending. Any identity/scope/transport mismatch fails closed.
+
+C-027 remains the ownership rule (worker→supervisor bounded decision; worker owns provider/Gentle lifecycle), but its earlier literal `pi-intercom ASK` transport wording is superseded by this mechanical outbox relay.
+
+## C-029 — T5-proven reviewer continuation is a versioned worker contract
+
+**Accepted from recovered T5 final-qualification evidence and reconciled under issue #56, 2026-09-06.**
+
+T5 did not bypass Reliability or make reviewer lenses optional. Native status returned four opaque `collectBindings`; the worker used `gentle_review_capture_group`, received a four-run `pi_host_relay` forecast, obtained bounded supervisor ACK, then re-submitted the exact same ordered binding group with `reviewerRunAcknowledged=true`. The acknowledged capture completed, all four required lenses reached APPROVED, and native acknowledgement/burn completed.
+
+The cutover #45/#47 preserved the macro topology but did not version this micro-protocol. Later workers therefore had to rediscover reviewer continuation and could reconstruct bindings or misclassify an in-flight capture as failure. This is classified primarily as lost operational contract, not a new Gentle Reliability defect.
+
+`docs/GENTLE_REVIEWER_CONTINUATION_V1.md` is now the durable reviewer continuation contract. Pinned Pi/Gentle-Pi workers receive it through Pi `--append-system-prompt` from the same Atenea checkpoint root as the mechanical consent relay. `tools/check-atenea-reviewer-lifecycle.mjs` freezes the T5 group/forecast/ACK/in-flight/approval/burn behavior plus single-lens and negative cases. Atenea still does not own or replace Gentle's reviewer lifecycle.
+
+## C-030 — The adopted C-025 workflow is field-qualified for real multi-ticket Golden E2E trains
+
+**Accepted and field-qualified from PROMueve T8→T9→T10, 2026-09-06.**
+
+The adopted workflow has now completed a real project train across multiple successive frontier tickets after one explicit execution authorization:
+
+```text
+explicit authorization
+→ persistent non-implementing Pi supervisor
+→ fresh Pi/Gentle-Pi worker for T8
+→ deterministic/browser QA → native RDD → acknowledgement/burn → normal push
+→ supervisor exact reconciliation + fresh authority read
+→ fresh worker for T9 → QA/RDD/burn/push
+→ supervisor reconciliation + fresh authority read
+→ fresh verification-only worker for T10
+→ final integration/retention gate PASS
+→ STOP
+```
+
+Field result: T8 `08703a6…` accepted; T9 `fbaaef0…` accepted; T10 final gate `14/14 PASS` on the durable T9 HEAD; zero human intervention after train launch; supervisor executed zero Gentle lifecycle commands; no PR/merge/force push.
+
+This closes the Golden E2E multi-ticket qualification gap without changing the ownership model or adding runtime architecture. C-025–C-029 remain normative for topology, fail-closed launch, bounded consent relay, explicit identity/scope and reviewer continuation.
+
+The field run does not relax C-025's event-driven rule. One observed startup `sleep 6` is recorded as non-blocking harness debt, not accepted behavior. A T8 reviewer admission refusal recovered through a provider-owned bounded reoffer/retry is likewise reliability debt, not justification for a second reviewer controller.
+
+Evidence: `docs/PROMUEVE_UNIFIED_INTAKE_GOLDEN_E2E_FIELD_EVIDENCE_20260906.md`.
 
 ## C-006 — Normal git push is allowed; no publication-permission subsystem
 
@@ -405,11 +470,11 @@ A graph/index never outranks source code, accepted product/spec authority, deter
 2. classify only enough to choose the minimum shaping path; reuse valid existing specs/indexes/checkpoints rather than regenerate them;
 3. use Matt/OpenSpec/Impeccable and optional Repository Intelligence only when their task trigger/value warrants it;
 4. explicitly promote a bounded real work item to `EXECUTION_READY`;
-5. human opens/uses Herdr, starts Pi interactively and gives one bounded Atenea execution prompt (pinned prompts name the repository/issue/branch/PR checkpoint per C-024);
-6. Pi resolves the declared anchors with a bounded preflight, creates or reuses a headless OpenCode worker in a dedicated visible Herdr pane and reports the pane/tab id/label;
-7. OpenCode owns implementation, deterministic verification and every Gentle lifecycle transition; Pi MUST NOT operate Gentle directly;
-8. for any bounded zero-touch experiment, the isolated canary Gentle provider policy may be used exactly as documented in `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`; production Gentle remains untouched and the upstream issue remains open;
-9. Pi grants already-authorized operational permissions such as normal non-force push without unnecessary human escalation;
+5. explicit human authorization starts the run; the human or Cora/DC may perform the mechanical plain-Pi supervisor launch and submit one bounded Atenea execution/train prompt;
+6. for pinned work, launch authority pre-resolves literal runtime/model parameters and any required frozen-oracle path/SHA; Pi verifies those anchors, extracts the actual Herdr pane id deterministically, launches a separate Pi/Gentle-Pi worker and reports pane/name;
+7. the Pi/Gentle-Pi worker reads project instructions before product write and owns implementation, bounded-writer delegation, deterministic verification and every Gentle lifecycle transition; the supervisor executes zero `gentle-ai` commands;
+8. supervision is event-driven through pi-intercom: no fixed polling, long waits or `agent_status` lifecycle inference;
+9. Pi grants only already-authorized bounded operational decisions/permissions without unnecessary human escalation; missing/mismatched oracle/spawn prerequisites fail closed with no alternate-runtime fallback;
 10. genuine human-owned decisions are relayed and pause the run; final merge remains human;
-11. after exact RDD acknowledgement/burn, one fresh pre-publication authority revalidation, normal publication and reconciliation, Pi rediscovers frontier and stops when exhausted;
+11. after exact RDD acknowledgement/burn, one fresh pre-publication authority revalidation, normal publication and reconciliation, Pi rediscovers frontier, creates a fresh worker for the next compatible ticket, or stops when exhausted;
 12. build new Atenea glue only after a real horizontal gap survives the upstream-first change test.

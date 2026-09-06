@@ -71,20 +71,22 @@ The adopted unattended path uses a separate Pi/Gentle-Pi worker with Gentle nati
 
 The historical OpenCode negotiated `review-integration/v2` relay limitation remains tracked by issue #36 for the alternate OpenCode path. It no longer blocks the adopted Atenea unattended workflow.
 
-Current completion state, explicitly distinguished:
+Current completion state, explicitly distinguishing the adopted path from the historical OpenCode path:
 
 ```text
-RELEASED_V2_PROVIDER_UNATTENDED_SELECTOR=NOT_AVAILABLE
-NEGOTIATED_V2_UNATTENDED_PROVIDER_CANARY=PASS
-REAL_OPERATOR_TRIGGERED_ATENEA_E2E=PASS        # issue #38, under the bounded canary
-UPSTREAM_REPLACEMENT_STILL_REQUIRED=YES        # Gentleman-Programming/gentle-ai#4109
+ADOPTED_UNATTENDED_WORKER=PI_PLUS_GENTLE_PI_2_4
+ADOPTED_PATH_NATIVE_RDD=REQUIRED
+ADOPTED_PATH_BLOCKED_BY_OPENCODE_V2_GAP=NO
+OPENCODE_RELEASED_V2_PROVIDER_UNATTENDED_SELECTOR=NOT_AVAILABLE
+OPENCODE_NEGOTIATED_V2_UNATTENDED_PROVIDER_CANARY=PASS
+OPENCODE_UPSTREAM_PARITY_GAP=OPEN_NON_BLOCKING_ALTERNATE_PATH
 ```
 
-The released stable negotiated v2 still lacks a supported unattended selector. The downstream provider canary proved the behavioral hypothesis, and the real operator-triggered Atenea E2E (issue #38) completed under that bounded canary. Neither closes the upstream requirement: `UPSTREAM_REPLACEMENT_STILL_REQUIRED=YES` until a supported provider-owned equivalent exists.
+The released negotiated-v2 selector gap remains useful upstream/alternate-OpenCode work, but it is no longer a global Atenea completion blocker after the Gentle-Pi replacement qualification and cutover #45/#47.
 
 ### 3.1 Operator/supervision ergonomics — no new authority
 
-Bounded/pinned preflight guidance and visible worker observability are operator/supervision ergonomics only. They create no new authority, lifecycle ownership, daemon, scheduler or observation-harness dependency. Pi may launch the headless OpenCode worker in a dedicated visible Herdr pane and report its pane/tab id/label for human observation; OpenCode remains headless/non-interactive and Pi remains non-implementing. For intentionally pinned work, the operator prompt may state the repository/issue/branch-PR checkpoint/role/transport/publication/STOP boundary so Pi performs a bounded preflight instead of broad rediscovery.
+Bounded/pinned preflight guidance and visible worker observability are operator/supervision ergonomics only. They create no new authority, lifecycle ownership, daemon, scheduler or observation-harness dependency. Pi launches a separate Pi/Gentle-Pi worker in a dedicated visible Herdr pane using the pinned spawn recipe and reports its pane/tab id/label. For intentionally pinned work, launch authority resolves literal runtime/model/oracle parameters before supervisor launch so Pi validates them instead of rediscovering mechanics. Pi remains non-implementing and executes zero Gentle lifecycle commands.
 
 ## 4. Authoring entry paths
 
@@ -104,7 +106,7 @@ OpenSpec is an **optional** delta-first shaping/specification path when it mater
 
 If OpenSpec is selected, use it delta-first: describe the behavior being added, modified or removed rather than reverse-documenting the whole existing product before every change.
 
-OpenSpec does not replace Pi supervision, OpenCode/Gentle execution, Gentle RDD or Git/GitHub authority.
+OpenSpec does not replace Pi supervision, Pi/Gentle-Pi execution, Gentle RDD or Git/GitHub authority.
 
 Status: architecturally compatible; natural end-to-end Atenea field evidence pending.
 
@@ -174,14 +176,17 @@ For each autonomous iteration Pi should:
 Pi MUST NOT run, reconstruct or own Gentle review lifecycle commands on behalf of the implementation worker.
 
 ```text
-Pi
+Pi supervisor
   authority/frontier decisions
-  worker lifecycle supervision
+  pinned spawn/oracle verification
+  event-driven worker supervision through pi-intercom
   lossless human-decision relay when provider path requires it
-  already-authorized operational permission grant
+  already-authorized bounded operational decision grant
+  ZERO gentle-ai lifecycle commands
 
-OpenCode + Gentle worker
-  implementation
+Pi + Gentle Pi worker
+  repository-instruction read before product write
+  implementation / bounded-writer delegation
   deterministic verification
   all Gentle lifecycle operations
   exact provider-issued continuation/re-entry
@@ -190,11 +195,21 @@ OpenCode + Gentle worker
   publication allowed by repository policy
 ```
 
-When Gentle returns provider-issued lifecycle transitions, the **OpenCode/Gentle worker** is the orchestrator that executes them. The phrase “orchestrator executes provider-issued transitions” in Gentle documentation MUST NOT be interpreted as permission for the outer Pi supervisor to take over that lifecycle.
+When Gentle returns provider-issued lifecycle transitions, the **Pi/Gentle-Pi worker** is the orchestrator that executes them. The phrase “orchestrator executes provider-issued transitions” in Gentle documentation MUST NOT be interpreted as permission for the outer Pi supervisor to take over that lifecycle.
+
+For an already-authorized bounded RDD consent envelope, the worker MUST NOT use `ask_user_choice` or otherwise ask the human directly. Atenea transports the exact provider text mechanically through the versioned worker-side RDD relay extension and pi-intercom outbox; the model MUST NOT reconstruct or reserialize the envelope. Supervisor and worker use explicit Pi `--name` identities inside one pre-resolved `PI_INTERCOM_SCOPE_ID`. The supervisor may return only the bounded `GRANTED`/`DECLINED` decision supported by current execution authority; the worker then executes any provider-issued answer-consent transition with the original opaque binding and continues to own review, correction and acknowledgement/burn. Missing/mismatched identity, scope, relay transport or candidate identity fails closed. Genuine human-owned product/authority decisions remain human boundaries and are not converted into supervisor consent.
+
+#### 7.1.1 Native reviewer continuation is provider-owned and T5-golden
+
+Pinned workers load `docs/GENTLE_REVIEWER_CONTINUATION_V1.md` from the same Atenea checkpoint as the RDD relay through Pi's supported `--append-system-prompt` file surface. The supervisor/ticket brief MUST NOT restate or paraphrase this lifecycle as authority.
+
+When native status requires reviewer collection, every `collectBinding` and continuation value is opaque. More than one binding uses the provider-native group capture; one binding uses the provider-native single capture. A `reviewer-model-run-forecast` is a bounded authorization transition, not review failure or Atenea STOP. If authorized, the worker repeats the exact same capture/binding group with `reviewerRunAcknowledged=true` and waits for that tool call to return. A recognized acknowledged capture in flight is not a STOP condition and must not be superseded by another same-slot capture or external observation timeout.
+
+Approval is not publishable until all required lenses are terminal for the current revision and provider-native `acknowledge-approved` / burn completes. Atenea never synthesizes reviewer results, bindings, acknowledgement tokens or missing lens completion. `UNATTENDED_PASS` and independent product acceptance remain separate gates.
 
 ### 7.2 Worker continuity policy
 
-For a bounded continuation or repair, Pi SHOULD reuse an existing healthy OpenCode worker when all of these remain true:
+For a bounded continuation or repair of the **same work item**, Pi MAY reuse an existing healthy Pi/Gentle-Pi worker when all of these remain true:
 
 ```text
 same work item
@@ -205,9 +220,9 @@ compatible runtime/configuration
 worker healthy and available
 ```
 
-Create a fresh worker when the previous worker is unavailable/unhealthy, its context is materially contaminated, the worktree/branch/runtime changed, or explicit isolation is required.
+Create a fresh worker for every newly selected work item/frontier ticket. Also create a fresh worker when the previous worker is unavailable/unhealthy, its context is materially contaminated, the worktree/branch/runtime changed, or explicit isolation is required.
 
-Worker reuse preserves implementation context only. A changed candidate MUST still receive whatever fresh Gentle candidate/review lineage the provider requires. Never reuse prior review authority merely because the OpenCode process is reused.
+Worker reuse preserves same-ticket implementation context only. A changed candidate MUST still receive whatever fresh Gentle candidate/review lineage the provider requires. Never reuse prior review authority merely because a Pi process is reused.
 
 ### 7.3 Supervisor prompt surface
 
@@ -217,7 +232,7 @@ Normal run:
 
 ```text
 work item / goal
-create-or-reuse and supervise OpenCode/Gentle through Herdr
+verify pinned oracle/runtime inputs; create and supervise separate Pi/Gentle-Pi worker through Herdr
 repository delivery boundary / STOP before human merge
 ```
 
@@ -234,9 +249,9 @@ Do not routinely place Gentle command syntax, lineage reconstruction, recovery a
 
 ### 7.4 Supervision efficiency
 
-Pi SHOULD prefer native/Herdr state reads and bounded waits over fixed long sleeps. Multi-minute `sleep` polling MUST NOT be the normal supervision strategy.
+The adopted Gentle-Pi path is event-driven: after accepted worker prompt delivery the supervisor ends its turn; pi-intercom wakes it for bounded decisions or FINAL. Fixed `sleep`, `for`/`while` polling, periodic pane reads, long `herdr agent wait` and `agent_status` lifecycle inference are prohibited.
 
-This does not authorize a new polling daemon, scheduler or event bus. Use the smallest existing upstream process/session primitive that exposes the required state.
+This does not authorize a new polling daemon, scheduler or event bus. One-shot process reads are diagnostic only, not the normal lifecycle clock.
 
 Do not reintroduce a separate queue, DAG, scheduler, controller or dispatcher unless field evidence proves Pi plus standard repository/tracker primitives cannot provide a required property.
 
@@ -298,11 +313,11 @@ The stable `2.5.0` contract is treated as provider authority. Atenea MUST NOT re
 - recovery/reconciliation algorithms;
 - mutation invalidation.
 
-The OpenCode/Gentle worker MUST execute provider-issued lifecycle continuations as returned rather than reconstructing them from prose or local state. Pi observes/supervises that lifecycle and MUST NOT substitute itself as the Gentle orchestrator.
+The Pi/Gentle-Pi worker MUST execute provider-issued lifecycle continuations as returned rather than reconstructing them from prose or local state. The outer Pi supervisor observes via pi-intercom and MUST NOT substitute itself as the Gentle orchestrator or execute any `gentle-ai` command.
 
 A post-review candidate mutation invalidates or supersedes prior review evidence according to Gentle's native lifecycle and may require a new exact-candidate review lineage.
 
-### 11.1 Stable 2.5 consent paths and current negotiated-v2 gap
+### 11.1 Historical/alternate OpenCode negotiated-v2 consent characterization
 
 Stable Gentle `2.5.0` retains multiple provider-owned consent behaviors.
 
@@ -310,7 +325,7 @@ Stable Gentle `2.5.0` retains multiple provider-owned consent behaviors.
 
 **Undeclared non-interactive negotiated START** is also authorized silently by stable Gentle.
 
-However, the current `gentle-ai.review-integration/v2` next-transition builder appends `--consent relay` to provider-issued START. That explicitly selects candidate-scoped negotiated semantics: relay returns the typed question; `granted` applies only to that frozen candidate; later changed medium/high candidates ask again.
+In the characterized OpenCode/Gentle 2.5 negotiated-v2 route, the next-transition builder appended `--consent relay` to provider-issued START. That selected candidate-scoped negotiated semantics: relay returned the typed question; `granted` applied only to that frozen candidate; later changed medium/high candidates asked again. This subsection preserves that alternate-path evidence; it does not define the adopted Pi/Gentle-Pi consent transport.
 
 Therefore:
 
@@ -320,14 +335,15 @@ OPENCODE_NEGOTIATED_V2_ZERO_TOUCH=NOT_SATISFIED
 CAUSE=V2_NEXT_TRANSITION_FORCES_CONSENT_RELAY
 ```
 
-While this v2 route remains selected:
+If that historical/alternate OpenCode v2 route is explicitly selected:
 
-- Pi MUST relay the complete provider-issued consent envelope to the human;
-- Pi MUST NOT inject `granted`, auto-click, remove `relay`, infer approval from `EXECUTION_READY`, or reconstruct START;
+- its consumer MUST preserve the complete provider-issued consent semantics and MUST NOT inject `granted`, auto-click, remove `relay`, infer approval from `EXECUTION_READY`, or reconstruct START;
 - a candidate-scoped decline remains distinct from disabling RDD;
 - provider-issued lifecycle arguments remain exact/opaque.
 
-Issue #36 owns the upstream-first resolution. Preferred order:
+The adopted Pi/Gentle-Pi path instead follows §7.1 plus the versioned named/scoped mechanical Atenea RDD relay; it does not reuse this historical direct-human relay prescription.
+
+Issue #36 owns any optional upstream-first parity work for the alternate OpenCode route. Preferred order if that parity work is pursued:
 
 1. determine whether current v2 already exposes a supported unattended/no-relay consent policy;
 2. determine whether an existing provider-owned organic path can preserve all required modern OpenCode/Gentle properties;
@@ -500,7 +516,7 @@ Before adding any Atenea glue, answer all of these:
 
 If those questions do not have concrete answers, DO NOT BUILD.
 
-For zero-touch RDD, stable Gentle already owns the underlying silent/one-time consent behavior; the unresolved seam is negotiated-v2 policy selection. The downstream provider canary proved the behavioral parity and the real operator-triggered Atenea E2E (issue #38) completed under it, but the current action remains upstream integration verification / smallest upstream parity proposal (`Gentleman-Programming/gentle-ai#4109`), not an Atenea consent bypass and not permanent adoption of the downstream canary.
+For the adopted unattended path, Gentle Pi + Gentle native RDD owns review lifecycle and the Atenea worker-side relay preserves already-authorized bounded consent transport without reconstructing provider envelopes. The historical negotiated-v2/OpenCode policy-selection seam remains an optional upstream parity item (`Gentleman-Programming/gentle-ai#4109`) for that alternate route, not an Atenea consent bypass and not a blocker for current execution.
 
 ## 23. Current completion state
 
@@ -511,25 +527,23 @@ Issue #38 completed the first real operator-triggered Atenea end-to-end run thro
 Current stable status:
 
 ```text
+ADOPTED_UNATTENDED_WORKER              PI_PLUS_GENTLE_PI_2_4
 EXACT_CANDIDATE_RDD                    PASS
 PROVIDER_CONTINUATION_REENTRY          PASS_ON_SUCCESSFUL_FIELD_PATH
 ACKNOWLEDGEMENT_BURN                   PASS
+NORMAL_NON_FORCE_PUBLICATION           PASS
 PR_STOP_BEFORE_HUMAN_MERGE             PASS
-STABLE_GENTLE_ZERO_TOUCH_CAPABILITY    EXISTS
-RELEASED_V2_PROVIDER_UNATTENDED_SELECTOR=NOT_AVAILABLE
-NEGOTIATED_V2_UNATTENDED_PROVIDER_CANARY=PASS
-REAL_OPERATOR_TRIGGERED_ATENEA_E2E=PASS          # issue #38
-UPSTREAM_REPLACEMENT_STILL_REQUIRED=YES          # Gentleman-Programming/gentle-ai#4109
-OPENCODE_NEGOTIATED_V2_ZERO_TOUCH      NOT_SATISFIED
-ZERO_TOUCH_BLOCKER                     V2_NEXT_TRANSITION_FORCES_CONSENT_RELAY
+NAMED_SCOPED_INTERCOM_IDENTITY         REQUIRED_FOR_PINNED_RUNS
+MECHANICAL_RDD_CONSENT_RELAY           CURRENT_PINNED_TRANSPORT
+OPENCODE_NEGOTIATED_V2_ZERO_TOUCH      LEGACY_ALT_PATH_NOT_SATISFIED
+OPENCODE_UPSTREAM_PARITY_GAP           OPEN_NON_BLOCKING
 ```
 
 Remaining evidence/work should come primarily from real-project use:
 
-- Issue #36 / upstream `Gentleman-Programming/gentle-ai#4109`: upstream-supported restoration of zero-touch on the negotiated OpenCode review path without rewriting provider transitions (still open);
-- issue #39 operator-ergonomics refinement (visible worker pane + bounded pinned prompt): **completed** for the bounded pinned preflight, visible worker pane and immediate pane/tab id reporting; `USEFUL_LIVE_WORKER_STREAM=NOT_YET_PROVEN` remains the follow-up (rendering useful live OpenCode/Gentle activity into the visible pane, non-blocking);
+- natural field qualification of the adopted named/scoped Pi/Gentle-Pi path and its mechanical RDD relay;
+- Issue #36 / upstream `Gentleman-Programming/gentle-ai#4109` only if continued parity for the alternate OpenCode route is valuable; it does not block the adopted path;
 - optional OpenSpec use only when a real brownfield delta benefits from it;
-- first naturally material UI slice using conditional Impeccable/DESIGN/PRODUCT policy;
-- one bounded Gentle Pi `2.3.0` replacement/deletion evaluation because it materially changes the previously failed upstream runtime.
+- first naturally material UI slice using conditional Impeccable/DESIGN/PRODUCT policy.
 
 Do not create another large synthetic qualification ladder merely to exercise optional surfaces.
