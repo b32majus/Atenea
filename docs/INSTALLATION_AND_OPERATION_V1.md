@@ -90,14 +90,15 @@ That epoch proved Pi → Herdr → headless OpenCode → Gentle, but OpenCode is
 
 Routing is replaceable operational configuration, not Atenea architecture. For pinned work the planning/launch surface resolves literal routes before the supervisor starts; the supervisor never discovers/substitutes another model after rejection.
 
-Current field-proven Golden E2E defaults:
+Current routing must be read by **role**, not by process name alone. The durable evidence/status table is `docs/ROUTING_EVIDENCE_LEDGER_V1.md`. Summary:
 
-| Role | Route | Thinking |
+| Role | Current evidence | Operational implication |
 |---|---|---|
-| Pi supervisor | `commandcode/deepseek/deepseek-v4-flash` | `medium` |
-| Pi + Gentle Pi worker | `commandcode/deepseek/deepseek-v4-flash` | `high` |
-| Gentle native reviewer lenses | provider-owned | provider-owned/current Gentle authority |
-| Promotion Review | explicit literal in evidence pack | explicit literal; no silent fallback |
+| Atenea Pi supervisor | V4 Flash `medium` — field-proven | residual train control only; not the Gentle coordinator |
+| Gentle parent / Gentleman coordinator | V4 Flash `high` — field-proven collapsed Golden; GLM 5.3 Flash `high` — A/B-validated candidate | do not call GLM evidence “supervisor” evidence |
+| Separate builder/writer | unqualified / not required | no mandatory delegated writer in current Golden path |
+| Native Gentle lens/refuter/validator | current model routing unqualified | old subagent pins do not govern the native 2.4 relay |
+| Promotion Review | explicit literal per run | no fixed model and no silent fallback |
 
 Human/Cora shaping has no Atenea model pin because it sits outside the autonomous runtime. Do not use the machine-global Pi default as an implicit pinned-run route.
 

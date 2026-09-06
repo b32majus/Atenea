@@ -129,8 +129,8 @@ FROM EXECUTION_READY
   → Cora/DC or human mechanical launch
   → normal Pi supervisor (non-implementing; Gentle Pi OFF; pi-intercom ON)
   → Herdr separate visible worker pane
-  → Pi worker + Gentle Pi 2.4 / Gentle AI native RDD
-  → deterministic checks / acknowledgement-burn / normal non-force publication
+  → fresh Pi + Gentle Pi 2.4 worker session (Pi parent / Gentleman coordinator; no separate delegated writer is required by the adopted path)
+  → implementation / deterministic checks / Gentle native RDD / acknowledgement-burn / normal non-force publication
   → supervisor fresh frontier rediscovery / next compatible ticket or STOP
   → human merge boundary
 ```
@@ -139,7 +139,7 @@ Atenea does **not** require a bespoke queue, scheduler, DAG, lifecycle controlle
 
 This Gentle-Pi worker path is the **adopted unattended workflow** after issue #35 `PASS_DELETE` and operator-authorized cutover #45. OpenCode remains installed and valid for attended/alternate work and as historical qualification evidence, but is no longer required by the normal unattended path.
 
-Pinned worker creation follows `docs/SPAWN_RECIPE_GENTLE_PI_WORKER_V1.md`; model literals are resolved before supervisor launch and the supervisor does not rediscover/substitute them.
+Pinned worker creation follows `docs/SPAWN_RECIPE_GENTLE_PI_WORKER_V1.md`; model literals are resolved before launch and are never silently substituted. For role names and evidence status, use `docs/ROUTING_EVIDENCE_LEDGER_V1.md`: **Atenea supervisor ≠ Gentle parent/coordinator ≠ optional builder ≠ native reviewer/refuter ≠ Promotion Review**.
 
 ## Normative contract
 
@@ -260,6 +260,8 @@ The Matt skills are not a mandatory execution sequence.
 
 - `README.md` — current overview and navigation.
 - `docs/NEWCOMER_QUICKSTART_V1.md` — fast scope/setup/skills/routing/execution map for a fresh operator or agent.
+- `docs/REPOSITORY_ENTRY_RECONCILIATION_V1.md` — safe read-only greenfield/brownfield/legacy entry reconciliation before shaping.
+- `docs/ROUTING_EVIDENCE_LEDGER_V1.md` — current role/model evidence; separates supervisor, Gentle coordinator, builder and reviewers.
 - `docs/START_HERE.md` — Cora/human project-entry and shaping decision procedure.
 - `docs/ATENEA_HARNESS_CONTRACT_V1.md` — **normative execution contract**.
 - `docs/CURRENT_DECISIONS.md` — current accepted decisions.

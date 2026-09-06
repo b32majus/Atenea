@@ -95,6 +95,10 @@ The onboarding authority is now explicit without adding a runtime layer: `docs/N
 
 The qualification deliberately does **not** activate `pi-subagents`, delegated `gentle-ai-worker`, Luna writer routing, a context-budget controller, supervisor-invariants duplication, a supervisor skill or a worker-template engine. The Golden E2E path does not require them; future adoption requires separate real-gap evidence/qualification.
 
+### Entry/role/routing reconciliation — current evidence map
+
+WO #67 adds no runtime capability. It makes two planning facts durable: repository entry is read-only reconciliation before shaping, and routing claims are bound to exact roles/evidence classes. `docs/ROUTING_EVIDENCE_LEDGER_V1.md` records V4 Flash medium as `FIELD_PROVEN` supervisor, V4 Flash high as the collapsed Golden Pi/Gentle worker, GLM 5.3 Flash high as `A/B_VALIDATED` coordinator candidate, native reviewer/refuter/validator routing as `UNQUALIFIED`, historical subagent pins as `HISTORICAL_DISCONNECTED`, and issue #66 as `ABORTED_NON_AUTHORITY`.
+
 ## Qualification evidence vs current stable runtime
 
 Do not rewrite historical qualification evidence when upstream advances.
