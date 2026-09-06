@@ -1,6 +1,6 @@
 # Atenea — Qualification Status
 
-Date of current status: 2026-09-05
+Date of current status: 2026-09-06
 
 This document is the current qualification index. Stage-specific files remain frozen evidence. Earlier `NEXT`, `DEFERRED` or `NOT_YET_QUALIFIED` labels are historical when they conflict with this file, `README.md`, `docs/CURRENT_DECISIONS.md` or `docs/ATENEA_HARNESS_CONTRACT_V1.md`.
 
@@ -18,6 +18,8 @@ UNATTENDED_EXECUTION_RC2          PASS
 ZERO_HUMAN_TOUCH_RC2              PASS
 REMOTE_RECONCILIATION             PASS
 FRONTIER_EXHAUSTION_STOP          PASS
+GOLDEN_E2E_MULTI_TICKET_FIELD       PASS
+ZERO_HUMAN_TOUCH_MULTI_TICKET       PASS
 ```
 
 The result is evidence for a thin supervisory contract, not a recommendation to build a larger Atenea runtime.
@@ -31,6 +33,31 @@ normal Pi supervisor → Herdr → separate Pi/Gentle-Pi worker → Gentle nativ
 ```
 
 PROMueve T4/T5 plus atomic repairs demonstrated zero-touch execution, independent product rejection/repair, native RDD acknowledgement/burn, normal non-force publication, composed continuity and supervisor-owned frontier rediscovery. OpenCode qualification below remains valid historical/alternate evidence but no longer defines the current unattended runtime.
+
+## Golden E2E multi-ticket field qualification — PASS — 2026-09-06
+
+PROMueve Unified Clinical Intake T8→T9→T10 supplied the first complete real-project multi-ticket field run after the C-025 cutover and #49 hardening. After one explicit operator execution authorization, a persistent non-implementing Pi supervisor advanced three frontier tickets with one fresh Pi/Gentle-Pi worker per ticket, zero human intervention between tickets, native worker-owned RDD on mutating candidates, normal non-force publication, exact remote reconciliation, a final verification-only gate and STOP after T10.
+
+```text
+PROMUEVE_T8_ACCEPTED                    08703a6329beeb53b60fe767bf0d6a3351ac3d42
+PROMUEVE_T9_ACCEPTED                    fbaaef098e96979ecce39361eacbda18b8d3e199
+PROMUEVE_T10_FINAL_GATE                 PASS_14_OF_14
+SUPERVISOR_DIRECT_GENTLE_CALLS          0
+FRESH_WORKER_PER_FRONTIER_TICKET        PASS
+WORKER_FINAL_VIA_INTERCOM               PASS
+NORMAL_NON_FORCE_PUBLICATION            PASS
+ZERO_HUMAN_TOUCH_AFTER_TRAIN_LAUNCH     PASS
+TRAIN_STOP_AFTER_T10                     PASS
+GOLDEN_E2E_MULTI_TICKET_FIELD           PASS
+```
+
+The run exercised the C-029 reviewer continuation contract on live T8/T9 candidates. T8 had one reviewer-result admission refusal with zero authority progress; Gentle reoffered the exact slot and one bounded retry completed APPROVED → acknowledgement/burn without human intervention. T9 completed one forecast/ACK/reviewer run → APPROVED → burn. T10 correctly created no review/no-op commit because the final gate required no mutation.
+
+Two non-blocking harness debts remain visible rather than normalized: the supervisor used one short startup `sleep 6` before T8 prompt delivery even though the current Harness Contract already prohibits fixed sleeps/polling as the normal lifecycle clock; and reviewer-result admission was not error-free on the first T8 run. Neither defect required a new controller or broadened authority.
+
+Canonical field evidence: `docs/PROMUEVE_UNIFIED_INTAKE_GOLDEN_E2E_FIELD_EVIDENCE_20260906.md`.
+
+This qualification proves the adopted harness behavior. It does **not** merge PR #49, merge PROMueve product branches, or claim PROMueve pilot/production readiness.
 
 ## Qualification evidence vs current stable runtime
 

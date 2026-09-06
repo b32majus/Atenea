@@ -1,6 +1,6 @@
 # Atenea — Current decisions after Stage 8
 
-Date: 2026-09-05
+Date: 2026-09-06
 
 This file is the short current decision index. Historical `docs/DECISIONS.md`, stage files and `docs/ATENEA_HANDOFF_20260830.md` remain evidence of how Atenea evolved, but their forward-looking status is superseded where it conflicts with this index, `README.md`, `docs/QUALIFICATION.md` or `docs/ATENEA_HARNESS_CONTRACT_V1.md`.
 
@@ -112,6 +112,33 @@ T5 did not bypass Reliability or make reviewer lenses optional. Native status re
 The cutover #45/#47 preserved the macro topology but did not version this micro-protocol. Later workers therefore had to rediscover reviewer continuation and could reconstruct bindings or misclassify an in-flight capture as failure. This is classified primarily as lost operational contract, not a new Gentle Reliability defect.
 
 `docs/GENTLE_REVIEWER_CONTINUATION_V1.md` is now the durable reviewer continuation contract. Pinned Pi/Gentle-Pi workers receive it through Pi `--append-system-prompt` from the same Atenea checkpoint root as the mechanical consent relay. `tools/check-atenea-reviewer-lifecycle.mjs` freezes the T5 group/forecast/ACK/in-flight/approval/burn behavior plus single-lens and negative cases. Atenea still does not own or replace Gentle's reviewer lifecycle.
+
+## C-030 — The adopted C-025 workflow is field-qualified for real multi-ticket Golden E2E trains
+
+**Accepted and field-qualified from PROMueve T8→T9→T10, 2026-09-06.**
+
+The adopted workflow has now completed a real project train across multiple successive frontier tickets after one explicit execution authorization:
+
+```text
+explicit authorization
+→ persistent non-implementing Pi supervisor
+→ fresh Pi/Gentle-Pi worker for T8
+→ deterministic/browser QA → native RDD → acknowledgement/burn → normal push
+→ supervisor exact reconciliation + fresh authority read
+→ fresh worker for T9 → QA/RDD/burn/push
+→ supervisor reconciliation + fresh authority read
+→ fresh verification-only worker for T10
+→ final integration/retention gate PASS
+→ STOP
+```
+
+Field result: T8 `08703a6…` accepted; T9 `fbaaef0…` accepted; T10 final gate `14/14 PASS` on the durable T9 HEAD; zero human intervention after train launch; supervisor executed zero Gentle lifecycle commands; no PR/merge/force push.
+
+This closes the Golden E2E multi-ticket qualification gap without changing the ownership model or adding runtime architecture. C-025–C-029 remain normative for topology, fail-closed launch, bounded consent relay, explicit identity/scope and reviewer continuation.
+
+The field run does not relax C-025's event-driven rule. One observed startup `sleep 6` is recorded as non-blocking harness debt, not accepted behavior. A T8 reviewer admission refusal recovered through a provider-owned bounded reoffer/retry is likewise reliability debt, not justification for a second reviewer controller.
+
+Evidence: `docs/PROMUEVE_UNIFIED_INTAKE_GOLDEN_E2E_FIELD_EVIDENCE_20260906.md`.
 
 ## C-006 — Normal git push is allowed; no publication-permission subsystem
 
