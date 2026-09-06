@@ -62,10 +62,10 @@ herdr agent start "$REVIEWER_NAME" --kind pi --pane "$REVIEWER_PANE" --timeout 3
   --tools read,grep,find,ls \
   --no-extensions \
   --no-skills \
-  --no-prompt-templates \
-  --no-autoformat \
-  --no-autofix
+  --no-prompt-templates
 ```
+
+`--no-extensions` means extension-provided autoformat/autofix surfaces are not loaded. Do not also pass their extension-owned `--no-autoformat` / `--no-autofix` flags: on Pi `0.85.1` those flags are unavailable when extension discovery is disabled. The read-only tool allowlist provides the mutation boundary.
 
 A rejected model/flag or identity mismatch is STOP. Planning may start a fresh reviewer with a corrected literal only under the same human promotion authority; the reviewer itself does not discover or substitute models.
 
