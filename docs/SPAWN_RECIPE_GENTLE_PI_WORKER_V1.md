@@ -117,6 +117,8 @@ herdr agent start "$WORKER_NAME" --kind pi --pane "$WORKER_PANE" -- \
   --no-autofix
 ```
 
+`herdr agent start` is the readiness barrier for the normal pinned path. Under qualified Herdr `0.8.2`, success means the expected agent was detected in the same terminal and is ready for input. After successful return, submit the worker prompt immediately. Do **not** add a startup `sleep`, pane read, roster probe or `agent_status` readiness check. A start timeout/rejection is FAIL CLOSED before prompt delivery; it is not a reason to invent a second readiness mechanism.
+
 Normal extension discovery remains enabled for the worker so Gentle Pi loads normally. Pi-lens remains diagnostic-only because autoformat/autofix are disabled. The reviewer continuation contract is loaded by Pi through the supported `--append-system-prompt` file surface, so the T5-proven lifecycle is present from the worker's first token and is not reconstructed by the supervisor or ticket brief. The worker must read repository `AGENTS.md` and coding standards before product write; if Gentle delegates to a bounded writer, the handoff must carry the applicable project constraints.
 
 ## Prompt delivery
@@ -165,6 +167,6 @@ The planning/launch surface may correct a bad literal and start a fresh worker o
 
 The supervisor is a normal Pi process with Gentle Pi disabled and pi-intercom loaded explicitly. It remains non-implementing. It MUST execute zero `gentle-ai` commands: no review-mode enable/disable, no inspect/start/consent/acknowledgement and no recovery commands.
 
-Worker → supervisor pi-intercom is the inbound control plane for bounded consent/authority questions and FINAL. The worker owns implementation, deterministic checks, Gentle native RDD, provider transitions, acknowledgement/burn and authorized normal non-force publication.
+Worker → supervisor pi-intercom is the inbound control plane for bounded consent/authority questions and FINAL. The worker owns implementation, deterministic checks, Gentle native RDD, provider transitions, acknowledgement/burn and authorized normal non-force publication. `FINAL` is the normal completion wake signal; the supervisor does not infer completion from pane/process state.
 
-After an accepted durable remote checkpoint, the supervisor performs one fresh authority read and either launches a fresh worker for the next compatible approved frontier using this same recipe or STOPs. Final merge remains a separate human boundary unless explicitly authorized.
+After FINAL reports an accepted durable remote checkpoint, the supervisor performs one fresh repository/tracker authority read and either launches a fresh worker for the next compatible approved frontier using this same recipe or STOPs. Normal post-FINAL reconciliation MUST NOT reopen the worker pane, inspect `agent_status`, or search host/session history for extra completion authority. A one-shot diagnostic read is allowed only after an explicit transport/runtime failure and is never the normal epilogue. Final merge remains a separate human boundary unless explicitly authorized.

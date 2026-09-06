@@ -249,9 +249,11 @@ Do not routinely place Gentle command syntax, lineage reconstruction, recovery a
 
 ### 7.4 Supervision efficiency
 
-The adopted Gentle-Pi path is event-driven: after accepted worker prompt delivery the supervisor ends its turn; pi-intercom wakes it for bounded decisions or FINAL. Fixed `sleep`, `for`/`while` polling, periodic pane reads, long `herdr agent wait` and `agent_status` lifecycle inference are prohibited.
+The adopted Gentle-Pi path is event-driven from launch through closure. Successful `herdr agent start` is the worker-readiness barrier: once it returns the expected agent as ready, the supervisor submits the prompt immediately. No startup `sleep`, pane/roster readiness probe or `agent_status` inference is permitted. After accepted worker prompt delivery the supervisor ends its turn; pi-intercom wakes it for bounded decisions or `FINAL`. Fixed `sleep`, `for`/`while` polling, periodic pane reads, long `herdr agent wait` and `agent_status` lifecycle inference are prohibited.
 
-This does not authorize a new polling daemon, scheduler or event bus. One-shot process reads are diagnostic only, not the normal lifecycle clock.
+`FINAL` through pi-intercom is the normal completion wake signal. After FINAL, the supervisor may perform the fresh repository/tracker authority read required to verify the durable checkpoint and rediscover the frontier; it MUST NOT conduct pane/process/session archaeology to infer a second completion state. One-shot process reads are diagnostic only after an explicit transport/runtime failure, never the normal lifecycle clock or epilogue.
+
+This does not authorize a new polling daemon, scheduler or event bus.
 
 Do not reintroduce a separate queue, DAG, scheduler, controller or dispatcher unless field evidence proves Pi plus standard repository/tracker primitives cannot provide a required property.
 

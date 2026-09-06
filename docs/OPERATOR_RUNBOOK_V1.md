@@ -44,7 +44,7 @@ explicit human execution authorization
 
 Pi remains interactive to the operator; the worker runs in a separate visible Herdr pane. The adopted unattended worker is Pi + Gentle Pi; OpenCode is optional/alternate, not required.
 
-Pinned runs MUST use `docs/SPAWN_RECIPE_GENTLE_PI_WORKER_V1.md`. The planning/launch surface resolves literal model parameters before launch. The supervisor does not rediscover models/CLI mechanics, does not implement product code, and after worker creation ends its turn until pi-intercom wakes it for a bounded decision or FINAL.
+Pinned runs MUST use `docs/SPAWN_RECIPE_GENTLE_PI_WORKER_V1.md`. The planning/launch surface resolves literal model parameters before launch. Successful `herdr agent start` is the readiness barrier; prompt delivery follows immediately with no startup sleep/probe. The supervisor does not rediscover models/CLI mechanics, does not implement product code, and after worker creation ends its turn until pi-intercom wakes it for a bounded decision or FINAL.
 
 ## Current adopted worker transport
 
@@ -58,7 +58,7 @@ normal Pi supervisor (Gentle Pi OFF; pi-intercom ON)
 → supervisor remote reconciliation / fresh frontier read / next worker or STOP
 ```
 
-No fixed sleeps, polling loops, long waits or `agent_status` lifecycle inference. A rejected pinned model/flag fails closed before product mutation. Final merge remains human unless separately authorized.
+No fixed sleeps, polling loops, readiness pane reads, long waits or `agent_status` lifecycle inference. `FINAL` via pi-intercom is the normal completion wake signal; after FINAL, reconcile only against fresh repository/tracker authority before next-worker/STOP. Host/pane archaeology is diagnostic-only after an explicit transport/runtime failure, not the normal epilogue. A rejected pinned model/flag fails closed before product mutation. Final merge remains human unless separately authorized.
 
 Bounded RDD consent is also event-driven, but the model is not the serializer. The versioned Atenea worker relay extension forwards the exact `gentle_review` consent payload through pi-intercom outbox to the named/scoped supervisor and blocks direct `ask_user_choice` while that consent is pending. The supervisor returns only the bounded decision; the worker performs the provider transition and owns the remaining Gentle lifecycle. Missing/mismatched name, scope, relay extension or intercom route is STOP, not a reason to ask the human directly, manually reconstruct the envelope or switch runtime.
 
