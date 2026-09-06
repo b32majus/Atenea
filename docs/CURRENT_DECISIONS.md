@@ -140,6 +140,14 @@ The field run does not relax C-025's event-driven rule. One observed startup `sl
 
 Evidence: `docs/PROMUEVE_UNIFIED_INTAKE_GOLDEN_E2E_FIELD_EVIDENCE_20260906.md`.
 
+## C-031 — Promotion Review is a conditional independent human-boundary audit, not a second RDD
+
+**Accepted 2026-09-06 under issue #60.**
+
+For high-risk composition/promotion decisions, the human/Cora planning surface may require `docs/PROMOTION_REVIEW_V1.md`: one fresh read-only Pi reviewer, an exact base/head evidence pack, the complete diff plus an explicit high-risk subset, and three separate axes (Spec/clinical semantics, Standards/Clean Code, Adversarial/Safety & failure ordering). Any blocking finding means FAIL. The reviewer model route is explicit at launch and cannot silently fall back.
+
+This does not weaken C-011. Gentle native RDD remains the sole exact-candidate review authority and Matt `code-review` remains an upstream task-triggered engineering method. Promotion Review is conditional at the human promotion boundary, creates no lineage/acknowledgement authority, performs no mutation and never auto-authorizes merge.
+
 ## C-006 — Normal git push is allowed; no publication-permission subsystem
 
 **Accepted.**

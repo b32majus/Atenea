@@ -233,6 +233,10 @@ material product ambiguity / destructive action / genuine external authority
 final merge
   = human boundary
   STOP before merge unless separately and explicitly authorized
+
+high-risk promotion review
+  = optional human/Cora planning gate under `docs/PROMOTION_REVIEW_V1.md`
+  fresh read-only reviewer; zero blocking findings; PASS still does not authorize merge
 ```
 
 Any real post-`EXECUTION_READY` human answer must be counted honestly in the

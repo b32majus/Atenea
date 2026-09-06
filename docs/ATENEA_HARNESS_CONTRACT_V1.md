@@ -461,6 +461,12 @@ Repository delivery policy decides whether an accepted work unit ends at:
 - an exact remote checkpoint; or
 - a pull request awaiting human merge.
 
+### 17.1 Conditional independent Promotion Review
+
+At a high-risk human promotion/merge boundary, the human/Cora planning surface MAY require `docs/PROMOTION_REVIEW_V1.md`. This is a fresh read-only audit of the exact integrated diff across Spec/clinical semantics, Standards/Clean Code and Adversarial/Safety & failure ordering. It requires the complete diff plus an explicit high-risk focus subset and zero blocking findings.
+
+Promotion Review is not part of the worker's Gentle lifecycle, creates no reviewer/candidate authority, and MUST NOT become a second mandatory LLM review after every ticket. Gentle native RDD remains the sole exact-candidate review authority; a Promotion Review PASS never authorizes merge by itself.
+
 Atenea does not auto-merge.
 
 The autonomous default MUST NOT use force-push, hidden reset/rebase/history rewrite or destructive recovery to make publication succeed.
