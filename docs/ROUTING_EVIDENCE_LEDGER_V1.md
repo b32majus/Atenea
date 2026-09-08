@@ -1,7 +1,7 @@
 # Atenea — Routing Evidence Ledger v1
 
 Status: **CURRENT OPERATIONAL EVIDENCE**
-Date: 2026-09-06
+Date: 2026-09-08
 
 This ledger prevents model-routing history from being mistaken for current architecture. Model/provider choices are replaceable operational configuration; the Atenea ownership model is defined elsewhere.
 
@@ -9,6 +9,7 @@ This ledger prevents model-routing history from being mistaken for current archi
 
 - `FIELD_PROVEN` — observed in an accepted field/Golden runtime for that exact role.
 - `A/B_VALIDATED` — two or more bounded same-problem comparisons with comparable correctness for that role, but not a full field qualification.
+- `QUALIFIED` — bounded direct qualification proved the route for the exact role, but it has less natural field history than `FIELD_PROVEN`.
 - `CANDIDATE` — promising route that requires qualification before becoming a default.
 - `HISTORICAL_DISCONNECTED` — existed in an earlier configuration/architecture but does not govern the adopted current path.
 - `UNQUALIFIED` — insufficient current evidence or insufficient routing control.
@@ -20,8 +21,8 @@ This ledger prevents model-routing history from being mistaken for current archi
 |---|---|
 | **Atenea Pi supervisor** | Outside Gentle-Pi. Non-implementing residual train control: bounded consent decision/relay, FINAL/checkpoint reconciliation, next frontier/STOP, fresh-worker launch. Executes zero Gentle lifecycle commands. |
 | **Gentle-Pi Pi parent / Gentleman coordinator** | Inside each fresh Pi+Gentle-Pi worker session. Interprets the ticket and coordinates the internal Gentle execution path. |
-| **Builder/writer** | Concrete implementation role only if a supported internal delegation seam is actually available and separately qualified. |
-| **Native Gentle lens / refuter / targeted validator** | Provider-owned exact-candidate lifecycle roles. Do not confuse old subagent model config with current native Gentle-Pi routing. |
+| **Native Gentle Agent writer/verifier** | Optional package-owned inner delegation inside one fresh ticket worker. Does not own the outer ticket, RDD or publication boundary. |
+| **Native Gentle lens / refuter / targeted validator** | Provider-owned exact-candidate lifecycle roles. Do not confuse old subagent model config with current Gentle-Pi host-relay model selection. |
 | **Promotion Review** | Separate fresh read-only human-boundary audit. Creates no Gentle/RDD authority and never authorizes merge by itself. |
 
 `SUPERVISOR != GENTLE_COORDINATOR != BUILDER != NATIVE_REVIEWER != PROMOTION_REVIEW`.
@@ -30,17 +31,17 @@ This ledger prevents model-routing history from being mistaken for current archi
 
 | Role | Route/model | Evidence | Current interpretation |
 |---|---|---|---|
-| Atenea Pi supervisor | DeepSeek V4 Flash `medium` | `FIELD_PROVEN` | Golden T8→T10. This is the adopted residual supervisor baseline. |
-| Gentle parent/coordinator | DeepSeek V4 Flash `high` | `FIELD_PROVEN` — **collapsed Golden mode** | In Golden T8→T10 no delegated writer was active; the Pi/Gentle worker performed coordinator + implementation. This proves capability, not that V4 is the best coordinator. |
-| Gentle parent/coordinator | GLM 5.3 Flash `high` | `A/B_VALIDATED` + `CANDIDATE` | Preferred coordinator candidate from two bounded real PROMueve T8/T9 comparisons: comparable correct diagnosis/design, markedly fewer turns/context, mixed wall-clock. Not yet Golden field-qualified in this exact role. |
-| Separate builder/writer | none | `UNQUALIFIED` / not required | Current Golden path does not require internal writer delegation. Do not activate `pi-subagents` merely to create this layer. |
-| Luna as delegated writer | historical attempts | `HISTORICAL_DISCONNECTED` / inconclusive | Earlier `pi-subagents`/Luna attempts did not establish a productive current writer seam. No current requirement. |
-| Native Gentle lenses | current model route | `UNQUALIFIED` | Gentle-Pi 2.4 host relay launches opaque Pi without an Atenea per-run model pin. Overnight reconstruction strongly points to the then machine-global Muse Spark default, but receipts did not preserve model id; treat that historical attribution as likely, not certain. |
+| Atenea Pi supervisor | `opencode-go/deepseek-v4-flash` `medium` | `FIELD_PROVEN` | Golden T8→T10. Adopted residual supervisor baseline; non-implementing and Gentle Pi OFF. |
+| Gentle parent/coordinator | `opencode-go/glm-5.3-flash` `high` | `FIELD_PROVEN` | Earlier T8/T9 A/B evidence plus successful real PROMueve use on 2026-09-07. Adopted normal parent/coordinator baseline. |
+| Gentle parent/coordinator | DeepSeek V4 Flash `high` | `FIELD_PROVEN` — collapsed Golden mode | Proven capable in Golden T8→T10. Retained as explicit fallback evidence, never a silent substitution. |
+| Native Gentle Agent writer | `openai-codex/gpt-5.6-luna` `high` | `QUALIFIED` + adopted profile | Gentle Pi 2.5 package-owned child launch and real bounded C1 implementation replay passed frozen/focused checks. Keep high; do not downgrade for negligible cost savings. |
+| Native Gentle Agent verifier | `openai-codex/gpt-5.6-luna` `high` | `QUALIFIED` profile | Package-owned native-agent seam qualified; verifier remains optional and fresh when used. |
+| Native Gentle lenses | current host-relay model route | `UNQUALIFIED` per-lens pin | Gentle Pi 2.5 selects the provider-owned lifecycle role, then launches an isolated Pi reviewer without parent `--model`/`--provider` literals. Atenea has no adopted per-lens model pin; do not infer the parent model. |
 | Old V4 Pro/V4 reviewer pins | old subagent config | `HISTORICAL_DISCONNECTED` | Do not treat as current native Gentle-Pi lens routing. |
-| Native refuter | current model route | `UNQUALIFIED` | No current qualified pin. |
+| Native refuter | current host-relay model route | `UNQUALIFIED` per-lens pin | No current Atenea pin. Provider owns when a refuter is required. |
 | Qwen 3.8 Flash refuter | old subagent config | `HISTORICAL_DISCONNECTED` | Earlier idea/config only; never qualified as current native Gentle-Pi refuter. |
-| Targeted validator | current model route | `UNQUALIFIED` | No current qualified pin. |
-| Promotion Review | explicit model + thinking per run | current contract; several successful bounded runs | No fixed default. V4 and GLM have completed bounded reviews; Luna may be selectively evaluated. No silent fallback. |
+| Targeted validator | current host-relay model route | `UNQUALIFIED` per-lens pin | No current Atenea pin. Provider owns when targeted validation is required. |
+| Promotion Review | explicit model + thinking per run | current contract; several successful bounded runs | No fixed default and no silent fallback. Use stronger routes such as Sol when risk justifies it. |
 | Qualification issue #66 | GLM/V4 whole-worker replay | `ABORTED_NON_AUTHORITY` | Wrong role under test after supervisor/coordinator conflation. No routing conclusion. |
 
 ## 4. Coordinator A/B evidence captured 2026-09-06
@@ -75,12 +76,12 @@ Interpretation: GLM was dramatically more context/turn efficient in both cases; 
 
 ## 5. What remains genuinely open
 
-The next routing qualification, if a real train makes it useful, is **not** “GLM as supervisor”. The supervisor baseline is already V4 Flash medium.
+GLM 5.3 Flash high is no longer the open coordinator question; it is the adopted parent/coordinator baseline. Gentle Pi 2.5 also closes the earlier “is there a supported delegated-writer seam?” question by shipping native Gentle Agents.
 
-The useful questions are:
+The useful remaining routing questions are narrower:
 
-1. Can GLM 5.3 Flash run as the actual Gentle parent/coordinator in the supported current topology without degrading field outcomes?
-2. Can native Gentle lens/refuter/validator model routes be made explicit and observable through an upstream-supported per-run surface, without wrapper/internals changes?
-3. If current upstream later exposes a reliable delegated-writer seam, does separating coordinator from builder materially improve context/quality enough to justify the extra layer?
+1. Can native Gentle lens/refuter/targeted-validator **model** routes be made explicit and observable through an upstream-supported per-run/per-role surface, without wrappers or internal patches?
+2. Does real workload evidence justify any additional native-agent profiles beyond the adopted Luna-high writer/verify pair?
+3. When a Promotion Review is required, which explicit strong route best matches the risk and current subscription budget?
 
-Do not block normal PROMueve work waiting for these experiments. Use a future real train as evidence when convenient.
+Do not block normal work on these questions. Current unattended routing is sufficient and fail-closed; future changes need evidence and no silent fallback.

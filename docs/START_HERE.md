@@ -59,6 +59,26 @@ Pi factual final report; merge remains human
 
 **Cora/human owns the pre-`EXECUTION_READY` interpretation. Pi does not decide which software-development methodology should be invented or installed.** Pi receives already-shaped work and supervises bounded execution.
 
+### Current execution modes after Gentle Pi 2.5
+
+Do not confuse the new interactive standing-permission feature with the unattended Golden:
+
+```text
+UNATTENDED single ticket or train
+  explicit human execution authorization
+  → plain non-implementing supervisor
+  → fresh Pi + Gentle Pi 2.5 worker per ticket
+  → Atenea mechanical consent relay for bounded RDD consent
+  → zero human touch until a genuine human-owned boundary or final merge
+
+ATTENDED interactive work
+  human may run Pi + Gentle Pi directly
+  → the human may explicitly choose the host standing-session review permission
+  → later validated review consents in that same live session/repository may auto-consent
+```
+
+Standing permission is not persisted execution authority and is not a reason to keep one Gentle parent alive across an unattended train. Native Gentle Agents are an **inner** delegation mechanism; they do not replace the fresh outer worker-per-ticket boundary.
+
 ## 3. Project-entry classification
 
 When starting or resuming a target project, classify the **current situation**, not just the repository age.

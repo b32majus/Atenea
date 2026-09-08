@@ -1,6 +1,6 @@
 # Atenea Harness Contract v1
 
-Date: 2026-09-03
+Date: 2026-09-08
 Status: NORMATIVE
 
 ## 1. Purpose
@@ -74,7 +74,9 @@ The historical OpenCode negotiated `review-integration/v2` relay limitation rema
 Current completion state, explicitly distinguishing the adopted path from the historical OpenCode path:
 
 ```text
-ADOPTED_UNATTENDED_WORKER=PI_PLUS_GENTLE_PI_2_4
+ADOPTED_UNATTENDED_WORKER=FRESH_PI_PLUS_GENTLE_PI_2_5_PER_TICKET
+ADOPTED_GENTLE_AI=2_7_0_PACKAGE_PAIRED
+NATIVE_GENTLE_AGENTS=OPTIONAL_INNER_DELEGATION
 ADOPTED_PATH_NATIVE_RDD=REQUIRED
 ADOPTED_PATH_BLOCKED_BY_OPENCODE_V2_GAP=NO
 OPENCODE_RELEASED_V2_PROVIDER_UNATTENDED_SELECTOR=NOT_AVAILABLE
@@ -163,13 +165,14 @@ For each autonomous iteration Pi should:
 2. discover the executable frontier rather than depend on a hand-maintained queue;
 3. reject blocked, contradictory or incompatible work;
 4. select one eligible work item;
-5. create or reuse and supervise the implementation worker through Herdr;
+5. create and supervise a fresh ticket worker through Herdr for every newly selected frontier item;
 6. remain non-implementing;
-7. relay genuine provider-owned human-decision envelopes losslessly when the selected path requires them;
-8. grant already-authorized operational runtime permissions when the runtime safely exposes them;
-9. verify accepted closure/reconciliation evidence;
-10. rediscover the frontier after each accepted checkpoint;
-11. STOP when the compatible frontier is exhausted.
+7. transport already-authorized bounded RDD consent through the versioned mechanical relay and answer only within current execution authority;
+8. relay genuine human-owned decisions losslessly when they actually occur;
+9. grant already-authorized operational runtime permissions when the runtime safely exposes them;
+10. verify accepted closure/reconciliation evidence;
+11. rediscover the frontier after each accepted checkpoint;
+12. STOP when the compatible frontier is exhausted.
 
 ### 7.1 Gentle lifecycle ownership
 
@@ -184,11 +187,12 @@ Pi supervisor
   already-authorized bounded operational decision grant
   ZERO gentle-ai lifecycle commands
 
-Pi + Gentle Pi worker
+Pi + Gentle Pi 2.5 ticket worker
   repository-instruction read before product write
-  implementation / bounded-writer delegation
+  ticket interpretation / integration ownership
+  direct implementation OR optional package-owned native Gentle Agents
   deterministic verification
-  all Gentle lifecycle operations
+  all Gentle AI 2.7 lifecycle operations
   exact provider-issued continuation/re-entry
   bounded correction
   acknowledgement/burn
@@ -197,7 +201,9 @@ Pi + Gentle Pi worker
 
 When Gentle returns provider-issued lifecycle transitions, the **Pi/Gentle-Pi worker** is the orchestrator that executes them. The phrase “orchestrator executes provider-issued transitions” in Gentle documentation MUST NOT be interpreted as permission for the outer Pi supervisor to take over that lifecycle.
 
-For an already-authorized bounded RDD consent envelope, the worker MUST NOT use `ask_user_choice` or otherwise ask the human directly. Atenea transports the exact provider text mechanically through the versioned worker-side RDD relay extension and pi-intercom outbox; the model MUST NOT reconstruct or reserialize the envelope. Supervisor and worker use explicit Pi `--name` identities inside one pre-resolved `PI_INTERCOM_SCOPE_ID`. The supervisor may return only the bounded `GRANTED`/`DECLINED` decision supported by current execution authority; the worker then executes any provider-issued answer-consent transition with the original opaque binding and continues to own review, correction and acknowledgement/burn. Missing/mismatched identity, scope, relay transport or candidate identity fails closed. Genuine human-owned product/authority decisions remain human boundaries and are not converted into supervisor consent.
+For an already-authorized bounded RDD consent envelope in an **unattended** run, the worker MUST NOT use `ask_user_choice` or otherwise ask the human directly. Atenea transports the exact provider text mechanically through the versioned worker-side RDD relay extension and pi-intercom outbox; the model MUST NOT reconstruct or reserialize the envelope. Supervisor and worker use explicit Pi `--name` identities inside one pre-resolved `PI_INTERCOM_SCOPE_ID`. The supervisor may return only the bounded `GRANTED`/`DECLINED` decision supported by current execution authority; the worker then executes any provider-issued answer-consent transition with the original opaque binding and continues to own review, correction and acknowledgement/burn. Missing/mismatched identity, scope, relay transport or candidate identity fails closed. Genuine human-owned product/authority decisions remain human boundaries and are not converted into supervisor consent.
+
+Gentle Pi 2.5's host-owned **standing review permission** is a separate attended-interactive feature. A human may explicitly create that live-session/repository grant in an attended Pi session. It is not persisted execution authority, cannot be assumed from `EXECUTION_READY`, and MUST NOT replace the mechanical relay for unattended single-ticket or train execution. Atenea therefore retains a fresh outer Pi/Gentle-Pi worker per ticket; standing permission is not a reason to keep one Gentle parent alive across an unattended train.
 
 #### 7.1.1 Native reviewer continuation is provider-owned and T5-golden
 
@@ -267,7 +273,7 @@ Atenea MUST NOT move product authority, blocker reasoning, publication policy or
 
 ## 9. Implementation and engineering methods
 
-A separate Pi worker with Gentle Pi + Gentle AI is the accepted unattended implementation worker. OpenCode is an attended/alternate runtime, not a required component of the normal unattended path.
+A fresh Pi worker with Gentle Pi 2.5 + package-paired Gentle AI 2.7 is the accepted unattended ticket worker. It may implement directly or delegate bounded work through package-owned native Gentle Agents. The outer fresh-worker-per-ticket boundary remains authoritative. OpenCode is an attended/alternate runtime, not a required component of the normal unattended path.
 
 Engineering quality is separated into:
 
@@ -305,7 +311,7 @@ Only adopt checks that are machine-decidable and justified by the repository's s
 
 Gentle AI alone owns the final candidate/RDD lifecycle.
 
-The stable `2.5.0` contract is treated as provider authority. Atenea MUST NOT reconstruct:
+The current Gentle AI `2.7.0` provider contract, consumed through Gentle Pi `2.5.0`, is treated as provider authority. Atenea MUST NOT reconstruct:
 
 - candidate freezing or exact candidate identity;
 - reviewer lineage/authority;
@@ -504,7 +510,7 @@ Model, provider and reasoning-effort selections are operational routing facts, n
 
 Record them when useful for evidence/cost/reproducibility, but do not hard-code the harness around a specific model unless a repository has a demonstrated requirement.
 
-The Judit #76 stable field run found DeepSeek V4 Flash operationally effective for Pi/OpenCode supervision/review routing compared with an earlier accidental high-cost routing. That is field evidence for configuration choice, not a normative Atenea model pin.
+Current operational routing is role-specific and replaceable: DeepSeek V4 Flash `medium` is the field-proven supervisor baseline; GLM 5.3 Flash `high` is the current field-proven fresh parent/coordinator baseline; package-owned `gentle-ai-worker` and `gentle-ai-verify` use Luna `high`. Native reviewer/refuter/targeted-validator **model** routing has no new Atenea per-lens pin. These are operational defaults recorded in `docs/ROUTING_EVIDENCE_LEDGER_V1.md`, not architecture, and rejected routes never trigger silent fallback.
 
 ## 21. Security boundary
 
@@ -535,21 +541,27 @@ Issue #38 completed the first real operator-triggered Atenea end-to-end run thro
 Current stable status:
 
 ```text
-ADOPTED_UNATTENDED_WORKER              PI_PLUS_GENTLE_PI_2_4
+ADOPTED_UNATTENDED_WORKER              FRESH_PI_PLUS_GENTLE_PI_2_5_PER_TICKET
+ADOPTED_GENTLE_AI                      2_7_0_PACKAGE_PAIRED
+NATIVE_GENTLE_AGENTS                   PASS_OPTIONAL_INNER_DELEGATION
+UNATTENDED_RDD_CONSENT_RELAY           PASS_ZERO_TOUCH
+STANDING_SESSION_PERMISSION            PASS_ATTENDED_ONLY
 EXACT_CANDIDATE_RDD                    PASS
-PROVIDER_CONTINUATION_REENTRY          PASS_ON_SUCCESSFUL_FIELD_PATH
+PROVIDER_CONTINUATION_REENTRY          PASS
 ACKNOWLEDGEMENT_BURN                   PASS
 NORMAL_NON_FORCE_PUBLICATION           PASS
 PR_STOP_BEFORE_HUMAN_MERGE             PASS
 NAMED_SCOPED_INTERCOM_IDENTITY         REQUIRED_FOR_PINNED_RUNS
-MECHANICAL_RDD_CONSENT_RELAY           CURRENT_PINNED_TRANSPORT
+MECHANICAL_RDD_CONSENT_RELAY           CURRENT_UNATTENDED_TRANSPORT
+NATIVE_REVIEWER_MODEL_PIN              NONE_CURRENT
 OPENCODE_NEGOTIATED_V2_ZERO_TOUCH      LEGACY_ALT_PATH_NOT_SATISFIED
 OPENCODE_UPSTREAM_PARITY_GAP           OPEN_NON_BLOCKING
 ```
 
 Remaining evidence/work should come primarily from real-project use:
 
-- natural field qualification of the adopted named/scoped Pi/Gentle-Pi path and its mechanical RDD relay;
+- natural continued field use of GP2.5 native Agents where delegation materially helps; the outer path and unattended relay are already qualified;
+- optional upstream-supported explicit native reviewer/refuter/validator model-routing qualification if it becomes useful;
 - Issue #36 / upstream `Gentleman-Programming/gentle-ai#4109` only if continued parity for the alternate OpenCode route is valuable; it does not block the adopted path;
 - optional OpenSpec use only when a real brownfield delta benefits from it;
 - first naturally material UI slice using conditional Impeccable/DESIGN/PRODUCT policy.
