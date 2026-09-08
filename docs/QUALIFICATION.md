@@ -1,6 +1,6 @@
 # Atenea — Qualification Status
 
-Date of current status: 2026-09-06
+Date of current status: 2026-09-08
 
 This document is the current qualification index. Stage-specific files remain frozen evidence. Earlier `NEXT`, `DEFERRED` or `NOT_YET_QUALIFIED` labels are historical when they conflict with this file, `README.md`, `docs/CURRENT_DECISIONS.md` or `docs/ATENEA_HARNESS_CONTRACT_V1.md`.
 
@@ -21,6 +21,9 @@ FRONTIER_EXHAUSTION_STOP          PASS
 GOLDEN_E2E_MULTI_TICKET_FIELD       PASS
 ZERO_HUMAN_TOUCH_MULTI_TICKET       PASS
 HERDR_START_READINESS_NO_SLEEP       PASS
+GENTLE_PI_25_NATIVE_AGENTS             PASS
+GENTLE_PI_25_UNATTENDED_RELAY          PASS
+GENTLE_PI_25_FULL_RDD_LIFECYCLE        PASS
 ```
 
 The result is evidence for a thin supervisory contract, not a recommendation to build a larger Atenea runtime.
@@ -34,6 +37,35 @@ normal Pi supervisor → Herdr → separate Pi/Gentle-Pi worker → Gentle nativ
 ```
 
 PROMueve T4/T5 plus atomic repairs demonstrated zero-touch execution, independent product rejection/repair, native RDD acknowledgement/burn, normal non-force publication, composed continuity and supervisor-owned frontier rediscovery. OpenCode qualification below remains valid historical/alternate evidence but no longer defines the current unattended runtime.
+
+## Gentle Pi 2.5 / Gentle AI 2.7 Golden promotion — PASS — 2026-09-08
+
+Atenea #72/#73 qualified and promoted the current upstream pair without replacing the outer Golden topology.
+
+```text
+CURRENT_GENTLE_PI                      2.5.0
+CURRENT_GENTLE_AI                      2.7.0
+NATIVE_GENTLE_AGENTS                   PASS
+REAL_BOUNDED_NATIVE_WRITER_REPLAY      PASS
+UNATTENDED_CONSENT_V3_ATENEA_RELAY     PASS
+ZERO_HUMAN_TOUCH_RDD_CONSENT           PASS
+FULL_RDD_START_TO_APPROVED             PASS
+REVIEWER_FORECAST_ACK                  PASS
+OPAQUE_BINDING_EXACT_REUSE             PASS
+ACKNOWLEDGE_APPROVED                   PASS
+AUTHORITY_BURN                         PASS
+STANDING_SESSION_PERMISSION            PASS_ATTENDED_ONLY
+FRESH_OUTER_WORKER_PER_TICKET          PRESERVED
+SUPERVISOR_GENTLE_COMMANDS             0
+```
+
+The qualification deliberately separated two consent modes. Gentle Pi 2.5 standing review permission requires a human to create the live-session/repository grant and is therefore an **attended interactive** convenience. Normal unattended execution continues to use the versioned Atenea mechanical relay so a fresh Pi/Gentle-Pi worker can remain fresh per ticket while the plain supervisor returns only the already-authorized bounded decision.
+
+Native Gentle Agents are qualified as the supported internal delegation seam. A package-owned `gentle-ai-worker` launched successfully and completed real bounded PROMueve replay implementation with the frozen/focused checks green. The fresh ticket parent remains the unit of responsibility; native children never become outer train workers.
+
+The isolated qualification also caught a package-local binary installation defect before review and strengthened the promotion preflight: package version/manifest alone is not enough; the paired Gentle AI binary must exist, be executable, report the expected version and match its integrity manifest.
+
+Current promotion evidence: `docs/GENTLE_PI_25_GOLDEN_PROMOTION_EVIDENCE_20260908.md`.
 
 ## Golden E2E multi-ticket field qualification — PASS — 2026-09-06
 
@@ -93,11 +125,11 @@ ATENEA_NEWCOMER_READY                 PASS
 
 The onboarding authority is now explicit without adding a runtime layer: `docs/NEWCOMER_QUICKSTART_V1.md` is a non-normative fast map; `docs/INSTALLATION_AND_OPERATION_V1.md` owns provisioning/scopes and the current replaceable operational routing profile; `docs/START_HERE.md` owns shaping choice; the harness contract remains normative for execution. Current Pi-target Matt installation was separately canaried with upstream `skills` 1.5.23 and produced the full 37-skill project-local `.pi/skills/` set plus `skills-lock.json`.
 
-The qualification deliberately does **not** activate `pi-subagents`, delegated `gentle-ai-worker`, Luna writer routing, a context-budget controller, supervisor-invariants duplication, a supervisor skill or a worker-template engine. The Golden E2E path does not require them; future adoption requires separate real-gap evidence/qualification.
+At the 2026-09-06 newcomer checkpoint, the qualification deliberately did **not** activate `pi-subagents`, delegated `gentle-ai-worker`, Luna writer routing, a context-budget controller, supervisor-invariants duplication, a supervisor skill or a worker-template engine. That statement is historical for the pre-2.5 runtime: the 2026-09-08 promotion separately qualifies package-owned native Gentle Agents and Luna-high worker/verify profiles. Third-party `pi-subagents` remains excluded, delegation remains optional, and no new controller/template engine was added.
 
 ### Entry/role/routing reconciliation — current evidence map
 
-WO #67 adds no runtime capability. It makes two planning facts durable: repository entry is read-only reconciliation before shaping, and routing claims are bound to exact roles/evidence classes. `docs/ROUTING_EVIDENCE_LEDGER_V1.md` records V4 Flash medium as `FIELD_PROVEN` supervisor, V4 Flash high as the collapsed Golden Pi/Gentle worker, GLM 5.3 Flash high as `A/B_VALIDATED` coordinator candidate, native reviewer/refuter/validator routing as `UNQUALIFIED`, historical subagent pins as `HISTORICAL_DISCONNECTED`, and issue #66 as `ABORTED_NON_AUTHORITY`.
+WO #67 added no runtime capability; it made repository-entry and role/evidence classification durable. Its GLM 5.3 coordinator-candidate status is superseded by the 2026-09-08 routing promotion: V4 Flash medium remains `FIELD_PROVEN` supervisor, GLM 5.3 Flash high is now the `FIELD_PROVEN` normal parent/coordinator baseline, Luna high is the qualified package-owned native writer/verify profile, native reviewer/refuter/validator **model pins** remain unqualified, historical subagent pins remain `HISTORICAL_DISCONNECTED`, and issue #66 remains `ABORTED_NON_AUTHORITY`.
 
 ## Qualification evidence vs current stable runtime
 
@@ -109,16 +141,25 @@ STAGE 5–8 QUALIFICATION EVIDENCE
   historical and still valid for the properties actually exercised
 
 CURRENT PRODUCTION OPERATIONAL TARGET
+  Pi 0.85.1
+  Herdr 0.9.0
+  Gentle Pi 2.5.0
+  Gentle AI 2.7.0 package-paired
+  pi-intercom 0.13.0
+  qualified under Atenea #72/#73
+
+EARLIER STABLE GENTLE FIELD EVIDENCE
   Gentle AI 2.5.0 stable
-  real-project field evidence captured on Judit #76 / PR #79
+  Judit #76 / PR #79
+  valid historical exact-candidate/ack-burn evidence
 
 BOUNDED ZERO-TOUCH CHARACTERIZATION
   provider-side canary based exactly on Gentle AI 2.5.0
   OpenCode 1.18.27
   Pi 0.84.4
   Herdr 0.8.2
-  PASS for review-only negotiated-v2 unattended behavior
-  NOT production adoption
+  PASS for historical review-only negotiated-v2 unattended behavior
+  NOT current production adoption
 ```
 
 The Judit field run confirmed that stable `2.5.0` preserves the exact-candidate RDD lifecycle, provider continuation/re-entry on the successful path, approval and exact acknowledgement/burn.
@@ -384,7 +425,7 @@ Do not reintroduce `env -u GH_TOKEN -u GITHUB_TOKEN ...` wrappers or an authenti
 
 Gentle Pi `2.2.0` did not complete the full unattended lifecycle reliably. That historical failure remains valid evidence.
 
-Atenea #35 permits one bounded replacement/deletion reevaluation after a materially changed upstream release. The current field epoch is:
+Atenea #35 permitted one bounded replacement/deletion reevaluation after a materially changed upstream release. That 2.4 replacement field epoch was:
 
 ```text
 Pi          0.85.1
@@ -441,16 +482,18 @@ ACK_BURN_REQUIRED=PASS
 
 ## Current runtime target
 
-Adopted field epoch after cutover #45 / PR #47:
+Adopted field epoch after the 2026-09-08 #73 promotion:
 
-- Pi `0.85.1` is the current qualified thin supervisor/worker host in this field epoch;
-- Herdr `0.8.2` remains the process/session substrate;
-- Gentle Pi `2.4.0` is the adopted normal unattended implementation/orchestration worker runtime;
-- Gentle AI `2.6.0` is the current field epoch behind that Gentle-Pi path;
+- Pi `0.85.1` is the current qualified thin supervisor/worker host;
+- Herdr `0.9.0` is the current process/session substrate machine epoch;
+- Gentle Pi `2.5.0` is the adopted normal unattended ticket-worker runtime;
+- Gentle AI `2.7.0` is the required package-paired native RDD runtime;
 - pi-intercom `0.13.0` is the event-driven supervisor/worker control plane;
-- pinned runs require explicit Pi names, one shared run-scoped intercom identity, the versioned Atenea mechanical RDD relay extension and the T5-proven reviewer continuation contract loaded from the same Atenea checkpoint root;
+- pinned unattended runs require explicit Pi names, one shared run-scoped intercom identity, the versioned Atenea mechanical RDD relay extension and the reviewer continuation contract loaded from the same Atenea checkpoint root;
+- native Gentle Agents are available inside the fresh ticket worker; current writer/verify profiles are Luna `high`, while delegation remains optional;
+- standing session review permission is attended-interactive only and is not the unattended train authority mechanism;
 - OpenCode `1.18.x` + Gentle `2.5.x` and the negotiated-v2 canary remain characterized historical/alternate evidence, not the normal unattended runtime;
-- model/provider routes are operational parameters selected by current health/cost/capability, not architecture pins;
+- current routing baseline is V4 Flash `medium` supervisor + GLM 5.3 Flash `high` parent/coordinator + Luna `high` native writer/verify; native reviewer/refuter/validator model pinning remains open;
 - upstream `Gentleman-Programming/gentle-ai#4109` remains relevant only for optional parity of the alternate OpenCode route and does not block the adopted path.
 
 ## Policy consolidation — COMPLETE
@@ -566,5 +609,5 @@ When documentation conflicts:
 
 1. exact repository / GitHub / runtime evidence;
 2. `docs/ATENEA_HARNESS_CONTRACT_V1.md`, current `README.md`, this file and `docs/CURRENT_DECISIONS.md`;
-3. `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`, `docs/JUDIT76_GENTLE25_FIELD_EVIDENCE.md`, `docs/ATENEA_HANDOFF_20260830.md` and Stage-specific frozen evidence;
+3. `docs/GENTLE_PI_25_GOLDEN_PROMOTION_EVIDENCE_20260908.md` for the current runtime promotion, then `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`, `docs/JUDIT76_GENTLE25_FIELD_EVIDENCE.md`, `docs/ATENEA_HANDOFF_20260830.md` and Stage-specific frozen evidence;
 4. earlier decision files and forward-looking plans.

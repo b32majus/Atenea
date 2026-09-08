@@ -1,7 +1,7 @@
 # Atenea — Gentle Pi Worker Spawn Recipe v1
 
 Status: **CURRENT / NORMATIVE FOR PINNED UNATTENDED WORK**
-Date: 2026-09-05
+Date: 2026-09-08
 
 Purpose: remove spawn ambiguity from the supervisor. The planning/launch surface resolves the literal model routes and repository/worktree parameters before the supervisor starts. The supervisor consumes them unchanged and fails closed if the runtime rejects them.
 
@@ -12,8 +12,9 @@ Purpose: remove spawn ambiguity from the supervisor. The planning/launch surface
 - `WORKER_NAME`: unique worker identity; this exact value is used as both Herdr agent name and Pi `--name`.
 - `INTERCOM_SCOPE_ID`: unique opaque scope for this unattended run; supervisor, worker and relay use the same value.
 - `ATENEA_RDD_RELAY_EXTENSION`: absolute path to the versioned `extensions/atenea-rdd-consent-relay.mjs` from the approved Atenea checkpoint.
-- `WORKER_MODEL`: exact Pi-supported literal model id, verified before launch.
-- `WORKER_THINKING`: exact Pi thinking level.
+- `WORKER_MODEL`: exact Pi-supported parent/coordinator model literal, verified before launch. Current baseline is `opencode-go/glm-5.3-flash`.
+- `WORKER_THINKING`: exact Pi thinking level. Current parent/coordinator baseline is `high`.
+- Native Gentle Agent profile authority: when delegation is used, `gentle-ai-worker` and `gentle-ai-verify` must resolve to the accepted current profile (`openai-codex/gpt-5.6-luna`, `high`) unless the work item explicitly authorizes another qualified route. Project-local overrides outrank global config and must therefore be detected rather than silently accepted.
 - `WORK_ITEM`: exact approved issue/work item.
 - `START_HEAD`: expected clean starting checkpoint.
 - `WORKER_PROMPT_FILE`: exact prebuilt bounded worker prompt file.
@@ -117,9 +118,24 @@ herdr agent start "$WORKER_NAME" --kind pi --pane "$WORKER_PANE" -- \
   --no-autofix
 ```
 
-`herdr agent start` is the readiness barrier for the normal pinned path. Under qualified Herdr `0.8.2`, success means the expected agent was detected in the same terminal and is ready for input. After successful return, submit the worker prompt immediately. Do **not** add a startup `sleep`, pane read, roster probe or `agent_status` readiness check. A start timeout/rejection is FAIL CLOSED before prompt delivery; it is not a reason to invent a second readiness mechanism.
+`herdr agent start` is the readiness barrier for the normal pinned path. Under the current Herdr `0.9.0` machine epoch (with the earlier `0.8.2` no-sleep canary preserved as field evidence), success means the expected agent was detected in the same terminal and is ready for input. After successful return, submit the worker prompt immediately. Do **not** add a startup `sleep`, pane read, roster probe or `agent_status` readiness check. A start timeout/rejection is FAIL CLOSED before prompt delivery; it is not a reason to invent a second readiness mechanism.
 
-Normal extension discovery remains enabled for the worker so Gentle Pi loads normally. Pi-lens remains diagnostic-only because autoformat/autofix are disabled. The reviewer continuation contract is loaded by Pi through the supported `--append-system-prompt` file surface, so the T5-proven lifecycle is present from the worker's first token and is not reconstructed by the supervisor or ticket brief. The worker must read repository `AGENTS.md` and coding standards before product write; if Gentle delegates to a bounded writer, the handoff must carry the applicable project constraints.
+Normal extension discovery remains enabled for the worker so Gentle Pi 2.5 loads normally. Pi-lens remains diagnostic-only because autoformat/autofix are disabled. The reviewer continuation contract is loaded by Pi through the supported `--append-system-prompt` file surface, so the proven lifecycle is present from the worker's first token and is not reconstructed by the supervisor or ticket brief. The worker must read repository `AGENTS.md` and coding standards before product write. If it uses a native Gentle Agent, the child handoff must carry the applicable project constraints and bounded task/verification headings; the parent remains ticket/RDD/integration owner.
+
+## Native Gentle Agents inside the ticket worker
+
+Gentle Pi 2.5 makes package-owned `subagent_*` tools available inside the fresh ticket worker. They are an optional inner execution seam, not an outer Atenea topology change.
+
+Current accepted defaults:
+
+```text
+gentle-ai-worker  openai-codex/gpt-5.6-luna  high
+gentle-ai-verify  openai-codex/gpt-5.6-luna  high
+```
+
+Before the first delegated mutation, the ticket parent should use the supported native agent-discovery surface and fail closed if the intended child/profile is unavailable or silently resolves to a different route. Do not reinstall third-party `pi-subagents` to obtain delegation. A small/local ticket may be implemented directly by the parent; delegation is not mandatory.
+
+Each native child has its own Pi RPC session/history. Child freshness does not weaken the outer rule: every newly selected frontier ticket still receives a fresh Pi/Gentle-Pi parent worker.
 
 ## Prompt delivery
 
@@ -137,7 +153,7 @@ After accepted submission, the supervisor ends its turn. No fixed sleeps, pollin
 
 For already-authorized bounded RDD consent, the prebuilt worker prompt MUST state all of the following explicitly; the supervisor must not paraphrase these clauses away when materializing a ticket brief:
 
-- `DO NOT call ask_user_choice` and do not ask the human directly for bounded RDD consent.
+- `DO NOT call ask_user_choice` and do not ask the human directly for bounded RDD consent. Do not use Gentle Pi's attended standing-session permission as an unattended substitute.
 - The versioned Atenea RDD relay extension owns worker→supervisor transport. The worker MUST NOT reconstruct, reserialize, summarize or manually resend the Gentle consent envelope.
 - When the extension reports that the exact provider payload was relayed mechanically, the worker ends its turn and waits for the supervisor's `GRANTED` / `DECLINED` intercom reply.
 - If granted, the **worker** executes the provider-issued answer-consent transition with the original opaque `consentBinding` and remains owner of correction/review/acknowledgement/burn.
@@ -165,7 +181,7 @@ The planning/launch surface may correct a bad literal and start a fresh worker o
 
 ## Supervisor contract after launch
 
-The supervisor is a normal Pi process with Gentle Pi disabled and pi-intercom loaded explicitly. It remains non-implementing. It MUST execute zero `gentle-ai` commands: no review-mode enable/disable, no inspect/start/consent/acknowledgement and no recovery commands.
+The supervisor is a normal Pi process with Gentle Pi disabled and pi-intercom loaded explicitly. It remains non-implementing. Gentle Pi 2.5 standing review permission belongs only to attended Gentle-enabled sessions and is irrelevant to this unattended supervisor path. It MUST execute zero `gentle-ai` commands: no review-mode enable/disable, no inspect/start/consent/acknowledgement and no recovery commands.
 
 Worker → supervisor pi-intercom is the inbound control plane for bounded consent/authority questions and FINAL. The worker owns implementation, deterministic checks, Gentle native RDD, provider transitions, acknowledgement/burn and authorized normal non-force publication. `FINAL` is the normal completion wake signal; the supervisor does not infer completion from pane/process state.
 

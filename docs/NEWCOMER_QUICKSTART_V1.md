@@ -1,7 +1,7 @@
 # Atenea — Newcomer Quickstart v1
 
 Status: **CURRENT FRONT-DOOR SUMMARY**
-Date: 2026-09-06
+Date: 2026-09-08
 
 This page is a fast navigation and operating map for a fresh human, Cora/planning assistant or agent. It is **not** a second runtime contract. If anything here conflicts with `docs/ATENEA_HARNESS_CONTRACT_V1.md`, the harness contract wins.
 
@@ -21,8 +21,9 @@ AFTER EXECUTION_READY
 explicit human execution authorization
 → plain Pi supervisor (non-implementing, Gentle Pi OFF, pi-intercom ON)
 → Herdr process/session substrate
-→ fresh Pi + Gentle Pi worker
-→ implementation + deterministic QA + native Gentle RDD + ack/burn
+→ fresh Pi + Gentle Pi 2.5 ticket worker
+→ direct implementation OR optional native Gentle Agents
+→ deterministic QA + Gentle AI 2.7 native RDD + ack/burn
 → authorized normal non-force publication
 → FINAL via pi-intercom
 → fresh repository/tracker reconciliation
@@ -64,7 +65,7 @@ A pinned run uses components from one exact Atenea checkpoint. Do not mix the re
 3. Verify the effective runtime using `docs/INSTALLATION_AND_OPERATION_V1.md`.
 4. Do not auto-install optional shaping/repository-intelligence tools until the target work warrants them.
 
-Current field epoch: Pi `0.85.1`, Herdr `0.8.2`, Gentle Pi `2.4.0`, Gentle AI `2.6.0`, pi-intercom `0.13.0`. These are qualification evidence, not permanent architectural pins.
+Current adopted machine epoch: Pi `0.85.1`, Herdr `0.9.0`, Gentle Pi `2.5.0`, Gentle AI `2.7.0`, pi-intercom `0.13.0`. These versions are current qualification evidence, not permanent architectural pins.
 
 ## 5. Matt Pocock skills — shaping surface, not unattended runtime dependency
 
@@ -122,11 +123,13 @@ Atenea Pi supervisor
   != Promotion Review
 ```
 
-The field-proven supervisor baseline is `commandcode/deepseek/deepseek-v4-flash` at `medium`. The Golden E2E Pi/Gentle worker used V4 Flash `high` in a **collapsed mode** where the same Pi parent coordinated and implemented because no delegated writer was active. Separate coordinator A/B evidence favors GLM 5.3 Flash as a candidate, but that is not supervisor evidence and not yet Golden field qualification. Native Gentle reviewer/refuter model routing remains currently unqualified rather than silently inherited from old subagent config.
+The normal supervisor baseline is `opencode-go/deepseek-v4-flash` at `medium`. The normal fresh Gentle-Pi parent/coordinator baseline is now `opencode-go/glm-5.3-flash` at `high`, field-proven in PROMueve after the earlier bounded A/B work. DeepSeek V4 Flash `high` remains proven parent/coordinator fallback evidence but is never selected silently.
 
-See `docs/ROUTING_EVIDENCE_LEDGER_V1.md` for the current evidence class of every role. Do **not** depend on the machine-global Pi default model for pinned Atenea work.
+Gentle Pi 2.5 provides the supported native delegation seam. `gentle-ai-worker` and `gentle-ai-verify` use `openai-codex/gpt-5.6-luna` at `high` in the current profile. Delegation is optional: the fresh ticket worker remains the unit of responsibility and may implement a small ticket directly.
 
-`pi-subagents`, a delegated `gentle-ai-worker`, Luna-specific writer routing and a context-budget guard are **not requirements of the adopted Atenea path**. The Golden E2E multi-ticket train passed without them. They may be qualified later only if a real efficiency/context problem justifies changing the current profile.
+Native RDD lens/refuter/targeted-validator **role selection** remains provider-owned. The 2.5 host relay launches isolated Pi reviewer processes without a parent `--model`/`--provider` literal; Atenea has not adopted a new per-lens model pin. Do not infer reviewer routing from the parent model or revive historical Qwen/V4 subagent pins.
+
+See `docs/ROUTING_EVIDENCE_LEDGER_V1.md` for the current evidence class of every role. A rejected pinned route is STOP; never silently substitute another provider/model.
 
 ## 7. Reviews and extra gates
 
@@ -160,7 +163,9 @@ High-frequency invariants:
 - supervisor executes zero Gentle lifecycle commands;
 - successful `herdr agent start` is the readiness barrier — no startup sleep/poll;
 - worker owns implementation/Gentle/provider transitions/ack-burn/publication;
-- bounded RDD consent uses the versioned mechanical relay, never direct human prompting or model-reconstructed envelopes;
+- unattended bounded RDD consent uses the versioned mechanical relay, never direct human prompting or model-reconstructed envelopes;
+- Gentle Pi 2.5 standing session permission is an attended interactive convenience only and is not the unattended-train authority mechanism;
+- native Gentle Agents may be used inside the fresh ticket worker, but never replace the outer fresh-worker-per-ticket boundary;
 - `FINAL` through pi-intercom is the normal completion wake signal;
 - fresh frontier rediscovery only after accepted durable checkpoint;
 - no force push, destructive recovery or automatic merge.
@@ -174,7 +179,7 @@ Do not add these merely to make the diagram look more sophisticated:
 - `ATENEA_SUPERVISOR_INVARIANTS.md` duplicated into every system prompt;
 - an `atenea-supervisor` skill duplicating the harness contract;
 - a generic worker-template engine when the current pinned prompt + deterministic relay checks are sufficient;
-- mandatory `pi-subagents`/delegated writer;
+- third-party `pi-subagents` or mandatory delegation on every ticket;
 - mandatory context-budget controller;
 - globally hard-coded LLM provider/model policy.
 

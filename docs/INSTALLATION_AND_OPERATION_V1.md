@@ -44,21 +44,21 @@ Keep these ownership surfaces separate:
 
 Atenea never promotes machine-global defaults into product authority. A pinned run uses one exact Atenea checkpoint and must not mix relay/reviewer/runtime assets across Atenea SHAs.
 
-## Adopted unattended runtime — 2026-09-05 cutover
+## Adopted unattended runtime — 2026-09-08 promotion
 
-The normal unattended path now requires Pi + Herdr + pi-intercom + Gentle Pi 2.4 / Gentle AI. OpenCode is not a required component of that path; keep it only for attended/alternate use or historical reproduction.
+The normal unattended path requires Pi + Herdr + pi-intercom + Gentle Pi `2.5.0` with package-paired Gentle AI `2.7.0`. OpenCode is not a required component of that path; keep it only for attended/alternate use or historical reproduction.
 
-Current field epoch used to qualify the cutover:
+Current adopted machine epoch:
 
 ```text
 Pi          0.85.1
-Herdr       0.8.2
-Gentle Pi   2.4.0
-Gentle AI   2.6.0
+Herdr       0.9.0
+Gentle Pi   2.5.0
+Gentle AI   2.7.0
 pi-intercom 0.13.0
 ```
 
-Provision the worker so Gentle Pi can discover normally, and use `docs/SPAWN_RECIPE_GENTLE_PI_WORKER_V1.md` for pinned worker creation. Routing/model literals are verified operational parameters, not architectural pins.
+Gentle Pi 2.5 adds package-owned native Gentle Agents. Atenea uses them only as optional inner delegation inside a fresh ticket worker; the outer worker-per-ticket topology is unchanged. Provision the worker so Gentle Pi can discover normally, and use `docs/SPAWN_RECIPE_GENTLE_PI_WORKER_V1.md` for pinned worker creation. Routing/model literals are verified operational parameters, not architectural pins.
 
 ## 2. Current qualified reference stack
 
@@ -66,13 +66,13 @@ The **adopted unattended reference epoch** is:
 
 ```text
 Pi          0.85.1
-Herdr       0.8.2
-Gentle Pi   2.4.0
-Gentle AI   2.6.0
+Herdr       0.9.0
+Gentle Pi   2.5.0
+Gentle AI   2.7.0
 pi-intercom 0.13.0
 ```
 
-PROMueve T4 plus the final T5 qualification/frontier reconciliation qualified this path and the human adoption decision was integrated in PR #47. Treat these versions as field evidence, not permanent architectural pins; newer upstream versions require compatibility evidence before silently replacing them.
+PROMueve T4/T5 and the Golden T8→T10 train qualified the outer Pi/Herdr/fresh-worker architecture. Atenea #72 then qualified Gentle Pi 2.5 native Agents plus the unattended consent/full-RDD seams, and #73 promoted the runtime without changing that outer topology. Treat these versions as current field evidence, not permanent architectural pins; newer upstream versions require compatibility evidence before silently replacing them.
 
 The earlier 2026-09-03/04 stack remains **historical qualification evidence only**:
 
@@ -84,7 +84,7 @@ Gentle AI   2.5.0
 Engram      1.20.0
 ```
 
-That epoch proved Pi → Herdr → headless OpenCode → Gentle, but OpenCode is no longer a required dependency of the adopted unattended path. Preserve the evidence; do not recover it as current policy. See `docs/GENTLE_PI_24_REPLACEMENT_FIELD_EVIDENCE_20260905.md` for the replacement qualification.
+That epoch proved Pi → Herdr → headless OpenCode → Gentle, but OpenCode is no longer a required dependency of the adopted unattended path. Preserve the evidence; do not recover it as current policy. See `docs/GENTLE_PI_24_REPLACEMENT_FIELD_EVIDENCE_20260905.md` for the earlier worker replacement and `docs/GENTLE_PI_25_GOLDEN_PROMOTION_EVIDENCE_20260908.md` for the current promotion.
 
 ### 2.1 Current operational routing profile
 
@@ -94,15 +94,18 @@ Current routing must be read by **role**, not by process name alone. The durable
 
 | Role | Current evidence | Operational implication |
 |---|---|---|
-| Atenea Pi supervisor | V4 Flash `medium` — field-proven | residual train control only; not the Gentle coordinator |
-| Gentle parent / Gentleman coordinator | V4 Flash `high` — field-proven collapsed Golden; GLM 5.3 Flash `high` — A/B-validated candidate | do not call GLM evidence “supervisor” evidence |
-| Separate builder/writer | unqualified / not required | no mandatory delegated writer in current Golden path |
-| Native Gentle lens/refuter/validator | current model routing unqualified | old subagent pins do not govern the native 2.4 relay |
+| Atenea Pi supervisor | `opencode-go/deepseek-v4-flash` `medium` — field-proven | residual train control only; not the Gentle coordinator |
+| Gentle parent / Gentleman coordinator | `opencode-go/glm-5.3-flash` `high` — field-proven | current fresh ticket parent/coordinator baseline |
+| Native Gentle Agent writer | `openai-codex/gpt-5.6-luna` `high` — qualified profile | optional inner writer; fresh ticket worker remains owner |
+| Native Gentle Agent verifier | `openai-codex/gpt-5.6-luna` `high` — qualified profile | optional fresh inner verifier |
+| Native Gentle lens/refuter/validator | lifecycle role provider-owned; per-lens model pin unqualified | host relay does not inherit the parent CLI model; old subagent pins are not current authority |
 | Promotion Review | explicit literal per run | no fixed model and no silent fallback |
 
-Human/Cora shaping has no Atenea model pin because it sits outside the autonomous runtime. Do not use the machine-global Pi default as an implicit pinned-run route.
+Human/Cora shaping has no Atenea model pin because it sits outside the autonomous runtime. Do not use the machine-global Pi default as an implicit pinned parent/supervisor route.
 
-`pi-subagents`, delegated `gentle-ai-worker`, Luna-specific writer routing and a context-budget guard are not required by the adopted path and are not installed/enabled by Atenea policy. The Golden E2E train passed without them. Qualify them separately only if a real efficiency/context gap later warrants a routing change.
+Third-party `pi-subagents` is not part of the adopted path. Gentle Pi 2.5's package-owned native Agents are available; current global profiles pin `gentle-ai-worker` and `gentle-ai-verify` to Luna `high`. Delegation is optional and must not turn every small ticket into a multi-agent ceremony.
+
+Gentle Pi 2.5 treats `~/.pi/gentle-ai/models.json` as global model-routing authority and applies it to discoverable agent profiles at session start. Therefore the canonical entries there and the effective `~/.pi/agent/subagents.json` worker/verify profiles must agree. A target repo may carry a higher-priority project-local override; pinned execution must detect and explicitly accept that override or STOP rather than silently run a different child route.
 
 ## 3. Install upstream runtimes, not Atenea replacements
 
@@ -118,14 +121,16 @@ plain Pi supervisor
   pi-intercom explicitly available
   explicit Pi --name + run-scoped PI_INTERCOM_SCOPE_ID
 
-Pi + Gentle Pi worker
+Pi + Gentle Pi 2.5 worker
   Gentle Pi discoverable/healthy
+  package-local Gentle AI 2.7 executable present + executable + integrity-valid
   Gentle native review/RDD effective
   explicit Pi --name in the same intercom scope
   versioned Atenea RDD relay extension loaded for pinned unattended work
+  native Gentle Agent profiles available when delegation is used
 
 Gentle AI
-  compatible binary installed
+  global 2.7 binary installed
   doctor/runtime healthy
 ```
 
@@ -146,13 +151,17 @@ gentle-ai --version
 gentle-ai doctor
 ```
 
-Then verify the effective Pi worker can load Gentle Pi and pi-intercom, and that the pinned Atenea recipe can supply explicit supervisor/worker names, one shared intercom scope, the versioned RDD relay extension and the reviewer continuation contract through Pi `--append-system-prompt`. Exact upstream diagnostic syntax can evolve; the invariant is the result:
+Then verify the effective Pi worker can load Gentle Pi and pi-intercom; verify Gentle Pi's package-local Gentle AI executable actually exists, is executable, reports `2.7.0`, and its SHA256 matches the packaged integrity manifest. Do not treat a manifest alone as proof of a complete install. Also verify that the pinned Atenea recipe can supply explicit supervisor/worker names, one shared intercom scope, the versioned RDD relay extension and the reviewer continuation contract through Pi `--append-system-prompt`. Exact upstream diagnostic syntax can evolve; the invariant is the result:
 
 ```text
 PI_SUPERVISOR_PLAIN=YES
 PI_INTERCOM_EFFECTIVE=YES
 PI_GENTLE_WORKER_EFFECTIVE=YES
+GENTLE_PI_VERSION=2.5.0
+GENTLE_AI_GLOBAL_VERSION=2.7.0
+GENTLE_PI_PACKAGE_LOCAL_BINARY=EXECUTABLE_AND_INTEGRITY_VALID
 GENTLE_RUNTIME_HEALTHY=YES
+NATIVE_GENTLE_AGENT_PROFILES=AVAILABLE
 NAMED_SCOPED_INTERCOM_IDENTITY=YES
 ATENEA_RDD_RELAY_EXTENSION_LOADABLE=YES
 PI_APPEND_SYSTEM_PROMPT_FILE=YES
@@ -170,10 +179,13 @@ Gentle native RDD is part of the accepted final-candidate lifecycle. The adopted
 Current truth:
 
 ```text
-GENTLE_PI_2_4_UNATTENDED_PATH=ADOPTED
+GENTLE_PI_2_5_UNATTENDED_PATH=ADOPTED
+GENTLE_AI_2_7_PACKAGE_PAIRED=REQUIRED
+NATIVE_GENTLE_AGENTS=OPTIONAL_INNER_DELEGATION
 NATIVE_GENTLE_EXACT_CANDIDATE_RDD=REQUIRED
 SUPERVISOR_GENTLE_COMMANDS=0
-BOUNDED_CONSENT_DECISION=SUPERVISOR_ONLY_WHEN_ALREADY_AUTHORIZED
+UNATTENDED_BOUNDED_CONSENT_DECISION=SUPERVISOR_ONLY_WHEN_ALREADY_AUTHORIZED
+STANDING_SESSION_PERMISSION=ATTENDED_INTERACTIVE_ONLY
 PROVIDER_ANSWER_CONSENT_AND_ACK_BURN=WORKER_OWNED
 T5_REVIEWER_CONTINUATION_CONTRACT=REQUIRED_FOR_PINNED_RUNS
 REVIEWER_BINDINGS=OPAQUE_PROVIDER_STATE
@@ -182,7 +194,7 @@ NORMAL_NON_FORCE_PUBLICATION=ALLOWED_BY_REPOSITORY_POLICY
 FINAL_MERGE=HUMAN_BOUNDARY
 ```
 
-For pinned unattended work, supervisor and worker have explicit Pi names inside one run-scoped pi-intercom scope. `extensions/atenea-rdd-consent-relay.mjs` transports the exact provider-produced consent payload mechanically through pi-intercom's public outbox; the model must not reconstruct or reserialize that envelope. The same Atenea checkpoint root supplies `docs/GENTLE_REVIEWER_CONTINUATION_V1.md`, loaded by Pi from the first token. Any name/scope/payload identity mismatch fails closed.
+For pinned unattended work, supervisor and worker have explicit Pi names inside one run-scoped pi-intercom scope. `extensions/atenea-rdd-consent-relay.mjs` transports the exact provider-produced consent payload mechanically through pi-intercom's public outbox; the model must not reconstruct or reserialize that envelope. Gentle Pi 2.5's standing-session review permission is not used to manufacture unattended authority: it is created only by explicit human choice in attended interactive work. The same Atenea checkpoint root supplies `docs/GENTLE_REVIEWER_CONTINUATION_V1.md`, loaded by Pi from the first token. Any name/scope/payload identity mismatch fails closed.
 
 The older OpenCode negotiated-v2 canary remains historical evidence in `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`; it is not a current operational gate.
 
@@ -241,8 +253,8 @@ Once a work item is explicitly `EXECUTION_READY`, the human uses the normal oper
 2. Human or Cora/DC mechanically starts the plain Pi supervisor with its pre-resolved model, explicit Pi name, run-scoped intercom scope and pi-intercom enabled; Gentle Pi remains OFF in the supervisor.
 3. Give one bounded Atenea execution/train prompt.
 4. Pi performs the bounded preflight and consumes the pinned spawn parameters unchanged.
-5. Pi launches one separate visible, explicitly named/scoped Pi + Gentle Pi worker through Herdr using `docs/SPAWN_RECIPE_GENTLE_PI_WORKER_V1.md`.
-6. The worker owns implementation, verification, native Gentle RDD, provider transitions, acknowledgement/burn and authorized normal non-force publication; the versioned Atenea relay handles exact bounded-consent transport.
+5. Pi launches one separate visible, explicitly named/scoped fresh Pi + Gentle Pi 2.5 ticket worker through Herdr using `docs/SPAWN_RECIPE_GENTLE_PI_WORKER_V1.md`.
+6. The worker owns the ticket end to end: it may implement directly or use native Gentle Agents, then owns integration, verification, native Gentle RDD, provider transitions, acknowledgement/burn and authorized normal non-force publication; the versioned Atenea relay handles exact unattended bounded-consent transport.
 7. Pi reconciles publication/frontier and returns the factual final report or launches a fresh compatible worker when the authorized train permits it.
 8. Final merge remains a human boundary unless separately authorized.
 ```
@@ -257,8 +269,11 @@ HERDR_ROLE=PROCESS_SESSION_SUBSTRATE
 SUPERVISOR_PI_NAME=EXPLICIT
 WORKER_PI_NAME=EXPLICIT
 PI_INTERCOM_SCOPE=RUN_SCOPED_AND_SHARED
-WORKER_RUNTIME=PI_PLUS_GENTLE_PI
+WORKER_RUNTIME=PI_PLUS_GENTLE_PI_2_5
+FRESH_OUTER_WORKER_PER_TICKET=YES
+NATIVE_GENTLE_AGENTS=OPTIONAL
 ATENEA_RDD_RELAY=VERSIONED_AND_MECHANICAL
+STANDING_SESSION_PERMISSION_UNATTENDED=NO
 PI_DIRECT_GENTLE_LIFECYCLE_CALLS=0
 GENTLE_EXACT_CANDIDATE_RDD=PASS
 ACKNOWLEDGEMENT_BURN=PASS

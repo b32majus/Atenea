@@ -48,9 +48,10 @@ PI — thin non-implementing supervisor
             ↓
 HERDR — process/session substrate
             ↓
-FRESH PI WORKER + GENTLE PI 2.4 / GENTLE AI
-  implementation + deterministic verification
-  native exact-candidate RDD / bounded correction
+FRESH PI WORKER + GENTLE PI 2.5 / GENTLE AI 2.7
+  ticket owner / coordinator
+  direct implementation OR optional native Gentle Agents
+  deterministic verification + native exact-candidate RDD / bounded correction
   acknowledgement/burn
             ↓
 normal non-force publication / remote checkpoint reconciliation
@@ -129,9 +130,10 @@ FROM EXECUTION_READY
   → Cora/DC or human mechanical launch
   → normal Pi supervisor (non-implementing; Gentle Pi OFF; pi-intercom ON)
   → Herdr separate visible worker pane
-  → fresh Pi + Gentle Pi 2.4 worker session (Pi parent / Gentleman coordinator; no separate delegated writer is required by the adopted path)
-  → implementation / deterministic checks / Gentle native RDD / acknowledgement-burn / normal non-force publication
-  → supervisor fresh frontier rediscovery / next compatible ticket or STOP
+  → fresh Pi + Gentle Pi 2.5 worker session for each ticket (Pi parent / Gentleman coordinator)
+  → direct implementation OR supported native Gentle Agents when delegation materially helps
+  → deterministic checks / Gentle AI 2.7 native RDD / acknowledgement-burn / normal non-force publication
+  → supervisor fresh frontier rediscovery / next compatible fresh ticket worker or STOP
   → human merge boundary
 ```
 
@@ -173,6 +175,9 @@ ZERO_HUMAN_TOUCH_RC2               PASS
 REMOTE_RECONCILIATION              PASS
 FRONTIER_EXHAUSTION_STOP           PASS
 REAL_OPERATOR_TRIGGERED_ATENEA_E2E PASS   # issue #38
+GENTLE_PI_25_NATIVE_AGENTS          PASS   # issue #72
+GENTLE_PI_25_UNATTENDED_RELAY       PASS   # issue #72/#73 qualification
+GENTLE_PI_25_FULL_RDD_LIFECYCLE     PASS   # issue #72/#73 qualification
 ```
 
 Issue #38 historically proved the top-level human authorization/operator boundary end to end using the then-qualified OpenCode worker topology. That proof remains valid evidence, but its worker transport is no longer the current contract. T4/T5 plus the adopted cutover #45/#47 qualified the smaller current path:
@@ -198,13 +203,18 @@ Current truth for the adopted unattended path:
 
 ```text
 Pi                                               0.85.1 field epoch
-Gentle Pi                                        2.4.0 ADOPTED
-Gentle AI                                        2.6.0 field epoch
+Herdr                                            0.9.0 current machine epoch
+Gentle Pi                                        2.5.0 ADOPTED
+Gentle AI                                        2.7.0 ADOPTED / package-paired
+NATIVE_GENTLE_AGENTS                             AVAILABLE_OPTIONAL_INNER_DELEGATION
+FRESH_OUTER_WORKER_PER_TICKET                    REQUIRED_FOR_CURRENT_UNATTENDED_GOLDEN
 NATIVE_GENTLE_EXACT_CANDIDATE_RDD               REQUIRED
 SUPERVISOR_GENTLE_COMMANDS                       0
-NAMED_SCOPED_PI_INTERCOM_IDENTITY                REQUIRED_FOR_PINNED_RUNS
-ATENEA_MECHANICAL_RDD_CONSENT_RELAY              REQUIRED_FOR_PINNED_RUNS
-ATENEA_GENTLE_REVIEWER_CONTINUATION_V1            REQUIRED_FOR_PINNED_RUNS
+NAMED_SCOPED_PI_INTERCOM_IDENTITY                REQUIRED_FOR_PINNED_UNATTENDED_RUNS
+ATENEA_MECHANICAL_RDD_CONSENT_RELAY              REQUIRED_FOR_UNATTENDED_RUNS
+GENTLE_STANDING_SESSION_PERMISSION               ATTENDED_INTERACTIVE_ONLY
+ATENEA_GENTLE_REVIEWER_CONTINUATION_V1           REQUIRED_FOR_PINNED_UNATTENDED_RUNS
+NATIVE_REVIEWER_MODEL_PIN_BY_ATENEA              NONE_CURRENT
 NORMAL_NON_FORCE_PUBLICATION                     REPOSITORY_POLICY
 FINAL_MERGE                                      HUMAN_BOUNDARY
 ```
@@ -213,7 +223,7 @@ The older negotiated-v2/OpenCode provider-selector gap remains tracked only for 
 
 Do not strip provider `relay`, inject `granted`, synthesize START/envelopes, create a consent DB/controller or turn historical canary behavior into a permanent fork. Pinned runs use the versioned spawn recipe, mechanical RDD relay and the T5-proven reviewer continuation contract instead. Opaque reviewer bindings are never reconstructed by the supervisor or ticket brief.
 
-Evidence: `docs/GENTLE_PI_24_REPLACEMENT_FIELD_EVIDENCE_20260905.md`; historical OpenCode canary: `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`.
+Current promotion evidence: `docs/GENTLE_PI_25_GOLDEN_PROMOTION_EVIDENCE_20260908.md`. The earlier `docs/GENTLE_PI_24_REPLACEMENT_FIELD_EVIDENCE_20260905.md` remains historical adoption evidence; the OpenCode canary remains historical alternate-path evidence.
 
 ## Installation / making Atenea work
 
@@ -272,7 +282,8 @@ The Matt skills are not a mandatory execution sequence.
 
 ### Current evidence / adoption boundaries
 
-- `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md` — zero-touch provider/OpenCode/Pi evidence and non-production boundary.
+- `docs/GENTLE_PI_25_GOLDEN_PROMOTION_EVIDENCE_20260908.md` — current GP2.5/GAI2.7 qualification, zero-touch relay, native Agents and promotion evidence.
+- `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md` — historical zero-touch provider/OpenCode/Pi evidence and non-production boundary.
 - `docs/JUDIT76_GENTLE25_FIELD_EVIDENCE.md` — first real stable Gentle field run.
 
 ### Historical evidence
