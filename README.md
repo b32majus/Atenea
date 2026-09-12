@@ -17,7 +17,8 @@ Read in this order:
 5. **`docs/CURRENT_DECISIONS.md`** — current accepted decisions and field findings.
 6. **`docs/INSTALLATION_AND_OPERATION_V1.md`** — provisioning, global/Atenea/target scopes and runtime verification.
 7. **`docs/OPERATOR_RUNBOOK_V1.md`** — how the human starts an `EXECUTION_READY` run.
-8. `docs/QUALIFICATION.md` and historical evidence only when provenance is needed.
+8. **`docs/REMOTE_COMPUTE_INTERACTION_V1.md`** — how Cora operates the VPS/M7 efficiently: batch-first, local-agent slow path only when adaptivity warrants it.
+9. `docs/QUALIFICATION.md` and historical evidence only when provenance is needed.
 
 If you only need the operational map first, read the newcomer quickstart before opening historical evidence.
 
@@ -277,6 +278,7 @@ The Matt skills are not a mandatory execution sequence.
 - `docs/CURRENT_DECISIONS.md` — current accepted decisions.
 - `docs/INSTALLATION_AND_OPERATION_V1.md` — current environment/install/verification guide.
 - `docs/OPERATOR_RUNBOOK_V1.md` — practical `EXECUTION_READY` operator path.
+- `docs/REMOTE_COMPUTE_INTERACTION_V1.md` — Cora ↔ VPS/M7 remote-compute fast path and delegated-agent boundary.
 - `docs/QUALIFICATION.md` — field-qualified boundaries.
 - `docs/REAL_PROJECT_ROLLOUT_V1.md` — real-project rollout evidence/policy.
 

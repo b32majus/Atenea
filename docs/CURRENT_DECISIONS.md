@@ -275,6 +275,16 @@ Isolation showed severe slowdown with Pi 0.85.1 + pi-lens 3.8.74 even when Gentl
 
 Therefore the Lens extension stays globally disabled on the current VPS; the package may remain installed. Do not repair it with Atenea glue and do not re-enable it merely as "diagnostic-only" on this exact version pair. A later upstream Lens/Pi combination may be separately requalified.
 
+## C-040 — Cora remote-compute operation is batch-first; local agents are an adaptive slow path
+
+**Accepted operationally 2026-09-13 under #79.**
+
+For authorized VPS/M7 work, Cora first reasons about the complete evidence/action set and then uses a self-contained Desktop Commander batch. Normal target is one discovery batch, at most one focused deepening batch, and—when mutation is already authorized—one fail-closed mutation+verification batch. Known files/searches use direct remote primitives; durable GitHub authority uses the GitHub connector.
+
+A persistent interactive shell is not a default speed optimization. A local Pi/OpenCode/Codex-style agent is optional only for genuinely adaptive exploration where autonomy is worth model latency; its session is mission-scoped and inherits the same authority boundary. It must not become a generic wrapper around deterministic shell work, a long-lived shared brain, or an alternate Atenea execution path.
+
+If one human-run batch would materially outperform remote choreography, Cora asks the human to run the exact batch rather than spending many tool round trips. The concise invariant is **batch before agent; agent before ping-pong**. Evidence and detailed decision rules live in `docs/REMOTE_COMPUTE_INTERACTION_V1.md`.
+
 ## C-006 — Normal git push is allowed; no publication-permission subsystem
 
 **Accepted.**

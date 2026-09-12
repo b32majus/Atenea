@@ -22,6 +22,8 @@ embed Gentle lifecycle mechanics in the operator prompt.
 This runbook intentionally adds **no launcher, wrapper, daemon, queue,
 controller, scheduler or consent state machine**. Explicit human execution authorization is mandatory; the mechanical Pi-supervisor launch may be performed by the human or by Cora/DC under that authorization. There is no Atenea custom launcher.
 
+When Cora performs the mechanical remote-compute steps, `docs/REMOTE_COMPUTE_INTERACTION_V1.md` governs **how** it uses the VPS/M7 efficiently (batch-first; local agent only for adaptive exploration). That policy changes no Atenea authority or lifecycle ownership.
+
 ## The operator path at a glance
 
 ```text
@@ -326,6 +328,7 @@ explicit merge instruction exists.
 - `README.md` — current architecture, qualification and operator flow summary.
 - `docs/ATENEA_HARNESS_CONTRACT_V1.md` — normative Atenea v1 contract.
 - `docs/CURRENT_DECISIONS.md` — current short decision index.
+- `docs/REMOTE_COMPUTE_INTERACTION_V1.md` — Cora/DC VPS/M7 batching and delegated-agent efficiency policy.
 - `docs/QUALIFICATION.md` — qualification status and field-qualified boundaries.
 - `docs/REAL_PROJECT_ROLLOUT_V1.md` — real-project operator path and bounded
   experiments.
