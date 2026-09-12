@@ -1,7 +1,7 @@
 # Atenea — Gentle Pi Worker Spawn Recipe v1
 
 Status: **CURRENT / NORMATIVE FOR PINNED UNATTENDED WORK**
-Date: 2026-09-08
+Date: 2026-09-12
 
 Purpose: remove spawn ambiguity from the supervisor. The planning/launch surface resolves the literal model routes and repository/worktree parameters before the supervisor starts. The supervisor consumes them unchanged and fails closed if the runtime rejects them.
 
@@ -9,12 +9,14 @@ Purpose: remove spawn ambiguity from the supervisor. The planning/launch surface
 
 - `WORKTREE`: absolute isolated target worktree path.
 - `SUPERVISOR_NAME`: unique supervisor identity; this exact value is used as Pi `--name` and the worker relay target.
+- `SUPERVISOR_MODEL`: exact Pi-supported outer supervisor model literal. Current baseline is `opencode-go/deepseek-v4.1-flash`; the historical `opencode-go/deepseek-v4-flash` route is not a current default.
+- `SUPERVISOR_THINKING`: exact Pi thinking level for the outer supervisor. Current baseline is `medium`.
 - `WORKER_NAME`: unique worker identity; this exact value is used as both Herdr agent name and Pi `--name`.
 - `INTERCOM_SCOPE_ID`: unique opaque scope for this unattended run; supervisor, worker and relay use the same value.
 - `ATENEA_RDD_RELAY_EXTENSION`: absolute path to the versioned `extensions/atenea-rdd-consent-relay.mjs` from the approved Atenea checkpoint.
 - `WORKER_MODEL`: exact Pi-supported parent/coordinator model literal, verified before launch. Current baseline is `opencode-go/glm-5.3-flash`.
 - `WORKER_THINKING`: exact Pi thinking level. Current parent/coordinator baseline is `high`.
-- Native Gentle Agent profile authority: when delegation is used, `gentle-ai-worker` and `gentle-ai-verify` must resolve to the accepted current profile (`openai-codex/gpt-5.6-luna`, `high`) unless the work item explicitly authorizes another qualified route. Project-local overrides outrank global config and must therefore be detected rather than silently accepted.
+- Native Gentle Agent profile authority: when delegation is used, `gentle-ai-worker` must resolve to `opencode-go/glm-5.3-flash` / `high` and `gentle-ai-verify` to `openai-codex/gpt-5.6-luna` / `high`. Principal RDD lenses resolve to Luna high for `review-readability` and DeepSeek V4.1 Flash high for `review-reliability`, `review-resilience`, and `review-risk`. `review-refuter` / `review-validator` have no new Atenea pin. Project-local overrides outrank global config and must therefore be detected rather than silently accepted.
 - `WORK_ITEM`: exact approved issue/work item.
 - `START_HEAD`: expected clean starting checkpoint.
 - `WORKER_PROMPT_FILE`: exact prebuilt bounded worker prompt file.
@@ -120,7 +122,7 @@ herdr agent start "$WORKER_NAME" --kind pi --pane "$WORKER_PANE" -- \
 
 `herdr agent start` is the readiness barrier for the normal pinned path. Under the current Herdr `0.9.0` machine epoch (with the earlier `0.8.2` no-sleep canary preserved as field evidence), success means the expected agent was detected in the same terminal and is ready for input. After successful return, submit the worker prompt immediately. Do **not** add a startup `sleep`, pane read, roster probe or `agent_status` readiness check. A start timeout/rejection is FAIL CLOSED before prompt delivery; it is not a reason to invent a second readiness mechanism.
 
-Normal extension discovery remains enabled for the worker so Gentle Pi 2.5 loads normally. Pi-lens remains diagnostic-only because autoformat/autofix are disabled. The reviewer continuation contract is loaded by Pi through the supported `--append-system-prompt` file surface, so the proven lifecycle is present from the worker's first token and is not reconstructed by the supervisor or ticket brief. The worker must read repository `AGENTS.md` and coding standards before product write. If it uses a native Gentle Agent, the child handoff must carry the applicable project constraints and bounded task/verification headings; the parent remains ticket/RDD/integration owner.
+Normal extension discovery remains enabled for the worker so Gentle Pi 2.5 loads normally. Under C-039, pi-lens 3.8.74 is globally disabled with Pi 0.85.1 because the pair caused severe slowdown even without Gentle Pi; do not re-enable Lens for a pinned run unless a later upstream version pair has been separately requalified. The reviewer continuation contract is loaded by Pi through the supported `--append-system-prompt` file surface, so the proven lifecycle is present from the worker's first token and is not reconstructed by the supervisor or ticket brief. The worker must read repository `AGENTS.md` and coding standards before product write. If it uses a native Gentle Agent, the child handoff must carry the applicable project constraints and bounded task/verification headings; the parent remains ticket/RDD/integration owner.
 
 ## Native Gentle Agents inside the ticket worker
 
@@ -129,8 +131,12 @@ Gentle Pi 2.5 makes package-owned `subagent_*` tools available inside the fresh 
 Current accepted defaults:
 
 ```text
-gentle-ai-worker  openai-codex/gpt-5.6-luna  high
-gentle-ai-verify  openai-codex/gpt-5.6-luna  high
+gentle-ai-worker  opencode-go/glm-5.3-flash       high
+gentle-ai-verify  openai-codex/gpt-5.6-luna      high
+review-readability openai-codex/gpt-5.6-luna      high
+review-reliability opencode-go/deepseek-v4.1-flash high
+review-resilience  opencode-go/deepseek-v4.1-flash high
+review-risk        opencode-go/deepseek-v4.1-flash high
 ```
 
 Before the first delegated mutation, the ticket parent should use the supported native agent-discovery surface and fail closed if the intended child/profile is unavailable or silently resolves to a different route. Do not reinstall third-party `pi-subagents` to obtain delegation. A small/local ticket may be implemented directly by the parent; delegation is not mandatory.

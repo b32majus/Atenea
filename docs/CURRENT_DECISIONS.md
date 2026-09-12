@@ -151,23 +151,23 @@ This does not weaken C-011. Gentle native RDD remains the sole exact-candidate r
 
 ## C-032 — Newcomer front door makes scopes, Matt setup and operational routing explicit without new runtime architecture
 
-**Accepted for WO #63, 2026-09-06; its pre-2.5 delegated-writer/routing statements are superseded by C-036/C-037.**
+**Accepted for WO #63, 2026-09-06; its pre-2.5 delegated-writer/routing statements are historical and superseded for current routing by C-036/C-037/C-038.**
 
 `docs/NEWCOMER_QUICKSTART_V1.md` is the fast non-normative map for a fresh operator/agent. `docs/INSTALLATION_AND_OPERATION_V1.md` remains the installation/verification authority and now distinguishes machine-global runtime, the versioned Atenea checkpoint and target-repo authority/configuration.
 
 For a target repo that selects the Matt ecosystem under current Pi, use the complete upstream project-local install surface and run `setup-matt-pocock-skills` once before first use; do not treat Atenea's historical `.agents/skills/` location as the current target-Pi recipe. Greenfield shaping exposes `to-spec` and `to-tickets`; engineering methods remain task-triggered by their upstream definitions.
 
-Current model choices remain operational rather than architectural. DeepSeek V4 Flash medium is field-proven for the **Atenea Pi supervisor**. The Golden Pi/Gentle-Pi worker used V4 Flash high in collapsed coordinator+implementation mode; this must not be confused with supervisor routing. Native Gentle reviewer/refuter model selection remains provider lifecycle-owned but its current **model route is unqualified/not sufficiently pinned or observable by Atenea**; old subagent pins are not current authority. Promotion Review pins its route per invocation. See `docs/ROUTING_EVIDENCE_LEDGER_V1.md`.
+Historical Sep-6 routing evidence recorded DeepSeek V4 Flash medium as field-proven for the **Atenea Pi supervisor** and V4 Flash high for the Golden collapsed coordinator+implementation worker. Those facts remain provenance only. C-038 owns the current supervisor/worker/lens routes; see `docs/ROUTING_EVIDENCE_LEDGER_V1.md`. Promotion Review remains explicit per invocation.
 
 At the 2026-09-06 Golden checkpoint, the path did **not** require `pi-subagents`, a delegated `gentle-ai-worker`, Luna-specific writer routing, a context-budget controller, supervisor-invariants duplication, an Atenea-supervisor skill or a generic worker-template engine. C-036 later qualifies Gentle Pi 2.5's **package-owned** native Agents and C-037 adopts Luna-high worker/verify profiles. Third-party `pi-subagents`, mandatory delegation, context-budget controllers, supervisor duplication and generic worker-template engines remain excluded.
 
 ## C-033 — Repository entry and model routing are reconciled by current authority/evidence class, never by historical residue
 
-**Accepted for WO #67, 2026-09-06; GLM coordinator-candidate status is superseded by C-037 after 2026-09-07 field use.**
+**Accepted for WO #67, 2026-09-06; its routing snapshot is historical and superseded for current routing by C-037/C-038.**
 
 Before normal shaping, a target repo with prior product/tooling signals uses `docs/REPOSITORY_ENTRY_RECONCILIATION_V1.md`: classify current context, identify current authority, inventory legacy signals read-only, classify them `CURRENT` / `COMPATIBILITY_REQUIRED` / `HISTORICAL` / `STALE_OR_UNKNOWN`, and STOP on material contradiction. Legacy detection grants no cleanup/migration authority. Greenfield means no prior product/authority that must be preserved, not an empty directory.
 
-Runtime/model evidence uses `docs/ROUTING_EVIDENCE_LEDGER_V1.md`. The Atenea Pi supervisor and the Gentle-Pi Pi parent/Gentleman coordinator are different roles. V4 Flash medium is field-proven for the supervisor. At the 2026-09-06 checkpoint, GLM 5.3 Flash high was only an A/B-validated coordinator candidate; C-037 supersedes that status after successful 2026-09-07 PROMueve use and adopts GLM high as the parent/coordinator baseline. The Golden V4-high Pi/Gentle worker remains valid collapsed coordinator+implementation evidence.
+Runtime/model evidence uses `docs/ROUTING_EVIDENCE_LEDGER_V1.md`. The Atenea Pi supervisor and the Gentle-Pi Pi parent/Gentleman coordinator are different roles. At the 2026-09-06 checkpoint, V4 Flash medium was the supervisor route and GLM 5.3 Flash high was only an A/B-validated coordinator candidate. C-037 later promoted GLM; C-038 now supersedes the supervisor route itself with DeepSeek V4.1 Flash medium and owns the current full matrix. The Golden V4-high Pi/Gentle worker remains historical collapsed coordinator+implementation evidence.
 
 Native Gentle lens/refuter/targeted-validator model routing remains currently unqualified. Historical V4 reviewer and Qwen 3.8 refuter pins from the earlier subagent architecture are `HISTORICAL_DISCONNECTED`, not current routing decisions. Issue #66 is `ABORTED_NON_AUTHORITY` because it tested the wrong whole-worker role after a supervisor/coordinator conflation; it must not be used for routing conclusions.
 
@@ -199,9 +199,9 @@ For unattended work, `extensions/atenea-rdd-consent-relay.mjs` remains required:
 
 Evidence: `docs/GENTLE_PI_25_GOLDEN_PROMOTION_EVIDENCE_20260908.md`.
 
-## C-037 — Current operational routing: V4 supervisor, GLM coordinator, Luna-high native Agents; native reviewer model pin remains open
+## C-037 — Historical Sep-8 routing: V4 supervisor, GLM coordinator, Luna-high native Agents; superseded by C-038
 
-**Accepted 2026-09-08 under #73.**
+**Accepted 2026-09-08 under #73. Historical routing only; C-038 supersedes every current model default below.**
 
 ```text
 Atenea Pi supervisor
@@ -228,6 +228,52 @@ Native RDD role selection remains provider-owned. Gentle Pi 2.5's host relay lau
 Luna writer/verify stays `high`; do not downgrade to medium merely to save negligible cost. The 2026-09-08 opaque-binding qualification also established a general guardrail: do not use `minimal` for an RDD-owning actor that must reproduce opaque provider state exactly.
 
 See `docs/ROUTING_EVIDENCE_LEDGER_V1.md`.
+
+## C-038 — Sep-12 role-specific routing promotion: GLM builds, Luna verifies, V4.1 performs material RDD
+
+**Accepted by operator 2026-09-12 under #75.**
+
+C-037's old V4 supervisor, Luna-writer and unpinned-lens defaults are superseded for current operation by controlled real-work qualification plus explicit operator routing adoption. Architecture and ownership are unchanged; only replaceable model routing changes.
+
+```text
+Atenea Pi supervisor
+  opencode-go/deepseek-v4.1-flash · medium
+  ADOPTED_QUALIFIED / current baseline
+
+Fresh Gentle-Pi parent/coordinator
+  opencode-go/glm-5.3-flash · high
+  FIELD_PROVEN / retained
+
+Native gentle-ai-worker
+  opencode-go/glm-5.3-flash · high
+  ADOPTED_QUALIFIED
+
+Native gentle-ai-verify
+  openai-codex/gpt-5.6-luna · high
+  QUALIFIED / retained
+
+review-readability
+  openai-codex/gpt-5.6-luna · high
+  A/B_VALIDATED / adopted
+
+review-reliability
+review-resilience
+review-risk
+  opencode-go/deepseek-v4.1-flash · high
+  A/B_VALIDATED / adopted
+```
+
+`review-refuter` and `review-validator` receive **no new Atenea pin** in this promotion. During the machine cutover their stale historical model profiles must be cleared so they inherit/provider-route rather than silently using old Qwen/V4-Pro entries. Sol remains escalation-only; no routine Sol pin and no silent fallback.
+
+The routing is intentionally diverse: GLM builds/co-ordinates → Luna verifies → V4.1 challenges material reliability/resilience/risk, with Luna retained for readability because it showed lower severity inflation. Detailed worker, RDD, coordinator and verifier evidence is in `docs/ROUTING_QUALIFICATION_EVIDENCE_20260912.md`.
+
+## C-039 — Current Pi 0.85.1 / pi-lens 3.8.74 combination: Lens disabled, package retained
+
+**Accepted operationally 2026-09-12 under #75 evidence.**
+
+Isolation showed severe slowdown with Pi 0.85.1 + pi-lens 3.8.74 even when Gentle Pi was absent. Disabling exposed Lens features (`--no-lsp`, `--no-tests`, `--no-opengrep`, `--no-read-guard`, `--no-lens-context`, `--no-autoformat`, `--no-autofix`) did not materially change the slowdown. Plain Pi without Lens returned to normal performance.
+
+Therefore the Lens extension stays globally disabled on the current VPS; the package may remain installed. Do not repair it with Atenea glue and do not re-enable it merely as "diagnostic-only" on this exact version pair. A later upstream Lens/Pi combination may be separately requalified.
 
 ## C-006 — Normal git push is allowed; no publication-permission subsystem
 

@@ -141,7 +141,7 @@ Atenea does **not** require a bespoke queue, scheduler, DAG, lifecycle controlle
 
 This Gentle-Pi worker path is the **adopted unattended workflow** after issue #35 `PASS_DELETE` and operator-authorized cutover #45. OpenCode remains installed and valid for attended/alternate work and as historical qualification evidence, but is no longer required by the normal unattended path.
 
-Pinned worker creation follows `docs/SPAWN_RECIPE_GENTLE_PI_WORKER_V1.md`; model literals are resolved before launch and are never silently substituted. For role names and evidence status, use `docs/ROUTING_EVIDENCE_LEDGER_V1.md`: **Atenea supervisor ≠ Gentle parent/coordinator ≠ optional builder ≠ native reviewer/refuter ≠ Promotion Review**.
+Pinned worker creation follows `docs/SPAWN_RECIPE_GENTLE_PI_WORKER_V1.md`; model literals are resolved before launch and are never silently substituted. Current routing is deliberately role-diverse: DeepSeek V4.1 Flash medium supervisor, GLM 5.3 Flash high parent/coordinator + native writer, Luna high verifier + readability, and DeepSeek V4.1 Flash high reliability/resilience/risk. Refuter/validator have no new Atenea pin. For exact role names, evidence class and machine-cutover obligations, use `docs/ROUTING_EVIDENCE_LEDGER_V1.md` and `docs/ROUTING_QUALIFICATION_EVIDENCE_20260912.md`: **Atenea supervisor ≠ Gentle parent/coordinator ≠ optional builder ≠ native reviewer/refuter ≠ Promotion Review**.
 
 ## Normative contract
 

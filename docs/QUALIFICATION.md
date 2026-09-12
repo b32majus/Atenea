@@ -127,9 +127,13 @@ The onboarding authority is now explicit without adding a runtime layer: `docs/N
 
 At the 2026-09-06 newcomer checkpoint, the qualification deliberately did **not** activate `pi-subagents`, delegated `gentle-ai-worker`, Luna writer routing, a context-budget controller, supervisor-invariants duplication, a supervisor skill or a worker-template engine. That statement is historical for the pre-2.5 runtime: the 2026-09-08 promotion separately qualifies package-owned native Gentle Agents and Luna-high worker/verify profiles. Third-party `pi-subagents` remains excluded, delegation remains optional, and no new controller/template engine was added.
 
+### Sep-12 role-specific routing qualification — #75
+
+Controlled worker, real GP2.5 lens, persistent-coordinator and read-only verifier bake-offs produced the current diverse routing: `opencode-go/deepseek-v4.1-flash` medium outer supervisor; GLM 5.3 Flash high parent/coordinator and native writer; Luna high native verifier/readability; DeepSeek V4.1 Flash high reliability/resilience/risk. The supervisor model is an operator-adopted route upgrade from historical V4 Flash and receives exact-role field history at the #75 machine cutover/canary. Refuter/validator remain unpinned by Atenea. Full evidence: `docs/ROUTING_QUALIFICATION_EVIDENCE_20260912.md`.
+
 ### Entry/role/routing reconciliation — current evidence map
 
-WO #67 added no runtime capability; it made repository-entry and role/evidence classification durable. Its GLM 5.3 coordinator-candidate status is superseded by the 2026-09-08 routing promotion: V4 Flash medium remains `FIELD_PROVEN` supervisor, GLM 5.3 Flash high is now the `FIELD_PROVEN` normal parent/coordinator baseline, Luna high is the qualified package-owned native writer/verify profile, native reviewer/refuter/validator **model pins** remain unqualified, historical subagent pins remain `HISTORICAL_DISCONNECTED`, and issue #66 remains `ABORTED_NON_AUTHORITY`.
+WO #67 added no runtime capability; it made repository-entry and role/evidence classification durable. The following sentence records the historical Sep-8 state only: V4 Flash medium was then the `FIELD_PROVEN` supervisor, GLM 5.3 Flash high the normal parent/coordinator baseline, Luna high the qualified native writer/verify profile, and native lens pins remained unqualified. C-038 / #75 supersedes those current defaults with the Sep-12 routing matrix; issue #66 remains `ABORTED_NON_AUTHORITY`.
 
 ## Qualification evidence vs current stable runtime
 
@@ -493,7 +497,7 @@ Adopted field epoch after the 2026-09-08 #73 promotion:
 - native Gentle Agents are available inside the fresh ticket worker; current writer/verify profiles are Luna `high`, while delegation remains optional;
 - standing session review permission is attended-interactive only and is not the unattended train authority mechanism;
 - OpenCode `1.18.x` + Gentle `2.5.x` and the negotiated-v2 canary remain characterized historical/alternate evidence, not the normal unattended runtime;
-- current routing baseline is V4 Flash `medium` supervisor + GLM 5.3 Flash `high` parent/coordinator + Luna `high` native writer/verify; native reviewer/refuter/validator model pinning remains open;
+- historical Sep-8 routing was V4 Flash `medium` supervisor + GLM 5.3 Flash `high` parent/coordinator + Luna `high` native writer/verify; C-038/#75 supersedes it with V4.1 medium supervisor + GLM high coordinator/worker + Luna high verifier/readability + V4.1 high reliability/resilience/risk; refuter/validator pinning remains open;
 - upstream `Gentleman-Programming/gentle-ai#4109` remains relevant only for optional parity of the alternate OpenCode route and does not block the adopted path.
 
 ## Policy consolidation — COMPLETE
