@@ -24,8 +24,9 @@ Do not reconstruct Atenea from historical stage files. Read in this order:
 6. `docs/UI_UX_UPSTREAM_ADJUDICATION_20260904.md` — **when the target work has material frontend/UI/UX decisions**; current UI/UX shaping order, upstream-integrity rule and active adjudication boundary.
 7. `docs/INSTALLATION_AND_OPERATION_V1.md` — when provisioning/verifying a machine or target repo.
 8. `docs/OPERATOR_RUNBOOK_V1.md` — only when a work item is already `EXECUTION_READY` or the human is about to run it.
-9. `docs/QUALIFICATION.md` — what has actually been field-proven.
-10. Historical stage/evidence documents only when a current claim needs provenance.
+9. `docs/REMOTE_COMPUTE_INTERACTION_V1.md` — whenever Cora will inspect or operate the VPS/M7 through remote tooling.
+10. `docs/QUALIFICATION.md` — what has actually been field-proven.
+11. Historical stage/evidence documents only when a current claim needs provenance.
 
 `docs/ATENEA_HANDOFF_20260830.md`, stage files and older decision files are historical evidence. They are not the place to recover current forward-looking authority when current documents exist.
 
@@ -58,6 +59,8 @@ Pi factual final report; merge remains human
 ```
 
 **Cora/human owns the pre-`EXECUTION_READY` interpretation. Pi does not decide which software-development methodology should be invented or installed.** Pi receives already-shaped work and supervises bounded execution.
+
+For ordinary remote-compute inspection/maintenance outside the Atenea execution path, Cora follows `docs/REMOTE_COMPUTE_INTERACTION_V1.md`: **batch before agent; agent before ping-pong**. That efficiency policy does not bypass `EXECUTION_READY`, supervisor/worker ownership, or human merge boundaries.
 
 ### Current execution modes after Gentle Pi 2.5
 
