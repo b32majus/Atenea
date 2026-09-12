@@ -510,7 +510,7 @@ Model, provider and reasoning-effort selections are operational routing facts, n
 
 Record them when useful for evidence/cost/reproducibility, but do not hard-code the harness around a specific model unless a repository has a demonstrated requirement.
 
-Current operational routing is role-specific and replaceable: DeepSeek V4 Flash `medium` is the field-proven supervisor baseline; GLM 5.3 Flash `high` is the current field-proven fresh parent/coordinator baseline; package-owned `gentle-ai-worker` and `gentle-ai-verify` use Luna `high`. Native reviewer/refuter/targeted-validator **model** routing has no new Atenea per-lens pin. These are operational defaults recorded in `docs/ROUTING_EVIDENCE_LEDGER_V1.md`, not architecture, and rejected routes never trigger silent fallback.
+Current operational routing is role-specific and replaceable: the outer Atenea Pi supervisor uses `opencode-go/deepseek-v4.1-flash` at `medium`; the fresh Gentle parent/coordinator and package-owned `gentle-ai-worker` use `opencode-go/glm-5.3-flash` at `high`; `gentle-ai-verify` and `review-readability` use Luna `high`; `review-reliability`, `review-resilience`, and `review-risk` use DeepSeek V4.1 Flash `high`. `review-refuter` / `review-validator` have no new Atenea pin and must not silently inherit stale historical machine profiles. These are operational defaults recorded in `docs/ROUTING_EVIDENCE_LEDGER_V1.md`, not architecture, and rejected routes never trigger silent fallback.
 
 ## 21. Security boundary
 

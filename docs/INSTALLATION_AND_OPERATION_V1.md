@@ -94,18 +94,41 @@ Current routing must be read by **role**, not by process name alone. The durable
 
 | Role | Current evidence | Operational implication |
 |---|---|---|
-| Atenea Pi supervisor | `opencode-go/deepseek-v4-flash` `medium` — field-proven | residual train control only; not the Gentle coordinator |
-| Gentle parent / Gentleman coordinator | `opencode-go/glm-5.3-flash` `high` — field-proven | current fresh ticket parent/coordinator baseline |
-| Native Gentle Agent writer | `openai-codex/gpt-5.6-luna` `high` — qualified profile | optional inner writer; fresh ticket worker remains owner |
-| Native Gentle Agent verifier | `openai-codex/gpt-5.6-luna` `high` — qualified profile | optional fresh inner verifier |
-| Native Gentle lens/refuter/validator | lifecycle role provider-owned; per-lens model pin unqualified | host relay does not inherit the parent CLI model; old subagent pins are not current authority |
-| Promotion Review | explicit literal per run | no fixed model and no silent fallback |
+| Atenea Pi supervisor | `opencode-go/deepseek-v4.1-flash` `medium` — `ADOPTED_QUALIFIED` | residual train control only; not the Gentle coordinator |
+| Gentle parent / Gentleman coordinator | `opencode-go/glm-5.3-flash` `high` — `FIELD_PROVEN` | current fresh ticket parent/coordinator baseline |
+| Native `gentle-ai-worker` | `opencode-go/glm-5.3-flash` `high` — `ADOPTED_QUALIFIED` | optional inner writer; fresh ticket worker remains owner |
+| Native `gentle-ai-verify` | `openai-codex/gpt-5.6-luna` `high` — qualified + Sep-12 replay | optional fresh inner verifier; intentionally different from writer |
+| `review-readability` | `openai-codex/gpt-5.6-luna` `high` — A/B validated | lower severity inflation / readability calibration |
+| `review-reliability` | `opencode-go/deepseek-v4.1-flash` `high` — A/B validated | material behavior/contract review |
+| `review-resilience` | `opencode-go/deepseek-v4.1-flash` `high` — A/B validated | failure/recovery review |
+| `review-risk` | `opencode-go/deepseek-v4.1-flash` `high` — A/B validated | security/authorization/data-risk review |
+| Native refuter / targeted validator | no new Atenea pin | clear historical machine pins; inherit/provider-route |
+| Promotion Review | explicit literal per run | no fixed model and no silent fallback; Sol escalation-only |
 
 Human/Cora shaping has no Atenea model pin because it sits outside the autonomous runtime. Do not use the machine-global Pi default as an implicit pinned parent/supervisor route.
 
-Third-party `pi-subagents` is not part of the adopted path. Gentle Pi 2.5's package-owned native Agents are available; current global profiles pin `gentle-ai-worker` and `gentle-ai-verify` to Luna `high`. Delegation is optional and must not turn every small ticket into a multi-agent ceremony.
+Third-party `pi-subagents` is not part of the adopted path. Gentle Pi 2.5's package-owned native Agents remain optional inner delegation. The current profile deliberately separates builder/coordinator (GLM), verifier (Luna) and material RDD lenses (V4.1); do not turn every small ticket into a multi-agent ceremony.
 
-Gentle Pi 2.5 treats `~/.pi/gentle-ai/models.json` as global model-routing authority and applies it to discoverable agent profiles at session start. Therefore the canonical entries there and the effective `~/.pi/agent/subagents.json` worker/verify profiles must agree. A target repo may carry a higher-priority project-local override; pinned execution must detect and explicitly accept that override or STOP rather than silently run a different child route.
+Gentle Pi 2.5 treats `~/.pi/gentle-ai/models.json` as global model-routing authority and applies it to discoverable agent profiles at session start. Therefore canonical entries there and effective `~/.pi/agent/subagents.json` / installed agent frontmatter must agree. A target repo may carry a higher-priority project-local override; pinned execution must detect and explicitly accept that override or STOP rather than silently run a different child route.
+
+Canonical machine intent after #75 acceptance:
+
+```json
+{
+  "gentle-ai-worker": { "model": "opencode-go/glm-5.3-flash", "thinking": "high" },
+  "gentle-ai-verify": { "model": "openai-codex/gpt-5.6-luna", "thinking": "high" },
+  "review-readability": { "model": "openai-codex/gpt-5.6-luna", "thinking": "high" },
+  "review-reliability": { "model": "opencode-go/deepseek-v4.1-flash", "thinking": "high" },
+  "review-resilience": { "model": "opencode-go/deepseek-v4.1-flash", "thinking": "high" },
+  "review-risk": { "model": "opencode-go/deepseek-v4.1-flash", "thinking": "high" },
+  "review-refuter": {},
+  "review-validator": {}
+}
+```
+
+The empty refuter/validator entries are deliberate clear/inherit entries in Gentle Pi's supported routing format; they prevent stale historical model profiles from surviving silently. See `docs/ROUTING_QUALIFICATION_EVIDENCE_20260912.md`.
+
+The outer supervisor is not a Gentle agent and therefore is not represented in `~/.pi/gentle-ai/models.json`. Its current launch literal is independently pinned as `opencode-go/deepseek-v4.1-flash` at `medium`. Any current launch surface that still says `opencode-go/deepseek-v4-flash` is stale configuration and must STOP rather than run silently.
 
 ## 3. Install upstream runtimes, not Atenea replacements
 

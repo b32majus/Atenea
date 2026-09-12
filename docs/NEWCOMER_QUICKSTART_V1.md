@@ -123,13 +123,24 @@ Atenea Pi supervisor
   != Promotion Review
 ```
 
-The normal supervisor baseline is `opencode-go/deepseek-v4-flash` at `medium`. The normal fresh Gentle-Pi parent/coordinator baseline is now `opencode-go/glm-5.3-flash` at `high`, field-proven in PROMueve after the earlier bounded A/B work. DeepSeek V4 Flash `high` remains proven parent/coordinator fallback evidence but is never selected silently.
+The current Sep-12 profile is role-specific:
 
-Gentle Pi 2.5 provides the supported native delegation seam. `gentle-ai-worker` and `gentle-ai-verify` use `openai-codex/gpt-5.6-luna` at `high` in the current profile. Delegation is optional: the fresh ticket worker remains the unit of responsibility and may implement a small ticket directly.
+| Phase / role | Route | Effort |
+|---|---|---|
+| Atenea Pi supervisor | `opencode-go/deepseek-v4.1-flash` | `medium` |
+| Gentle-Pi parent/coordinator | `opencode-go/glm-5.3-flash` | `high` |
+| Native `gentle-ai-worker` | `opencode-go/glm-5.3-flash` | `high` |
+| Native `gentle-ai-verify` | `openai-codex/gpt-5.6-luna` | `high` |
+| `review-readability` | `openai-codex/gpt-5.6-luna` | `high` |
+| `review-reliability` | `opencode-go/deepseek-v4.1-flash` | `high` |
+| `review-resilience` | `opencode-go/deepseek-v4.1-flash` | `high` |
+| `review-risk` | `opencode-go/deepseek-v4.1-flash` | `high` |
 
-Native RDD lens/refuter/targeted-validator **role selection** remains provider-owned. The 2.5 host relay launches isolated Pi reviewer processes without a parent `--model`/`--provider` literal; Atenea has not adopted a new per-lens model pin. Do not infer reviewer routing from the parent model or revive historical Qwen/V4 subagent pins.
+DeepSeek V4 Flash `high` remains historical proven parent/coordinator fallback evidence but is never selected silently. `review-refuter` and `review-validator` have no new Atenea pin; stale historical machine profiles must be cleared so they inherit/provider-route instead of silently using old Qwen/V4-Pro pins. Sol remains escalation-only.
 
-See `docs/ROUTING_EVIDENCE_LEDGER_V1.md` for the current evidence class of every role. A rejected pinned route is STOP; never silently substitute another provider/model.
+Gentle Pi 2.5 provides the supported native delegation seam. Delegation is optional: the fresh ticket worker remains the unit of responsibility and may implement a small ticket directly. Reviewer **role/lifecycle selection** remains Gentle/provider-owned even when Atenea pins the model for the four principal lenses through the supported global model-routing authority.
+
+See `docs/ROUTING_EVIDENCE_LEDGER_V1.md` and `docs/ROUTING_QUALIFICATION_EVIDENCE_20260912.md` for evidence classes and rationale. A rejected pinned route is STOP; never silently substitute another provider/model.
 
 ## 7. Reviews and extra gates
 

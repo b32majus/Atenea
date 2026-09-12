@@ -101,11 +101,14 @@ The supervisor process MUST be normal Pi with Gentle Pi disabled and pi-intercom
 
 - The human authorization plus the one bounded execution/train prompt defines the execution boundary. Mechanical launch by Cora/DC does not create authority by itself.
 - Routing/model flags are pre-resolved operational inputs. Current baseline:
-  supervisor `opencode-go/deepseek-v4-flash` `medium`; fresh Gentle-Pi
-  parent/coordinator `opencode-go/glm-5.3-flash` `high`; native
-  `gentle-ai-worker` / `gentle-ai-verify` profiles `openai-codex/gpt-5.6-luna`
-  `high`. These are replaceable routing decisions, not architectural authority;
-  record exact routes and never silently substitute a rejected literal.
+  - supervisor: `opencode-go/deepseek-v4.1-flash` `medium`;
+  - fresh Gentle-Pi parent/coordinator: `opencode-go/glm-5.3-flash` `high`;
+  - native `gentle-ai-worker`: `opencode-go/glm-5.3-flash` `high`;
+  - native `gentle-ai-verify`: `openai-codex/gpt-5.6-luna` `high`;
+  - `review-readability`: `openai-codex/gpt-5.6-luna` `high`;
+  - `review-reliability`, `review-resilience`, `review-risk`: `opencode-go/deepseek-v4.1-flash` `high`;
+  - `review-refuter` / `review-validator`: no new Atenea pin; inherit/provider-route after stale historical pins are cleared.
+  These are replaceable routing decisions, not architectural authority; record exact routes and never silently substitute a rejected literal. Sol is escalation-only.
 
 ## 3. Operator prompt (thin normal run; bounded authoritative when pinned)
 
