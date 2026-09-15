@@ -155,115 +155,106 @@ Real work should use a clean dedicated branch/worktree when isolation is needed 
 
 An unexpected topology or dirty-state contradiction is a STOP condition, not authorization for destructive cleanup.
 
-## 7. Frontier discovery and supervision
+## 7. Frontier discovery and persistent parent supervision
 
-Pi is the trusted thin supervisor in the currently qualified architecture.
+The currently qualified unattended architecture uses **one persistent Pi + Gentle Pi 2.7 parent**, visible in Herdr, for the bounded train. The parent is the train/frontier orchestrator and exact-candidate integration owner. Newly selected tickets use fresh package-owned native implementation children.
 
-For each autonomous iteration Pi should:
+For each autonomous iteration the parent should:
 
 1. inspect current GitHub/repository authority;
 2. discover the executable frontier rather than depend on a hand-maintained queue;
 3. reject blocked, contradictory or incompatible work;
 4. select one eligible work item;
-5. create and supervise a fresh ticket worker through Herdr for every newly selected frontier item;
-6. remain non-implementing;
-7. transport already-authorized bounded RDD consent through the versioned mechanical relay and answer only within current execution authority;
-8. relay genuine human-owned decisions losslessly when they actually occur;
-9. grant already-authorized operational runtime permissions when the runtime safely exposes them;
-10. verify accepted closure/reconciliation evidence;
-11. rediscover the frontier after each accepted checkpoint;
-12. STOP when the compatible frontier is exhausted.
+5. create one fresh package-owned implementation child for that newly selected ticket in the normal multi-ticket recipe;
+6. remain non-implementing while that child owns the bounded ticket write;
+7. reconcile the exact returned diff and deterministic evidence;
+8. execute the qualified hybrid-native exact-candidate RDD path;
+9. complete provider-owned reviewer/correction transitions and acknowledgement/burn;
+10. create only the checkpoint/publication allowed by repository policy;
+11. freshly rediscover the frontier after each accepted checkpoint;
+12. STOP when the compatible frontier is exhausted or a genuine human-owned boundary appears.
+
+Normal train concurrency is sequential (`max_concurrency=1`) unless current authority explicitly proves parallel safety. Fresh child-per-new-ticket is an isolation property; the persistent parent deliberately retains train/frontier context.
 
 ### 7.1 Gentle lifecycle ownership
 
-Pi MUST NOT run, reconstruct or own Gentle review lifecycle commands on behalf of the implementation worker.
+The persistent Pi/Gentle-Pi parent owns the exact-candidate Gentle lifecycle. Package-owned implementation children do **not** own the final RDD/checkpoint boundary.
 
 ```text
-Pi supervisor
-  authority/frontier decisions
-  pinned spawn/oracle verification
-  event-driven worker supervision through pi-intercom
-  lossless human-decision relay when provider path requires it
-  already-authorized bounded operational decision grant
-  ZERO gentle-ai lifecycle commands
-
-Pi + Gentle Pi 2.5 ticket worker
-  repository-instruction read before product write
-  ticket interpretation / integration ownership
-  direct implementation OR optional package-owned native Gentle Agents
-  deterministic verification
-  all Gentle AI 2.7 lifecycle operations
-  exact provider-issued continuation/re-entry
-  bounded correction
+Persistent Pi + Gentle Pi 2.7 parent
+  current authority/frontier decisions
+  train context and ticket integration
+  fresh package-owned child launch per newly selected ticket
+  exact diff reconciliation + deterministic verification
+  package-local Gentle AI 2.9.1 native START through ordinary Bash tool
+  same-lineage Gentle Pi STATUS adoption
+  provider-issued reviewer/correction continuations
   acknowledgement/burn
-  publication allowed by repository policy
+  authorized checkpoint/publication
+  fresh frontier rediscovery
+
+Fresh package-owned implementation child
+  bounded ticket implementation
+  applicable repo-instruction / TDD constraints
+  returns diff + evidence to parent
+  no cross-ticket reuse in the normal train recipe
 ```
 
-When Gentle returns provider-issued lifecycle transitions, the **Pi/Gentle-Pi worker** is the orchestrator that executes them. The phrase “orchestrator executes provider-issued transitions” in Gentle documentation MUST NOT be interpreted as permission for the outer Pi supervisor to take over that lifecycle.
+#### 7.1.1 Hybrid-native START and same-lineage adoption
 
-For an already-authorized bounded RDD consent envelope in an **unattended** run, the worker MUST NOT use `ask_user_choice` or otherwise ask the human directly. Atenea transports the exact provider text mechanically through the versioned worker-side RDD relay extension and pi-intercom outbox; the model MUST NOT reconstruct or reserialize the envelope. Supervisor and worker use explicit Pi `--name` identities inside one pre-resolved `PI_INTERCOM_SCOPE_ID`. The supervisor may return only the bounded `GRANTED`/`DECLINED` decision supported by current execution authority; the worker then executes any provider-issued answer-consent transition with the original opaque binding and continues to own review, correction and acknowledgement/burn. Missing/mismatched identity, scope, relay transport or candidate identity fails closed. Genuine human-owned product/authority decisions remain human boundaries and are not converted into supervisor consent.
+For the normal unattended path, after deterministic candidate verification the parent executes package-local Gentle AI native `review start --cwd .` through its ordinary Bash tool. The parent itself remains interactive/visible in Herdr; the Bash subprocess is non-TTY on fd0/fd1/fd2.
 
-Gentle Pi 2.5's host-owned **standing review permission** is a separate attended-interactive feature. A human may explicitly create that live-session/repository grant in an attended Pi session. It is not persisted execution authority, cannot be assumed from `EXECUTION_READY`, and MUST NOT replace the mechanical relay for unattended single-ticket or train execution. Atenea therefore retains a fresh outer Pi/Gentle-Pi worker per ticket; standing permission is not a reason to keep one Gentle parent alive across an unattended train.
+Atenea MUST NOT manufacture authority with `--consent=granted`, rewrite provider consent, import Gentle Pi internal grant functions, fake package-child FD3 identity or drive the host consent UI. No consent override flag is part of the adopted recipe.
 
-#### 7.1.1 Native reviewer continuation is provider-owned and T5-golden
+The returned native lineage is authoritative. The parent MUST then:
 
-Pinned workers load `docs/GENTLE_REVIEWER_CONTINUATION_V1.md` from the same Atenea checkpoint as the RDD relay through Pi's supported `--append-system-prompt` file surface. The supervisor/ticket brief MUST NOT restate or paraphrase this lifecycle as authority.
+1. use Gentle Pi `gentle_review` STATUS with that exact lineage;
+2. verify the provider reports applicability to the current exact candidate/target;
+3. consume only the provider-returned collect bindings/continuations;
+4. never call a second START for the same candidate once a lineage exists;
+5. fail closed if a visible `Review consent` dialog appears.
 
-When native status requires reviewer collection, every `collectBinding` and continuation value is opaque. More than one binding uses the provider-native group capture; one binding uses the provider-native single capture. A `reviewer-model-run-forecast` is a bounded authorization transition, not review failure or Atenea STOP. If authorized, the worker repeats the exact same capture/binding group with `reviewerRunAcknowledged=true` and waits for that tool call to return. A recognized acknowledged capture in flight is not a STOP condition and must not be superseded by another same-slot capture or external observation timeout.
+Initial prompt prose does not create standing review permission; this was directly disproven. Human `Review and allow this session` remains an attended-interactive feature, not unattended train authority. Herdr TUI key automation was technically demonstrated but is not the normal path.
 
-Approval is not publishable until all required lenses are terminal for the current revision and provider-native `acknowledge-approved` / burn completes. Atenea never synthesizes reviewer results, bindings, acknowledgement tokens or missing lens completion. `UNATTENDED_PASS` and independent product acceptance remain separate gates.
+#### 7.1.2 Native reviewer continuation is provider-owned
 
-### 7.2 Worker continuity policy
+When native status requires reviewer collection, every `collectBinding` and continuation value is opaque. More than one binding uses the provider-native group capture; one binding uses provider-native single capture. A `reviewer-model-run-forecast` is a bounded authorization transition, not review failure or Atenea STOP. When execution authority covers the reviewer run, the parent repeats the exact same capture/binding shape with the provider-prescribed acknowledgement field and waits for that tool call to return.
 
-For a bounded continuation or repair of the **same work item**, Pi MAY reuse an existing healthy Pi/Gentle-Pi worker when all of these remain true:
+A recognized acknowledged capture in flight is not a STOP condition and must not be superseded by another same-slot capture or observation timeout. Approval is not publishable until all provider-required lenses are terminal for the current revision and exact `acknowledge-approved` / burn completes. Atenea never synthesizes reviewer results, bindings, acknowledgement tokens or missing lens completion.
 
-```text
-same work item
-same PR / delivery branch
-same worktree
-same effective authority
-compatible runtime/configuration
-worker healthy and available
-```
+The historical `docs/GENTLE_REVIEWER_CONTINUATION_V1.md` remains valid provider-lifecycle evidence for opaque binding/forecast/ACK semantics; current GP2.7 execution is summarized in `docs/RUN_RECIPE_GENTLE_PI_27_HYBRID_NATIVE_TRAIN_V1.md`.
 
-Create a fresh worker for every newly selected work item/frontier ticket. Also create a fresh worker when the previous worker is unavailable/unhealthy, its context is materially contaminated, the worktree/branch/runtime changed, or explicit isolation is required.
+### 7.2 Parent and child continuity policy
 
-Worker reuse preserves same-ticket implementation context only. A changed candidate MUST still receive whatever fresh Gentle candidate/review lineage the provider requires. Never reuse prior review authority merely because a Pi process is reused.
+The parent stays alive across the bounded train when repository/worktree/runtime/authority remain compatible and the session is healthy. A fresh package-owned implementation child is created for every newly selected work item/frontier ticket.
 
-### 7.3 Supervisor prompt surface
+Create a new parent session when the existing parent is unavailable/unhealthy, its context is materially contaminated, the worktree/branch/runtime changed incompatibly, explicit isolation is required, or a new human execution boundary starts a materially separate train.
+
+A changed candidate always receives whatever fresh Gentle review lineage the provider requires. Never reuse prior review authority merely because the parent process persists.
+
+### 7.3 Operator prompt surface
 
 The operator prompt SHOULD state **intent and bounded context**, not reimplement the harness contract in prose.
 
-Normal run:
+Normal train:
 
 ```text
-work item / goal
-verify pinned oracle/runtime inputs; create and supervise separate Pi/Gentle-Pi worker through Herdr
-repository delivery boundary / STOP before human merge
+execute current EXECUTION_READY frontier under current Atenea contract
+remain the persistent visible Gentle-Pi parent
+use one fresh package-owned implementation child per newly selected ticket
+complete deterministic verification + hybrid-native RDD + acknowledgement/burn + authorized checkpoint
+freshly rediscover frontier; do not merge; STOP when exhausted
 ```
 
-Resume/repair:
+Pinned work may additionally name exact issue(s), worktree/branch, expected start HEAD, frozen oracle and delivery boundary. Do not routinely paste Gentle command syntax, lineage reconstruction, internal permission APIs or historical consent experiments into the operator prompt. Durable mechanics belong in `docs/RUN_RECIPE_GENTLE_PI_27_HYBRID_NATIVE_TRAIN_V1.md` and upstream authority.
 
-```text
-exact current checkpoint
-already-completed work that must not be repeated
-one or two incident-specific bounds
-same supervision/delivery boundary
-```
+### 7.4 Supervision efficiency and observability
 
-Do not routinely place Gentle command syntax, lineage reconstruction, recovery algorithms, detailed Git procedure or historical harness exclusions into the operator prompt. Durable mechanics belong in current repository/Atenea/upstream authority. Field evidence shows that over-specified prompts can cause supervisor responsibility reinterpretation.
+Herdr keeps the persistent parent visible and inspectable; observation never becomes review authority. The operator may watch child creation, tests, native START result, lineage/status/capture, approval/burn and checkpoint progression.
 
-### 7.4 Supervision efficiency
+Use package-owned native child lifecycle surfaces rather than fixed sleeps, pane polling loops or external supervisor machinery. A human or Cora/DC may mechanically create/focus the Herdr parent after explicit authorization, but the autonomous train does not require a second Pi process, pi-intercom wake protocol or Atenea consent relay.
 
-The adopted Gentle-Pi path is event-driven from launch through closure. Successful `herdr agent start` is the worker-readiness barrier: once it returns the expected agent as ready, the supervisor submits the prompt immediately. No startup `sleep`, pane/roster readiness probe or `agent_status` inference is permitted. After accepted worker prompt delivery the supervisor ends its turn; pi-intercom wakes it for bounded decisions or `FINAL`. Fixed `sleep`, `for`/`while` polling, periodic pane reads, long `herdr agent wait` and `agent_status` lifecycle inference are prohibited.
-
-`FINAL` through pi-intercom is the normal completion wake signal. After FINAL, the supervisor may perform the fresh repository/tracker authority read required to verify the durable checkpoint and rediscover the frontier; it MUST NOT conduct pane/process/session archaeology to infer a second completion state. One-shot process reads are diagnostic only after an explicit transport/runtime failure, never the normal lifecycle clock or epilogue.
-
-This does not authorize a new polling daemon, scheduler or event bus.
-
-Do not reintroduce a separate queue, DAG, scheduler, controller or dispatcher unless field evidence proves Pi plus standard repository/tracker primitives cannot provide a required property.
-
-A materially changed upstream runtime MAY be evaluated only as a bounded **replacement/deletion experiment**. Adoption requires evidence that it preserves the already-qualified properties while removing architecture or glue; it MUST NOT be layered on top merely because it exists.
+A materially changed upstream runtime MAY be evaluated only as a bounded **replacement/deletion experiment**. Adoption requires evidence that it preserves already-qualified properties while removing architecture or glue; it MUST NOT be layered on top merely because it exists. The GP2.7/GAI2.9.1 replacement met that bar on 2026-09-15.
 
 ## 8. Process/session substrate
 
@@ -273,7 +264,7 @@ Atenea MUST NOT move product authority, blocker reasoning, publication policy or
 
 ## 9. Implementation and engineering methods
 
-A fresh Pi worker with Gentle Pi 2.5 + package-paired Gentle AI 2.7 is the accepted unattended ticket worker. It may implement directly or delegate bounded work through package-owned native Gentle Agents. The outer fresh-worker-per-ticket boundary remains authoritative. OpenCode is an attended/alternate runtime, not a required component of the normal unattended path.
+A persistent Pi parent with Gentle Pi 2.7 + package-paired Gentle AI 2.9.1 is the accepted unattended train owner. In the normal multi-ticket recipe it delegates each newly selected ticket to a fresh package-owned native implementation child, then owns integration, deterministic verification, exact-candidate RDD, acknowledgement/burn and checkpoint/frontier progression. OpenCode is an attended/alternate runtime, not a required component of the normal unattended path.
 
 Engineering quality is separated into:
 
@@ -311,7 +302,7 @@ Only adopt checks that are machine-decidable and justified by the repository's s
 
 Gentle AI alone owns the final candidate/RDD lifecycle.
 
-The current Gentle AI `2.7.0` provider contract, consumed through Gentle Pi `2.5.0`, is treated as provider authority. Atenea MUST NOT reconstruct:
+The current Gentle AI `2.9.1` provider contract, consumed with Gentle Pi `2.7.0`, is treated as provider authority. Atenea MUST NOT reconstruct:
 
 - candidate freezing or exact candidate identity;
 - reviewer lineage/authority;
@@ -321,7 +312,7 @@ The current Gentle AI `2.7.0` provider contract, consumed through Gentle Pi `2.5
 - recovery/reconciliation algorithms;
 - mutation invalidation.
 
-The Pi/Gentle-Pi worker MUST execute provider-issued lifecycle continuations as returned rather than reconstructing them from prose or local state. The outer Pi supervisor observes via pi-intercom and MUST NOT substitute itself as the Gentle orchestrator or execute any `gentle-ai` command.
+The persistent Pi/Gentle-Pi parent MUST execute provider-issued lifecycle continuations as returned rather than reconstructing them from prose or local state. Native implementation children do not substitute themselves as the final Gentle/RDD authority.
 
 A post-review candidate mutation invalidates or supersedes prior review evidence according to Gentle's native lifecycle and may require a new exact-candidate review lineage.
 
@@ -349,7 +340,7 @@ If that historical/alternate OpenCode v2 route is explicitly selected:
 - a candidate-scoped decline remains distinct from disabling RDD;
 - provider-issued lifecycle arguments remain exact/opaque.
 
-The adopted Pi/Gentle-Pi path instead follows §7.1 plus the versioned named/scoped mechanical Atenea RDD relay; it does not reuse this historical direct-human relay prescription.
+The adopted GP2.7 path instead follows §7.1: package-local Gentle AI START runs through the persistent parent's non-TTY Bash subprocess with no consent override, and Gentle Pi adopts the exact returned lineage through STATUS. It does not reuse either this historical direct-human relay prescription or the later Atenea mechanical relay as the normal path.
 
 Issue #36 owns any optional upstream-first parity work for the alternate OpenCode route. Preferred order if that parity work is pursued:
 
@@ -534,36 +525,32 @@ For the adopted unattended path, Gentle Pi + Gentle native RDD owns review lifec
 
 ## 23. Current completion state
 
-The Stage 5–8 runtime path remains qualified from historical `2.5.0-rc.2` evidence. Gentle AI `2.5.0` stable now has natural real-project field evidence from Judit #76 / PR #79; repeating Stage 5–8 is not justified.
+Historical Stage 5–8, GP2.4 and GP2.5 evidence remains valid for the properties it actually proved, but it no longer defines the normal unattended topology.
 
-Issue #38 completed the first real operator-triggered Atenea end-to-end run through the actual top-level interface under the bounded downstream canary. The real operator interface is field-proven. Issue #39 then completed the operator-ergonomics refinements it exposed: the bounded pinned preflight, the dedicated visible Herdr worker pane and immediate pane/tab id reporting are proven (`ISSUE39_PINNED_BOUNDED_PREFLIGHT=PASS`, `ISSUE39_VISIBLE_WORKER_PANE=PASS`, `ISSUE39_WORKER_PANE_ID_REPORTED=PASS`). Rendering useful live OpenCode/Gentle activity into that visible pane remains `USEFUL_LIVE_WORKER_STREAM=NOT_YET_PROVEN` — a follow-up, non-blocking for PR #37. Repeated fixed `sleep` waits observed during #39 supervision are non-blocking; native/Herdr bounded waits remain the policy under section 7.4.
+On 2026-09-15, Gentle Pi 2.7 + package-paired Gentle AI 2.9.1 completed a bounded replacement/deletion ladder culminating in a visible two-ticket unattended train with one persistent parent, two fresh sequential native children, two distinct medium-risk lineages, two same-lineage Gentle Pi adoptions, two APPROVED closures and two acknowledgement/burn transitions with zero review-consent dialogs and zero human touches after the initial train launch.
 
 Current stable status:
 
 ```text
-ADOPTED_UNATTENDED_WORKER              FRESH_PI_PLUS_GENTLE_PI_2_5_PER_TICKET
-ADOPTED_GENTLE_AI                      2_7_0_PACKAGE_PAIRED
-NATIVE_GENTLE_AGENTS                   PASS_OPTIONAL_INNER_DELEGATION
-UNATTENDED_RDD_CONSENT_RELAY           PASS_ZERO_TOUCH
-STANDING_SESSION_PERMISSION            PASS_ATTENDED_ONLY
-EXACT_CANDIDATE_RDD                    PASS
-PROVIDER_CONTINUATION_REENTRY          PASS
-ACKNOWLEDGEMENT_BURN                   PASS
-NORMAL_NON_FORCE_PUBLICATION           PASS
-PR_STOP_BEFORE_HUMAN_MERGE             PASS
-NAMED_SCOPED_INTERCOM_IDENTITY         REQUIRED_FOR_PINNED_RUNS
-MECHANICAL_RDD_CONSENT_RELAY           CURRENT_UNATTENDED_TRANSPORT
-NATIVE_REVIEWER_MODEL_PIN              NONE_CURRENT
-OPENCODE_NEGOTIATED_V2_ZERO_TOUCH      LEGACY_ALT_PATH_NOT_SATISFIED
-OPENCODE_UPSTREAM_PARITY_GAP           OPEN_NON_BLOCKING
+ADOPTED_UNATTENDED_PARENT              PERSISTENT_VISIBLE_PI_PLUS_GENTLE_PI_2_7
+ADOPTED_GENTLE_AI                      2_9_1_PACKAGE_PAIRED
+FRESH_NATIVE_CHILD_PER_NEW_TICKET      REQUIRED_NORMAL_MULTI_TICKET_RECIPE
+NATIVE_NO_TTY_START                    PASS_2_OF_2_FINAL_TRAIN
+GENTLE_PI_SAME_LINEAGE_ADOPTION        PASS_2_OF_2_FINAL_TRAIN
+NATIVE_GENTLE_EXACT_CANDIDATE_RDD      REQUIRED
+PROVIDER_CONTINUATION_REENTRY           PASS
+ACKNOWLEDGEMENT_BURN                    PASS
+REVIEW_CONSENT_DIALOGS                  ZERO_EXPECTED_FAIL_CLOSED_IF_VISIBLE
+EXTERNAL_PI_SUPERVISOR                  HISTORICAL_ROLLBACK_NOT_NORMAL
+MECHANICAL_RDD_CONSENT_RELAY            HISTORICAL_ROLLBACK_NOT_NORMAL
+HERDR_TUI_RPA                           TECHNICALLY_PROVEN_NOT_ADOPTED
+STANDING_SESSION_PERMISSION             ATTENDED_ONLY
+NORMAL_NON_FORCE_PUBLICATION            REPOSITORY_POLICY
+PR_STOP_BEFORE_HUMAN_MERGE              PASS
 ```
 
-Remaining evidence/work should come primarily from real-project use:
+Current replacement evidence: `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md`. Current operator mechanics: `docs/RUN_RECIPE_GENTLE_PI_27_HYBRID_NATIVE_TRAIN_V1.md`.
 
-- natural continued field use of GP2.5 native Agents where delegation materially helps; the outer path and unattended relay are already qualified;
-- optional upstream-supported explicit native reviewer/refuter/validator model-routing qualification if it becomes useful;
-- Issue #36 / upstream `Gentleman-Programming/gentle-ai#4109` only if continued parity for the alternate OpenCode route is valuable; it does not block the adopted path;
-- optional OpenSpec use only when a real brownfield delta benefits from it;
-- first naturally material UI slice using conditional Impeccable/DESIGN/PRODUCT policy.
+Remaining evidence should come primarily from natural real-project use. Do not create another large synthetic qualification ladder merely to exercise optional surfaces. Future GP/Gentle runtime changes need bounded compatibility/replacement evidence before silently changing the adopted path.
 
-Do not create another large synthetic qualification ladder merely to exercise optional surfaces.
+Local worktrees and qualification sandboxes are temporary execution state; once their durable result is remote-published and no unique/active state remains, apply `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md`.

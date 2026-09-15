@@ -1,9 +1,11 @@
 # Atenea — Gentle Pi Worker Spawn Recipe v1
 
-Status: **CURRENT / NORMATIVE FOR PINNED UNATTENDED WORK**
-Date: 2026-09-12
+Status: **HISTORICAL / ROLLBACK RECIPE — SUPERSEDED FOR NORMAL UNATTENDED WORK**
+Date: 2026-09-15 status reconciliation (recipe body preserves prior topology)
 
 Purpose: remove spawn ambiguity from the supervisor. The planning/launch surface resolves the literal model routes and repository/worktree parameters before the supervisor starts. The supervisor consumes them unchanged and fails closed if the runtime rejects them.
+
+> **Current normal path:** use `docs/RUN_RECIPE_GENTLE_PI_27_HYBRID_NATIVE_TRAIN_V1.md`. This file is retained to reproduce/roll back the pre-GP2.7 separate-supervisor topology and must not be selected merely because it contains more detailed historical mechanics.
 
 ## Inputs resolved before supervisor launch
 

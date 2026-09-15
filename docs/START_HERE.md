@@ -24,8 +24,11 @@ Do not reconstruct Atenea from historical stage files. Read in this order:
 6. `docs/UI_UX_UPSTREAM_ADJUDICATION_20260904.md` — **when the target work has material frontend/UI/UX decisions**; current UI/UX shaping order, upstream-integrity rule and active adjudication boundary.
 7. `docs/INSTALLATION_AND_OPERATION_V1.md` — when provisioning/verifying a machine or target repo.
 8. `docs/OPERATOR_RUNBOOK_V1.md` — only when a work item is already `EXECUTION_READY` or the human is about to run it.
-9. `docs/QUALIFICATION.md` — what has actually been field-proven.
-10. Historical stage/evidence documents only when a current claim needs provenance.
+9. `docs/RUN_RECIPE_GENTLE_PI_27_HYBRID_NATIVE_TRAIN_V1.md` — current pinned unattended train mechanics.
+10. `docs/QUALIFICATION.md` — what has actually been field-proven.
+11. `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md` — current topology replacement evidence when provenance is needed.
+12. `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md` — local execution/qualification cleanup policy.
+13. Historical stage/evidence documents only when a current claim needs provenance.
 
 `docs/ATENEA_HANDOFF_20260830.md`, stage files and older decision files are historical evidence. They are not the place to recover current forward-looking authority when current documents exist.
 
@@ -43,41 +46,48 @@ HUMAN + CORA / PLANNING CHAT
             ↓
   HUMAN explicitly promotes EXECUTION_READY
             ↓
-HUMAN + HERDR + PI
+HUMAN + HERDR + PI/GENTLE-PI 2.7
   explicit human execution authorization
-  human or Cora/DC mechanically starts the normal Pi supervisor
-  supervisor receives one bounded execution/train prompt
+  mechanically start one persistent visible parent
+  send one bounded execution/train prompt
             ↓
-PI SUPERVISOR → HERDR → FRESH PI/GENTLE-PI WORKER
-  worker owns implementation/tests/native RDD/ack-burn/publication
-  supervisor is event-driven through pi-intercom and does not implement
-            ↓
-accepted remote checkpoint → fresh frontier rediscovery → next compatible worker or STOP
+PERSISTENT PARENT
+  resolves current frontier and retains train context
+  → fresh package-owned implementation child per newly selected ticket
+  → exact diff reconciliation + deterministic QA
+  → package-local Gentle AI 2.9.1 native START through non-TTY Bash subprocess
+  → Gentle Pi STATUS adopts the same lineage
+  → reviewer/correction → APPROVED → acknowledge/burn
+  → checkpoint → fresh frontier read → next fresh child or STOP
             ↓
 Pi factual final report; merge remains human
 ```
 
-**Cora/human owns the pre-`EXECUTION_READY` interpretation. Pi does not decide which software-development methodology should be invented or installed.** Pi receives already-shaped work and supervises bounded execution.
+**Cora/human owns the pre-`EXECUTION_READY` interpretation. Pi does not decide which software-development methodology should be invented or installed.** Pi receives already-shaped work and carries bounded execution under the current contract.
 
-### Current execution modes after Gentle Pi 2.5
+### Current execution modes after Gentle Pi 2.7
 
-Do not confuse the new interactive standing-permission feature with the unattended Golden:
+Do not confuse attended standing permission with the adopted unattended path:
 
 ```text
 UNATTENDED single ticket or train
   explicit human execution authorization
-  → plain non-implementing supervisor
-  → fresh Pi + Gentle Pi 2.5 worker per ticket
-  → Atenea mechanical consent relay for bounded RDD consent
-  → zero human touch until a genuine human-owned boundary or final merge
+  → one persistent visible Pi/Gentle-Pi parent
+  → fresh package-owned implementation child per newly selected ticket
+  → native Gentle AI START from the parent's non-TTY Bash subprocess
+  → same-lineage Gentle Pi STATUS adoption
+  → native provider review / APPROVED / acknowledgement-burn
+  → zero review-consent dialogs expected
 
 ATTENDED interactive work
   human may run Pi + Gentle Pi directly
-  → the human may explicitly choose the host standing-session review permission
+  → human may explicitly choose the host standing-session review permission
   → later validated review consents in that same live session/repository may auto-consent
 ```
 
-Standing permission is not persisted execution authority and is not a reason to keep one Gentle parent alive across an unattended train. Native Gentle Agents are an **inner** delegation mechanism; they do not replace the fresh outer worker-per-ticket boundary.
+Initial prompt authority alone does **not** create Gentle Pi standing permission; that was directly disproven. The unattended path does not depend on standing permission, a separate supervisor, pi-intercom consent relay or Herdr RPA. A visible `Review consent` dialog in an unattended run is fail-closed evidence, not an invitation to auto-click it.
+
+Historical GP2.5 supervisor/relay topology remains rollback/provenance evidence only. Current mechanics are in `docs/RUN_RECIPE_GENTLE_PI_27_HYBRID_NATIVE_TRAIN_V1.md`.
 
 ## 3. Project-entry classification
 
@@ -253,20 +263,21 @@ The normal top-level interface is:
 
 ```text
 explicit human execution authorization
-→ human or Cora/DC mechanically starts plain Pi supervisor
+→ human or Cora/DC mechanically starts one visible Pi + Gentle Pi 2.7 parent in Herdr
 → one bounded authoritative execution/train prompt
-→ supervisor verifies pinned worktree/runtime + required frozen oracle hash
-→ supervisor creates separate Pi/Gentle-Pi worker via pinned spawn recipe
-→ worker reads project instructions before product write
-→ worker owns implementation / native RDD / bounded correction / acknowledgement-burn / authorized publication
-→ supervisor remains event-driven and executes zero Gentle lifecycle commands
-→ checkpoint reconciliation
-→ fresh frontier rediscovery → fresh worker for next compatible ticket or STOP
+→ parent verifies worktree/runtime + required frozen oracle hash
+→ parent launches a fresh package-owned implementation child for each newly selected ticket
+→ child reads project instructions, implements and returns bounded evidence
+→ parent reconciles exact diff + deterministic verification
+→ package-local GAI2.9.1 native START through non-TTY Bash → exact lineage
+→ Gentle Pi STATUS adopts that exact lineage → provider review/correction → APPROVED → acknowledgement/burn
+→ authorized checkpoint
+→ same parent freshly rediscovers frontier → fresh child or STOP
 → STOP before merge / when exhausted
 → factual report
 ```
 
-Pi remains non-implementing and does not operate the Gentle lifecycle directly.
+The parent is the train orchestrator and RDD/checkpoint owner; it does not become the ticket implementation child. The historical plain-supervisor + external relay topology is rollback/provenance only.
 
 ## 9. Installation / environment
 

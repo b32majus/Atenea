@@ -1,6 +1,6 @@
 # Atenea
 
-The workflow laboratory that qualifies whether the Matt Pocock engineering-skills ecosystem and the Gentle AI ecosystem can coexist inside OpenCode. This glossary covers the domain concepts the laboratory reasons about.
+Atenea is an upstream-first engineering harness that qualifies and records the smallest supported path from shaped repository authority to reviewed checkpoints. Current runtime authority lives in the README/front-door contract documents, not in this glossary. The vocabulary below primarily describes the repository's `effective-mode` fixture and should not be read as a description of the current GP2.7 execution topology.
 
 ## Language
 

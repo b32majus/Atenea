@@ -13,6 +13,7 @@ If you are a fresh agent/Cora trying to understand how Atenea currently works, r
 5. `docs/CURRENT_DECISIONS.md`
 6. `docs/INSTALLATION_AND_OPERATION_V1.md` for scopes/setup/verification
 7. `docs/OPERATOR_RUNBOOK_V1.md` only when work is already `EXECUTION_READY`
+8. `docs/RUN_RECIPE_GENTLE_PI_27_HYBRID_NATIVE_TRAIN_V1.md` for current pinned unattended train mechanics
 
 Do not recover current execution policy from historical Stage files or `docs/ATENEA_HANDOFF_20260830.md`. They are evidence, not current forward-looking authority.
 
@@ -25,8 +26,11 @@ Do not recover current execution policy from historical Stage files or `docs/ATE
 - Project-entry / start-or-continue procedure: `docs/START_HERE.md`
 - Current decisions: `docs/CURRENT_DECISIONS.md`
 - Operator execution path: `docs/OPERATOR_RUNBOOK_V1.md`
+- Current GP2.7 pinned train recipe: `docs/RUN_RECIPE_GENTLE_PI_27_HYBRID_NATIVE_TRAIN_V1.md`
+- Current GP2.7 replacement evidence: `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md`
 - Current installation/environment verification: `docs/INSTALLATION_AND_OPERATION_V1.md`
-- Native reviewer continuation for pinned Pi/Gentle-Pi workers: `docs/GENTLE_REVIEWER_CONTINUATION_V1.md`
+- Local worktree/qualification cleanup policy: `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md`
+- Historical T5 reviewer continuation regression contract: `docs/GENTLE_REVIEWER_CONTINUATION_V1.md`
 - Conditional independent human-boundary promotion audit: `docs/PROMOTION_REVIEW_V1.md`
 - Engineering quality: `CODING_STANDARDS.md`
 - Current qualification state: `docs/QUALIFICATION.md`
@@ -38,10 +42,12 @@ Do not recover current execution policy from historical Stage files or `docs/ATE
 - Greenfield defaults to complete Matt Pocock upstream shaping.
 - Brownfield preserves repo-native authority; OpenSpec is delta-first when it materially adds value, not by ritual.
 - Repository Intelligence is optional derived evidence for sufficiently complex brownfields. Cora may recommend it; Pi must not invent/install it as an execution-time methodology decision.
-- From `EXECUTION_READY`: explicit human authority remains the boundary; a plain non-implementing Pi supervisor uses Herdr to launch a separate named/scoped Pi + Gentle Pi worker, which owns implementation, deterministic checks, native exact-candidate RDD, acknowledgement/burn and authorized normal non-force delivery. Final merge remains human unless separately authorized. OpenCode remains available as an alternate/historical path, not the normal unattended dependency.
-- Pi does not implement product code or operate Gentle lifecycle commands.
-- Gentle owns final exact-candidate/RDD/reviewer/repair authority.
-- Pinned Pi/Gentle-Pi workers load the T5-proven reviewer continuation contract from the same Atenea checkpoint as the RDD relay; opaque reviewer bindings are never reconstructed, and an acknowledged reviewer capture in flight is not a STOP condition.
+- From `EXECUTION_READY`: explicit human authority remains the boundary; one persistent Pi + Gentle Pi 2.7 parent stays visible in Herdr for the bounded train, launches one fresh package-owned implementation child per newly selected ticket, reconciles the exact diff/tests, owns exact-candidate RDD/checkpoint/frontier progression and stops before merge unless separately authorized.
+- Native RDD START uses the package-local Gentle AI 2.9.1 binary through the parent's ordinary Bash tool with fd0/fd1/fd2 non-TTY and no consent override; Gentle Pi STATUS must adopt that exact returned lineage before capture.
+- A visible review-consent dialog, second START for the same candidate, lineage mismatch or provider-binding mismatch is fail-closed. Do not revive RPA, internal permission APIs or the historical Atenea consent relay as a silent fallback.
+- Fresh implementation children do not own merge/promotion and the persistent parent should not become the ticket implementation child in the normal multi-ticket recipe.
+- Gentle/provider owns final exact-candidate/RDD/reviewer/repair authority; opaque bindings and continuations are never reconstructed.
+- The pre-GP2.7 plain-supervisor + pi-intercom + Atenea relay topology and T5 reviewer-continuation prompt injection remain historical rollback/regression evidence, not the normal current transport.
 - Normal non-force push is allowed. No automatic merge or destructive history recovery.
 - For a high-risk human promotion/merge boundary, planning may require `docs/PROMOTION_REVIEW_V1.md`: fresh read-only Pi, exact full diff + explicit high-risk subset, zero blocking findings. It is conditional and never a second Gentle RDD lifecycle.
 - Material ambiguity, contradictory authority or unsafe drift => STOP rather than improvise.

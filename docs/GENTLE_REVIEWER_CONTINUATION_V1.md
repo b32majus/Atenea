@@ -1,13 +1,13 @@
 # Atenea — Gentle reviewer continuation contract v1
 
-Status: **CURRENT / NORMATIVE FOR THE ADOPTED PI + GENTLE-PI WORKER PATH**
+Status: **HISTORICAL / NORMATIVE FOR THE PRE-GP2.7 ROLLBACK PATH; RETAINED AS REVIEWER-LIFECYCLE REGRESSION EVIDENCE**
 Date: 2026-09-06
 Tracking: Atenea #56
 Marker: `ATENEA_GENTLE_REVIEWER_CONTINUATION_V1`
 
 ## Purpose
 
-Preserve the native reviewer continuation that completed PROMueve T5 final qualification with all required lenses, acknowledgement/burn and zero external touch.
+Preserve the native reviewer continuation that completed PROMueve T5 final qualification with all required lenses, acknowledgement/burn and zero external touch. The current GP2.7 normal path is governed by `docs/RUN_RECIPE_GENTLE_PI_27_HYBRID_NATIVE_TRAIN_V1.md`; this file remains useful to preserve opaque provider-state semantics and to reproduce the historical outer-worker path, but it is no longer injected as the normal current train contract.
 
 This file does not replace Gentle review authority or implement a parallel reviewer controller. It tells the Pi/Gentle-Pi worker how to follow provider-owned `gentle_review` transitions without reconstructing opaque state.
 

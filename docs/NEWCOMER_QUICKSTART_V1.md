@@ -1,7 +1,7 @@
 # Atenea — Newcomer Quickstart v1
 
 Status: **CURRENT FRONT-DOOR SUMMARY**
-Date: 2026-09-08
+Date: 2026-09-15
 
 This page is a fast navigation and operating map for a fresh human, Cora/planning assistant or agent. It is **not** a second runtime contract. If anything here conflicts with `docs/ATENEA_HARNESS_CONTRACT_V1.md`, the harness contract wins.
 
@@ -19,17 +19,18 @@ human + Cora/planning
 
 AFTER EXECUTION_READY
 explicit human execution authorization
-→ plain Pi supervisor (non-implementing, Gentle Pi OFF, pi-intercom ON)
-→ Herdr process/session substrate
-→ fresh Pi + Gentle Pi 2.5 ticket worker
-→ direct implementation OR optional native Gentle Agents
-→ deterministic QA + Gentle AI 2.7 native RDD + ack/burn
-→ authorized normal non-force publication
-→ FINAL via pi-intercom
-→ fresh repository/tracker reconciliation
-→ next compatible fresh worker or STOP
+→ one persistent Pi + Gentle Pi 2.7 parent visible in Herdr
+→ fresh package-owned native child for each newly selected ticket
+→ parent reconciles exact diff + deterministic QA
+→ package-local Gentle AI 2.9.1 native START through the parent's non-TTY Bash subprocess
+→ Gentle Pi STATUS adopts the exact returned lineage
+→ provider review/correction → APPROVED → acknowledge/burn
+→ authorized checkpoint/publication
+→ fresh frontier reconciliation → next fresh child or STOP
 → final merge remains human unless separately authorized
 ```
+
+The parent remains visible and inspectable in Herdr throughout the train; only the native review START subprocess is non-TTY. This is the current zero-touch path proven on a two-ticket train on 2026-09-15.
 
 For normal work, never recover the current protocol from historical Stage files.
 
@@ -46,26 +47,39 @@ For a new project or a resumed project:
 7. `docs/INSTALLATION_AND_OPERATION_V1.md` — provisioning, scopes and runtime verification
 8. `docs/ROUTING_EVIDENCE_LEDGER_V1.md` — current routing evidence classes and unresolved model-routing gaps
 9. `docs/OPERATOR_RUNBOOK_V1.md` — only once work is `EXECUTION_READY`
-10. `docs/QUALIFICATION.md` — field evidence/proven boundaries when needed
+10. `docs/RUN_RECIPE_GENTLE_PI_27_HYBRID_NATIVE_TRAIN_V1.md` — current pinned train mechanics
+11. `docs/QUALIFICATION.md` — field evidence/proven boundaries when needed
+12. `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md` — current replacement evidence
+13. `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md` — local-state lifecycle/cleanup policy
 
 ## 3. Three scopes — do not mix them
 
 | Scope | Owns | Does not own |
 |---|---|---|
-| **Machine/global** | Pi, Herdr, Gentle Pi, Gentle AI, pi-intercom and their supported runtime configuration/authentication | product authority, target specs, target coding rules |
-| **Atenea clone/checkpoint** | harness contract, runbook, spawn recipe, RDD relay, reviewer-continuation contract, Promotion Review contract, deterministic Atenea checkers | target-product truth or target-repo configuration |
-| **Target repo/worktree** | `AGENTS.md`/repo instructions, `CODING_STANDARDS.md` or equivalent, product/spec/issues, target tests/oracles, branch/worktree and repo-local shaping skills/config when selected | Atenea runtime internals or global provider policy |
+| **Machine/global** | Pi, Herdr, Gentle Pi, Gentle AI and their supported runtime configuration/authentication/model routing | product authority, target specs, target coding rules |
+| **Atenea clone/checkpoint** | harness contract, current GP2.7 train recipe, qualification evidence, Promotion Review contract, hygiene policy and deterministic Atenea checks | target-product truth or target-repo configuration |
+| **Target repo/worktree** | `AGENTS.md`/repo instructions, coding standards, product/spec/issues, target tests/oracles, branch/worktree and repo-local shaping skills/config when selected | Atenea runtime internals or global provider policy |
 
-A pinned run uses components from one exact Atenea checkpoint. Do not mix the relay from one Atenea SHA with reviewer/runbook assets from another.
+A pinned run uses one coherent current Atenea checkpoint. Historical relay/spawn assets remain in the repository as rollback/provenance evidence but are not mixed into the normal GP2.7 path.
 
 ## 4. Fresh-machine setup
 
 1. Clone Atenea.
-2. Install Pi, Herdr, Gentle Pi, Gentle AI and pi-intercom through their **current upstream-supported** installation surfaces.
+2. Install Pi, Herdr, Gentle Pi and Gentle AI through their **current upstream-supported** installation surfaces.
 3. Verify the effective runtime using `docs/INSTALLATION_AND_OPERATION_V1.md`.
-4. Do not auto-install optional shaping/repository-intelligence tools until the target work warrants them.
+4. Synchronize current managed Pi assets when the installed Gentle AI runtime requires it.
+5. Do not auto-install optional shaping/repository-intelligence tools until the target work warrants them.
 
-Current adopted machine epoch: Pi `0.85.1`, Herdr `0.9.0`, Gentle Pi `2.5.0`, Gentle AI `2.7.0`, pi-intercom `0.13.0`. These versions are current qualification evidence, not permanent architectural pins.
+Current adopted machine epoch:
+
+```text
+Pi          0.85.1
+Herdr       0.9.0
+Gentle Pi   2.7.0
+Gentle AI   2.9.1 package-paired
+```
+
+`pi-intercom` may remain installed for historical/alternate flows, but it is no longer a dependency of the normal hybrid-native unattended path. These versions are current qualification evidence, not permanent architectural pins.
 
 ## 5. Matt Pocock skills — shaping surface, not unattended runtime dependency
 
@@ -111,24 +125,23 @@ The upstream skill's own trigger and procedure remain authoritative; Atenea does
 
 ## 6. Current operational routing profile
 
-Model/provider/reasoning choices are operational routing, **not Atenea architecture**. Planning resolves literal routes before launch; the supervisor consumes them unchanged. A rejected literal is STOP, never a reason for silent model fallback.
+Model/provider/reasoning choices are operational routing, **not Atenea architecture**. Resolve literals before launch and never silently substitute a rejected route.
 
-Do not collapse runtime roles when discussing routing:
+Current roles after the GP2.7 topology cutover:
 
 ```text
-Atenea Pi supervisor
-  != Gentle-Pi Pi parent / Gentleman coordinator
-  != optional delegated builder/writer
+persistent Gentle-Pi parent / train orchestrator
+  != fresh package-owned implementation child
+  != native Gentle verifier
   != native Gentle lens/refuter/targeted-validator
   != Promotion Review
 ```
 
-The current Sep-12 profile is role-specific:
+The historical outer `Atenea Pi supervisor` role is no longer present in the normal path; its DeepSeek V4.1 medium route remains historical/rollback evidence.
 
 | Phase / role | Route | Effort |
 |---|---|---|
-| Atenea Pi supervisor | `opencode-go/deepseek-v4.1-flash` | `medium` |
-| Gentle-Pi parent/coordinator | `opencode-go/glm-5.3-flash` | `high` |
+| Persistent Gentle-Pi parent/coordinator | `opencode-go/glm-5.3-flash` | `high` |
 | Native `gentle-ai-worker` | `opencode-go/glm-5.3-flash` | `high` |
 | Native `gentle-ai-verify` | `openai-codex/gpt-5.6-luna` | `high` |
 | `review-readability` | `openai-codex/gpt-5.6-luna` | `high` |
@@ -136,11 +149,11 @@ The current Sep-12 profile is role-specific:
 | `review-resilience` | `opencode-go/deepseek-v4.1-flash` | `high` |
 | `review-risk` | `opencode-go/deepseek-v4.1-flash` | `high` |
 
-DeepSeek V4 Flash `high` remains historical proven parent/coordinator fallback evidence but is never selected silently. `review-refuter` and `review-validator` have no new Atenea pin; stale historical machine profiles must be cleared so they inherit/provider-route instead of silently using old Qwen/V4-Pro pins. Sol remains escalation-only.
+`review-refuter` and `review-validator` have no Atenea pin and inherit/provider-route. Sol remains escalation-only. DeepSeek V4 Flash high remains historical parent/coordinator evidence but is never a silent fallback.
 
-Gentle Pi 2.5 provides the supported native delegation seam. Delegation is optional: the fresh ticket worker remains the unit of responsibility and may implement a small ticket directly. Reviewer **role/lifecycle selection** remains Gentle/provider-owned even when Atenea pins the model for the four principal lenses through the supported global model-routing authority.
+Gentle Pi 2.7 provides the supported package-owned native Agents seam. In the normal multi-ticket train, each newly selected ticket gets a fresh native implementation child while one visible parent retains train/frontier context and owns integration/RDD/checkpoint progression.
 
-See `docs/ROUTING_EVIDENCE_LEDGER_V1.md` and `docs/ROUTING_QUALIFICATION_EVIDENCE_20260912.md` for evidence classes and rationale. A rejected pinned route is STOP; never silently substitute another provider/model.
+See `docs/ROUTING_EVIDENCE_LEDGER_V1.md` and `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md`.
 
 ## 7. Reviews and extra gates
 
@@ -166,20 +179,21 @@ Matt `code-review` is a task-triggered engineering method. Promotion Review is a
 
 ## 8. Starting execution
 
-When the work is truly `EXECUTION_READY`, stop adding shaping machinery and use `docs/OPERATOR_RUNBOOK_V1.md` plus `docs/SPAWN_RECIPE_GENTLE_PI_WORKER_V1.md`.
+When the work is truly `EXECUTION_READY`, stop adding shaping machinery and use `docs/OPERATOR_RUNBOOK_V1.md` plus `docs/RUN_RECIPE_GENTLE_PI_27_HYBRID_NATIVE_TRAIN_V1.md`.
 
 High-frequency invariants:
 
-- supervisor is non-implementing;
-- supervisor executes zero Gentle lifecycle commands;
-- successful `herdr agent start` is the readiness barrier — no startup sleep/poll;
-- worker owns implementation/Gentle/provider transitions/ack-burn/publication;
-- unattended bounded RDD consent uses the versioned mechanical relay, never direct human prompting or model-reconstructed envelopes;
-- Gentle Pi 2.5 standing session permission is an attended interactive convenience only and is not the unattended-train authority mechanism;
-- native Gentle Agents may be used inside the fresh ticket worker, but never replace the outer fresh-worker-per-ticket boundary;
-- `FINAL` through pi-intercom is the normal completion wake signal;
-- fresh frontier rediscovery only after accepted durable checkpoint;
-- no force push, destructive recovery or automatic merge.
+- one persistent Gentle-Pi 2.7 parent remains visible in Herdr for the bounded train;
+- each newly selected ticket gets a fresh package-owned implementation child in the normal multi-ticket recipe;
+- normal train concurrency is sequential (`max_concurrency=1`) unless parallel safety is explicitly established;
+- the parent owns exact diff reconciliation, deterministic QA, RDD, acknowledgement/burn, checkpoint reconciliation and frontier progression;
+- native RDD START is invoked through the parent's ordinary Bash tool using package-local Gentle AI 2.9.1, with only that subprocess non-TTY and with no consent override flag;
+- Gentle Pi STATUS must adopt the same lineage returned by native START before capture;
+- a visible `Review consent` dialog is fail-closed evidence, not something to auto-answer;
+- provider bindings/continuations remain opaque and exact;
+- fresh frontier rediscovery occurs only after an accepted durable checkpoint;
+- no force push, destructive recovery or automatic merge;
+- after merged/published work or reconciled qualification, apply `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md` instead of accumulating local state indefinitely.
 
 ## 9. What is deliberately NOT part of Atenea
 

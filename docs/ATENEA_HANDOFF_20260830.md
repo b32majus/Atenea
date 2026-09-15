@@ -2,9 +2,9 @@
 
 Date: 2026-08-30
 
-Status: **QUALIFIED BASELINE AVAILABLE; GENTLE PI REJECTED FOR CURRENT USE**
+Status: **HISTORICAL STAGE-8 HANDOFF — superseded by README / START_HERE / current contract**
 
-This document is the durable post-Stage-8 handoff. It exists because the final qualification conversation contained material state that had not yet been reconciled into GitHub documentation.
+This document is the durable post-Stage-8 handoff for its 2026-08-30 epoch. It is historical evidence, not current execution authority. It exists because the final qualification conversation contained material state that had not yet been reconciled into GitHub documentation.
 
 ## 1. Objective
 
