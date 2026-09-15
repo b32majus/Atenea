@@ -1,6 +1,8 @@
 # Atenea — Matt-to-Gentle Handoff Contract
 
-This is the normative boundary between Matt Pocock greenfield authoring and Gentle unattended execution in Atenea.
+Status: **HISTORICAL STAGE-5 CONTRACT — superseded for current execution by `docs/ATENEA_HARNESS_CONTRACT_V1.md`**
+
+This file preserves the Stage-5 Matt-to-Gentle handoff boundary that was qualified on the earlier OpenCode path. It is provenance, not current runtime authority.
 
 Stage 5 qualified the direct/delegated version of this contract on OpenCode 1.18.25 with Gentle AI v2.5.0-rc.1 and RDD OFF. Native Gentle RDD remains Stage 6.
 

@@ -1,12 +1,12 @@
 # Gentle Pi 2.5 / Gentle AI 2.7 — Golden promotion evidence
 
-Status: **CURRENT ADOPTION EVIDENCE**
+Status: **HISTORICAL ADOPTION EVIDENCE — superseded for normal operation by GP2.7 C-040/C-041**
 Date: 2026-09-08
 Authority: Atenea #72 qualification + operator-authorized promotion #73
 
 ## Decision
 
-Atenea adopts Gentle Pi `2.5.0` with package-paired Gentle AI `2.7.0` for the normal unattended Pi/Gentle-Pi worker path.
+At the 2026-09-08 promotion, Atenea adopted Gentle Pi `2.5.0` with package-paired Gentle AI `2.7.0` for the then-normal unattended Pi/Gentle-Pi worker path. C-040/C-041 later supersede this topology while preserving the evidence below.
 
 This is a **runtime promotion, not a new outer orchestration architecture**. The field-proven outer Golden remains:
 

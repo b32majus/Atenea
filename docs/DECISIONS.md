@@ -1,5 +1,7 @@
 # Atenea — Decision Log
 
+> **Historical decision log.** Current accepted architecture and supersession state live in `docs/CURRENT_DECISIONS.md`; entries below preserve the decision sequence from earlier qualification epochs and may be superseded.
+
 This file records architectural decisions that should survive individual chat or agent sessions.
 
 ## D-001 — Atenea is independent from KairOS

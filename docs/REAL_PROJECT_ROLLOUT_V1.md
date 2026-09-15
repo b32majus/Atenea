@@ -1,7 +1,7 @@
 # Atenea Real-Project Rollout v1
 
 Date: 2026-09-05
-Status: ACTIVE
+Status: **HISTORICAL ROLLOUT EVIDENCE — superseded for current operation by C-040/C-041**
 
 ## Goal
 
@@ -19,11 +19,11 @@ Evidence:
 - `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`
 - issue #38 / PR #37 audit thread
 
-The real operator path described below is therefore the **normal operator path**, not a one-off experiment.
+The operator path described below was the **normal path for its 2026-09-05 epoch**. It is preserved as rollout evidence; current operation is defined by `docs/OPERATOR_RUNBOOK_V1.md` and `docs/RUN_RECIPE_GENTLE_PI_27_HYBRID_NATIVE_TRAIN_V1.md`.
 
-## Current unattended rollout path after cutover #45
+## Historical unattended rollout path after cutover #45
 
-Real-project unattended execution now uses a persistent normal Pi supervisor plus a fresh separate Pi/Gentle-Pi worker for each compatible ticket. The supervisor is event-driven through pi-intercom and freshly rediscovers repository/GitHub frontier only after an accepted durable checkpoint. Pinned worker creation uses `docs/SPAWN_RECIPE_GENTLE_PI_WORKER_V1.md`.
+This section records the then-adopted Pi-supervisor + fresh separate Pi/Gentle-Pi worker path. C-040/C-041 supersede it for current operation. Current runs use one visible persistent GP2.7 parent plus fresh package-owned ticket children and the hybrid-native START/lineage-adoption recipe.
 
 OpenCode-specific sections later in this document describe historical/alternate field evidence and must not be read as the current required transport.
 
