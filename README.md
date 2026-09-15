@@ -260,26 +260,32 @@ The Matt skills are not a mandatory execution sequence.
 - `README.md` — current overview and navigation.
 - `docs/NEWCOMER_QUICKSTART_V1.md` — fast scope/setup/skills/routing/execution map for a fresh operator or agent.
 - `docs/REPOSITORY_ENTRY_RECONCILIATION_V1.md` — safe read-only greenfield/brownfield/legacy entry reconciliation before shaping.
-- `docs/ROUTING_EVIDENCE_LEDGER_V1.md` — current role/model evidence; separates supervisor, Gentle coordinator, builder and reviewers.
+- `docs/ROUTING_EVIDENCE_LEDGER_V1.md` — current role/model evidence for the persistent parent, native children and reviewers.
 - `docs/START_HERE.md` — Cora/human project-entry and shaping decision procedure.
 - `docs/ATENEA_HARNESS_CONTRACT_V1.md` — **normative execution contract**.
-- `docs/CURRENT_DECISIONS.md` — current accepted decisions.
+- `docs/CURRENT_DECISIONS.md` — current accepted decisions and supersession state.
 - `docs/INSTALLATION_AND_OPERATION_V1.md` — current environment/install/verification guide.
 - `docs/OPERATOR_RUNBOOK_V1.md` — practical `EXECUTION_READY` operator path.
-- `docs/QUALIFICATION.md` — field-qualified boundaries.
-- `docs/REAL_PROJECT_ROLLOUT_V1.md` — real-project rollout evidence/policy.
+- `docs/RUN_RECIPE_GENTLE_PI_27_HYBRID_NATIVE_TRAIN_V1.md` — current pinned GP2.7 unattended train mechanics.
+- `docs/QUALIFICATION.md` — current qualification index and proven boundaries.
+- `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md` — local worktree/qualification lifecycle and cleanup policy.
 
-### Current evidence / adoption boundaries
+### Current adoption / qualification evidence
 
-- `docs/GENTLE_PI_25_GOLDEN_PROMOTION_EVIDENCE_20260908.md` — current GP2.5/GAI2.7 qualification, zero-touch relay, native Agents and promotion evidence.
-- `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md` — historical zero-touch provider/OpenCode/Pi evidence and non-production boundary.
-- `docs/JUDIT76_GENTLE25_FIELD_EVIDENCE.md` — first real stable Gentle field run.
+- `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md` — current GP2.7/GAI2.9.1 topology-replacement evidence, including failed/discarded paths and the final two-ticket zero-touch train.
+- `docs/ROUTING_QUALIFICATION_EVIDENCE_20260912.md` — current role-specific GLM/Luna/V4.1 routing evidence retained by the GP2.7 topology.
 
-### Historical evidence
+### Historical / rollback evidence
 
+- `docs/GENTLE_PI_25_GOLDEN_PROMOTION_EVIDENCE_20260908.md` — historical GP2.5/GAI2.7 promotion and relay-era evidence; superseded for normal operation by C-040/C-041.
+- `docs/REAL_PROJECT_ROLLOUT_V1.md` — historical pre-GP2.7 real-project rollout policy/evidence.
+- `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md` — historical provider/OpenCode/Pi zero-touch characterization and non-production boundary.
+- `docs/JUDIT76_GENTLE25_FIELD_EVIDENCE.md` — historical first real stable Gentle field run.
+- `docs/GENTLE_REVIEWER_CONTINUATION_V1.md` — historical pre-GP2.7 rollback/regression contract for reviewer continuation.
+- `docs/SPAWN_RECIPE_GENTLE_PI_WORKER_V1.md` — historical separate-supervisor spawn recipe retained for rollback/reproduction.
 - `docs/ATENEA_HANDOFF_20260830.md` — historical post-Stage-8 handoff.
 - Stage-specific files — frozen qualification evidence.
-- `docs/DECISIONS.md` — historical decision log.
+- `docs/DECISIONS.md` — historical decision log; use `docs/CURRENT_DECISIONS.md` for current authority.
 - `docs/REJECTED.md` — rejected/deferred architecture and supersession notes.
 
 If a fresh Cora has to mine historical files to discover the current contract or normal operator path, treat that as a documentation regression.
