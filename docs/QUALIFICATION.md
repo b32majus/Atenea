@@ -1,6 +1,6 @@
 # Atenea — Qualification Status
 
-Date of current status: 2026-09-15
+Date of current status: 2026-09-16
 
 This document is the current qualification index. Stage-specific files remain frozen evidence. Earlier `NEXT`, `DEFERRED` or `NOT_YET_QUALIFIED` labels are historical when they conflict with this file, `README.md`, `docs/CURRENT_DECISIONS.md` or `docs/ATENEA_HARNESS_CONTRACT_V1.md`.
 
@@ -35,15 +35,15 @@ GP27_TWO_TICKET_HYBRID_ZERO_TOUCH      PASS_ADOPTED
 
 The result is evidence for a thin supervisory contract, not a recommendation to build a larger Atenea runtime.
 
-## Adopted replacement result — 2026-09-05
+## Historical predecessor replacement result — 2026-09-05
 
-Atenea #35 completed with `PASS_DELETE`, and operator-authorized cutover #45 adopts the smaller normal unattended path:
+Atenea #35 completed with `PASS_DELETE`, and operator-authorized cutover #45 historically adopted the then-smaller unattended path:
 
 ```text
 normal Pi supervisor → Herdr → separate Pi/Gentle-Pi worker → Gentle native RDD → Git/GitHub checkpoint → frontier rediscovery/STOP
 ```
 
-PROMueve T4/T5 plus atomic repairs demonstrated zero-touch execution, independent product rejection/repair, native RDD acknowledgement/burn, normal non-force publication, composed continuity and supervisor-owned frontier rediscovery. OpenCode qualification below remains valid historical/alternate evidence but no longer defines the current unattended runtime.
+PROMueve T4/T5 plus atomic repairs demonstrated zero-touch execution, independent product rejection/repair, native RDD acknowledgement/burn, normal non-force publication, composed continuity and supervisor-owned frontier rediscovery. This was the accepted predecessor topology for its epoch; the 2026-09-15 GP2.7/GAI2.9.1 replacement below supersedes it for normal operation while preserving the evidence as rollback/provenance.
 
 ## Gentle Pi 2.7 / Gentle AI 2.9.1 hybrid-native replacement — PASS / ADOPTED — 2026-09-15
 
@@ -173,7 +173,7 @@ At the 2026-09-06 newcomer checkpoint, the qualification deliberately did **not*
 
 ### Sep-12 role-specific routing qualification — #75
 
-Controlled worker, real GP2.5 lens, persistent-coordinator and read-only verifier bake-offs produced the current diverse routing: `opencode-go/deepseek-v4.1-flash` medium outer supervisor; GLM 5.3 Flash high parent/coordinator and native writer; Luna high native verifier/readability; DeepSeek V4.1 Flash high reliability/resilience/risk. The supervisor model is an operator-adopted route upgrade from historical V4 Flash and receives exact-role field history at the #75 machine cutover/canary. Refuter/validator remain unpinned by Atenea. Full evidence: `docs/ROUTING_QUALIFICATION_EVIDENCE_20260912.md`.
+Controlled worker, real GP2.5 lens, persistent-coordinator and read-only verifier bake-offs produced the Sep-12 routing matrix for the then-current topology: DeepSeek V4.1 Flash medium outer supervisor; GLM 5.3 Flash high parent/coordinator and native writer; Luna high native verifier/readability; DeepSeek V4.1 Flash high reliability/resilience/risk. The 2026-09-15 GP2.7 topology replacement removed the outer supervisor role from normal operation while retaining the surviving GLM/Luna/V4.1 role assignments. Refuter/validator remain unpinned by Atenea. Full evidence: `docs/ROUTING_QUALIFICATION_EVIDENCE_20260912.md`; current role mapping lives in `docs/ROUTING_EVIDENCE_LEDGER_V1.md`.
 
 ### Entry/role/routing reconciliation — current evidence map
 
@@ -188,13 +188,22 @@ STAGE 5–8 QUALIFICATION EVIDENCE
   Gentle AI 2.5.0-rc.2
   historical and still valid for the properties actually exercised
 
-CURRENT PRODUCTION OPERATIONAL TARGET
+CURRENT ADOPTED OPERATIONAL TARGET
+  Pi 0.85.1
+  Herdr 0.9.0
+  Gentle Pi 2.7.0 persistent visible parent
+  Gentle AI 2.9.1 package-paired
+  fresh package-owned implementation child per newly selected ticket
+  native no-TTY START + same-lineage Gentle Pi STATUS adoption
+  pi-intercom / Atenea consent relay not required by the normal path
+
+HISTORICAL GP2.5 PROMOTION EPOCH
   Pi 0.85.1
   Herdr 0.9.0
   Gentle Pi 2.5.0
   Gentle AI 2.7.0 package-paired
   pi-intercom 0.13.0
-  qualified under Atenea #72/#73
+  qualified under Atenea #72/#73; superseded for normal operation by GP2.7
 
 EARLIER STABLE GENTLE FIELD EVIDENCE
   Gentle AI 2.5.0 stable
@@ -216,7 +225,7 @@ The same investigation corrected an initially over-broad consent diagnosis: stab
 
 A downstream provider-side canary then characterized the missing capability without teaching Pi/OpenCode to rewrite the transition. Under the canary policy, Gentle itself generated a no-relay v2 START, OpenCode executed it unchanged, RDD ran, exact acknowledgement burned authority and the full Pi → Herdr → headless OpenCode topology completed with zero human touch after execution authorization.
 
-Current status:
+Historical canary status at that epoch:
 
 ```text
 GENTLE_2_5_STABLE_EXACT_CANDIDATE_RDD       PASS
@@ -233,13 +242,13 @@ UPSTREAM_TRACKING                           Gentleman-Programming/gentle-ai#4109
 ATENEA_TRACKING                             issue #36
 ```
 
-This does **not** invalidate historical Stage 7/8 rc.2 evidence and does not claim the downstream canary selector as an upstream API. Production Gentle remains `2.5.0` unchanged; the experimental provider-side selector must disappear when upstream ships an equivalent supported capability. The released stable negotiated-v2 unattended selector remains `NOT_AVAILABLE`; the real operator-triggered Atenea E2E under the bounded canary is PASS but does not replace the upstream resolution still owned by #4109/#36.
+This does **not** invalidate historical Stage 7/8 rc.2 evidence and does not claim the downstream canary selector as an upstream API. At that historical epoch, production Gentle remained `2.5.0` unchanged; this sentence is provenance, not current runtime authority. The released stable negotiated-v2 unattended selector was `NOT_AVAILABLE`; the real operator-triggered Atenea E2E under the bounded canary was PASS but did not replace the upstream resolution then owned by #4109/#36. Current unattended runtime authority is GP2.7/GAI2.9.1 as recorded above and in `## Current runtime target`.
 
 Stable field evidence: `docs/JUDIT76_GENTLE25_FIELD_EVIDENCE.md`.
 
 Zero-touch characterization evidence: `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md`.
 
-## Qualified ownership split
+## Historical Stage 5–8 / OpenCode ownership split
 
 ```text
 Matt Pocock upstream skills
@@ -265,9 +274,9 @@ Atenea repo-local policy
   Harness Contract v1 + CODING_STANDARDS.md + repo-specific config only
 ```
 
-Pi is not an implementation worker or security sandbox. Herdr is not a policy engine.
+This block records the ownership split qualified by the historical Stage 5–8 / OpenCode topology; it is not the current GP2.7 role map. Pi was not an implementation worker or security sandbox, and Herdr was not a policy engine.
 
-The stable field run and final zero-touch canary strengthen this boundary: Pi supervises process/authority/frontier state; the OpenCode/Gentle worker owns all Gentle lifecycle operations and provider-issued review transitions. The canary recorded zero direct Pi Gentle lifecycle calls.
+The stable field run and final zero-touch canary strengthened that historical boundary: Pi supervised process/authority/frontier state; the OpenCode/Gentle worker owned all Gentle lifecycle operations and provider-issued review transitions. The canary recorded zero direct Pi Gentle lifecycle calls. Current ownership is the persistent-parent/fresh-child model in the GP2.7 section above.
 
 ## Stage 5 — Matt → Gentle/OpenCode composition — PASS
 

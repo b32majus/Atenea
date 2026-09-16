@@ -38,11 +38,11 @@ Keep these ownership surfaces separate:
 
 | Scope | Current responsibility |
 |---|---|
-| **Machine/global** | Pi, Herdr, Gentle Pi, Gentle AI, pi-intercom and supported runtime/provider configuration. |
-| **Atenea clone/checkpoint** | versioned harness contract, runbook, spawn recipe, RDD relay, reviewer continuation, Promotion Review and deterministic checkers. |
+| **Machine/global** | Pi, Herdr, Gentle Pi, Gentle AI and supported runtime/provider configuration. `pi-intercom` may remain for explicitly selected alternate/rollback flows but is not a normal GP2.7 dependency. |
+| **Atenea clone/checkpoint** | current harness contract, GP2.7 runbook/train recipe, qualification evidence, Promotion Review, hygiene policy and deterministic checkers. Historical spawn-recipe/RDD-relay/reviewer-continuation assets remain only for rollback/regression/provenance. |
 | **Target repo/worktree** | product/repository authority, `AGENTS.md`, coding standards, specs/issues, tests/oracles, delivery branch/worktree and any repo-local shaping skills/config selected before `EXECUTION_READY`. |
 
-Atenea never promotes machine-global defaults into product authority. A pinned run uses one exact Atenea checkpoint and must not mix relay/reviewer/runtime assets across Atenea SHAs.
+Atenea never promotes machine-global defaults into product authority. A pinned run uses one exact Atenea checkpoint; historical relay/reviewer assets must not be mixed into the current GP2.7 path unless an explicit rollback/reproduction boundary selects them.
 
 ## Adopted unattended runtime — 2026-09-15 GP2.7 promotion
 
