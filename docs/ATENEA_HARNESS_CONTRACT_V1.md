@@ -1,6 +1,6 @@
 # Atenea Harness Contract v1
 
-Date: 2026-09-08
+Date: 2026-09-16
 Status: NORMATIVE
 
 ## 1. Purpose
@@ -24,14 +24,16 @@ OpenSpec
 Impeccable
   conditional material UI/UX shaping and design-quality methods
 
-Pi
-  autonomous supervision and GitHub frontier discovery
+Pi + Gentle Pi 2.7 persistent parent
+  train/frontier orchestration, fresh-child delegation, integration,
+  deterministic verification and exact-candidate lifecycle host
+
+Package-owned Gentle Agents
+  fresh bounded implementation child per newly selected ticket in the
+  normal multi-ticket train recipe
 
 Herdr
-  process/session substrate
-
-Pi + Gentle Pi worker
-  implementation runtime and Gentle lifecycle host in a separate Herdr pane
+  process/session/observability substrate for the visible persistent parent
 
 Gentle AI
   exact candidate integrity, native RDD, reviewer authority/lineage,
@@ -51,7 +53,7 @@ Atenea repo-local policy
   publication and STOP rules that upstream systems do not own
 ```
 
-Pi is not an implementation worker or security boundary. Herdr is not a policy engine. Atenea MUST NOT duplicate Gentle candidate/RDD machinery.
+The persistent Pi/Gentle-Pi parent is not the normal ticket implementation child or a security boundary. Herdr is not a policy engine or review authority. Atenea MUST NOT duplicate Gentle candidate/RDD machinery.
 
 ## 3. The autonomy boundary
 
@@ -67,28 +69,30 @@ Product decisions, unresolved material ambiguity and shaping questions belong be
 
 Promotion to `EXECUTION_READY` is an explicit human authority transition. Atenea MUST NOT automate the design conversation merely to make a ticket executable.
 
-The adopted unattended path uses a separate Pi/Gentle-Pi worker with Gentle native review authority. Provider-owned consent/continuation remains owned by the worker's Gentle session; the outer Pi supervisor may consume only an already-authorized bounded decision relayed through pi-intercom and MUST NOT run/reconstruct the Gentle lifecycle itself.
+The adopted unattended path uses one persistent Pi + Gentle Pi 2.7 parent, visible in Herdr, for the bounded train. Each newly selected ticket receives a fresh package-owned implementation child in the normal multi-ticket recipe. The parent owns train/frontier context, exact diff reconciliation, deterministic verification, hybrid-native exact-candidate RDD, acknowledgement/burn, authorized checkpoint progression and fresh frontier discovery.
 
-The historical OpenCode negotiated `review-integration/v2` relay limitation remains tracked by issue #36 for the alternate OpenCode path. It no longer blocks the adopted Atenea unattended workflow.
+For every mutating candidate, the parent invokes package-local Gentle AI 2.9.1 native START through its ordinary Bash tool with fd0/fd1/fd2 non-TTY and no consent override. Gentle Pi then adopts that exact returned lineage through STATUS and continues only through provider-owned bindings/continuations. A visible `Review consent` dialog is fail-closed evidence for unattended execution.
 
-Current completion state, explicitly distinguishing the adopted path from the historical OpenCode path:
+The historical outer-supervisor + fresh outer worker + pi-intercom/mechanical consent-relay topology remains rollback/provenance evidence only. The historical OpenCode negotiated `review-integration/v2` relay limitation remains tracked by issue #36 for the alternate OpenCode path and does not block the adopted Atenea unattended workflow.
+
+Current completion state:
 
 ```text
-ADOPTED_UNATTENDED_WORKER=FRESH_PI_PLUS_GENTLE_PI_2_5_PER_TICKET
-ADOPTED_GENTLE_AI=2_7_0_PACKAGE_PAIRED
-NATIVE_GENTLE_AGENTS=OPTIONAL_INNER_DELEGATION
+ADOPTED_UNATTENDED_PARENT=PERSISTENT_VISIBLE_PI_PLUS_GENTLE_PI_2_7
+ADOPTED_GENTLE_AI=2_9_1_PACKAGE_PAIRED
+FRESH_NATIVE_CHILD_PER_NEW_TICKET=REQUIRED_NORMAL_MULTI_TICKET_RECIPE
+NATIVE_NO_TTY_START=REQUIRED
+GENTLE_PI_SAME_LINEAGE_ADOPTION=REQUIRED
 ADOPTED_PATH_NATIVE_RDD=REQUIRED
-ADOPTED_PATH_BLOCKED_BY_OPENCODE_V2_GAP=NO
-OPENCODE_RELEASED_V2_PROVIDER_UNATTENDED_SELECTOR=NOT_AVAILABLE
-OPENCODE_NEGOTIATED_V2_UNATTENDED_PROVIDER_CANARY=PASS
+REVIEW_CONSENT_DIALOGS=ZERO_EXPECTED_FAIL_CLOSED_IF_VISIBLE
+EXTERNAL_PI_SUPERVISOR=HISTORICAL_ROLLBACK_NOT_NORMAL
+ATENEA_RDD_CONSENT_RELAY=HISTORICAL_ROLLBACK_NOT_NORMAL
 OPENCODE_UPSTREAM_PARITY_GAP=OPEN_NON_BLOCKING_ALTERNATE_PATH
 ```
 
-The released negotiated-v2 selector gap remains useful upstream/alternate-OpenCode work, but it is no longer a global Atenea completion blocker after the Gentle-Pi replacement qualification and cutover #45/#47.
-
 ### 3.1 Operator/supervision ergonomics — no new authority
 
-Bounded/pinned preflight guidance and visible worker observability are operator/supervision ergonomics only. They create no new authority, lifecycle ownership, daemon, scheduler or observation-harness dependency. Pi launches a separate Pi/Gentle-Pi worker in a dedicated visible Herdr pane using the pinned spawn recipe and reports its pane/tab id/label. For intentionally pinned work, launch authority resolves literal runtime/model/oracle parameters before supervisor launch so Pi validates them instead of rediscovering mechanics. Pi remains non-implementing and executes zero Gentle lifecycle commands.
+Bounded/pinned preflight guidance and visible parent observability are operator/supervision ergonomics only. They create no new authority, lifecycle ownership, daemon, scheduler or observation-harness dependency. After explicit human execution authorization, the human or Cora/DC mechanically starts one Pi + Gentle Pi 2.7 parent in a dedicated visible Herdr pane and gives one bounded train prompt. For intentionally pinned work, launch authority resolves literal runtime/model/oracle parameters before parent launch so the parent validates them instead of rediscovering mechanics. The parent remains non-implementing at the ticket-write boundary in the normal multi-ticket recipe; fresh package-owned children own bounded implementation.
 
 ## 4. Authoring entry paths
 
@@ -501,7 +505,7 @@ Model, provider and reasoning-effort selections are operational routing facts, n
 
 Record them when useful for evidence/cost/reproducibility, but do not hard-code the harness around a specific model unless a repository has a demonstrated requirement.
 
-Current operational routing is role-specific and replaceable: the outer Atenea Pi supervisor uses `opencode-go/deepseek-v4.1-flash` at `medium`; the fresh Gentle parent/coordinator and package-owned `gentle-ai-worker` use `opencode-go/glm-5.3-flash` at `high`; `gentle-ai-verify` and `review-readability` use Luna `high`; `review-reliability`, `review-resilience`, and `review-risk` use DeepSeek V4.1 Flash `high`. `review-refuter` / `review-validator` have no new Atenea pin and must not silently inherit stale historical machine profiles. These are operational defaults recorded in `docs/ROUTING_EVIDENCE_LEDGER_V1.md`, not architecture, and rejected routes never trigger silent fallback.
+Current operational routing is role-specific and replaceable: the persistent Pi/Gentle-Pi parent and package-owned `gentle-ai-worker` use `opencode-go/glm-5.3-flash` at `high`; `gentle-ai-verify` and `review-readability` use Luna `high`; `review-reliability`, `review-resilience`, and `review-risk` use DeepSeek V4.1 Flash `high`. `review-refuter` / `review-validator` have no Atenea pin and inherit/provider-route. The former outer Atenea Pi supervisor route (`opencode-go/deepseek-v4.1-flash` `medium`) is historical/rollback evidence only because that role is no longer present in the normal topology. These are operational defaults recorded in `docs/ROUTING_EVIDENCE_LEDGER_V1.md`, not architecture, and rejected routes never trigger silent fallback.
 
 ## 21. Security boundary
 
@@ -521,7 +525,7 @@ Before adding any Atenea glue, answer all of these:
 
 If those questions do not have concrete answers, DO NOT BUILD.
 
-For the adopted unattended path, Gentle Pi + Gentle native RDD owns review lifecycle and the Atenea worker-side relay preserves already-authorized bounded consent transport without reconstructing provider envelopes. The historical negotiated-v2/OpenCode policy-selection seam remains an optional upstream parity item (`Gentleman-Programming/gentle-ai#4109`) for that alternate route, not an Atenea consent bypass and not a blocker for current execution.
+For the adopted unattended path, Gentle Pi + Gentle native RDD owns the review lifecycle. Zero-touch is achieved through upstream composition: package-local Gentle AI native START runs non-TTY with no consent override, then Gentle Pi adopts that exact lineage through STATUS and follows provider-owned continuations. The former Atenea worker-side consent relay and the negotiated-v2/OpenCode policy-selection seam remain historical/alternate evidence (`Gentleman-Programming/gentle-ai#4109` for optional parity), not current execution dependencies or consent bypasses.
 
 ## 23. Current completion state
 
