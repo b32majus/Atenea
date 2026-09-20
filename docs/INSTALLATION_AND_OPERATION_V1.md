@@ -67,7 +67,7 @@ parent                        nan/glm5.3-flash · high
 gentle-ai-worker              nan/glm5.3-flash · high
 gentle-ai-verify              openai-codex/gpt-5.6-luna · high
 review-readability            openai-codex/gpt-5.6-luna · high
-review-reliability            nan/deepseek-v4-flash · high
+review-reliability            openai-codex/gpt-5.6-luna · high
 review-resilience             nan/deepseek-v4-flash · high
 review-risk                   nan/deepseek-v4-flash · high
 review-refuter                nan/deepseek-v4-flash · high
@@ -77,6 +77,8 @@ review-validator              openai-codex/gpt-5.6-luna · high
 Global routing authority is `~/.pi/gentle-ai/models.json`, `~/.pi/gentle-ai/profiles.json` and `~/.pi/agent/subagents.json`. Active profile: `atenea-one-touch`. It deliberately omits `orchestrator`; the train parent is launched explicitly on GLM high.
 
 The repo declares `.pi/gentle-ai/profile.json`. Each machine must have the named profile installed.
+
+NaN client capability authority is `docs/NAN_PROVIDER_CAPABILITIES_V1.md`. Current Pi/OpenCode client output budgets are `65536` for both `nan/deepseek-v4-flash` and `nan/glm5.3-flash`. Pi must declare DeepSeek `supportsReasoningEffort=false`; GLM must declare effective `low`/`medium`/`high`/`max`.
 
 ## 3. Install upstream runtimes, not Atenea replacements
 
@@ -96,10 +98,11 @@ node -p 'require("/home/hermes/.pi/agent/npm/node_modules/gentle-pi/package.json
 pi auth check --model nan/deepseek-v4-flash --json --no-refresh
 pi auth check --model nan/glm5.3-flash --json --no-refresh
 pi auth check --model openai-codex/gpt-5.6-luna --json --no-refresh
+node tools/check-nan-runtime-config.mjs
 ./tools/apply-gentle-330-atenea-host-bridge.sh --check
 ```
 
-Expected: current Pi `0.86.1`, `3.3.0`, `gentle-ai 3.4.0`, V4/GLM/Luna auth ready and `PASS: qualified Atenea host bridge present`. The strong single-acceptance Q11 baseline used Pi `0.86.0`; keep that distinction until a normal 0.86.1 train supplies parity evidence.
+Expected: current Pi `0.86.1`, `3.3.0`, `gentle-ai 3.4.0`, V4/GLM/Luna auth ready, `ATENEA_NAN_RUNTIME_CONFIG_CHECK=PASS`, and `PASS: qualified Atenea host bridge present`. The strong single-acceptance Q11 baseline used Pi `0.86.0`; keep that distinction until a normal 0.86.1 train supplies parity evidence.
 
 ## 5. RDD and current one-touch boundary
 
@@ -188,8 +191,11 @@ PACKAGE_LOCAL_GENTLE_AI=3_4_0
 PARENT_ROUTE=NAN_GLM5_3_FLASH_HIGH
 DEFAULT_PI_ROUTE=NAN_DEEPSEEK_V4_FLASH_MEDIUM
 GENTLE_WORKER_ROUTE=NAN_GLM5_3_FLASH_HIGH
-GENTLE_VERIFY_READABILITY_VALIDATOR=OPENAI_CODEX_GPT_5_6_LUNA_HIGH
-GENTLE_MATERIAL_REVIEW_REFUTER=NAN_DEEPSEEK_V4_FLASH_HIGH
+GENTLE_VERIFY_READABILITY_RELIABILITY_VALIDATOR=OPENAI_CODEX_GPT_5_6_LUNA_HIGH
+GENTLE_RESILIENCE_RISK_REFUTER=NAN_DEEPSEEK_V4_FLASH_HIGH
+NAN_DEEPSEEK_CLIENT_OUTPUT_BUDGET=65536
+NAN_GLM_CLIENT_OUTPUT_BUDGET=65536
+DEEPSEEK_REASONING_EFFORT_EFFECTIVE=NO
 ODD_INTERNAL_MICRO_ORCHESTRATION=UPSTREAM_OWNED
 FRESH_CHILD_PER_EXTERNAL_TICKET=NOT_REQUIRED_BY_ATENEA
 MAX_CONCURRENCY_DEFAULT=1

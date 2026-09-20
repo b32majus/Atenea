@@ -447,7 +447,7 @@ persistent parent             nan/glm5.3-flash · high
 gentle-ai-worker              nan/glm5.3-flash · high
 gentle-ai-verify              openai-codex/gpt-5.6-luna · high
 review-readability            openai-codex/gpt-5.6-luna · high
-review-reliability            nan/deepseek-v4-flash · high
+review-reliability            openai-codex/gpt-5.6-luna · high
 review-resilience             nan/deepseek-v4-flash · high
 review-risk                   nan/deepseek-v4-flash · high
 review-refuter                nan/deepseek-v4-flash · high
@@ -456,7 +456,9 @@ review-validator              openai-codex/gpt-5.6-luna · high
 
 NaN's `deepseek-v4-flash` is the provider id for the DeepSeek V4.1 Flash family. The parent route is explicit at launch; Pi's ordinary default remains V4 medium.
 
-No silent provider/model/effort fallback is allowed. See `docs/ROUTING_EVIDENCE_LEDGER_V1.md`.
+Current NaN client output budgets are `65536` for DeepSeek and GLM in Pi/OpenCode. DeepSeek effort labels are not effective reasoning-depth controls; GLM supports effective `low`/`medium`/`high`/`max`. `review-reliability` is Luna high after a real NaN DeepSeek `reviewer-empty-output` / `stopReason: length` field failure with no mutation. See `docs/NAN_PROVIDER_CAPABILITIES_V1.md`.
+
+No silent provider/model/effort/budget fallback is allowed. See `docs/ROUTING_EVIDENCE_LEDGER_V1.md`.
 
 ## 21. Security boundary
 
@@ -490,6 +492,10 @@ CURRENT_EXECUTION_MODE                  ONE_TOUCH
 FIRST_REVIEW_SESSION_GRANT              PASS
 LATER_SAME_SESSION_SECOND_TOUCH         NOT_REQUIRED_IN_QUALIFIED_FLOW
 DEFAULT_PI_MODEL                        nan/deepseek-v4-flash medium
+NAN_DEEPSEEK_CLIENT_OUTPUT_BUDGET       65536
+NAN_GLM_CLIENT_OUTPUT_BUDGET            65536
+DEEPSEEK_REASONING_EFFORT_EFFECTIVE     NO
+REVIEW_RELIABILITY_MODEL                openai-codex/gpt-5.6-luna high
 PARENT_MODEL                            nan/glm5.3-flash high
 INTERNAL_MICRO_ORCHESTRATION            GENTLE_SHELL_ODD
 FRESH_CHILD_PER_EXTERNAL_TICKET         NOT_REQUIRED_BY_ATENEA

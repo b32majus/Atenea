@@ -14,7 +14,7 @@ Model/provider choices are replaceable operational configuration. They do not re
 | `gentle-ai-worker` | `nan/glm5.3-flash` | `high` | Prior adopted writer role, provider migrated to NaN. |
 | `gentle-ai-verify` | `openai-codex/gpt-5.6-luna` | `high` | Prior qualified verifier route retained. |
 | `review-readability` | `openai-codex/gpt-5.6-luna` | `high` | Prior readability route retained. |
-| `review-reliability` | `nan/deepseek-v4-flash` | `high` | Prior V4.1 material-behavior role, provider migrated to NaN. |
+| `review-reliability` | `openai-codex/gpt-5.6-luna` | `high` | Current field hotfix: Luna was already acceptable in role-specific qualification; NaN DeepSeek produced empty output with `stopReason: length`. |
 | `review-resilience` | `nan/deepseek-v4-flash` | `high` | Prior V4.1 failure/recovery role, provider migrated to NaN. |
 | `review-risk` | `nan/deepseek-v4-flash` | `high` | Prior V4.1 security/authorization role, provider migrated to NaN. |
 | `review-refuter` | `nan/deepseek-v4-flash` | `high` | GP3.3 compatibility/adoption mapping for the explicit v9 role slot. |
@@ -22,7 +22,7 @@ Model/provider choices are replaceable operational configuration. They do not re
 
 ## 2. Provider/model literals
 
-NaN exposes `nan/deepseek-v4-flash` and `nan/glm5.3-flash`. The first is the DeepSeek V4.1 Flash family under NaN's model id. Luna remains `openai-codex/gpt-5.6-luna`.
+NaN exposes `nan/deepseek-v4-flash` and `nan/glm5.3-flash`. The first is the DeepSeek V4.1 Flash family under NaN's model id. Luna remains `openai-codex/gpt-5.6-luna`. Current NaN client output budgets are `65536` in Pi/OpenCode; DeepSeek effort labels are non-operative for reasoning depth while GLM effort is effective.
 
 ## 3. Machine-global authority
 
@@ -42,8 +42,22 @@ Under GP2.7, refuter/validator were intentionally unpinned. Under the current v9
 
 ## 5. Preserved Sep-12 evidence
 
-The role-diverse design remains grounded in Sep-12 evidence: GLM for coordinator/writer; Luna for fresh verification/readability; DeepSeek V4.1 for material reliability/resilience/risk. Full historical evidence: `docs/ROUTING_QUALIFICATION_EVIDENCE_20260912.md`.
+The role-diverse design remains grounded in Sep-12 evidence: GLM for coordinator/writer; Luna for fresh verification/readability; DeepSeek V4.1 was then preferred for material reliability/resilience/risk. That historical result remains evidence, but current `review-reliability` is superseded operationally by the Sep-20 NaN length-failure field evidence. Full historical evidence: `docs/ROUTING_QUALIFICATION_EVIDENCE_20260912.md`; current hotfix evidence: `docs/NAN_DEEPSEEK_RELIABILITY_LENGTH_EVIDENCE_20260920.md`.
 
-## 6. No silent fallback
+## 6. Current NaN capability boundary
+
+See `docs/NAN_PROVIDER_CAPABILITIES_V1.md`.
+
+```text
+DeepSeek Pi/OpenCode output budget = 65536
+GLM Pi/OpenCode output budget      = 65536
+DeepSeek reasoning_effort control  = NON_EFFECTIVE
+GLM reasoning_effort control       = low/medium/high/max
+review-reliability                 = Luna high
+```
+
+OpenCode Go is not an operational subscription and is not a current Atenea fallback route.
+
+## 7. No silent fallback
 
 Every pinned role resolves the exact provider/model/effort or fails closed. Pi's ordinary default is not an implicit fallback for review roles.

@@ -30,17 +30,17 @@ Pi's ordinary default remains `nan/deepseek-v4-flash` at `medium`. NaN serves th
 | `gentle-ai-worker` | `nan/glm5.3-flash` | `high` |
 | `gentle-ai-verify` | `openai-codex/gpt-5.6-luna` | `high` |
 | `review-readability` | `openai-codex/gpt-5.6-luna` | `high` |
-| `review-reliability` | `nan/deepseek-v4-flash` | `high` |
+| `review-reliability` | `openai-codex/gpt-5.6-luna` | `high` |
 | `review-resilience` | `nan/deepseek-v4-flash` | `high` |
 | `review-risk` | `nan/deepseek-v4-flash` | `high` |
 | `review-refuter` | `nan/deepseek-v4-flash` | `high` |
 | `review-validator` | `openai-codex/gpt-5.6-luna` | `high` |
 
-The parent route is explicit at launch; it is not inferred from Pi's ordinary V4 default.
+The parent route is explicit at launch; it is not inferred from Pi's ordinary V4 default. NaN DeepSeek/GLM client output budgets are `65536`. DeepSeek effort is not an effective reasoning-depth control; GLM effort is. `review-reliability` moved to Luna high after a current NaN DeepSeek `stopReason: length` empty-output failure. See `docs/NAN_PROVIDER_CAPABILITIES_V1.md`.
 
 ## 3. Preflight
 
-Before product mutation verify current Pi `0.86.1`, Gentle Pi `3.3.0`, package-local Gentle AI `3.4.0`; V4/GLM NaN and Luna OpenAI-Codex auth ready; active profile `atenea-one-touch`; `./tools/apply-gentle-330-atenea-host-bridge.sh --check` PASS; no unexpected higher-priority project override; and exact repo/worktree/HEAD/delivery state. Q11 single-acceptance evidence was captured on Pi `0.86.0`.
+Before product mutation verify current Pi `0.86.1`, Gentle Pi `3.3.0`, package-local Gentle AI `3.4.0`; V4/GLM NaN and Luna OpenAI-Codex auth ready; active profile `atenea-one-touch`; `node tools/check-nan-runtime-config.mjs` PASS; `./tools/apply-gentle-330-atenea-host-bridge.sh --check` PASS; no unexpected higher-priority project override; and exact repo/worktree/HEAD/delivery state. Q11 single-acceptance evidence was captured on Pi `0.86.0`.
 
 Unexpected drift is STOP, not silent fallback.
 

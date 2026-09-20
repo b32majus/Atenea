@@ -47,7 +47,7 @@ visible persistent Pi/Gentle-Pi 3.3 parent
 
 ## 1. Preflight
 
-Confirm exact repo/worktree/HEAD; `EXECUTION_READY`; current Pi `0.86.1`, Herdr `0.9.0`, GP `3.3.0`, GAI `3.4.0`; active `atenea-one-touch` profile; `nan/deepseek-v4-flash` auth ready; `./tools/apply-gentle-330-atenea-host-bridge.sh --check` PASS; no unexpected local override; delivery boundary explicit. Q11 single-acceptance evidence was captured on Pi `0.86.0`; `0.86.1` is the current runtime pending ordinary-train parity evidence.
+Confirm exact repo/worktree/HEAD; `EXECUTION_READY`; current Pi `0.86.1`, Herdr `0.9.0`, GP `3.3.0`, GAI `3.4.0`; active `atenea-one-touch` profile; V4/GLM/Luna auth ready; `node tools/check-nan-runtime-config.mjs` PASS; `./tools/apply-gentle-330-atenea-host-bridge.sh --check` PASS; no unexpected local override; delivery boundary explicit. Q11 single-acceptance evidence was captured on Pi `0.86.0`; `0.86.1` is the current runtime pending ordinary-train parity evidence.
 
 ## 2. Starting the persistent parent after explicit authorization
 
@@ -55,7 +55,7 @@ Confirm exact repo/worktree/HEAD; `EXECUTION_READY`; current Pi `0.86.1`, Herdr 
 pi --model nan/glm5.3-flash --thinking high
 ```
 
-Pi's ordinary default remains `nan/deepseek-v4-flash` medium. The persistent train parent launches on `nan/glm5.3-flash` high; configured Gentle roles follow the current mixed routing ledger. The all-V4 route was qualification-only. `max_concurrency=1`.
+Pi's ordinary default remains `nan/deepseek-v4-flash` medium. The persistent train parent launches on `nan/glm5.3-flash` high; configured Gentle roles follow the current mixed routing ledger. `review-reliability` is Luna high after the Sep-20 NaN DeepSeek length failure; resilience/risk/refuter remain NaN DeepSeek pending contrary field evidence. The all-V4 route was qualification-only. `max_concurrency=1`.
 
 ## 3. Operator prompt and the one touch
 
@@ -72,6 +72,7 @@ A process restart/new/resume/fork/quit/revoke creates a new one-touch boundary.
 - The current Gentle Pi 3.3.0 install must match the qualified host bridge hash. `gentle_review_capture_current_group` is only for the exact current retained reviewer group after fresh STATUS; refuter/validator use their exact provider-issued operations.
 - `host_consent_resolved` is a host signal that consent is already complete, not synthetic permission.
 - Do not amend a work-unit commit after ODD evidence has recorded its SHA; write final SHA bookkeeping in a subsequent evidence commit until upstream fixes the reproduced identity loop.
+- `reviewer-empty-output` with `stopReason: length` is STOP, not automatic retry. Preserve the lineage/candidate and reconcile role/budget before another capture.
 
 ## 5. Historical OpenCode autonomous worker transport
 

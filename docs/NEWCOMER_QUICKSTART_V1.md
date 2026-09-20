@@ -124,14 +124,14 @@ Persistent parent/coordinator    nan/glm5.3-flash · high
 gentle-ai-worker                 nan/glm5.3-flash · high
 gentle-ai-verify                 openai-codex/gpt-5.6-luna · high
 review-readability               openai-codex/gpt-5.6-luna · high
-review-reliability               nan/deepseek-v4-flash · high
+review-reliability               openai-codex/gpt-5.6-luna · high
 review-resilience                nan/deepseek-v4-flash · high
 review-risk                      nan/deepseek-v4-flash · high
 review-refuter                   nan/deepseek-v4-flash · high
 review-validator                 openai-codex/gpt-5.6-luna · high
 ```
 
-NaN's `deepseek-v4-flash` id is the DeepSeek V4.1 Flash family. The active machine profile is `atenea-one-touch` and deliberately does not override Pi's orchestrator default; train parents launch GLM high explicitly.
+NaN's `deepseek-v4-flash` id is the DeepSeek V4.1 Flash family. The active machine profile is `atenea-one-touch` and deliberately does not override Pi's orchestrator default; train parents launch GLM high explicitly. Current NaN client output budgets are `65536`; DeepSeek effort labels do not control reasoning depth. `review-reliability` is Luna high after current NaN DeepSeek length-failure evidence. See `docs/NAN_PROVIDER_CAPABILITIES_V1.md`.
 
 Missing/rejected pinned routes fail closed; no silent fallback. See `docs/ROUTING_EVIDENCE_LEDGER_V1.md`.
 

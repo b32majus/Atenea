@@ -134,7 +134,9 @@ There is no normal external Pi supervisor, pi-intercom consent relay, Herdr RPA 
 
 Current recipe: `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md`.
 
-Current operational routing is deliberately role-diverse: NaN GLM 5.3 Flash high for the persistent parent and gentle-ai-worker; OpenAI-Codex Luna high for gentle-ai-verify, review-readability, and review-validator; NaN DeepSeek V4 Flash high for review-reliability, review-resilience, review-risk, and review-refuter. Pi's ordinary default remains nan/deepseek-v4-flash medium and max_concurrency=1. The all-V4 profile was temporary Q11 qualification, not production policy.
+Current operational routing is deliberately role-diverse: NaN GLM 5.3 Flash high for the persistent parent and gentle-ai-worker; OpenAI-Codex Luna high for gentle-ai-verify, review-readability, **review-reliability**, and review-validator; NaN DeepSeek V4 Flash high for review-resilience, review-risk, and review-refuter. Pi's ordinary default remains nan/deepseek-v4-flash medium and max_concurrency=1. The all-V4 profile was temporary Q11 qualification, not production policy.
+
+NaN client output budgets are `65536` for both active NaN models in Pi and OpenCode. DeepSeek `medium/high` is profile metadata, not effective reasoning-depth control; GLM `low/medium/high/max` is effective. The reliability role moved to Luna after a real NaN DeepSeek reviewer returned `reviewer-empty-output` with `stopReason: length` and no mutation. See `docs/NAN_PROVIDER_CAPABILITIES_V1.md`.
 
 ## Normative contract
 
@@ -177,6 +179,10 @@ Herdr                                            0.9.0
 Gentle Pi                                        3.3.0
 Gentle AI                                        3.4.0 package-paired
 DEFAULT_PI_MODEL                                 nan/deepseek-v4-flash medium
+NAN_DEEPSEEK_CLIENT_OUTPUT_BUDGET               65536
+NAN_GLM_CLIENT_OUTPUT_BUDGET                    65536
+DEEPSEEK_REASONING_EFFORT_EFFECTIVE             NO
+REVIEW_RELIABILITY_ROUTE                        openai-codex/gpt-5.6-luna high
 PERSISTENT_TRAIN_PARENT                         nan/glm5.3-flash high
 INTERNAL_MICRO_ORCHESTRATION                    GENTLE_SHELL_ODD
 FRESH_CHILD_PER_EXTERNAL_TICKET                 NOT_AN_ATENEA_INVARIANT

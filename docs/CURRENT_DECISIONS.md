@@ -371,14 +371,14 @@ persistent parent             nan/glm5.3-flash · high
 gentle-ai-worker              nan/glm5.3-flash · high
 gentle-ai-verify              openai-codex/gpt-5.6-luna · high
 review-readability            openai-codex/gpt-5.6-luna · high
-review-reliability            nan/deepseek-v4-flash · high
+review-reliability            openai-codex/gpt-5.6-luna · high
 review-resilience             nan/deepseek-v4-flash · high
 review-risk                   nan/deepseek-v4-flash · high
 review-refuter                nan/deepseek-v4-flash · high
 review-validator              openai-codex/gpt-5.6-luna · high
 ```
 
-NaN serves the DeepSeek V4.1 Flash family under model id `deepseek-v4-flash`. Luna remains on OpenAI-Codex.
+NaN serves the DeepSeek V4.1 Flash family under model id `deepseek-v4-flash`. Luna remains on OpenAI-Codex. The original C-045 reliability pin was superseded later on 2026-09-20 by C-050 after a current NaN DeepSeek reviewer exhausted output before emitting text.
 
 GP3.3's v9 role contract requires explicit user-owned routing for host-mediated refuter/validator slots when requested. Their current mappings are a GP3.3 compatibility/adoption decision, not a retroactive claim that GP2.7 had those pins.
 
@@ -411,6 +411,50 @@ Deletion trigger: upstream ships equivalent supported exact-binding transport an
 Registry ON/OFF timings crossed over, warm global-vs-clean Agent Home medians were effectively equal, and the first cold clean start exposed a large pre-provider/session-start delay consistent with initial Fast File Finder scanning plus host variability. Do not disable Skill Registry, remove Pretty or clean Agent Home by ritual on the current evidence.
 
 Evidence: `docs/GP33_Q10_Q11_ADOPTION_EVIDENCE_20260920.md`.
+
+## C-049 — NaN client output budgets are 65536; reasoning controls must match provider semantics
+
+**Accepted operationally 2026-09-20.**
+
+The machine-global Pi and OpenCode declarations for `nan/deepseek-v4-flash` and `nan/glm5.3-flash` use a `65536` client output budget while preserving the provider-published ~1M context windows.
+
+NaN's OpenCode documentation identifies output limit as a client-side budget and its Pi documentation explains that reasoning and answer share the per-response token budget. Current field evidence had already produced real `stopReason: length` turns at the former `32768` declaration.
+
+DeepSeek V4 Flash does not expose effective reasoning-depth control through `reasoning_effort`; Pi must declare `supportsReasoningEffort=false` for that NaN model. GLM 5.3 Flash supports effective `low`/`medium`/`high`/`max`; current parent/worker remain `high`.
+
+`65536` is an Atenea client-budget setting, not a claim about NaN's hard server maximum.
+
+Authority: `docs/NAN_PROVIDER_CAPABILITIES_V1.md`.
+
+## C-050 — `review-reliability` moves from NaN DeepSeek to Luna after empty-output length failure
+
+**Accepted operationally from real field evidence 2026-09-20.**
+
+A current Symphonia candidate reached `review-reliability` and the reviewer returned:
+
+```text
+failure.kind        reviewer-empty-output
+failure.stage       pi
+reviewer.stopReason length
+timed_out           false
+mutation_performed  false
+```
+
+The lineage/candidate remained intact and the same collect slot was reoffered. This occurred after the NaN client output budget had already been raised to `65536`, so the budget increase alone is not a sufficient reliability-role fix.
+
+Current route:
+
+```text
+review-reliability  openai-codex/gpt-5.6-luna · high
+```
+
+Luna High was already acceptable in the Sep-12 role-specific reliability comparison and preserves independence from the GLM implementation worker. OpenCode Go is not an operational subscription and must not be used as a fallback merely because a residual credential reports ready.
+
+The historical Sep-12 result preferring DeepSeek for reliability remains valid evidence for the provider/model tested then. C-050 changes only the current operational route because the NaN-backed DeepSeek path has now demonstrated a blocking output-exhaustion failure.
+
+`review-resilience`, `review-risk`, and `review-refuter` remain on NaN DeepSeek until role-specific evidence says otherwise.
+
+Authority/evidence: `docs/NAN_DEEPSEEK_RELIABILITY_LENGTH_EVIDENCE_20260920.md`.
 
 ## C-006 — Normal git push is allowed; no publication-permission subsystem
 
