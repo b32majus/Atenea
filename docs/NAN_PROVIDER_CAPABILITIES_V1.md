@@ -10,35 +10,38 @@ Primary upstream authority:
 - `https://nan.builders/docs/pi`
 - `https://nan.builders/docs/opencode`
 - `https://nan.builders/docs/models`
-- `https://nan.builders/docs/agent-setup`
+- `https://nan.builders/docs/vscode`
+- `https://nan.builders/docs/other-tools`
 
-## 1. Current client budgets
+## 1. Current model ceilings
 
 ```text
 nan/deepseek-v4-flash
   contextWindow / context = 1048575
-  Pi maxTokens            = 65536
-  OpenCode limit.output   = 65536
+  Pi maxTokens            = 32768
+  OpenCode limit.output   = 32768
 
 nan/glm5.3-flash
   contextWindow / context = 1048576
-  Pi maxTokens            = 65536
-  OpenCode limit.output   = 65536
+  Pi maxTokens            = 32768
+  OpenCode limit.output   = 32768
 ```
 
-NaN currently publishes `32768` in its reference Pi/OpenCode blocks. Its OpenCode documentation describes `limit.output` as a **client-side budget rather than a server cap** and says to raise it when longer answers are required. Its Pi documentation likewise describes `maxTokens` as the per-answer budget visible to Pi and notes that reasoning and answer tokens share that budget.
+NaN's Pi, VS Code and other-tools documentation publishes `32768` as the maximum/ceiling for one answer for these routes. The OpenCode page describes `limit.output` as a client-side budget and notes that a client may raise it; that does not establish a larger provider/model ceiling. Atenea therefore declares the documented `32768` ceiling rather than advertising unsupported headroom.
 
-Atenea therefore uses `65536` as the current client output budget for the two NaN models in active routing. This is **not** a claim that `65536` is a provider hard maximum.
+Do not inflate `contextWindow` / `limit.context` to solve output exhaustion. Context window and per-answer output ceiling are different controls.
 
-Do not inflate `contextWindow` / `limit.context` to solve output exhaustion. Context window and per-answer output budget are different controls.
+## 2. Why the temporary 65536 declaration was reverted
 
-## 2. Why 65536 is current
+On 2026-09-20 Atenea temporarily raised the client declaration from `32768` to `65536` while investigating real `stopReason: length` failures.
 
-On 2026-09-20 real Pi sessions produced `stopReason: length` on both `nan/deepseek-v4-flash` and `nan/glm5.3-flash` while the client declarations were still `32768`.
+That experiment did **not** establish a larger usable NaN output ceiling:
 
-Pi and OpenCode machine-global configuration were reconciled to `65536` for both models. New sessions should load that budget. Existing live processes are not assumed to hot-reload it.
+- the official NaN Pi/VS Code/other-tools surfaces still publish `32768`;
+- a real provider-materialized `review-risk` prompt reproduced the DeepSeek failure even while Pi's local model object advertised `maxTokens=65536`;
+- the provider settled the completion with `stopReason=length`, only `thinking` content and zero answer text.
 
-This budget increase is a mitigation, not proof that every `length` failure is solved. A later `review-reliability` capture on DeepSeek still exhausted the response budget before emitting review text; that field evidence is recorded in `docs/NAN_DEEPSEEK_RELIABILITY_LENGTH_EVIDENCE_20260920.md`.
+The machine-global Pi and OpenCode declarations are therefore reconciled back to `32768`. The mitigation for reviewer exhaustion is routing/slicing, not a fictitious local ceiling.
 
 ## 3. DeepSeek V4 Flash reasoning semantics
 
@@ -57,14 +60,12 @@ Pi's NaN model declaration must make this explicit:
 {
   "id": "deepseek-v4-flash",
   "reasoning": true,
-  "maxTokens": 65536,
+  "maxTokens": 32768,
   "compat": {
     "supportsReasoningEffort": false
   }
 }
 ```
-
-This prevents Pi from sending an OpenAI-style `reasoning_effort` value as though it were a meaningful depth control.
 
 ## 4. GLM 5.3 Flash reasoning semantics
 
@@ -83,7 +84,7 @@ The current Pi declaration must expose that mapping explicitly:
 {
   "id": "glm5.3-flash",
   "reasoning": true,
-  "maxTokens": 65536,
+  "maxTokens": 32768,
   "compat": {
     "supportsReasoningEffort": true
   },
@@ -103,27 +104,39 @@ The persistent parent and `gentle-ai-worker` remain GLM `high`.
 
 ## 5. Current routing consequence
 
-The NaN DeepSeek budget/effort behavior is now a routing constraint, not just model metadata.
-
-`review-reliability` no longer uses `nan/deepseek-v4-flash`. After a real current candidate produced `reviewer-empty-output` with `stopReason: length` at the reviewer stage and no mutation, the role moved to the already-qualified `openai-codex/gpt-5.6-luna` `high` route.
-
-Current DeepSeek material-review roles retained on NaN pending contrary field evidence:
+The current material-review routing is evidence-driven:
 
 ```text
-review-resilience
-review-risk
-review-refuter
+review-reliability  openai-codex/gpt-5.6-luna · high   # provisional; current failure is ASSESS-bypass-confounded
+review-risk         nan/glm5.3-flash · high             # exact materialized-prompt mitigation
+review-resilience   nan/deepseek-v4-flash · high       # no equivalent failure established yet
+review-refuter      nan/deepseek-v4-flash · high       # no equivalent failure established yet
 ```
 
-Do not move them pre-emptively without evidence. If the same `reviewer-empty-output` / `stopReason: length` pattern appears on one of those slots, STOP and reconcile that role rather than retry-looping.
+Luna was already acceptable in the Sep-12 reliability comparison. For risk, GLM was historically less well calibrated than DeepSeek in the Sep-12 synthetic role comparison, but the exact current provider-materialized risk prompt completes successfully on GLM while DeepSeek exhausts reasoning before answer text. The current split is therefore an operational mitigation, not a rewrite of historical quality evidence.
 
-## 6. Pi/OpenCode alignment
+OpenCode Go is not an operational subscription and is not an Atenea fallback route merely because residual auth may report ready.
 
-Machine-global configuration must keep these client budgets aligned:
+The independent DeepSeek in-process reviewer incident is documented in `docs/NAN_DEEPSEEK_INPROCESS_REVIEWER_INCIDENT_20260920.md`.
+
+## 6. ODD/native assessment is a separate boundary
+
+The Symphonia medium-candidate incident also exposed an independent orchestration defect: the parent skipped native `assess` and opened START over an accumulated candidate.
+
+That defect is tracked separately in `docs/ODD_REVIEW_ASSESS_BYPASS_EVIDENCE_20260920.md`.
+
+Do not use review slicing as an explanation for every DeepSeek failure: a correctly immediate `high` `review-risk` candidate reproduced the same empty-output/length signature.
+
+## 7. Machine alignment
+
+Machine-global configuration must keep the provider ceilings and adopted routes aligned:
 
 ```text
 ~/.pi/agent/models.json
 ~/.config/opencode/opencode.json
+~/.pi/agent/subagents.json
+~/.pi/gentle-ai/models.json
+~/.pi/gentle-ai/profiles.json
 ```
 
 Run:
@@ -134,37 +147,31 @@ node tools/check-nan-runtime-config.mjs
 
 The checker is a machine preflight guard. It verifies current NaN capability declarations plus the adopted role routing/profile. It does not own credentials, review lifecycle or execution.
 
-## 7. Failure interpretation
+## 8. Failure interpretation
 
 ```text
-stopReason=length
-→ inspect role + output budget; do not retry-loop
-
 reviewer-empty-output + stopReason=length
-→ STOP; no authority progress; preserve lineage/candidate and reconcile the role
+→ STOP; no authority progress; preserve lineage/candidate; do not retry-loop
 
-401 / auth not ready
-→ credential/provider readiness
+medium candidate without prior ASSESS
+→ orchestration defect; restore native assess/next-transition ownership
 
-402 / 429
-→ quota/rate-limit/provider capacity
-
-slow first token with auth ready
-→ provider/cluster latency investigation
+high candidate + repeated DeepSeek length/empty-output
+→ independent reviewer/provider incident; route only by explicit evidence
 
 context-length rejection
 → inspect real context and compaction; do not inflate context blindly
 ```
 
-No silent provider/model/budget fallback is allowed.
+No silent provider/model/effort fallback is allowed.
 
-## 8. Revalidation triggers
+## 9. Revalidation triggers
 
 Re-read NaN upstream docs and re-run machine checks when any of these change:
 
-- NaN model ids, context windows or output contract;
+- NaN model ids, context windows or output ceilings;
 - NaN reasoning-control contract;
 - Pi/OpenCode model-schema semantics;
 - current role routing;
-- repeated `length` stops after the `65536` client budget;
-- NaN publishes a new explicit server-side output maximum.
+- the open DeepSeek in-process reviewer incident is closed;
+- NaN publishes a larger explicit server-side output maximum.

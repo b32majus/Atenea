@@ -275,7 +275,7 @@ For a fresh environment, read `docs/INSTALLATION_AND_OPERATION_V1.md`.
 
 For the current NaN-backed routes, also read `docs/NAN_PROVIDER_CAPABILITIES_V1.md`. Before a new execution session, `node tools/check-nan-runtime-config.mjs` must confirm Pi/OpenCode output-budget alignment and Pi reasoning-control semantics.
 
-Atenea has no bespoke orchestration installer/launcher. The installation guide identifies the current qualified upstream stack, verification gates, the narrow version/hash-guarded GP3.3 host bridge and the normal operator start path while keeping fast-changing upstream installation mechanics owned upstream.
+Atenea has no bespoke orchestration installer/launcher. The installation guide identifies the current qualified upstream stack, verification gates, the narrow version/hash-guarded GP3.3 host + assess compatibility bridges and the normal operator start path while keeping fast-changing upstream installation mechanics owned upstream.
 
 UI/UX candidates under issue #41 are not part of the qualified Atenea installation merely because they are discussed in current docs. Their installation/cutover follows the separate adjudication and qualification boundary.
 

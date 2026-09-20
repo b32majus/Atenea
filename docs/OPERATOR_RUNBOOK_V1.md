@@ -55,7 +55,7 @@ Confirm exact repo/worktree/HEAD; `EXECUTION_READY`; current Pi `0.86.1`, Herdr 
 pi --model nan/glm5.3-flash --thinking high
 ```
 
-Pi's ordinary default remains `nan/deepseek-v4-flash` medium. The persistent train parent launches on `nan/glm5.3-flash` high; configured Gentle roles follow the current mixed routing ledger. `review-reliability` is Luna high after the Sep-20 NaN DeepSeek length failure; resilience/risk/refuter remain NaN DeepSeek pending contrary field evidence. The all-V4 route was qualification-only. `max_concurrency=1`.
+Pi's ordinary default remains `nan/deepseek-v4-flash` medium. The persistent train parent launches on `nan/glm5.3-flash` high; configured Gentle roles follow the current mixed routing ledger. `review-reliability` is provisionally Luna high while its NaN failure remains confounded by the ASSESS bypass; `review-risk` is GLM high after exact materialized-prompt reproduction; resilience/refuter remain NaN DeepSeek pending contrary field evidence. The all-V4 route was qualification-only. `max_concurrency=1`.
 
 ## 3. Operator prompt and the one touch
 
@@ -69,10 +69,11 @@ A process restart/new/resume/fork/quit/revoke creates a new one-touch boundary.
 
 ## 4. Current GP3.3 compatibility guardrails
 
-- The current Gentle Pi 3.3.0 install must match the qualified host bridge hash. `gentle_review_capture_current_group` is only for the exact current retained reviewer group after fresh STATUS; refuter/validator use their exact provider-issued operations.
+- The current Gentle Pi 3.3.0 install must match the qualified host + assess bridge hashes. `gentle_review_capture_current_group` is only for the exact current retained reviewer group after fresh STATUS; the assess bridge only preserves provider-owned GAI3.4 timing fields/continuation and does not calculate review timing; refuter/validator use their exact provider-issued operations.
 - `host_consent_resolved` is a host signal that consent is already complete, not synthetic permission.
 - Do not amend a work-unit commit after ODD evidence has recorded its SHA; write final SHA bookkeeping in a subsequent evidence commit until upstream fixes the reproduced identity loop.
-- `reviewer-empty-output` with `stopReason: length` is STOP, not automatic retry. Preserve the lineage/candidate and reconcile role/budget before another capture.
+- After every delegated/substantial work-unit commit, call `gentle_review` `assess`, inspect provider-owned `review_due` / `review_due_reason`, and follow `wrapper_continuation`/STATUS when review is due. Never turn external-ticket completion into START and never recreate the provider slice threshold in Atenea.
+- `reviewer-empty-output` with `stopReason: length` is STOP, not automatic retry. Preserve the lineage/candidate and reconcile the affected route before another capture.
 
 ## 5. Historical OpenCode autonomous worker transport
 

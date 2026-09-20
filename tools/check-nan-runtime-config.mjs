@@ -49,7 +49,7 @@ if (pi) {
     if (!ds) failures.push("Pi nan/deepseek-v4-flash missing");
     else {
       eq(ds.contextWindow, 1048575, "Pi DeepSeek contextWindow");
-      eq(ds.maxTokens, 65536, "Pi DeepSeek maxTokens");
+      eq(ds.maxTokens, 32768, "Pi DeepSeek maxTokens");
       eq(ds.reasoning, true, "Pi DeepSeek reasoning");
       eq(ds?.compat?.supportsReasoningEffort, false, "Pi DeepSeek supportsReasoningEffort");
     }
@@ -57,7 +57,7 @@ if (pi) {
     if (!glm) failures.push("Pi nan/glm5.3-flash missing");
     else {
       eq(glm.contextWindow, 1048576, "Pi GLM contextWindow");
-      eq(glm.maxTokens, 65536, "Pi GLM maxTokens");
+      eq(glm.maxTokens, 32768, "Pi GLM maxTokens");
       eq(glm.reasoning, true, "Pi GLM reasoning");
       eq(glm?.compat?.supportsReasoningEffort, true, "Pi GLM supportsReasoningEffort");
 
@@ -84,12 +84,12 @@ if (oc) {
     if (!ds) failures.push("OpenCode nan/deepseek-v4-flash missing");
     else {
       eq(ds?.limit?.context, 1048575, "OpenCode DeepSeek context");
-      eq(ds?.limit?.output, 65536, "OpenCode DeepSeek output budget");
+      eq(ds?.limit?.output, 32768, "OpenCode DeepSeek output budget");
     }
     if (!glm) failures.push("OpenCode nan/glm5.3-flash missing");
     else {
       eq(glm?.limit?.context, 1048576, "OpenCode GLM context");
-      eq(glm?.limit?.output, 65536, "OpenCode GLM output budget");
+      eq(glm?.limit?.output, 32768, "OpenCode GLM output budget");
     }
   }
 }
@@ -100,7 +100,7 @@ const expectedSubagentRoles = {
   "review-readability": { model: "openai-codex/gpt-5.6-luna", effort: "high" },
   "review-reliability": { model: "openai-codex/gpt-5.6-luna", effort: "high" },
   "review-resilience": { model: "nan/deepseek-v4-flash", effort: "high" },
-  "review-risk": { model: "nan/deepseek-v4-flash", effort: "high" },
+  "review-risk": { model: "nan/glm5.3-flash", effort: "high" },
   "review-refuter": { model: "nan/deepseek-v4-flash", effort: "high" },
   "review-validator": { model: "openai-codex/gpt-5.6-luna", effort: "high" },
 };

@@ -373,12 +373,12 @@ gentle-ai-verify              openai-codex/gpt-5.6-luna · high
 review-readability            openai-codex/gpt-5.6-luna · high
 review-reliability            openai-codex/gpt-5.6-luna · high
 review-resilience             nan/deepseek-v4-flash · high
-review-risk                   nan/deepseek-v4-flash · high
+review-risk                   nan/glm5.3-flash · high
 review-refuter                nan/deepseek-v4-flash · high
 review-validator              openai-codex/gpt-5.6-luna · high
 ```
 
-NaN serves the DeepSeek V4.1 Flash family under model id `deepseek-v4-flash`. Luna remains on OpenAI-Codex. The original C-045 reliability pin was superseded later on 2026-09-20 by C-050 after a current NaN DeepSeek reviewer exhausted output before emitting text.
+NaN serves the DeepSeek V4.1 Flash family under model id `deepseek-v4-flash`. Luna remains on OpenAI-Codex. Sep-20 field diagnostics later superseded `review-reliability` provisionally to Luna and moved `review-risk` to NaN GLM High after the exact provider-materialized risk prompt reproduced DeepSeek thinking-only output exhaustion while GLM completed successfully. `review-resilience` and `review-refuter` remain on DeepSeek; historical Sep-12 DeepSeek reliability/risk quality remains evidence rather than current routing authority.
 
 GP3.3's v9 role contract requires explicit user-owned routing for host-mediated refuter/validator slots when requested. Their current mappings are a GP3.3 compatibility/adoption decision, not a retroactive claim that GP2.7 had those pins.
 
@@ -412,49 +412,84 @@ Registry ON/OFF timings crossed over, warm global-vs-clean Agent Home medians we
 
 Evidence: `docs/GP33_Q10_Q11_ADOPTION_EVIDENCE_20260920.md`.
 
-## C-049 — NaN client output budgets are 65536; reasoning controls must match provider semantics
+## C-049 — Honor NaN 32768 output ceilings and provider reasoning semantics
 
 **Accepted operationally 2026-09-20.**
 
-The machine-global Pi and OpenCode declarations for `nan/deepseek-v4-flash` and `nan/glm5.3-flash` use a `65536` client output budget while preserving the provider-published ~1M context windows.
+The machine-global Pi and OpenCode declarations for `nan/deepseek-v4-flash` and `nan/glm5.3-flash` use the NaN-published `32768` output ceiling while preserving the provider-published ~1M context windows.
 
-NaN's OpenCode documentation identifies output limit as a client-side budget and its Pi documentation explains that reasoning and answer share the per-response token budget. Current field evidence had already produced real `stopReason: length` turns at the former `32768` declaration.
+A temporary `65536` client declaration was tested while diagnosing reviewer truncation. It did not change the provider-side behavior and MUST NOT remain as runtime authority.
 
-DeepSeek V4 Flash does not expose effective reasoning-depth control through `reasoning_effort`; Pi must declare `supportsReasoningEffort=false` for that NaN model. GLM 5.3 Flash supports effective `low`/`medium`/`high`/`max`; current parent/worker remain `high`.
-
-`65536` is an Atenea client-budget setting, not a claim about NaN's hard server maximum.
+DeepSeek V4 Flash does not expose effective reasoning-depth control through `reasoning_effort`; Pi declares `supportsReasoningEffort=false`. GLM 5.3 Flash supports effective `low`/`medium`/`high`/`max`.
 
 Authority: `docs/NAN_PROVIDER_CAPABILITIES_V1.md`.
 
-## C-050 — `review-reliability` moves from NaN DeepSeek to Luna after empty-output length failure
+## C-050 — Review timing is provider-owned; work-unit completion must pass through native ASSESS
 
-**Accepted operationally from real field evidence 2026-09-20.**
+**Accepted from field diagnosis 2026-09-20.**
 
-A current Symphonia candidate reached `review-reliability` and the reviewer returned:
+A Symphonia medium-risk candidate reached review as an accumulated 1,358-line committed diff because the parent performed native START without first invoking the already-qualified read-only `gentle_review assess` path after the work-unit boundary.
 
-```text
-failure.kind        reviewer-empty-output
-failure.stage       pi
-reviewer.stopReason length
-timed_out           false
-mutation_performed  false
-```
-
-The lineage/candidate remained intact and the same collect slot was reoffered. This occurred after the NaN client output budget had already been raised to `65536`, so the budget increase alone is not a sufficient reliability-role fix.
-
-Current route:
+This violated the ownership already proved by Q5/Q10:
 
 ```text
-review-reliability  openai-codex/gpt-5.6-luna · high
+work-unit identity durable
+→ native ASSESS
+→ read review_due / review_due_reason
+→ follow provider-owned continuation
+→ START only when native/ODD authority says review is due
 ```
 
-Luna High was already acceptable in the Sep-12 role-specific reliability comparison and preserves independence from the GLM implementation worker. OpenCode Go is not an operational subscription and must not be used as a fallback merely because a residual credential reports ready.
+Atenea MUST NOT translate `external ticket finished` into `START whole ticket`, and MUST NOT recreate the provider slicing policy with its own 400-line heuristic.
 
-The historical Sep-12 result preferring DeepSeek for reliability remains valid evidence for the provider/model tested then. C-050 changes only the current operational route because the NaN-backed DeepSeek path has now demonstrated a blocking output-exhaustion failure.
+Gentle AI 3.4 emits `candidate.consumed`, `review_due`, `review_due_reason`, and exact `next_transition`. Gentle Pi 3.3.0's model-visible assessment result discarded those additive timing fields. Until upstream exposes them natively, Atenea carries the narrow version/hash-guarded `patches/gentle-pi-3.3.0-atenea-assess-bridge.patch`, which preserves the fields and supplies a host-safe continuation into negotiated `gentle_review STATUS`. It does not calculate review timing or execute START itself.
 
-`review-resilience`, `review-risk`, and `review-refuter` remain on NaN DeepSeek until role-specific evidence says otherwise.
+Evidence: `docs/ODD_REVIEW_ASSESS_BYPASS_EVIDENCE_20260920.md`.
 
-Authority/evidence: `docs/NAN_DEEPSEEK_RELIABILITY_LENGTH_EVIDENCE_20260920.md`.
+## C-051 — NaN DeepSeek in-process reasoning exhaustion is role/prompt-specific; review-risk routes to GLM
+
+**Accepted from isolated reproduction 2026-09-20.**
+
+A separate high-risk review lineage proved that the Symphonia assessment bypass was not the only defect. `review-risk` on a 6-path / 884-line `high` candidate failed seven times with `reviewer-empty-output / stopReason=length`.
+
+The exact provider-materialized prompt was then replayed outside any lineage through the same in-process reviewer core:
+
+```text
+DeepSeek V4 Flash
+→ ~47.9 s
+→ contentTypes=["thinking"]
+→ textChars=0
+→ stopReason=length
+
+Luna High
+→ no final reviewer result within the intentionally shorter 180 s diagnostic bound
+→ not classified as provider failure because production timeout is much larger
+
+GLM 5.3 Flash High
+→ ~9.4 s
+→ stopReason=stop
+→ 13,588 input + 559 output tokens, including 129 reasoning tokens
+→ valid reviewer JSON
+→ exact subject hash
+→ inspection completed for all 6 paths
+```
+
+No diagnostic result was submitted to the real lineage.
+
+Current route consequence:
+
+```text
+review-risk        nan/glm5.3-flash · high
+review-reliability openai-codex/gpt-5.6-luna · high   # provisional
+review-resilience  nan/deepseek-v4-flash · high
+review-refuter     nan/deepseek-v4-flash · high
+```
+
+DeepSeek is not globally disqualified from review. The current reliability failure remains confounded by C-050's medium-candidate ASSESS bypass, so reliability stays on the already-acceptable Luna route until a correctly bounded NaN DeepSeek reliability probe is qualified. Historical reliability/resilience evidence remains valid evidence. If another correctly bounded DeepSeek role reproduces the same thinking-only exhaustion, STOP and requalify that role from new evidence.
+
+OpenCode Go is not an operational subscription/fallback even if residual credentials report ready.
+
+Evidence: `docs/NAN_DEEPSEEK_INPROCESS_REVIEWER_INCIDENT_20260920.md`.
 
 ## C-006 — Normal git push is allowed; no publication-permission subsystem
 
