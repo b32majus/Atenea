@@ -1,7 +1,7 @@
 # Atenea — Gentle Pi 2.7 Hybrid-Native Train Recipe v1
 
 Date: 2026-09-15
-Status: **CURRENT PINNED EXECUTION RECIPE**
+Status: **HISTORICAL GP2.7 ZERO-TOUCH RECIPE — superseded by `RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md`**
 
 Purpose: make the qualified GP2.7/GAI2.9.1 unattended train reproducible without re-teaching the lifecycle in every operator prompt. This recipe is operational detail under the normative harness contract.
 

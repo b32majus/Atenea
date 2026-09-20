@@ -1,6 +1,6 @@
 # Atenea — Current decisions after Stage 8
 
-Date: 2026-09-15
+Date: 2026-09-20
 
 This file is the short current decision index. Historical `docs/DECISIONS.md`, stage files and `docs/ATENEA_HANDOFF_20260830.md` remain evidence of how Atenea evolved, but their forward-looking status is superseded where it conflicts with this index, `README.md`, `docs/QUALIFICATION.md` or `docs/ATENEA_HARNESS_CONTRACT_V1.md`.
 
@@ -173,7 +173,7 @@ Native Gentle lens/refuter/targeted-validator model routing remains currently un
 
 ## C-036 — Historical GP2.5 / GAI2.7 worker epoch
 
-**SUPERSEDED for current operation by C-040/C-041; preserved as qualified historical/rollback evidence.**
+**SUPERSEDED for current operation by C-044/C-045; preserved as qualified historical/rollback evidence.**
 
 At acceptance, this worker epoch was Gentle Pi `2.5.0` with package-paired Gentle AI `2.7.0`. That historical promotion preserved the outer C-025/C-030 topology rather than replacing it:
 
@@ -193,7 +193,7 @@ explicit human execution authorization
 
 Gentle Pi 2.5 native Gentle Agents are the supported **inner** delegation seam. The fresh ticket worker remains the unit of responsibility and owns ticket interpretation, integration, deterministic verification, RDD, acknowledgement/burn and FINAL. A small ticket may be implemented directly; delegation is used only when it materially helps. Third-party `pi-subagents` is not part of the adopted path.
 
-The new standing review permission is qualified only as an attended interactive convenience. Creating it requires an explicit human choice and it is live-session/repository scoped. It therefore does **not** replace the unattended zero-touch path and does not justify a persistent Gentle parent across a night train.
+At that GP2.5 epoch, standing review permission was qualified only as an attended interactive convenience and did not replace that epoch's unattended zero-touch path. C-044 later supersedes this operational conclusion with GP3.3 one-touch session permission.
 
 In that historical unattended epoch, `extensions/atenea-rdd-consent-relay.mjs` was required: exact provider `consent/v3` is transported mechanically to the plain supervisor; the supervisor may return only bounded `GRANTED`/`DECLINED`; the worker executes the provider transition and remains sole Gentle lifecycle owner. Full GP2.5/GAI2.7 START → reviewer forecast/ACK → approved → acknowledgement/burn was qualified with zero human touch.
 
@@ -229,11 +229,11 @@ Luna writer/verify stays `high`; do not downgrade to medium merely to save negli
 
 See `docs/ROUTING_EVIDENCE_LEDGER_V1.md`.
 
-## C-038 — Sep-12 role-specific routing promotion: GLM builds, Luna verifies, V4.1 performs material RDD
+## C-038 — Historical Sep-12 role-family qualification: GLM builds, Luna verifies, V4.1 performs material RDD
 
-**Accepted by operator 2026-09-12 under #75; partially superseded structurally by C-040.**
+**Historical role-family evidence accepted 2026-09-12 under #75; current provider/literal routing is superseded by C-045.**
 
-C-037's old V4 supervisor, Luna-writer and unpinned-lens defaults were superseded by controlled real-work qualification plus explicit operator routing adoption. C-040 later removed the outer supervisor role from the normal topology; the surviving GLM/Luna/V4.1 role assignments remain current through the routing ledger.
+C-037's old V4 supervisor, Luna-writer and unpinned-lens defaults were superseded by controlled real-work qualification. The surviving GLM/Luna/V4.1 **role-family** rationale remains evidence; C-045 owns the current NaN/OpenAI-Codex provider literals and GP3.3 refuter/validator pins.
 
 ```text
 Atenea Pi supervisor
@@ -267,19 +267,19 @@ review-risk
 
 The routing is intentionally diverse: GLM builds/co-ordinates → Luna verifies → V4.1 challenges material reliability/resilience/risk, with Luna retained for readability because it showed lower severity inflation. Detailed worker, RDD, coordinator and verifier evidence is in `docs/ROUTING_QUALIFICATION_EVIDENCE_20260912.md`.
 
-## C-039 — Current Pi 0.85.1 / pi-lens 3.8.74 combination: Lens disabled, package retained
+## C-039 — Historical Pi 0.85.1 / pi-lens 3.8.74 slowdown exception
 
 **Accepted operationally 2026-09-12 under #75 evidence.**
 
 Isolation showed severe slowdown with Pi 0.85.1 + pi-lens 3.8.74 even when Gentle Pi was absent. Disabling exposed Lens features (`--no-lsp`, `--no-tests`, `--no-opengrep`, `--no-read-guard`, `--no-lens-context`, `--no-autoformat`, `--no-autofix`) did not materially change the slowdown. Plain Pi without Lens returned to normal performance.
 
-Therefore the Lens extension stays globally disabled on the current VPS; the package may remain installed. Do not repair it with Atenea glue and do not re-enable it merely as "diagnostic-only" on this exact version pair. A later upstream Lens/Pi combination may be separately requalified.
+For that historical version pair the Lens extension was globally disabled. The current GP3.3 machine profile does not depend on pi-lens. Do not repair it with Atenea glue and do not re-enable it merely as "diagnostic-only" on this exact version pair. A later upstream Lens/Pi combination may be separately requalified.
 
-## C-040 — Gentle Pi 2.7 / Gentle AI 2.9.1 persistent visible parent is the adopted unattended topology
+## C-040 — Historical Gentle Pi 2.7 / Gentle AI 2.9.1 persistent-parent zero-touch topology
 
-**Accepted from the 2026-09-15 bounded replacement/deletion qualification.**
+**Historical evidence from the 2026-09-15 bounded replacement/deletion qualification; superseded for normal operation by C-044.**
 
-The normal unattended topology is now:
+The then-adopted GP2.7 unattended topology was:
 
 ```text
 explicit human execution authorization + one bounded train prompt
@@ -299,9 +299,9 @@ This supersedes the **normal-current** topology portions of C-002/C-025/C-027/C-
 
 Evidence: `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md`.
 
-## C-041 — Native no-TTY Gentle AI START + same-lineage Gentle Pi adoption is the adopted zero-touch RDD bridge
+## C-041 — Historical GP2.7 no-TTY START + same-lineage adoption zero-touch bridge
 
-**Accepted from Q4–Q7 qualification on 2026-09-15.**
+**Historical evidence from Q4–Q7 qualification on 2026-09-15; superseded for normal operation by C-044.**
 
 After candidate reconciliation/tests, the visible parent runs package-local Gentle AI 2.9.1 native START through its ordinary Bash tool. Only that subprocess is non-TTY. No consent override is supplied. Gentle AI creates the candidate lineage without a host consent dialog; Gentle Pi then adopts **that exact lineage** through STATUS before reviewer capture.
 
@@ -321,9 +321,9 @@ Initial human prompt prose was directly proven **not** to create standing review
 
 ## C-042 — Parent visibility in Herdr is a current execution invariant
 
-**Accepted from the final single-ticket and two-ticket GP2.7 qualifications.**
+**Current principle, originally proven by the GP2.7 qualifications and retained under GP3.3.**
 
-Zero-touch must not require sacrificing operator observability. The persistent Pi/Gentle-Pi parent remains visible and interactive in Herdr throughout the train. The operator can watch child tasks, tests, native START result, lineage/status/capture, reviewers, approval/burn and checkpoint progression. Only the START subprocess is non-TTY.
+One-touch execution must not sacrifice operator observability. The persistent Pi/Gentle-Pi parent remains visible and interactive in Herdr throughout the train. The operator can watch child tasks, tests, review lifecycle, approval/burn and checkpoint progression; the first review-session grant is an explicit visible human action.
 
 Herdr remains process/session/observability substrate, not review or product authority. Human-touch claims are externally adjudicated because host TUI actions are not reliably represented in the model transcript.
 
@@ -336,6 +336,81 @@ After a PR/checkpoint is durably reconciled and the exact worktree contains no u
 Cleanup is never inferred from age alone and never authorizes force/reset. Dirty, active, open-PR, unique-commit or ambiguous paths are HOLD. Exact deletion remains an explicit human-authorized operation after a fresh inventory.
 
 Authority: `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md`.
+
+## C-044 — Gentle Pi 3.3 / Gentle AI 3.4 one-touch session permission is the current execution path
+
+**Accepted 2026-09-20; supersedes C-040/C-041 for normal operation.**
+
+Current stack is Pi `0.86.1`, Herdr `0.9.0`, Gentle Pi `3.3.0` and package-paired Gentle AI `3.4.0`.
+
+The first eligible consent-required review in a live Pi session/repository is resolved by one explicit human host action:
+
+```text
+Review and allow this session
+```
+
+That action runs the exact provider grant for the current frozen candidate and creates an in-memory host permission for later **fresh validated provider grants** in the same live Pi session and canonical Git repository, including sibling worktrees. Package-owned children may request that parent permission only through the package's bounded target-digest channel.
+
+This is `ONE_TOUCH`, not `ZERO_TOUCH`. Reload preserves the permission; new/resume/fork/quit/process restart/revoke ends it. It grants no verdict, acknowledgement, maintenance, delivery, merge or cross-repository authority.
+
+Q11b demonstrated `SINGLE_ACCEPTANCE_UNATTENDED=PASS`: after the first session grant, a later fresh candidate in the same live session/repository began/executed review without a second consent touch. The exact Q11 baseline used Pi `0.86.0`; Pi `0.86.1` is the current installed runtime.
+
+No external supervisor, Atenea consent relay, internal permission API or Herdr RPA is part of the normal path. The current GP3.3 host bridge is the narrow C-047 compatibility shim, not a supervisor or replacement review lifecycle.
+
+Current recipe: `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md`.
+
+## C-045 — Current routing restores GLM/Luna/V4 diversity; NaN owns GLM/V4 provider routes
+
+**Accepted 2026-09-20.**
+
+The temporary all-V4 routing used during runtime/performance qualification is not operational policy.
+
+```text
+Pi default                    nan/deepseek-v4-flash · medium
+persistent parent             nan/glm5.3-flash · high
+gentle-ai-worker              nan/glm5.3-flash · high
+gentle-ai-verify              openai-codex/gpt-5.6-luna · high
+review-readability            openai-codex/gpt-5.6-luna · high
+review-reliability            nan/deepseek-v4-flash · high
+review-resilience             nan/deepseek-v4-flash · high
+review-risk                   nan/deepseek-v4-flash · high
+review-refuter                nan/deepseek-v4-flash · high
+review-validator              openai-codex/gpt-5.6-luna · high
+```
+
+NaN serves the DeepSeek V4.1 Flash family under model id `deepseek-v4-flash`. Luna remains on OpenAI-Codex.
+
+GP3.3's v9 role contract requires explicit user-owned routing for host-mediated refuter/validator slots when requested. Their current mappings are a GP3.3 compatibility/adoption decision, not a retroactive claim that GP2.7 had those pins.
+
+The machine profile is `atenea-one-touch`. It deliberately has no `orchestrator` entry, so Pi's normal default remains V4 medium; the train parent is launched explicitly on GLM high.
+
+## C-046 — Gentle Shell/ODD owns internal micro-orchestration; Atenea owns the external frontier
+
+**Accepted from Q10 evidence 2026-09-20.**
+
+Atenea does not require a fresh package-owned child per external GitHub ticket. One persistent parent may traverse multiple externally authorized work units in the same bounded train. Gentle Shell/ODD owns internal classification, task state, worker delegation, allowed-edit enforcement, verification, work-unit commits, risk classification and review routing.
+
+Atenea retains the external repository/tracker authority hierarchy, `EXECUTION_READY`, frozen oracles where required, domain/safety invariants, authority re-read between external units/frontiers, fail-closed STOP behavior and publication/merge policy.
+
+Q10 proved C→D in one parent with separate commits and authority re-read after each unit while unauthorized E remained untouched.
+
+## C-047 — GP3.3 uses a narrow qualified host bridge until upstream owns exact-binding transport/signaling
+
+**Accepted temporary compatibility boundary 2026-09-20.**
+
+The current Gentle Pi 3.3.0 install carries the version/hash-guarded patch `patches/gentle-pi-3.3.0-atenea-host-bridge.patch`.
+
+It adds only `gentle_review_capture_current_group` for exact host-retained reviewer-group forwarding and `host_consent_resolved` to prevent a model from re-asking after native host consent is already complete. It is not a second RDD controller and must not force refuter/validator through group capture; those roles follow the exact provider-issued operations.
+
+Deletion trigger: upstream ships equivalent supported exact-binding transport and consent-resolved signaling.
+
+## C-048 — Startup performance must be measured; Skill Registry is not a proven root cause
+
+**Accepted operational finding 2026-09-20.**
+
+Registry ON/OFF timings crossed over, warm global-vs-clean Agent Home medians were effectively equal, and the first cold clean start exposed a large pre-provider/session-start delay consistent with initial Fast File Finder scanning plus host variability. Do not disable Skill Registry, remove Pretty or clean Agent Home by ritual on the current evidence.
+
+Evidence: `docs/GP33_Q10_Q11_ADOPTION_EVIDENCE_20260920.md`.
 
 ## C-006 — Normal git push is allowed; no publication-permission subsystem
 
@@ -504,7 +579,7 @@ Do not teach Pi Gentle command syntax or recovery state machines in ordinary ope
 
 Repeated `sleep 180` / `sleep 300` polling degraded #76, and a T5 supervisor later recreated the same failure mode with `sleep 50` loops while the worker was already blocked on pi-intercom. Herdr `agent_status` also reported `idle` while Pi remained actively working, so it is not a lifecycle clock.
 
-In the historical outer-supervisor Gentle Pi path, the proven pattern was launch/prompt worker → supervisor ends its turn → pi-intercom inbound wakes it only for bounded decisions or FINAL. That transport is no longer the normal GP2.7 topology. The durable rule retained by C-040 is narrower: use package/native lifecycle events and bounded waits; fixed `sleep`, `for`/`while` polling, periodic pane reads and long `herdr agent wait` are not normal coordination mechanisms.
+In the historical outer-supervisor Gentle Pi path, the proven pattern was launch/prompt worker → supervisor ends its turn → pi-intercom inbound wakes it only for bounded decisions or FINAL. That transport is no longer the normal topology. The durable rule retained by C-040 is narrower: use package/native lifecycle events and bounded waits; fixed `sleep`, `for`/`while` polling, periodic pane reads and long `herdr agent wait` are not normal coordination mechanisms.
 
 For runtimes without an inbound event surface, use the narrowest one-shot Herdr/native wait/state primitive necessary; never build a scheduler, daemon or polling controller to compensate.
 
@@ -663,15 +738,14 @@ A graph/index never outranks source code, accepted product/spec authority, deter
 
 ## Current sequence
 
-1. human + Cora read current Atenea authority and the target project's current authority/state;
-2. classify only enough to choose the minimum shaping path; reuse valid existing specs/indexes/checkpoints rather than regenerate them;
-3. use Matt/OpenSpec/Impeccable and optional Repository Intelligence only when their task trigger/value warrants it;
-4. explicitly promote a bounded real work item to `EXECUTION_READY`;
-5. explicit human authorization starts the run; the human or Cora/DC may perform the mechanical plain-Pi supervisor launch and submit one bounded Atenea execution/train prompt;
-6. for pinned work, launch authority pre-resolves literal runtime/model parameters and any required frozen-oracle path/SHA; Pi verifies those anchors, extracts the actual Herdr pane id deterministically, launches a separate Pi/Gentle-Pi worker and reports pane/name;
-7. the fresh Pi/Gentle-Pi 2.5 worker reads project instructions before product write and owns the ticket; it may implement directly or use native Gentle Agents, but always owns integration, deterministic verification and every Gentle lifecycle transition; the supervisor executes zero `gentle-ai` commands;
-8. supervision is event-driven through pi-intercom: no fixed polling, long waits or `agent_status` lifecycle inference;
-9. Pi grants only already-authorized bounded operational decisions/permissions without unnecessary human escalation; missing/mismatched oracle/spawn prerequisites fail closed with no alternate-runtime fallback;
-10. genuine human-owned decisions are relayed and pause the run; final merge remains human;
-11. after exact RDD acknowledgement/burn, one fresh pre-publication authority revalidation, normal publication and reconciliation, Pi rediscovers frontier, creates a fresh worker for the next compatible ticket, or stops when exhausted;
-12. build new Atenea glue only after a real horizontal gap survives the upstream-first change test.
+1. human + Cora read current Atenea and target-project authority;
+2. shape/reconcile until a bounded item/train is explicitly `EXECUTION_READY`;
+3. verify GP3.3/GAI3.4 runtime, `atenea-one-touch` routing and exact repo/worktree state;
+4. start one visible persistent parent explicitly on `nan/glm5.3-flash` `high`;
+5. submit one bounded train prompt;
+6. on the first valid review consent only, human selects `Review and allow this session`;
+7. let Gentle Shell/ODD own internal decomposition/delegation/verification; at provider review boundaries follow the exact native role transition through APPROVED + acknowledgement/burn;
+8. later reviews in the same live Pi session/canonical repository use fresh validated grants without another review-consent touch;
+9. re-read external authority between authorized units/frontiers and continue only while the next work remains inside the explicit authorization; otherwise STOP;
+10. final merge remains human unless separately authorized;
+11. new Atenea glue requires a demonstrated upstream ownership gap.

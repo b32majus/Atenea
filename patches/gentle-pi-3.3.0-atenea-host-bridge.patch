@@ -1,0 +1,110 @@
+--- gentle-ai.ts.upstream-3.3.0
++++ gentle-ai.ts
+@@ -4803,6 +4803,23 @@
+ 	workspaceRoot?: string;
+ }
+ 
++const REVIEW_CAPTURE_CURRENT_GROUP_PARAMETERS = {
++	type: "object",
++	additionalProperties: false,
++	required: ["lineageId"],
++	properties: {
++		lineageId: { type: "string", minLength: 1, description: "Exact lineage from the current provider-issued collect transition already registered by fresh STATUS." },
++		reviewerRunAcknowledged: { type: "boolean", description: "Required after the one group forecast; authorizes exactly the forecast reviewer runs." },
++		workspaceRoot: { type: "string", description: "Optional explicit existing Git worktree root; defaults to the current session worktree." },
++	},
++} as const;
++
++interface ReviewCaptureCurrentGroupParameters {
++	lineageId: string;
++	reviewerRunAcknowledged?: boolean;
++	workspaceRoot?: string;
++}
++
+ const REVIEW_SCOPE_PARAMETERS = {
+ 	type: "object",
+ 	additionalProperties: false,
+@@ -8830,6 +8847,65 @@
+ 	};
+ 
+ 	pi.registerTool({
++		name: "gentle_review_capture_current_group",
++		renderShell: "self",
++		label: "Gentle Review Capture Current Group",
++		description: "Capture the complete current provider-issued reviewer group already retained by the host from fresh STATUS. The model never retransmits opaque collectBindings; the host forwards the exact registered bytes.",
++		promptSnippet: "After fresh STATUS offers a complete reviewer group, use this tool with lineageId instead of copying collectBindings.",
++		promptGuidelines: [
++			"Call only after fresh target-scoped STATUS in this same live Pi session has offered the current materialize reviewer group.",
++			"First call without reviewerRunAcknowledged to obtain the native bounded forecast, then call again with reviewerRunAcknowledged: true. Never invent bindings, lenses, prompts, verdicts, or routes.",
++		],
++		parameters: REVIEW_CAPTURE_CURRENT_GROUP_PARAMETERS,
++		executionMode: "sequential",
++		renderCall(args, theme, context) {
++			return renderGentleAiLifecycleCall("review capture current group", theme, context as GentleAiRenderContext | undefined);
++		},
++		renderResult(result, options, theme, context) {
++			return renderGentleAiResult(result, options, theme, context as GentleAiRenderContext | undefined);
++		},
++		async execute(_toolCallId, parameters, signal, _onUpdate, ctx) {
++			if (signal?.aborted) throw new Error("Review capture current group was cancelled");
++			const typed = parameters as ReviewCaptureCurrentGroupParameters;
++			const sessionKey = pendingReviewConsentSessionKey(ctx, pendingReviewConsentFallbackKey);
++			const selections = processRetainedNativeStatusSelections.get(sessionKey) ?? processRetainedNativeStatusSelections.set(sessionKey, new Map()).get(sessionKey)!;
++			const workspaceRoot = resolveReviewControllerWorkspaceRoot(typed.workspaceRoot, ctx.cwd, candidateViews, typed.lineageId);
++			const prefix = "capture\u0000";
++			const collectBindings: string[] = [];
++			for (const [key, selection] of selections) {
++				if (!key.startsWith(prefix) || !isRetainedNativeCaptureRoute(selection)) continue;
++				if (selection.workspaceRoot !== workspaceRoot || selection.lineageId !== typed.lineageId) continue;
++				collectBindings.push(key.slice(prefix.length));
++			}
++			if (collectBindings.length === 0) {
++				const details = {
++					tool: "gentle_review_capture_current_group",
++					status: "blocked",
++					outcome: "current-reviewer-group-unavailable",
++					next_action: "Call fresh target-scoped gentle_review STATUS for this lineage in this same live session, then retry without transcribing collectBindings.",
++				};
++				return { content: [{ type: "text", text: JSON.stringify(details) }], details };
++			}
++			const details = await executeReviewCaptureGroupOperation(
++				{
++					lineageId: typed.lineageId,
++					collectBindings,
++					...(typed.reviewerRunAcknowledged === undefined ? {} : { reviewerRunAcknowledged: typed.reviewerRunAcknowledged }),
++					workspaceRoot,
++				},
++				ctx.cwd,
++				nativeReviewCli,
++				signal,
++				candidateViews,
++				selections,
++				true,
++				ctx.modelRegistry,
++			);
++			return { content: [{ type: "text", text: JSON.stringify(details) }], details };
++		},
++	});
++
++	pi.registerTool({
+ 		name: "gentle_review_capture_group",
+ 		renderShell: "self",
+ 		label: "Gentle Review Capture Group",
+@@ -9048,6 +9124,17 @@
+ 					}
+ 				}
+ 			}
++			if (completedGrantedReviewConsent(details)) {
++				const resolvedDetails = {
++					...details,
++					host_consent_resolved: true,
++					host_instruction: "Consent is already resolved by the native host. Do not call ask_user_choice or ask the human again. Continue only with the exact next_transition returned by the provider.",
++				};
++				return {
++					content: [{ type: "text", text: JSON.stringify(resolvedDetails) }],
++					details: resolvedDetails,
++				};
++			}
+ 			return {
+ 				content: [{ type: "text", text: JSON.stringify(details) }],
+ 				details,
