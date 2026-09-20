@@ -22,6 +22,7 @@ Do not recover current execution policy from historical Stage files or `docs/ATE
 - Fast newcomer map (non-normative): `docs/NEWCOMER_QUICKSTART_V1.md`
 - Safe target-repository entry reconciliation: `docs/REPOSITORY_ENTRY_RECONCILIATION_V1.md`
 - Current role/model evidence ledger: `docs/ROUTING_EVIDENCE_LEDGER_V1.md`
+- Current work-unit composition / oversize-recovery policy: `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`
 - Normative harness/runtime boundaries: `docs/ATENEA_HARNESS_CONTRACT_V1.md`
 - Project-entry / start-or-continue procedure: `docs/START_HERE.md`
 - Current decisions: `docs/CURRENT_DECISIONS.md`
@@ -43,7 +44,8 @@ Do not recover current execution policy from historical Stage files or `docs/ATE
 - Brownfield preserves repo-native authority; OpenSpec is delta-first when it materially adds value, not by ritual.
 - Repository Intelligence is optional derived evidence for sufficiently complex brownfields. Cora may recommend it; Pi must not invent/install it as an execution-time methodology decision.
 - From `EXECUTION_READY`: one persistent Pi + Gentle Pi 3.3 parent stays visible in Herdr; Gentle Shell/ODD owns internal classification, tasking, bounded delegation, verification, work-unit commits and risk/review routing inside the externally authorized work.
-- After every delegated/substantial work-unit commit, invoke `gentle_review` `assess` on that exact candidate and obey provider-owned `review_due`, `review_due_reason` and continuation. If review is due, follow `wrapper_continuation` to target-scoped STATUS before any START; if it is not due, do not manufacture START. External-ticket completion is never itself a review trigger, and Atenea must not recreate the provider slice threshold with its own line-count heuristic.
+- Before launching substantial implementation, read the available Review Workload Forecast/task shape and resolve composition **before writing** when over-budget risk is material. Default upstream planning budget is 400 authored changed lines unless an explicit session `review_budget_lines` overrides it. Under Atenea's default heuristic, ~401–600 is a soft overage for a still-coherent unit (without waiving any upstream-required `size:exception`); ~601–800 requires an explicit durable `size:exception`/coherence rationale; >800 is not an ordinary work unit and defaults to STOP/reslice unless a human explicitly authorizes an indivisibility exception. These are planning heuristics, never native `review_due` rules.
+- After every delegated/substantial work-unit commit, invoke `gentle_review` `assess` on that exact candidate and obey provider-owned `review_due`, `review_due_reason` and continuation. If review is due, follow `wrapper_continuation` to target-scoped STATUS before any START; if it is not due, do not manufacture START. External-ticket completion is never itself a review trigger, and Atenea must not recreate the provider's post-commit `review_due` decision with its own line-count heuristic.
 - Current review consent is **one-touch**: on the first eligible review the human selects `Review and allow this session`; later fresh validated grants in the same live session/canonical repository require no second consent touch.
 - Process restart/new/resume/fork/quit/revoke ends the permission; reload preserves it. Never synthesize the grant through prompt prose, RPA or internal APIs.
 - GP3.3 review lenses, refuter and targeted validator require explicit routing and their provider-issued operation shapes must be followed literally.

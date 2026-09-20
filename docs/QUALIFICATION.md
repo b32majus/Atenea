@@ -68,6 +68,8 @@ The accepted claim is **single-acceptance unattended within one live session/rep
 
 Current mechanics: `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md`. The Q2–Q11 deletion/authority ladder is consolidated in `docs/GP33_Q10_Q11_ADOPTION_EVIDENCE_20260920.md`.
 
+Additional real-project evidence on 2026-09-20 established the need for a **composition correction**, not a new reviewer hard cap: a correctly ASSESSed `high` candidate built as a coarse ~1,100-authored-line work unit produced the same `reviewer-empty-output / stopReason=length` resilience failure on DeepSeek High and Luna High. The operator-authorized recovery pattern preserves the unpublished accepted product tree as an oracle, reconstructs coherent smaller work units, and requires per-unit verify → commit → ASSESS plus final byte/tree equivalence. This does not prove that 400 is a reviewer-capacity limit and does not by itself change global resilience routing. Current policy: `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`.
+
 ## Historical predecessor replacement result — 2026-09-05
 
 Atenea #35 completed with `PASS_DELETE`, and operator-authorized cutover #45 historically adopted the then-smaller unattended path:

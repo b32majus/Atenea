@@ -15,7 +15,7 @@ Model/provider choices are replaceable operational configuration. They do not re
 | `gentle-ai-verify` | `openai-codex/gpt-5.6-luna` | `high` | Qualified independent verifier route. |
 | `review-readability` | `openai-codex/gpt-5.6-luna` | `high` | Better severity calibration / lower review inflation in Sep-12 evidence. |
 | `review-reliability` | `openai-codex/gpt-5.6-luna` | `high` | Provisional current route: Luna was acceptable in Sep-12; the only current NaN DeepSeek reliability failure is ASSESS-bypass-confounded, so DeepSeek remains historical evidence rather than current routing. |
-| `review-resilience` | `nan/deepseek-v4-flash` | `high` | Historical failure/recovery role qualification retained. |
+| `review-resilience` | `nan/deepseek-v4-flash` | `high` | Current global route retained. A coarse ~1,100-line high-risk work unit later produced the same empty-output/length failure on DeepSeek High and Luna High, so that evidence is treated as a composition/material-review boundary, not a DeepSeek-only disqualification. |
 | `review-risk` | `nan/glm5.3-flash` | `high` | Sep-20 NaN runtime override: exact materialized risk prompt exhausted DeepSeek reasoning but completed on GLM. |
 | `review-refuter` | `nan/deepseek-v4-flash` | `high` | GP3.3 explicit role mapping; no contrary current field evidence. |
 | `review-validator` | `openai-codex/gpt-5.6-luna` | `high` | GP3.3 explicit role mapping. |
@@ -60,6 +60,8 @@ GLM high → valid reviewer JSON in ~8.5 s
 ```
 
 Therefore only `review-risk` moves to GLM. This does not erase the known Sep-12 quality trade-off: GLM previously over-fragmented one authorization root cause into multiple blockers. Current field operability outweighs that earlier calibration advantage for this role, and the trade-off remains visible.
+
+Later same-day resilience evidence must not be misread as another route-only failure: the same correctly ASSESSed coarse candidate failed on DeepSeek High and Luna High. The global resilience route therefore remains unchanged while `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` becomes the composition guard for future substantial work.
 
 Evidence: `docs/NAN_DEEPSEEK_INPROCESS_REVIEWER_INCIDENT_20260920.md`.
 

@@ -15,9 +15,10 @@ Read in this order:
 3. **`docs/START_HERE.md`** — project-entry decision procedure for start/continue work.
 4. **`docs/ATENEA_HARNESS_CONTRACT_V1.md`** — **normative execution contract**.
 5. **`docs/CURRENT_DECISIONS.md`** — current accepted decisions and field findings.
-6. **`docs/INSTALLATION_AND_OPERATION_V1.md`** — provisioning, global/Atenea/target scopes and runtime verification.
-7. **`docs/OPERATOR_RUNBOOK_V1.md`** — how the human starts an `EXECUTION_READY` run.
-8. `docs/QUALIFICATION.md` and historical evidence only when provenance is needed.
+6. **`docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`** — pre-implementation reviewability budget, coherent slicing and oversized unpublished-history recovery.
+7. **`docs/INSTALLATION_AND_OPERATION_V1.md`** — provisioning, global/Atenea/target scopes and runtime verification.
+8. **`docs/OPERATOR_RUNBOOK_V1.md`** — how the human starts an `EXECUTION_READY` run.
+9. `docs/QUALIFICATION.md` and historical evidence only when provenance is needed.
 
 If you only need the operational map first, read the newcomer quickstart before opening historical evidence.
 
@@ -147,14 +148,15 @@ High-frequency rules:
 1. **Before `EXECUTION_READY`: human-present shaping.**
 2. **From `EXECUTION_READY`: autonomous bounded execution after explicit human authorization.**
 3. **One visible persistent Gentle-Pi parent owns the external train/frontier context; Gentle Shell/ODD owns internal engineering micro-orchestration.**
-4. **Atenea does not require one fresh child per external ticket; ODD selects bounded internal delegation according to the work.**
-5. **Herdr is process/session/observability substrate, not policy or review authority.**
-6. **The current GP3.3 path is one-touch: the first eligible review gets one real host session grant; later same-session/repository candidates use fresh validated provider grants without a second consent touch.**
-7. **Provider bindings/continuations remain opaque; the qualified host bridge may forward the current retained reviewer group without LLM reserialization, but role-specific provider operations remain authoritative; APPROVED is incomplete until acknowledgement/burn succeeds.**
-8. **Evidence outranks narration; host-human-touch claims are externally adjudicated.**
-9. **Normal non-force push is allowed by repository policy; no force-push, hidden history rewrite or auto-merge.**
-10. **Material ambiguity / contradictory authority / unsafe drift => STOP.**
-11. **New Atenea glue requires evidence of a real missing upstream owner.**
+4. **Work-unit composition is resolved before substantial implementation, not after a giant candidate already exists.** Default upstream planning budget is 400 authored changed lines unless `review_budget_lines` says otherwise; Atenea treats ~401–600 as soft overage without waiving any upstream-required delivery/`size:exception` decision, ~601–800 as an explicit exception band, and >800 as STOP/reslice by default. These are planning heuristics, not hard reviewer limits.
+5. **Atenea does not require one fresh child per external ticket; ODD selects bounded internal delegation according to the work.**
+6. **Herdr is process/session/observability substrate, not policy or review authority.**
+7. **The current GP3.3 path is one-touch: the first eligible review gets one real host session grant; later same-session/repository candidates use fresh validated provider grants without a second consent touch.**
+8. **Provider bindings/continuations remain opaque; the qualified host bridge may forward the current retained reviewer group without LLM reserialization, but role-specific provider operations remain authoritative; APPROVED is incomplete until acknowledgement/burn succeeds.**
+9. **Evidence outranks narration; host-human-touch claims are externally adjudicated.**
+10. **Normal non-force push is allowed by repository policy; no force-push, hidden history rewrite or auto-merge.**
+11. **Material ambiguity / contradictory authority / unsafe drift => STOP.**
+12. **New Atenea glue requires evidence of a real missing upstream owner.**
 
 ## Field qualification
 
@@ -187,6 +189,10 @@ REVIEW_RISK_ROUTE                               nan/glm5.3-flash high
 PERSISTENT_TRAIN_PARENT                         nan/glm5.3-flash high
 INTERNAL_MICRO_ORCHESTRATION                    GENTLE_SHELL_ODD
 FRESH_CHILD_PER_EXTERNAL_TICKET                 NOT_AN_ATENEA_INVARIANT
+DEFAULT_REVIEW_BUDGET_LINES                     400 when no explicit session override
+WORK_UNIT_SOFT_OVERAGE_DEFAULT                  401-600 coherent only
+WORK_UNIT_SIZE_EXCEPTION_DEFAULT                601-800 explicit durable rationale
+WORK_UNIT_ABOVE_800_DEFAULT                     STOP_RESLICE_OR_HUMAN_INDIVISIBILITY_EXCEPTION
 QUALIFIED_HOST_BRIDGE                           REQUIRED_FOR_GP3_3_CURRENT_GROUP_AND_CONSENT_SIGNAL
 FIRST_REVIEW_SESSION_GRANT                      HUMAN_ONE_TOUCH
 LATER_SAME_SESSION_REVIEW_CONSENT_TOUCHES       0 expected
@@ -249,6 +255,7 @@ The Matt skills are not a mandatory execution sequence.
 - `docs/START_HERE.md` — Cora/human project-entry and shaping decision procedure.
 - `docs/ATENEA_HARNESS_CONTRACT_V1.md` — **normative execution contract**.
 - `docs/CURRENT_DECISIONS.md` — current accepted decisions and supersession state.
+- `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` — current pre-implementation work-unit budget/composition and oversized unpublished-history recovery policy.
 - `docs/INSTALLATION_AND_OPERATION_V1.md` — current environment/install/verification guide.
 - `docs/OPERATOR_RUNBOOK_V1.md` — practical `EXECUTION_READY` operator path.
 - `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md` — current pinned GP3.3 one-touch train mechanics.

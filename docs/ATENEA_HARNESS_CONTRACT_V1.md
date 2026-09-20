@@ -66,6 +66,10 @@ FIRST_REVIEW_SESSION_GRANT=HUMAN_EXPLICIT
 LATER_SAME_SESSION_REVIEW_CONSENT_TOUCHES=ZERO_EXPECTED
 INTERNAL_MICRO_ORCHESTRATION=GENTLE_SHELL_ODD
 FRESH_CHILD_PER_EXTERNAL_TICKET=NOT_REQUIRED_BY_ATENEA
+DEFAULT_REVIEW_BUDGET_LINES=400_UNLESS_SESSION_OVERRIDE
+WORK_UNIT_401_600=SOFT_COHERENT_OVERAGE
+WORK_UNIT_601_800=EXPLICIT_SIZE_EXCEPTION
+WORK_UNIT_GT_800=STOP_RESLICE_UNLESS_HUMAN_INDIVISIBILITY_EXCEPTION
 QUALIFIED_HOST_BRIDGE=GP3_3_CURRENT_GROUP_PLUS_CONSENT_SIGNAL
 EXPLICIT_REVIEW_ROLE_ROUTING=REQUIRED
 ACKNOWLEDGEMENT_BURN=REQUIRED
@@ -188,7 +192,39 @@ This shim MUST NOT invent bindings, verdicts, lenses or role routes. `gentle_rev
 
 The parent may stay alive across a compatible bounded train. Atenea does not prescribe one child per external ticket; Gentle Shell/ODD chooses internal bounded workers according to its own enforced delegation rules. The parent must re-read external authority between externally authorized units/frontiers. A process restart/new session starts a new one-touch permission boundary.
 
-### 7.2.1 Native assessment owns review timing
+### 7.2.1 Workload composition is resolved before substantial implementation
+
+Gentle Shell/ODD owns work-unit composition. Atenea's responsibility is to prevent the persistent parent from bypassing that upstream planning boundary.
+
+Before launching a writer for substantial work, the parent MUST consume the available Review Workload Forecast/task shape and resolve delivery/composition when over-budget risk is material.
+
+Authority order:
+
+```text
+explicit project/session review_budget_lines
+> upstream Gentle delivery/work-unit semantics
+> accepted task/project size:exception decision
+> Atenea default planning heuristic
+```
+
+With no explicit session budget, Gentle's current default planning budget is 400 authored changed lines. `400` is a review-composition boundary, not a risk-tier input or hard reviewer-capacity limit.
+
+Atenea's default heuristic when no stronger budget exists is:
+
+```text
+<=400      normal target
+401-600    soft overage; no Atenea-forced split solely for size, but upstream delivery/size:exception rules still apply
+601-800    explicit durable size:exception / semantic-coherence rationale required before implementation
+>800       not an ordinary work unit; STOP/reslice by default unless the human explicitly authorizes an indivisibility exception
+```
+
+The 600/800 bands are Atenea operator heuristics informed by observed Gentleman practice, not upstream technical limits. They MUST NOT be used to compute `review_due`, synthesize START, or claim that a reviewer cannot process a larger high-risk candidate.
+
+Never code-golf to hit a number. Do not remove tests/docs/comments, split tests away from the behavior they verify, or create file-layer commits that are not independently coherent. After one honest coherent slicing pass, an indivisible over-budget unit may proceed only under the explicit exception semantics above.
+
+Current details and unpublished-history recovery: `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`.
+
+### 7.2.2 Native assessment owns review timing
 
 After each substantial/delegated work-unit commit becomes durable, the parent MUST run the read-only native assessment for that exact candidate and follow its provider-owned timing result.
 
@@ -515,6 +551,10 @@ REVIEW_RISK_MODEL                       nan/glm5.3-flash high
 PARENT_MODEL                            nan/glm5.3-flash high
 INTERNAL_MICRO_ORCHESTRATION            GENTLE_SHELL_ODD
 FRESH_CHILD_PER_EXTERNAL_TICKET         NOT_REQUIRED_BY_ATENEA
+DEFAULT_REVIEW_BUDGET_LINES             400_UNLESS_SESSION_OVERRIDE
+WORK_UNIT_401_600                       SOFT_COHERENT_OVERAGE
+WORK_UNIT_601_800                       EXPLICIT_SIZE_EXCEPTION
+WORK_UNIT_GT_800                        STOP_RESLICE_UNLESS_HUMAN_INDIVISIBILITY_EXCEPTION
 QUALIFIED_HOST_BRIDGE                   REQUIRED_FOR_CURRENT_GP3_3_INSTALL
 EXPLICIT_REVIEW_ROLE_ROUTING            REQUIRED
 ACKNOWLEDGEMENT_BURN                    REQUIRED

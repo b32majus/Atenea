@@ -40,11 +40,12 @@ For a new project or a resumed project:
 6. `docs/CURRENT_DECISIONS.md` — current accepted decisions
 7. `docs/INSTALLATION_AND_OPERATION_V1.md` — provisioning, scopes and runtime verification
 8. `docs/ROUTING_EVIDENCE_LEDGER_V1.md` — current routing evidence classes and unresolved model-routing gaps
-9. `docs/OPERATOR_RUNBOOK_V1.md` — only once work is `EXECUTION_READY`
-10. `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md` — current pinned train mechanics
-11. `docs/QUALIFICATION.md` — field evidence/proven boundaries when needed
-12. `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md` — current replacement evidence
-13. `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md` — local-state lifecycle/cleanup policy
+9. `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` — pre-implementation reviewability budget, coherent slicing and oversized unpublished-history recovery
+10. `docs/OPERATOR_RUNBOOK_V1.md` — only once work is `EXECUTION_READY`
+11. `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md` — current pinned train mechanics
+12. `docs/QUALIFICATION.md` — field evidence/proven boundaries when needed
+13. `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md` — current replacement evidence
+14. `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md` — local-state lifecycle/cleanup policy
 
 ## 3. Three scopes — do not mix them
 
@@ -164,6 +165,7 @@ When work is truly `EXECUTION_READY`, use `docs/OPERATOR_RUNBOOK_V1.md` plus `do
 High-frequency invariants:
 
 - one persistent visible Gentle-Pi 3.3 parent per bounded train;
+- pre-implementation work-unit composition: honor explicit `review_budget_lines`; otherwise 400 is the default target, ~401–600 soft coherent overage without waiving upstream delivery/`size:exception` rules, ~601–800 explicit exception band, and >800 STOP/reslice by default; these are planning heuristics, not reviewer caps;
 - ODD-owned internal decomposition/delegation; no Atenea fresh-child-per-external-ticket invariant;
 - sequential concurrency by default;
 - first eligible review consent is the single human one touch;

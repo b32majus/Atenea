@@ -22,6 +22,7 @@ explicit human execution authorization
 → start one visible Pi/Gentle-Pi 3.3 parent
    model: nan/glm5.3-flash · high
 → submit one bounded authorized work item/train prompt
+→ pre-implementation workload composition / size-exception decision when needed
 → Gentle Shell/ODD owns internal tasking/delegation/verification/work-unit commits
 → first eligible review: human selects “Review and allow this session”  ← the one touch
 → provider-owned reviewer/refuter/validator lifecycle
@@ -72,7 +73,7 @@ A process restart/new/resume/fork/quit/revoke creates a new one-touch boundary.
 - The current Gentle Pi 3.3.0 install must match the qualified host + assess bridge hashes. `gentle_review_capture_current_group` is only for the exact current retained reviewer group after fresh STATUS; the assess bridge only preserves provider-owned GAI3.4 timing fields/continuation and does not calculate review timing; refuter/validator use their exact provider-issued operations.
 - `host_consent_resolved` is a host signal that consent is already complete, not synthetic permission.
 - Do not amend a work-unit commit after ODD evidence has recorded its SHA; write final SHA bookkeeping in a subsequent evidence commit until upstream fixes the reproduced identity loop.
-- After every delegated/substantial work-unit commit, call `gentle_review` `assess`, inspect provider-owned `review_due` / `review_due_reason`, and follow `wrapper_continuation`/STATUS when review is due. Never turn external-ticket completion into START and never recreate the provider slice threshold in Atenea.
+- After every delegated/substantial work-unit commit, call `gentle_review` `assess`, inspect provider-owned `review_due` / `review_due_reason`, and follow `wrapper_continuation`/STATUS when review is due. Never turn external-ticket completion into START and never recreate the provider's post-commit `review_due` threshold in Atenea.
 - `reviewer-empty-output` with `stopReason: length` is STOP, not automatic retry. Preserve the lineage/candidate and reconcile the affected route before another capture.
 
 ## 5. Historical OpenCode autonomous worker transport
@@ -182,6 +183,7 @@ STOP and report rather than improvise when any of these appears:
   history rewrite or destructive cleanup being required to make progress.
 - **Pinned runtime/oracle mismatch** — required oracle missing/hash mismatch, invalid pinned model/flag, unhealthy GP3.3/GAI3.4 runtime, or Herdr parent pane cannot be established deterministically. STOP before product mutation; do not silently substitute.
 - **One-touch review boundary failure** — after a valid `Review and allow this session` grant, a later fresh same-session/repository candidate requires another native consent touch, the host cannot preserve exact provider target/binding identity, the qualified host bridge hash/version is wrong, or a provider-issued role transition cannot be followed exactly. STOP rather than synthesize authority.
+- **Work-unit composition boundary missing** — substantial work is forecast to exceed the active review budget but no coherent slice/delivery decision or accepted size exception exists. With the default 400-line budget, >800 authored lines is never an ordinary silent continuation: STOP/reslice unless an explicit human-authorized indivisibility exception already exists.
 - **Provider/runtime mismatch** — incompatible runtime assumption or candidate/review state inconsistent with Gentle authority.
 - **Publication authority changed during pre-publication revalidation** — the
   single fresh read immediately before publication shows blockers, scope,

@@ -1,9 +1,11 @@
-# NaN DeepSeek in-process reviewer empty-output incident
+# Material in-process reviewer exhaustion incident — initially observed on NaN DeepSeek
 
-Status: **OPEN RUNTIME INCIDENT**
+Status: **OPEN RUNTIME / COMPOSITION INCIDENT**
 Date: 2026-09-20
 
-This incident is separate from the ODD/native-assess boundary bypass documented in `docs/ODD_REVIEW_ASSESS_BYPASS_EVIDENCE_20260920.md`.
+This document began as a NaN DeepSeek-specific incident record. Later same-day field evidence showed that the broader failure class is **not provider-specific**: an oversized/coarse high-risk resilience candidate produced the same `reviewer-empty-output / stopReason=length` signature on both DeepSeek High and Luna High. The role-specific `review-risk → GLM` mitigation remains valid, but the general root cause must not be simplified to "DeepSeek is broken".
+
+This incident is separate from the ODD/native-assess boundary bypass documented in `docs/ODD_REVIEW_ASSESS_BYPASS_EVIDENCE_20260920.md`, and is now also governed by the pre-implementation composition policy in `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`.
 
 ## 1. Repeated field signature
 
@@ -133,7 +135,45 @@ No result was submitted to the live review lineage. This demonstrates that the c
 
 A separate Luna High diagnostic on the same prompt did not produce a final answer within an intentionally shorter 180-second probe timeout; because the production reviewer timeout is much larger, that probe is not classified as a provider failure and is not used to justify the risk route.
 
-## 4. What is established and what is not
+## 4. Later resilience evidence — same failure across providers on a coarse work unit
+
+A later real-project lineage was correctly processed through native ASSESS and became immediately review-due because it was `high` risk. Its candidate was materially coarser than Gentle's default composition target:
+
+```text
+risk tier              high
+changed paths          17
+authored changed lines ~1105
+materialized resilience prompt ~75 KiB
+ASSESS                  correctly invoked
+review_due              true / high_risk
+```
+
+The exact `review-resilience` slot failed twice on NaN DeepSeek High with `reviewer-empty-output / stopReason=length`.
+
+A repo-local, single-role Luna High override was then applied only to that clone and the exact slot was reoffered by fresh STATUS. One authorized capture failed with the **same signature** after ~147 s:
+
+```text
+openai-codex/gpt-5.6-luna · high
+→ reviewer-empty-output
+→ stopReason=length
+→ no admitted result
+```
+
+Read-only out-of-line probes on the exact materialized prompt showed:
+
+```text
+DeepSeek High  → thinking-only / length / no answer text
+GLM High       → terminated/error / no answer text
+Luna High      → length in the real slot
+Luna Medium    → valid reviewer JSON in ~13.2 s
+Luna Low       → valid reviewer JSON in ~16.5 s
+```
+
+This proves that lowering effort can mitigate this exact prompt, but **does not establish `high` as a bad global configuration**. Gentleman's own current NaN development routing uses `high` for review-resilience/reliability, and Gentle Shell treats reviewer thinking as user-owned routing forwarded verbatim. The composition of the work unit remains the stronger architectural correction.
+
+No global resilience route/effort change is adopted from this evidence. The accepted response for future work is to prevent coarse work units by following `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`; role routing remains evidence-specific.
+
+## 5. What is established and what is not
 
 Established:
 
@@ -149,7 +189,7 @@ Not established:
 - that changing the Gentle reviewer schema is warranted;
 - that a larger client-side `maxTokens` declaration can bypass NaN's documented model ceiling.
 
-## 5. Current operational mitigation
+## 6. Current operational mitigation
 
 Current provisional routing:
 
@@ -162,11 +202,11 @@ review-refuter      → nan/deepseek-v4-flash · high
 
 Luna was already acceptable in the Sep-12 reliability qualification, so it remains the conservative provisional route there. For risk, a fresh exact-prompt diagnostic showed GLM 5.3 Flash High returning valid reviewer JSON in ~9.4 s while DeepSeek returned thinking-only `length`; Gentleman’s current NaN development routing also places `review-risk` on GLM. The historical Sep-12 calibration caveat for GLM risk remains evidence and is not erased by this operational route change.
 
-If resilience/refuter reproduce the same `thinking-only → length → empty-output` signature, STOP and reconcile those roles by evidence rather than retry-looping.
+The later resilience reproduction means that identical retries or blind provider swaps are not the default remedy for a coarse material candidate. STOP, preserve the lineage, and first reconcile whether the work-unit composition violated the current pre-implementation reviewability policy. A role/model/effort change still requires role-specific evidence.
 
 OpenCode Go is not an operational subscription and is not a fallback.
 
-## 6. Closure criteria
+## 7. Closure criteria
 
 Close this incident only when one of these is demonstrated:
 

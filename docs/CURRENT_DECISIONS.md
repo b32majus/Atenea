@@ -440,13 +440,13 @@ work-unit identity durable
 → START only when native/ODD authority says review is due
 ```
 
-Atenea MUST NOT translate `external ticket finished` into `START whole ticket`, and MUST NOT recreate the provider slicing policy with its own 400-line heuristic.
+Atenea MUST NOT translate `external ticket finished` into `START whole ticket`, and MUST NOT recreate the provider's **post-commit `review_due` timing** with its own 400-line heuristic. Pre-implementation composition planning is a separate layer governed later by C-052.
 
 Gentle AI 3.4 emits `candidate.consumed`, `review_due`, `review_due_reason`, and exact `next_transition`. Gentle Pi 3.3.0's model-visible assessment result discarded those additive timing fields. Until upstream exposes them natively, Atenea carries the narrow version/hash-guarded `patches/gentle-pi-3.3.0-atenea-assess-bridge.patch`, which preserves the fields and supplies a host-safe continuation into negotiated `gentle_review STATUS`. It does not calculate review timing or execute START itself.
 
 Evidence: `docs/ODD_REVIEW_ASSESS_BYPASS_EVIDENCE_20260920.md`.
 
-## C-051 — NaN DeepSeek in-process reasoning exhaustion is role/prompt-specific; review-risk routes to GLM
+## C-051 — `review-risk` routes to GLM on exact-prompt evidence; reviewer exhaustion is not globally DeepSeek-specific
 
 **Accepted from isolated reproduction 2026-09-20.**
 
@@ -485,11 +485,48 @@ review-resilience  nan/deepseek-v4-flash · high
 review-refuter     nan/deepseek-v4-flash · high
 ```
 
-DeepSeek is not globally disqualified from review. The current reliability failure remains confounded by C-050's medium-candidate ASSESS bypass, so reliability stays on the already-acceptable Luna route until a correctly bounded NaN DeepSeek reliability probe is qualified. Historical reliability/resilience evidence remains valid evidence. If another correctly bounded DeepSeek role reproduces the same thinking-only exhaustion, STOP and requalify that role from new evidence.
+DeepSeek is not globally disqualified from review. The current reliability failure remains confounded by C-050's medium-candidate ASSESS bypass, so reliability stays on the already-acceptable Luna route until a correctly bounded NaN DeepSeek reliability probe is qualified. Historical reliability/resilience evidence remains valid evidence.
+
+**Later same-day field evidence generalizes the failure class beyond DeepSeek:** a correctly ASSESSed high-risk resilience slot on a coarse ~1,100-line work unit produced the same `reviewer-empty-output / stopReason=length` signature on DeepSeek and Luna High. This does not invalidate the role-specific `review-risk → GLM` decision above, but it means C-051 MUST NOT be read as a global "DeepSeek is the root cause" conclusion. Work-unit composition and reviewer routing are separate layers; C-052 owns the composition correction.
 
 OpenCode Go is not an operational subscription/fallback even if residual credentials report ready.
 
 Evidence: `docs/NAN_DEEPSEEK_INPROCESS_REVIEWER_INCIDENT_20260920.md`.
+
+## C-052 — Reviewability is designed before implementation; 400 is the default composition budget, not a hard review cap
+
+**Accepted from upstream Gentle v3.4.0 authority plus real-project field recovery 2026-09-20.**
+
+Gentle's current `work-unit-commits` skill says that a forecast above 400 authored changed lines should be composed into chained/stacked work-unit slices before implementation; `400` is the default review budget unless the session supplies `review_budget_lines`. The same skill says the budget is not code-golf and that an honestly indivisible cohesive unit should be reported with a `size:exception` rather than repeatedly shrunk.
+
+Gentle's current `risk.go` explicitly defines `LargeChangeLines = 400` as a **review-composition boundary, not a tier input**. `review assess` independently makes all `high` candidates immediately review-due and uses the 400-line boundary only for accumulated `medium` slices. Therefore Atenea MUST NOT treat 400 as a hard reviewer capacity limit.
+
+When no explicit session budget exists, Atenea adopts this conservative planning heuristic:
+
+```text
+<=400      normal target
+401-600    soft overage when semantic/functional coherence justifies one unit; upstream delivery/size:exception rules still apply
+601-800    explicit durable size:exception / coherence rationale required before implementation
+>800       default STOP/reslice; proceed only with explicit human-authorized indivisibility exception
+```
+
+The 600/800 bands are **Atenea operator heuristics informed by observed Gentleman practice**, not upstream technical limits. An explicit `review_budget_lines` or stronger project/delivery decision supersedes them.
+
+Required execution ordering:
+
+```text
+workload forecast / task decomposition
+→ resolve composition before writing
+→ implement one coherent work unit
+→ deterministic verification
+→ commit
+→ native ASSESS
+→ provider-owned review timing/lifecycle
+```
+
+If a local unpublished candidate is already accepted as product content but its history is too coarse for reliable review, preserve the exact final tree as an immutable product oracle, preserve durable backup evidence, obtain fresh STATUS on the frozen lineage, ABANDON only with exact operator/provider authorization, and reconstruct only the unpublished delivery history into coherent work units. Product semantics/bytes must not be changed merely to make the slices smaller; final byte/tree equivalence to the preserved oracle is mandatory. For an oversized/coarse candidate, repeated identical reviewer retries, output-budget inflation, review disablement or serial routing experiments are not the first repair.
+
+Authority: `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` plus pinned upstream Gentle AI v3.4.0 `work-unit-commits`, `sdd-apply`, `review_assess.go`, and `risk.go` semantics.
 
 ## C-006 — Normal git push is allowed; no publication-permission subsystem
 
@@ -822,9 +859,10 @@ A graph/index never outranks source code, accepted product/spec authority, deter
 3. verify GP3.3/GAI3.4 runtime, `atenea-one-touch` routing and exact repo/worktree state;
 4. start one visible persistent parent explicitly on `nan/glm5.3-flash` `high`;
 5. submit one bounded train prompt;
-6. on the first valid review consent only, human selects `Review and allow this session`;
-7. let Gentle Shell/ODD own internal decomposition/delegation/verification; at provider review boundaries follow the exact native role transition through APPROVED + acknowledgement/burn;
-8. later reviews in the same live Pi session/canonical repository use fresh validated grants without another review-consent touch;
-9. re-read external authority between authorized units/frontiers and continue only while the next work remains inside the explicit authorization; otherwise STOP;
-10. final merge remains human unless separately authorized;
-11. new Atenea glue requires a demonstrated upstream ownership gap.
+6. before substantial writing, consume the workload forecast/task shape and resolve coherent work-unit composition or an explicit size exception under `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`;
+7. on the first valid review consent only, human selects `Review and allow this session`;
+8. let Gentle Shell/ODD own implementation/delegation/verification; after every substantial work-unit commit run native ASSESS and follow only provider-owned review transitions through APPROVED + acknowledgement/burn when due;
+9. later reviews in the same live Pi session/canonical repository use fresh validated grants without another review-consent touch;
+10. re-read external authority between authorized units/frontiers and continue only while the next work remains inside the explicit authorization; otherwise STOP;
+11. final merge remains human unless separately authorized;
+12. new Atenea glue requires a demonstrated upstream ownership gap.
