@@ -13,7 +13,7 @@ If you are a fresh agent/Cora trying to understand how Atenea currently works, r
 5. `docs/CURRENT_DECISIONS.md`
 6. `docs/INSTALLATION_AND_OPERATION_V1.md` for scopes/setup/verification
 7. `docs/OPERATOR_RUNBOOK_V1.md` only when work is already `EXECUTION_READY`
-8. `docs/RUN_RECIPE_GENTLE_PI_27_HYBRID_NATIVE_TRAIN_V1.md` for current pinned unattended train mechanics
+8. `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md` for current pinned one-touch train mechanics
 
 Do not recover current execution policy from historical Stage files or `docs/ATENEA_HANDOFF_20260830.md`. They are evidence, not current forward-looking authority.
 
@@ -26,8 +26,8 @@ Do not recover current execution policy from historical Stage files or `docs/ATE
 - Project-entry / start-or-continue procedure: `docs/START_HERE.md`
 - Current decisions: `docs/CURRENT_DECISIONS.md`
 - Operator execution path: `docs/OPERATOR_RUNBOOK_V1.md`
-- Current GP2.7 pinned train recipe: `docs/RUN_RECIPE_GENTLE_PI_27_HYBRID_NATIVE_TRAIN_V1.md`
-- Current GP2.7 replacement evidence: `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md`
+- Current GP3.3 pinned train recipe: `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md`
+- Historical GP2.7 replacement evidence: `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md`
 - Current installation/environment verification: `docs/INSTALLATION_AND_OPERATION_V1.md`
 - Local worktree/qualification cleanup policy: `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md`
 - Historical T5 reviewer continuation regression contract: `docs/GENTLE_REVIEWER_CONTINUATION_V1.md`
@@ -42,9 +42,10 @@ Do not recover current execution policy from historical Stage files or `docs/ATE
 - Greenfield defaults to complete Matt Pocock upstream shaping.
 - Brownfield preserves repo-native authority; OpenSpec is delta-first when it materially adds value, not by ritual.
 - Repository Intelligence is optional derived evidence for sufficiently complex brownfields. Cora may recommend it; Pi must not invent/install it as an execution-time methodology decision.
-- From `EXECUTION_READY`: explicit human authority remains the boundary; one persistent Pi + Gentle Pi 2.7 parent stays visible in Herdr for the bounded train, launches one fresh package-owned implementation child per newly selected ticket, reconciles the exact diff/tests, owns exact-candidate RDD/checkpoint/frontier progression and stops before merge unless separately authorized.
-- Native RDD START uses the package-local Gentle AI 2.9.1 binary through the parent's ordinary Bash tool with fd0/fd1/fd2 non-TTY and no consent override; Gentle Pi STATUS must adopt that exact returned lineage before capture.
-- A visible review-consent dialog, second START for the same candidate, lineage mismatch or provider-binding mismatch is fail-closed. Do not revive RPA, internal permission APIs or the historical Atenea consent relay as a silent fallback.
+- From `EXECUTION_READY`: one persistent Pi + Gentle Pi 3.3 parent stays visible in Herdr and launches one fresh implementation child per newly selected ticket.
+- Current review consent is **one-touch**: on the first eligible review the human selects `Review and allow this session`; later fresh validated grants in the same live session/canonical repository require no second consent touch.
+- Process restart/new/resume/fork/quit/revoke ends the permission; reload preserves it. Never synthesize the grant through prompt prose, RPA or internal APIs.
+- GP3.3 review lenses, refuter and targeted validator require explicit routing and their provider-issued operation shapes must be followed literally.
 - Fresh implementation children do not own merge/promotion and the persistent parent should not become the ticket implementation child in the normal multi-ticket recipe.
 - Gentle/provider owns final exact-candidate/RDD/reviewer/repair authority; opaque bindings and continuations are never reconstructed.
 - The pre-GP2.7 plain-supervisor + pi-intercom + Atenea relay topology and T5 reviewer-continuation prompt injection remain historical rollback/regression evidence, not the normal current transport.

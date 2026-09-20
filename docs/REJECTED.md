@@ -7,9 +7,9 @@ This file prevents future agents from rediscovering rejected architecture withou
 Several entries below originated before Stage 7/8 and are preserved as historical decisions. Current interpretation:
 
 - OpenSpec is **no longer merely deferred in principle**: it is the intended brownfield/evolutionary authoring entry path, still awaiting a bounded real-project qualification.
-- The historical thin outer Pi supervisor path remains qualified provenance, but C-040 removes that separate supervisor from normal GP2.7 operation.
+- The historical thin outer Pi supervisor path remains qualified provenance, but C-040 historically removed that separate supervisor for GP2.7; C-044 now owns normal GP3.3 operation.
 - Herdr remains the **process/session substrate**, not a policy/gating controller.
-- Current normal unattended execution uses one persistent visible Pi + Gentle Pi `2.7.0` parent, fresh package-owned implementation children per newly selected ticket, package-local Gentle AI `2.9.1` non-TTY native START and same-lineage Gentle Pi STATUS adoption.
+- Current normal execution is one-touch: one persistent visible Pi + Gentle Pi `3.3.0` parent, fresh package-owned implementation children, one explicit `Review and allow this session` grant on the first eligible review, then provider-owned Gentle AI `3.4.0` review with no second consent touch in the same live session/repository.
 - The pre-GP2.7 pi-intercom/mechanical-relay topology and OpenCode + Gentle paths remain qualified historical/rollback evidence, not normal dependencies.
 - Gentle Pi `2.2.0`, `2.4.0` and `2.5.0` qualification findings remain valid for their epochs; later adoption does not rewrite their historical results.
 - no custom execute-Issue launcher/controller is to be rebuilt from KairOS #271.

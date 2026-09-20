@@ -28,42 +28,34 @@ Historical handoffs/stage files are evidence. They do not override current autho
 Atenea deliberately separates **preparation** from **execution**.
 
 ```text
-HUMAN + CORA / PLANNING CHAT
-  read Atenea + target project
-  determine current stage / repo context
-  understand what already exists
+HUMAN + CORA / PLANNING
+  understand target repo
   choose the minimum shaping path
-  resolve product ambiguity
-  produce durable repository/tracker authority
+  resolve material ambiguity
+  create durable repo/tracker authority
             ↓
-  HUMAN explicitly promotes EXECUTION_READY
+  HUMAN promotes EXECUTION_READY
             ↓
-HUMAN AUTHORIZATION + HERDR + PI/GENTLE-PI 2.7
-  explicit human execution authorization
-  human or Cora/DC mechanically starts one visible persistent parent
-  one bounded execution/train prompt
+HUMAN AUTHORIZATION + HERDR + PI/GENTLE-PI 3.3
+  start one visible persistent parent on nan/glm5.3-flash high
+  one bounded train prompt
             ↓
-PERSISTENT PARENT — train/frontier orchestrator
-  retains bounded train context
-  fresh package-owned implementation child per newly selected ticket
+PERSISTENT PARENT
+  fresh implementation child per newly selected ticket
   exact diff reconciliation + deterministic verification
             ↓
-HYBRID-NATIVE RDD
-  package-local Gentle AI 2.9.1 START through non-TTY Bash subprocess
-  exact returned lineage adopted by Gentle Pi STATUS
-  provider review/correction → APPROVED → acknowledgement/burn
+ONE-TOUCH REVIEW
+  first eligible review: human selects “Review and allow this session”
+  later same-session/canonical-repository reviews: no second consent touch
+  explicit routed reviewer/refuter/validator operations
+  APPROVED → acknowledgement/burn
             ↓
-authorized checkpoint / normal non-force publication where repository policy allows
+authorized checkpoint → fresh frontier → next child or STOP
             ↓
-same parent re-discovers compatible frontier
-  fresh child for next ticket OR STOP
-            ↓
-STOP before human merge / when exhausted
-            ↓
-factual final report
+human merge boundary
 ```
 
-**Cora/human decides how work should be understood and shaped before `EXECUTION_READY`. Pi does not choose or invent the development methodology.**
+**Cora/human decides how work is understood and shaped before `EXECUTION_READY`. Pi does not invent the development methodology.**
 
 ## Project-entry routing before `EXECUTION_READY`
 
@@ -120,30 +112,29 @@ A graph/index may improve understanding and reduce repeated archaeology. It does
 
 ```text
 BEFORE EXECUTION_READY
-  manual + interactive shaping
-  human + Cora/planning surface
-  repo-native authority
-
-FROM EXECUTION_READY
-  explicit human execution authorization
-  → one persistent Pi + Gentle Pi 2.7 parent, visible in Herdr
-  → parent resolves current repo/GitHub frontier and keeps train context
-  → fresh package-owned gentle-ai-worker child for each newly selected ticket
-  → parent reconciles exact diff + deterministic tests/QA
-  → package-local Gentle AI 2.9.1 native review START via the parent's Bash tool
-       (only this subprocess is non-TTY; no consent override flag)
-  → Gentle Pi STATUS adopts the exact returned lineage
-  → provider reviewer/correction transitions → APPROVED → acknowledgement/burn
-  → authorized checkpoint/publication
-  → fresh frontier rediscovery → next fresh child or STOP
+  human-present shaping + durable repo/tracker authority
+            ↓
+ONE-TOUCH EXECUTION
+  → one visible persistent Pi + Gentle Pi 3.3 parent on NaN GLM 5.3 Flash high
+  → one bounded train prompt
+  → fresh implementation child per newly selected ticket
+  → exact diff + deterministic checks
+  → provider-owned Gentle AI 3.4 review
+  → FIRST eligible review only: human selects “Review and allow this session”
+  → later same-session/repository reviews need no second consent touch
+  → explicit reviewer/refuter/validator routing
+  → APPROVED → acknowledgement/burn
+  → checkpoint → fresh frontier → next child or STOP
   → human merge boundary
 ```
 
-The parent itself stays interactive and visible in Herdr. This topology was field-qualified on 2026-09-15 with two sequential tickets, two fresh native children, two distinct medium-risk lineages, two APPROVED+burn closures and **zero review-consent dialogs / zero human touches after the initial train prompt**.
+The current property is **ONE-TOUCH**, not zero-touch. Reload preserves session permission; new/resume/fork/quit/process restart/revoke ends it.
 
-Atenea does **not** require a bespoke queue, scheduler, DAG, lifecycle controller, reviewer wrapper, execution launcher, Herdr policy gate or consent state machine. The pre-GP2.7 plain-supervisor + fresh outer worker + mechanical RDD relay topology remains historical/rollback evidence; it is no longer the normal unattended path.
+There is no normal external Pi supervisor, pi-intercom consent relay, Herdr RPA or Atenea review controller.
 
-Pinned normal execution follows `docs/RUN_RECIPE_GENTLE_PI_27_HYBRID_NATIVE_TRAIN_V1.md`. Model literals are resolved before launch and are never silently substituted. Current routing is deliberately role-diverse: GLM 5.3 Flash high persistent parent/coordinator + native writer, Luna high verifier + readability, and DeepSeek V4.1 Flash high reliability/resilience/risk. Refuter/validator inherit/provider-route. The former DeepSeek V4.1 outer-supervisor route is historical after the topology replacement. See `docs/ROUTING_EVIDENCE_LEDGER_V1.md`.
+Current recipe: `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md`.
+
+Current routing: NaN GLM 5.3 Flash high for parent/writer; OpenAI-Codex Luna high for verifier/readability/validator; NaN DeepSeek V4 Flash high for reliability/resilience/risk/refuter. NaN's `deepseek-v4-flash` serves the V4.1 Flash family. Pi's ordinary default remains `nan/deepseek-v4-flash` medium.
 
 ## Normative contract
 
@@ -165,54 +156,36 @@ High-frequency rules:
 
 ## Field qualification
 
-Core architecture is field-proven across historical and current epochs.
-
 ```text
-STAGES_0_4                               PASS
-STAGE5_MATT_GENTLE_COMPOSITION          PASS
-STAGE6_NATIVE_GENTLE_RDD                PASS
-STAGE7_PI_SELF_LAUNCH                   PASS
-STAGE8_FRONTIER_DISCOVERY               PASS
-OLD_SUPERVISOR_MULTI_TICKET_GOLDEN      PASS   # historical C-025/C-030 topology
-GP27_PERSISTENT_PARENT_FRESH_CHILDREN   PASS
-GP27_ONE_TOUCH_SESSION_GRANT            PASS   # historical fallback characterization
-GP27_INITIAL_PROMPT_PREGRANT             FAIL   # no supported public grant surface
-GP27_HERDR_TUI_RPA                       PASS_TECHNICALLY_NOT_ADOPTED
-GP27_NATIVE_NO_TTY_START                PASS
-GP27_SAME_LINEAGE_GENTLE_PI_ADOPTION    PASS
-GP27_SINGLE_TICKET_HYBRID_ZERO_TOUCH    PASS
-GP27_TWO_TICKET_HYBRID_ZERO_TOUCH       PASS   # adopted replacement evidence
+GP33_GAI34_RUNTIME_START                     PASS
+GP33_FIRST_REVIEW_CONSENT_UI                 PASS
+GP33_REVIEW_AND_ALLOW_THIS_SESSION           PASS
+GP33_LATER_SAME_SESSION_REVIEW_NO_2ND_TOUCH  PASS
+GP33_ONE_TOUCH_SESSION_PERMISSION            PASS
 ```
 
-The exact experiment ladder, failure boundaries, task IDs, lineages, commits and runtime hashes are preserved in `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md`. Historical issue #38 and GP2.4/2.5 field evidence remain valid provenance for the properties they proved; they do not override the current GP2.7 topology.
+A later qualification harness assertion incorrectly forced remaining refuter/validator work through one capture shape. That is harness/test debt, not a session-permission failure. Historical GP2.7 zero-touch evidence remains provenance only.
 
 ## Gentle current boundary
 
-Current truth for the adopted unattended path:
-
 ```text
-Pi                                               0.85.1
+Pi                                               0.86.1
 Herdr                                            0.9.0
-Gentle Pi                                        2.7.0 ADOPTED
-Gentle AI                                        2.9.1 ADOPTED / package-paired
-PERSISTENT_VISIBLE_GENTLE_PARENT                  REQUIRED_FOR_NORMAL_TRAIN
-FRESH_NATIVE_CHILD_PER_NEW_TICKET                REQUIRED_FOR_NORMAL_MULTI_TICKET_RECIPE
-NATIVE_NO_TTY_GAI_START                          REQUIRED
-GENTLE_PI_SAME_LINEAGE_STATUS_ADOPTION           REQUIRED
-NATIVE_GENTLE_EXACT_CANDIDATE_RDD                REQUIRED
-ACKNOWLEDGEMENT_BURN                             REQUIRED
-REVIEW_CONSENT_DIALOGS                           0 expected; appearance => fail closed
-EXTERNAL_PI_SUPERVISOR                           NOT_NORMAL_PATH
-ATENEA_MECHANICAL_RDD_CONSENT_RELAY              HISTORICAL_ROLLBACK_PATH
-HERDR_TUI_RPA                                    DIAGNOSTIC_FALLBACK_NOT_ADOPTED
-GENTLE_STANDING_SESSION_PERMISSION               ATTENDED_INTERACTIVE_ONLY
-NORMAL_NON_FORCE_PUBLICATION                     REPOSITORY_POLICY
-FINAL_MERGE                                      HUMAN_BOUNDARY
+Gentle Pi                                        3.3.0
+Gentle AI                                        3.4.0 package-paired
+DEFAULT_PI_MODEL                                 nan/deepseek-v4-flash medium
+PERSISTENT_TRAIN_PARENT                         nan/glm5.3-flash high
+FRESH_NATIVE_CHILD_PER_NEW_TICKET               REQUIRED
+FIRST_REVIEW_SESSION_GRANT                      HUMAN_ONE_TOUCH
+LATER_SAME_SESSION_REVIEW_CONSENT_TOUCHES       0 expected
+EXPLICIT_REVIEW_ROLE_ROUTING                    REQUIRED
+ACKNOWLEDGEMENT_BURN                            REQUIRED
+FINAL_MERGE                                     HUMAN_BOUNDARY
 ```
 
-Do not manufacture zero-touch by injecting `granted`, rewriting provider consent, importing internal grant APIs, faking package-child FD3 identity or auto-clicking the host dialog. The qualified path uses the upstream no-terminal START behavior plus same-lineage Gentle Pi adoption.
+Do not manufacture the one-touch grant from prompt prose, environment booleans, internal APIs or automation.
 
-Current replacement evidence: `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md`. Worktree/sandbox lifecycle is governed by `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md`.
+Current recipe: `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md`.
 
 ## Installation / making Atenea work
 
@@ -266,14 +239,14 @@ The Matt skills are not a mandatory execution sequence.
 - `docs/CURRENT_DECISIONS.md` — current accepted decisions and supersession state.
 - `docs/INSTALLATION_AND_OPERATION_V1.md` — current environment/install/verification guide.
 - `docs/OPERATOR_RUNBOOK_V1.md` — practical `EXECUTION_READY` operator path.
-- `docs/RUN_RECIPE_GENTLE_PI_27_HYBRID_NATIVE_TRAIN_V1.md` — current pinned GP2.7 unattended train mechanics.
+- `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md` — current pinned GP3.3 one-touch train mechanics.
 - `docs/QUALIFICATION.md` — current qualification index and proven boundaries.
 - `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md` — local worktree/qualification lifecycle and cleanup policy.
 
-### Current adoption / qualification evidence
+### Migration / qualification evidence
 
-- `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md` — current GP2.7/GAI2.9.1 topology-replacement evidence, including failed/discarded paths and the final two-ticket zero-touch train.
-- `docs/ROUTING_QUALIFICATION_EVIDENCE_20260912.md` — current role-specific GLM/Luna/V4.1 routing evidence retained by the GP2.7 topology.
+- `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md` — historical GP2.7/GAI2.9.1 topology-replacement evidence.
+- `docs/ROUTING_QUALIFICATION_EVIDENCE_20260912.md` — historical A/B evidence underlying the current GLM/Luna/V4 role-diverse policy.
 
 ### Historical / rollback evidence
 

@@ -11,91 +11,62 @@ contract conflict, the contract wins.
 
 ## Purpose
 
-Record the practical operator-facing path for starting the current GP2.7 hybrid-native unattended run inside Herdr. The human gives explicit execution authorization and one bounded train prompt; one Pi/Gentle-Pi parent stays visible for the bounded train while fresh native implementation children are used per newly selected ticket.
+Record the current GP3.3 **one-touch** train. The human gives explicit execution authorization and a bounded train prompt, then performs one review-session grant on the first eligible review. The same live session/repository proceeds without further review-consent touches.
 
-This runbook intentionally adds **no launcher daemon, queue, scheduler, external supervisor or consent state machine**. A human or Cora/DC may perform the mechanical Herdr/Pi launch under explicit authorization, but the autonomous execution path remains upstream-native.
+No launcher daemon, queue, scheduler, external supervisor, consent relay or RPA is required.
 
 ## The operator path at a glance
 
 ```text
 explicit human execution authorization
-→ human or Cora/DC enters intended repository/worktree in Herdr
-→ mechanically starts one Pi + Gentle Pi 2.7 parent, visible in Herdr
-→ submits one bounded Atenea execution/train prompt
-→ parent resolves current repo/GitHub frontier
-→ fresh package-owned gentle-ai-worker child for ticket 1
-→ parent reconciles diff + deterministic verification
-→ native package-local Gentle AI 2.9.1 START through non-TTY Bash subprocess
-→ Gentle Pi STATUS adopts the exact returned lineage
-→ provider review/correction → APPROVED → acknowledge/burn
-→ authorized checkpoint
-→ fresh frontier read → fresh child for ticket 2 or STOP
-→ final factual report
+→ start one visible Pi/Gentle-Pi 3.3 parent
+   model: nan/glm5.3-flash · high
+→ submit one bounded train prompt
+→ fresh gentle-ai-worker
+→ deterministic reconciliation
+→ first eligible review: human selects “Review and allow this session”  ← the one touch
+→ provider-owned review/refuter/validator lifecycle
+→ APPROVED + acknowledgement/burn
+→ checkpoint → fresh frontier
+→ later same-session/repo reviews: no second consent touch
 → STOP before merge unless separately authorized
 ```
 
-The parent remains visible and inspectable in Herdr. The START subprocess alone is non-TTY.
-
-Pinned current runs use `docs/RUN_RECIPE_GENTLE_PI_27_HYBRID_NATIVE_TRAIN_V1.md`. The former `docs/SPAWN_RECIPE_GENTLE_PI_WORKER_V1.md` describes the historical separate-supervisor topology and is retained only for rollback/reproduction.
+Current recipe: `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md`.
 
 ## Current adopted worker transport
 
 ```text
-visible persistent Pi/Gentle-Pi 2.7 parent
-→ package-owned fresh native implementation child
-→ child returns bounded ticket diff/evidence
-→ parent deterministic integration checks
-→ parent Bash: package-local GAI2.9.1 native review START, non-TTY
-→ exact lineage returned
-→ Gentle Pi STATUS adopts same lineage
-→ provider reviewer/correction lifecycle
+visible persistent Pi/Gentle-Pi 3.3 parent
+→ fresh implementation child
+→ exact diff/evidence
+→ provider-owned Gentle AI 3.4 review
+→ explicit routed lens/refuter/validator completions
 → APPROVED → acknowledgement/burn
 → checkpoint → fresh frontier
 ```
 
-There is no normal external supervisor, pi-intercom completion protocol or Atenea mechanical consent relay in this path. A visible host `Review consent` dialog is a fail-closed condition, not something the operator should answer during an unattended qualification/run.
-
 ## 1. Preflight
 
-Confirm before starting:
-
-- **Repository/worktree:** intended path, branch, exact start HEAD and expected dirty/untracked state.
-- **Current durable authority:** current repo instructions/issues/specs plus current Atenea `README.md`, harness contract, decisions, qualification, operation guide and GP2.7 train recipe.
-- **Work is `EXECUTION_READY`:** shaping/product ambiguity is already resolved and delivery boundary is explicit.
-- **Runtime:** Pi 0.85.1, Herdr 0.9.0, Gentle Pi 2.7.0, package-local Gentle AI 2.9.1/integrity healthy, RDD on, current routing effective.
-- **No destructive cleanup:** unexpected topology/dirty state means STOP.
-- **Frozen oracle when required:** path/hash exists before ticket mutation; no implementation-run authoring fallback.
-- **Herdr visibility:** parent launches in a dedicated visible Herdr workspace/pane and reports its name/pane immediately.
+Confirm exact repo/worktree/HEAD; `EXECUTION_READY`; Pi `0.86.1`, Herdr `0.9.0`, GP `3.3.0`, GAI `3.4.0`; active `atenea-one-touch` profile; V4/GLM NaN and Luna Codex auth ready; no unexpected local override; delivery boundary explicit.
 
 ## 2. Starting the persistent parent after explicit authorization
 
-After explicit human authorization, start one normal Pi process with Gentle Pi 2.7 enabled in the target repository/worktree through Herdr. The parent route is `opencode-go/glm-5.3-flash` `high` unless current routing authority explicitly changes it.
-
-The current role routes are:
-
-- persistent parent/coordinator: GLM 5.3 Flash high;
-- native `gentle-ai-worker`: GLM 5.3 Flash high;
-- native `gentle-ai-verify`: GPT-5.6 Luna high;
-- readability: Luna high;
-- reliability/resilience/risk: DeepSeek V4.1 Flash high;
-- refuter/validator: inherit/provider-route.
-
-These are replaceable routing decisions. A rejected literal or unexpected local override is STOP, not a silent fallback.
-
-## 3. Operator prompt
-
-Give one bounded execution/train prompt. The mechanics live in the current contract/recipe and should not be reconstructed in prose.
-
-Normal template:
-
-```text
-Execute the current EXECUTION_READY ticket/train end to end under the current Atenea contract and GP2.7 hybrid-native train recipe.
-Remain the persistent visible Gentle-Pi parent in Herdr. Use one fresh package-owned implementation child per newly selected ticket, sequentially unless authority explicitly proves parallel safety.
-For every mutating candidate, complete deterministic verification, the hybrid-native exact-candidate RDD lifecycle, APPROVED + acknowledgement/burn, and the authorized checkpoint before rediscovering the frontier.
-Do not use the historical external supervisor/consent relay path unless this current path fails and the run explicitly enters the documented rollback boundary. Do not merge. Return a factual final report and STOP when the compatible frontier is exhausted.
+```bash
+pi --model nan/glm5.3-flash --thinking high
 ```
 
-Pinned work may add exact issue(s), branch/worktree, expected start HEAD, frozen oracle hash and publication boundary. Do not paste provider bindings, lineage reconstruction, consent flags or historical experiment details into the prompt.
+Pi's ordinary default remains `nan/deepseek-v4-flash` medium.
+
+## 3. Operator prompt and the one touch
+
+Use the bounded template from the current recipe.
+
+When the first valid review consent UI appears, select exactly `Review and allow this session`. Do not drive it through RPA.
+
+An additional consent request for a later candidate in the same healthy live session/canonical repository is unexpected and must be surfaced rather than silently automated.
+
+A process restart/new/resume/fork/quit/revoke creates a new one-touch boundary.
 
 ## 4. Historical OpenCode autonomous worker transport
 
@@ -137,7 +108,7 @@ Pi
 
 ## 5. Historical bounded provider-canary note
 
-- This section is historical OpenCode/provider-canary evidence. Current operational Gentle AI is 2.9.1; do not use these canary selectors for the normal GP2.7 path.
+- This section is historical OpenCode/provider-canary evidence. This section is historical; do not use these canary selectors for the normal GP3.3 one-touch path.
 - For any bounded run that deliberately selects the isolated canary/provider
   policy, reference `docs/GENTLE25_NEGOTIATED_V2_ZERO_TOUCH_CANARY.md` instead
   of duplicating its implementation details here. Issue #38 completed the first
@@ -155,52 +126,31 @@ Pi
 ## 6. Human interaction policy
 
 ```text
-initial explicit authorization + one train prompt
-  = expected human execution boundary
-
-normal GP2.7 unattended RDD
-  = native GAI START runs non-TTY with no consent override
-  = Gentle Pi adopts exact returned lineage through STATUS
-  = zero host review-consent dialogs expected
-
-visible Review consent dialog
-  = FAIL CLOSED for unattended execution
-  = do not click option 3, do not use RPA, do not synthesize consent
-
-Gentle Pi standing session permission
-  = attended interactive convenience only
-  = not required by the current unattended path
-
-material product ambiguity / destructive action / genuine external authority
-  = genuine human-owned decision; pause/relay explicitly
-
-final merge
-  = human boundary unless separately authorized
+initial execution authorization + bounded prompt = launch boundary
+first eligible review consent                  = ONE TOUCH
+later same-session/repository review consent   = no extra human touch expected
+process restart/new/resume/fork/quit/revoke    = new one-touch boundary
+final merge                                    = human unless separately authorized
 ```
 
-Any real post-launch human action is counted honestly. The parent transcript cannot prove absence of host TUI interaction; operator/external observation is authoritative.
+Never synthesize the grant from model prose, environment state, internal APIs or TUI automation.
 
 ## 7. Evidence / final report
 
-The final factual report states at minimum:
-
 ```text
 WORK_ITEM_OR_TRAIN=
-INITIAL_HUMAN_EXECUTION_AUTHORIZATION=1
 PARENT_VISIBLE_IN_HERDR=YES
-PARENT_MODEL=
-GENTLE_PI_VERSION=2.7.0
-GENTLE_AI_VERSION=2.9.1
+PARENT_MODEL=nan/glm5.3-flash high
+PI_VERSION=0.86.1
+GENTLE_PI_VERSION=3.3.0
+GENTLE_AI_VERSION=3.4.0
 FRESH_CHILD_TASK_IDS=
-NATIVE_NO_TTY_START_COUNT=
+ONE_TOUCH_REVIEW_SESSION_GRANT=0|1
+ADDITIONAL_REVIEW_CONSENT_TOUCHES=0 expected
 LINEAGES=
-SAME_LINEAGE_STATUS_ADOPTION=
-RISK_LENSES=
+REVIEW_ROUTES=
 REVIEW_OUTCOMES=
-BOUNDED_CORRECTIONS=
 ACKNOWLEDGEMENT_BURN=
-REVIEW_CONSENT_DIALOGS=
-HUMAN_TOUCH_AFTER_INITIAL_PROMPT=
 DETERMINISTIC_TESTS_QA=
 CHECKPOINTS_OR_PUBLICATION=
 HERDR_RPA=0
@@ -209,8 +159,6 @@ ATENEA_RDD_RELAY=0
 AUTO_MERGE=NO
 FINAL_STOP_REASON=
 ```
-
-Evidence answers a question; it does not become reporting bureaucracy. Record exact versions/heads/lineages when they materially establish the claimed boundary.
 
 ## 8. Failure / STOP guidance
 
@@ -225,8 +173,8 @@ STOP and report rather than improvise when any of these appears:
   action or an external authority decision; relay it and pause.
 - **Destructive recovery requirement** — force-push, reset, rebase, hidden
   history rewrite or destructive cleanup being required to make progress.
-- **Pinned runtime/oracle mismatch** — required oracle missing/hash mismatch, invalid pinned model/flag, unhealthy GP2.7/GAI2.9.1 runtime, or Herdr parent pane cannot be established deterministically. STOP before product mutation; do not silently substitute.
-- **Hybrid review boundary failure** — native START unexpectedly has a TTY/asks for consent, a second START would be required for the same candidate, STATUS cannot adopt the exact lineage, or provider binding/target identity is inconsistent. STOP rather than synthesize authority.
+- **Pinned runtime/oracle mismatch** — required oracle missing/hash mismatch, invalid pinned model/flag, unhealthy GP3.3/GAI3.4 runtime, or Herdr parent pane cannot be established deterministically. STOP before product mutation; do not silently substitute.
+- **One-touch review boundary failure** — native START unexpectedly has a TTY/asks for consent, a second START would be required for the same candidate, STATUS cannot adopt the exact lineage, or provider binding/target identity is inconsistent. STOP rather than synthesize authority.
 - **Provider/runtime mismatch** — incompatible runtime assumption or candidate/review state inconsistent with Gentle authority.
 - **Publication authority changed during pre-publication revalidation** — the
   single fresh read immediately before publication shows blockers, scope,
@@ -247,8 +195,8 @@ explicit merge instruction exists.
 - `docs/ATENEA_HARNESS_CONTRACT_V1.md` — normative Atenea v1 contract.
 - `docs/CURRENT_DECISIONS.md` — current short decision index.
 - `docs/QUALIFICATION.md` — qualification status and field-qualified boundaries.
-- `docs/RUN_RECIPE_GENTLE_PI_27_HYBRID_NATIVE_TRAIN_V1.md` — current pinned execution mechanics.
-- `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md` — topology replacement evidence.
+- `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md` — current pinned execution mechanics.
+- `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md` — historical GP2.7 topology-replacement evidence.
 - `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md` — local cleanup policy.
 - `docs/REAL_PROJECT_ROLLOUT_V1.md` — historical real-project rollout evidence from the pre-GP2.7 topology.
 - `docs/GENTLE_PI_25_GOLDEN_PROMOTION_EVIDENCE_20260908.md` — historical GP2.5 native-Agents, unattended-relay and full-RDD promotion evidence.
