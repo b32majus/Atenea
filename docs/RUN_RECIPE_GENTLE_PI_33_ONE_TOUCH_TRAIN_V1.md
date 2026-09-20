@@ -30,17 +30,17 @@ Pi's ordinary default remains `nan/deepseek-v4-flash` at `medium`. NaN serves th
 | `gentle-ai-worker` | `nan/glm5.3-flash` | `high` |
 | `gentle-ai-verify` | `openai-codex/gpt-5.6-luna` | `high` |
 | `review-readability` | `openai-codex/gpt-5.6-luna` | `high` |
-| `review-reliability` | `nan/deepseek-v4-flash` | `high` |
+| `review-reliability` | `openai-codex/gpt-5.6-luna` | `high` |
 | `review-resilience` | `nan/deepseek-v4-flash` | `high` |
-| `review-risk` | `nan/deepseek-v4-flash` | `high` |
+| `review-risk` | `nan/glm5.3-flash` | `high` |
 | `review-refuter` | `nan/deepseek-v4-flash` | `high` |
 | `review-validator` | `openai-codex/gpt-5.6-luna` | `high` |
 
-The parent route is explicit at launch; it is not inferred from Pi's ordinary V4 default.
+The parent route is explicit at launch; it is not inferred from Pi's ordinary V4 default. NaN DeepSeek/GLM per-answer ceilings are `32768`. DeepSeek effort is not an effective reasoning-depth control; GLM effort is. `review-reliability` is provisionally Luna high; `review-risk` is GLM high after exact frozen-prompt reproduction. See `docs/NAN_PROVIDER_CAPABILITIES_V1.md`.
 
 ## 3. Preflight
 
-Before product mutation verify current Pi `0.86.1`, Gentle Pi `3.3.0`, package-local Gentle AI `3.4.0`; V4/GLM NaN and Luna OpenAI-Codex auth ready; active profile `atenea-one-touch`; `./tools/apply-gentle-330-atenea-host-bridge.sh --check` PASS; no unexpected higher-priority project override; and exact repo/worktree/HEAD/delivery state. Q11 single-acceptance evidence was captured on Pi `0.86.0`.
+Before product mutation verify current Pi `0.86.1`, Gentle Pi `3.3.0`, package-local Gentle AI `3.4.0`; V4/GLM NaN and Luna OpenAI-Codex auth ready; active profile `atenea-one-touch`; `node tools/check-nan-runtime-config.mjs` PASS; `./tools/apply-gentle-330-atenea-host-bridge.sh --check` PASS; no unexpected higher-priority project override; and exact repo/worktree/HEAD/delivery state. Q11 single-acceptance evidence was captured on Pi `0.86.0`.
 
 Unexpected drift is STOP, not silent fallback.
 
@@ -54,7 +54,7 @@ Herdr is visibility/session substrate only. There is no normal external Pi super
 
 ## 5. Authorized work execution
 
-For each externally authorized work item/train: resolve durable external authority, then let Gentle Shell/ODD own internal classification, task decomposition, bounded delegation, verification and work-unit commits. Atenea does not require one child per external ticket. At each external unit/frontier boundary, reconcile repository evidence, complete any provider-required exact-candidate review through APPROVED + acknowledgement/burn, re-read external authority and continue only with work already covered by the authorization; otherwise STOP.
+For each externally authorized work item/train: resolve durable external authority, then let Gentle Shell/ODD own internal classification, task decomposition, bounded delegation, verification and work-unit commits. Atenea does not require one child per external ticket. **After every delegated/substantial work-unit commit, invoke `gentle_review` `assess` over that exact candidate and obey its provider-owned `review_due`, `review_due_reason` and continuation.** If review is due, follow `wrapper_continuation` to target-scoped STATUS and only then follow the exact provider lifecycle transition; if review is not due, do not manufacture START. External-ticket completion is never itself a review trigger, and Atenea must not reimplement the medium-slice threshold with a line-count heuristic. At each external unit/frontier boundary, reconcile repository evidence, complete any provider-required exact-candidate review through APPROVED + acknowledgement/burn, re-read external authority and continue only with work already covered by the authorization; otherwise STOP.
 
 ## 6. The one touch
 
@@ -89,9 +89,9 @@ Gentle Pi 3.3/Gentle AI 3.4 uses caller-owned explicit routing for in-process re
 
 Use the provider-returned operation literally. Ordinary lenses use the requested lens capture form; refuter uses the provider-issued refuter materialize/submission path; targeted validator uses the provider-issued validation path. Do not force every role through one group-capture shape. Preserve opaque bindings/materialization/submission tokens exactly.
 
-## 9. Current GP3.3 host bridge and ODD SHA guardrail
+## 9. Current GP3.3 compatibility bridges and ODD SHA guardrail
 
-The current `3.3.0` installation requires the versioned patch `patches/gentle-pi-3.3.0-atenea-host-bridge.patch`, applied/checked by `tools/apply-gentle-330-atenea-host-bridge.sh`.
+The current `3.3.0` installation requires the versioned patches `patches/gentle-pi-3.3.0-atenea-host-bridge.patch` and `patches/gentle-pi-3.3.0-atenea-assess-bridge.patch`, applied/checked together by `tools/apply-gentle-330-atenea-host-bridge.sh`. The assess bridge transports GAI3.4 provider-owned review timing; it does not implement an Atenea scheduler.
 
 - `gentle_review_capture_current_group` forwards only the exact current reviewer group retained after fresh STATUS; it is not a universal refuter/validator transport.
 - `host_consent_resolved` tells the model that native consent is already complete; it does not manufacture permission.
@@ -107,8 +107,9 @@ APPROVED is incomplete until acknowledgement/burn succeeds. Session permission i
 ```text
 Execute the current EXECUTION_READY ticket/train end to end under the current Atenea contract and Gentle Pi 3.3 one-touch recipe.
 Remain the persistent visible parent and retain external authority/frontier context. Let Gentle Shell/ODD own internal classification, decomposition, bounded delegation, verification and work-unit commits; do not impose one child per external ticket.
+After every delegated/substantial work-unit commit, call `gentle_review` `assess` on that exact candidate and obey `review_due` / `review_due_reason`. When review is due, follow `wrapper_continuation` to target-scoped STATUS before any START; when it is not due, do not START. Never infer review timing from external-ticket completion or recreate the provider slice threshold.
 For every provider-selected review boundary, follow the exact native transition through APPROVED + acknowledgement/burn. At each external work-unit/frontier boundary, re-read durable authority and continue only with already-authorized work.
-Use the current mixed Atenea routing and qualified GP3.3 host bridge. Do not merge. Return a factual final report and STOP when the compatible frontier is exhausted or a genuine human-owned boundary appears.
+Use the current mixed Atenea routing and qualified GP3.3 host + assess bridges. Do not merge. Return a factual final report and STOP when the compatible frontier is exhausted or a genuine human-owned boundary appears.
 ```
 
 ## 12. Final report minimum

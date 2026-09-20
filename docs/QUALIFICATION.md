@@ -206,7 +206,7 @@ At the 2026-09-06 newcomer checkpoint, the qualification deliberately did **not*
 
 ### Sep-12 role-specific routing qualification — #75
 
-Controlled worker, real GP2.5 lens, persistent-coordinator and read-only verifier bake-offs produced the Sep-12 routing matrix for the then-current topology: DeepSeek V4.1 Flash medium outer supervisor; GLM 5.3 Flash high parent/coordinator and native writer; Luna high native verifier/readability; DeepSeek V4.1 Flash high reliability/resilience/risk. The 2026-09-15 GP2.7 topology replacement removed the outer supervisor role from normal operation while retaining the surviving GLM/Luna/V4.1 role assignments. Refuter/validator were unpinned in that Sep-12 evidence epoch. GP3.3 now requires explicit host-mediated routing for those slots when requested; current pins live in `docs/ROUTING_EVIDENCE_LEDGER_V1.md`. Full historical evidence: `docs/ROUTING_QUALIFICATION_EVIDENCE_20260912.md`.
+Controlled worker, real GP2.5 lens, persistent-coordinator and read-only verifier bake-offs produced the Sep-12 routing matrix for the then-current topology: DeepSeek V4.1 Flash medium outer supervisor; GLM 5.3 Flash high parent/coordinator and native writer; Luna high native verifier/readability; DeepSeek V4.1 Flash high reliability/resilience/risk. The 2026-09-15 GP2.7 topology replacement removed the outer supervisor role from normal operation while retaining the surviving GLM/Luna/V4.1 role assignments. Refuter/validator were unpinned in that Sep-12 evidence epoch. GP3.3 now requires explicit host-mediated routing for those slots when requested. On 2026-09-20 current NaN-backed `review-reliability` was provisionally superseded to Luna high because its observed failure remained confounded by the Symphonia medium-slice ASSESS bypass; `review-risk` moved to GLM high after the exact provider-materialized risk prompt independently reproduced DeepSeek reasoning exhaustion while GLM completed valid reviewer JSON. Historical Sep-12 evidence is not rewritten. Current pins live in `docs/ROUTING_EVIDENCE_LEDGER_V1.md`. Full historical evidence: `docs/ROUTING_QUALIFICATION_EVIDENCE_20260912.md`; current incident evidence: `docs/NAN_DEEPSEEK_INPROCESS_REVIEWER_INCIDENT_20260920.md`.
 
 ### Entry/role/routing reconciliation — current evidence map
 
@@ -232,6 +232,7 @@ CURRENT ADOPTED OPERATIONAL TARGET
   Gentle Shell/ODD owns internal decomposition, bounded delegation, verification and work-unit commits
   no Atenea fresh-child-per-external-ticket invariant
   qualified GP3.3 host bridge for exact current reviewer-group transport + consent-resolved signal
+  qualified GP3.3/GAI3.4 assess bridge for provider-owned review_due/reason/continuation
   exact provider reviewer/refuter/validator operations
   no external supervisor / Atenea consent relay / RPA
 
@@ -587,7 +588,9 @@ Pi default         nan/deepseek-v4-flash medium
 Train parent       nan/glm5.3-flash high
 Writer             nan/glm5.3-flash high
 Verifier/readable  openai-codex/gpt-5.6-luna high
-Material RDD       nan/deepseek-v4-flash high
+Reliability RDD    openai-codex/gpt-5.6-luna high
+Resilience         nan/deepseek-v4-flash high
+Risk               nan/glm5.3-flash high
 Refuter            nan/deepseek-v4-flash high
 Validator          openai-codex/gpt-5.6-luna high
 ```

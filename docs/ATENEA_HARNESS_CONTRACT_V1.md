@@ -188,6 +188,21 @@ This shim MUST NOT invent bindings, verdicts, lenses or role routes. `gentle_rev
 
 The parent may stay alive across a compatible bounded train. Atenea does not prescribe one child per external ticket; Gentle Shell/ODD chooses internal bounded workers according to its own enforced delegation rules. The parent must re-read external authority between externally authorized units/frontiers. A process restart/new session starts a new one-touch permission boundary.
 
+### 7.2.1 Native assessment owns review timing
+
+After each substantial/delegated work-unit commit becomes durable, the parent MUST run the read-only native assessment for that exact candidate and follow its provider-owned timing result.
+
+```text
+work-unit commit
+→ gentle_review ASSESS
+→ review_due / review_due_reason
+→ wrapper/provider continuation
+→ negotiated STATUS
+→ provider-owned START/collect/stop as returned
+```
+
+Atenea MUST NOT turn external-ticket completion into an unconditional START, and MUST NOT implement its own line-count threshold for medium-risk slicing. The current GP3.3/GAI3.4 compatibility bridge only preserves GAI3.4's timing fields and exposes a host-safe STATUS continuation; it does not decide review timing.
+
 ### 7.3 Operator prompt surface
 
 The operator prompt states intent and bounded context, not provider tokens or a rewritten review protocol. Current mechanics live in `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md`.
@@ -447,16 +462,18 @@ persistent parent             nan/glm5.3-flash · high
 gentle-ai-worker              nan/glm5.3-flash · high
 gentle-ai-verify              openai-codex/gpt-5.6-luna · high
 review-readability            openai-codex/gpt-5.6-luna · high
-review-reliability            nan/deepseek-v4-flash · high
+review-reliability            openai-codex/gpt-5.6-luna · high
 review-resilience             nan/deepseek-v4-flash · high
-review-risk                   nan/deepseek-v4-flash · high
+review-risk                   nan/glm5.3-flash · high
 review-refuter                nan/deepseek-v4-flash · high
 review-validator              openai-codex/gpt-5.6-luna · high
 ```
 
 NaN's `deepseek-v4-flash` is the provider id for the DeepSeek V4.1 Flash family. The parent route is explicit at launch; Pi's ordinary default remains V4 medium.
 
-No silent provider/model/effort fallback is allowed. See `docs/ROUTING_EVIDENCE_LEDGER_V1.md`.
+Current NaN per-answer ceilings are `32768` for DeepSeek and GLM in Pi/OpenCode. DeepSeek effort labels are not effective reasoning-depth controls; GLM supports effective `low`/`medium`/`high`/`max`. `review-reliability` is provisionally Luna high; `review-risk` is GLM high after exact materialized-prompt reproduction localized a DeepSeek reasoning-exhaustion failure. See `docs/NAN_PROVIDER_CAPABILITIES_V1.md`.
+
+No silent provider/model/effort/budget fallback is allowed. See `docs/ROUTING_EVIDENCE_LEDGER_V1.md`.
 
 ## 21. Security boundary
 
@@ -490,6 +507,11 @@ CURRENT_EXECUTION_MODE                  ONE_TOUCH
 FIRST_REVIEW_SESSION_GRANT              PASS
 LATER_SAME_SESSION_SECOND_TOUCH         NOT_REQUIRED_IN_QUALIFIED_FLOW
 DEFAULT_PI_MODEL                        nan/deepseek-v4-flash medium
+NAN_DEEPSEEK_OUTPUT_CEILING             32768
+NAN_GLM_OUTPUT_CEILING                  32768
+DEEPSEEK_REASONING_EFFORT_EFFECTIVE     NO
+REVIEW_RELIABILITY_MODEL                openai-codex/gpt-5.6-luna high
+REVIEW_RISK_MODEL                       nan/glm5.3-flash high
 PARENT_MODEL                            nan/glm5.3-flash high
 INTERNAL_MICRO_ORCHESTRATION            GENTLE_SHELL_ODD
 FRESH_CHILD_PER_EXTERNAL_TICKET         NOT_REQUIRED_BY_ATENEA

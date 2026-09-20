@@ -10,19 +10,30 @@ Model/provider choices are replaceable operational configuration. They do not re
 | Role / phase | Current route | Effort | Interpretation |
 |---|---|---:|---|
 | Pi ordinary default | `nan/deepseek-v4-flash` | `medium` | User default; DeepSeek V4.1 Flash is served by NaN under `deepseek-v4-flash`. |
-| Persistent parent / train coordinator | `nan/glm5.3-flash` | `high` | Preserves the qualified GLM coordinator role; launch explicitly. |
-| `gentle-ai-worker` | `nan/glm5.3-flash` | `high` | Prior adopted writer role, provider migrated to NaN. |
-| `gentle-ai-verify` | `openai-codex/gpt-5.6-luna` | `high` | Prior qualified verifier route retained. |
-| `review-readability` | `openai-codex/gpt-5.6-luna` | `high` | Prior readability route retained. |
-| `review-reliability` | `nan/deepseek-v4-flash` | `high` | Prior V4.1 material-behavior role, provider migrated to NaN. |
-| `review-resilience` | `nan/deepseek-v4-flash` | `high` | Prior V4.1 failure/recovery role, provider migrated to NaN. |
-| `review-risk` | `nan/deepseek-v4-flash` | `high` | Prior V4.1 security/authorization role, provider migrated to NaN. |
-| `review-refuter` | `nan/deepseek-v4-flash` | `high` | GP3.3 compatibility/adoption mapping for the explicit v9 role slot. |
-| `review-validator` | `openai-codex/gpt-5.6-luna` | `high` | GP3.3 compatibility/adoption mapping for the explicit v9 role slot. |
+| Persistent parent / train coordinator | `nan/glm5.3-flash` | `high` | Qualified coordinator route; launch explicitly. |
+| `gentle-ai-worker` | `nan/glm5.3-flash` | `high` | Qualified writer route, provider migrated to NaN. |
+| `gentle-ai-verify` | `openai-codex/gpt-5.6-luna` | `high` | Qualified independent verifier route. |
+| `review-readability` | `openai-codex/gpt-5.6-luna` | `high` | Better severity calibration / lower review inflation in Sep-12 evidence. |
+| `review-reliability` | `openai-codex/gpt-5.6-luna` | `high` | Provisional current route: Luna was acceptable in Sep-12; the only current NaN DeepSeek reliability failure is ASSESS-bypass-confounded, so DeepSeek remains historical evidence rather than current routing. |
+| `review-resilience` | `nan/deepseek-v4-flash` | `high` | Historical failure/recovery role qualification retained. |
+| `review-risk` | `nan/glm5.3-flash` | `high` | Sep-20 NaN runtime override: exact materialized risk prompt exhausted DeepSeek reasoning but completed on GLM. |
+| `review-refuter` | `nan/deepseek-v4-flash` | `high` | GP3.3 explicit role mapping; no contrary current field evidence. |
+| `review-validator` | `openai-codex/gpt-5.6-luna` | `high` | GP3.3 explicit role mapping. |
 
 ## 2. Provider/model literals
 
-NaN exposes `nan/deepseek-v4-flash` and `nan/glm5.3-flash`. The first is the DeepSeek V4.1 Flash family under NaN's model id. Luna remains `openai-codex/gpt-5.6-luna`.
+NaN exposes `nan/deepseek-v4-flash` and `nan/glm5.3-flash`. Luna remains `openai-codex/gpt-5.6-luna`.
+
+Current NaN output ceilings:
+
+```text
+DeepSeek = 32768
+GLM      = 32768
+```
+
+DeepSeek `reasoning_effort` is non-operative under NaN. GLM supports effective `low/medium/high/max`.
+
+See `docs/NAN_PROVIDER_CAPABILITIES_V1.md`.
 
 ## 3. Machine-global authority
 
@@ -32,18 +43,49 @@ NaN exposes `nan/deepseek-v4-flash` and `nan/glm5.3-flash`. The first is the Dee
 ~/.pi/gentle-ai/profiles.json
 ```
 
-The active profile is `atenea-one-touch`. It intentionally contains no `orchestrator` entry, so it does not change Pi's ordinary V4-medium default. The train parent is launched explicitly on GLM high.
+The active profile is `atenea-one-touch`. It intentionally contains no `orchestrator` entry, so it does not change Pi's ordinary DeepSeek-medium default. The train parent is launched explicitly on GLM high.
 
 Atenea publishes `.pi/gentle-ai/profile.json` naming `atenea-one-touch`; each machine must have that profile installed. Project-local overrides outrank machine-global configuration and must be detected before pinned work.
 
-## 4. GP3.3 role-routing change
+## 4. Why risk differs from the Sep-12 route
 
-Under GP2.7, refuter/validator were intentionally unpinned. Under the current v9 host-mediated role contract, Gentle Pi 3.3 requires configured routing and refuses typed when missing. The new refuter/validator pins are GP3.3 compatibility/adoption mappings, not retroactive Sep-12 evidence.
+Sep-12 role qualification preferred DeepSeek V4.1 for reliability, resilience and risk, while Luna won readability. That result remains historical evidence for the tested provider/candidates.
 
-## 5. Preserved Sep-12 evidence
+Sep-20 NaN field evidence added a new operational constraint:
 
-The role-diverse design remains grounded in Sep-12 evidence: GLM for coordinator/writer; Luna for fresh verification/readability; DeepSeek V4.1 for material reliability/resilience/risk. Full historical evidence: `docs/ROUTING_QUALIFICATION_EVIDENCE_20260912.md`.
+```text
+same provider-materialized review-risk prompt
+DeepSeek → thinking-only → stopReason=length → no final text
+GLM high → valid reviewer JSON in ~8.5 s
+```
 
-## 6. No silent fallback
+Therefore only `review-risk` moves to GLM. This does not erase the known Sep-12 quality trade-off: GLM previously over-fragmented one authorization root cause into multiple blockers. Current field operability outweighs that earlier calibration advantage for this role, and the trade-off remains visible.
+
+Evidence: `docs/NAN_DEEPSEEK_INPROCESS_REVIEWER_INCIDENT_20260920.md`.
+
+## 5. Review timing is not routing
+
+Model routing does not decide **when** review runs.
+
+The timing/slicing boundary is owned by Gentle Shell/ODD + native Gentle assessment:
+
+```text
+work-unit commit
+→ gentle_review assess
+→ provider review_due / review_due_reason
+→ provider-owned continuation
+```
+
+Do not use candidate size or external-ticket completion as an Atenea-owned review trigger.
+
+Evidence: `docs/ODD_REVIEW_ASSESS_BYPASS_EVIDENCE_20260920.md`.
+
+## 6. GP3.3 explicit-role change
+
+Under GP2.7, refuter/validator were intentionally unpinned. Under the current v9 host-mediated role contract, GP3.3 requires configured routing and fails typed when missing. Current refuter/validator pins are GP3.3 adoption mappings, not retroactive Sep-12 claims.
+
+## 7. No silent fallback
 
 Every pinned role resolves the exact provider/model/effort or fails closed. Pi's ordinary default is not an implicit fallback for review roles.
+
+OpenCode Go is not an operational subscription and is not a current Atenea route/fallback.

@@ -1,0 +1,168 @@
+--- a/extensions/gentle-ai.ts
++++ b/extensions/gentle-ai.ts
+@@ -990,7 +990,17 @@
+ 	reasons: readonly { code: string; path: string; detail: string }[];
+ 	changedPaths: number;
+ 	changedLines: number;
+-	candidate: { kind: string; baseRef: string | undefined } | null;
++	candidate: { kind: string; baseRef: string | undefined; consumed?: boolean } | null;
++	/** Gentle AI 3.4 provider-owned review timing. null means the installed binary did not expose it. */
++	review_due: boolean | null;
++	review_due_reason?: string;
++	provider_next_transition?: ReviewAssessmentV1["nextTransition"];
++	/** Host-safe continuation into negotiated STATUS; never a reconstructed native CLI invocation. */
++	wrapper_continuation?: {
++		tool: "gentle_review";
++		operation: "status";
++		input?: string;
++	};
+ 	rddLine: RddLine;
+ 	nativeReviewOutcome: NativeReviewOutcome;
+ 	// gentle-pi#668: where nativeReviewOutcome came from -- explicit (caller
+@@ -1047,13 +1057,31 @@
+ 	const nativeReviewOutcome: NativeReviewOutcome = input.nativeReviewOutcome ?? derived ?? NATIVE_REVIEW_OUTCOME.UNKNOWN;
+ 	const outcomeSource: "explicit" | "derived" | "unknown" = input.nativeReviewOutcome !== undefined ? "explicit" : derived === undefined ? "unknown" : "derived";
+ 	const plan = verificationPlan({ rddLine, risk, writerProfile, nativeReviewOutcome });
++	const reviewDue = assessment?.reviewDue;
++	const wrapperContinuation = reviewDue === true && assessment?.nextTransition?.operation === "review.status"
++		? {
++			tool: "gentle_review" as const,
++			operation: "status" as const,
++			...(assessment.candidate.kind === "base-diff" && assessment.candidate.baseRef !== undefined
++				? { input: JSON.stringify({ baseRef: assessment.candidate.baseRef, committedOnly: true }) }
++				: {}),
++		}
++		: undefined;
+ 	return {
+ 		schema: "gentle-pi.review-assessment-plan/v1",
+ 		risk,
+ 		reasons: assessment?.reasons ?? (unassessableDetail === undefined ? [] : [{ code: "native-assess-unavailable", path: "", detail: unassessableDetail }]),
+ 		changedPaths: assessment?.changedPaths ?? 0,
+ 		changedLines: assessment?.changedLines ?? 0,
+-		candidate: assessment === undefined ? null : { kind: assessment.candidate.kind, baseRef: assessment.candidate.baseRef },
++		candidate: assessment === undefined ? null : {
++			kind: assessment.candidate.kind,
++			baseRef: assessment.candidate.baseRef,
++			...(assessment.candidate.consumed === undefined ? {} : { consumed: assessment.candidate.consumed }),
++		},
++		review_due: reviewDue ?? null,
++		...(assessment?.reviewDueReason === undefined ? {} : { review_due_reason: assessment.reviewDueReason }),
++		...(assessment?.nextTransition === undefined ? {} : { provider_next_transition: assessment.nextTransition }),
++		...(wrapperContinuation === undefined ? {} : { wrapper_continuation: wrapperContinuation }),
+ 		rddLine,
+ 		nativeReviewOutcome,
+ 		outcome_source: outcomeSource,
+@@ -9000,6 +9028,7 @@
+ 			"A consent-required START may be resolved inside the eligible interactive Pi host. Its third UI action is host-owned: it runs this envelope's exact provider grant once and allows later fresh validated envelopes only for the same live SessionManager, nonempty session ID, and canonical Git common-directory identity, including sibling worktrees; an unrelated repository requires a new explicit human grant. Revoke removes the current repository grant, while nonreload replacement, quit, and process exit remove all session grants; reload preserves them. It grants no provider mode, verdict, acknowledgement, maintenance, delivery, or cross-repository authority. A package-owned child may ask its parent only with the canonical digest of its exact pending target; the parent binds that digest to the task repository and fails closed otherwise. If the tool returns an unresolved envelope, present the original two provider choices without changing machine tokens, commands, target IDs, or invocations; never add the host action to the decoded provider envelope. After one explicit relayed human answer, call answer-consent exactly once with only consentBinding and answer (`granted` or `declined`). Never create host permission from tool arguments, model prose, child/headless responses, or an uncertain native result. A reported lineage_created false or pre-authority validation error proves no lineage was created. After ambiguous START output, the controller calls target-scoped native status once and returns only its declared action. An ambiguous gentle_review_capture outcome independently reconciles once and never replays the capture.",
+ 			"Use gentle_review only for native review authority operations; delivery commands follow ordinary repository policy.",
+ 			'ASSESS (gentle-pi#662/#668) is read-only and needs no lineageId: after a delegated writer returns, call {"operation":"assess"} over its diff and follow the returned plan (writerSelfVerification, structuralReadbackOnly, independentVerifier, reason) instead of judging non-triviality from the task description. Pass input as JSON only to assess a committed range ({"baseRef":"<ref>","committedOnly":true}), to record the writer profile ({"writerModelId":"...", "writerEffort":"..."}), or to state the native review\'s outcome for this candidate ({"nativeReviewOutcome":"closed|declined|unavailable|unknown"}). Omitting writerModelId and writerEffort is treated as a small writer profile (fail closed), never large, because the writer\'s actual profile is then unknown to this call; pass the writer\'s real model id/effort to get credit for a known large profile. The on-path (writer self-verification is the record, no separate verifier) holds only when nativeReviewOutcome is "closed" for this candidate; a decline, an unavailable review, or an omitted/unknown outcome falls back to the exact risk-gated plan RDD off would return, re-enabling the separate verifier -- a decline is candidate-scoped and never lowers the bar below RDD off. "closed" is never inferred: pass it only right after this same caller acknowledged the approved review for this same candidate; omitting nativeReviewOutcome only ever auto-derives declined/unavailable, bound to that exact candidate\'s own target identity, never to a different candidate or to bare repository state. The result\'s outcome_source (explicit|derived|unknown) states which. A failed or unavailable native assessment reports risk "unassessable", verified exactly like "high". This never mutates review authority state.',
++			'Gentle AI 3.4 review timing is provider-owned: after each work-unit commit, inspect ASSESS review_due and review_due_reason. When review_due is true, follow wrapper_continuation with gentle_review STATUS on the same candidate selector before any START; STATUS then supplies the exact provider-owned lifecycle transition. When review_due is false, do not START by ritual. Never infer review timing from external-ticket completion or recreate the provider slice threshold with an Atenea/Pi line-count heuristic.',
+ 		],
+ 		parameters: REVIEW_CONTROLLER_PARAMETERS,
+ 		executionMode: "sequential",
+--- a/lib/review-risk-assessment.ts
++++ b/lib/review-risk-assessment.ts
+@@ -39,6 +39,17 @@
+ export interface ReviewAssessmentCandidate {
+ 	readonly kind: ReviewAssessmentCandidateKind;
+ 	readonly baseRef: string | undefined;
++	/** Gentle AI 3.4+: whether this exact candidate was already consumed by review. */
++	readonly consumed?: boolean;
++}
++
++export type ReviewAssessmentDueReason = string;
++
++export interface ReviewAssessmentNextTransition {
++	readonly operation: "review.status";
++	readonly command: string;
++	/** Preserve provider-owned additive fields rather than narrowing the upstream continuation. */
++	readonly [key: string]: unknown;
+ }
+ 
+ export interface ReviewAssessmentV1 {
+@@ -48,6 +59,10 @@
+ 	readonly changedPaths: number;
+ 	readonly changedLines: number;
+ 	readonly candidate: ReviewAssessmentCandidate;
++	/** Gentle AI 3.4 additive review-timing signal. Undefined on older compatible binaries. */
++	readonly reviewDue?: boolean;
++	readonly reviewDueReason?: ReviewAssessmentDueReason;
++	readonly nextTransition?: ReviewAssessmentNextTransition;
+ }
+ 
+ function isRecord(value: unknown): value is Record<string, unknown> {
+@@ -65,14 +80,24 @@
+ 
+ function decodeCandidate(value: unknown): ReviewAssessmentCandidate {
+ 	if (!isRecord(value)) throw new TypeError("review assessment candidate must be an object");
+-	const { kind, base_ref: baseRef } = value;
++	const { kind, base_ref: baseRef, consumed } = value;
+ 	if (kind !== REVIEW_ASSESSMENT_CANDIDATE_KIND.CURRENT_CHANGES && kind !== REVIEW_ASSESSMENT_CANDIDATE_KIND.BASE_DIFF) {
+ 		throw new TypeError("review assessment candidate.kind must be current-changes or base-diff");
+ 	}
+ 	if (baseRef !== undefined && (typeof baseRef !== "string" || baseRef.length === 0)) {
+ 		throw new TypeError("review assessment candidate.base_ref must be a non-empty string when present");
+ 	}
+-	return Object.freeze({ kind, baseRef: baseRef as string | undefined });
++	if (consumed !== undefined && typeof consumed !== "boolean") {
++		throw new TypeError("review assessment candidate.consumed must be boolean when present");
++	}
++	return Object.freeze({ kind, baseRef: baseRef as string | undefined, ...(consumed === undefined ? {} : { consumed }) });
++}
++
++function decodeReviewAssessmentNextTransition(value: unknown): ReviewAssessmentNextTransition {
++	if (!isRecord(value)) throw new TypeError("review assessment next_transition must be an object");
++	if (value.operation !== "review.status") throw new TypeError("review assessment next_transition.operation must be review.status");
++	if (typeof value.command !== "string" || value.command.length === 0) throw new TypeError("review assessment next_transition.command must be non-empty");
++	return Object.freeze({ ...value, operation: "review.status", command: value.command });
+ }
+ 
+ /**
+@@ -85,13 +110,36 @@
+ export function decodeReviewAssessmentV1(value: unknown): ReviewAssessmentV1 {
+ 	if (!isRecord(value)) throw new TypeError("review assessment must be an object");
+ 	if (value.schema !== REVIEW_ASSESSMENT_SCHEMA) throw new TypeError(`review assessment schema must be ${REVIEW_ASSESSMENT_SCHEMA}`);
+-	const { risk, reasons, changed_paths: changedPaths, changed_lines: changedLines, candidate } = value;
++	const {
++		risk,
++		reasons,
++		changed_paths: changedPaths,
++		changed_lines: changedLines,
++		candidate,
++		review_due: reviewDue,
++		review_due_reason: reviewDueReason,
++		next_transition: nextTransition,
++	} = value;
+ 	if (risk !== REVIEW_ASSESSMENT_RISK.PASSIVE && risk !== REVIEW_ASSESSMENT_RISK.MEDIUM && risk !== REVIEW_ASSESSMENT_RISK.HIGH) {
+ 		throw new TypeError("review assessment risk must be passive, medium, or high");
+ 	}
+ 	if (!Array.isArray(reasons)) throw new TypeError("review assessment reasons must be an array");
+ 	if (!Number.isSafeInteger(changedPaths) || (changedPaths as number) < 0) throw new TypeError("review assessment changed_paths must be a non-negative integer");
+ 	if (!Number.isSafeInteger(changedLines) || (changedLines as number) < 0) throw new TypeError("review assessment changed_lines must be a non-negative integer");
++	if (reviewDue !== undefined && typeof reviewDue !== "boolean") throw new TypeError("review assessment review_due must be boolean when present");
++	if (reviewDueReason !== undefined && (typeof reviewDueReason !== "string" || reviewDueReason.length === 0)) {
++		throw new TypeError("review assessment review_due_reason must be non-empty when present");
++	}
++	const decodedNextTransition = nextTransition === undefined ? undefined : decodeReviewAssessmentNextTransition(nextTransition);
++	if (reviewDue === undefined && (reviewDueReason !== undefined || decodedNextTransition !== undefined)) {
++		throw new TypeError("review assessment timing fields require review_due");
++	}
++	if (reviewDue === true && (reviewDueReason === undefined || decodedNextTransition === undefined)) {
++		throw new TypeError("review assessment review_due=true requires review_due_reason and next_transition");
++	}
++	if (reviewDue === false && decodedNextTransition !== undefined) {
++		throw new TypeError("review assessment review_due=false cannot carry next_transition");
++	}
+ 	return Object.freeze({
+ 		schema: REVIEW_ASSESSMENT_SCHEMA,
+ 		risk,
+@@ -99,6 +147,9 @@
+ 		changedPaths: changedPaths as number,
+ 		changedLines: changedLines as number,
+ 		candidate: decodeCandidate(candidate),
++		...(reviewDue === undefined ? {} : { reviewDue }),
++		...(reviewDueReason === undefined ? {} : { reviewDueReason: reviewDueReason as string }),
++		...(decodedNextTransition === undefined ? {} : { nextTransition: decodedNextTransition }),
+ 	});
+ }
+ 
