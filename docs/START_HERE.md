@@ -49,7 +49,7 @@ HUMAN + CORA / PLANNING CHAT
             ↓
 HUMAN + HERDR + PI/GENTLE-PI 3.3
   explicit human execution authorization
-  start one persistent visible parent on nan/deepseek-v4-flash medium
+  start one persistent visible parent on nan/glm5.3-flash high
   send one bounded authorized work item/train prompt
             ↓
 PERSISTENT PARENT + GENTLE SHELL / ODD
@@ -256,7 +256,7 @@ Once work is `EXECUTION_READY`, stop expanding the shaping stack and use `docs/O
 
 ```text
 explicit human execution authorization
-→ start one visible Pi + Gentle Pi 3.3 parent on nan/deepseek-v4-flash medium
+→ start one visible Pi + Gentle Pi 3.3 parent on nan/glm5.3-flash high
 → one bounded authorized work item/train prompt
 → Gentle Shell/ODD owns internal tasking/delegation/verification/work-unit commits
 → first eligible review: “Review and allow this session”

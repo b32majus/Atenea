@@ -63,12 +63,18 @@ Persona     gentleman
 
 ```text
 Pi default                    nan/deepseek-v4-flash · medium
-parent                        nan/deepseek-v4-flash · medium
-all configured Gentle roles   nan/deepseek-v4-flash · medium
-max_concurrency               1
+parent                        nan/glm5.3-flash · high
+gentle-ai-worker              nan/glm5.3-flash · high
+gentle-ai-verify              openai-codex/gpt-5.6-luna · high
+review-readability            openai-codex/gpt-5.6-luna · high
+review-reliability            nan/deepseek-v4-flash · high
+review-resilience             nan/deepseek-v4-flash · high
+review-risk                   nan/deepseek-v4-flash · high
+review-refuter                nan/deepseek-v4-flash · high
+review-validator              openai-codex/gpt-5.6-luna · high
 ```
 
-Global routing authority is `~/.pi/gentle-ai/models.json`, `~/.pi/gentle-ai/profiles.json` and `~/.pi/agent/subagents.json`. Active profile: `atenea-one-touch`. The current cutover pins the parent and all configured Gentle/ODD/SDD roles to NaN V4 medium with `max_concurrency=1`.
+Global routing authority is `~/.pi/gentle-ai/models.json`, `~/.pi/gentle-ai/profiles.json` and `~/.pi/agent/subagents.json`. Active profile: `atenea-one-touch`. It deliberately omits `orchestrator`; the train parent is launched explicitly on GLM high.
 
 The repo declares `.pi/gentle-ai/profile.json`. Each machine must have the named profile installed.
 
@@ -88,10 +94,12 @@ pi --version
 node -p 'require("/home/hermes/.pi/agent/npm/node_modules/gentle-pi/package.json").version'
 /home/hermes/.pi/agent/npm/node_modules/gentle-pi/.gentle-ai/v3.4.0/gentle-ai --version
 pi auth check --model nan/deepseek-v4-flash --json --no-refresh
+pi auth check --model nan/glm5.3-flash --json --no-refresh
+pi auth check --model openai-codex/gpt-5.6-luna --json --no-refresh
 ./tools/apply-gentle-330-atenea-host-bridge.sh --check
 ```
 
-Expected: current Pi `0.86.1`, `3.3.0`, `gentle-ai 3.4.0`, V4 auth ready and `PASS: qualified Atenea host bridge present`. The strong single-acceptance Q11 baseline used Pi `0.86.0`; keep that distinction until a normal 0.86.1 train supplies parity evidence.
+Expected: current Pi `0.86.1`, `3.3.0`, `gentle-ai 3.4.0`, V4/GLM/Luna auth ready and `PASS: qualified Atenea host bridge present`. The strong single-acceptance Q11 baseline used Pi `0.86.0`; keep that distinction until a normal 0.86.1 train supplies parity evidence.
 
 ## 5. RDD and current one-touch boundary
 
@@ -157,7 +165,7 @@ Once work is `EXECUTION_READY`:
 
 ```text
 1. Open/use Herdr in the intended repository/worktree.
-2. Start one visible Pi + Gentle Pi 3.3 parent explicitly on nan/deepseek-v4-flash medium.
+2. Start one visible Pi + Gentle Pi 3.3 parent explicitly on nan/glm5.3-flash high.
 3. Give one bounded authorized work item/train prompt.
 4. Parent validates current external authority/runtime/profile and selects only authorized work.
 5. Gentle Shell/ODD owns internal classification, decomposition, bounded delegation, verification and work-unit commits.
@@ -177,9 +185,11 @@ Use `docs/OPERATOR_RUNBOOK_V1.md` and `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TR
 PERSISTENT_PARENT_VISIBLE_IN_HERDR=YES
 PARENT_RUNTIME=PI_0_86_1_PLUS_GENTLE_PI_3_3_0
 PACKAGE_LOCAL_GENTLE_AI=3_4_0
-PARENT_ROUTE=NAN_DEEPSEEK_V4_FLASH_MEDIUM
+PARENT_ROUTE=NAN_GLM5_3_FLASH_HIGH
 DEFAULT_PI_ROUTE=NAN_DEEPSEEK_V4_FLASH_MEDIUM
-ALL_CONFIGURED_GENTLE_ROLES=NAN_DEEPSEEK_V4_FLASH_MEDIUM
+GENTLE_WORKER_ROUTE=NAN_GLM5_3_FLASH_HIGH
+GENTLE_VERIFY_READABILITY_VALIDATOR=OPENAI_CODEX_GPT_5_6_LUNA_HIGH
+GENTLE_MATERIAL_REVIEW_REFUTER=NAN_DEEPSEEK_V4_FLASH_HIGH
 ODD_INTERNAL_MICRO_ORCHESTRATION=UPSTREAM_OWNED
 FRESH_CHILD_PER_EXTERNAL_TICKET=NOT_REQUIRED_BY_ATENEA
 MAX_CONCURRENCY_DEFAULT=1

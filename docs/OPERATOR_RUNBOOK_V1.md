@@ -20,7 +20,7 @@ No launcher daemon, queue, scheduler, external supervisor, consent relay or RPA 
 ```text
 explicit human execution authorization
 → start one visible Pi/Gentle-Pi 3.3 parent
-   model: nan/deepseek-v4-flash · medium
+   model: nan/glm5.3-flash · high
 → submit one bounded authorized work item/train prompt
 → Gentle Shell/ODD owns internal tasking/delegation/verification/work-unit commits
 → first eligible review: human selects “Review and allow this session”  ← the one touch
@@ -52,10 +52,10 @@ Confirm exact repo/worktree/HEAD; `EXECUTION_READY`; current Pi `0.86.1`, Herdr 
 ## 2. Starting the persistent parent after explicit authorization
 
 ```bash
-pi --model nan/deepseek-v4-flash --thinking medium
+pi --model nan/glm5.3-flash --thinking high
 ```
 
-The current cutover routes the parent and all configured Gentle roles to `nan/deepseek-v4-flash` at `medium`; `max_concurrency=1`.
+Pi's ordinary default remains `nan/deepseek-v4-flash` medium. The persistent train parent launches on `nan/glm5.3-flash` high; configured Gentle roles follow the current mixed routing ledger. The all-V4 route was qualification-only. `max_concurrency=1`.
 
 ## 3. Operator prompt and the one touch
 
@@ -145,7 +145,7 @@ Never synthesize the grant from model prose, environment state, internal APIs or
 ```text
 WORK_ITEM_OR_TRAIN=
 PARENT_VISIBLE_IN_HERDR=YES
-PARENT_MODEL=nan/deepseek-v4-flash medium
+PARENT_MODEL=nan/glm5.3-flash high
 PI_VERSION=0.86.1
 GENTLE_PI_VERSION=3.3.0
 GENTLE_AI_VERSION=3.4.0

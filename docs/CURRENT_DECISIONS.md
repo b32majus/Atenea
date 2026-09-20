@@ -359,22 +359,30 @@ No external supervisor, Atenea consent relay, internal permission API or Herdr R
 
 Current recipe: `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md`.
 
-## C-045 — Current routing is NaN / DeepSeek V4 Flash across the GP3.3 stack
+## C-045 — Current routing restores GLM/Luna/V4 diversity; NaN owns GLM/V4 provider routes
 
-**Accepted final cutover 2026-09-20.**
+**Accepted 2026-09-20.**
 
-The earlier role-diverse GLM/Luna/V4 matrix remains historical qualification evidence. Q11b and the final VPS cutover selected one operational route for simplicity and provider consistency:
+The temporary all-V4 routing used during runtime/performance qualification is not operational policy.
 
 ```text
 Pi default                    nan/deepseek-v4-flash · medium
-persistent parent             nan/deepseek-v4-flash · medium
-all configured Gentle roles   nan/deepseek-v4-flash · medium
-max_concurrency               1
+persistent parent             nan/glm5.3-flash · high
+gentle-ai-worker              nan/glm5.3-flash · high
+gentle-ai-verify              openai-codex/gpt-5.6-luna · high
+review-readability            openai-codex/gpt-5.6-luna · high
+review-reliability            nan/deepseek-v4-flash · high
+review-resilience             nan/deepseek-v4-flash · high
+review-risk                   nan/deepseek-v4-flash · high
+review-refuter                nan/deepseek-v4-flash · high
+review-validator              openai-codex/gpt-5.6-luna · high
 ```
 
-NaN serves the DeepSeek V4.1 Flash family under model id `deepseek-v4-flash`. GP3.3 role slots such as refuter/validator still require explicit configured routing; the all-V4 profile satisfies them without ambient fallback.
+NaN serves the DeepSeek V4.1 Flash family under model id `deepseek-v4-flash`. Luna remains on OpenAI-Codex.
 
-The active machine profile is `atenea-one-touch`.
+GP3.3's v9 role contract requires explicit user-owned routing for host-mediated refuter/validator slots when requested. Their current mappings are a GP3.3 compatibility/adoption decision, not a retroactive claim that GP2.7 had those pins.
+
+The machine profile is `atenea-one-touch`. It deliberately has no `orchestrator` entry, so Pi's normal default remains V4 medium; the train parent is launched explicitly on GLM high.
 
 ## C-046 — Gentle Shell/ODD owns internal micro-orchestration; Atenea owns the external frontier
 
@@ -733,7 +741,7 @@ A graph/index never outranks source code, accepted product/spec authority, deter
 1. human + Cora read current Atenea and target-project authority;
 2. shape/reconcile until a bounded item/train is explicitly `EXECUTION_READY`;
 3. verify GP3.3/GAI3.4 runtime, `atenea-one-touch` routing and exact repo/worktree state;
-4. start one visible persistent parent on the current `nan/deepseek-v4-flash` `medium` route;
+4. start one visible persistent parent explicitly on `nan/glm5.3-flash` `high`;
 5. submit one bounded train prompt;
 6. on the first valid review consent only, human selects `Review and allow this session`;
 7. let Gentle Shell/ODD own internal decomposition/delegation/verification; at provider review boundaries follow the exact native role transition through APPROVED + acknowledgement/burn;

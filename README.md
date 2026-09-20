@@ -37,7 +37,7 @@ HUMAN + CORA / PLANNING
   HUMAN promotes EXECUTION_READY
             ↓
 HUMAN AUTHORIZATION + HERDR + PI/GENTLE-PI 3.3
-  start one visible persistent parent on nan/deepseek-v4-flash medium
+  start one visible persistent parent on nan/glm5.3-flash high
   one bounded authorized work item/train prompt
             ↓
 PERSISTENT PARENT + GENTLE SHELL / ODD
@@ -116,7 +116,7 @@ BEFORE EXECUTION_READY
   human-present shaping + durable repo/tracker authority
             ↓
 ONE-TOUCH EXECUTION
-  → one visible persistent Pi + Gentle Pi 3.3 parent on NaN DeepSeek V4 Flash medium
+  → one visible persistent Pi + Gentle Pi 3.3 parent on NaN GLM 5.3 Flash high
   → one bounded authorized work item/train prompt
   → Gentle Shell/ODD owns internal tasking, delegation, verification and work-unit commits
   → provider-owned Gentle AI 3.4 risk/review routing
@@ -134,7 +134,7 @@ There is no normal external Pi supervisor, pi-intercom consent relay, Herdr RPA 
 
 Current recipe: `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md`.
 
-Current routing: `nan/deepseek-v4-flash` at `medium` for the parent and all configured Gentle/ODD/SDD worker, verifier and review roles; `max_concurrency=1`. NaN's `deepseek-v4-flash` serves the DeepSeek V4.1 Flash family. Routing is replaceable operational configuration, not Atenea architecture.
+Current operational routing is deliberately role-diverse: NaN GLM 5.3 Flash high for the persistent parent and gentle-ai-worker; OpenAI-Codex Luna high for gentle-ai-verify, review-readability, and review-validator; NaN DeepSeek V4 Flash high for review-reliability, review-resilience, review-risk, and review-refuter. Pi's ordinary default remains nan/deepseek-v4-flash medium and max_concurrency=1. The all-V4 profile was temporary Q11 qualification, not production policy.
 
 ## Normative contract
 
@@ -177,7 +177,7 @@ Herdr                                            0.9.0
 Gentle Pi                                        3.3.0
 Gentle AI                                        3.4.0 package-paired
 DEFAULT_PI_MODEL                                 nan/deepseek-v4-flash medium
-PERSISTENT_TRAIN_PARENT                         nan/deepseek-v4-flash medium
+PERSISTENT_TRAIN_PARENT                         nan/glm5.3-flash high
 INTERNAL_MICRO_ORCHESTRATION                    GENTLE_SHELL_ODD
 FRESH_CHILD_PER_EXTERNAL_TICKET                 NOT_AN_ATENEA_INVARIANT
 QUALIFIED_HOST_BRIDGE                           REQUIRED_FOR_GP3_3_CURRENT_GROUP_AND_CONSENT_SIGNAL
@@ -252,7 +252,7 @@ The Matt skills are not a mandatory execution sequence.
 ### Migration / qualification evidence
 
 - `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md` — historical GP2.7/GAI2.9.1 topology-replacement evidence.
-- `docs/ROUTING_QUALIFICATION_EVIDENCE_20260912.md` — historical A/B evidence for the superseded Sep-12 GLM/Luna/V4 role-diverse profile.
+- `docs/ROUTING_QUALIFICATION_EVIDENCE_20260912.md` — historical A/B evidence underlying the current GLM/Luna/V4 role-diverse policy.
 
 ### Historical / rollback evidence
 

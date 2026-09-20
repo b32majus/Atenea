@@ -120,12 +120,18 @@ The upstream skill's own trigger and procedure remain authoritative; Atenea does
 
 ```text
 Pi ordinary default              nan/deepseek-v4-flash · medium
-Persistent parent/coordinator    nan/deepseek-v4-flash · medium
-All configured Gentle roles      nan/deepseek-v4-flash · medium
-max_concurrency                   1
+Persistent parent/coordinator    nan/glm5.3-flash · high
+gentle-ai-worker                 nan/glm5.3-flash · high
+gentle-ai-verify                 openai-codex/gpt-5.6-luna · high
+review-readability               openai-codex/gpt-5.6-luna · high
+review-reliability               nan/deepseek-v4-flash · high
+review-resilience                nan/deepseek-v4-flash · high
+review-risk                      nan/deepseek-v4-flash · high
+review-refuter                   nan/deepseek-v4-flash · high
+review-validator                 openai-codex/gpt-5.6-luna · high
 ```
 
-NaN's `deepseek-v4-flash` id is the DeepSeek V4.1 Flash family. The active machine profile is `atenea-one-touch`; the current cutover routes the parent and all configured Gentle roles to V4 medium with concurrency 1.
+NaN's `deepseek-v4-flash` id is the DeepSeek V4.1 Flash family. The active machine profile is `atenea-one-touch` and deliberately does not override Pi's orchestrator default; train parents launch GLM high explicitly.
 
 Missing/rejected pinned routes fail closed; no silent fallback. See `docs/ROUTING_EVIDENCE_LEDGER_V1.md`.
 

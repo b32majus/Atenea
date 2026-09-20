@@ -26,21 +26,28 @@ Pi's ordinary default remains `nan/deepseek-v4-flash` at `medium`. NaN serves th
 
 | Role / phase | Route | Effort |
 |---|---|---|
-| Persistent parent / train coordinator | `nan/deepseek-v4-flash` | `medium` |
-| All configured Gentle/ODD/SDD roles | `nan/deepseek-v4-flash` | `medium` |
+| Persistent parent / train coordinator | `nan/glm5.3-flash` | `high` |
+| `gentle-ai-worker` | `nan/glm5.3-flash` | `high` |
+| `gentle-ai-verify` | `openai-codex/gpt-5.6-luna` | `high` |
+| `review-readability` | `openai-codex/gpt-5.6-luna` | `high` |
+| `review-reliability` | `nan/deepseek-v4-flash` | `high` |
+| `review-resilience` | `nan/deepseek-v4-flash` | `high` |
+| `review-risk` | `nan/deepseek-v4-flash` | `high` |
+| `review-refuter` | `nan/deepseek-v4-flash` | `high` |
+| `review-validator` | `openai-codex/gpt-5.6-luna` | `high` |
 
-The current cutover intentionally uses V4 medium for both the parent and all configured Gentle roles. `max_concurrency=1`. This route is operational configuration, not architecture.
+The parent route is explicit at launch; it is not inferred from Pi's ordinary V4 default.
 
 ## 3. Preflight
 
-Before product mutation verify current Pi `0.86.1`, Gentle Pi `3.3.0`, package-local Gentle AI `3.4.0`; V4 NaN auth ready; active profile `atenea-one-touch`; `./tools/apply-gentle-330-atenea-host-bridge.sh --check` PASS; no unexpected higher-priority project override; and exact repo/worktree/HEAD/delivery state. Q11 single-acceptance evidence was captured on Pi `0.86.0`.
+Before product mutation verify current Pi `0.86.1`, Gentle Pi `3.3.0`, package-local Gentle AI `3.4.0`; V4/GLM NaN and Luna OpenAI-Codex auth ready; active profile `atenea-one-touch`; `./tools/apply-gentle-330-atenea-host-bridge.sh --check` PASS; no unexpected higher-priority project override; and exact repo/worktree/HEAD/delivery state. Q11 single-acceptance evidence was captured on Pi `0.86.0`.
 
 Unexpected drift is STOP, not silent fallback.
 
 ## 4. Launch the persistent parent
 
 ```bash
-pi --model nan/deepseek-v4-flash --thinking medium
+pi --model nan/glm5.3-flash --thinking high
 ```
 
 Herdr is visibility/session substrate only. There is no normal external Pi supervisor, pi-intercom consent relay, Herdr RPA consent driver or Atenea review controller.
@@ -101,7 +108,7 @@ APPROVED is incomplete until acknowledgement/burn succeeds. Session permission i
 Execute the current EXECUTION_READY ticket/train end to end under the current Atenea contract and Gentle Pi 3.3 one-touch recipe.
 Remain the persistent visible parent and retain external authority/frontier context. Let Gentle Shell/ODD own internal classification, decomposition, bounded delegation, verification and work-unit commits; do not impose one child per external ticket.
 For every provider-selected review boundary, follow the exact native transition through APPROVED + acknowledgement/burn. At each external work-unit/frontier boundary, re-read durable authority and continue only with already-authorized work.
-Use the current all-V4 Atenea routing and qualified GP3.3 host bridge. Do not merge. Return a factual final report and STOP when the compatible frontier is exhausted or a genuine human-owned boundary appears.
+Use the current mixed Atenea routing and qualified GP3.3 host bridge. Do not merge. Return a factual final report and STOP when the compatible frontier is exhausted or a genuine human-owned boundary appears.
 ```
 
 ## 12. Final report minimum
@@ -110,7 +117,7 @@ Use the current all-V4 Atenea routing and qualified GP3.3 host bridge. Do not me
 RUNTIME_VERSIONS=
 PARENT_SESSION=
 PARENT_VISIBLE_IN_HERDR=YES
-PARENT_MODEL=nan/deepseek-v4-flash medium
+PARENT_MODEL=nan/glm5.3-flash high
 TICKETS_ATTEMPTED=
 ODD_INTERNAL_TASKS_OR_WORKERS=
 ONE_TOUCH_REVIEW_SESSION_GRANT=0|1

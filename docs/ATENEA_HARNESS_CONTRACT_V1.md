@@ -443,12 +443,18 @@ Routing is operational configuration, not Atenea architecture.
 
 ```text
 Pi default                    nan/deepseek-v4-flash · medium
-persistent parent             nan/deepseek-v4-flash · medium
-all configured Gentle roles   nan/deepseek-v4-flash · medium
-max_concurrency               1
+persistent parent             nan/glm5.3-flash · high
+gentle-ai-worker              nan/glm5.3-flash · high
+gentle-ai-verify              openai-codex/gpt-5.6-luna · high
+review-readability            openai-codex/gpt-5.6-luna · high
+review-reliability            nan/deepseek-v4-flash · high
+review-resilience             nan/deepseek-v4-flash · high
+review-risk                   nan/deepseek-v4-flash · high
+review-refuter                nan/deepseek-v4-flash · high
+review-validator              openai-codex/gpt-5.6-luna · high
 ```
 
-NaN's `deepseek-v4-flash` is the provider id for the DeepSeek V4.1 Flash family. The current cutover deliberately uses the same V4-medium route for the parent and all configured Gentle/ODD/SDD roles; this is operational configuration, not an Atenea architectural dependency.
+NaN's `deepseek-v4-flash` is the provider id for the DeepSeek V4.1 Flash family. The parent route is explicit at launch; Pi's ordinary default remains V4 medium.
 
 No silent provider/model/effort fallback is allowed. See `docs/ROUTING_EVIDENCE_LEDGER_V1.md`.
 
@@ -484,7 +490,7 @@ CURRENT_EXECUTION_MODE                  ONE_TOUCH
 FIRST_REVIEW_SESSION_GRANT              PASS
 LATER_SAME_SESSION_SECOND_TOUCH         NOT_REQUIRED_IN_QUALIFIED_FLOW
 DEFAULT_PI_MODEL                        nan/deepseek-v4-flash medium
-PARENT_MODEL                            nan/deepseek-v4-flash medium
+PARENT_MODEL                            nan/glm5.3-flash high
 INTERNAL_MICRO_ORCHESTRATION            GENTLE_SHELL_ODD
 FRESH_CHILD_PER_EXTERNAL_TICKET         NOT_REQUIRED_BY_ATENEA
 QUALIFIED_HOST_BRIDGE                   REQUIRED_FOR_CURRENT_GP3_3_INSTALL

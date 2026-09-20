@@ -46,8 +46,9 @@ Pi current runtime                0.86.1
 Gentle Pi                         3.3.0
 Gentle AI                         3.4.0 package-paired
 DEFAULT_PI                        nan/deepseek-v4-flash medium
-ALL_CONFIGURED_GENTLE_ROLES       nan/deepseek-v4-flash medium
+Q11_TEMP_ALL_V4_ROUTE           nan/deepseek-v4-flash medium
 MAX_CONCURRENCY                   1
+Q11_ROUTE_SCOPE                    QUALIFICATION_ONLY_NOT_PRODUCTION_POLICY
 FIRST_REVIEW_CONSENT            PASS
 REVIEW_AND_ALLOW_THIS_SESSION   PASS
 LATER_REVIEW_NO_SECOND_TOUCH    PASS in qualified same-session flow
@@ -577,17 +578,18 @@ ACK_BURN_REQUIRED=PASS
 ## Current runtime target
 
 ```text
-Pi current         0.86.1
-Pi Q10/Q11          0.86.0 exact qualification baseline
+Pi                 0.86.1
 Herdr              0.9.0
 Gentle Pi          3.3.0
 Gentle AI          3.4.0 package-paired
-Mode               ONE_TOUCH / SINGLE_ACCEPTANCE_UNATTENDED_WITHIN_LIVE_SESSION
+Mode               ONE_TOUCH
 Pi default         nan/deepseek-v4-flash medium
-Train parent       nan/deepseek-v4-flash medium
-All Gentle roles   nan/deepseek-v4-flash medium
-Concurrency        1
-Host bridge        QUALIFIED_GP3_3_PATCH
+Train parent       nan/glm5.3-flash high
+Writer             nan/glm5.3-flash high
+Verifier/readable  openai-codex/gpt-5.6-luna high
+Material RDD       nan/deepseek-v4-flash high
+Refuter            nan/deepseek-v4-flash high
+Validator          openai-codex/gpt-5.6-luna high
 ```
 
 The GP2.7 hybrid-native zero-touch train remains historical proof of prior upstream composition. Current operation follows the GP3.3 one-touch recipe and current routing ledger.
@@ -642,7 +644,7 @@ Current operator path:
 
 ```text
 human explicitly authorizes execution
-→ start one visible persistent Pi + Gentle Pi 3.3 parent on nan/deepseek-v4-flash medium
+→ start one visible persistent Pi + Gentle Pi 3.3 parent on nan/glm5.3-flash high
 → one bounded authorized work item/train prompt
 → Gentle Shell/ODD owns internal classification, decomposition, bounded delegation, verification and work-unit commits
 → first eligible review consent: “Review and allow this session”

@@ -13,8 +13,8 @@ The strong Q10/Q11 qualification ran on:
 Pi                              0.86.0
 Gentle Pi / Gentle Shell        3.3.0
 Gentle AI                       3.4.0 package-paired
-provider/model                  nan/deepseek-v4-flash
-thinking                        medium
+Q10/Q11 qualification route    nan/deepseek-v4-flash · medium for all roles
+qualification route scope       TEMPORARY / ISOLATION ONLY
 max_concurrency                 1
 ```
 
@@ -55,7 +55,7 @@ Atenea no owns small/substantial classification, internal task decomposition, wo
 
 ## 4. Q11b — single-acceptance unattended
 
-With the parent, workers, verifier and review roles routed to `nan/deepseek-v4-flash`, the first eligible native review was granted with the host action:
+For Q11 only, the parent, workers, verifier and review roles were deliberately forced to `nan/deepseek-v4-flash` to isolate the single-acceptance property. That all-V4 test route was never intended to become production policy. The first eligible native review was granted with the host action:
 
 ```text
 Review and allow this session
@@ -70,6 +70,10 @@ SINGLE_ACCEPTANCE_UNATTENDED=PASS
 ```
 
 The later Q11 qualification stop occurred because the test harness incorrectly forced remaining `refuter`/`validator` work through one group-capture shape. GP3.3 exposes distinct provider-issued role operations. This was harness debt, not a failure of the session-permission property.
+
+### Operational routing after qualification
+
+After Q11, production routing returns to the qualified role-diverse profile documented in docs/ROUTING_EVIDENCE_LEDGER_V1.md. The Q11 all-V4 route is evidence about consent/runtime behavior only and must never be promoted into Golden routing.
 
 ## 5. Qualified temporary host adaptation
 
