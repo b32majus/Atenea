@@ -41,25 +41,31 @@ The result is evidence for a thin supervisory contract, not a recommendation to 
 ## Gentle Pi 3.3 / Gentle AI 3.4 one-touch qualification — CURRENT — 2026-09-20
 
 ```text
-Pi                              0.86.1
-Gentle Pi                       3.3.0
-Gentle AI                       3.4.0 package-paired
-DEFAULT_PI                      nan/deepseek-v4-flash medium
+Pi Q10/Q11 baseline              0.86.0
+Pi current runtime                0.86.1
+Gentle Pi                         3.3.0
+Gentle AI                         3.4.0 package-paired
+DEFAULT_PI                        nan/deepseek-v4-flash medium
+ALL_CONFIGURED_GENTLE_ROLES       nan/deepseek-v4-flash medium
+MAX_CONCURRENCY                   1
 FIRST_REVIEW_CONSENT            PASS
 REVIEW_AND_ALLOW_THIS_SESSION   PASS
 LATER_REVIEW_NO_SECOND_TOUCH    PASS in qualified same-session flow
 ONE_TOUCH_SESSION_PERMISSION    PASS
+Q10_ODD_INTERNAL_ORCHESTRATION  PASS
+Q10_UNAUTHORIZED_FRONTIER_STOP  PASS
+Q11_SINGLE_ACCEPTANCE_UNATTENDED PASS
 ```
 
-The first native consent was resolved with the host action `Review and allow this session`. The subsequent review started/executed without a second consent interaction, proving the current session-permission seam.
+The first native consent was resolved with the host action `Review and allow this session`. Q11b then demonstrated a later fresh candidate in the same live Pi session/canonical repository starting/executing review without a second consent interaction. Q10 independently demonstrated one persistent parent traversing multiple authorized external work units while ODD owned internal delegation and STOPping before an unauthorized next frontier.
 
 A later qualification harness step incorrectly constrained remaining review work to a group-capture path even though GP3.3 exposes dedicated refuter/validator operations. That is harness/test debt, not a provider/runtime consent failure.
 
-GP3.3's current v9 role contract also requires explicit routing for host-mediated refuter/validator completions when requested. Current configuration therefore pins refuter to NaN V4 high and validator to Luna high.
+GP3.3's current v9 role contract requires explicit routing for host-mediated refuter/validator completions when requested. The final cutover maps all configured roles, including refuter/validator, to NaN V4 medium. The current installation also carries the qualified, version/hash-guarded GP3.3 host bridge documented in `docs/GP33_Q10_Q11_ADOPTION_EVIDENCE_20260920.md`.
 
-The accepted claim is **one-touch session review permission**, not zero-touch. A process restart/new/resume/fork/quit/revoke requires a new grant.
+The accepted claim is **single-acceptance unattended within one live session/repository**, not zero-touch from process start. A process restart/new/resume/fork/quit/revoke requires a new grant. The exact strong Q11 baseline was Pi 0.86.0; Pi 0.86.1 is current runtime pending ordinary-train parity evidence.
 
-Current mechanics: `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md`.
+Current mechanics: `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md`. The Q2–Q11 deletion/authority ladder is consolidated in `docs/GP33_Q10_Q11_ADOPTION_EVIDENCE_20260920.md`.
 
 ## Historical predecessor replacement result — 2026-09-05
 
@@ -215,15 +221,17 @@ STAGE 5–8 QUALIFICATION EVIDENCE
   historical and still valid for the properties actually exercised
 
 CURRENT ADOPTED OPERATIONAL TARGET
-  Pi 0.86.1
+  Pi 0.86.1 current runtime; Q10/Q11 exact baseline Pi 0.86.0
   Herdr 0.9.0
   Gentle Pi 3.3.0 persistent visible parent
   Gentle AI 3.4.0 package-paired
-  one-touch host-session review permission
+  one-touch host-session review permission / single-acceptance unattended within live session
   first review: explicit human session grant
   later same-session/canonical-repository reviews: no second consent touch
-  fresh implementation child per newly selected ticket
-  explicit reviewer/refuter/validator routing
+  Gentle Shell/ODD owns internal decomposition, bounded delegation, verification and work-unit commits
+  no Atenea fresh-child-per-external-ticket invariant
+  qualified GP3.3 host bridge for exact current reviewer-group transport + consent-resolved signal
+  exact provider reviewer/refuter/validator operations
   no external supervisor / Atenea consent relay / RPA
 
 HISTORICAL GP2.5 PROMOTION EPOCH
@@ -569,18 +577,17 @@ ACK_BURN_REQUIRED=PASS
 ## Current runtime target
 
 ```text
-Pi                 0.86.1
+Pi current         0.86.1
+Pi Q10/Q11          0.86.0 exact qualification baseline
 Herdr              0.9.0
 Gentle Pi          3.3.0
 Gentle AI          3.4.0 package-paired
-Mode               ONE_TOUCH
+Mode               ONE_TOUCH / SINGLE_ACCEPTANCE_UNATTENDED_WITHIN_LIVE_SESSION
 Pi default         nan/deepseek-v4-flash medium
-Train parent       nan/glm5.3-flash high
-Writer             nan/glm5.3-flash high
-Verifier/readable  openai-codex/gpt-5.6-luna high
-Material RDD       nan/deepseek-v4-flash high
-Refuter            nan/deepseek-v4-flash high
-Validator          openai-codex/gpt-5.6-luna high
+Train parent       nan/deepseek-v4-flash medium
+All Gentle roles   nan/deepseek-v4-flash medium
+Concurrency        1
+Host bridge        QUALIFIED_GP3_3_PATCH
 ```
 
 The GP2.7 hybrid-native zero-touch train remains historical proof of prior upstream composition. Current operation follows the GP3.3 one-touch recipe and current routing ledger.
@@ -635,15 +642,14 @@ Current operator path:
 
 ```text
 human explicitly authorizes execution
-→ start one visible persistent Pi + Gentle Pi 3.3 parent on nan/glm5.3-flash high
-→ one bounded train prompt
-→ fresh implementation child per newly selected ticket
-→ exact diff + deterministic verification
+→ start one visible persistent Pi + Gentle Pi 3.3 parent on nan/deepseek-v4-flash medium
+→ one bounded authorized work item/train prompt
+→ Gentle Shell/ODD owns internal classification, decomposition, bounded delegation, verification and work-unit commits
 → first eligible review consent: “Review and allow this session”
 → later same-session/repository review grants require no second consent touch
-→ explicit routed reviewer/refuter/validator operations
+→ follow the exact provider-issued reviewer/refuter/validator operation
 → APPROVED + acknowledgement/burn
-→ checkpoint → fresh frontier → next child or STOP
+→ Atenea re-reads external authority → next already-authorized frontier or STOP
 → human merge boundary
 ```
 
@@ -664,6 +670,12 @@ Real repositories may end work at an exact remote checkpoint or open a PR awaiti
 ### Naturally material UI slices
 
 The policy is complete, but the first naturally material UI slice can provide field evidence that Impeccable/DESIGN/PRODUCT authority composes cleanly with the existing runtime. Do not create a synthetic UI ladder solely for this.
+
+## 2026-09-20 post-cutover performance characterization
+
+Controlled A/B evidence does **not** support Skill Registry or a "dirty Agent Home" as the root cause of the large startup swings. Registry ON/OFF runs crossed over, and warm GLOBAL-vs-CLEAN pre-provider medians were approximately `4.569 s` vs `4.479 s`. The first truly cold clean Agent Home start reached about `18.6 s` pre-provider, with about `16.6 s` concentrated before `session_start`; Fast File Finder can wait up to roughly `15 s` on its initial scan. Additional outliers showed host/Node/filesystem variability.
+
+Current operational conclusion: keep Skill Registry available; do not disable it, remove Pretty or repeatedly clean Agent Home by ritual. Performance work requires measured attribution. Full current evidence: `docs/GP33_Q10_Q11_ADOPTION_EVIDENCE_20260920.md`.
 
 ## No further large qualification ladder
 

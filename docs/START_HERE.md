@@ -26,9 +26,10 @@ Do not reconstruct Atenea from historical stage files. Read in this order:
 8. `docs/OPERATOR_RUNBOOK_V1.md` — only when a work item is already `EXECUTION_READY` or the human is about to run it.
 9. `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md` — current pinned one-touch train mechanics.
 10. `docs/QUALIFICATION.md` — what has actually been field-proven.
-11. `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md` — current topology replacement evidence when provenance is needed.
-12. `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md` — local execution/qualification cleanup policy.
-13. Historical stage/evidence documents only when a current claim needs provenance.
+11. `docs/GP33_Q10_Q11_ADOPTION_EVIDENCE_20260920.md` — current GP3.3 deletion/single-acceptance/host-bridge evidence when provenance is needed.
+12. `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md` — historical GP2.7 replacement evidence when provenance is needed.
+13. `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md` — local execution/qualification cleanup policy.
+14. Historical stage/evidence documents only when a current claim needs provenance.
 
 `docs/ATENEA_HANDOFF_20260830.md`, stage files and older decision files are historical evidence. They are not the place to recover current forward-looking authority when current documents exist.
 
@@ -48,17 +49,16 @@ HUMAN + CORA / PLANNING CHAT
             ↓
 HUMAN + HERDR + PI/GENTLE-PI 3.3
   explicit human execution authorization
-  mechanically start one persistent visible parent on nan/glm5.3-flash high
-  send one bounded execution/train prompt
+  start one persistent visible parent on nan/deepseek-v4-flash medium
+  send one bounded authorized work item/train prompt
             ↓
-PERSISTENT PARENT
-  fresh implementation child per newly selected ticket
-  exact diff reconciliation + deterministic QA
+PERSISTENT PARENT + GENTLE SHELL / ODD
+  ODD owns internal classification, task state, delegation, verification and work-unit commits
   first eligible review: human selects “Review and allow this session”
   later same-session/repository reviews use fresh validated grants without another touch
-  explicit routed reviewer/refuter/validator operations
+  exact provider-issued reviewer/refuter/validator operations
   APPROVED → acknowledgement/burn
-  checkpoint → fresh frontier → next child or STOP
+  Atenea re-reads external authority → next authorized unit/frontier or STOP
             ↓
 Pi factual final report; merge remains human
 ```
@@ -72,12 +72,12 @@ Normal execution is **ONE-TOUCH**:
 ```text
 EXECUTION_READY
   → one persistent visible Pi/Gentle-Pi 3.3 parent
+  → Gentle Shell/ODD owns internal decomposition/delegation/verification
   → first eligible review: human selects “Review and allow this session”
   → later same-session/canonical-repository reviews need no second consent touch
-  → fresh implementation child per newly selected ticket
   → provider-owned review/refuter/validator lifecycle
   → APPROVED + acknowledgement/burn
-  → checkpoint → fresh frontier → next child or STOP
+  → external authority re-read → next authorized frontier or STOP
 ```
 
 Initial prompt prose does not create review-session permission. Reload preserves it; process restart/new/resume/fork/quit/revoke does not.
@@ -256,25 +256,24 @@ Once work is `EXECUTION_READY`, stop expanding the shaping stack and use `docs/O
 
 ```text
 explicit human execution authorization
-→ start one visible Pi + Gentle Pi 3.3 parent on nan/glm5.3-flash high
-→ one bounded train prompt
-→ fresh implementation child per selected ticket
-→ exact diff + deterministic verification
+→ start one visible Pi + Gentle Pi 3.3 parent on nan/deepseek-v4-flash medium
+→ one bounded authorized work item/train prompt
+→ Gentle Shell/ODD owns internal tasking/delegation/verification/work-unit commits
 → first eligible review: “Review and allow this session”
-→ provider-owned explicitly routed review/refuter/validator lifecycle
+→ provider-owned exact reviewer/refuter/validator lifecycle
 → APPROVED + acknowledgement/burn
-→ authorized checkpoint
-→ fresh frontier → next child or STOP
+→ external authority re-read
+→ next already-authorized frontier or STOP
 → human merge boundary
 ```
 
-The parent retains train/frontier context and does not become the normal ticket implementation child.
+The parent retains external train/frontier context. Atenea does not dictate inline-vs-delegated implementation; Gentle Shell/ODD owns that proportional execution choice.
 
 ## 9. Installation / environment
 
 For a fresh environment, read `docs/INSTALLATION_AND_OPERATION_V1.md`.
 
-Atenea deliberately has no bespoke installer/launcher. The installation guide identifies the current qualified upstream stack, verification gates and the normal operator start path while keeping fast-changing upstream installation mechanics owned upstream.
+Atenea has no bespoke orchestration installer/launcher. The installation guide identifies the current qualified upstream stack, verification gates, the narrow version/hash-guarded GP3.3 host bridge and the normal operator start path while keeping fast-changing upstream installation mechanics owned upstream.
 
 UI/UX candidates under issue #41 are not part of the qualified Atenea installation merely because they are discussed in current docs. Their installation/cutover follows the separate adjudication and qualification boundary.
 

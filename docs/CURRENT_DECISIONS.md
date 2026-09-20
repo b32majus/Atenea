@@ -1,6 +1,6 @@
 # Atenea — Current decisions after Stage 8
 
-Date: 2026-09-15
+Date: 2026-09-20
 
 This file is the short current decision index. Historical `docs/DECISIONS.md`, stage files and `docs/ATENEA_HANDOFF_20260830.md` remain evidence of how Atenea evolved, but their forward-looking status is superseded where it conflicts with this index, `README.md`, `docs/QUALIFICATION.md` or `docs/ATENEA_HARNESS_CONTRACT_V1.md`.
 
@@ -353,34 +353,56 @@ That action runs the exact provider grant for the current frozen candidate and c
 
 This is `ONE_TOUCH`, not `ZERO_TOUCH`. Reload preserves the permission; new/resume/fork/quit/process restart/revoke ends it. It grants no verdict, acknowledgement, maintenance, delivery, merge or cross-repository authority.
 
-No external supervisor, Atenea consent relay, internal permission API or Herdr RPA is part of the normal path.
+Q11b demonstrated `SINGLE_ACCEPTANCE_UNATTENDED=PASS`: after the first session grant, a later fresh candidate in the same live session/repository began/executed review without a second consent touch. The exact Q11 baseline used Pi `0.86.0`; Pi `0.86.1` is the current installed runtime.
+
+No external supervisor, Atenea consent relay, internal permission API or Herdr RPA is part of the normal path. The current GP3.3 host bridge is the narrow C-047 compatibility shim, not a supervisor or replacement review lifecycle.
 
 Current recipe: `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md`.
 
-## C-045 — Current routing restores GLM/Luna/V4 diversity; NaN owns GLM/V4 provider routes
+## C-045 — Current routing is NaN / DeepSeek V4 Flash across the GP3.3 stack
 
-**Accepted 2026-09-20.**
+**Accepted final cutover 2026-09-20.**
 
-The temporary all-V4 routing used during runtime/performance qualification is not operational policy.
+The earlier role-diverse GLM/Luna/V4 matrix remains historical qualification evidence. Q11b and the final VPS cutover selected one operational route for simplicity and provider consistency:
 
 ```text
 Pi default                    nan/deepseek-v4-flash · medium
-persistent parent             nan/glm5.3-flash · high
-gentle-ai-worker              nan/glm5.3-flash · high
-gentle-ai-verify              openai-codex/gpt-5.6-luna · high
-review-readability            openai-codex/gpt-5.6-luna · high
-review-reliability            nan/deepseek-v4-flash · high
-review-resilience             nan/deepseek-v4-flash · high
-review-risk                   nan/deepseek-v4-flash · high
-review-refuter                nan/deepseek-v4-flash · high
-review-validator              openai-codex/gpt-5.6-luna · high
+persistent parent             nan/deepseek-v4-flash · medium
+all configured Gentle roles   nan/deepseek-v4-flash · medium
+max_concurrency               1
 ```
 
-NaN serves the DeepSeek V4.1 Flash family under model id `deepseek-v4-flash`. Luna remains on OpenAI-Codex.
+NaN serves the DeepSeek V4.1 Flash family under model id `deepseek-v4-flash`. GP3.3 role slots such as refuter/validator still require explicit configured routing; the all-V4 profile satisfies them without ambient fallback.
 
-GP3.3's v9 role contract requires explicit user-owned routing for host-mediated refuter/validator slots when requested. Their current mappings are a GP3.3 compatibility/adoption decision, not a retroactive claim that GP2.7 had those pins.
+The active machine profile is `atenea-one-touch`.
 
-The machine profile is `atenea-one-touch`. It deliberately has no `orchestrator` entry, so Pi's normal default remains V4 medium; the train parent is launched explicitly on GLM high.
+## C-046 — Gentle Shell/ODD owns internal micro-orchestration; Atenea owns the external frontier
+
+**Accepted from Q10 evidence 2026-09-20.**
+
+Atenea does not require a fresh package-owned child per external GitHub ticket. One persistent parent may traverse multiple externally authorized work units in the same bounded train. Gentle Shell/ODD owns internal classification, task state, worker delegation, allowed-edit enforcement, verification, work-unit commits, risk classification and review routing.
+
+Atenea retains the external repository/tracker authority hierarchy, `EXECUTION_READY`, frozen oracles where required, domain/safety invariants, authority re-read between external units/frontiers, fail-closed STOP behavior and publication/merge policy.
+
+Q10 proved C→D in one parent with separate commits and authority re-read after each unit while unauthorized E remained untouched.
+
+## C-047 — GP3.3 uses a narrow qualified host bridge until upstream owns exact-binding transport/signaling
+
+**Accepted temporary compatibility boundary 2026-09-20.**
+
+The current Gentle Pi 3.3.0 install carries the version/hash-guarded patch `patches/gentle-pi-3.3.0-atenea-host-bridge.patch`.
+
+It adds only `gentle_review_capture_current_group` for exact host-retained reviewer-group forwarding and `host_consent_resolved` to prevent a model from re-asking after native host consent is already complete. It is not a second RDD controller and must not force refuter/validator through group capture; those roles follow the exact provider-issued operations.
+
+Deletion trigger: upstream ships equivalent supported exact-binding transport and consent-resolved signaling.
+
+## C-048 — Startup performance must be measured; Skill Registry is not a proven root cause
+
+**Accepted operational finding 2026-09-20.**
+
+Registry ON/OFF timings crossed over, warm global-vs-clean Agent Home medians were effectively equal, and the first cold clean start exposed a large pre-provider/session-start delay consistent with initial Fast File Finder scanning plus host variability. Do not disable Skill Registry, remove Pretty or clean Agent Home by ritual on the current evidence.
+
+Evidence: `docs/GP33_Q10_Q11_ADOPTION_EVIDENCE_20260920.md`.
 
 ## C-006 — Normal git push is allowed; no publication-permission subsystem
 
@@ -711,11 +733,11 @@ A graph/index never outranks source code, accepted product/spec authority, deter
 1. human + Cora read current Atenea and target-project authority;
 2. shape/reconcile until a bounded item/train is explicitly `EXECUTION_READY`;
 3. verify GP3.3/GAI3.4 runtime, `atenea-one-touch` routing and exact repo/worktree state;
-4. start one visible persistent parent explicitly on `nan/glm5.3-flash` `high`;
+4. start one visible persistent parent on the current `nan/deepseek-v4-flash` `medium` route;
 5. submit one bounded train prompt;
 6. on the first valid review consent only, human selects `Review and allow this session`;
-7. for each newly selected ticket use a fresh implementation child, deterministic reconciliation, provider-owned review with explicit role routing, APPROVED + acknowledgement/burn, then authorized checkpoint;
+7. let Gentle Shell/ODD own internal decomposition/delegation/verification; at provider review boundaries follow the exact native role transition through APPROVED + acknowledgement/burn;
 8. later reviews in the same live Pi session/canonical repository use fresh validated grants without another review-consent touch;
-9. rediscover frontier until exhausted or a genuine human-owned boundary appears;
+9. re-read external authority between authorized units/frontiers and continue only while the next work remains inside the explicit authorization; otherwise STOP;
 10. final merge remains human unless separately authorized;
 11. new Atenea glue requires a demonstrated upstream ownership gap.

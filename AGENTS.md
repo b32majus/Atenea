@@ -42,12 +42,12 @@ Do not recover current execution policy from historical Stage files or `docs/ATE
 - Greenfield defaults to complete Matt Pocock upstream shaping.
 - Brownfield preserves repo-native authority; OpenSpec is delta-first when it materially adds value, not by ritual.
 - Repository Intelligence is optional derived evidence for sufficiently complex brownfields. Cora may recommend it; Pi must not invent/install it as an execution-time methodology decision.
-- From `EXECUTION_READY`: one persistent Pi + Gentle Pi 3.3 parent stays visible in Herdr and launches one fresh implementation child per newly selected ticket.
+- From `EXECUTION_READY`: one persistent Pi + Gentle Pi 3.3 parent stays visible in Herdr; Gentle Shell/ODD owns internal classification, tasking, bounded delegation, verification, work-unit commits and risk/review routing inside the externally authorized work.
 - Current review consent is **one-touch**: on the first eligible review the human selects `Review and allow this session`; later fresh validated grants in the same live session/canonical repository require no second consent touch.
 - Process restart/new/resume/fork/quit/revoke ends the permission; reload preserves it. Never synthesize the grant through prompt prose, RPA or internal APIs.
 - GP3.3 review lenses, refuter and targeted validator require explicit routing and their provider-issued operation shapes must be followed literally.
-- Fresh implementation children do not own merge/promotion and the persistent parent should not become the ticket implementation child in the normal multi-ticket recipe.
-- Gentle/provider owns final exact-candidate/RDD/reviewer/repair authority; opaque bindings and continuations are never reconstructed.
+- Atenea does not require one fresh child per external ticket. The parent retains external authority/frontier context; ODD may use fresh bounded workers internally when its runtime rules require them. Internal workers never gain publication/merge authority.
+- Gentle/provider owns final exact-candidate/RDD/reviewer/repair authority. The qualified GP3.3 host bridge may forward the exact current retained reviewer group without model reserialization, but it must not invent bindings or replace provider-issued refuter/validator routes.
 - The pre-GP2.7 plain-supervisor + pi-intercom + Atenea relay topology and T5 reviewer-continuation prompt injection remain historical rollback/regression evidence, not the normal current transport.
 - Normal non-force push is allowed. No automatic merge or destructive history recovery.
 - For a high-risk human promotion/merge boundary, planning may require `docs/PROMOTION_REVIEW_V1.md`: fresh read-only Pi, exact full diff + explicit high-risk subset, zero blocking findings. It is conditional and never a second Gentle RDD lifecycle.

@@ -1,6 +1,6 @@
 # Atenea Harness Contract v1
 
-Date: 2026-09-16
+Date: 2026-09-20
 Status: NORMATIVE
 
 ## 1. Purpose
@@ -21,11 +21,11 @@ OpenSpec
   optional delta-first brownfield/evolutionary shaping
 
 Pi + Gentle Pi 3.3 persistent parent
-  train/frontier orchestration, fresh-child delegation, integration,
-  deterministic verification and exact-candidate lifecycle host
+  external train/frontier context, authority re-read, provider lifecycle host
 
-Package-owned Gentle Agents
-  fresh bounded implementation child per newly selected ticket
+Gentle Shell / ODD + package-owned Gentle Agents
+  technical explore/classification, internal task state, bounded delegation,
+  allowed-edit enforcement, verification, work-unit commits and risk/review routing
 
 Herdr
   process/session/observability substrate for the visible parent
@@ -38,7 +38,7 @@ Git / GitHub
   repository history, worktrees, issues, checkpoints, PRs and merge policy
 ```
 
-The parent is not a security boundary or the normal ticket implementation child. Herdr is not review authority. Atenea MUST NOT duplicate Gentle candidate/review semantics.
+The parent is not a security boundary and Atenea does not assign it a separate "ticket implementation child" role. Gentle Shell/ODD owns whether a trivial bounded change is handled inline or delegated to a package-owned worker. Herdr is not review authority. Atenea MUST NOT duplicate Gentle candidate/review semantics.
 
 ## 3. The autonomy boundary
 
@@ -50,7 +50,7 @@ FROM EXECUTION_READY
 = bounded one-touch execution after explicit human authorization
 ```
 
-The current path uses one persistent Pi + Gentle Pi 3.3 parent and one fresh package-owned implementation child per newly selected ticket.
+The current path uses one persistent Pi + Gentle Pi 3.3 parent across the authorized external work item/train. Gentle Shell/ODD owns internal decomposition and delegation; a fresh child per external ticket is not an Atenea invariant.
 
 The first eligible consent-required review requires one explicit human host action: `Review and allow this session`. Later fresh validated review grants may be applied without another consent touch only while the exact live Pi session and canonical Git repository permission remains valid. Reload preserves the permission; new/resume/fork/quit/process restart/revoke ends it.
 
@@ -64,6 +64,9 @@ CURRENT_GENTLE_AI=3_4_0_PACKAGE_PAIRED
 CURRENT_EXECUTION_MODE=ONE_TOUCH
 FIRST_REVIEW_SESSION_GRANT=HUMAN_EXPLICIT
 LATER_SAME_SESSION_REVIEW_CONSENT_TOUCHES=ZERO_EXPECTED
+INTERNAL_MICRO_ORCHESTRATION=GENTLE_SHELL_ODD
+FRESH_CHILD_PER_EXTERNAL_TICKET=NOT_REQUIRED_BY_ATENEA
+QUALIFIED_HOST_BRIDGE=GP3_3_CURRENT_GROUP_PLUS_CONSENT_SIGNAL
 EXPLICIT_REVIEW_ROLE_ROUTING=REQUIRED
 ACKNOWLEDGEMENT_BURN=REQUIRED
 FINAL_MERGE=HUMAN_BOUNDARY
@@ -140,7 +143,7 @@ An unexpected topology or dirty-state contradiction is a STOP condition, not aut
 
 ## 7. Frontier discovery and persistent parent supervision
 
-The current train uses one persistent visible Pi/Gentle-Pi 3.3 parent. For each iteration it reads current authority, selects one compatible executable item, launches one fresh implementation child, reconciles exact diff/evidence, completes provider-owned exact-candidate review, requires APPROVED plus acknowledgement/burn, creates only the authorized checkpoint, and freshly rediscovers frontier.
+The current train uses one persistent visible Pi/Gentle-Pi 3.3 parent. The parent reads external authority, selects only authorized work, and lets Gentle Shell/ODD classify/decompose/delegate/verify internally. At each external work-unit/frontier boundary the parent reconciles repository evidence, completes any provider-required exact-candidate review through APPROVED plus acknowledgement/burn, re-reads external authority and either continues with already-authorized work or STOPs.
 
 Normal concurrency is `max_concurrency=1` unless current authority explicitly proves parallel safety.
 
@@ -175,9 +178,15 @@ Do not collapse different provider operations into one capture shape. Ordinary l
 
 Approval is not publishable until provider-required work is terminal and acknowledgement/burn succeeds.
 
-### 7.2 Parent and child continuity policy
+### 7.1.3 Qualified GP3.3 host bridge — narrow compatibility shim
 
-The parent may stay alive across a compatible bounded train. Every newly selected ticket gets a fresh implementation child. A process restart/new session starts a new one-touch permission boundary.
+The current 3.3 installation carries the versioned patch `patches/gentle-pi-3.3.0-atenea-host-bridge.patch`. It may (a) forward the exact current reviewer group retained by the host after fresh STATUS so the model does not reserialize opaque `collectBindings`, and (b) expose `host_consent_resolved=true` after native host consent has completed so the model does not ask the human again.
+
+This shim MUST NOT invent bindings, verdicts, lenses or role routes. `gentle_review_capture_current_group` is valid only for the current retained reviewer group; refuter, validator and other provider-issued role transitions use their exact native operations. Version/hash drift is STOP. Retirement condition: upstream provides equivalent supported exact-binding transport and consent-resolved signaling.
+
+### 7.2 Parent continuity and ODD internal delegation policy
+
+The parent may stay alive across a compatible bounded train. Atenea does not prescribe one child per external ticket; Gentle Shell/ODD chooses internal bounded workers according to its own enforced delegation rules. The parent must re-read external authority between externally authorized units/frontiers. A process restart/new session starts a new one-touch permission boundary.
 
 ### 7.3 Operator prompt surface
 
@@ -195,7 +204,9 @@ Atenea MUST NOT move product authority, blocker reasoning, publication policy or
 
 ## 9. Implementation and engineering methods
 
-A persistent Pi parent with Gentle Pi 3.3 + package-paired Gentle AI 3.4 is the current one-touch train owner. In the normal multi-ticket recipe it delegates each newly selected ticket to a fresh package-owned implementation child, then owns integration, deterministic verification, host-side review coordination, acknowledgement/burn and checkpoint/frontier progression. OpenCode is an attended/alternate runtime, not a required component of the normal path.
+A persistent Pi parent with Gentle Pi 3.3 + package-paired Gentle AI 3.4 is the current one-touch train owner. Gentle Shell/ODD owns internal engineering micro-orchestration; the parent retains external authority/frontier context and host-side provider lifecycle coordination. OpenCode is an attended/alternate runtime, not a required component of the normal path.
+
+Until upstream fixes the reproduced ODD self-referential SHA bookkeeping defect, do not amend a work-unit commit after its identity has been recorded in ODD evidence. Record the final SHA in a subsequent evidence/bookkeeping commit. This is a temporary compatibility guardrail, not Atenea-owned commit orchestration.
 
 Engineering quality is separated into:
 
@@ -432,18 +443,12 @@ Routing is operational configuration, not Atenea architecture.
 
 ```text
 Pi default                    nan/deepseek-v4-flash · medium
-persistent parent             nan/glm5.3-flash · high
-gentle-ai-worker              nan/glm5.3-flash · high
-gentle-ai-verify              openai-codex/gpt-5.6-luna · high
-review-readability            openai-codex/gpt-5.6-luna · high
-review-reliability            nan/deepseek-v4-flash · high
-review-resilience             nan/deepseek-v4-flash · high
-review-risk                   nan/deepseek-v4-flash · high
-review-refuter                nan/deepseek-v4-flash · high
-review-validator              openai-codex/gpt-5.6-luna · high
+persistent parent             nan/deepseek-v4-flash · medium
+all configured Gentle roles   nan/deepseek-v4-flash · medium
+max_concurrency               1
 ```
 
-NaN's `deepseek-v4-flash` is the provider id for the DeepSeek V4.1 Flash family. The parent route is explicit at launch; Pi's ordinary default remains V4 medium.
+NaN's `deepseek-v4-flash` is the provider id for the DeepSeek V4.1 Flash family. The current cutover deliberately uses the same V4-medium route for the parent and all configured Gentle/ODD/SDD roles; this is operational configuration, not an Atenea architectural dependency.
 
 No silent provider/model/effort fallback is allowed. See `docs/ROUTING_EVIDENCE_LEDGER_V1.md`.
 
@@ -471,7 +476,7 @@ For the current one-touch path, Gentle Pi + Gentle AI own the review lifecycle. 
 
 Historical Stage 5–8, GP2.4/2.5 and GP2.7 evidence remains valid for the properties it proved.
 
-On 2026-09-20 the operational target moved to Pi 0.86.1 + Gentle Pi 3.3.0 + package-paired Gentle AI 3.4.0. Current qualification established the first `Review and allow this session` grant and a subsequent review start/execution without a second consent touch. A later harness assertion forcing remaining refuter/validator work through one capture shape is qualification-harness debt; current GP3.3 provider operations and explicit role routing remain authoritative.
+On 2026-09-20 the operational target moved to current Pi 0.86.1 + Gentle Pi 3.3.0 + package-paired Gentle AI 3.4.0. The strong Q10/Q11 baseline was Pi 0.86.0: Q10 proved the persistent parent can traverse multiple externally authorized units while ODD owns internal delegation and STOPs at an unauthorized frontier; Q11 proved one human session grant is sufficient for a later fresh candidate to begin/execute review without a second consent touch. The later refuter/validator stop was qualification-harness debt caused by forcing all role slots through one group-capture shape. Current GP3.3 provider operations remain authoritative. See `docs/GP33_Q10_Q11_ADOPTION_EVIDENCE_20260920.md`.
 
 ```text
 CURRENT_RUNTIME                         PI_0_86_1_GP_3_3_0_GAI_3_4_0
@@ -479,7 +484,10 @@ CURRENT_EXECUTION_MODE                  ONE_TOUCH
 FIRST_REVIEW_SESSION_GRANT              PASS
 LATER_SAME_SESSION_SECOND_TOUCH         NOT_REQUIRED_IN_QUALIFIED_FLOW
 DEFAULT_PI_MODEL                        nan/deepseek-v4-flash medium
-PARENT_MODEL                            nan/glm5.3-flash high
+PARENT_MODEL                            nan/deepseek-v4-flash medium
+INTERNAL_MICRO_ORCHESTRATION            GENTLE_SHELL_ODD
+FRESH_CHILD_PER_EXTERNAL_TICKET         NOT_REQUIRED_BY_ATENEA
+QUALIFIED_HOST_BRIDGE                   REQUIRED_FOR_CURRENT_GP3_3_INSTALL
 EXPLICIT_REVIEW_ROLE_ROUTING            REQUIRED
 ACKNOWLEDGEMENT_BURN                    REQUIRED
 FINAL_MERGE                             HUMAN_BOUNDARY

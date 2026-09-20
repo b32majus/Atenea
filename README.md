@@ -37,20 +37,21 @@ HUMAN + CORA / PLANNING
   HUMAN promotes EXECUTION_READY
             ↓
 HUMAN AUTHORIZATION + HERDR + PI/GENTLE-PI 3.3
-  start one visible persistent parent on nan/glm5.3-flash high
-  one bounded train prompt
+  start one visible persistent parent on nan/deepseek-v4-flash medium
+  one bounded authorized work item/train prompt
             ↓
-PERSISTENT PARENT
-  fresh implementation child per newly selected ticket
-  exact diff reconciliation + deterministic verification
+PERSISTENT PARENT + GENTLE SHELL / ODD
+  technical explore/classify/track as needed
+  internal decomposition + bounded delegation + verification
+  work-unit commits + provider-owned risk/review routing
             ↓
 ONE-TOUCH REVIEW
   first eligible review: human selects “Review and allow this session”
   later same-session/canonical-repository reviews: no second consent touch
-  explicit routed reviewer/refuter/validator operations
+  exact provider-issued reviewer/refuter/validator operations
   APPROVED → acknowledgement/burn
             ↓
-authorized checkpoint → fresh frontier → next child or STOP
+Atenea re-reads external authority → next authorized unit/frontier or STOP
             ↓
 human merge boundary
 ```
@@ -115,16 +116,15 @@ BEFORE EXECUTION_READY
   human-present shaping + durable repo/tracker authority
             ↓
 ONE-TOUCH EXECUTION
-  → one visible persistent Pi + Gentle Pi 3.3 parent on NaN GLM 5.3 Flash high
-  → one bounded train prompt
-  → fresh implementation child per newly selected ticket
-  → exact diff + deterministic checks
-  → provider-owned Gentle AI 3.4 review
+  → one visible persistent Pi + Gentle Pi 3.3 parent on NaN DeepSeek V4 Flash medium
+  → one bounded authorized work item/train prompt
+  → Gentle Shell/ODD owns internal tasking, delegation, verification and work-unit commits
+  → provider-owned Gentle AI 3.4 risk/review routing
   → FIRST eligible review only: human selects “Review and allow this session”
   → later same-session/repository reviews need no second consent touch
-  → explicit reviewer/refuter/validator routing
+  → exact reviewer/refuter/validator operation returned by the provider
   → APPROVED → acknowledgement/burn
-  → checkpoint → fresh frontier → next child or STOP
+  → Atenea re-reads external authority → next authorized frontier or STOP
   → human merge boundary
 ```
 
@@ -134,7 +134,7 @@ There is no normal external Pi supervisor, pi-intercom consent relay, Herdr RPA 
 
 Current recipe: `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md`.
 
-Current routing: NaN GLM 5.3 Flash high for parent/writer; OpenAI-Codex Luna high for verifier/readability/validator; NaN DeepSeek V4 Flash high for reliability/resilience/risk/refuter. NaN's `deepseek-v4-flash` serves the V4.1 Flash family. Pi's ordinary default remains `nan/deepseek-v4-flash` medium.
+Current routing: `nan/deepseek-v4-flash` at `medium` for the parent and all configured Gentle/ODD/SDD worker, verifier and review roles; `max_concurrency=1`. NaN's `deepseek-v4-flash` serves the DeepSeek V4.1 Flash family. Routing is replaceable operational configuration, not Atenea architecture.
 
 ## Normative contract
 
@@ -144,11 +144,11 @@ High-frequency rules:
 
 1. **Before `EXECUTION_READY`: human-present shaping.**
 2. **From `EXECUTION_READY`: autonomous bounded execution after explicit human authorization.**
-3. **One visible persistent Gentle-Pi parent owns the train/frontier context and exact-candidate review lifecycle.**
-4. **Each newly selected ticket gets a fresh package-owned implementation child in the normal multi-ticket recipe.**
+3. **One visible persistent Gentle-Pi parent owns the external train/frontier context; Gentle Shell/ODD owns internal engineering micro-orchestration.**
+4. **Atenea does not require one fresh child per external ticket; ODD selects bounded internal delegation according to the work.**
 5. **Herdr is process/session/observability substrate, not policy or review authority.**
-6. **Native RDD START uses package-local Gentle AI through the parent's non-TTY Bash subprocess; Gentle Pi then adopts the same lineage by STATUS.**
-7. **Provider bindings/continuations remain opaque; APPROVED is incomplete until acknowledgement/burn succeeds.**
+6. **The current GP3.3 path is one-touch: the first eligible review gets one real host session grant; later same-session/repository candidates use fresh validated provider grants without a second consent touch.**
+7. **Provider bindings/continuations remain opaque; the qualified host bridge may forward the current retained reviewer group without LLM reserialization, but role-specific provider operations remain authoritative; APPROVED is incomplete until acknowledgement/burn succeeds.**
 8. **Evidence outranks narration; host-human-touch claims are externally adjudicated.**
 9. **Normal non-force push is allowed by repository policy; no force-push, hidden history rewrite or auto-merge.**
 10. **Material ambiguity / contradictory authority / unsafe drift => STOP.**
@@ -162,6 +162,9 @@ GP33_FIRST_REVIEW_CONSENT_UI                 PASS
 GP33_REVIEW_AND_ALLOW_THIS_SESSION           PASS
 GP33_LATER_SAME_SESSION_REVIEW_NO_2ND_TOUCH  PASS
 GP33_ONE_TOUCH_SESSION_PERMISSION            PASS
+Q10_ODD_INTERNAL_MICRO_ORCHESTRATION          PASS
+Q10_UNAUTHORIZED_FRONTIER_STOP                PASS
+Q11_SINGLE_ACCEPTANCE_UNATTENDED              PASS
 ```
 
 A later qualification harness assertion incorrectly forced remaining refuter/validator work through one capture shape. That is harness/test debt, not a session-permission failure. Historical GP2.7 zero-touch evidence remains provenance only.
@@ -174,8 +177,10 @@ Herdr                                            0.9.0
 Gentle Pi                                        3.3.0
 Gentle AI                                        3.4.0 package-paired
 DEFAULT_PI_MODEL                                 nan/deepseek-v4-flash medium
-PERSISTENT_TRAIN_PARENT                         nan/glm5.3-flash high
-FRESH_NATIVE_CHILD_PER_NEW_TICKET               REQUIRED
+PERSISTENT_TRAIN_PARENT                         nan/deepseek-v4-flash medium
+INTERNAL_MICRO_ORCHESTRATION                    GENTLE_SHELL_ODD
+FRESH_CHILD_PER_EXTERNAL_TICKET                 NOT_AN_ATENEA_INVARIANT
+QUALIFIED_HOST_BRIDGE                           REQUIRED_FOR_GP3_3_CURRENT_GROUP_AND_CONSENT_SIGNAL
 FIRST_REVIEW_SESSION_GRANT                      HUMAN_ONE_TOUCH
 LATER_SAME_SESSION_REVIEW_CONSENT_TOUCHES       0 expected
 EXPLICIT_REVIEW_ROLE_ROUTING                    REQUIRED
@@ -189,7 +194,7 @@ Current recipe: `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md`.
 
 ## Installation / making Atenea work
 
-Atenea deliberately has **no bespoke installer or launcher**.
+Atenea has no bespoke orchestration installer or launcher. The only current repo-owned runtime adaptation is the narrow, version/hash-guarded GP3.3 host bridge, installed explicitly after the upstream Gentle package and retired when upstream owns the same behavior.
 
 For a fresh environment:
 
@@ -240,13 +245,14 @@ The Matt skills are not a mandatory execution sequence.
 - `docs/INSTALLATION_AND_OPERATION_V1.md` — current environment/install/verification guide.
 - `docs/OPERATOR_RUNBOOK_V1.md` — practical `EXECUTION_READY` operator path.
 - `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md` — current pinned GP3.3 one-touch train mechanics.
+- `docs/GP33_Q10_Q11_ADOPTION_EVIDENCE_20260920.md` — Q10/Q11 adoption, host-bridge and performance evidence.
 - `docs/QUALIFICATION.md` — current qualification index and proven boundaries.
 - `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md` — local worktree/qualification lifecycle and cleanup policy.
 
 ### Migration / qualification evidence
 
 - `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md` — historical GP2.7/GAI2.9.1 topology-replacement evidence.
-- `docs/ROUTING_QUALIFICATION_EVIDENCE_20260912.md` — historical A/B evidence underlying the current GLM/Luna/V4 role-diverse policy.
+- `docs/ROUTING_QUALIFICATION_EVIDENCE_20260912.md` — historical A/B evidence for the superseded Sep-12 GLM/Luna/V4 role-diverse profile.
 
 ### Historical / rollback evidence
 

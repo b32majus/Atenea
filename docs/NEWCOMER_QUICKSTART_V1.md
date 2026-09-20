@@ -16,7 +16,7 @@ human + Cora/planning → durable repo/tracker authority
 AFTER EXECUTION_READY
 explicit execution authorization
 → one visible Pi + Gentle Pi 3.3 parent on NaN GLM 5.3 Flash high
-→ fresh implementation child per ticket
+→ Gentle Shell/ODD owns internal tasking + bounded delegation
 → exact diff + deterministic QA
 → first eligible review: human selects “Review and allow this session”
 → later same-session/repository reviews: no second consent touch
@@ -120,18 +120,12 @@ The upstream skill's own trigger and procedure remain authoritative; Atenea does
 
 ```text
 Pi ordinary default              nan/deepseek-v4-flash · medium
-Persistent parent/coordinator    nan/glm5.3-flash · high
-gentle-ai-worker                 nan/glm5.3-flash · high
-gentle-ai-verify                 openai-codex/gpt-5.6-luna · high
-review-readability               openai-codex/gpt-5.6-luna · high
-review-reliability               nan/deepseek-v4-flash · high
-review-resilience                nan/deepseek-v4-flash · high
-review-risk                      nan/deepseek-v4-flash · high
-review-refuter                   nan/deepseek-v4-flash · high
-review-validator                 openai-codex/gpt-5.6-luna · high
+Persistent parent/coordinator    nan/deepseek-v4-flash · medium
+All configured Gentle roles      nan/deepseek-v4-flash · medium
+max_concurrency                   1
 ```
 
-NaN's `deepseek-v4-flash` id is the DeepSeek V4.1 Flash family. The active machine profile is `atenea-one-touch` and deliberately does not override Pi's orchestrator default; train parents launch GLM high explicitly.
+NaN's `deepseek-v4-flash` id is the DeepSeek V4.1 Flash family. The active machine profile is `atenea-one-touch`; the current cutover routes the parent and all configured Gentle roles to V4 medium with concurrency 1.
 
 Missing/rejected pinned routes fail closed; no silent fallback. See `docs/ROUTING_EVIDENCE_LEDGER_V1.md`.
 
@@ -164,7 +158,7 @@ When work is truly `EXECUTION_READY`, use `docs/OPERATOR_RUNBOOK_V1.md` plus `do
 High-frequency invariants:
 
 - one persistent visible Gentle-Pi 3.3 parent per bounded train;
-- one fresh implementation child per newly selected ticket;
+- ODD-owned internal decomposition/delegation; no Atenea fresh-child-per-external-ticket invariant;
 - sequential concurrency by default;
 - first eligible review consent is the single human one touch;
 - later fresh validated grants in the same live session/canonical repository need no second consent touch;

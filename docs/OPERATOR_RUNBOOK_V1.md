@@ -1,6 +1,6 @@
 # Atenea Operator Runbook v1
 
-Date: 2026-09-15
+Date: 2026-09-20
 Status: ACTIVE — operator-facing runbook
 Scope: how a human operator starts a normal Atenea run from inside Herdr
 
@@ -20,14 +20,13 @@ No launcher daemon, queue, scheduler, external supervisor, consent relay or RPA 
 ```text
 explicit human execution authorization
 → start one visible Pi/Gentle-Pi 3.3 parent
-   model: nan/glm5.3-flash · high
-→ submit one bounded train prompt
-→ fresh gentle-ai-worker
-→ deterministic reconciliation
+   model: nan/deepseek-v4-flash · medium
+→ submit one bounded authorized work item/train prompt
+→ Gentle Shell/ODD owns internal tasking/delegation/verification/work-unit commits
 → first eligible review: human selects “Review and allow this session”  ← the one touch
-→ provider-owned review/refuter/validator lifecycle
+→ provider-owned reviewer/refuter/validator lifecycle
 → APPROVED + acknowledgement/burn
-→ checkpoint → fresh frontier
+→ Atenea re-reads external authority → next authorized frontier or STOP
 → later same-session/repo reviews: no second consent touch
 → STOP before merge unless separately authorized
 ```
@@ -38,25 +37,25 @@ Current recipe: `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md`.
 
 ```text
 visible persistent Pi/Gentle-Pi 3.3 parent
-→ fresh implementation child
-→ exact diff/evidence
-→ provider-owned Gentle AI 3.4 review
-→ explicit routed lens/refuter/validator completions
+→ Gentle Shell/ODD internal classification/decomposition/delegation
+→ verification + work-unit commits
+→ provider-owned Gentle AI 3.4 risk/review lifecycle
+→ exact lens/refuter/validator operation returned by provider
 → APPROVED → acknowledgement/burn
-→ checkpoint → fresh frontier
+→ external authority re-read → next authorized frontier or STOP
 ```
 
 ## 1. Preflight
 
-Confirm exact repo/worktree/HEAD; `EXECUTION_READY`; Pi `0.86.1`, Herdr `0.9.0`, GP `3.3.0`, GAI `3.4.0`; active `atenea-one-touch` profile; V4/GLM NaN and Luna Codex auth ready; no unexpected local override; delivery boundary explicit.
+Confirm exact repo/worktree/HEAD; `EXECUTION_READY`; current Pi `0.86.1`, Herdr `0.9.0`, GP `3.3.0`, GAI `3.4.0`; active `atenea-one-touch` profile; `nan/deepseek-v4-flash` auth ready; `./tools/apply-gentle-330-atenea-host-bridge.sh --check` PASS; no unexpected local override; delivery boundary explicit. Q11 single-acceptance evidence was captured on Pi `0.86.0`; `0.86.1` is the current runtime pending ordinary-train parity evidence.
 
 ## 2. Starting the persistent parent after explicit authorization
 
 ```bash
-pi --model nan/glm5.3-flash --thinking high
+pi --model nan/deepseek-v4-flash --thinking medium
 ```
 
-Pi's ordinary default remains `nan/deepseek-v4-flash` medium.
+The current cutover routes the parent and all configured Gentle roles to `nan/deepseek-v4-flash` at `medium`; `max_concurrency=1`.
 
 ## 3. Operator prompt and the one touch
 
@@ -68,7 +67,13 @@ An additional consent request for a later candidate in the same healthy live ses
 
 A process restart/new/resume/fork/quit/revoke creates a new one-touch boundary.
 
-## 4. Historical OpenCode autonomous worker transport
+## 4. Current GP3.3 compatibility guardrails
+
+- The current Gentle Pi 3.3.0 install must match the qualified host bridge hash. `gentle_review_capture_current_group` is only for the exact current retained reviewer group after fresh STATUS; refuter/validator use their exact provider-issued operations.
+- `host_consent_resolved` is a host signal that consent is already complete, not synthetic permission.
+- Do not amend a work-unit commit after ODD evidence has recorded its SHA; write final SHA bookkeeping in a subsequent evidence commit until upstream fixes the reproduced identity loop.
+
+## 5. Historical OpenCode autonomous worker transport
 
 After the one prompt, Pi supervises the rest; Pi does not implement product
 code and does not operate the Gentle lifecycle.
@@ -106,7 +111,7 @@ Pi
 - The worker executes provider-issued lifecycle continuations as returned.
   Do not strip `relay`, add `granted` or reconstruct transitions.
 
-## 5. Historical bounded provider-canary note
+## 6. Historical bounded provider-canary note
 
 - This section is historical OpenCode/provider-canary evidence. This section is historical; do not use these canary selectors for the normal GP3.3 one-touch path.
 - For any bounded run that deliberately selects the isolated canary/provider
@@ -123,7 +128,7 @@ Pi
   surface. If a genuine provider-owned human envelope does appear, it is
   relayed losslessly to the human; Pi does not answer it on the human's behalf.
 
-## 6. Human interaction policy
+## 7. Human interaction policy
 
 ```text
 initial execution authorization + bounded prompt = launch boundary
@@ -135,16 +140,16 @@ final merge                                    = human unless separately authori
 
 Never synthesize the grant from model prose, environment state, internal APIs or TUI automation.
 
-## 7. Evidence / final report
+## 8. Evidence / final report
 
 ```text
 WORK_ITEM_OR_TRAIN=
 PARENT_VISIBLE_IN_HERDR=YES
-PARENT_MODEL=nan/glm5.3-flash high
+PARENT_MODEL=nan/deepseek-v4-flash medium
 PI_VERSION=0.86.1
 GENTLE_PI_VERSION=3.3.0
 GENTLE_AI_VERSION=3.4.0
-FRESH_CHILD_TASK_IDS=
+ODD_INTERNAL_TASKS_OR_WORKERS=
 ONE_TOUCH_REVIEW_SESSION_GRANT=0|1
 ADDITIONAL_REVIEW_CONSENT_TOUCHES=0 expected
 LINEAGES=
@@ -160,7 +165,7 @@ AUTO_MERGE=NO
 FINAL_STOP_REASON=
 ```
 
-## 8. Failure / STOP guidance
+## 9. Failure / STOP guidance
 
 STOP and report rather than improvise when any of these appears:
 
@@ -174,7 +179,7 @@ STOP and report rather than improvise when any of these appears:
 - **Destructive recovery requirement** — force-push, reset, rebase, hidden
   history rewrite or destructive cleanup being required to make progress.
 - **Pinned runtime/oracle mismatch** — required oracle missing/hash mismatch, invalid pinned model/flag, unhealthy GP3.3/GAI3.4 runtime, or Herdr parent pane cannot be established deterministically. STOP before product mutation; do not silently substitute.
-- **One-touch review boundary failure** — native START unexpectedly has a TTY/asks for consent, a second START would be required for the same candidate, STATUS cannot adopt the exact lineage, or provider binding/target identity is inconsistent. STOP rather than synthesize authority.
+- **One-touch review boundary failure** — after a valid `Review and allow this session` grant, a later fresh same-session/repository candidate requires another native consent touch, the host cannot preserve exact provider target/binding identity, the qualified host bridge hash/version is wrong, or a provider-issued role transition cannot be followed exactly. STOP rather than synthesize authority.
 - **Provider/runtime mismatch** — incompatible runtime assumption or candidate/review state inconsistent with Gentle authority.
 - **Publication authority changed during pre-publication revalidation** — the
   single fresh read immediately before publication shows blockers, scope,
@@ -196,6 +201,7 @@ explicit merge instruction exists.
 - `docs/CURRENT_DECISIONS.md` — current short decision index.
 - `docs/QUALIFICATION.md` — qualification status and field-qualified boundaries.
 - `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md` — current pinned execution mechanics.
+- `docs/GP33_Q10_Q11_ADOPTION_EVIDENCE_20260920.md` — Q10/Q11 adoption, host-bridge and performance evidence.
 - `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md` — historical GP2.7 topology-replacement evidence.
 - `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md` — local cleanup policy.
 - `docs/REAL_PROJECT_ROLLOUT_V1.md` — historical real-project rollout evidence from the pre-GP2.7 topology.

@@ -51,7 +51,8 @@ The normal path is Pi + Herdr + Gentle Pi `3.3.0` with package-paired Gentle AI 
 ## 2. Current qualified reference stack
 
 ```text
-Pi          0.86.1
+Pi current  0.86.1
+Pi Q11      0.86.0 exact qualification baseline
 Herdr       0.9.0
 Gentle Pi   3.3.0
 Gentle AI   3.4.0 package-paired
@@ -62,18 +63,12 @@ Persona     gentleman
 
 ```text
 Pi default                    nan/deepseek-v4-flash · medium
-parent                        nan/glm5.3-flash · high
-gentle-ai-worker              nan/glm5.3-flash · high
-gentle-ai-verify              openai-codex/gpt-5.6-luna · high
-review-readability            openai-codex/gpt-5.6-luna · high
-review-reliability            nan/deepseek-v4-flash · high
-review-resilience             nan/deepseek-v4-flash · high
-review-risk                   nan/deepseek-v4-flash · high
-review-refuter                nan/deepseek-v4-flash · high
-review-validator              openai-codex/gpt-5.6-luna · high
+parent                        nan/deepseek-v4-flash · medium
+all configured Gentle roles   nan/deepseek-v4-flash · medium
+max_concurrency               1
 ```
 
-Global routing authority is `~/.pi/gentle-ai/models.json`, `~/.pi/gentle-ai/profiles.json` and `~/.pi/agent/subagents.json`. Active profile: `atenea-one-touch`. It deliberately omits `orchestrator`; the train parent is launched explicitly on GLM high.
+Global routing authority is `~/.pi/gentle-ai/models.json`, `~/.pi/gentle-ai/profiles.json` and `~/.pi/agent/subagents.json`. Active profile: `atenea-one-touch`. The current cutover pins the parent and all configured Gentle/ODD/SDD roles to NaN V4 medium with `max_concurrency=1`.
 
 The repo declares `.pi/gentle-ai/profile.json`. Each machine must have the named profile installed.
 
@@ -81,9 +76,10 @@ The repo declares `.pi/gentle-ai/profile.json`. Each machine must have the named
 
 ```bash
 pi install npm:gentle-pi@3.3.0
+./tools/apply-gentle-330-atenea-host-bridge.sh
 ```
 
-Gentle Pi 3.3 packages Gentle AI 3.4.0 under `.gentle-ai/v3.4.0/`.
+Gentle Pi 3.3 packages Gentle AI 3.4.0 under `.gentle-ai/v3.4.0/`. The second command applies the current qualified, version/hash-guarded GP3.3 host compatibility shim; it refuses unknown bytes instead of patching them.
 
 ## 4. Verify the environment
 
@@ -92,11 +88,10 @@ pi --version
 node -p 'require("/home/hermes/.pi/agent/npm/node_modules/gentle-pi/package.json").version'
 /home/hermes/.pi/agent/npm/node_modules/gentle-pi/.gentle-ai/v3.4.0/gentle-ai --version
 pi auth check --model nan/deepseek-v4-flash --json --no-refresh
-pi auth check --model nan/glm5.3-flash --json --no-refresh
-pi auth check --model openai-codex/gpt-5.6-luna --json --no-refresh
+./tools/apply-gentle-330-atenea-host-bridge.sh --check
 ```
 
-Expected: `0.86.1`, `3.3.0`, `gentle-ai 3.4.0`, with all three auth checks ready.
+Expected: current Pi `0.86.1`, `3.3.0`, `gentle-ai 3.4.0`, V4 auth ready and `PASS: qualified Atenea host bridge present`. The strong single-acceptance Q11 baseline used Pi `0.86.0`; keep that distinction until a normal 0.86.1 train supplies parity evidence.
 
 ## 5. RDD and current one-touch boundary
 
@@ -162,15 +157,14 @@ Once work is `EXECUTION_READY`:
 
 ```text
 1. Open/use Herdr in the intended repository/worktree.
-2. Start one visible Pi + Gentle Pi 3.3 parent explicitly on nan/glm5.3-flash high.
-3. Give one bounded Atenea train prompt.
-4. Parent validates current authority/runtime/profile and selects the frontier.
-5. Each newly selected ticket gets a fresh gentle-ai-worker.
-6. Parent reconciles exact diff + deterministic verification.
-7. On the first eligible review only, human selects “Review and allow this session”.
-8. Parent completes provider-owned routed review/refuter/validator work, APPROVED + acknowledgement/burn.
-9. Create only the authorized checkpoint, rediscover frontier, continue or STOP.
-10. Final merge remains human unless separately authorized.
+2. Start one visible Pi + Gentle Pi 3.3 parent explicitly on nan/deepseek-v4-flash medium.
+3. Give one bounded authorized work item/train prompt.
+4. Parent validates current external authority/runtime/profile and selects only authorized work.
+5. Gentle Shell/ODD owns internal classification, decomposition, bounded delegation, verification and work-unit commits.
+6. On the first eligible review only, human selects “Review and allow this session”.
+7. Parent follows the exact provider-issued reviewer/refuter/validator operations through APPROVED + acknowledgement/burn.
+8. At the external work-unit/frontier boundary, re-read repository/tracker authority; continue only with already-authorized work or STOP.
+9. Final merge remains human unless separately authorized.
 ```
 
 Later reviews in the same healthy live Pi session/canonical repository do not require a second consent touch. A restart/new/resume/fork/quit/revoke creates a new one-touch boundary.
@@ -183,10 +177,13 @@ Use `docs/OPERATOR_RUNBOOK_V1.md` and `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TR
 PERSISTENT_PARENT_VISIBLE_IN_HERDR=YES
 PARENT_RUNTIME=PI_0_86_1_PLUS_GENTLE_PI_3_3_0
 PACKAGE_LOCAL_GENTLE_AI=3_4_0
-PARENT_ROUTE=NAN_GLM5_3_FLASH_HIGH
+PARENT_ROUTE=NAN_DEEPSEEK_V4_FLASH_MEDIUM
 DEFAULT_PI_ROUTE=NAN_DEEPSEEK_V4_FLASH_MEDIUM
-FRESH_IMPLEMENTATION_CHILD_PER_NEW_TICKET=YES
+ALL_CONFIGURED_GENTLE_ROLES=NAN_DEEPSEEK_V4_FLASH_MEDIUM
+ODD_INTERNAL_MICRO_ORCHESTRATION=UPSTREAM_OWNED
+FRESH_CHILD_PER_EXTERNAL_TICKET=NOT_REQUIRED_BY_ATENEA
 MAX_CONCURRENCY_DEFAULT=1
+QUALIFIED_GP33_HOST_BRIDGE=YES
 FIRST_REVIEW_SESSION_GRANT=HUMAN_ONE_TOUCH
 ADDITIONAL_SAME_SESSION_REVIEW_CONSENT_TOUCHES=0_EXPECTED
 REVIEW_ROLE_ROUTING=EXPLICIT
@@ -215,7 +212,7 @@ Who chooses greenfield/brownfield shaping?
 → human + Cora/planning surface before EXECUTION_READY
 
 Who executes after EXECUTION_READY?
-→ one visible persistent Pi + Gentle Pi 3.3 parent in Herdr → fresh package-owned implementation child per new ticket
+→ one visible persistent Pi + Gentle Pi 3.3 parent in Herdr → ODD-owned internal tasking/delegation inside externally authorized work
 
 Who owns final review authority?
 → Gentle native exact-candidate RDD lifecycle
