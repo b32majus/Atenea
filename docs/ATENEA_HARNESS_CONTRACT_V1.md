@@ -66,8 +66,15 @@ FIRST_REVIEW_SESSION_GRANT=HUMAN_EXPLICIT
 LATER_SAME_SESSION_REVIEW_CONSENT_TOUCHES=ZERO_EXPECTED
 INTERNAL_MICRO_ORCHESTRATION=GENTLE_SHELL_ODD
 FRESH_CHILD_PER_EXTERNAL_TICKET=NOT_REQUIRED_BY_ATENEA
+DEFAULT_REVIEW_BUDGET_LINES=400_UNLESS_SESSION_OVERRIDE
+WORK_UNIT_401_600=SOFT_COHERENT_OVERAGE
+WORK_UNIT_601_800=EXPLICIT_SIZE_EXCEPTION
+WORK_UNIT_GT_800=STOP_RESLICE_UNLESS_HUMAN_INDIVISIBILITY_EXCEPTION
 QUALIFIED_HOST_BRIDGE=GP3_3_CURRENT_GROUP_PLUS_CONSENT_SIGNAL
 EXPLICIT_REVIEW_ROLE_ROUTING=REQUIRED
+REVIEW_LIFECYCLE_TRANSPORT=GENTLE_PI_FACADE_WHEN_AVAILABLE
+PREPUBLICATION_ARTIFACT_VALIDATION=CHANGED_FILE_AWARE
+ORACLE_SEMANTICS=DRIFT_EVIDENCE_NOT_DEFECT_AUTHORITY
 ACKNOWLEDGEMENT_BURN=REQUIRED
 FINAL_MERGE=HUMAN_BOUNDARY
 ```
@@ -155,7 +162,21 @@ On the first eligible review, the human may select `Review and allow this sessio
 
 Atenea MUST NOT synthesize permission through prompt prose, environment flags, internal grant APIs, fake child identity or TUI automation.
 
-### 7.1.1 One-touch consent lifetime
+### 7.1.1 Facade-first review transport preserves host semantics
+
+When a corresponding Gentle Pi `gentle_review` operation exists, the persistent parent MUST use that facade for ordinary review lifecycle operations.
+
+Do not execute `gentle-ai review ...` through shell as a shortcut for START/STATUS/capture/consent when the facade owns the same operation. Do not recreate provider/host consent with `ask_user_choice`.
+
+This is not cosmetic. The Laboratorio field train proved that direct shell START can preserve provider-native consent while bypassing the Pi host layer that exposes the third host-owned action `Review and allow this session`, breaking the qualified one-touch contract.
+
+Native CLI remains valid only when:
+- the current facade does not expose the required provider-owned operation and current authority explicitly permits the native path; or
+- the command is an isolated read-only diagnostic outside live review authority.
+
+Neither case authorizes reconstructing provider tokens, consent, bindings or lifecycle state.
+
+### 7.1.2 One-touch consent lifetime
 
 ```text
 reload                PRESERVES
@@ -170,7 +191,7 @@ different repository   NEW HUMAN GRANT REQUIRED
 
 A package-owned child may use the parent's permission only through Gentle Pi's supported bounded permission channel and exact target/repository binding.
 
-### 7.1.2 Native reviewer continuation is provider-owned
+### 7.1.3 Native reviewer continuation is provider-owned
 
 Reviewer lens, refuter and targeted-validator prompts/tokens are provider-owned. Preserve materialization/submission/binding values exactly.
 
@@ -178,7 +199,7 @@ Do not collapse different provider operations into one capture shape. Ordinary l
 
 Approval is not publishable until provider-required work is terminal and acknowledgement/burn succeeds.
 
-### 7.1.3 Qualified GP3.3 host bridge — narrow compatibility shim
+### 7.1.4 Qualified GP3.3 host bridge — narrow compatibility shim
 
 The current 3.3 installation carries the versioned patch `patches/gentle-pi-3.3.0-atenea-host-bridge.patch`. It may (a) forward the exact current reviewer group retained by the host after fresh STATUS so the model does not reserialize opaque `collectBindings`, and (b) expose `host_consent_resolved=true` after native host consent has completed so the model does not ask the human again.
 
@@ -188,7 +209,39 @@ This shim MUST NOT invent bindings, verdicts, lenses or role routes. `gentle_rev
 
 The parent may stay alive across a compatible bounded train. Atenea does not prescribe one child per external ticket; Gentle Shell/ODD chooses internal bounded workers according to its own enforced delegation rules. The parent must re-read external authority between externally authorized units/frontiers. A process restart/new session starts a new one-touch permission boundary.
 
-### 7.2.1 Native assessment owns review timing
+### 7.2.1 Workload composition is resolved before substantial implementation
+
+Gentle Shell/ODD owns work-unit composition. Atenea's responsibility is to prevent the persistent parent from bypassing that upstream planning boundary.
+
+Before launching a writer for substantial work, the parent MUST consume the available Review Workload Forecast/task shape and resolve delivery/composition when over-budget risk is material.
+
+Authority order:
+
+```text
+explicit project/session review_budget_lines
+> upstream Gentle delivery/work-unit semantics
+> accepted task/project size:exception decision
+> Atenea default planning heuristic
+```
+
+With no explicit session budget, Gentle's current default planning budget is 400 authored changed lines. `400` is a review-composition boundary, not a risk-tier input or hard reviewer-capacity limit.
+
+Atenea's default heuristic when no stronger budget exists is:
+
+```text
+<=400      normal target
+401-600    soft overage; no Atenea-forced split solely for size, but upstream delivery/size:exception rules still apply
+601-800    explicit durable size:exception / semantic-coherence rationale required before implementation
+>800       not an ordinary work unit; STOP/reslice by default unless the human explicitly authorizes an indivisibility exception
+```
+
+The 600/800 bands are Atenea operator heuristics informed by observed Gentleman practice, not upstream technical limits. They MUST NOT be used to compute `review_due`, synthesize START, or claim that a reviewer cannot process a larger high-risk candidate.
+
+Never code-golf to hit a number. Do not remove tests/docs/comments, split tests away from the behavior they verify, or create file-layer commits that are not independently coherent. After one honest coherent slicing pass, an indivisible over-budget unit may proceed only under the explicit exception semantics above.
+
+Current details and unpublished-history recovery: `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`.
+
+### 7.2.2 Native assessment owns review timing
 
 After each substantial/delegated work-unit commit becomes durable, the parent MUST run the read-only native assessment for that exact candidate and follow its provider-owned timing result.
 
@@ -201,7 +254,7 @@ work-unit commit
 → provider-owned START/collect/stop as returned
 ```
 
-Atenea MUST NOT turn external-ticket completion into an unconditional START, and MUST NOT implement its own line-count threshold for medium-risk slicing. The current GP3.3/GAI3.4 compatibility bridge only preserves GAI3.4's timing fields and exposes a host-safe STATUS continuation; it does not decide review timing.
+Atenea MUST NOT turn external-ticket completion into an unconditional START, and MUST NOT implement its own line-count threshold for medium-risk slicing. `gentle_review inspect` is not a substitute for this path: candidate inspection/selection does not replace `ASSESS → wrapper continuation → target-scoped STATUS`. If ASSESS is unavailable, schema-incompatible or does not expose the required timing result, STOP rather than invent START. The current GP3.3/GAI3.4 compatibility bridge only preserves GAI3.4's timing fields and exposes a host-safe STATUS continuation; it does not decide review timing. Current committed-range ASSESS defect tracking: issue #90.
 
 ### 7.3 Operator prompt surface
 
@@ -398,11 +451,26 @@ This is a single bounded revalidation, not a polling subsystem or Herdr gate.
 
 If blockers, scope, product authority or repository delivery instructions changed materially since execution began, do not publish the stale candidate: STOP for adjudication.
 
-If authority is unchanged, continue to normal publication without adding another lifecycle layer.
+If authority is unchanged, derive deterministic delivery validation from the **actual changed artifact types** before publication. This is changed-file-aware evidence, not a universal giant gate list.
+
+Examples:
+- changed `.github/workflows/*.yml` or `.github/workflows/*.yaml` → run a repo-native workflow/YAML validator or qualified upstream validator such as `actionlint`;
+- runtime-sensitive candidates → distinguish local-host results from the repository's declared CI runtime and establish parity when necessary to interpret the gate;
+- generated/config/deployment artifacts → use the owning repo-native/upstream parser or validator when applicable.
+
+Missing a required artifact validator is explicit evidence and may be STOP; tests, LLM review and `git diff --check` do not substitute for parsing an artifact whose syntax/semantics they do not validate.
+
+Current policy: `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md`.
+
+If authority and required artifact validation are both satisfied, continue to normal publication without adding another lifecycle layer.
 
 ## 17. Publication boundary
 
 Normal non-force `git push` is allowed in the accepted autonomous path.
+
+Before publication, the effective credential/transport must have the capability required by the changed artifacts. Generic GitHub authentication is not proof of workflow-modification authority. When workflow files changed, verify the actual publication credential has the GitHub capability required for that push (for classic OAuth/PAT flows this may include `workflow`; other credential types may express it differently).
+
+If GitHub rejects publication for missing credential capability, preserve the exact candidate and repair the credential boundary. Do not reconstruct commits through another API or remove required workflow changes merely to bypass the permission.
 
 When an interactive runtime permission asks only whether to perform an operation that current repository/Atenea authority already authorizes — such as the ordinary non-force push for the current branch — Pi SHOULD grant that operational permission without escalating it to the human.
 
@@ -431,6 +499,8 @@ If publication partially succeeds, preserve the exact remote state and STOP for 
 
 Acceptance depends on exact repository evidence, not agent narration.
 
+A preserved product/tree oracle used for unpublished-history reconstruction is drift evidence, not authority above a proven defect. Byte/tree equivalence proves the reslicing did not redesign accepted content at that checkpoint; accepted specification, syntactic validity, deterministic tests, buildability and delivery validity may later prove that a preserved byte is defective. Preserve the equivalence evidence, then repair the proven defect as a separate bounded correction under current authority.
+
 Where applicable, verify the accepted candidate against current local/upstream/remote state and record the exact checkpoint.
 
 Unexpected same-branch drift or contradictory authoritative state is fail-closed.
@@ -448,6 +518,10 @@ STOP rather than improvise when any material condition is unresolved, including:
 - unresolved product decision;
 - inability to establish falsifiable acceptance for a requirement that needs it;
 - candidate/review state inconsistent with Gentle authority;
+- ASSESS unavailable/schema-incompatible or missing required provider timing fields for the exact candidate;
+- material changed artifact lacking required syntactic/build/delivery validation;
+- runtime-sensitive evidence that cannot be reconciled with the declared CI/runtime authority;
+- publication credential lacking capability required by the changed artifact;
 - material pre-publication authority change;
 - destructive publication/recovery being required;
 - publication partially succeeding without an explicit safe continuation.
@@ -515,6 +589,10 @@ REVIEW_RISK_MODEL                       nan/glm5.3-flash high
 PARENT_MODEL                            nan/glm5.3-flash high
 INTERNAL_MICRO_ORCHESTRATION            GENTLE_SHELL_ODD
 FRESH_CHILD_PER_EXTERNAL_TICKET         NOT_REQUIRED_BY_ATENEA
+DEFAULT_REVIEW_BUDGET_LINES             400_UNLESS_SESSION_OVERRIDE
+WORK_UNIT_401_600                       SOFT_COHERENT_OVERAGE
+WORK_UNIT_601_800                       EXPLICIT_SIZE_EXCEPTION
+WORK_UNIT_GT_800                        STOP_RESLICE_UNLESS_HUMAN_INDIVISIBILITY_EXCEPTION
 QUALIFIED_HOST_BRIDGE                   REQUIRED_FOR_CURRENT_GP3_3_INSTALL
 EXPLICIT_REVIEW_ROLE_ROUTING            REQUIRED
 ACKNOWLEDGEMENT_BURN                    REQUIRED

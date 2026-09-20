@@ -156,8 +156,8 @@ reviewer-empty-output + stopReason=length
 medium candidate without prior ASSESS
 → orchestration defect; restore native assess/next-transition ownership
 
-high candidate + repeated DeepSeek length/empty-output
-→ independent reviewer/provider incident; route only by explicit evidence
+high candidate + repeated length/empty-output
+→ inspect candidate composition/material size and provider evidence separately; a second provider reproducing the same slot means this is not model-only; route only by explicit role evidence
 
 context-length rejection
 → inspect real context and compaction; do not inflate context blindly

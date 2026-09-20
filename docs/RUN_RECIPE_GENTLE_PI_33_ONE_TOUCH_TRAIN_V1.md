@@ -54,7 +54,21 @@ Herdr is visibility/session substrate only. There is no normal external Pi super
 
 ## 5. Authorized work execution
 
-For each externally authorized work item/train: resolve durable external authority, then let Gentle Shell/ODD own internal classification, task decomposition, bounded delegation, verification and work-unit commits. Atenea does not require one child per external ticket. **After every delegated/substantial work-unit commit, invoke `gentle_review` `assess` over that exact candidate and obey its provider-owned `review_due`, `review_due_reason` and continuation.** If review is due, follow `wrapper_continuation` to target-scoped STATUS and only then follow the exact provider lifecycle transition; if review is not due, do not manufacture START. External-ticket completion is never itself a review trigger, and Atenea must not reimplement the medium-slice threshold with a line-count heuristic. At each external unit/frontier boundary, reconcile repository evidence, complete any provider-required exact-candidate review through APPROVED + acknowledgement/burn, re-read external authority and continue only with work already covered by the authorization; otherwise STOP.
+For each externally authorized work item/train: resolve durable external authority, then let Gentle Shell/ODD own internal classification, task decomposition, bounded delegation, verification and work-unit commits. Atenea does not require one child per external ticket.
+
+### 5.1 Compose reviewable work before writing
+
+Before launching substantial implementation, consume the available Review Workload Forecast/task shape. If an explicit session/project `review_budget_lines` exists, it owns the planning budget. Otherwise use Gentle's default 400 authored changed lines as the baseline.
+
+Under the default budget, Atenea's operator heuristic is: `<=400` normal target; `401–600` soft overage where Atenea does not force another split solely for size when one coherent unit is better, while any upstream-required `size:exception` still applies; `601–800` requires an explicit durable `size:exception`/semantic-coherence rationale before implementation; `>800` defaults to STOP/reslice unless the human explicitly authorizes an indivisibility exception. These bands are planning heuristics, not reviewer limits and not native `review_due` logic.
+
+Do not code-golf, split tests away from behavior, or create arbitrary file-layer commits to hit a number. If a unit is honestly indivisible after one coherent slicing pass, report the real size and follow upstream size-exception semantics.
+
+### 5.2 Commit, then let native ASSESS own review timing
+
+**After every delegated/substantial work-unit commit, invoke `gentle_review` `assess` over that exact candidate and obey its provider-owned `review_due`, `review_due_reason` and continuation.** `inspect` is not an ASSESS substitute. If ASSESS is unavailable/schema-incompatible or does not expose the required timing result, STOP rather than inventing START. If review is due, follow `wrapper_continuation` to target-scoped STATUS and only then follow the exact provider lifecycle transition; if review is not due, do not manufacture START. External-ticket completion is never itself a review trigger, and Atenea must not reimplement the provider's post-commit medium-slice `review_due` decision with a line-count heuristic. At each external unit/frontier boundary, reconcile repository evidence, complete any provider-required exact-candidate review through APPROVED + acknowledgement/burn, re-read external authority and continue only with work already covered by the authorization; otherwise STOP.
+
+Full composition / unpublished-history recovery policy: `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`.
 
 ## 6. The one touch
 
@@ -94,6 +108,7 @@ Use the provider-returned operation literally. Ordinary lenses use the requested
 The current `3.3.0` installation requires the versioned patches `patches/gentle-pi-3.3.0-atenea-host-bridge.patch` and `patches/gentle-pi-3.3.0-atenea-assess-bridge.patch`, applied/checked together by `tools/apply-gentle-330-atenea-host-bridge.sh`. The assess bridge transports GAI3.4 provider-owned review timing; it does not implement an Atenea scheduler.
 
 - `gentle_review_capture_current_group` forwards only the exact current reviewer group retained after fresh STATUS; it is not a universal refuter/validator transport.
+- **Facade-first:** when a corresponding `gentle_review` operation exists, ordinary START/STATUS/capture/consent must traverse that facade. Do not shell `gentle-ai review ...` as a bypass and do not recreate provider/host consent with `ask_user_choice`; direct shell START can remove the host-owned `Review and allow this session` action.
 - `host_consent_resolved` tells the model that native consent is already complete; it does not manufacture permission.
 - Refuter/validator follow their exact provider-issued operations.
 - Never amend a work-unit commit after ODD evidence has recorded its SHA; put final SHA bookkeeping in a subsequent evidence commit until upstream fixes the reproduced self-referential hash defect.
@@ -107,8 +122,10 @@ APPROVED is incomplete until acknowledgement/burn succeeds. Session permission i
 ```text
 Execute the current EXECUTION_READY ticket/train end to end under the current Atenea contract and Gentle Pi 3.3 one-touch recipe.
 Remain the persistent visible parent and retain external authority/frontier context. Let Gentle Shell/ODD own internal classification, decomposition, bounded delegation, verification and work-unit commits; do not impose one child per external ticket.
-After every delegated/substantial work-unit commit, call `gentle_review` `assess` on that exact candidate and obey `review_due` / `review_due_reason`. When review is due, follow `wrapper_continuation` to target-scoped STATUS before any START; when it is not due, do not START. Never infer review timing from external-ticket completion or recreate the provider slice threshold.
-For every provider-selected review boundary, follow the exact native transition through APPROVED + acknowledgement/burn. At each external work-unit/frontier boundary, re-read durable authority and continue only with already-authorized work.
+Before substantial implementation, inspect the Review Workload Forecast/task shape and resolve work-unit composition before writing. Honor explicit `review_budget_lines`; otherwise target 400 authored lines by default. Treat ~401–600 as a soft coherent overage, ~601–800 as requiring an explicit durable size-exception rationale, and >800 as STOP/reslice by default unless the human explicitly authorizes an indivisibility exception. Never code-golf or split tests/docs from their behavior just to hit a number.
+After every delegated/substantial work-unit commit, call `gentle_review` `assess` on that exact candidate and obey `review_due` / `review_due_reason`. When review is due, follow `wrapper_continuation` to target-scoped STATUS before any START; when it is not due, do not START. Never infer review timing from external-ticket completion or recreate the provider's post-commit `review_due` threshold.
+For every provider-selected review boundary, follow the exact native transition through APPROVED + acknowledgement/burn using the Gentle Pi facade whenever it exposes the corresponding operation; never recreate host consent with `ask_user_choice`. At each external work-unit/frontier boundary, re-read durable authority and continue only with already-authorized work.
+Before publication, enumerate changed artifacts and run their applicable repo-native/upstream validators; workflow YAML must be parsed when changed. Reconcile declared-CI-runtime parity for runtime-sensitive gates and verify the actual publication credential has capability for the changed artifact. Treat byte/tree oracles as drift evidence, never as authority to preserve a proven syntax/build/delivery defect.
 Use the current mixed Atenea routing and qualified GP3.3 host + assess bridges. Do not merge. Return a factual final report and STOP when the compatible frontier is exhausted or a genuine human-owned boundary appears.
 ```
 
