@@ -41,11 +41,13 @@ For a new project or a resumed project:
 7. `docs/INSTALLATION_AND_OPERATION_V1.md` — provisioning, scopes and runtime verification
 8. `docs/ROUTING_EVIDENCE_LEDGER_V1.md` — current routing evidence classes and unresolved model-routing gaps
 9. `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` — pre-implementation reviewability budget, coherent slicing and oversized unpublished-history recovery
-10. `docs/OPERATOR_RUNBOOK_V1.md` — only once work is `EXECUTION_READY`
-11. `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md` — current pinned train mechanics
-12. `docs/QUALIFICATION.md` — field evidence/proven boundaries when needed
-13. `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md` — current replacement evidence
-14. `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md` — local-state lifecycle/cleanup policy
+10. `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md` — changed-file-aware deterministic publication validation
+11. `docs/OPERATOR_RUNBOOK_V1.md` — only once work is `EXECUTION_READY`
+12. `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md` — current pinned train mechanics
+13. `docs/QUALIFICATION.md` — field evidence/proven boundaries when needed
+14. `docs/LABORATORIO_PRIVACIDAD_GP33_FIELD_QUALIFICATION_20260921.md` — first real GP3.3/GAI3.4 product-train evidence
+15. `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md` — historical replacement evidence
+16. `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md` — local-state lifecycle/cleanup policy
 
 ## 3. Three scopes — do not mix them
 
@@ -169,9 +171,12 @@ High-frequency invariants:
 - ODD-owned internal decomposition/delegation; no Atenea fresh-child-per-external-ticket invariant;
 - sequential concurrency by default;
 - first eligible review consent is the single human one touch;
+- review lifecycle is facade-first when `gentle_review` exposes the operation; do not shell native review lifecycle or recreate consent with `ask_user_choice`;
+- `inspect` is not a substitute for `ASSESS → STATUS`; unusable ASSESS is STOP, not START permission;
 - later fresh validated grants in the same live session/canonical repository need no second consent touch;
 - reviewer/refuter/validator use explicit routes and exact provider-issued operation shapes;
 - APPROVED is incomplete until acknowledgement/burn;
+- pre-publication validation is changed-file-aware; workflow YAML, declared-CI-runtime parity and publication credential capability are validated when applicable;
 - no external supervisor, Atenea consent relay or RPA;
 - final merge remains human unless separately authorized.
 

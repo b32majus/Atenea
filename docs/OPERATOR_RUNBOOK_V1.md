@@ -48,7 +48,7 @@ visible persistent Pi/Gentle-Pi 3.3 parent
 
 ## 1. Preflight
 
-Confirm exact repo/worktree/HEAD; `EXECUTION_READY`; current Pi `0.86.1`, Herdr `0.9.0`, GP `3.3.0`, GAI `3.4.0`; active `atenea-one-touch` profile; V4/GLM/Luna auth ready; `node tools/check-nan-runtime-config.mjs` PASS; `./tools/apply-gentle-330-atenea-host-bridge.sh --check` PASS; no unexpected local override; delivery boundary explicit. Q11 single-acceptance evidence was captured on Pi `0.86.0`; `0.86.1` is the current runtime pending ordinary-train parity evidence.
+Confirm exact repo/worktree/HEAD; `EXECUTION_READY`; current Pi `0.86.1`, Herdr `0.9.0`, GP `3.3.0`, GAI `3.4.0`; active `atenea-one-touch` profile; V4/GLM/Luna auth ready; `node tools/check-nan-runtime-config.mjs` PASS; `./tools/apply-gentle-330-atenea-host-bridge.sh --check` PASS; no unexpected local override; delivery boundary explicit. Q11 single-acceptance evidence was captured on Pi `0.86.0`; Pi `0.86.1` now has real-product field-train evidence from Laboratorio, with boundary-specific runtime debt tracked in #90/#91/#92.
 
 ## 2. Starting the persistent parent after explicit authorization
 
@@ -72,9 +72,10 @@ A process restart/new/resume/fork/quit/revoke creates a new one-touch boundary.
 
 - The current Gentle Pi 3.3.0 install must match the qualified host + assess bridge hashes. `gentle_review_capture_current_group` is only for the exact current retained reviewer group after fresh STATUS; the assess bridge only preserves provider-owned GAI3.4 timing fields/continuation and does not calculate review timing; refuter/validator use their exact provider-issued operations.
 - `host_consent_resolved` is a host signal that consent is already complete, not synthetic permission.
+- **Facade-first:** when an equivalent `gentle_review` operation exists, use it for ordinary review lifecycle work. Do not execute `gentle-ai review ...` through shell as a bypass and do not recreate provider/host consent with `ask_user_choice`; direct shell START can remove the host-owned `Review and allow this session` action.
 - Do not amend a work-unit commit after ODD evidence has recorded its SHA; write final SHA bookkeeping in a subsequent evidence commit until upstream fixes the reproduced identity loop.
-- After every delegated/substantial work-unit commit, call `gentle_review` `assess`, inspect provider-owned `review_due` / `review_due_reason`, and follow `wrapper_continuation`/STATUS when review is due. Never turn external-ticket completion into START and never recreate the provider's post-commit `review_due` threshold in Atenea.
-- `reviewer-empty-output` with `stopReason: length` is STOP, not automatic retry. Preserve the lineage/candidate and reconcile the affected route before another capture.
+- After every delegated/substantial work-unit commit, call `gentle_review` `assess`, inspect provider-owned `review_due` / `review_due_reason`, and follow `wrapper_continuation`/STATUS when review is due. `inspect` is not a substitute for `ASSESS → STATUS`. If ASSESS is unavailable/schema-incompatible or omits the required timing result, STOP; never turn that failure into START. Never turn external-ticket completion into START and never recreate the provider's post-commit `review_due` threshold in Atenea.
+- `reviewer-empty-output` with `stopReason: length` is STOP, not automatic retry. Preserve the lineage/candidate. Reconcile work-unit composition/material size and role/runtime evidence before another capture; change routing only when role-specific evidence supports it.
 
 ## 5. Historical OpenCode autonomous worker transport
 
@@ -143,6 +144,21 @@ final merge                                    = human unless separately authori
 
 Never synthesize the grant from model prose, environment state, internal APIs or TUI automation.
 
+### Pre-publication artifact evidence
+
+Before ordinary non-force publication:
+
+1. enumerate the exact changed paths;
+2. derive validators from the changed artifact types and repository authority;
+3. run repo-native/qualified upstream validators;
+4. if workflow YAML changed, parse/validate it before push;
+5. when the declared CI runtime differs materially from the host and the gate is runtime-sensitive, run the relevant gate in the declared runtime when practical or record the divergence explicitly;
+6. verify the actual publication credential has capability for the changed artifact (workflow changes may require additional GitHub workflow authority).
+
+Do not treat product tests, `git diff --check`, LLM review or generic GitHub authentication as substitutes for an artifact-specific parser/permission they do not cover.
+
+Policy: `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md`.
+
 ## 8. Evidence / final report
 
 ```text
@@ -160,6 +176,9 @@ REVIEW_ROUTES=
 REVIEW_OUTCOMES=
 ACKNOWLEDGEMENT_BURN=
 DETERMINISTIC_TESTS_QA=
+CHANGED_ARTIFACT_VALIDATORS=
+CI_RUNTIME_PARITY=
+PUBLICATION_CREDENTIAL_CAPABILITY=
 CHECKPOINTS_OR_PUBLICATION=
 HERDR_RPA=0
 EXTERNAL_SUPERVISOR=0
@@ -184,6 +203,10 @@ STOP and report rather than improvise when any of these appears:
 - **Pinned runtime/oracle mismatch** — required oracle missing/hash mismatch, invalid pinned model/flag, unhealthy GP3.3/GAI3.4 runtime, or Herdr parent pane cannot be established deterministically. STOP before product mutation; do not silently substitute.
 - **One-touch review boundary failure** — after a valid `Review and allow this session` grant, a later fresh same-session/repository candidate requires another native consent touch, the host cannot preserve exact provider target/binding identity, the qualified host bridge hash/version is wrong, or a provider-issued role transition cannot be followed exactly. STOP rather than synthesize authority.
 - **Work-unit composition boundary missing** — substantial work is forecast to exceed the active review budget but no coherent slice/delivery decision or accepted size exception exists. With the default 400-line budget, >800 authored lines is never an ordinary silent continuation: STOP/reslice unless an explicit human-authorized indivisibility exception already exists.
+- **ASSESS facade failure** — exact committed-range ASSESS is unavailable/schema-incompatible or lacks the provider timing result. STOP; `inspect` and unconditional START are not substitutes.
+- **Changed-artifact validation missing** — a materially changed artifact lacks the parser/build/delivery validator required to establish publication readiness.
+- **CI runtime evidence ambiguous** — a runtime-sensitive gate cannot be interpreted because host and declared CI runtime differ materially and parity evidence is missing.
+- **Publication credential capability missing** — the effective push credential lacks authority required by a changed artifact; preserve the candidate and repair credentials rather than rewriting product history.
 - **Provider/runtime mismatch** — incompatible runtime assumption or candidate/review state inconsistent with Gentle authority.
 - **Publication authority changed during pre-publication revalidation** — the
   single fresh read immediately before publication shows blockers, scope,

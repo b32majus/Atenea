@@ -62,13 +62,24 @@ The first native consent was resolved with the host action `Review and allow thi
 
 A later qualification harness step incorrectly constrained remaining review work to a group-capture path even though GP3.3 exposes dedicated refuter/validator operations. That is harness/test debt, not a provider/runtime consent failure.
 
-GP3.3's current v9 role contract requires explicit routing for host-mediated refuter/validator completions when requested. The final cutover maps all configured roles, including refuter/validator, to NaN V4 medium. The current installation also carries the qualified, version/hash-guarded GP3.3 host bridge documented in `docs/GP33_Q10_Q11_ADOPTION_EVIDENCE_20260920.md`.
+GP3.3's current v9 role contract requires explicit routing for host-mediated refuter/validator completions when requested. The current production profile is role-diverse: parent/worker and review-risk use NaN GLM 5.3 Flash high; verify/readability/reliability/validator use OpenAI-Codex Luna high (reliability provisional); resilience/refuter use NaN DeepSeek V4 Flash high. The temporary all-V4 Q11 route remains qualification-only historical evidence. The current installation also carries the qualified, version/hash-guarded GP3.3 host bridge documented in `docs/GP33_Q10_Q11_ADOPTION_EVIDENCE_20260920.md`.
 
-The accepted claim is **single-acceptance unattended within one live session/repository**, not zero-touch from process start. A process restart/new/resume/fork/quit/revoke requires a new grant. The exact strong Q11 baseline was Pi 0.86.0; Pi 0.86.1 is current runtime pending ordinary-train parity evidence.
+The accepted claim is **single-acceptance unattended within one live session/repository**, not zero-touch from process start. A process restart/new/resume/fork/quit/revoke requires a new grant. The exact strong Q11 baseline was Pi 0.86.0. Pi 0.86.1 is the current runtime and now has real-product train evidence from Laboratorio_Privacidad_Clinica; remaining qualification debt is boundary-specific (#90 committed-range ASSESS, #91 reviewer material budget, #92 facade-bypass guardrail), not generic ordinary-train parity.
 
 Current mechanics: `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md`. The Q2–Q11 deletion/authority ladder is consolidated in `docs/GP33_Q10_Q11_ADOPTION_EVIDENCE_20260920.md`.
 
-Additional real-project evidence on 2026-09-20 established the need for a **composition correction**, not a new reviewer hard cap: a correctly ASSESSed `high` candidate built as a coarse ~1,100-authored-line work unit produced the same `reviewer-empty-output / stopReason=length` resilience failure on DeepSeek High and Luna High. The operator-authorized recovery pattern preserves the unpublished accepted product tree as an oracle, reconstructs coherent smaller work units, and requires per-unit verify → commit → ASSESS plus final byte/tree equivalence. This does not prove that 400 is a reviewer-capacity limit and does not by itself change global resilience routing. Current policy: `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`.
+Laboratorio_Privacidad_Clinica V4 then supplied the first full real-product field train on Pi 0.86.1 / GP3.3 / GAI3.4. It established several independent boundaries:
+
+- T01 and reconstructed T02 completed native review APPROVED + acknowledgement/burn.
+- A coarse ~1,100-authored-line T02 candidate produced the same `reviewer-empty-output / stopReason=length` resilience failure on DeepSeek High and Luna High; after coherent reconstruction, a ~12 KiB resilience prompt completed and all four lenses were admitted. This supports a materialized-prompt-size × completion/reasoning interaction, not a DeepSeek-only diagnosis and not a hard 400-line reviewer cap.
+- Direct shell/native review START bypassed the Pi host surface and removed the host-owned `Review and allow this session` action. Facade-first transport is now a current invariant.
+- Some committed-range ASSESS calls produced schema-incompatible/empty model-visible output with no `review_due`; fail-closed was correct and Atenea #90 tracks the defect.
+- Publication exposed missing workflow credential authority, invalid workflow YAML that had escaped product tests/review, and local Node 24 vs CI Node 20 parity differences.
+- Byte/tree equivalence proved faithful history reconstruction but did not make the preserved oracle authoritative over the later proven YAML defect.
+
+Current policies: `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` and `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md`.
+
+Full field evidence: `docs/LABORATORIO_PRIVACIDAD_GP33_FIELD_QUALIFICATION_20260921.md`.
 
 ## Historical predecessor replacement result — 2026-09-05
 

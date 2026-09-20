@@ -160,10 +160,26 @@ Required sequence:
 6. Reconstruct the accepted bytes into coherent work units. No refactor, simplification, feature expansion or semantic rewrite is allowed merely to obtain smaller units.
 7. For every reconstructed unit: verify → commit → ASSESS → follow provider-owned lifecycle exactly.
 8. If a reconstructed unit reproduces the same deterministic material-review boundary, STOP and report its authored size plus materialized reviewer-prompt size. Do not recursively subdivide without operator review.
-9. After the final reconstructed unit, prove the resulting product tree/files are byte-equivalent to the preserved oracle.
-10. Publication/merge remains governed by repository authority; history repair does not create publication authority.
+9. After the final reconstructed unit, prove the resulting product tree/files are byte-equivalent to the preserved oracle **at the reconstruction checkpoint**. This proves that reslicing did not redesign the accepted product content.
+10. If a byte in that oracle is later proven defective by accepted specification, syntactic validation, deterministic tests, buildability or delivery validity, preserve the equivalence evidence and repair the defect as a separate bounded correction under current authority. The oracle does not outrank a proven defect.
+11. Publication/merge remains governed by repository authority; history repair does not create publication authority.
 
 Never use this recovery pattern on already-published shared history without separate destructive-history authorization.
+
+### Oracle precedence
+
+The preserved tree is an **intended-content/drift oracle**, not final product authority.
+
+```text
+accepted spec / acceptance
++ syntactic validity
++ deterministic tests
++ buildability
++ delivery validity
+> preservation of a proven defective byte
+```
+
+Do not silently mutate suspected defects while reconstructing history. First establish faithful reconstruction evidence where practical; then repair proven defects in their own auditable unit. Conversely, never preserve a proven defect indefinitely merely to maintain byte equality.
 
 ## 8. Relationship to reviewer/model routing
 

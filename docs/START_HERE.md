@@ -24,13 +24,15 @@ Do not reconstruct Atenea from historical stage files. Read in this order:
 6. `docs/UI_UX_UPSTREAM_ADJUDICATION_20260904.md` — **when the target work has material frontend/UI/UX decisions**; current UI/UX shaping order, upstream-integrity rule and active adjudication boundary.
 7. `docs/INSTALLATION_AND_OPERATION_V1.md` — when provisioning/verifying a machine or target repo.
 8. `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` — current pre-implementation work-unit budget/composition and oversized unpublished-history recovery policy.
-9. `docs/OPERATOR_RUNBOOK_V1.md` — only when a work item is already `EXECUTION_READY` or the human is about to run it.
-10. `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md` — current pinned one-touch train mechanics.
-11. `docs/QUALIFICATION.md` — what has actually been field-proven.
-12. `docs/GP33_Q10_Q11_ADOPTION_EVIDENCE_20260920.md` — current GP3.3 deletion/single-acceptance/host-bridge evidence when provenance is needed.
-13. `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md` — historical GP2.7 replacement evidence when provenance is needed.
-14. `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md` — local execution/qualification cleanup policy.
-15. Historical stage/evidence documents only when a current claim needs provenance.
+9. `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md` — changed-file-aware syntax/build/delivery validation and publication credential/runtime parity policy.
+10. `docs/OPERATOR_RUNBOOK_V1.md` — only when a work item is already `EXECUTION_READY` or the human is about to run it.
+11. `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md` — current pinned one-touch train mechanics.
+12. `docs/QUALIFICATION.md` — what has actually been field-proven.
+13. `docs/LABORATORIO_PRIVACIDAD_GP33_FIELD_QUALIFICATION_20260921.md` — first real Pi 0.86.1 / GP3.3 / GAI3.4 product-train evidence.
+14. `docs/GP33_Q10_Q11_ADOPTION_EVIDENCE_20260920.md` — current GP3.3 deletion/single-acceptance/host-bridge evidence when provenance is needed.
+15. `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md` — historical GP2.7 replacement evidence when provenance is needed.
+16. `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md` — local execution/qualification cleanup policy.
+17. Historical stage/evidence documents only when a current claim needs provenance.
 
 `docs/ATENEA_HANDOFF_20260830.md`, stage files and older decision files are historical evidence. They are not the place to recover current forward-looking authority when current documents exist.
 
@@ -262,15 +264,16 @@ explicit human execution authorization
 → one bounded authorized work item/train prompt
 → resolve pre-implementation work-unit composition / size exception when needed
 → Gentle Shell/ODD owns internal tasking/delegation/verification/work-unit commits
-→ first eligible review: “Review and allow this session”
-→ provider-owned exact reviewer/refuter/validator lifecycle
+→ first eligible review: “Review and allow this session” through Gentle Pi host/facade
+→ provider-owned exact reviewer/refuter/validator lifecycle; no shell-native facade bypass
 → APPROVED + acknowledgement/burn
+→ changed-file-aware artifact validation + CI/runtime/credential evidence when applicable
 → external authority re-read
 → next already-authorized frontier or STOP
 → human merge boundary
 ```
 
-The parent retains external train/frontier context. Atenea does not dictate inline-vs-delegated implementation; Gentle Shell/ODD owns that proportional execution choice. Before substantial writing, it must also honor the current work-unit composition boundary in `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`: explicit `review_budget_lines` wins; otherwise 400 is the default target, ~401–600 is soft coherent overage while upstream delivery/`size:exception` rules still apply, ~601–800 requires an explicit durable size exception, and >800 defaults to STOP/reslice unless the human authorizes an indivisibility exception. These are planning heuristics only; native ASSESS still owns review timing.
+The parent retains external train/frontier context. Atenea does not dictate inline-vs-delegated implementation; Gentle Shell/ODD owns that proportional execution choice. Review transport remains facade-first whenever `gentle_review` exposes the operation, and `inspect` never replaces `ASSESS → STATUS`. Before substantial writing, it must also honor the current work-unit composition boundary in `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`: explicit `review_budget_lines` wins; otherwise 400 is the default target, ~401–600 is soft coherent overage while upstream delivery/`size:exception` rules still apply, ~601–800 requires an explicit durable size exception, and >800 defaults to STOP/reslice unless the human authorizes an indivisibility exception. These are planning heuristics only; native ASSESS still owns review timing.
 
 ## 9. Installation / environment
 

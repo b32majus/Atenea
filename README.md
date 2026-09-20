@@ -16,9 +16,10 @@ Read in this order:
 4. **`docs/ATENEA_HARNESS_CONTRACT_V1.md`** — **normative execution contract**.
 5. **`docs/CURRENT_DECISIONS.md`** — current accepted decisions and field findings.
 6. **`docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`** — pre-implementation reviewability budget, coherent slicing and oversized unpublished-history recovery.
-7. **`docs/INSTALLATION_AND_OPERATION_V1.md`** — provisioning, global/Atenea/target scopes and runtime verification.
-8. **`docs/OPERATOR_RUNBOOK_V1.md`** — how the human starts an `EXECUTION_READY` run.
-9. `docs/QUALIFICATION.md` and historical evidence only when provenance is needed.
+7. **`docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md`** — changed-file-aware syntax/build/delivery validation, CI-runtime parity and publication credential capability.
+8. **`docs/INSTALLATION_AND_OPERATION_V1.md`** — provisioning, global/Atenea/target scopes and runtime verification.
+9. **`docs/OPERATOR_RUNBOOK_V1.md`** — how the human starts an `EXECUTION_READY` run.
+10. `docs/QUALIFICATION.md` and `docs/LABORATORIO_PRIVACIDAD_GP33_FIELD_QUALIFICATION_20260921.md` when provenance/field evidence is needed.
 
 If you only need the operational map first, read the newcomer quickstart before opening historical evidence.
 
@@ -152,11 +153,13 @@ High-frequency rules:
 5. **Atenea does not require one fresh child per external ticket; ODD selects bounded internal delegation according to the work.**
 6. **Herdr is process/session/observability substrate, not policy or review authority.**
 7. **The current GP3.3 path is one-touch: the first eligible review gets one real host session grant; later same-session/repository candidates use fresh validated provider grants without a second consent touch.**
-8. **Provider bindings/continuations remain opaque; the qualified host bridge may forward the current retained reviewer group without LLM reserialization, but role-specific provider operations remain authoritative; APPROVED is incomplete until acknowledgement/burn succeeds.**
-9. **Evidence outranks narration; host-human-touch claims are externally adjudicated.**
-10. **Normal non-force push is allowed by repository policy; no force-push, hidden history rewrite or auto-merge.**
-11. **Material ambiguity / contradictory authority / unsafe drift => STOP.**
-12. **New Atenea glue requires evidence of a real missing upstream owner.**
+8. **Review lifecycle transport is facade-first:** when `gentle_review` exposes the operation, use it; shell `gentle-ai review ...` and `ask_user_choice` must not bypass/recreate host one-touch semantics. `inspect` never substitutes for `ASSESS → STATUS`.
+9. **Provider bindings/continuations remain opaque; the qualified host bridge may forward the current retained reviewer group without LLM reserialization, but role-specific provider operations remain authoritative; APPROVED is incomplete until acknowledgement/burn succeeds.**
+10. **Evidence outranks narration; host-human-touch claims are externally adjudicated.**
+11. **Pre-publication evidence is changed-file-aware:** validate changed artifact syntax/build/delivery with repo-native or qualified upstream tools; reconcile declared-CI runtime and publication credential capability when material.
+12. **Normal non-force push is allowed by repository policy; no force-push, hidden history rewrite or auto-merge.**
+13. **Material ambiguity / contradictory authority / unsafe drift => STOP.**
+14. **New Atenea glue requires evidence of a real missing upstream owner.**
 
 ## Field qualification
 
@@ -172,6 +175,8 @@ Q11_SINGLE_ACCEPTANCE_UNATTENDED              PASS
 ```
 
 A later qualification harness assertion incorrectly forced remaining refuter/validator work through one capture shape. That is harness/test debt, not a session-permission failure. Historical GP2.7 zero-touch evidence remains provenance only.
+
+Laboratorio_Privacidad_Clinica V4 then supplied the first real-product train on Pi 0.86.1 / GP3.3 / GAI3.4. T01/T02 completed APPROVED + acknowledgement/burn and exposed four independent system boundaries now reflected in current policy: facade-first one-touch transport, coherent work-unit composition/material reviewer size, committed-range ASSESS debt (#90), and changed-file-aware publication validation. See `docs/LABORATORIO_PRIVACIDAD_GP33_FIELD_QUALIFICATION_20260921.md`.
 
 ## Gentle current boundary
 
@@ -197,6 +202,9 @@ QUALIFIED_HOST_BRIDGE                           REQUIRED_FOR_GP3_3_CURRENT_GROUP
 FIRST_REVIEW_SESSION_GRANT                      HUMAN_ONE_TOUCH
 LATER_SAME_SESSION_REVIEW_CONSENT_TOUCHES       0 expected
 EXPLICIT_REVIEW_ROLE_ROUTING                    REQUIRED
+REVIEW_LIFECYCLE_TRANSPORT                      GENTLE_PI_FACADE_WHEN_AVAILABLE
+PREPUBLICATION_ARTIFACT_VALIDATION               CHANGED_FILE_AWARE
+ORACLE_SEMANTICS                                 DRIFT_EVIDENCE_NOT_DEFECT_AUTHORITY
 ACKNOWLEDGEMENT_BURN                            REQUIRED
 FINAL_MERGE                                     HUMAN_BOUNDARY
 ```
@@ -256,10 +264,12 @@ The Matt skills are not a mandatory execution sequence.
 - `docs/ATENEA_HARNESS_CONTRACT_V1.md` — **normative execution contract**.
 - `docs/CURRENT_DECISIONS.md` — current accepted decisions and supersession state.
 - `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` — current pre-implementation work-unit budget/composition and oversized unpublished-history recovery policy.
+- `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md` — changed-file-aware syntax/build/delivery validation, CI-runtime parity and publication credential policy.
 - `docs/INSTALLATION_AND_OPERATION_V1.md` — current environment/install/verification guide.
 - `docs/OPERATOR_RUNBOOK_V1.md` — practical `EXECUTION_READY` operator path.
 - `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md` — current pinned GP3.3 one-touch train mechanics.
 - `docs/GP33_Q10_Q11_ADOPTION_EVIDENCE_20260920.md` — Q10/Q11 adoption, host-bridge and performance evidence.
+- `docs/LABORATORIO_PRIVACIDAD_GP33_FIELD_QUALIFICATION_20260921.md` — first real Pi 0.86.1 / GP3.3 / GAI3.4 product-train evidence.
 - `docs/QUALIFICATION.md` — current qualification index and proven boundaries.
 - `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md` — local worktree/qualification lifecycle and cleanup policy.
 

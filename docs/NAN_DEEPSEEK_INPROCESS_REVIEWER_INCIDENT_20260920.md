@@ -171,7 +171,16 @@ Luna Low       → valid reviewer JSON in ~16.5 s
 
 This proves that lowering effort can mitigate this exact prompt, but **does not establish `high` as a bad global configuration**. Gentleman's own current NaN development routing uses `high` for review-resilience/reliability, and Gentle Shell treats reviewer thinking as user-owned routing forwarded verbatim. The composition of the work unit remains the stronger architectural correction.
 
-No global resilience route/effort change is adopted from this evidence. The accepted response for future work is to prevent coarse work units by following `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`; role routing remains evidence-specific.
+The oversized unpublished T02 history was then reconstructed into five coherent work units without changing accepted product content. On WU2.5, the real `review-resilience` materialized prompt was only ~12 KiB and completed successfully on the ordinary current route; all four lenses were admitted and the review reached APPROVED + acknowledgement/burn.
+
+```text
+coarse candidate resilience material   ~75 KiB → DeepSeek length / DeepSeek length / Luna length
+bounded WU2.5 resilience material       ~12 KiB → successful four-lens review
+```
+
+This strengthens the prompt-shape/size × completion/reasoning-budget hypothesis, but does not establish a universal 12/75 KiB threshold.
+
+No global resilience route/effort change is adopted from this evidence. The accepted preventive response for future work is coherent work-unit composition under `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`; role routing remains evidence-specific. Runtime characterization debt is tracked in Atenea #91.
 
 ## 5. What is established and what is not
 
@@ -180,12 +189,13 @@ Established:
 - the in-process runner itself works with DeepSeek on a trivial prompt;
 - the realistic provider-materialized reviewer prompt triggers a DeepSeek completion that spends its response in `thinking` and terminates by `length` before answer text;
 - NaN documents DeepSeek `reasoning_effort` as non-operative, so Atenea cannot reliably cap that reasoning phase through `medium/high`;
-- the same signature occurs on a legitimate immediate `high` review and therefore is not explained by the medium-slice bug.
+- the same signature occurs on a legitimate immediate `high` review and therefore is not explained by the medium-slice bug;
+- the same coarse resilience slot failed on DeepSeek High and Luna High, while a later ~12 KiB bounded work-unit resilience prompt completed successfully in the real train.
 
 Not established:
 
 - that every DeepSeek reviewer role will fail;
-- that the problem is caused by prompt byte size alone;
+- that prompt byte size alone is causal, or that 12/75 KiB defines a universal threshold;
 - that changing the Gentle reviewer schema is warranted;
 - that a larger client-side `maxTokens` declaration can bypass NaN's documented model ceiling.
 

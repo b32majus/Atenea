@@ -13,7 +13,8 @@ const reqIn=(s,t,l)=>{if(!s.includes(t)) failures.push(l+" missing")};
 const front=[
 "README.md","AGENTS.md","docs/START_HERE.md","docs/ATENEA_HARNESS_CONTRACT_V1.md",
 "docs/INSTALLATION_AND_OPERATION_V1.md","docs/NEWCOMER_QUICKSTART_V1.md",
-"docs/WORK_UNIT_COMPOSITION_POLICY_V1.md","docs/OPERATOR_RUNBOOK_V1.md","docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md"
+"docs/WORK_UNIT_COMPOSITION_POLICY_V1.md","docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md",
+"docs/OPERATOR_RUNBOOK_V1.md","docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md"
 ];
 for(const r of front){
  ban(r,"fresh implementation child per newly selected ticket","fresh-child external-ticket invariant");
@@ -28,15 +29,31 @@ req("README.md","PERSISTENT_TRAIN_PARENT                         nan/glm5.3-flas
 req("README.md","DEFAULT_REVIEW_BUDGET_LINES                     400 when no explicit session override","README review budget baseline");
 req("README.md","WORK_UNIT_ABOVE_800_DEFAULT                     STOP_RESLICE_OR_HUMAN_INDIVISIBILITY_EXCEPTION","README >800 boundary");
 req("README.md","Work-unit composition is resolved before substantial implementation","README composition boundary");
+req("README.md","REVIEW_LIFECYCLE_TRANSPORT                      GENTLE_PI_FACADE_WHEN_AVAILABLE","README facade-first transport");
+req("README.md","PREPUBLICATION_ARTIFACT_VALIDATION               CHANGED_FILE_AWARE","README changed-artifact validation");
+req("README.md","ORACLE_SEMANTICS                                 DRIFT_EVIDENCE_NOT_DEFECT_AUTHORITY","README oracle semantics");
 req("docs/WORK_UNIT_COMPOSITION_POLICY_V1.md","LargeChangeLines = 400","composition upstream boundary");
 req("docs/WORK_UNIT_COMPOSITION_POLICY_V1.md","401–600","composition soft overage");
 req("docs/WORK_UNIT_COMPOSITION_POLICY_V1.md","601–800","composition exception band");
 req("docs/WORK_UNIT_COMPOSITION_POLICY_V1.md","> 800","composition stop/reslice band");
 req("docs/WORK_UNIT_COMPOSITION_POLICY_V1.md","byte-equivalent","oversize recovery oracle");
+req("docs/WORK_UNIT_COMPOSITION_POLICY_V1.md","The oracle does not outrank a proven defect","oracle defect precedence");
+req("docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md","Changed-file-aware pre-publication validation","prepublication changed-file awareness");
+req("docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md","actionlint","workflow validator example");
+req("docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md","CI runtime parity","CI runtime parity policy");
+req("docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md","Publication credential capability","publication credential policy");
+req("docs/LABORATORIO_PRIVACIDAD_GP33_FIELD_QUALIFICATION_20260921.md","~75 KiB","Laboratorio oversized prompt evidence");
+req("docs/LABORATORIO_PRIVACIDAD_GP33_FIELD_QUALIFICATION_20260921.md","~12 KiB","Laboratorio bounded prompt evidence");
+req("docs/LABORATORIO_PRIVACIDAD_GP33_FIELD_QUALIFICATION_20260921.md","Atenea #90","Laboratorio ASSESS debt linkage");
 req("AGENTS.md","Before launching substantial implementation","agent pre-implementation composition gate");
+req("AGENTS.md","Facade-first review transport","agent facade-first review transport");
+req("AGENTS.md","Workflow YAML changes require a workflow/YAML parser","agent changed-artifact validation");
 req("docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md","Compose reviewable work before writing","recipe pre-implementation composition gate");
 req("docs/OPERATOR_RUNBOOK_V1.md","Work-unit composition boundary missing","runbook oversize STOP condition");
 req("docs/ATENEA_HARNESS_CONTRACT_V1.md","Workload composition is resolved before substantial implementation","contract composition boundary");
+req("docs/ATENEA_HARNESS_CONTRACT_V1.md","Facade-first review transport preserves host semantics","contract facade-first transport");
+req("docs/ATENEA_HARNESS_CONTRACT_V1.md","PREPUBLICATION_ARTIFACT_VALIDATION=CHANGED_FILE_AWARE","contract prepublication marker");
+req("docs/ATENEA_HARNESS_CONTRACT_V1.md","ORACLE_SEMANTICS=DRIFT_EVIDENCE_NOT_DEFECT_AUTHORITY","contract oracle marker");
 req("docs/ATENEA_HARNESS_CONTRACT_V1.md","FRESH_CHILD_PER_EXTERNAL_TICKET=NOT_REQUIRED_BY_ATENEA","ODD ownership");
 req("docs/ATENEA_HARNESS_CONTRACT_V1.md","DEFAULT_REVIEW_BUDGET_LINES=400_UNLESS_SESSION_OVERRIDE","contract review budget baseline");
 req("docs/ATENEA_HARNESS_CONTRACT_V1.md","WORK_UNIT_GT_800=STOP_RESLICE_UNLESS_HUMAN_INDIVISIBILITY_EXCEPTION","contract >800 boundary");
@@ -70,12 +87,22 @@ reqIn(c51,"review-risk        nan/glm5.3-flash · high","C-051 risk GLM");
 reqIn(c51,"review-reliability openai-codex/gpt-5.6-luna · high","C-051 reliability Luna");
 reqIn(c51,"stopReason=length","C-051 DeepSeek incident");
 reqIn(c51,"same `reviewer-empty-output / stopReason=length` signature on DeepSeek and Luna High","C-051 generalized provider evidence");
-const c52=sec("docs/CURRENT_DECISIONS.md","## C-052 —","## C-006 —");
+const c52=sec("docs/CURRENT_DECISIONS.md","## C-052 —","## C-053 —");
 reqIn(c52,"review-composition boundary, not a tier input","C-052 upstream composition semantics");
 reqIn(c52,"401-600","C-052 soft overage");
 reqIn(c52,"601-800","C-052 exception band");
 reqIn(c52,">800","C-052 stop/reslice band");
 reqIn(c52,"byte/tree equivalence","C-052 unpublished-history oracle");
+const c53=sec("docs/CURRENT_DECISIONS.md","## C-053 —","## C-054 —");
+reqIn(c53,"Review and allow this session","C-053 one-touch host action");
+reqIn(c53,"do not shell gentle-ai review as a bypass","C-053 facade-first transport");
+reqIn(c53,"inspect != ASSESS","C-053 inspect/assess distinction");
+reqIn(c53,"Atenea #90","C-053 committed-range ASSESS tracker");
+const c54=sec("docs/CURRENT_DECISIONS.md","## C-054 —","## C-006 —");
+reqIn(c54,"changed-file-aware","C-054 changed-file validation");
+reqIn(c54,"workflow YAML","C-054 workflow validator");
+reqIn(c54,"declared CI runtime","C-054 CI runtime parity");
+reqIn(c54,"drift evidence","C-054 oracle semantics");
 req("docs/NAN_PROVIDER_CAPABILITIES_V1.md","accepted but non-operative","NaN capability contract");
 req("docs/ODD_REVIEW_ASSESS_BYPASS_EVIDENCE_20260920.md","review_due","ODD ASSESS field evidence");
 req("docs/NAN_DEEPSEEK_INPROCESS_REVIEWER_INCIDENT_20260920.md","Same frozen prompt on GLM 5.3 Flash High","DeepSeek/GLM isolated evidence");
@@ -84,6 +111,12 @@ const q=sec("docs/QUALIFICATION.md","## Gentle Pi 3.3 / Gentle AI 3.4 one-touch 
 reqIn(q,"Q11_TEMP_ALL_V4_ROUTE           nan/deepseek-v4-flash medium","Q11 all-V4 qualification evidence");
 reqIn(q,"Q11_ROUTE_SCOPE                    QUALIFICATION_ONLY_NOT_PRODUCTION_POLICY","Q11 route scope");
 reqIn(q,"Q11_SINGLE_ACCEPTANCE_UNATTENDED PASS","Q11 single acceptance");
+reqIn(q,"Laboratorio_Privacidad_Clinica V4","real-product field qualification");
+reqIn(q,"reviewer-empty-output / stopReason=length","field material reviewer evidence");
+ban("docs/QUALIFICATION.md","The final cutover maps all configured roles, including refuter/validator, to NaN V4 medium","stale all-V4 qualification claim");
+ban("docs/QUALIFICATION.md","Pi 0.86.1 is current runtime pending ordinary-train parity evidence","stale Pi 0.86.1 parity-pending claim");
+req("docs/LABORATORIO_PRIVACIDAD_GP33_FIELD_QUALIFICATION_20260921.md","Atenea #91","reviewer material debt linkage");
+req("docs/LABORATORIO_PRIVACIDAD_GP33_FIELD_QUALIFICATION_20260921.md","Atenea #92","facade guardrail debt linkage");
 
 if(failures.length){console.error("ATENEA_CURRENT_AUTHORITY_CHECK=FAIL"); for(const f of failures) console.error("- "+f); process.exit(1)}
 console.log("ATENEA_CURRENT_AUTHORITY_CHECK=PASS");

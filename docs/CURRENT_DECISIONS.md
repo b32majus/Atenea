@@ -524,9 +524,72 @@ workload forecast / task decomposition
 → provider-owned review timing/lifecycle
 ```
 
-If a local unpublished candidate is already accepted as product content but its history is too coarse for reliable review, preserve the exact final tree as an immutable product oracle, preserve durable backup evidence, obtain fresh STATUS on the frozen lineage, ABANDON only with exact operator/provider authorization, and reconstruct only the unpublished delivery history into coherent work units. Product semantics/bytes must not be changed merely to make the slices smaller; final byte/tree equivalence to the preserved oracle is mandatory. For an oversized/coarse candidate, repeated identical reviewer retries, output-budget inflation, review disablement or serial routing experiments are not the first repair.
+If a local unpublished candidate is already accepted as product content but its history is too coarse for reliable review, preserve the exact final tree as an immutable reconstruction oracle, preserve durable backup evidence, obtain fresh STATUS on the frozen lineage, ABANDON only with exact operator/provider authorization, and reconstruct only the unpublished delivery history into coherent work units. Product semantics/bytes must not be changed merely to make the slices smaller; byte/tree equivalence is required at the reconstruction checkpoint to prove the reslicing itself did not redesign the product. C-054 governs the separate case where accepted spec/syntax/build/delivery evidence later proves that a preserved oracle byte is defective. For an oversized/coarse candidate, repeated identical reviewer retries, output-budget inflation, review disablement or serial routing experiments are not the first repair.
 
 Authority: `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` plus pinned upstream Gentle AI v3.4.0 `work-unit-commits`, `sdd-apply`, `review_assess.go`, and `risk.go` semantics.
+
+## C-053 — Ordinary review lifecycle is facade-first; host one-touch semantics are transport-sensitive
+
+**Accepted from Laboratorio real field evidence 2026-09-20/21.**
+
+During T01/WU3, Pi bypassed the Gentle Pi facade and executed native review START through shell with provider relay consent. It then recreated the consent choice with `ask_user_choice` and a second native START using granted consent.
+
+The provider lifecycle remained recognizable, but the Pi host-owned third action `Review and allow this session` disappeared because START had not traversed `gentle_review`.
+
+Therefore:
+
+```text
+corresponding Gentle Pi review facade operation exists
+→ use the facade
+→ preserve host session/consent semantics
+→ do not shell gentle-ai review as a bypass
+→ do not recreate consent with ask_user_choice
+```
+
+This does not create an Atenea review controller. Gentle Pi/Gentle AI remain lifecycle owners.
+
+A direct native CLI call remains acceptable only when current authority explicitly requires an operation the facade does not expose, or as an isolated read-only diagnostic outside live review authority.
+
+Also:
+
+```text
+inspect != ASSESS → wrapper continuation → target-scoped STATUS
+ASSESS failure != permission to START
+```
+
+Laboratorio WU2.1–WU2.4 also exposed a separate committed-range ASSESS facade defect where model-visible output was schema-incompatible/empty and `review_due` was unavailable. That defect is tracked in Atenea #90 and must fail closed.
+
+Evidence: `docs/LABORATORIO_PRIVACIDAD_GP33_FIELD_QUALIFICATION_20260921.md`. Upstream-supported enforcement/observability of facade-first transport is tracked separately in Atenea #92; policy does not wait on that implementation debt.
+
+## C-054 — Pre-publication validation is changed-file-aware; byte oracle never outranks a proven delivery defect
+
+**Accepted from Laboratorio real publication evidence 2026-09-20/21.**
+
+A workflow-changing push first failed because the active GitHub credential lacked workflow-modification authority. After publication succeeded, GitHub Actions rejected invalid YAML in `.github/workflows/ci.yml`: unquoted step names containing internal colons. Product tests, `git diff --check`, and four-lens Gentle review had all passed.
+
+The reconstructed T02 tree had been byte-identical to its preserved oracle, but the invalid workflow byte already existed in that oracle.
+
+Therefore:
+
+1. pre-publication validation is derived from the artifact types actually changed;
+2. workflow YAML requires a workflow/YAML parser or equivalent repo-native/upstream validator before publication;
+3. generic authentication is not proof that the actual publication credential can modify every changed artifact;
+4. runtime-sensitive deterministic evidence must distinguish local-host runtime from declared CI runtime;
+5. a preserved byte/tree oracle is drift evidence, not authority above accepted spec, syntax, tests, buildability or delivery validity.
+
+Oracle repair rule:
+
+```text
+faithful reconstruction evidence
+→ proven defect discovered
+→ preserve equivalence evidence
+→ repair as separate bounded correction
+→ rerun applicable deterministic validation + Gentle lifecycle
+```
+
+Do not create a universal Atenea build system or giant static gate list. Use the smallest authoritative repo-native or upstream validator triggered by the current changed artifacts.
+
+Authority: `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md` and `docs/LABORATORIO_PRIVACIDAD_GP33_FIELD_QUALIFICATION_20260921.md`.
 
 ## C-006 — Normal git push is allowed; no publication-permission subsystem
 
@@ -860,9 +923,10 @@ A graph/index never outranks source code, accepted product/spec authority, deter
 4. start one visible persistent parent explicitly on `nan/glm5.3-flash` `high`;
 5. submit one bounded train prompt;
 6. before substantial writing, consume the workload forecast/task shape and resolve coherent work-unit composition or an explicit size exception under `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`;
-7. on the first valid review consent only, human selects `Review and allow this session`;
-8. let Gentle Shell/ODD own implementation/delegation/verification; after every substantial work-unit commit run native ASSESS and follow only provider-owned review transitions through APPROVED + acknowledgement/burn when due;
+7. on the first valid review consent only, human selects `Review and allow this session`; ordinary review lifecycle stays on the Gentle Pi facade whenever the corresponding operation exists;
+8. let Gentle Shell/ODD own implementation/delegation/verification; after every substantial work-unit commit run native ASSESS and follow only provider-owned review transitions through APPROVED + acknowledgement/burn when due; unusable ASSESS is STOP, not START permission;
 9. later reviews in the same live Pi session/canonical repository use fresh validated grants without another review-consent touch;
-10. re-read external authority between authorized units/frontiers and continue only while the next work remains inside the explicit authorization; otherwise STOP;
-11. final merge remains human unless separately authorized;
-12. new Atenea glue requires a demonstrated upstream ownership gap.
+10. before publication, enumerate changed artifacts, run their applicable repo-native/upstream validators, reconcile declared-CI-runtime parity where material, and verify publication credential capability;
+11. re-read external authority between authorized units/frontiers and continue only while the next work remains inside the explicit authorization; otherwise STOP;
+12. final merge remains human unless separately authorized;
+13. new Atenea glue requires a demonstrated upstream ownership gap.
