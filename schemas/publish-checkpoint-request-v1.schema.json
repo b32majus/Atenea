@@ -1,0 +1,279 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atenea.local/schema/publish-checkpoint-request-v1",
+  "title": "Atenea publish checkpoint request v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "repository",
+    "worktree",
+    "remote",
+    "base",
+    "head",
+    "issues",
+    "authorityRevalidation",
+    "gentleClosure",
+    "repoPreflight",
+    "pr",
+    "publication",
+    "ci",
+    "delivery",
+    "merge"
+  ],
+  "properties": {
+    "schema": {
+      "const": "atenea.publish-checkpoint-request/v1"
+    },
+    "repository": {
+      "type": "string",
+      "minLength": 1
+    },
+    "worktree": {
+      "type": "string",
+      "minLength": 1
+    },
+    "remote": {
+      "type": "string",
+      "minLength": 1
+    },
+    "base": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "branch",
+        "sha"
+      ],
+      "properties": {
+        "branch": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "head": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "branch",
+        "sha"
+      ],
+      "properties": {
+        "branch": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "issues": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "authorityRevalidation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "checkedAt",
+        "sources",
+        "headSha"
+      ],
+      "properties": {
+        "status": {
+          "const": "UNCHANGED"
+        },
+        "checkedAt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "headSha": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "gentleClosure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "candidateHeadSha",
+        "acknowledgementBurn",
+        "references"
+      ],
+      "properties": {
+        "status": {
+          "const": "SATISFIED"
+        },
+        "candidateHeadSha": {
+          "type": "string",
+          "minLength": 1
+        },
+        "acknowledgementBurn": {
+          "enum": [
+            "COMPLETE",
+            "NOT_REQUIRED"
+          ]
+        },
+        "references": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "promotionReview": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required"
+      ],
+      "properties": {
+        "required": {
+          "type": "boolean"
+        },
+        "status": {
+          "enum": [
+            "PASS"
+          ]
+        },
+        "candidateHeadSha": {
+          "type": "string",
+          "minLength": 1
+        },
+        "references": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "repoPreflight": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command",
+        "schema"
+      ],
+      "properties": {
+        "command": {
+          "type": "string",
+          "minLength": 1
+        },
+        "schema": {
+          "const": "checkpoint-preflight/v1"
+        },
+        "timeoutSeconds": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "pr": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "bodyFile"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "bodyFile": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "publication": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "transport",
+        "host"
+      ],
+      "properties": {
+        "transport": {
+          "const": "git+gh"
+        },
+        "host": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "ci": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "wait",
+        "requireChecks",
+        "timeoutSeconds",
+        "pollSeconds"
+      ],
+      "properties": {
+        "wait": {
+          "type": "boolean"
+        },
+        "requireChecks": {
+          "type": "boolean"
+        },
+        "timeoutSeconds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "pollSeconds": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "expectedChangedPaths": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "allowedLocalDirtyPaths": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "delivery": {
+      "const": "PR"
+    },
+    "merge": {
+      "const": "HUMAN"
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atenea.local/schema/checkpoint-preflight-v1",
+  "title": "Repository-owned checkpoint preflight manifest v1",
+  "type": "object",
+  "required": [
+    "schema",
+    "base_sha",
+    "head_sha",
+    "changed_paths",
+    "checks",
+    "runtime",
+    "publication_requirements",
+    "result"
+  ],
+  "properties": {
+    "schema": {
+      "const": "checkpoint-preflight/v1"
+    },
+    "base_sha": {
+      "type": "string",
+      "minLength": 1
+    },
+    "head_sha": {
+      "type": "string",
+      "minLength": 1
+    },
+    "changed_paths": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "checks": {},
+    "runtime": {
+      "type": "object"
+    },
+    "publication_requirements": {
+      "type": "object",
+      "properties": {
+        "github": {
+          "type": "object",
+          "properties": {
+            "oauth_scopes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "result": {
+      "const": "PASS"
+    }
+  },
+  "additionalProperties": true
+}
