@@ -24,15 +24,16 @@ Do not reconstruct Atenea from historical stage files. Read in this order:
 6. `docs/UI_UX_UPSTREAM_ADJUDICATION_20260904.md` — **when the target work has material frontend/UI/UX decisions**; current UI/UX shaping order, upstream-integrity rule and active adjudication boundary.
 7. `docs/INSTALLATION_AND_OPERATION_V1.md` — when provisioning/verifying a machine or target repo.
 8. `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` — current pre-implementation work-unit budget/composition and oversized unpublished-history recovery policy.
-9. `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md` — changed-file-aware syntax/build/delivery validation and publication credential/runtime parity policy.
-10. `docs/OPERATOR_RUNBOOK_V1.md` — only when a work item is already `EXECUTION_READY` or the human is about to run it.
-11. `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md` — current pinned one-touch train mechanics.
-12. `docs/QUALIFICATION.md` — what has actually been field-proven.
-13. `docs/LABORATORIO_PRIVACIDAD_GP33_FIELD_QUALIFICATION_20260921.md` — first real Pi 0.86.1 / GP3.3 / GAI3.4 product-train evidence.
-14. `docs/GP33_Q10_Q11_ADOPTION_EVIDENCE_20260920.md` — current GP3.3 deletion/single-acceptance/host-bridge evidence when provenance is needed.
-15. `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md` — historical GP2.7 replacement evidence when provenance is needed.
-16. `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md` — local execution/qualification cleanup policy.
-17. Historical stage/evidence documents only when a current claim needs provenance.
+9. `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md` — repository-owned changed-file-aware checkpoint validation contract.
+10. `docs/PUBLISH_CHECKPOINT_V1.md` — deterministic normal-push/PR/CI seam.
+11. `docs/OPERATOR_RUNBOOK_V1.md` — only when a work item is already `EXECUTION_READY` or the human is about to run it.
+12. `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md` — current pinned one-touch train mechanics.
+13. `docs/QUALIFICATION.md` — what has actually been field-proven.
+14. `docs/LABORATORIO_PRIVACIDAD_GP33_FIELD_QUALIFICATION_20260921.md` — first real Pi 0.86.1 / GP3.3 / GAI3.4 product-train evidence.
+15. `docs/GP33_Q10_Q11_ADOPTION_EVIDENCE_20260920.md` — current GP3.3 deletion/single-acceptance/host-bridge evidence when provenance is needed.
+16. `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md` — historical GP2.7 replacement evidence when provenance is needed.
+17. `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md` — local execution/qualification cleanup policy.
+18. Historical stage/evidence documents only when a current claim needs provenance.
 
 `docs/ATENEA_HANDOFF_20260830.md`, stage files and older decision files are historical evidence. They are not the place to recover current forward-looking authority when current documents exist.
 
@@ -267,8 +268,9 @@ explicit human execution authorization
 → first eligible review: “Review and allow this session” through Gentle Pi host/facade
 → provider-owned exact reviewer/refuter/validator lifecycle; no shell-native facade bypass
 → APPROVED + acknowledgement/burn
-→ changed-file-aware artifact validation + CI/runtime/credential evidence when applicable
-→ external authority re-read
+→ fresh external authority re-read/adjudication
+→ repo-owned checkpoint-preflight/v1 for the exact candidate
+→ deterministic publish-checkpoint: non-force push + remote/PR/CI reconciliation
 → next already-authorized frontier or STOP
 → human merge boundary
 ```

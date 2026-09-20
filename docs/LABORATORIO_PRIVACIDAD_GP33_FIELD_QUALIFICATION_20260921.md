@@ -291,11 +291,12 @@ Adopt:
 3. facade-first ordinary review lifecycle when a Gentle Pi operation exists;
 4. `inspect != ASSESS → STATUS`;
 5. fail-closed on unusable ASSESS;
-6. changed-file-aware pre-publication artifact validation;
-7. publication credential capability check when the changed artifact demands it;
-8. CI-runtime parity evidence for runtime-sensitive candidates;
-9. oracle as drift evidence, not authority over a proven defect;
-10. no indefinite reviewer-empty-output retries.
+6. repository-owned changed-file-aware checkpoint preflight;
+7. thin deterministic Atenea publish-checkpoint seam consuming exact preflight + Gentle closure evidence;
+8. repo-declared publication credential capability checks before push;
+9. CI-runtime parity evidence produced by the repo preflight for runtime-sensitive candidates;
+10. oracle as drift evidence, not authority over a proven defect;
+11. no indefinite reviewer-empty-output retries.
 
 Do not adopt:
 
@@ -312,4 +313,6 @@ Do not adopt:
 - Atenea #90 — committed-range ASSESS facade investigation.
 - Atenea #91 — material reviewer prompt-size / completion-budget characterization.
 - Atenea #92 — qualify upstream-supported facade-first shell-bypass guardrail.
-- PR #89 — current contract/document reconciliation.
+- Atenea #93 — deterministic publish-checkpoint implementation.
+- Atenea #94 — real-repository field qualification for publish-checkpoint.
+- PR #89 — merged contract/document reconciliation.

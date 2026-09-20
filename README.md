@@ -16,10 +16,11 @@ Read in this order:
 4. **`docs/ATENEA_HARNESS_CONTRACT_V1.md`** — **normative execution contract**.
 5. **`docs/CURRENT_DECISIONS.md`** — current accepted decisions and field findings.
 6. **`docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`** — pre-implementation reviewability budget, coherent slicing and oversized unpublished-history recovery.
-7. **`docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md`** — changed-file-aware syntax/build/delivery validation, CI-runtime parity and publication credential capability.
-8. **`docs/INSTALLATION_AND_OPERATION_V1.md`** — provisioning, global/Atenea/target scopes and runtime verification.
-9. **`docs/OPERATOR_RUNBOOK_V1.md`** — how the human starts an `EXECUTION_READY` run.
-10. `docs/QUALIFICATION.md` and `docs/LABORATORIO_PRIVACIDAD_GP33_FIELD_QUALIFICATION_20260921.md` when provenance/field evidence is needed.
+7. **`docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md`** — repo-owned changed-file-aware deterministic checkpoint validation contract.
+8. **`docs/PUBLISH_CHECKPOINT_V1.md`** — thin deterministic Atenea publication/PR/CI recipe.
+9. **`docs/INSTALLATION_AND_OPERATION_V1.md`** — provisioning, global/Atenea/target scopes and runtime verification.
+10. **`docs/OPERATOR_RUNBOOK_V1.md`** — how the human starts an `EXECUTION_READY` run.
+11. `docs/QUALIFICATION.md` and `docs/LABORATORIO_PRIVACIDAD_GP33_FIELD_QUALIFICATION_20260921.md` when provenance/field evidence is needed.
 
 If you only need the operational map first, read the newcomer quickstart before opening historical evidence.
 
@@ -156,10 +157,11 @@ High-frequency rules:
 8. **Review lifecycle transport is facade-first:** when `gentle_review` exposes the operation, use it; shell `gentle-ai review ...` and `ask_user_choice` must not bypass/recreate host one-touch semantics. `inspect` never substitutes for `ASSESS → STATUS`.
 9. **Provider bindings/continuations remain opaque; the qualified host bridge may forward the current retained reviewer group without LLM reserialization, but role-specific provider operations remain authoritative; APPROVED is incomplete until acknowledgement/burn succeeds.**
 10. **Evidence outranks narration; host-human-touch claims are externally adjudicated.**
-11. **Pre-publication evidence is changed-file-aware:** validate changed artifact syntax/build/delivery with repo-native or qualified upstream tools; reconcile declared-CI runtime and publication credential capability when material.
-12. **Normal non-force push is allowed by repository policy; no force-push, hidden history rewrite or auto-merge.**
-13. **Material ambiguity / contradictory authority / unsafe drift => STOP.**
-14. **New Atenea glue requires evidence of a real missing upstream owner.**
+11. **Pre-publication validation is repo-owned:** the target repo maps changed paths to its validators and emits `checkpoint-preflight/v1` for the exact candidate; Atenea does not maintain an extension/check catalog.
+12. **Mechanical publication is deterministic:** `publish-checkpoint` verifies exact base/head/paths, repo PASS, declared credential requirements, normal non-force push, remote/PR identity and CI, then STOPs at human merge.
+13. **Normal non-force push is allowed by repository policy; no force-push, hidden history rewrite or auto-merge.**
+14. **Material ambiguity / contradictory authority / unsafe drift => STOP.**
+15. **New Atenea glue requires evidence of a real missing upstream owner.**
 
 ## Field qualification
 
@@ -203,7 +205,8 @@ FIRST_REVIEW_SESSION_GRANT                      HUMAN_ONE_TOUCH
 LATER_SAME_SESSION_REVIEW_CONSENT_TOUCHES       0 expected
 EXPLICIT_REVIEW_ROLE_ROUTING                    REQUIRED
 REVIEW_LIFECYCLE_TRANSPORT                      GENTLE_PI_FACADE_WHEN_AVAILABLE
-PREPUBLICATION_ARTIFACT_VALIDATION               CHANGED_FILE_AWARE
+PREPUBLICATION_ARTIFACT_VALIDATION               REPO_OWNED_CHECKPOINT_PREFLIGHT
+PUBLISH_CHECKPOINT                               THIN_DETERMINISTIC_COMMAND
 ORACLE_SEMANTICS                                 DRIFT_EVIDENCE_NOT_DEFECT_AUTHORITY
 ACKNOWLEDGEMENT_BURN                            REQUIRED
 FINAL_MERGE                                     HUMAN_BOUNDARY
@@ -264,7 +267,8 @@ The Matt skills are not a mandatory execution sequence.
 - `docs/ATENEA_HARNESS_CONTRACT_V1.md` — **normative execution contract**.
 - `docs/CURRENT_DECISIONS.md` — current accepted decisions and supersession state.
 - `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` — current pre-implementation work-unit budget/composition and oversized unpublished-history recovery policy.
-- `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md` — changed-file-aware syntax/build/delivery validation, CI-runtime parity and publication credential policy.
+- `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md` — repo-owned changed-file-aware deterministic checkpoint validation contract.
+- `docs/PUBLISH_CHECKPOINT_V1.md` — thin deterministic publication/PR/CI seam.
 - `docs/INSTALLATION_AND_OPERATION_V1.md` — current environment/install/verification guide.
 - `docs/OPERATOR_RUNBOOK_V1.md` — practical `EXECUTION_READY` operator path.
 - `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md` — current pinned GP3.3 one-touch train mechanics.

@@ -144,20 +144,28 @@ final merge                                    = human unless separately authori
 
 Never synthesize the grant from model prose, environment state, internal APIs or TUI automation.
 
-### Pre-publication artifact evidence
+### Deterministic checkpoint/publication
 
 Before ordinary non-force publication:
 
-1. enumerate the exact changed paths;
-2. derive validators from the changed artifact types and repository authority;
-3. run repo-native/qualified upstream validators;
-4. if workflow YAML changed, parse/validate it before push;
-5. when the declared CI runtime differs materially from the host and the gate is runtime-sensitive, run the relevant gate in the declared runtime when practical or record the divergence explicitly;
-6. verify the actual publication credential has capability for the changed artifact (workflow changes may require additional GitHub workflow authority).
+1. perform the current single fresh bounded read of external/product authority and adjudicate any material drift;
+2. require all provider-required Gentle review authority for the exact candidate to be terminal and acknowledgement/burn complete when required;
+3. require the target repository to expose one deterministic checkpoint-preflight command returning `checkpoint-preflight/v1`;
+4. let that repository preflight own changed-path classification, product/artifact validation and CI-runtime parity evidence;
+5. invoke `publish-checkpoint` with explicit base/head/branches, authority result, Gentle closure evidence, repo preflight command and PR boundary;
+6. publish only through normal non-force push;
+7. require remote HEAD, PR base/head/SHA/changed paths and bounded CI to reconcile;
+8. STOP at the human merge boundary.
 
-Do not treat product tests, `git diff --check`, LLM review or generic GitHub authentication as substitutes for an artifact-specific parser/permission they do not cover.
+Atenea must not recreate repo-specific validation logic in the parent.
 
-Policy: `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md`.
+Current command/contract:
+
+`docs/PUBLISH_CHECKPOINT_V1.md`
+
+Current repo validation policy:
+
+`docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md`.
 
 ## 8. Evidence / final report
 
@@ -176,9 +184,13 @@ REVIEW_ROUTES=
 REVIEW_OUTCOMES=
 ACKNOWLEDGEMENT_BURN=
 DETERMINISTIC_TESTS_QA=
-CHANGED_ARTIFACT_VALIDATORS=
-CI_RUNTIME_PARITY=
+REPO_CHECKPOINT_PREFLIGHT=
+PREFLIGHT_BASE_HEAD_PATH_MATCH=
 PUBLICATION_CREDENTIAL_CAPABILITY=
+PUBLISH_CHECKPOINT_EVIDENCE=
+REMOTE_HEAD_MATCH=
+PR_BASE_HEAD_SHA_PATH_MATCH=
+CI_RESULT=
 CHECKPOINTS_OR_PUBLICATION=
 HERDR_RPA=0
 EXTERNAL_SUPERVISOR=0
@@ -204,9 +216,9 @@ STOP and report rather than improvise when any of these appears:
 - **One-touch review boundary failure** — after a valid `Review and allow this session` grant, a later fresh same-session/repository candidate requires another native consent touch, the host cannot preserve exact provider target/binding identity, the qualified host bridge hash/version is wrong, or a provider-issued role transition cannot be followed exactly. STOP rather than synthesize authority.
 - **Work-unit composition boundary missing** — substantial work is forecast to exceed the active review budget but no coherent slice/delivery decision or accepted size exception exists. With the default 400-line budget, >800 authored lines is never an ordinary silent continuation: STOP/reslice unless an explicit human-authorized indivisibility exception already exists.
 - **ASSESS facade failure** — exact committed-range ASSESS is unavailable/schema-incompatible or lacks the provider timing result. STOP; `inspect` and unconditional START are not substitutes.
-- **Changed-artifact validation missing** — a materially changed artifact lacks the parser/build/delivery validator required to establish publication readiness.
-- **CI runtime evidence ambiguous** — a runtime-sensitive gate cannot be interpreted because host and declared CI runtime differ materially and parity evidence is missing.
-- **Publication credential capability missing** — the effective push credential lacks authority required by a changed artifact; preserve the candidate and repair credentials rather than rewriting product history.
+- **Repository checkpoint preflight invalid** — the target repo has no declared checkpoint preflight, it reports FAIL, emits malformed output, or its base/head/changed-path manifest does not exactly match the candidate. STOP; Atenea does not invent the missing validator.
+- **Repo runtime evidence ambiguous** — the repository preflight cannot establish the runtime parity its own gates require. STOP on that repo-owned evidence boundary.
+- **Publication credential capability missing** — the repo preflight declares a publication capability that the effective push credential does not satisfy or cannot prove. Preserve the candidate and repair credentials rather than rewriting product history.
 - **Provider/runtime mismatch** — incompatible runtime assumption or candidate/review state inconsistent with Gentle authority.
 - **Publication authority changed during pre-publication revalidation** — the
   single fresh read immediately before publication shows blockers, scope,

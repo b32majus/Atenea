@@ -1,6 +1,6 @@
 # Atenea — Qualification Status
 
-Date of current status: 2026-09-20
+Date of current status: 2026-09-21
 
 This document is the current qualification index. Stage-specific files remain frozen evidence. Earlier `NEXT`, `DEFERRED` or `NOT_YET_QUALIFIED` labels are historical when they conflict with this file, `README.md`, `docs/CURRENT_DECISIONS.md` or `docs/ATENEA_HARNESS_CONTRACT_V1.md`.
 
@@ -34,6 +34,8 @@ GP27_TWO_TICKET_HYBRID_ZERO_TOUCH      PASS_HISTORICAL
 GP33_GAI34_RUNTIME                       PASS
 GP33_ONE_TOUCH_SESSION_PERMISSION        PASS
 GP33_LATER_SAME_SESSION_NO_SECOND_TOUCH  PASS
+PUBLISH_CHECKPOINT_DETERMINISTIC_TESTS     PASS_15_OF_15
+PUBLISH_CHECKPOINT_FIELD_QUALIFICATION     PENDING_ISSUE_94
 ```
 
 The result is evidence for a thin supervisory contract, not a recommendation to build a larger Atenea runtime.
@@ -80,6 +82,39 @@ Laboratorio_Privacidad_Clinica V4 then supplied the first full real-product fiel
 Current policies: `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` and `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md`.
 
 Full field evidence: `docs/LABORATORIO_PRIVACIDAD_GP33_FIELD_QUALIFICATION_20260921.md`.
+
+## Deterministic publish-checkpoint — IMPLEMENTED / FIELD QUALIFICATION PENDING — 2026-09-21
+
+Issue #93 implements the generic checkpoint/publication seam requested by the Laboratorio field handoff:
+
+```text
+tools/publish-checkpoint.mjs
+schemas/publish-checkpoint-request-v1.schema.json
+schemas/checkpoint-preflight-v1.schema.json
+docs/PUBLISH_CHECKPOINT_V1.md
+```
+
+Current deterministic evidence:
+
+```text
+REQUEST_AUTHORITY_FAIL_CLOSED          PASS
+GENTLE_CLOSURE_CONSUMED_ONLY           PASS
+REPO_PREFLIGHT_EXACT_HEAD_BINDING      PASS
+UNEXPECTED_DIRTY_STATE_STOP            PASS
+REPO_DECLARED_OAUTH_SCOPE_STOP         PASS
+NORMAL_NON_FORCE_PUSH                  PASS
+REMOTE_HEAD_RECONCILIATION             PASS
+PR_BASE_HEAD_SHA_PATH_RECONCILIATION   PASS
+CI_GREEN_TO_HUMAN_MERGE_STOP           PASS
+NON_FAST_FORWARD_NO_API_FALLBACK       PASS
+CI_RED_STOP_NO_MERGE                   PASS
+AUTO_MERGE_IMPLEMENTATION              ABSENT
+TESTS                                  15/15 PASS
+```
+
+This proves deterministic implementation behavior in local integration fixtures. It does **not** yet qualify the seam as field-proven.
+
+Required next evidence: one bounded real repository change, not Laboratorio PR #32, using a real repo-owned `checkpoint-preflight/v1`, real Gentle closure, normal non-force push, exact PR reconciliation, real CI, and STOP before human merge. The plan is in `docs/PUBLISH_CHECKPOINT_V1.md` and tracked as Atenea #94.
 
 ## Historical predecessor replacement result — 2026-09-05
 

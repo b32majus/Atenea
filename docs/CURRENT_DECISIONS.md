@@ -571,11 +571,12 @@ The reconstructed T02 tree had been byte-identical to its preserved oracle, but 
 
 Therefore:
 
-1. pre-publication validation is derived from the artifact types actually changed;
-2. workflow YAML requires a workflow/YAML parser or equivalent repo-native/upstream validator before publication;
-3. generic authentication is not proof that the actual publication credential can modify every changed artifact;
-4. runtime-sensitive deterministic evidence must distinguish local-host runtime from declared CI runtime;
-5. a preserved byte/tree oracle is drift evidence, not authority above accepted spec, syntax, tests, buildability or delivery validity.
+1. the target repository owns changed-path-to-validator mapping and exposes one deterministic checkpoint preflight;
+2. Atenea invokes that repo-owned preflight and requires a PASS bound to the exact base/head/changed-path candidate;
+3. workflow YAML parsing is a repository-owned example, not an Atenea extension catalog;
+4. generic authentication is not proof that the actual publication credential can modify every changed artifact; repo-declared publication requirements must be enforced before push when inspectable;
+5. runtime-sensitive deterministic evidence must distinguish local-host runtime from declared CI runtime;
+6. a preserved byte/tree oracle is drift evidence, not authority above accepted spec, syntax, tests, buildability or delivery validity.
 
 Oracle repair rule:
 
@@ -590,6 +591,52 @@ faithful reconstruction evidence
 Do not create a universal Atenea build system or giant static gate list. Use the smallest authoritative repo-native or upstream validator triggered by the current changed artifacts.
 
 Authority: `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md` and `docs/LABORATORIO_PRIVACIDAD_GP33_FIELD_QUALIFICATION_20260921.md`.
+
+## C-055 — Deterministic checkpoint/publication is a thin Atenea command over repo-owned preflight
+
+**Accepted from Laboratorio publication handoff 2026-09-21; implementation candidate #93.**
+
+The first real GP3.3/GAI3.4 field train required repetitive deterministic publication work that does not belong to model reasoning. Atenea now standardizes that seam as:
+
+```text
+fresh external-authority adjudication
++ Gentle closure already satisfied
++ repository-owned checkpoint-preflight/v1 PASS for the exact candidate
+→ exact candidate/base/head checks
+→ repo-declared publication capability checks
+→ normal non-force push
+→ remote-head verification
+→ PR create/update + base/head/SHA/path reconciliation
+→ bounded CI read/wait
+→ STOP at HUMAN_MERGE
+```
+
+Implementation shape:
+
+```text
+tools/publish-checkpoint.mjs
+docs/PUBLISH_CHECKPOINT_V1.md
+schemas/publish-checkpoint-request-v1.schema.json
+schemas/checkpoint-preflight-v1.schema.json
+```
+
+This is deliberately a command outside the target project skill registry, not a new agent skill/controller. It MUST NOT:
+
+- decide or fetch semantic authority on its own;
+- decide whether Promotion Review is required;
+- call Gentle ASSESS/START/reviewer lifecycle;
+- map file extensions to repo-specific validators;
+- force-push, rebase/squash or reconstruct commits/refs through GitHub API;
+- change auth transport;
+- auto-merge.
+
+A target repository owns one deterministic preflight command. Atenea accepts PASS only when its manifest base SHA, head SHA and changed-path set exactly match the candidate being published.
+
+The CLI has check-only mode by default. Publication requires explicit `--publish`. CI green ends at `READY_FOR_HUMAN_MERGE`; there is no merge implementation.
+
+Authority: `docs/PUBLISH_CHECKPOINT_V1.md`.
+
+Field qualification remains required on a bounded real repository change after merge; synthetic/unit evidence alone does not promote the command to fully field-qualified. This is tracked in Atenea #94.
 
 ## C-006 — Normal git push is allowed; no publication-permission subsystem
 
@@ -926,7 +973,7 @@ A graph/index never outranks source code, accepted product/spec authority, deter
 7. on the first valid review consent only, human selects `Review and allow this session`; ordinary review lifecycle stays on the Gentle Pi facade whenever the corresponding operation exists;
 8. let Gentle Shell/ODD own implementation/delegation/verification; after every substantial work-unit commit run native ASSESS and follow only provider-owned review transitions through APPROVED + acknowledgement/burn when due; unusable ASSESS is STOP, not START permission;
 9. later reviews in the same live Pi session/canonical repository use fresh validated grants without another review-consent touch;
-10. before publication, enumerate changed artifacts, run their applicable repo-native/upstream validators, reconcile declared-CI-runtime parity where material, and verify publication credential capability;
+10. before publication, perform the fresh bounded external-authority revalidation, require the target repo's exact checkpoint-preflight/v1 PASS, then use the deterministic publish-checkpoint seam for normal non-force push, remote/PR identity and bounded CI reconciliation;
 11. re-read external authority between authorized units/frontiers and continue only while the next work remains inside the explicit authorization; otherwise STOP;
 12. final merge remains human unless separately authorized;
 13. new Atenea glue requires a demonstrated upstream ownership gap.

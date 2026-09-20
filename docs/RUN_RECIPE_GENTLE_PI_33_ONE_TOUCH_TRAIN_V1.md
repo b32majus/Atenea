@@ -125,8 +125,8 @@ Remain the persistent visible parent and retain external authority/frontier cont
 Before substantial implementation, inspect the Review Workload Forecast/task shape and resolve work-unit composition before writing. Honor explicit `review_budget_lines`; otherwise target 400 authored lines by default. Treat ~401–600 as a soft coherent overage, ~601–800 as requiring an explicit durable size-exception rationale, and >800 as STOP/reslice by default unless the human explicitly authorizes an indivisibility exception. Never code-golf or split tests/docs from their behavior just to hit a number.
 After every delegated/substantial work-unit commit, call `gentle_review` `assess` on that exact candidate and obey `review_due` / `review_due_reason`. When review is due, follow `wrapper_continuation` to target-scoped STATUS before any START; when it is not due, do not START. Never infer review timing from external-ticket completion or recreate the provider's post-commit `review_due` threshold.
 For every provider-selected review boundary, follow the exact native transition through APPROVED + acknowledgement/burn using the Gentle Pi facade whenever it exposes the corresponding operation; never recreate host consent with `ask_user_choice`. At each external work-unit/frontier boundary, re-read durable authority and continue only with already-authorized work.
-Before publication, enumerate changed artifacts and run their applicable repo-native/upstream validators; workflow YAML must be parsed when changed. Reconcile declared-CI-runtime parity for runtime-sensitive gates and verify the actual publication credential has capability for the changed artifact. Treat byte/tree oracles as drift evidence, never as authority to preserve a proven syntax/build/delivery defect.
-Use the current mixed Atenea routing and qualified GP3.3 host + assess bridges. Do not merge. Return a factual final report and STOP when the compatible frontier is exhausted or a genuine human-owned boundary appears.
+Before publication, perform the fresh bounded external-authority revalidation. Then require the target repository's declared checkpoint-preflight command to return checkpoint-preflight/v1 PASS bound to the exact base/head/changed-path candidate; the repository owns changed-file-aware validators and runtime-parity evidence. Consume already-satisfied Gentle closure evidence, then use the deterministic publish-checkpoint seam for normal non-force push, remote/PR identity reconciliation and bounded CI. Never let publication tooling call review START or invent repo-specific checks. Treat byte/tree oracles as drift evidence, never as authority to preserve a proven syntax/build/delivery defect.
+Use the current mixed Atenea routing and qualified GP3.3 host + assess bridges. Do not merge. STOP at the human merge boundary. Return a factual final report and STOP when the compatible frontier is exhausted or a genuine human-owned boundary appears.
 ```
 
 ## 12. Final report minimum
@@ -145,6 +145,11 @@ REVIEW_ROUTES=
 REVIEW_OUTCOMES=
 ACK_BURN=
 DETERMINISTIC_TESTS_QA=
+REPO_CHECKPOINT_PREFLIGHT=
+PUBLISH_CHECKPOINT_EVIDENCE=
+REMOTE_HEAD_MATCH=
+PR_BASE_HEAD_SHA_PATH_MATCH=
+CI_RESULT=
 CHECKPOINTS=
 HERDR_RPA=0
 EXTERNAL_SUPERVISOR=0

@@ -14,7 +14,7 @@ const front=[
 "README.md","AGENTS.md","docs/START_HERE.md","docs/ATENEA_HARNESS_CONTRACT_V1.md",
 "docs/INSTALLATION_AND_OPERATION_V1.md","docs/NEWCOMER_QUICKSTART_V1.md",
 "docs/WORK_UNIT_COMPOSITION_POLICY_V1.md","docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md",
-"docs/OPERATOR_RUNBOOK_V1.md","docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md"
+"docs/PUBLISH_CHECKPOINT_V1.md","docs/OPERATOR_RUNBOOK_V1.md","docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md"
 ];
 for(const r of front){
  ban(r,"fresh implementation child per newly selected ticket","fresh-child external-ticket invariant");
@@ -23,6 +23,7 @@ for(const r of front){
  ban(r,"all configured Gentle roles   nan/deepseek-v4-flash · medium","all-V4 production routing");
  ban(r,"400 is a hard reviewer","400 hard-cap misstatement");
  ban(r,"400-line hard cap","400 hard-cap misstatement");
+ ban(r,"pending ordinary-train parity evidence","stale Pi 0.86.1 parity-pending claim");
 }
 req("README.md","DEFAULT_PI_MODEL                                 nan/deepseek-v4-flash medium","README default V4");
 req("README.md","PERSISTENT_TRAIN_PARENT                         nan/glm5.3-flash high","README parent GLM");
@@ -30,7 +31,8 @@ req("README.md","DEFAULT_REVIEW_BUDGET_LINES                     400 when no exp
 req("README.md","WORK_UNIT_ABOVE_800_DEFAULT                     STOP_RESLICE_OR_HUMAN_INDIVISIBILITY_EXCEPTION","README >800 boundary");
 req("README.md","Work-unit composition is resolved before substantial implementation","README composition boundary");
 req("README.md","REVIEW_LIFECYCLE_TRANSPORT                      GENTLE_PI_FACADE_WHEN_AVAILABLE","README facade-first transport");
-req("README.md","PREPUBLICATION_ARTIFACT_VALIDATION               CHANGED_FILE_AWARE","README changed-artifact validation");
+req("README.md","PREPUBLICATION_ARTIFACT_VALIDATION               REPO_OWNED_CHECKPOINT_PREFLIGHT","README repo-owned preflight");
+req("README.md","PUBLISH_CHECKPOINT                               THIN_DETERMINISTIC_COMMAND","README publish-checkpoint seam");
 req("README.md","ORACLE_SEMANTICS                                 DRIFT_EVIDENCE_NOT_DEFECT_AUTHORITY","README oracle semantics");
 req("docs/WORK_UNIT_COMPOSITION_POLICY_V1.md","LargeChangeLines = 400","composition upstream boundary");
 req("docs/WORK_UNIT_COMPOSITION_POLICY_V1.md","401–600","composition soft overage");
@@ -38,21 +40,32 @@ req("docs/WORK_UNIT_COMPOSITION_POLICY_V1.md","601–800","composition exception
 req("docs/WORK_UNIT_COMPOSITION_POLICY_V1.md","> 800","composition stop/reslice band");
 req("docs/WORK_UNIT_COMPOSITION_POLICY_V1.md","byte-equivalent","oversize recovery oracle");
 req("docs/WORK_UNIT_COMPOSITION_POLICY_V1.md","The oracle does not outrank a proven defect","oracle defect precedence");
-req("docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md","Changed-file-aware pre-publication validation","prepublication changed-file awareness");
-req("docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md","actionlint","workflow validator example");
-req("docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md","CI runtime parity","CI runtime parity policy");
-req("docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md","Publication credential capability","publication credential policy");
+req("docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md","target repository","repo-owned prepublication validation");
+req("docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md","checkpoint-preflight/v1","repo preflight contract");
+req("docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md","Atenea does not independently rediscover the workflow rule","no Atenea validator catalog");
+req("docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md","publication_requirements","repo-declared publication capability");
+req("docs/PUBLISH_CHECKPOINT_V1.md","atenea.publish-checkpoint-request/v1","publish request contract");
+req("docs/PUBLISH_CHECKPOINT_V1.md","checkpoint-preflight/v1","publish preflight contract");
+req("docs/PUBLISH_CHECKPOINT_V1.md","STOP: HUMAN_MERGE","publish human merge stop");
+req("schemas/publish-checkpoint-request-v1.schema.json","atenea.publish-checkpoint-request/v1","publish request schema");
+req("schemas/checkpoint-preflight-v1.schema.json","checkpoint-preflight/v1","preflight schema");
+req("tools/publish-checkpoint.mjs","READY_FOR_HUMAN_MERGE","publish CLI result");
+req("tools/publish-checkpoint.mjs","git+gh","publish CLI transport");
+ban("tools/publish-checkpoint.mjs","\"pr\", \"merge\"","publish CLI auto-merge");
+ban("tools/publish-checkpoint.mjs","--force","publish CLI force-push");
 req("docs/LABORATORIO_PRIVACIDAD_GP33_FIELD_QUALIFICATION_20260921.md","~75 KiB","Laboratorio oversized prompt evidence");
 req("docs/LABORATORIO_PRIVACIDAD_GP33_FIELD_QUALIFICATION_20260921.md","~12 KiB","Laboratorio bounded prompt evidence");
 req("docs/LABORATORIO_PRIVACIDAD_GP33_FIELD_QUALIFICATION_20260921.md","Atenea #90","Laboratorio ASSESS debt linkage");
 req("AGENTS.md","Before launching substantial implementation","agent pre-implementation composition gate");
 req("AGENTS.md","Facade-first review transport","agent facade-first review transport");
-req("AGENTS.md","Workflow YAML changes require a workflow/YAML parser","agent changed-artifact validation");
+req("AGENTS.md","checkpoint-preflight/v1","agent repo-owned checkpoint preflight");
+req("AGENTS.md","docs/PUBLISH_CHECKPOINT_V1.md","agent publish-checkpoint seam");
 req("docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md","Compose reviewable work before writing","recipe pre-implementation composition gate");
 req("docs/OPERATOR_RUNBOOK_V1.md","Work-unit composition boundary missing","runbook oversize STOP condition");
 req("docs/ATENEA_HARNESS_CONTRACT_V1.md","Workload composition is resolved before substantial implementation","contract composition boundary");
 req("docs/ATENEA_HARNESS_CONTRACT_V1.md","Facade-first review transport preserves host semantics","contract facade-first transport");
-req("docs/ATENEA_HARNESS_CONTRACT_V1.md","PREPUBLICATION_ARTIFACT_VALIDATION=CHANGED_FILE_AWARE","contract prepublication marker");
+req("docs/ATENEA_HARNESS_CONTRACT_V1.md","PREPUBLICATION_ARTIFACT_VALIDATION=REPO_OWNED_CHECKPOINT_PREFLIGHT","contract repo preflight marker");
+req("docs/ATENEA_HARNESS_CONTRACT_V1.md","PUBLISH_CHECKPOINT=THIN_DETERMINISTIC_ATENEA_COMMAND","contract publish-checkpoint marker");
 req("docs/ATENEA_HARNESS_CONTRACT_V1.md","ORACLE_SEMANTICS=DRIFT_EVIDENCE_NOT_DEFECT_AUTHORITY","contract oracle marker");
 req("docs/ATENEA_HARNESS_CONTRACT_V1.md","FRESH_CHILD_PER_EXTERNAL_TICKET=NOT_REQUIRED_BY_ATENEA","ODD ownership");
 req("docs/ATENEA_HARNESS_CONTRACT_V1.md","DEFAULT_REVIEW_BUDGET_LINES=400_UNLESS_SESSION_OVERRIDE","contract review budget baseline");
@@ -64,6 +77,13 @@ req("docs/INSTALLATION_AND_OPERATION_V1.md","PARENT_ROUTE=NAN_GLM5_3_FLASH_HIGH"
 req("docs/INSTALLATION_AND_OPERATION_V1.md","GENTLE_VERIFY_READABILITY_RELIABILITY_VALIDATOR=OPENAI_CODEX_GPT_5_6_LUNA_HIGH","install Luna roles");
 req("docs/INSTALLATION_AND_OPERATION_V1.md","GENTLE_RISK=NAN_GLM5_3_FLASH_HIGH","install risk GLM");
 req("docs/INSTALLATION_AND_OPERATION_V1.md","GENTLE_RESILIENCE_REFUTER=NAN_DEEPSEEK_V4_FLASH_HIGH","install V4 review roles");
+req("docs/INSTALLATION_AND_OPERATION_V1.md","Publication/checkpoint prerequisites","install publication prerequisites");
+req("docs/INSTALLATION_AND_OPERATION_V1.md","PUBLISH_CHECKPOINT=THIN_DETERMINISTIC_COMMAND","install publish-checkpoint marker");
+req("docs/NEWCOMER_QUICKSTART_V1.md","checkpoint-preflight/v1","quickstart repo preflight");
+req("docs/NEWCOMER_QUICKSTART_V1.md","publish-checkpoint","quickstart publish seam");
+req("docs/OPERATOR_RUNBOOK_V1.md","REPO_CHECKPOINT_PREFLIGHT=","runbook repo preflight evidence");
+req("docs/OPERATOR_RUNBOOK_V1.md","PUBLISH_CHECKPOINT_EVIDENCE=","runbook publish evidence");
+req("docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md","PUBLISH_CHECKPOINT_EVIDENCE=","recipe publish evidence");
 req("docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md","| Persistent parent / train coordinator | `nan/glm5.3-flash` | `high` |","recipe parent GLM");
 req("docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md","| `gentle-ai-verify` | `openai-codex/gpt-5.6-luna` | `high` |","recipe verifier Luna");
 req("docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md","| `review-reliability` | `openai-codex/gpt-5.6-luna` | `high` |","recipe reliability Luna");
@@ -98,11 +118,18 @@ reqIn(c53,"Review and allow this session","C-053 one-touch host action");
 reqIn(c53,"do not shell gentle-ai review as a bypass","C-053 facade-first transport");
 reqIn(c53,"inspect != ASSESS","C-053 inspect/assess distinction");
 reqIn(c53,"Atenea #90","C-053 committed-range ASSESS tracker");
-const c54=sec("docs/CURRENT_DECISIONS.md","## C-054 —","## C-006 —");
-reqIn(c54,"changed-file-aware","C-054 changed-file validation");
-reqIn(c54,"workflow YAML","C-054 workflow validator");
+const c54=sec("docs/CURRENT_DECISIONS.md","## C-054 —","## C-055 —");
+reqIn(c54,"target repository owns changed-path-to-validator mapping","C-054 repo validation ownership");
+reqIn(c54,"checkpoint preflight","C-054 checkpoint preflight");
 reqIn(c54,"declared CI runtime","C-054 CI runtime parity");
 reqIn(c54,"drift evidence","C-054 oracle semantics");
+const c55=sec("docs/CURRENT_DECISIONS.md","## C-055 —","## C-006 —");
+reqIn(c55,"tools/publish-checkpoint.mjs","C-055 publish CLI");
+reqIn(c55,"repository-owned checkpoint-preflight/v1 PASS","C-055 repo preflight boundary");
+reqIn(c55,"normal non-force push","C-055 non-force publication");
+reqIn(c55,"HUMAN_MERGE","C-055 human merge boundary");
+reqIn(c55,"Field qualification remains required","C-055 field qualification pending");
+reqIn(c55,"Atenea #94","C-055 field qualification tracker");
 req("docs/NAN_PROVIDER_CAPABILITIES_V1.md","accepted but non-operative","NaN capability contract");
 req("docs/ODD_REVIEW_ASSESS_BYPASS_EVIDENCE_20260920.md","review_due","ODD ASSESS field evidence");
 req("docs/NAN_DEEPSEEK_INPROCESS_REVIEWER_INCIDENT_20260920.md","Same frozen prompt on GLM 5.3 Flash High","DeepSeek/GLM isolated evidence");
@@ -113,6 +140,10 @@ reqIn(q,"Q11_ROUTE_SCOPE                    QUALIFICATION_ONLY_NOT_PRODUCTION_PO
 reqIn(q,"Q11_SINGLE_ACCEPTANCE_UNATTENDED PASS","Q11 single acceptance");
 reqIn(q,"Laboratorio_Privacidad_Clinica V4","real-product field qualification");
 reqIn(q,"reviewer-empty-output / stopReason=length","field material reviewer evidence");
+reqIn(q,"Deterministic publish-checkpoint","publish-checkpoint qualification section");
+reqIn(q,"FIELD QUALIFICATION PENDING","publish-checkpoint field qualification pending");
+reqIn(q,"15/15 PASS","publish-checkpoint deterministic tests");
+req("docs/QUALIFICATION.md","PUBLISH_CHECKPOINT_FIELD_QUALIFICATION     PENDING_ISSUE_94","publish-checkpoint field qualification tracker");
 ban("docs/QUALIFICATION.md","The final cutover maps all configured roles, including refuter/validator, to NaN V4 medium","stale all-V4 qualification claim");
 ban("docs/QUALIFICATION.md","Pi 0.86.1 is current runtime pending ordinary-train parity evidence","stale Pi 0.86.1 parity-pending claim");
 req("docs/LABORATORIO_PRIVACIDAD_GP33_FIELD_QUALIFICATION_20260921.md","Atenea #91","reviewer material debt linkage");

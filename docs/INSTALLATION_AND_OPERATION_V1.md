@@ -89,6 +89,22 @@ pi install npm:gentle-pi@3.3.0
 
 Gentle Pi 3.3 packages Gentle AI 3.4.0 under `.gentle-ai/v3.4.0/`. The second command applies the current qualified, version/hash-guarded GP3.3 host compatibility shim plus the GAI3.4 assess-timing bridge; both remain narrow compatibility shims and the command refuses unknown bytes instead of patching them.
 
+### 3.1 Publication/checkpoint prerequisites
+
+The deterministic `publish-checkpoint` seam uses existing supported command-line surfaces rather than an Atenea installer:
+
+```text
+node   # executes the Atenea CLI
+git    # exact identity/fetch/non-force push/remote reconciliation
+gh     # GitHub credential capability, PR and CI surfaces
+```
+
+The target repo must separately declare its own deterministic checkpoint-preflight command; Atenea does not install that repo's validators.
+
+Verify these commands through the machine's normal package-management policy. Do not silently install/upgrade them during a product run.
+
+Current contract: `docs/PUBLISH_CHECKPOINT_V1.md`.
+
 ## 4. Verify the environment
 
 ```bash
@@ -102,7 +118,7 @@ node tools/check-nan-runtime-config.mjs
 ./tools/apply-gentle-330-atenea-host-bridge.sh --check
 ```
 
-Expected: current Pi `0.86.1`, `3.3.0`, `gentle-ai 3.4.0`, V4/GLM/Luna auth ready, `ATENEA_NAN_RUNTIME_CONFIG_CHECK=PASS`, and `PASS: qualified Atenea GP3.3 host + assess bridges present`. The strong single-acceptance Q11 baseline used Pi `0.86.0`; keep that distinction until a normal 0.86.1 train supplies parity evidence.
+Expected: current Pi `0.86.1`, `3.3.0`, `gentle-ai 3.4.0`, V4/GLM/Luna auth ready, `ATENEA_NAN_RUNTIME_CONFIG_CHECK=PASS`, and `PASS: qualified Atenea GP3.3 host + assess bridges present`. The strong single-acceptance Q11 baseline used Pi `0.86.0`; Pi `0.86.1` now also has real-product train evidence from Laboratorio_Privacidad_Clinica, while boundary-specific debt remains tracked separately.
 
 ## 5. RDD and current one-touch boundary
 
@@ -174,8 +190,9 @@ Once work is `EXECUTION_READY`:
 5. Gentle Shell/ODD owns internal classification, decomposition, bounded delegation, verification and work-unit commits.
 6. On the first eligible review only, human selects “Review and allow this session”.
 7. Parent follows the exact provider-issued reviewer/refuter/validator operations through APPROVED + acknowledgement/burn.
-8. At the external work-unit/frontier boundary, re-read repository/tracker authority; continue only with already-authorized work or STOP.
-9. Final merge remains human unless separately authorized.
+8. Before PR publication, perform fresh external-authority revalidation, require the repo-owned checkpoint-preflight/v1 PASS for the exact candidate, and use publish-checkpoint for normal non-force push + remote/PR/CI reconciliation.
+9. At the external work-unit/frontier boundary, re-read repository/tracker authority; continue only with already-authorized work or STOP.
+10. Final merge remains human unless separately authorized.
 ```
 
 Later reviews in the same healthy live Pi session/canonical repository do not require a second consent touch. A restart/new/resume/fork/quit/revoke creates a new one-touch boundary.
@@ -205,6 +222,8 @@ FIRST_REVIEW_SESSION_GRANT=HUMAN_ONE_TOUCH
 ADDITIONAL_SAME_SESSION_REVIEW_CONSENT_TOUCHES=0_EXPECTED
 REVIEW_ROLE_ROUTING=EXPLICIT
 ACKNOWLEDGEMENT_BURN=REQUIRED
+REPO_CHECKPOINT_PREFLIGHT=REQUIRED_FOR_PR_PUBLICATION
+PUBLISH_CHECKPOINT=THIN_DETERMINISTIC_COMMAND
 HERDR_RPA=0
 EXTERNAL_SUPERVISOR=0
 ATENEA_RDD_RELAY=0

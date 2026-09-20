@@ -73,7 +73,8 @@ WORK_UNIT_GT_800=STOP_RESLICE_UNLESS_HUMAN_INDIVISIBILITY_EXCEPTION
 QUALIFIED_HOST_BRIDGE=GP3_3_CURRENT_GROUP_PLUS_CONSENT_SIGNAL
 EXPLICIT_REVIEW_ROLE_ROUTING=REQUIRED
 REVIEW_LIFECYCLE_TRANSPORT=GENTLE_PI_FACADE_WHEN_AVAILABLE
-PREPUBLICATION_ARTIFACT_VALIDATION=CHANGED_FILE_AWARE
+PREPUBLICATION_ARTIFACT_VALIDATION=REPO_OWNED_CHECKPOINT_PREFLIGHT
+PUBLISH_CHECKPOINT=THIN_DETERMINISTIC_ATENEA_COMMAND
 ORACLE_SEMANTICS=DRIFT_EVIDENCE_NOT_DEFECT_AUTHORITY
 ACKNOWLEDGEMENT_BURN=REQUIRED
 FINAL_MERGE=HUMAN_BOUNDARY
@@ -451,32 +452,60 @@ This is a single bounded revalidation, not a polling subsystem or Herdr gate.
 
 If blockers, scope, product authority or repository delivery instructions changed materially since execution began, do not publish the stale candidate: STOP for adjudication.
 
-If authority is unchanged, derive deterministic delivery validation from the **actual changed artifact types** before publication. This is changed-file-aware evidence, not a universal giant gate list.
+If authority is unchanged, invoke the target repository's declared deterministic checkpoint preflight.
 
-Examples:
-- changed `.github/workflows/*.yml` or `.github/workflows/*.yaml` → run a repo-native workflow/YAML validator or qualified upstream validator such as `actionlint`;
-- runtime-sensitive candidates → distinguish local-host results from the repository's declared CI runtime and establish parity when necessary to interpret the gate;
-- generated/config/deployment artifacts → use the owning repo-native/upstream parser or validator when applicable.
+The **repository**, not Atenea, owns:
+- changed-path classification;
+- product/build/type/lint/test selection;
+- artifact-specific validators;
+- runtime-parity checks needed to interpret its own gates.
 
-Missing a required artifact validator is explicit evidence and may be STOP; tests, LLM review and `git diff --check` do not substitute for parsing an artifact whose syntax/semantics they do not validate.
+The preflight must return `checkpoint-preflight/v1` with:
+- `result=PASS`;
+- the exact expected base SHA;
+- the exact current candidate HEAD SHA;
+- the exact Git-computed changed-path set.
 
-Current policy: `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md`.
+A PASS for another candidate is invalid.
 
-If authority and required artifact validation are both satisfied, continue to normal publication without adding another lifecycle layer.
+Atenea does not maintain a universal extension/validator matrix. Missing required repo validation is a repository preflight FAIL/STOP, not a reason for Atenea to invent the missing check.
+
+Current policies:
+- `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md`
+- `docs/PUBLISH_CHECKPOINT_V1.md`
+
+If authority and the exact repo-owned preflight are both satisfied, continue to normal publication without adding another lifecycle layer.
 
 ## 17. Publication boundary
 
 Normal non-force `git push` is allowed in the accepted autonomous path.
 
-Before publication, the effective credential/transport must have the capability required by the changed artifacts. Generic GitHub authentication is not proof of workflow-modification authority. When workflow files changed, verify the actual publication credential has the GitHub capability required for that push (for classic OAuth/PAT flows this may include `workflow`; other credential types may express it differently).
+Before publication, the effective credential/transport must satisfy the publication capabilities declared by the repository preflight manifest. Atenea MUST NOT infer credential requirements from file extensions.
 
-If GitHub rejects publication for missing credential capability, preserve the exact candidate and repair the credential boundary. Do not reconstruct commits through another API or remove required workflow changes merely to bypass the permission.
+For the current `git+gh` transport, `checkpoint-preflight/v1` may declare inspectable GitHub OAuth scopes. If a declared capability is missing or cannot be proven, STOP before push.
+
+If GitHub rejects publication for missing credential capability, preserve the exact candidate and repair the credential boundary. Do not reconstruct commits through another API, remove required files, force-push or silently swap authentication methods merely to bypass the permission.
 
 When an interactive runtime permission asks only whether to perform an operation that current repository/Atenea authority already authorizes — such as the ordinary non-force push for the current branch — Pi SHOULD grant that operational permission without escalating it to the human.
 
 This rule does **not** apply to genuine human decisions, destructive/high-risk operations, scope changes, final merge or provider-owned consent envelopes emitted by the selected Gentle route. Those remain subject to their owning authority.
 
 Do not add a second Herdr/publication permission subsystem solely to mediate normal push.
+
+For PR delivery, the current deterministic seam is `tools/publish-checkpoint.mjs` under `docs/PUBLISH_CHECKPOINT_V1.md`. It may consume already-resolved authority/Gentle/Promotion Review evidence and execute only the mechanical publication path:
+
+```text
+exact local/base/head candidate
+→ exact repo-owned checkpoint preflight PASS
+→ declared credential capability PASS
+→ normal non-force push
+→ remote HEAD equality
+→ PR base/head/SHA/path equality
+→ bounded CI GREEN
+→ HUMAN_MERGE STOP
+```
+
+The command has no review START, force-push, commit-reconstruction or merge implementation.
 
 Repository delivery policy decides whether an accepted work unit ends at:
 
@@ -519,9 +548,11 @@ STOP rather than improvise when any material condition is unresolved, including:
 - inability to establish falsifiable acceptance for a requirement that needs it;
 - candidate/review state inconsistent with Gentle authority;
 - ASSESS unavailable/schema-incompatible or missing required provider timing fields for the exact candidate;
-- material changed artifact lacking required syntactic/build/delivery validation;
-- runtime-sensitive evidence that cannot be reconciled with the declared CI/runtime authority;
-- publication credential lacking capability required by the changed artifact;
+- repository checkpoint preflight missing, failed, malformed or bound to a different base/head/changed-path candidate;
+- runtime-sensitive evidence that the repository preflight cannot reconcile with declared CI/runtime authority;
+- publication credential lacking a capability explicitly required by the repository preflight;
+- local/remote/PR candidate identity drift during publication;
+- CI red/pending beyond the explicitly bounded wait policy;
 - material pre-publication authority change;
 - destructive publication/recovery being required;
 - publication partially succeeding without an explicit safe continuation.

@@ -23,7 +23,8 @@ Do not recover current execution policy from historical Stage files or `docs/ATE
 - Safe target-repository entry reconciliation: `docs/REPOSITORY_ENTRY_RECONCILIATION_V1.md`
 - Current role/model evidence ledger: `docs/ROUTING_EVIDENCE_LEDGER_V1.md`
 - Current work-unit composition / oversize-recovery policy: `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`
-- Changed-file-aware pre-publication validation: `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md`
+- Repo-owned pre-publication validation contract: `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md`
+- Deterministic publication/checkpoint recipe: `docs/PUBLISH_CHECKPOINT_V1.md`
 - Real GP3.3/GAI3.4 Laboratorio field evidence: `docs/LABORATORIO_PRIVACIDAD_GP33_FIELD_QUALIFICATION_20260921.md`
 - Normative harness/runtime boundaries: `docs/ATENEA_HARNESS_CONTRACT_V1.md`
 - Project-entry / start-or-continue procedure: `docs/START_HERE.md`
@@ -55,7 +56,7 @@ Do not recover current execution policy from historical Stage files or `docs/ATE
 - Atenea does not require one fresh child per external ticket. The parent retains external authority/frontier context; ODD may use fresh bounded workers internally when its runtime rules require them. Internal workers never gain publication/merge authority.
 - Gentle/provider owns final exact-candidate/RDD/reviewer/repair authority. The qualified GP3.3 host bridge may forward the exact current retained reviewer group without model reserialization, but it must not invent bindings or replace provider-issued refuter/validator routes.
 - The pre-GP2.7 plain-supervisor + pi-intercom + Atenea relay topology and T5 reviewer-continuation prompt injection remain historical rollback/regression evidence, not the normal current transport.
-- Before publication, validate the actual changed artifact types with repo-native or qualified upstream validators. Workflow YAML changes require a workflow/YAML parser; runtime-sensitive gates must distinguish local-host evidence from declared-CI-runtime evidence; publication credential capability must match the changed artifact. See `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md`.
+- Before publication, the target repository's declared checkpoint-preflight command owns changed-file-aware deterministic QA and must return `checkpoint-preflight/v1` PASS for the exact base/head/changed-path candidate. Atenea does not choose repo-specific validators. Use `docs/PUBLISH_CHECKPOINT_V1.md` for the deterministic normal-push/PR/CI seam.
 - Normal non-force push is allowed. No automatic merge or destructive history recovery.
 - For a high-risk human promotion/merge boundary, planning may require `docs/PROMOTION_REVIEW_V1.md`: fresh read-only Pi, exact full diff + explicit high-risk subset, zero blocking findings. It is conditional and never a second Gentle RDD lifecycle.
 - Material ambiguity, contradictory authority or unsafe drift => STOP rather than improvise.

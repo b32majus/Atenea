@@ -22,7 +22,9 @@ explicit execution authorization
 → later same-session/repository reviews: no second consent touch
 → explicit routed reviewer/refuter/validator work
 → APPROVED + acknowledgement/burn
-→ checkpoint → frontier → next child or STOP
+→ fresh authority revalidation + repo checkpoint-preflight/v1
+→ publish-checkpoint: non-force push + remote/PR/CI reconciliation
+→ frontier → next authorized work or STOP
 → final merge human unless separately authorized
 ```
 
@@ -41,13 +43,14 @@ For a new project or a resumed project:
 7. `docs/INSTALLATION_AND_OPERATION_V1.md` — provisioning, scopes and runtime verification
 8. `docs/ROUTING_EVIDENCE_LEDGER_V1.md` — current routing evidence classes and unresolved model-routing gaps
 9. `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` — pre-implementation reviewability budget, coherent slicing and oversized unpublished-history recovery
-10. `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md` — changed-file-aware deterministic publication validation
-11. `docs/OPERATOR_RUNBOOK_V1.md` — only once work is `EXECUTION_READY`
-12. `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md` — current pinned train mechanics
-13. `docs/QUALIFICATION.md` — field evidence/proven boundaries when needed
-14. `docs/LABORATORIO_PRIVACIDAD_GP33_FIELD_QUALIFICATION_20260921.md` — first real GP3.3/GAI3.4 product-train evidence
-15. `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md` — historical replacement evidence
-16. `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md` — local-state lifecycle/cleanup policy
+10. `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md` — repository-owned changed-file-aware checkpoint validation
+11. `docs/PUBLISH_CHECKPOINT_V1.md` — deterministic normal-push/PR/CI seam
+12. `docs/OPERATOR_RUNBOOK_V1.md` — only once work is `EXECUTION_READY`
+13. `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md` — current pinned train mechanics
+14. `docs/QUALIFICATION.md` — field evidence/proven boundaries when needed
+15. `docs/LABORATORIO_PRIVACIDAD_GP33_FIELD_QUALIFICATION_20260921.md` — first real GP3.3/GAI3.4 product-train evidence
+16. `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md` — historical replacement evidence
+17. `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md` — local-state lifecycle/cleanup policy
 
 ## 3. Three scopes — do not mix them
 
@@ -149,9 +152,13 @@ Gentle native exact-candidate RDD
         ↓
 provider acknowledgement/burn
         ↓
-authorized normal non-force publication
+fresh authority revalidation
         ↓
-conditional Promotion Review at a high-risk human promotion boundary
+repo-owned checkpoint-preflight/v1
+        ↓
+deterministic publish-checkpoint
+        ↓
+conditional Promotion Review only when human/Cora requires it at the promotion boundary
         ↓
 exact-head check
         ↓
@@ -176,7 +183,8 @@ High-frequency invariants:
 - later fresh validated grants in the same live session/canonical repository need no second consent touch;
 - reviewer/refuter/validator use explicit routes and exact provider-issued operation shapes;
 - APPROVED is incomplete until acknowledgement/burn;
-- pre-publication validation is changed-file-aware; workflow YAML, declared-CI-runtime parity and publication credential capability are validated when applicable;
+- pre-publication validation is repository-owned: one checkpoint-preflight/v1 PASS must match the exact base/head/changed-path candidate;
+- publish-checkpoint may perform only deterministic non-force push, remote/PR/CI reconciliation and then STOP at human merge;
 - no external supervisor, Atenea consent relay or RPA;
 - final merge remains human unless separately authorized.
 

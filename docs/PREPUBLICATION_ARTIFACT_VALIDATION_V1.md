@@ -7,65 +7,90 @@ Date: 2026-09-21
 
 Pre-publication evidence must validate the **artifacts that actually changed**, not only run a fixed generic test bundle.
 
-Atenea remains upstream-first. It does not implement a universal parser/build system. The parent derives required validation from:
+Atenea remains upstream-first. It does not implement a universal parser/build system or a changed-path-to-validator catalog.
 
-1. changed paths;
+The **target repository** owns the mapping from its changed paths to its required deterministic validators, based on:
+
+1. its changed paths;
 2. repository-declared CI/runtime authority;
 3. repo-native scripts/checks;
 4. qualified upstream validators when the repository lacks an equivalent.
 
-Missing required validation is explicit evidence and may be a STOP condition. It is never silently converted into PASS.
+The repository exposes that work through one deterministic checkpoint-preflight command returning `checkpoint-preflight/v1`.
+
+Atenea invokes that repo-owned command and requires an exact candidate-bound PASS. Missing required validation is explicit evidence and may be a STOP condition. It is never silently converted into PASS.
 
 ## 2. Required pre-publication sequence
 
 Immediately before ordinary non-force publication:
 
 ```text
-fresh exact candidate / HEAD check
-→ enumerate changed paths
-→ classify changed artifact types
-→ map each material artifact type to an applicable validator
-→ run repo-native / qualified upstream validators
-→ reconcile declared CI/runtime parity
-→ verify publication credential capability when the artifact requires it
-→ re-read publication authority
-→ publish only if all required evidence is satisfied
+fresh external-authority revalidation
+→ exact candidate / base / HEAD check
+→ invoke repo-owned checkpoint preflight
+→ require checkpoint-preflight/v1 PASS bound to exact base/head/changed paths
+→ enforce repo-declared publication requirements
+→ normal non-force publication
+→ remote/PR/CI reconciliation
+→ STOP at human merge
 ```
+
+The repo preflight itself owns changed-file classification, artifact validators and runtime-parity evidence.
 
 This does not create a second review lifecycle. Gentle exact-candidate RDD remains review authority; artifact validation is deterministic delivery evidence.
 
+Generic orchestration and contract: `docs/PUBLISH_CHECKPOINT_V1.md`.
+
 ## 3. Changed-file-aware validation
 
-Examples, not an exhaustive global gate list:
+The mapping is **repository-owned**, not Atenea-owned.
 
-| Changed artifact | Minimum evidence |
+A repository may decide, for example:
+
+| Changed artifact | Repo-owned minimum evidence |
 |---|---|
-| `.github/workflows/*.yml` or `.github/workflows/*.yaml` | Parse/validate workflow YAML with a repo-native validator or qualified upstream tool such as `actionlint`; syntax-only generic checks are insufficient if a stronger repo-native validator exists. |
+| `.github/workflows/*.yml` or `.github/workflows/*.yaml` | Parse/validate workflow YAML with a repo-native validator or qualified upstream tool such as `actionlint`. |
 | package/build configuration | Run the repository's declared config/build validation or smallest command that loads the changed configuration. |
 | generated schema/manifest | Validate with the owning generator/schema checker when available. |
 | deployment descriptors | Run the platform/repo validator that actually parses that descriptor. |
 | source/tests only | Existing repo-defined deterministic tests/build/type checks as applicable. |
 
-Do not add a giant permanent gate matrix merely because Atenea knows many artifact types. Add/require a validator only when the current diff makes that artifact relevant.
+These are examples for repository authors. `publish-checkpoint` contains no extension/path catalog and does not choose which validator applies.
 
-## 4. Workflow YAML rule
+Do not add a giant permanent gate matrix merely because Atenea has observed many artifact types.
 
-If the changed path set includes `.github/workflows/*.yml` or `.yaml`:
+## 4. Repository example: workflow YAML
 
-1. a YAML/workflow parser must run before push;
+A repository whose changed-path policy treats `.github/workflows/*.yml` or `.yaml` as requiring workflow validation should:
+
+1. run a YAML/workflow parser before reporting checkpoint PASS;
 2. prefer repo-native `actionlint` or equivalent upstream tooling;
-3. if no suitable validator is installed/configured, report that gap explicitly rather than declaring the candidate publication-ready;
-4. do not rely on `git diff --check`, tests or LLM review as substitutes for parsing the workflow artifact.
+3. report a missing required validator as preflight FAIL;
+4. not rely on `git diff --check`, tests or LLM review as substitutes for parsing the workflow artifact.
 
-The Laboratorio field train demonstrated why: an unquoted colon in a workflow step name passed product tests, `git diff --check` and four-lens review, then GitHub Actions rejected the workflow before execution.
+This mapping remains inside that repository's checkpoint preflight. Atenea does not independently rediscover the workflow rule.
+
+The Laboratorio field train demonstrated why the repo needs such a rule: an unquoted colon in a workflow step name passed product tests, `git diff --check` and four-lens review, then GitHub Actions rejected the workflow before execution.
 
 ## 5. Publication credential capability
 
 Authentication success is not the same as authority for every changed artifact.
 
-When publication includes workflow changes, verify that the **actual credential/transport used for the push** has the permission GitHub requires for workflow modification.
+The repository checkpoint manifest may declare capabilities required by the changed artifacts. For the current `git+gh` transport, one supported generic declaration is:
 
-For classic OAuth/PAT flows this may include the `workflow` scope; other credential types may express the capability differently. Atenea MUST NOT hard-code one authentication scheme as universal.
+```json
+{
+  "publication_requirements": {
+    "github": {
+      "oauth_scopes": ["workflow"]
+    }
+  }
+}
+```
+
+Atenea then verifies that the **actual credential/transport used for the push** satisfies the declared requirement when it can inspect that capability.
+
+For classic OAuth/PAT flows this may include the `workflow` scope; other credential types may express capability differently. Atenea MUST NOT infer a scope from file extensions or hard-code one authentication scheme as universal.
 
 If publication is rejected for missing capability:
 
