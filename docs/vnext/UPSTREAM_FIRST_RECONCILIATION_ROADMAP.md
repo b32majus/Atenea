@@ -255,6 +255,8 @@ Possible outcomes:
 - keep current shaping only if evidence clearly beats simpler paths;
 - remove the pre-Gentle framework if native ODD consistently performs as well or better.
 
+**P3 completed 2026-09-21.** Decision: minimal semantic contract → native Gentle is the default execution-ready seam; native ODD direct is allowed for already-unambiguous work; Matt becomes optional discovery/shaping; OpenSpec remains optional native SDD when durable specs/change history are themselves valuable. Evidence: `docs/vnext/P3_SHAPING_DECISION.md`. Further benchmark repetition was stopped deliberately for cost control.
+
 ### Phase 4 — Rebuild positively from Golden Control
 
 Do **not** slim the historical runtime in place.
