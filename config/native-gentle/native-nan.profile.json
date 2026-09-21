@@ -1,0 +1,44 @@
+{
+  "schema": "atenea.native-gentle-profile/v1",
+  "name": "native-nan",
+  "status": "qualified-compatibility-profile",
+  "qualified_at": "2026-09-21",
+  "provider": "nan",
+  "notes": [
+    "This is a secret-free desired-state specification for Gentle native routing. Gentle remains the runtime owner.",
+    "Reviewer thinking=low is a compatibility mitigation for NaN reasoning_only_stream malformed SSE truncation observed on long reviewer prompts.",
+    "Do not infer API keys, base URLs or credentials from this file."
+  ],
+  "roles": {
+    "review-risk": {
+      "model": "nan/glm5.3-flash",
+      "thinking": "low"
+    },
+    "review-readability": {
+      "model": "nan/glm5.3-flash",
+      "thinking": "low"
+    },
+    "review-reliability": {
+      "model": "nan/glm5.3-flash",
+      "thinking": "low"
+    },
+    "review-resilience": {
+      "model": "nan/glm5.3-flash",
+      "thinking": "low"
+    },
+    "review-refuter": {
+      "model": "nan/glm5.3-flash",
+      "thinking": "low"
+    },
+    "review-validator": {
+      "model": "nan/glm5.3-flash",
+      "thinking": "low"
+    }
+  },
+  "evidence": {
+    "p0": "docs/vnext/P0_NATIVE_GENTLE_QUALIFICATION_20260921.md",
+    "upstream_gentle_issue": "https://github.com/Gentleman-Programming/gentle-shell/issues/1259",
+    "upstream_pi_issue": "https://github.com/earendil-works/pi/issues/9718"
+  },
+  "retirement_condition": "Re-evaluate reviewer effort after NaN/Pi reasoning-only truncation is fixed and a bounded exact-prompt canary passes at a higher intended effort."
+}
