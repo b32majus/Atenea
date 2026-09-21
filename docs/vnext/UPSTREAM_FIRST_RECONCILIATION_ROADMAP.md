@@ -91,19 +91,23 @@ Goal: allow productive PROMueve work again without waiting for the whole archite
 
 Tasks:
 
-- [ ] Preserve the current installed Atenea-era environment for evidence; do not destructively clean it yet.
-- [ ] Turn the validated clean-room recipe into a durable, reproducible native Gentle installation/profile on the VPS.
-- [ ] Keep the recovery path free of Atenea runtime bridges, custom reviewers and historical RDD adapters.
-- [ ] Configure NaN exactly through its supported Pi provider contract.
-- [ ] Verify `gentle-ai doctor`.
-- [ ] Re-run the Golden Control canary with correct stdin handling.
-- [ ] Run one bounded real PROMueve task before declaring the path operational.
-- [ ] Record exact global vs repo-local state used by the operational path.
-- [ ] Keep rollback to the preserved pre-vNext environment until the real-project canary passes.
+- [x] Preserve the current installed Atenea-era environment for evidence; do not destructively clean it yet.
+- [x] Turn the validated clean-room recipe into a durable, reproducible native Gentle installation/profile on the VPS.
+- [x] Keep the recovery path free of Atenea runtime bridges, custom reviewers and historical RDD adapters.
+- [x] Configure NaN exactly through its supported Pi provider contract.
+- [x] Verify `gentle-ai doctor`.
+- [x] Re-run the Golden Control canary with correct stdin handling.
+- [x] Run one bounded real PROMueve task before declaring the path operational.
+- [x] Record exact global vs repo-local state used by the operational path.
+- [x] Keep rollback to the preserved pre-vNext environment until the real-project canary passes.
 
 Exit criterion:
 
 > A normal PROMueve repo can use Pi + native Gentle + NaN reliably, with native delegation, tests and RDD, without depending on Atenea runtime glue.
+
+**Qualified 2026-09-21.** Evidence and reviewer-routing diagnosis: [`P0_NATIVE_GENTLE_QUALIFICATION_20260921.md`](./P0_NATIVE_GENTLE_QUALIFICATION_20260921.md).
+
+Operational note: real PROMueve review exposed a NaN `reasoning_only_stream` truncation frame that is not valid JSON under the OpenAI-compatible stream. The same exact reviewer prompt failed on GLM default, DeepSeek default and GLM medium, but passed on GLM low. The native `native-nan` profile therefore pins review roles to `thinking: low` until the upstream/provider behavior changes.
 
 ### Phase 1 — Functional audit of Atenea as it exists today
 
@@ -350,8 +354,8 @@ After qualification:
 
 Ordered strictly:
 
-- [ ] **P0.1** Convert the current successful clean-room setup into a durable native VPS profile for PROMueve.
-- [ ] **P0.2** Qualify that profile with one real bounded PROMueve task.
+- [x] **P0.1** Convert the current successful clean-room setup into a durable native VPS profile for PROMueve.
+- [x] **P0.2** Qualify that profile with one real bounded PROMueve task.
 - [ ] **P1.1** Inventory all active Atenea runtime/config surfaces, including global/local interactions.
 - [ ] **P1.2** Build the capability reconciliation matrix.
 - [ ] **P1.3** Identify obvious upstream replacements/deletions without deleting yet.
