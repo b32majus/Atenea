@@ -60,9 +60,9 @@ No Atenea runtime compatibility bridge survives P4 as active production machiner
 
 Current compatibility seams are documented policy only; they are not an Atenea patching framework.
 
-## E. Remove from active vNext tree
+## E. Archived from the active vNext tree
 
-After Phase 4/6 qualification:
+P5 moved the following superseded runtime surfaces under `historical/runtime/` (or otherwise out of the active runtime path) after P4/P6 qualification:
 
 - `extensions/atenea-rdd-consent-relay.mjs`;
 - `tools/check-atenea-rdd-consent-relay.mjs`;

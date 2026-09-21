@@ -317,6 +317,8 @@ Principle:
 
 But deterministic oracles produce **evidence**, not Gentle review authority.
 
+**P5 completed 2026-09-22.** Superseded runtime relays, bridge patches, effective-mode fixtures and historical runtime/profile checks were moved under `historical/runtime/` (~3,150 lines) rather than left on the active path. Native doctor, profile/authority oracles and Pi+Gentle+NaN smoke all remained green. Evidence: `docs/vnext/P5_OPERATIONAL_SIMPLIFICATION_20260922.md`.
+
 ### Phase 6 — Final VPS cleanup and reproducible reinstall
 
 Only after the minimal stack is known and qualified.
