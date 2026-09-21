@@ -2,7 +2,7 @@
 
 This file contains Atenea's stable repo-local horizontal engineering guardrails.
 
-It does **not** define an execution sequence. Task-specific engineering methods are owned by the upstream Matt Pocock skills and should be used when their own triggers apply. Machine-decidable rules belong in deterministic repo tooling. Gentle native RDD remains the final exact-candidate review authority on the unattended Atenea path.
+It does **not** define an execution sequence or require one permanent shaping, TDD, delegation or review methodology. Adopted upstream workflows may add task-specific procedures when they are explicitly active; these standards remain in force regardless of method. Machine-decidable rules belong in deterministic repo tooling. This file is engineering policy, not a second execution or review lifecycle.
 
 ## 1. Keep changes scoped
 
@@ -64,7 +64,7 @@ Prefer deterministic verification that can independently disagree with the imple
 
 Do not add tautological tests or checks that merely restate the implementation.
 
-Use the upstream TDD method when its trigger applies. Do not force TDD for wiring-only, generated, declarative or purely visual changes when it would provide no independent oracle.
+When test-first/TDD is explicitly active, follow the adopted upstream method. Do not infer TDD merely because tests exist, and do not force it for wiring-only, generated, declarative or purely visual changes when it would provide no independent oracle.
 
 Negative and adversarial verification should be proportional to actual risk, especially around authorization, parsing, trust boundaries, migrations, failure/retry behavior, state transitions and destructive operations.
 
@@ -104,8 +104,40 @@ Do not pre-emptively introduce caches, queues, sharding, microservices, distribu
 
 For Atenea, "scalable" means the software can be understood, modified, tested, operated and extended without each change multiplying fragility.
 
+## 12. Validate and canonicalize once at boundaries
+
+Treat user input, files, APIs, tool output, environment values and external protocol payloads as untrusted until they have crossed an explicit validation boundary.
+
+Validate structural and semantic requirements as early as practical, then carry the validated/canonical representation forward. Do not independently rediscover, rematch or renormalize the same durable fact in multiple layers with subtly different rules.
+
+When aliases, names or identifiers may map to one canonical entity, resolve them once. Ambiguous matches must fail explicitly rather than silently selecting the first plausible candidate.
+
+Preserve original identity/provenance when it is needed for diagnostics, audit or round-tripping; canonicalization must not erase evidence required to explain what was received.
+
+## 13. Configuration and environment must be reproducible
+
+Behavior-affecting configuration should be explicit, inspectable and reproducible without copying an opaque machine or home directory.
+
+Prefer secret-free desired-state configuration plus separately supplied credentials over undocumented global mutations, inherited shell variables or ambient defaults.
+
+If runtime behavior materially depends on a profile, feature flag, environment variable or compatibility override, make that dependency discoverable and verifiable before execution.
+
+Temporary configuration overrides must state why they exist, what evidence qualified them and what condition retires them.
+
+Fail visibly when required configuration is stale, incompatible or missing; do not silently fall back to a materially different execution mode.
+
+## 14. User-facing interfaces must remain operable and accessible
+
+When a change affects a user-facing interface, accessibility is part of correctness rather than optional polish.
+
+Prefer semantic controls and native interaction behavior. Preserve keyboard operability, visible focus, meaningful labels, readable error/state communication and layouts that do not require color alone to convey meaning.
+
+Respect user motion/reduced-motion preferences when motion is introduced, and avoid introducing horizontal overflow or interaction traps without a justified product requirement.
+
+Use deterministic accessibility checks where they provide real evidence, but do not treat automated checks as proof of complete accessibility.
+
 ## Review interpretation
 
-Upstream Matt `code-review` may consume this file as the repository Standards axis when that skill is explicitly invoked. This does not make Matt `code-review` part of the default autonomous execution lifecycle.
+Any adopted reviewer or engineering skill may consume this file as repository-specific standards.
 
-Repo standards here override generic preferences where they conflict. Gentle native RDD remains the default final candidate review authority; this file is engineering policy, not a second review lifecycle.
+Repo standards here override generic methodology preferences where they conflict. A tool may report against these standards, but this file does not grant that tool execution, publication or merge authority.
