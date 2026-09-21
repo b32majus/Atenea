@@ -1,8 +1,8 @@
 # Atenea vNext — Target File Manifest
 
-Status: **P2 TARGET MANIFEST / NO DELETIONS APPLIED**
+Status: **P4 QUALIFIED TARGET / P5 SIMPLIFICATION NEXT**
 
-Date: 2026-09-21
+Date: 2026-09-22
 
 This file translates the P1 capability matrix into a concrete target-tree decision.
 
@@ -13,8 +13,8 @@ This file translates the P1 capability matrix into a concrete target-tree decisi
 | `CODING_STANDARDS.md` | KEEP, minimal edits only for stale wording |
 | `AGENTS.md` | REWRITE to stable policy delta + phase-scoped shaping + short native execution pointer |
 | `README.md` | REWRITE as thin vNext front door |
-| `skills-lock.json` | KEEP pending Phase 3 |
-| `.agents/skills/*` | KEEP UNCHANGED pending Phase 3 |
+| `skills-lock.json` | KEEP while optional Matt skills remain adopted; not part of normal runtime |
+| `.agents/skills/*` | KEEP as optional shaping/discovery capability; not a mandatory execution prelude |
 | `docs/REPOSITORY_ENTRY_RECONCILIATION_V1.md` | KEEP/SIMPLIFY |
 | `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` | KEEP/SIMPLIFY |
 | `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md` | KEEP; move machine facts to oracles/CI |
@@ -48,15 +48,17 @@ These are deterministic evidence tools, never lifecycle controllers.
 | `tools/check-current-authority.mjs` | replace historical assertions with vNext authority assertions |
 | `tools/check-nan-runtime-config.mjs` | replace hard-coded old role matrix/OpenCode authority with native profile conformance |
 
-## D. Temporary compatibility only
+## D. Historical compatibility artifacts
 
-| Surface | Retirement condition |
+No Atenea runtime compatibility bridge survives P4 as active production machinery.
+
+| Surface | P5/P7 action |
 | --- | --- |
-| `patches/gentle-pi-3.3.0-atenea-assess-bridge.patch` | remove when upstream committed-range ASSESS regression passes |
-| assess portion of `tools/apply-gentle-330-atenea-host-bridge.sh` | same |
-| associated #90 regression evidence | keep as historical/test evidence after fix |
+| `patches/gentle-pi-3.3.0-atenea-assess-bridge.patch` | archive from the active vNext surface; preserve provenance in Git history/evidence |
+| assess portion of `tools/apply-gentle-330-atenea-host-bridge.sh` | supersede from the active path; native fail-closed ASSESS handles #4791 safely |
+| associated #90 regression evidence | keep as historical/test evidence |
 
-Do not generalize this exception into a patching framework.
+Current compatibility seams are documented policy only; they are not an Atenea patching framework.
 
 ## E. Remove from active vNext tree
 
@@ -76,16 +78,23 @@ After Phase 4/6 qualification:
 
 Deletion from active tree does not mean deleting historical evidence from Git history.
 
-## F. Do not adjudicate until Phase 3
+## F. Phase 3 shaping decisions
 
-- all 37 Matt skills;
-- Matt greenfield shaping flow;
-- OpenSpec role;
-- Repository Intelligence provider policy;
-- UI/UX shaping stack.
+P3 is closed.
 
-## G. No active-runtime implementation belongs in P2
+- Matt skills remain optional discovery/shaping capability, not a mandatory execution prelude.
+- Matt greenfield shaping is optional when work is genuinely unshaped.
+- OpenSpec is optional native SDD when durable specifications/change history add value.
+- Repository Intelligence and UI/UX shaping support are not Minimal Core runtime requirements; retain/use them only when a concrete project need justifies them.
 
-P2 creates the target contract and secret-free profile spec only.
+## G. P4 qualification result
 
-Actual destructive pruning waits for the positive rebuild / cutover phases.
+P4 positively qualified:
+
+- stable policy;
+- the secret-free native Gentle profile specification;
+- deterministic authority/profile conformance oracles.
+
+No Atenea runtime controller, review controller, worker supervisor or routing engine was reintroduced.
+
+P5 may now simplify and archive superseded historical active surfaces. Provenance remains in Git history and retained evidence.

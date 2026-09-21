@@ -168,7 +168,7 @@ Confirm:
 11. no push/PR/merge authority assumed
 ```
 
-On the qualified VPS, `.atl/` is ignored in the user Git excludes file. A target repository may also ignore it explicitly, but do not create a candidate-side `.gitignore` halfway through work solely to hide Gentle runtime state.
+P4 qualification proved that a user-level Git exclude is **not sufficient** to prevent Gentle from creating a repository-local `.gitignore` for `.atl/`. Therefore every target repository used with Gentle should already ignore `.atl/` in its own `.gitignore` before candidate work begins. Do not let this file appear halfway through a candidate.
 
 Then start from the target worktree with:
 

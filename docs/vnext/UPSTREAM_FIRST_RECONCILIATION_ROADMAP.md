@@ -286,6 +286,15 @@ The canary should continue to verify at minimum:
 - acknowledgement/burn closes correctly;
 - no hidden Atenea lifecycle state appears.
 
+**P4 completed 2026-09-22.** Golden Control and stable-policy treatment both passed their hidden oracle and native review lifecycle through APPROVED → acknowledge-approved → authority burned. `CODING_STANDARDS.md` was proven to be consumed as native system policy without taking lifecycle authority. The versioned `native-nan` profile matches the live runtime, and two deterministic vNext conformance oracles now pass. P4 also removed an invalid residual `commandcode` provider and corrected the `.atl/` hygiene rule to require repo-local ignore. Evidence: `docs/vnext/P4_POSITIVE_REBUILD_QUALIFICATION_20260922.md`.
+
+P4 decision:
+
+- stable policy → KEEP;
+- secret-free native profile spec → KEEP;
+- deterministic conformance/oracles → KEEP;
+- Atenea runtime/review/worker/routing controllers → 0.
+
 ### Phase 5 — Operational simplification
 
 Move stable conventions to the cheapest reliable mechanism.

@@ -79,7 +79,7 @@ Operational decision:
 - never infer a lower risk tier;
 - never synthesize START or reconstruct review timing in Atenea.
 
-The VPS now ignores `.atl/` through the user Git excludes file. No Atenea ASSESS runtime bridge is part of the qualified path.
+A user-level Git exclude for `.atl/` was added during cutover, but P4 later proved that this alone does not prevent Gentle from creating a repository-local `.gitignore`. The final operational rule is stricter: target repositories must already ignore `.atl/` repo-locally before candidate work. No Atenea ASSESS runtime bridge is part of the qualified path.
 
 ## 5. Post-burn STATUS correction
 

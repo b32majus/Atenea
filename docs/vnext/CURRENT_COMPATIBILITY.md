@@ -71,7 +71,7 @@ clean worktree / intentional candidate only
 → call native gentle_review assess
 ```
 
-On the qualified VPS, `.atl/` is ignored through the user Git excludes file so Gentle local state does not need to create an accidental candidate-side `.gitignore`.
+P4 qualification proved that a user-level Git exclude alone does **not** stop Gentle from creating a repository-local `.gitignore` for `.atl/`. The qualified rule is therefore repo-local: `.atl/` must already be present in the target repository `.gitignore` before candidate work starts.
 
 Production rule:
 

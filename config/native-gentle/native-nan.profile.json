@@ -2,7 +2,7 @@
   "schema": "atenea.native-gentle-profile/v1",
   "name": "native-nan",
   "status": "qualified-compatibility-profile",
-  "qualified_at": "2026-09-21",
+  "qualified_at": "2026-09-22",
   "provider": "nan",
   "notes": [
     "This is a secret-free desired-state specification for Gentle native routing. Gentle remains the runtime owner.",
@@ -37,6 +37,8 @@
   },
   "evidence": {
     "p0": "docs/vnext/P0_NATIVE_GENTLE_QUALIFICATION_20260921.md",
+    "p4": "docs/vnext/P4_POSITIVE_REBUILD_QUALIFICATION_20260922.md",
+    "p6_cutover": "docs/vnext/P6_NATIVE_CUTOVER_QUALIFICATION_20260922.md",
     "upstream_gentle_issue": "https://github.com/Gentleman-Programming/gentle-shell/issues/1259",
     "upstream_pi_issue": "https://github.com/earendil-works/pi/issues/9718"
   },
