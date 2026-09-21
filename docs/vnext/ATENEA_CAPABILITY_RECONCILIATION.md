@@ -88,17 +88,27 @@ The current file mixes three legitimate but different sources:
 
 vNext should preserve 1 and 2 and minimize 3.
 
+**Lifecycle rule added 2026-09-21:**
+
+- Matt/OpenSpec shaping instructions are **phase-scoped**, not permanent runtime law.
+- During greenfield shaping they may legitimately guide spec/ticket production.
+- Once accepted durable specs/tickets/work orders exist and the project is execution-ready, those shaping instructions should no longer control normal implementation.
+- Do not re-run or re-inject shaping methodology merely because an old `AGENTS.md` still contains it.
+- Stable domain/safety/quality/Git constraints remain binding throughout the project lifecycle.
+- Gentle-specific execution prose should be reduced to the smallest supported pointer because Gentle's own upstream behavior/version changes faster than project policy.
+
 Target:
 
 ```text
 AGENTS.md
 ├── stable repo/domain/authority boundaries
 ├── stable engineering/safety delta
-├── Agent skills block generated/maintained by upstream setup
+├── phase-scoped shaping block only while shaping is active
+├── Agent skills block generated/maintained by upstream setup when relevant
 └── short pointer to supported Gentle execution
 ```
 
-It should not become a second Gentle manual.
+After shaping is complete, the runtime-facing `AGENTS.md` should not carry stale spec-generation ceremony or a duplicated Gentle manual.
 
 ## 4. Shaping layer — deliberately not decided in P1
 
