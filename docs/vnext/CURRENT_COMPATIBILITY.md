@@ -2,7 +2,7 @@
 
 Status: **CURRENT TRANSITIONAL EVIDENCE**
 
-Date: 2026-09-21
+Date: 2026-09-22
 
 This document contains version/provider-specific exceptions that are intentionally **not** part of stable `AGENTS.md` policy.
 
@@ -10,7 +10,7 @@ This document contains version/provider-specific exceptions that are intentional
 
 Qualified stack:
 
-- Pi 0.86.1
+- Pi 0.87.0
 - gentle-pi 3.3.0
 - Gentle AI 3.4.0
 - NaN OpenAI-compatible provider
@@ -49,76 +49,129 @@ Evidence:
 - Gentle Shell #1259 / #1167
 - Pi #9718
 
-## 2. Committed-range ASSESS projection/schema defect
+## 2. Committed-range ASSESS compatibility defect
 
-Tracked by:
+Canonical current upstream tracker:
+
+- Gentle AI #4791
+
+Historical related tracking:
 
 - Atenea #90
 - Gentle Shell #1175
 
-Some committed-range `gentle_review assess` paths can fail to decode/project otherwise-valid provider assessment/timing data.
+Some committed-range `gentle_review assess` calls can return `risk: unassessable` because the current Pi/Gentle controller cannot parse or obtain the native assessment envelope.
+
+Pre-ASSESS hygiene:
+
+```text
+clean worktree / intentional candidate only
+→ .atl/ already ignored before work begins
+→ no unrelated untracked runtime artifacts
+→ call native gentle_review assess
+```
+
+On the qualified VPS, `.atl/` is ignored through the user Git excludes file so Gentle local state does not need to create an accidental candidate-side `.gitignore`.
 
 Production rule:
 
 ```text
-ASSESS succeeds
-→ follow provider review_due / continuation
+ASSESS succeeds with a native risk tier
+→ follow the native plan / review_due semantics
 
-ASSESS fails / schema-incompatible / empty in this known seam
+ASSESS returns risk=unassessable plus a typed fail-closed plan
+→ follow that native plan
+→ writer self-verification when requested
+→ independent verifier when requested
+→ do not claim a lower risk tier
+
+ASSESS returns no typed safe continuation or ambiguous state
 → STOP
-→ do not synthesize START
-→ do not recreate review timing in Atenea
+→ preserve evidence
 ```
 
-Historical Atenea ASSESS bridge remains **TEMP_COMPAT evidence**, not part of Minimal Core.
+Never synthesize START from an ASSESS failure, reconstruct review timing in Atenea, or restore the historical ASSESS bridge as production runtime.
 
 Retirement condition:
 
-- stock supported Gentle handles the committed-range regression;
-- bounded regression canary passes;
-- patch is deleted.
+- stock supported Gentle/Pi handles the affected committed-range assessments;
+- bounded regression canary returns a native tier consistently;
+- no special hygiene beyond normal repository cleanliness is required.
 
-## 3. VPS historical HOME state
+## 3. Post-burn selectorless STATUS defect
 
-The normal production HOME still contains historical Atenea-era state, including:
+Tracked upstream:
 
-- active historical `atenea-one-touch` profile/routing;
-- legacy Herdr RDD-consent plugin enabled in Herdr config;
-- old global/project configuration from prior Atenea epochs.
+- Gentle AI #4771
 
-No active relay process was observed during P1, but the state is not considered clean.
+The final native canary reproduced `validate negotiated review status: unrelated target status is inconsistent` after a successful terminal acknowledgement.
 
-Current productive recovery/isolation path:
+Terminal rule:
 
 ```text
-gentle-native
+review.acknowledge-approved
+→ status=closed
+→ authority=burned
+→ burn_evidence=gentle-ai.review-acknowledged/v1
 ```
 
-This launcher uses the isolated qualified native HOME.
+That response is terminal review evidence.
 
-It is a migration tool, not target architecture.
+Do **not** call selectorless STATUS merely to prove that the burn happened. The burn response plus persisted terminal-consumption evidence is sufficient.
 
-Retirement condition:
+A post-burn selectorless STATUS failure does not reopen the review, invalidate the burn, or justify a second review of the unchanged candidate. Do not add an Atenea repair/controller around this seam.
 
-- controlled Phase 6 cleanup/reinstall completes;
-- ordinary HOME reproduces the qualified upstream-native stack;
-- rollback evidence is preserved.
+## 4. VPS cutover state
 
-## 4. Engram
+The final clean reinstall is now the normal productive path:
+
+```text
+ordinary pi
+→ gentle-pi 3.3.0
+→ Gentle AI 3.4.0
+→ NaN
+→ native ODD / workers / verify / RDD
+```
+
+Qualified facts:
+
+- HOME is not an accidental Git repository;
+- no global `AGENTS.md` is required;
+- historical Atenea/pi-intercom environment variables are removed;
+- the historical Atenea RDD-consent plugin is absent;
+- Herdr remains allowed as a session persistence/operator host, not review authority;
+- `gentle-ai doctor` passes 8/8;
+- Pi → NaN and Pi + Gentle → NaN smokes pass;
+- the final native RDD canary reached reviewer APPROVED, `acknowledge-approved`, and `authority: burned`.
+
+The historical `gentle-native` isolated launcher was a migration/qualification tool. It is no longer the normal production entry point.
+
+Rollback evidence remains preserved; do not delete it merely because the new path is qualified.
+
+## 5. Engram
 
 Engram is auxiliary only.
 
-Current experiments have observed ownership/reachability failures while native ODD continued using local durable tracking.
+Final cutover diagnosis found one stale pre-cutover `engram serve` process that:
+
+- predated the clean reinstall;
+- was executing a deleted binary inode;
+- still listened on the local Engram HTTP port;
+- retained an obsolete PROMueve worktree as its cwd.
+
+After terminating that stale process, the current Engram MCP remained healthy. A real Pi `mem_search` call spawned the current HTTP server from the current binary and returned successfully.
 
 Rule:
 
 - never treat Engram as product/spec/review authority;
 - an Engram outage must not silently destroy durable repository progress;
-- product correctness must not depend on memory availability.
+- product correctness must not depend on memory availability;
+- a server whose executable is deleted or whose cwd belongs to obsolete runtime state is stale;
+- validate memory with both `gentle-ai doctor` and an actual `mem_search` canary after reinstall.
 
 No Atenea Engram controller is planned.
 
-## 5. Benchmark-only profile
+## 6. Benchmark-only profile
 
 P3 may use a temporary profile such as `benchmark-nan-low` to keep provider reasoning behavior constant across experiment arms.
 

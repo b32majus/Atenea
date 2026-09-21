@@ -245,30 +245,40 @@ The following are **not Minimal Core**:
 - historical train recipes;
 - old profile variants;
 - GP3.3 host bridge once equivalence is confirmed;
-- committed-range ASSESS patch after upstream #1175/#90 is fixed.
+- historical committed-range ASSESS patch/bridge; current production uses native fail-closed behavior while upstream #4791 remains open.
 
 Historical evidence may remain available without being part of the active read path.
 
 ## 8. Temporary compatibility allowance
 
-One compatibility seam remains accepted:
+Two current upstream seams are accepted without adding Atenea runtime controllers.
 
-```text
-committed-range gentle_review assess
-```
+### Committed-range ASSESS
 
-Reason:
-
-Gentle Shell #1175 / Atenea #90 remain unresolved.
+Current tracker: Gentle AI #4791.
 
 Policy:
 
-- never build a parallel review controller around it;
-- STOP on schema/projection failure;
-- keep the smallest reversible compatibility patch only where actually required;
-- delete it once stock upstream passes the bounded regression.
+- ensure `.atl/` is ignored before candidate work starts;
+- keep unrelated untracked runtime artifacts out of the candidate;
+- when native ASSESS returns a real tier, follow it;
+- when it returns `risk=unassessable` plus a typed fail-closed plan, follow that plan and accept its independent verifier;
+- STOP only when no typed safe continuation exists or state is ambiguous;
+- never synthesize START or review timing in Atenea;
+- no Atenea ASSESS bridge is active in the qualified production path.
 
-This exception does not make patches a general Minimal Core feature.
+### Post-burn selectorless STATUS
+
+Current tracker: Gentle AI #4771.
+
+Policy:
+
+- native `acknowledge-approved` returning `status=closed` and `authority=burned` is terminal;
+- persisted terminal-consumption evidence is sufficient;
+- do not call selectorless STATUS merely to re-prove burn;
+- do not repeat review on the unchanged candidate because that redundant STATUS fails.
+
+These exceptions are compatibility notes, not Minimal Core features.
 
 ## 9. Herdr
 

@@ -4,7 +4,7 @@ Status: **WORKING PROGRAM / NOT YET NORMATIVE**
 
 Branch: `vnext/upstream-first-reconciliation`
 
-Date: 2026-09-21
+Date: 2026-09-22
 
 ## 0. Why this exists
 
@@ -312,22 +312,28 @@ But deterministic oracles produce **evidence**, not Gentle review authority.
 
 Only after the minimal stack is known and qualified.
 
-- [ ] Inventory current global state.
-- [ ] Inventory repo-local state.
-- [ ] Preserve secrets without copying obsolete configuration.
-- [ ] Preserve only required historical evidence.
-- [ ] Remove obsolete Pi/Gentle/Atenea extensions and hidden profiles.
-- [ ] Remove stale global `AGENTS.md` / config only after confirming intended replacements.
-- [ ] Reinstall Pi / Gentle / NaN from supported upstream paths.
+- [x] Inventory current global state.
+- [x] Inventory repo-local state.
+- [x] Preserve secrets without copying obsolete configuration.
+- [x] Preserve only required historical evidence.
+- [x] Remove obsolete Pi/Gentle/Atenea extensions and hidden profiles.
+- [x] Remove stale global `AGENTS.md` / config only after confirming intended replacements.
+- [x] Reinstall Pi / Gentle / NaN from supported upstream paths.
 - [ ] Add the qualified Atenea Minimal Core.
-- [ ] Run doctor + Golden Control.
-- [ ] Run real PROMueve qualification.
+- [x] Run doctor + Golden Control.
+- [x] Run real PROMueve qualification.
 - [ ] Document the exact installation recipe.
 - [ ] Verify another fresh clone can reproduce it.
 
 Exit criterion:
 
 > A clean machine or clean HOME can recreate the productive stack from documented upstream installs plus the small versioned Atenea layer.
+
+**VPS cutover completed and E2E-qualified 2026-09-22.** Ordinary `pi` is now the normal productive path. The final canary validated native worker enforcement, deterministic verification, native RDD consent, real `review-reliability`, APPROVED, `acknowledge-approved`, and `authority: burned`. Engram stale-process cleanup and the current-memory canary also passed.
+
+Evidence: `docs/vnext/P6_NATIVE_CUTOVER_QUALIFICATION_20260922.md`.
+
+Remaining Phase 6 work is reproducibility/documentation hardening, especially the exact fresh-machine recipe and an independent fresh-clone reproduction. It is not a reason to keep the historical isolated launcher as the production path.
 
 ### Phase 7 — Promote vNext and archive runtime history
 
@@ -364,10 +370,10 @@ Ordered strictly:
 - [x] **P1.2** Build the capability reconciliation matrix.
 - [x] **P1.3** Identify obvious upstream replacements/deletions without deleting yet.
 - [x] **P2.1** Draft the Minimal Core candidate.
-- [ ] **P3.1** Design the shaping A/B/C/D experiment.
+- [x] **P3.1** Design and close the shaping A/B/C/D experiment.
 - [ ] **P4.1** Start a fresh control and reintroduce only surviving capabilities.
 - [ ] **P5.1** Move stable procedural conventions to skills/oracles/CI.
-- [ ] **P6.1** Perform final VPS cleanup/reinstall.
+- [x] **P6.1** Perform final VPS cleanup/reinstall and native E2E cutover qualification.
 - [ ] **P7.1** Promote vNext documentation and archive superseded runtime surfaces.
 
 ## 6. Decision on repository strategy

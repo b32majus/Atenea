@@ -339,6 +339,6 @@ Runtime failures are recorded separately from shaping quality.
 
 Phase 3 does not block PROMueve.
 
-Production/project work continues through the P0-qualified `gentle-native` path.
+At the time of this P3 experiment, production/project work continued through the P0-qualified `gentle-native` migration path. After the P6 clean cutover, normal project execution uses ordinary `pi` as defined by `PROJECT_EXECUTION_HANDOFF_NATIVE_GENTLE.md`.
 
 The benchmark is isolated from live product branches and does not change the 37 Matt skills until the evidence is reviewed.

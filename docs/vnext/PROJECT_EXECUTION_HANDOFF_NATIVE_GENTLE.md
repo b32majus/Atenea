@@ -1,8 +1,8 @@
 # Project Execution Handoff — Native Gentle vNext
 
-Status: **OPERATIONAL / P0-QUALIFIED**
+Status: **OPERATIONAL / P6-CUTOVER-QUALIFIED**
 
-Date: 2026-09-21
+Date: 2026-09-22
 
 Audience: a fresh Cora / planning assistant / operator resuming an already-shaped Atenea project such as PROMueve, Symphonia or Laboratorio de Privacidad.
 
@@ -10,16 +10,16 @@ This handoff exists so a project does **not** need to reconstruct the Atenea mig
 
 ## 1. Current execution decision
 
-For already-shaped work, use the qualified native runtime:
+For already-shaped work, use the **ordinary clean production Pi/Gentle runtime**:
 
 ```text
-gentle-native
+pi
 ```
 
 Current qualified stack:
 
 ```text
-Pi 0.86.1
+Pi 0.87.0
 → Gentle Shell / gentle-pi 3.3.0
 → Gentle AI 3.4.0
 → native ODD
@@ -27,6 +27,8 @@ Pi 0.86.1
 → native RDD / reviewers
 → native acknowledge-approved / burn
 ```
+
+The isolated `gentle-native` launcher was a migration/qualification tool while the historical HOME was dirty. After the 2026-09-22 cutover it is no longer the normal execution entry point.
 
 Do **not** use the historical Atenea execution topology as the normal path.
 
@@ -41,7 +43,7 @@ For this transition, the following historical mechanisms are superseded for norm
 - historical model-routing wrappers;
 - manual recreation of Gentle review transitions.
 
-Herdr may still be used as an operator/session/observability surface where useful, but it is not execution or review authority.
+Herdr may still be used as an operator/session/observability surface, including persistent sessions, but it is not execution or review authority.
 
 ## 2. What a fresh project Cora must read
 
@@ -55,9 +57,10 @@ Before writing code:
 3. target repo `CODING_STANDARDS.md` if present;
 4. target repo's relevant test / CI / contribution instructions;
 5. this handoff;
-6. Atenea vNext P0/P1 evidence only when runtime/protocol ambiguity exists:
+6. Atenea vNext qualification evidence only when runtime/protocol ambiguity exists:
    - `docs/vnext/P0_NATIVE_GENTLE_QUALIFICATION_20260921.md`
    - `docs/vnext/ATENEA_CAPABILITY_RECONCILIATION.md`
+   - `docs/vnext/P6_NATIVE_CUTOVER_QUALIFICATION_20260922.md`
 
 Do **not** mine old Atenea stage/handoff files unless historical evidence is specifically needed.
 
@@ -160,18 +163,22 @@ Confirm:
 6. task/spec authority identified
 7. project AGENTS stable rules understood
 8. no shaping rerun required
-9. no push/PR/merge authority assumed
+9. .atl/ is already ignored before candidate work begins
+10. no unrelated untracked runtime artifacts are mixed into the candidate
+11. no push/PR/merge authority assumed
 ```
+
+On the qualified VPS, `.atl/` is ignored in the user Git excludes file. A target repository may also ignore it explicitly, but do not create a candidate-side `.gitignore` halfway through work solely to hide Gentle runtime state.
 
 Then start from the target worktree with:
 
 ```bash
-gentle-native
+pi
 ```
 
-The qualified launcher uses an isolated HOME and removes inherited historical Atenea / pi-intercom / stale Gentle-Pi environment variables.
+Ordinary production HOME is the qualified path after the 2026-09-22 clean reinstall.
 
-Do not replace it with ordinary production `pi` while the historical VPS HOME remains dirty.
+Do not resurrect historical Atenea environment variables, old profile pins or relay/plugin machinery around it.
 
 ## 6. Native profile
 
@@ -274,38 +281,76 @@ Rules:
 - approval is incomplete until native acknowledgement/burn succeeds;
 - reviewer failure is not permission to START/retry indefinitely.
 
-On first eligible review in a fresh Pi session/repository, the human may need to choose:
+On first eligible review in a fresh Pi session/repository, the human may need to choose a native host consent option such as:
+
+```text
+Review this change
+```
+
+or, when intentionally desired:
 
 ```text
 Review and allow this session
 ```
 
-That is native host consent.
+### Terminal burn rule
+
+When `review.acknowledge-approved` returns terminal evidence such as:
+
+```text
+status=closed
+authority=burned
+burn_evidence=gentle-ai.review-acknowledged/v1
+```
+
+the review lifecycle is complete.
+
+Do **not** call selectorless negotiated STATUS merely as a second proof that the burn occurred. Current upstream issue Gentle AI #4771 can make that post-burn STATUS fail with `unrelated target status is inconsistent` even though the burn already succeeded.
+
+The burn response plus persisted terminal-consumption evidence is sufficient. A post-burn STATUS defect must not cause a second review of the unchanged candidate or an Atenea repair shim.
 
 ## 11. Known TEMP_COMPAT exception — committed-range ASSESS
 
-One historical seam is **not yet fully retired**.
+Current canonical upstream tracker:
 
-Open defects:
+- Gentle AI #4791.
+
+Historical related tracking:
 
 - Gentle Shell #1175;
 - Atenea #90.
 
-Some committed-range `gentle_review assess` calls can still lose/fail to project schema-valid assessment data / timing.
+Some committed-range `gentle_review assess` calls can return `risk: unassessable` because the current controller cannot parse or obtain the native assessment envelope.
 
-Therefore:
+Before ASSESS:
 
 ```text
-ASSESS succeeds
-→ follow native review_due / continuation
-
-ASSESS fails / schema incompatible
-→ STOP
-→ do NOT synthesize START
-→ do NOT rebuild review timing in Atenea
+.atl/ already ignored
+→ clean worktree or deliberate candidate only
+→ no unrelated untracked runtime artifacts
+→ native gentle_review assess
 ```
 
-The old assess compatibility patch remains temporary evidence/debt until upstream resolves this seam. The isolated `gentle-native` productive path should otherwise remain glue-free.
+Then:
+
+```text
+ASSESS succeeds with a native tier
+→ follow the returned native plan / review_due semantics
+
+ASSESS returns risk=unassessable with a typed fail-closed plan
+→ follow that plan
+→ perform writer self-verification when requested
+→ run the independent verifier when requested
+→ do not claim a lower tier
+
+ASSESS has no typed safe continuation / ambiguous state
+→ STOP
+→ preserve evidence
+```
+
+Do **not** synthesize START, reconstruct review timing, or restore the historical Atenea ASSESS bridge.
+
+The qualified ordinary Pi path remains glue-free; this compatibility seam is handled by native fail-closed behavior while upstream #4791 remains open.
 
 ## 12. Verification
 
@@ -336,7 +381,7 @@ If the human explicitly authorizes publication, follow the target repository's r
 
 ## 14. PROMueve immediate operating rule
 
-PROMueve is qualified to use `gentle-native` now.
+PROMueve is qualified to use ordinary production `pi` now.
 
 When continuing PROMueve:
 
@@ -346,10 +391,11 @@ When continuing PROMueve:
 4. preserve clinical/safety/no-inference rules from PROMueve `AGENTS.md`;
 5. ignore its historical Atenea/Herdr execution topology;
 6. do not re-run greenfield shaping for existing accepted work;
-7. execute through `gentle-native`;
+7. execute through `pi`;
 8. let native Gentle own ODD/workers/verify/RDD;
-9. STOP on committed-range ASSESS defect rather than inventing a review transition;
-10. do not publish without explicit human publication authority.
+9. if committed-range ASSESS returns a typed `unassessable` fail-closed plan, follow its independent-verifier path rather than inventing review timing;
+10. treat successful `acknowledge-approved → authority=burned` as terminal; do not demand selectorless STATUS after burn;
+11. do not publish without explicit human publication authority.
 
 ## 15. Symphonia / Laboratorio immediate operating rule
 
@@ -365,7 +411,7 @@ re-read remote Git/GitHub authority
 → inspect any open local-only candidate evidence
 → decide explicitly what work still exists
 → start fresh worktree/session from correct base
-→ execute via gentle-native
+→ execute via pi
 ```
 
 If an old branch contains legitimate unpublished product work, preserve it as Git evidence and reconcile it deliberately; do not copy hidden Pi/session state forward.
@@ -374,15 +420,17 @@ If an old branch contains legitimate unpublished product work, preserve it as Gi
 
 Do not:
 
-- use ordinary historical production Pi as though it were clean;
+- resurrect the historical isolated `gentle-native` launcher as the normal path;
 - activate `atenea-one-touch` because an old repo pin asks for it;
 - start the old Atenea RDD relay;
-- depend on the enabled legacy Herdr RDD-consent plugin;
+- attach or depend on the legacy Herdr RDD-consent plugin;
 - launch pi-intercom for review consent;
 - rebuild custom reviewer continuation;
 - replay Matt/OpenSpec shaping on already-executable tickets by ritual;
 - treat Engram as product authority;
 - use an old conversation/session as the only source of task truth;
+- treat selectorless post-burn STATUS as required proof of a successful burn;
+- turn ASSESS unavailability into a hand-built START/review decision;
 - push/merge just because native RDD approved a candidate.
 
 ## 17. Short decision rule

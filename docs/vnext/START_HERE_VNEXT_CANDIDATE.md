@@ -49,10 +49,10 @@ Do not clean a brownfield repo merely because old tooling exists.
 
 Use native Pi/Gentle.
 
-During vNext VPS migration, use:
+After the qualified clean VPS cutover, use:
 
 ```bash
-gentle-native
+pi
 ```
 
 Native Gentle owns:
@@ -80,7 +80,10 @@ Follow native Gentle/provider transitions exactly.
 
 Do not invent review verdicts, START decisions or timing.
 
-Known exception: committed-range ASSESS defect (#1175/#90) remains fail-closed until upstream is fixed.
+Known compatibility seams:
+
+- committed-range ASSESS (#4791): keep `.atl/` ignored before work; if native ASSESS returns a typed `risk=unassessable` fail-closed plan, follow its independent-verifier path rather than synthesizing START;
+- post-burn STATUS (#4771): successful `acknowledge-approved → authority=burned` is terminal; do not call selectorless STATUS merely to prove the burn again.
 
 ## 6. Publish
 
