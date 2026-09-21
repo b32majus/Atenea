@@ -108,3 +108,34 @@ The pre-cutover HTTP Engram server was proven stale: it predated reinstall, its 
 ## 7. Qualification decision
 
 Ordinary `pi` is the normal productive entry point. Remaining compatibility debt is upstream-facing and fail-safe; none justifies restoring Atenea runtime controllers.
+
+## 8. Reproducibility closure
+
+P6 reproducibility was completed after the original cutover.
+
+Versioned additions:
+
+- `config/native-gentle/nan-provider.models.json` — secret-free NaN provider/model desired state;
+- `docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260922.md` — exact Pi/Gentle install, checksum, upstream component install, credential boundary, profile application and conformance recipe;
+- strengthened `tools/check-native-gentle-profile.mjs` — compares the live provider/profile against versioned desired state while ignoring only credential-bearing fields.
+
+The versioned provider desired state contains no API key.
+
+Fresh-clone reproduction:
+
+```text
+clone / checkout P6 candidate
+→ repo-local .atl/ ignore PASS
+→ ATENEA_NATIVE_GENTLE_PROFILE_CHECK=PASS
+→ ATENEA_VNEXT_AUTHORITY_CHECK=PASS
+→ Pi 0.87.0 PASS
+→ Gentle AI 3.4.0 PASS
+→ doctor 8/8 healthy
+→ NaN auth ready
+→ P6_FRESH_CLONE_OK
+→ git status clean
+```
+
+The fresh clone did not copy an old repository worktree, Atenea runtime plugin, historical bridge, session state, or old HOME.
+
+P6 exit criterion is satisfied.

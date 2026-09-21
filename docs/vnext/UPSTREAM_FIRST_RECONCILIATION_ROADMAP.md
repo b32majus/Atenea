@@ -330,11 +330,11 @@ Only after the minimal stack is known and qualified.
 - [x] Remove obsolete Pi/Gentle/Atenea extensions and hidden profiles.
 - [x] Remove stale global `AGENTS.md` / config only after confirming intended replacements.
 - [x] Reinstall Pi / Gentle / NaN from supported upstream paths.
-- [ ] Add the qualified Atenea Minimal Core.
+- [x] Add the qualified Atenea Minimal Core.
 - [x] Run doctor + Golden Control.
 - [x] Run real PROMueve qualification.
-- [ ] Document the exact installation recipe.
-- [ ] Verify another fresh clone can reproduce it.
+- [x] Document the exact installation recipe.
+- [x] Verify another fresh clone can reproduce it.
 
 Exit criterion:
 
@@ -344,7 +344,7 @@ Exit criterion:
 
 Evidence: `docs/vnext/P6_NATIVE_CUTOVER_QUALIFICATION_20260922.md`.
 
-Remaining Phase 6 work is reproducibility/documentation hardening, especially the exact fresh-machine recipe and an independent fresh-clone reproduction. It is not a reason to keep the historical isolated launcher as the production path.
+**P6 completed 2026-09-22.** The exact supported installation recipe is versioned, NaN provider/model desired state is secret-free, the Minimal Core is present, and a fresh clone independently passed both conformance oracles, Pi/Gentle version checks, doctor 8/8, NaN auth and a real `P6_FRESH_CLONE_OK` native smoke. No old HOME, Atenea runtime plugin, bridge or session state was copied.
 
 ### Phase 7 — Promote vNext and archive runtime history
 
