@@ -33,7 +33,7 @@ Atenea-owned routing engines: **0**.
 - **P4 — PASS:** positive rebuild; stable policy, secret-free profile desired state and deterministic oracles survived against Golden Control.
 - **P5 — PASS:** superseded runtime machinery archived from active path; native smoke/oracles remained green.
 - **P6 — PASS:** clean VPS cutover + exact install recipe + secret-free provider desired state + independent fresh-clone reproduction.
-- **P7 — promotion:** current repository front door is being promoted to the qualified vNext architecture.
+- **P7 — PASS:** vNext is promoted as current repository authority; historical runtime/qualification surfaces are explicitly non-operative, and the final fresh clone passed both conformance oracles, doctor/auth checks and `P7_FINAL_CLONE_OK`.
 
 ## Final native lifecycle evidence
 

@@ -1,6 +1,6 @@
 # P7 vNext Promotion — 2026-09-22
 
-Status: **PROMOTION CANDIDATE / FINAL CLONE GATE PENDING**
+Status: **PASS / P7 CLOSED**
 
 ## 1. Promotion scope
 
@@ -86,7 +86,7 @@ front-door stale-token scan = clean
 git diff --check = PASS
 ```
 
-The final gate is a fresh clone of the P7 commit followed by the same oracles, doctor/auth checks and a native Pi/Gentle smoke.
+The final gate was executed from a fresh clone of promotion commit `fb73f25`: both conformance oracles passed, Pi 0.87.0 and Gentle AI 3.4.0 matched, doctor returned 8/8 healthy, NaN auth was ready, historical boundaries were present, Git was clean, and the real native smoke returned `P7_FINAL_CLONE_OK`.
 
 ## 7. Superseded workarounds
 

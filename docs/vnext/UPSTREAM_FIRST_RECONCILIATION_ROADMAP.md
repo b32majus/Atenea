@@ -350,13 +350,15 @@ Evidence: `docs/vnext/P6_NATIVE_CUTOVER_QUALIFICATION_20260922.md`.
 
 After qualification:
 
-- [ ] Rewrite `START_HERE.md` around native Gentle + thin Atenea.
-- [ ] Replace/supersede the current harness contract where appropriate.
-- [ ] Rewrite installation/runbook docs.
-- [ ] Mark historical bridges, recipes and evidence explicitly historical.
-- [ ] Preserve decision provenance without leaving obsolete runtime code active.
-- [ ] Close superseded issues/workarounds.
-- [ ] Promote vNext from working program to current authority.
+- [x] Rewrite `START_HERE.md` around native Gentle + thin Atenea.
+- [x] Replace/supersede the current harness contract where appropriate.
+- [x] Rewrite installation/runbook docs.
+- [x] Mark historical bridges, recipes and evidence explicitly historical.
+- [x] Preserve decision provenance without leaving obsolete runtime code active.
+- [x] Supersede historical workarounds in current authority; keep still-valid upstream defect trackers open until upstream fixes land.
+- [x] Promote vNext from working program to current repository authority.
+
+**P7 completed 2026-09-22.** Promotion commit `fb73f25` was reproduced from a fresh clone: current front door present, both conformance oracles PASS, Pi 0.87.0 PASS, Gentle AI 3.4.0 PASS, doctor 8/8 healthy, NaN auth ready, historical boundaries present, and native smoke `P7_FINAL_CLONE_OK`. P0–P7 reconciliation is complete. Remote push/PR/merge remain a separate publication decision.
 
 ## 4. Golden rules during reconciliation
 
