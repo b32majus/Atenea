@@ -382,3 +382,15 @@ Reasons:
 A separate repository should be reconsidered only if the end product ceases to be meaningfully Atenea (for example, if it becomes a generic independent product rather than this project's policy/capability layer).
 
 Until then, the project is not “Atenea reborn elsewhere”; it is **Atenea becoming smaller, more upstream-native and more durable**.
+
+
+### P2 hardening addendum — 2026-09-21
+
+The stable policy surfaces were refined after comparing the adopted Matt skills, current OpenSpec behavior and installed Gentle 3.3 behavior:
+
+- `CODING_STANDARDS.md` is now methodology-agnostic and adds three durable horizontal rules: validate/canonicalize once at boundaries; make behavior-affecting configuration/environment reproducible; treat basic UI accessibility/operability as correctness when UI exists.
+- `AGENTS_VNEXT_CANDIDATE.md` now defines authority precedence and tool ownership explicitly. It is policy, not product spec/tool-state/runtime manual.
+- Matt's generated `## Agent skills` block is treated as upstream-owned metadata while relevant Matt skills survive.
+- current OpenSpec no longer needs an Atenea/OpenSpec marker block in project `AGENTS.md`;
+- installed Gentle 3.3 does not own/write project `AGENTS.md`;
+- version/provider-specific details moved to `docs/vnext/CURRENT_COMPATIBILITY.md` rather than polluting stable policy.
