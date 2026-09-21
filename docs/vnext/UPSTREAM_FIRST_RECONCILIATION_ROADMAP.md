@@ -156,6 +156,8 @@ Deliverable:
 
 `docs/vnext/ATENEA_CAPABILITY_RECONCILIATION.md`
 
+**Completed 2026-09-21.** P1 found that the durable value is concentrated in policy/standards/oracles, while historical relay/intercom/runtime glue is removable or upstream-owned. The committed-range ASSESS bridge remains a temporary compatibility exception pending upstream resolution.
+
 ### Phase 2 — Define the Atenea Minimal Core
 
 Do not implement until Phase 1 is substantially complete.
@@ -356,9 +358,9 @@ Ordered strictly:
 
 - [x] **P0.1** Convert the current successful clean-room setup into a durable native VPS profile for PROMueve.
 - [x] **P0.2** Qualify that profile with one real bounded PROMueve task.
-- [ ] **P1.1** Inventory all active Atenea runtime/config surfaces, including global/local interactions.
-- [ ] **P1.2** Build the capability reconciliation matrix.
-- [ ] **P1.3** Identify obvious upstream replacements/deletions without deleting yet.
+- [x] **P1.1** Inventory all active Atenea runtime/config surfaces, including global/local interactions.
+- [x] **P1.2** Build the capability reconciliation matrix.
+- [x] **P1.3** Identify obvious upstream replacements/deletions without deleting yet.
 - [ ] **P2.1** Draft the Minimal Core candidate.
 - [ ] **P3.1** Design the shaping A/B/C/D experiment.
 - [ ] **P4.1** Start a fresh control and reintroduce only surviving capabilities.
