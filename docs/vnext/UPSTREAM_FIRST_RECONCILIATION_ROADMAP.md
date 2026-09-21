@@ -185,12 +185,12 @@ Explicit non-goal unless new evidence proves otherwise:
 
 Questions to resolve:
 
-- [ ] Which coding/engineering standards materially improve outputs?
-- [ ] Which policies belong in `AGENTS.md` vs separate docs?
-- [ ] Which operations deserve a skill rather than repeated long prompts?
-- [ ] Which guarantees should be CI instead of agent prose?
-- [ ] Which evidence can be produced deterministically cheaper than by an LLM?
-- [ ] What, if anything, must remain global rather than repo-visible?
+- [x] Which coding/engineering standards materially improve outputs?
+- [x] Which policies belong in `AGENTS.md` vs separate docs?
+- [x] Which operations deserve a skill rather than repeated long prompts?
+- [x] Which guarantees should be CI instead of agent prose?
+- [x] Which evidence can be produced deterministically cheaper than by an LLM?
+- [x] What, if anything, must remain global rather than repo-visible?
 
 ### Phase 3 — Re-evaluate the pre-Gentle shaping layer
 
@@ -361,7 +361,7 @@ Ordered strictly:
 - [x] **P1.1** Inventory all active Atenea runtime/config surfaces, including global/local interactions.
 - [x] **P1.2** Build the capability reconciliation matrix.
 - [x] **P1.3** Identify obvious upstream replacements/deletions without deleting yet.
-- [ ] **P2.1** Draft the Minimal Core candidate.
+- [x] **P2.1** Draft the Minimal Core candidate.
 - [ ] **P3.1** Design the shaping A/B/C/D experiment.
 - [ ] **P4.1** Start a fresh control and reintroduce only surviving capabilities.
 - [ ] **P5.1** Move stable procedural conventions to skills/oracles/CI.
