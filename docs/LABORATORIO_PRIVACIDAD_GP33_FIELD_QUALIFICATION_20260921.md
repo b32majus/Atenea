@@ -1,3 +1,6 @@
+> **HISTORICAL / NON-OPERATIVE (vNext promoted 2026-09-22).**
+> Preserved for provenance and regression archaeology. Do not use this document to recover the current execution path. Start at README.md and docs/START_HERE.md.
+
 # Laboratorio_Privacidad_Clinica × Atenea GP3.3 / GAI3.4 — real field qualification
 
 Status: **CURRENT FIELD EVIDENCE**

@@ -1,8 +1,100 @@
-# Atenea — Current decisions after Stage 8
+# Atenea — Current Decisions
 
-Date: 2026-09-20
+Date: 2026-09-22
 
-This file is the short current decision index. Historical `docs/DECISIONS.md`, stage files and `docs/ATENEA_HANDOFF_20260830.md` remain evidence of how Atenea evolved, but their forward-looking status is superseded where it conflicts with this index, `README.md`, `docs/QUALIFICATION.md` or `docs/ATENEA_HARNESS_CONTRACT_V1.md`.
+This file preserves accepted decision provenance. **C-055 onward is the current vNext cutover authority** and supersedes older execution-topology decisions where they conflict.
+
+Historical `docs/DECISIONS.md`, Stage files, old run recipes and pre-vNext field evidence remain valuable provenance, but they do not define the current execution path.
+
+## C-055 — Atenea vNext is a thin policy/config/conformance layer
+
+**Accepted and promoted 2026-09-22.**
+
+Atenea owns zero execution controllers, zero review controllers, zero worker supervisors and zero routing engines.
+
+Current ownership:
+
+```text
+product meaning / acceptance → human + durable repository authority
+stable engineering policy     → AGENTS.md + CODING_STANDARDS.md
+execution lifecycle           → native Pi + Gentle
+machine-decidable facts       → deterministic tests/oracles/CI
+publication / merge           → target repository policy + human authority
+```
+
+Pre-vNext relays, bridges, patches and effective-mode fixtures are historical/non-operative.
+
+## C-056 — Ordinary Pi + native Gentle is the productive execution path
+
+**Accepted and qualified.**
+
+Qualified stack:
+
+```text
+Pi 0.87.0
+→ gentle-pi / Gentle Shell 3.3.0
+→ Gentle AI 3.4.0
+→ NaN
+→ native ODD / workers / verify / RDD
+```
+
+Normal entry point is `pi`.
+
+Herdr may provide persistent operator sessions/observability but does not own product, review or merge authority.
+
+The historical isolated `gentle-native` launcher is no longer the production entry point.
+
+## C-057 — Shaping is optional and phase-scoped
+
+**Accepted from P3.**
+
+Default execution-ready seam:
+
+```text
+minimal semantic execution contract
+→ native Gentle
+```
+
+Native ODD direct is valid for already-unambiguous work.
+
+Matt skills remain optional discovery/shaping capability.
+
+OpenSpec remains optional native SDD when durable specs/change history add material value.
+
+No shaping workflow is mandatory by ritual after executable authority exists.
+
+## C-058 — Reproducible desired state is secret-free and mechanically checked
+
+**Accepted from P4/P6.**
+
+Versioned desired state:
+
+- `config/native-gentle/nan-provider.models.json`;
+- `config/native-gentle/native-nan.profile.json`.
+
+Credentials remain local and are never committed.
+
+Conformance:
+
+```bash
+node tools/check-native-gentle-profile.mjs
+node tools/check-vnext-authority.mjs
+```
+
+The exact supported rebuild recipe is `docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260922.md`.
+
+## C-059 — Current compatibility seams do not justify Atenea runtime glue
+
+**Accepted.**
+
+Current temporary seams live in `docs/vnext/CURRENT_COMPATIBILITY.md`.
+
+- reviewer `thinking=low` is temporary NaN/Pi compatibility;
+- typed `risk=unassessable` ASSESS follows Gentle's fail-closed plan rather than an Atenea bridge;
+- `acknowledge-approved → authority=burned` is terminal; selectorless STATUS is not required afterward;
+- `.atl/` must be ignored repo-locally before candidate work.
+
+These are compatibility policies, not authorization to recreate historical Atenea controllers.
 
 ## C-001 — Atenea is a contract over upstream tools, not an orchestration product
 
@@ -917,16 +1009,15 @@ A graph/index never outranks source code, accepted product/spec authority, deter
 
 ## Current sequence
 
-1. human + Cora read current Atenea and target-project authority;
-2. shape/reconcile until a bounded item/train is explicitly `EXECUTION_READY`;
-3. verify GP3.3/GAI3.4 runtime, `atenea-one-touch` routing and exact repo/worktree state;
-4. start one visible persistent parent explicitly on `nan/glm5.3-flash` `high`;
-5. submit one bounded train prompt;
-6. before substantial writing, consume the workload forecast/task shape and resolve coherent work-unit composition or an explicit size exception under `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`;
-7. on the first valid review consent only, human selects `Review and allow this session`; ordinary review lifecycle stays on the Gentle Pi facade whenever the corresponding operation exists;
-8. let Gentle Shell/ODD own implementation/delegation/verification; after every substantial work-unit commit run native ASSESS and follow only provider-owned review transitions through APPROVED + acknowledgement/burn when due; unusable ASSESS is STOP, not START permission;
-9. later reviews in the same live Pi session/canonical repository use fresh validated grants without another review-consent touch;
-10. before publication, enumerate changed artifacts, run their applicable repo-native/upstream validators, reconcile declared-CI-runtime parity where material, and verify publication credential capability;
-11. re-read external authority between authorized units/frontiers and continue only while the next work remains inside the explicit authorization; otherwise STOP;
-12. final merge remains human unless separately authorized;
-13. new Atenea glue requires a demonstrated upstream ownership gap.
+1. read current target repository/product authority;
+2. if work is genuinely unshaped, use only the shaping needed to create durable executable authority;
+3. if executable authority already exists, do not rerun shaping by ritual;
+4. create/enter a clean worktree with repo-local `.atl/` ignore;
+5. start ordinary `pi`;
+6. let native Gentle own ODD, decomposition, workers, verify, work-unit commits and review routing;
+7. follow typed native ASSESS/review transitions exactly, including the documented fail-closed compatibility path when ASSESS is `unassessable`;
+8. when review applies, follow native reviewer/refuter/validator and acknowledge-approved through `authority=burned`;
+9. run deterministic checks appropriate to the changed artifact types;
+10. re-read external authority before taking another independent work item;
+11. publication/merge remains target-repository + human authority;
+12. new Atenea runtime glue requires new demonstrated upstream ownership evidence.

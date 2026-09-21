@@ -1,6 +1,6 @@
 # Atenea vNext — AGENTS candidate
 
-Status: **P2/P3 CANDIDATE — NOT CURRENT MAIN AUTHORITY**
+Status: **PROMOTED SOURCE CANDIDATE / SUPERSEDED BY ROOT `AGENTS.md` ON 2026-09-22**
 
 Atenea is a thin upstream-first policy and conformance layer over native engineering tools.
 

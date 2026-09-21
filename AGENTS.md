@@ -1,85 +1,207 @@
-# Atenea — Agent instructions
+# Atenea — Repository Policy
 
-Atenea is an upstream-first autonomous engineering harness. Do not invent a new controller, execution schema, review lifecycle or policy engine when an adopted upstream tool already owns the behavior.
+Status: **CURRENT AUTHORITY**
 
-## Front door
+Atenea is a thin upstream-first policy, configuration and conformance layer over native engineering tools.
 
-If you are a fresh agent/Cora trying to understand how Atenea currently works, read:
+This file defines stable repository policy. It is **not** a product specification, task tracker, runtime state store or duplicate Gentle manual.
 
-1. `README.md`
-2. `docs/NEWCOMER_QUICKSTART_V1.md`
-3. `docs/START_HERE.md`
-4. `docs/ATENEA_HARNESS_CONTRACT_V1.md`
-5. `docs/CURRENT_DECISIONS.md`
-6. `docs/INSTALLATION_AND_OPERATION_V1.md` for scopes/setup/verification
-7. `docs/OPERATOR_RUNBOOK_V1.md` only when work is already `EXECUTION_READY`
-8. `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md` for current pinned one-touch train mechanics
+Do not build or reintroduce an Atenea execution controller, worker supervisor, review lifecycle, routing engine or consent relay when the adopted upstream runtime already owns that behavior.
 
-Do not recover current execution policy from historical Stage files or `docs/ATENEA_HANDOFF_20260830.md`. They are evidence, not current forward-looking authority.
+## 1. Ownership
 
-## Current authority
+```text
+WHAT / WHY / acceptance / domain authority
+→ human + durable repository authority
 
-- Fast newcomer map (non-normative): `docs/NEWCOMER_QUICKSTART_V1.md`
-- Safe target-repository entry reconciliation: `docs/REPOSITORY_ENTRY_RECONCILIATION_V1.md`
-- Current role/model evidence ledger: `docs/ROUTING_EVIDENCE_LEDGER_V1.md`
-- Current work-unit composition / oversize-recovery policy: `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`
-- Changed-file-aware pre-publication validation: `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md`
-- Real GP3.3/GAI3.4 Laboratorio field evidence: `docs/LABORATORIO_PRIVACIDAD_GP33_FIELD_QUALIFICATION_20260921.md`
-- Normative harness/runtime boundaries: `docs/ATENEA_HARNESS_CONTRACT_V1.md`
-- Project-entry / start-or-continue procedure: `docs/START_HERE.md`
-- Current decisions: `docs/CURRENT_DECISIONS.md`
-- Operator execution path: `docs/OPERATOR_RUNBOOK_V1.md`
-- Current GP3.3 pinned train recipe: `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md`
-- Historical GP2.7 replacement evidence: `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md`
-- Current installation/environment verification: `docs/INSTALLATION_AND_OPERATION_V1.md`
-- Local worktree/qualification cleanup policy: `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md`
-- Historical T5 reviewer continuation regression contract: `docs/GENTLE_REVIEWER_CONTINUATION_V1.md`
-- Conditional independent human-boundary promotion audit: `docs/PROMOTION_REVIEW_V1.md`
-- Engineering quality: `CODING_STANDARDS.md`
-- Current qualification state: `docs/QUALIFICATION.md`
+stable engineering quality
+→ AGENTS.md + CODING_STANDARDS.md
 
-## High-frequency invariants
+shaping, only while genuinely active
+→ adopted shaping workflow
 
-- Before `EXECUTION_READY`: shaping is human-present, interactive and repo-native.
-- Human + Cora/planning surface decides whether the target is greenfield/brownfield and what shaping is actually needed.
-- Greenfield defaults to complete Matt Pocock upstream shaping.
-- Brownfield preserves repo-native authority; OpenSpec is delta-first when it materially adds value, not by ritual.
-- Repository Intelligence is optional derived evidence for sufficiently complex brownfields. Cora may recommend it; Pi must not invent/install it as an execution-time methodology decision.
-- From `EXECUTION_READY`: one persistent Pi + Gentle Pi 3.3 parent stays visible in Herdr; Gentle Shell/ODD owns internal classification, tasking, bounded delegation, verification, work-unit commits and risk/review routing inside the externally authorized work.
-- Before launching substantial implementation, read the available Review Workload Forecast/task shape and resolve composition **before writing** when over-budget risk is material. Default upstream planning budget is 400 authored changed lines unless an explicit session `review_budget_lines` overrides it. Under Atenea's default heuristic, ~401–600 is a soft overage for a still-coherent unit (without waiving any upstream-required `size:exception`); ~601–800 requires an explicit durable `size:exception`/coherence rationale; >800 is not an ordinary work unit and defaults to STOP/reslice unless a human explicitly authorizes an indivisibility exception. These are planning heuristics, never native `review_due` rules.
-- After every delegated/substantial work-unit commit, invoke `gentle_review` `assess` on that exact candidate and obey provider-owned `review_due`, `review_due_reason` and continuation. If review is due, follow `wrapper_continuation` to target-scoped STATUS before any START; if it is not due, do not manufacture START. External-ticket completion is never itself a review trigger, and Atenea must not recreate the provider's post-commit `review_due` decision with its own line-count heuristic.
-- **Facade-first review transport:** when a corresponding Gentle Pi `gentle_review` operation exists, ordinary review lifecycle operations MUST traverse that facade. Do not execute `gentle-ai review ...` through shell as a bypass and do not recreate provider/host consent with `ask_user_choice`. `inspect` is not a substitute for `ASSESS → wrapper continuation → target-scoped STATUS`.
-- Current review consent is **one-touch**: on the first eligible review the human selects `Review and allow this session`; later fresh validated grants in the same live session/canonical repository require no second consent touch.
-- Process restart/new/resume/fork/quit/revoke ends the permission; reload preserves it. Never synthesize the grant through prompt prose, RPA or internal APIs.
-- GP3.3 review lenses, refuter and targeted validator require explicit routing and their provider-issued operation shapes must be followed literally.
-- Atenea does not require one fresh child per external ticket. The parent retains external authority/frontier context; ODD may use fresh bounded workers internally when its runtime rules require them. Internal workers never gain publication/merge authority.
-- Gentle/provider owns final exact-candidate/RDD/reviewer/repair authority. The qualified GP3.3 host bridge may forward the exact current retained reviewer group without model reserialization, but it must not invent bindings or replace provider-issued refuter/validator routes.
-- The pre-GP2.7 plain-supervisor + pi-intercom + Atenea relay topology and T5 reviewer-continuation prompt injection remain historical rollback/regression evidence, not the normal current transport.
-- Before publication, validate the actual changed artifact types with repo-native or qualified upstream validators. Workflow YAML changes require a workflow/YAML parser; runtime-sensitive gates must distinguish local-host evidence from declared-CI-runtime evidence; publication credential capability must match the changed artifact. See `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md`.
-- Normal non-force push is allowed. No automatic merge or destructive history recovery.
-- For a high-risk human promotion/merge boundary, planning may require `docs/PROMOTION_REVIEW_V1.md`: fresh read-only Pi, exact full diff + explicit high-risk subset, zero blocking findings. It is conditional and never a second Gentle RDD lifecycle.
-- Material ambiguity, contradictory authority or unsafe drift => STOP rather than improvise.
-- Prefer complete upstream tools and public interfaces. Do not copy fragments of third-party skills/tool internals into Atenea.
+HOW to explore / decompose / delegate / verify / review
+→ native execution runtime (currently Pi + Gentle)
 
-## Repository Intelligence boundary
+deterministic facts
+→ tests / validators / oracles / CI
 
-CodeGraph/Graphify are current **candidate** upstream providers, not mandatory Atenea dependencies.
+publish / merge
+→ target repository policy + explicit human authority
+```
 
-- Existing healthy indexes may be used as derived context.
-- Do not auto-install/build an index merely because a repository is brownfield.
-- A graph/index never outranks source, accepted specs, deterministic tests, Gentle RDD or Git/GitHub authority.
-- Do not copy graph/index/watch/controller internals into Atenea.
+No methodology or runtime tool may silently invent product semantics, acceptance criteria, domain rules or publication authority merely because it needs them to proceed.
 
-## Agent skills / repo setup
+## 2. Authority precedence
 
-### Issue tracker
+When compatible sources overlap:
 
-Issues live as GitHub issues in this repo. See `docs/agents/issue-tracker.md`.
+1. accepted current product/domain authority — live specs, ADRs, accepted issues/work orders and canonical product docs;
+2. the currently authorized task/change artifacts derived from that authority;
+3. stable repository policy — this file, `CODING_STANDARDS.md`, contribution/security rules;
+4. active phase-specific methodology guidance;
+5. upstream tool defaults;
+6. historical docs, stale config, chat/session memory and remembered setups.
 
-### Triage labels
+A current human instruction may explicitly reopen or change higher-level authority.
 
-The five canonical triage roles use the default label strings. See `docs/agents/triage-labels.md`.
+Material conflict between current authorities => **STOP and reconcile** rather than silently choosing one.
 
-### Domain docs
+## 3. Read before changing Atenea
 
-Single-context layout: one `CONTEXT.md` plus `docs/adr/` at the repo root. See `docs/agents/domain.md`.
+Read:
+
+1. `README.md`;
+2. `docs/START_HERE.md`;
+3. `CODING_STANDARDS.md`;
+4. `docs/CURRENT_DECISIONS.md` / relevant ADRs;
+5. the specific accepted issue/work order/spec being executed.
+
+For runtime/version exceptions read:
+
+- `docs/vnext/CURRENT_COMPATIBILITY.md`.
+
+For provisioning/reproduction read:
+
+- `docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260922.md`.
+
+Historical stage documents and `historical/` are evidence, not forward-looking authority.
+
+## 4. Stable invariants
+
+- Upstream-first is operational, not rhetorical.
+- Prefer supported upstream behavior and public interfaces.
+- Do not copy or rebuild upstream lifecycle logic inside Atenea without a demonstrated unsupported seam.
+- Keep changes scoped to accepted authority.
+- Preserve one durable authority for each fact.
+- Machine-decidable invariants belong in deterministic tooling.
+- Review approval is not publication or merge authority.
+- No automatic merge, force-push or destructive history recovery.
+- Secrets never belong in repository config, prompts, logs or committed desired-state files.
+- Historical evidence may remain without remaining active runtime.
+- Hidden global state must not be the only place where behavior-affecting configuration is defined.
+- `.atl/` must be ignored repo-locally before Gentle candidate work begins.
+
+## 5. Shaping lifecycle
+
+Shaping is phase-scoped.
+
+If work is genuinely unshaped, use the smallest adopted workflow that produces durable executable authority.
+
+For already-shaped work:
+
+- do not regenerate specs/tickets by ritual;
+- do not rerun greenfield shaping merely because historical instructions describe it;
+- execute accepted authority through native Gentle.
+
+Current P3 decision:
+
+- minimal semantic execution contract → native Gentle is the normal execution-ready seam;
+- native ODD direct is valid when the task is already unambiguous;
+- Matt skills are optional discovery/shaping;
+- OpenSpec is optional native SDD when durable specs/change history add real value.
+
+## 6. Native execution ownership
+
+Atenea does **not** own:
+
+- ODD/exploration classification;
+- internal task decomposition;
+- worker delegation;
+- allowed-edit enforcement;
+- verification lifecycle;
+- work-unit commits;
+- RDD/risk/review timing;
+- reviewer/refuter/validator execution;
+- native review consent;
+- correction lifecycle;
+- acknowledgement/burn.
+
+Use supported native surfaces and follow provider/runtime-issued transitions.
+
+Do not reconstruct review state or transitions in prompt prose, shell glue or Atenea shadow state.
+
+Runtime decomposition may decide **how** accepted work is performed. It may not expand **what** the accepted authority authorized.
+
+## 7. Configuration
+
+Use the upstream runtime's native provider/model/profile configuration.
+
+Atenea versions secret-free desired state:
+
+- `config/native-gentle/nan-provider.models.json`;
+- `config/native-gentle/native-nan.profile.json`.
+
+Atenea does not implement model routing.
+
+Before a run where routing materially matters, validate with:
+
+```bash
+node tools/check-native-gentle-profile.mjs
+node tools/check-vnext-authority.mjs
+```
+
+Temporary version/provider exceptions live only in `docs/vnext/CURRENT_COMPATIBILITY.md`.
+
+## 8. Verification and engineering quality
+
+`CODING_STANDARDS.md` is the stable horizontal engineering-quality authority.
+
+Prefer deterministic evidence that can independently disagree with the implementation:
+
+- tests;
+- typecheck/build;
+- schema/YAML validation;
+- repository cleanliness;
+- changed-path checks;
+- secrets scanning;
+- runtime/profile conformance.
+
+Deterministic oracles produce evidence. They do not grant product, review, publication or merge authority.
+
+## 9. Review compatibility seams
+
+Current temporary seams are documented in `docs/vnext/CURRENT_COMPATIBILITY.md`.
+
+In particular:
+
+- a typed `risk=unassessable` ASSESS fail-closed plan is followed natively; Atenea does not synthesize START;
+- successful `acknowledge-approved → authority=burned` is terminal; selectorless STATUS is not required to re-prove burn;
+- reviewer `thinking=low` is temporary NaN/Pi compatibility, not the desired permanent reviewer architecture.
+
+## 10. Publication
+
+Before publication, validate the actual changed artifact types.
+
+Normal non-force push may be allowed by target repository policy.
+
+No automatic merge.
+
+A high-risk human promotion boundary may request an independent read-only audit, but that audit is evidence at the human boundary, not a second Gentle RDD lifecycle.
+
+## 11. Repository entry and resumption
+
+When entering or resuming a repository:
+
+- find current Git/GitHub/product authority first;
+- inventory old harness/tooling read-only;
+- classify signals as current / compatibility-required / historical / stale-or-unknown;
+- do not delete or reactivate old tooling by assumption;
+- do not resume stale hidden session state merely because it exists;
+- create a clean isolated execution surface when old sessions/worktrees are stale.
+
+Durable Git/GitHub/product evidence outranks remembered agent/session state.
+
+## 12. Agent skills / repo setup
+
+Matt Pocock skills remain optional discovery/shaping tools, not a mandatory runtime prelude.
+
+Generated metadata owned by an upstream skill should remain separable from Atenea stable policy.
+
+Repository setup references:
+
+- issue tracker: `docs/agents/issue-tracker.md`;
+- triage labels: `docs/agents/triage-labels.md`;
+- domain-doc layout: `docs/agents/domain.md`.
+
+Do not fork third-party skills into Atenea merely to freeze their internals.

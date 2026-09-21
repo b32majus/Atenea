@@ -1,3 +1,6 @@
+> **HISTORICAL / NON-OPERATIVE (vNext promoted 2026-09-22).**
+> Preserved for provenance and regression archaeology. Do not use this document to recover the current execution path. Start at README.md and docs/START_HERE.md.
+
 # Gentle Pi 3.3 / Gentle AI 3.4 — Q10/Q11 adoption evidence
 
 Date: 2026-09-20

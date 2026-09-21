@@ -1,6 +1,6 @@
 # Atenea vNext — START_HERE candidate
 
-Status: **P2 CANDIDATE — NOT CURRENT MAIN AUTHORITY**
+Status: **PROMOTED SOURCE CANDIDATE / SUPERSEDED BY `docs/START_HERE.md` ON 2026-09-22**
 
 ## 1. First question: is the work shaped?
 
