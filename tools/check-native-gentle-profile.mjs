@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const specPath = path.join(root, "config/native-gentle/native-nan.profile.json");
+const providerSpecPath = path.join(root, "config/native-gentle/nan-provider.models.json");
 const profilesPath = process.env.ATENEA_GENTLE_PROFILES_PATH ||
   path.join(os.homedir(), ".pi/gentle-ai/profiles.json");
 const modelsPath = process.env.ATENEA_GENTLE_MODELS_PATH ||
@@ -15,13 +16,27 @@ const providerModelsPath = process.env.ATENEA_PI_MODELS_PATH ||
 
 const readJson = (p) => JSON.parse(fs.readFileSync(p, "utf8"));
 const failures = [];
+const secretKeys = new Set(["apiKey", "api_key", "key", "token", "headers", "authorization", "auth"]);
+const normalize = (value) => {
+  if (Array.isArray(value)) return value.map(normalize);
+  if (value && typeof value === "object") {
+    return Object.fromEntries(
+      Object.entries(value)
+        .filter(([key]) => !secretKeys.has(key))
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([key, item]) => [key, normalize(item)])
+    );
+  }
+  return value;
+};
 
-for (const p of [specPath, profilesPath, modelsPath, providerModelsPath]) {
+for (const p of [specPath, providerSpecPath, profilesPath, modelsPath, providerModelsPath]) {
   if (!fs.existsSync(p)) failures.push(`missing required file: ${p}`);
 }
 
 if (failures.length === 0) {
   const spec = readJson(specPath);
+  const providerSpec = readJson(providerSpecPath);
   const profiles = readJson(profilesPath);
   const models = readJson(modelsPath);
   const providerModels = readJson(providerModelsPath);
@@ -63,6 +78,13 @@ if (failures.length === 0) {
 
   if (!providerModels.providers?.[spec.provider]) {
     failures.push(`provider ${spec.provider} is not registered in ${providerModelsPath}`);
+  } else {
+    const expectedProvider = providerSpec.providers?.[spec.provider];
+    if (!expectedProvider) {
+      failures.push(`provider desired state missing ${spec.provider} in ${providerSpecPath}`);
+    } else if (JSON.stringify(normalize(providerModels.providers[spec.provider])) !== JSON.stringify(normalize(expectedProvider))) {
+      failures.push(`provider ${spec.provider} differs from secret-free desired state ${providerSpecPath}`);
+    }
   }
 
   for (const [providerName, provider] of Object.entries(providerModels.providers ?? {})) {

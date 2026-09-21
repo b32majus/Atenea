@@ -29,6 +29,8 @@ const handoff = "docs/vnext/PROJECT_EXECUTION_HANDOFF_NATIVE_GENTLE.md";
 const compat = "docs/vnext/CURRENT_COMPATIBILITY.md";
 const minimal = "docs/vnext/ATENEA_MINIMAL_CORE_V1.md";
 const p6 = "docs/vnext/P6_NATIVE_CUTOVER_QUALIFICATION_20260922.md";
+const installRecipe = "docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260922.md";
+const providerSpec = "config/native-gentle/nan-provider.models.json";
 
 requireText(agents, "Atenea is a thin upstream-first policy and conformance layer", "thin-layer identity");
 requireText(agents, "Atenea does not own:", "native execution ownership");
@@ -57,6 +59,12 @@ requireText(minimal, "Deterministic conformance layer", "deterministic oracle la
 
 requireText(p6, "QUALIFIED FOR NORMAL PROJECT EXECUTION", "P6 cutover qualification");
 requireText(p6, "authority = burned", "P6 terminal evidence");
+requireText(installRecipe, "@earendil-works/pi-coding-agent@0.87.0", "reproducible Pi install");
+requireText(installRecipe, "gentle-ai_3.4.0_linux_amd64.tar.gz", "reproducible Gentle install");
+requireText(installRecipe, "config/native-gentle/nan-provider.models.json", "provider desired-state install");
+requireText(providerSpec, "\"api\": \"openai-completions\"", "NaN provider API");
+requireText(providerSpec, "\"id\": \"glm5.3-flash\"", "qualified NaN model");
+forbidText(providerSpec, "\"apiKey\"", "provider secret in versioned desired state");
 requireText(".gitignore", ".atl/", "repo-local Gentle runtime ignore");
 
 forbidText(start, "gentle-native\n", "migration launcher as current entry point");

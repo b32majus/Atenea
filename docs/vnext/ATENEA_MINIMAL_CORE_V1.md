@@ -315,10 +315,12 @@ skills-lock.json                # while those skills remain adopted
 
 config/
   native-gentle/
-    native-nan.profile.json     # secret-free declarative qualified spec
+    native-nan.profile.json     # secret-free declarative qualified profile spec
+    nan-provider.models.json    # secret-free provider/model registry desired state
 
 docs/
   START_HERE.md
+  vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260922.md
   CURRENT_DECISIONS.md
   REPOSITORY_ENTRY_RECONCILIATION_V1.md
   WORK_UNIT_COMPOSITION_POLICY_V1.md
