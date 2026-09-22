@@ -52,7 +52,8 @@ Current vNext architecture/evidence:
 - `docs/vnext/ATENEA_MINIMAL_CORE_V1.md`;
 - `docs/vnext/P4_POSITIVE_REBUILD_QUALIFICATION_20260922.md`;
 - `docs/vnext/P5_OPERATIONAL_SIMPLIFICATION_20260922.md`;
-- `docs/vnext/P6_NATIVE_CUTOVER_QUALIFICATION_20260922.md`.
+- `docs/vnext/P6_NATIVE_CUTOVER_QUALIFICATION_20260922.md`;
+- `docs/vnext/P7_PROMOTION_20260922.md`.
 
 ## Execution rule
 
