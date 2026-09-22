@@ -1,602 +1,159 @@
-# Atenea Harness Contract v1
+# Atenea Harness Contract vNext
 
-Date: 2026-09-20
-Status: NORMATIVE
+Status: **CURRENT NORMATIVE BOUNDARY**
 
-## 1. Purpose
+Atenea is not a second execution harness around Gentle.
 
-Atenea is a contract over upstream engineering tools, not an orchestration product.
+The contract is the ownership boundary between durable repository authority, native Pi/Gentle execution, deterministic evidence and human publication authority.
 
-Its purpose is to take already-shaped work from durable repository/tracker authority and execute it autonomously with the smallest possible repo-local policy layer.
+## 1. Product authority
 
-Atenea MUST prefer supported upstream capabilities before adding glue.
+Humans and durable repository artifacts own:
 
-## 2. Ownership map
+- WHAT is being changed;
+- WHY it matters;
+- acceptance criteria;
+- domain/safety constraints;
+- non-goals;
+- publication/merge authorization.
 
-```text
-Matt Pocock upstream skills
-  greenfield shaping and task-triggered engineering methods
+A runtime may decompose accepted work. It may not expand product authority.
 
-OpenSpec
-  optional delta-first brownfield/evolutionary shaping
+## 2. Stable Atenea policy
 
-Pi + Gentle Pi 3.3 persistent parent
-  external train/frontier context, authority re-read, provider lifecycle host
+Atenea owns only durable policy/configuration/evidence that adds value above upstream:
 
-Gentle Shell / ODD + package-owned Gentle Agents
-  technical explore/classification, internal task state, bounded delegation,
-  allowed-edit enforcement, verification, work-unit commits and risk/review routing
+- `AGENTS.md`;
+- `CODING_STANDARDS.md`;
+- phase-scoped shaping guidance;
+- secret-free provider/profile desired state;
+- deterministic conformance tooling;
+- publication/Git guardrails;
+- architectural and qualification provenance.
 
-Herdr
-  process/session/observability substrate for the visible parent
+Target Atenea-owned runtime controllers: **0**.
 
-Gentle AI 3.4
-  exact candidate integrity, RDD/reviewer/refuter/validator authority,
-  bounded correction, provider continuation/re-entry and acknowledgement/burn
+## 3. Native execution authority
 
-Git / GitHub
-  repository history, worktrees, issues, checkpoints, PRs and merge policy
-```
-
-The parent is not a security boundary and Atenea does not assign it a separate "ticket implementation child" role. Gentle Shell/ODD owns whether a trivial bounded change is handled inline or delegated to a package-owned worker. Herdr is not review authority. Atenea MUST NOT duplicate Gentle candidate/review semantics.
-
-## 3. The autonomy boundary
+Pi + Gentle own the execution lifecycle:
 
 ```text
-BEFORE EXECUTION_READY
-= human-present, interactive, repo-native shaping
-
-FROM EXECUTION_READY
-= bounded one-touch execution after explicit human authorization
+explore/classify
+→ decompose
+→ delegate bounded work
+→ enforce edit surfaces
+→ verify
+→ create work-unit commits when native flow requires
+→ ASSESS / native review routing
+→ reviewer/refuter/validator
+→ correction lifecycle
+→ acknowledge-approved
+→ authority burned
 ```
 
-The current path uses one persistent Pi + Gentle Pi 3.3 parent across the authorized external work item/train. Gentle Shell/ODD owns internal decomposition and delegation; a fresh child per external ticket is not an Atenea invariant.
+Atenea must not proxy or shadow that lifecycle.
 
-The first eligible consent-required review requires one explicit human host action: `Review and allow this session`. Later fresh validated review grants may be applied without another consent touch only while the exact live Pi session and canonical Git repository permission remains valid. Reload preserves the permission; new/resume/fork/quit/process restart/revoke ends it.
+## 4. Review authority
 
-That session permission grants no verdict, acknowledgement, delivery, merge, maintenance or cross-repository authority. Every candidate still follows provider-owned exact-candidate review semantics and acknowledgement/burn.
+Only native provider/Gentle state may create or consume review authority.
 
-There is no normal external supervisor, pi-intercom consent relay, Herdr RPA or Atenea review controller.
+Atenea must not:
+
+- invent reviewer verdicts;
+- reconstruct lineage or target identity;
+- synthesize START;
+- reproduce provider review timing from line counts;
+- replace native consent;
+- replay reviewer output;
+- create a second burn/receipt state machine.
+
+Successful native `acknowledge-approved` returning `authority=burned` is terminal evidence.
+
+Current version/provider exceptions are documented in `docs/vnext/CURRENT_COMPATIBILITY.md`.
+
+## 5. Deterministic evidence
+
+Machine-decidable facts should be proven mechanically.
+
+For Atenea:
+
+```bash
+node tools/check-native-gentle-profile.mjs
+node tools/check-vnext-authority.mjs
+```
+
+Product repositories should use their own relevant tests, typechecks, builds, schema validators, security checks and CI.
+
+Oracles produce evidence; they do not grant review or publication authority.
+
+## 6. Configuration
+
+Versioned desired state is secret-free:
+
+- `config/native-gentle/nan-provider.models.json`;
+- `config/native-gentle/native-nan.profile.json`.
+
+Upstream Pi/Gentle owns application and runtime routing.
+
+Credentials remain in supported local credential storage/environment and are never committed.
+
+Hidden global state must be inspectable against versioned desired state whenever it materially affects behavior.
+
+## 7. Shaping
+
+Shaping is active only while product/execution authority is genuinely incomplete.
+
+Default execution-ready seam:
 
 ```text
-CURRENT_PARENT=PI_0_86_1_PLUS_GENTLE_PI_3_3
-CURRENT_GENTLE_AI=3_4_0_PACKAGE_PAIRED
-CURRENT_EXECUTION_MODE=ONE_TOUCH
-FIRST_REVIEW_SESSION_GRANT=HUMAN_EXPLICIT
-LATER_SAME_SESSION_REVIEW_CONSENT_TOUCHES=ZERO_EXPECTED
-INTERNAL_MICRO_ORCHESTRATION=GENTLE_SHELL_ODD
-FRESH_CHILD_PER_EXTERNAL_TICKET=NOT_REQUIRED_BY_ATENEA
-DEFAULT_REVIEW_BUDGET_LINES=400_UNLESS_SESSION_OVERRIDE
-WORK_UNIT_401_600=SOFT_COHERENT_OVERAGE
-WORK_UNIT_601_800=EXPLICIT_SIZE_EXCEPTION
-WORK_UNIT_GT_800=STOP_RESLICE_UNLESS_HUMAN_INDIVISIBILITY_EXCEPTION
-QUALIFIED_HOST_BRIDGE=GP3_3_CURRENT_GROUP_PLUS_CONSENT_SIGNAL
-EXPLICIT_REVIEW_ROLE_ROUTING=REQUIRED
-REVIEW_LIFECYCLE_TRANSPORT=GENTLE_PI_FACADE_WHEN_AVAILABLE
-PREPUBLICATION_ARTIFACT_VALIDATION=CHANGED_FILE_AWARE
-ORACLE_SEMANTICS=DRIFT_EVIDENCE_NOT_DEFECT_AUTHORITY
-ACKNOWLEDGEMENT_BURN=REQUIRED
-FINAL_MERGE=HUMAN_BOUNDARY
+minimal semantic execution contract
+→ native Gentle
 ```
 
-### 3.1 Operator/supervision ergonomics — no new authority
+Matt skills are optional discovery/shaping.
 
-The human or Cora/DC may mechanically start/focus the one visible parent and submit the bounded prompt. Human selection of the first session review grant is an authority action, not automation.
+OpenSpec is optional native SDD when durable specs/change history add value.
 
-## 4. Authoring entry paths
+No shaping method is mandatory by ritual.
 
-### 4.1 Greenfield
+## 8. Repository entry
 
-Use the complete Matt Pocock upstream workflow and repo setup semantics.
+Before changing a brownfield repository:
 
-The durable output must be executable from repository/tracker authority without requiring the original shaping conversation.
+- find live Git/GitHub/product authority;
+- read repository policy;
+- inspect old tooling read-only;
+- distinguish current from historical;
+- STOP on material unresolved conflict.
 
-Matt-generated work does not require an Atenea-specific Agent Brief or custom work-unit translation.
+Old files do not gain authority by existing.
 
-### 4.2 Brownfield / evolutionary change
+## 9. Work-unit composition
 
-Preserve accepted repo-native shaping and product authority.
+Prefer coherent, reviewable work units.
 
-OpenSpec is an **optional** delta-first shaping/specification path when it materially improves a new brownfield change. It is not a mandatory migration and Atenea MUST NOT reverse-document an established repository merely to satisfy a universal workflow.
+Do not code-golf useful tests/docs merely to hit a numeric budget.
 
-If OpenSpec is selected, use it delta-first: describe the behavior being added, modified or removed rather than reverse-documenting the whole existing product before every change.
+Planning size is not native review timing.
 
-OpenSpec does not replace Pi supervision, Pi/Gentle-Pi execution, Gentle RDD or Git/GitHub authority.
+If a change is obviously oversized, slice it before implementation when practical. Native Gentle remains the owner of actual review_due/risk decisions.
 
-Status: architecturally compatible; natural end-to-end Atenea field evidence pending.
+## 10. Publication
 
-### 4.3 Raw incoming issues
+Native review approval is necessary evidence where review applies, but it is not merge authority.
 
-Matt triage remains available for issues that were not created by an accepted shaping path and are not yet executable.
+Publication follows:
 
-Do not route already-shaped tickets through triage, OpenSpec or any other authoring method by ritual.
+- target repository policy;
+- changed-artifact validation;
+- explicit human/publication authorization.
 
-## 5. Readiness and authority
+No automatic merge, force-push or destructive history repair.
 
-A work item may enter autonomous execution only when current repository/tracker authority is sufficient to determine:
+## 11. Historical artifacts
 
-- required behavior/change;
-- canonical authority;
-- relevant dependencies/blockers;
-- falsifiable acceptance/evidence;
-- scope and ownership boundaries with adjacent work;
-- repository-specific delivery boundary.
+Pre-vNext runtime controllers, relays, patches and fixtures are preserved under `historical/runtime/` and Git history.
 
-Material ambiguity, contradictory authority, unresolved human product decisions or incompatible runtime assumptions mean NOT READY.
+They are non-operative.
 
-Atenea MUST fail closed rather than silently redesign product semantics during execution.
-
-### 5.1 Authority-resolution boundary
-
-During autonomous execution, Pi MUST resolve execution authority only from:
-
-1. the target repository's current declared repository/tracker authority;
-2. current Atenea authority explicitly referenced by that repository; and
-3. upstream tools explicitly owned by the current Atenea contract.
-
-Pi MUST NOT search sibling repositories, historical worktrees, session or mission history, archived harness documentation, or superseded KairOS/Post-SAS surfaces for alternative execution machinery.
-
-Historical KairOS Ticket Driver, Builder/Primary/Repair role flows, `POST_SAS_*` workflows, `kairos_run_issue`, KairOS Front Door and equivalent custom execute-Issue launchers are non-authoritative for Atenea execution and MUST NOT be invoked.
-
-If current declared authority is insufficient to determine the authorized execution path, Pi MUST STOP. It MUST NOT recover execution authority from host archaeology.
-
-## 6. Repository isolation
-
-Do not appropriate, reset, clean or overwrite an unexpected dirty checkout in order to begin work.
-
-Real work should use a clean dedicated branch/worktree when isolation is needed by repository policy, parallel work or safety. Prefer standard Git and native Herdr/Git worktree primitives over a custom topology layer.
-
-An unexpected topology or dirty-state contradiction is a STOP condition, not authorization for destructive cleanup.
-
-## 7. Frontier discovery and persistent parent supervision
-
-The current train uses one persistent visible Pi/Gentle-Pi 3.3 parent. The parent reads external authority, selects only authorized work, and lets Gentle Shell/ODD classify/decompose/delegate/verify internally. At each external work-unit/frontier boundary the parent reconciles repository evidence, completes any provider-required exact-candidate review through APPROVED plus acknowledgement/burn, re-reads external authority and either continues with already-authorized work or STOPs.
-
-Normal concurrency is `max_concurrency=1` unless current authority explicitly proves parallel safety.
-
-### 7.1 Gentle lifecycle ownership
-
-The persistent parent owns host-side lifecycle coordination. Gentle AI owns candidate/review authority.
-
-On the first eligible review, the human may select `Review and allow this session`. Gentle Pi runs the exact current provider grant and records the live session/repository permission. Later candidates receive fresh provider grants; the prior human action does not become reusable candidate approval.
-
-Atenea MUST NOT synthesize permission through prompt prose, environment flags, internal grant APIs, fake child identity or TUI automation.
-
-### 7.1.1 Facade-first review transport preserves host semantics
-
-When a corresponding Gentle Pi `gentle_review` operation exists, the persistent parent MUST use that facade for ordinary review lifecycle operations.
-
-Do not execute `gentle-ai review ...` through shell as a shortcut for START/STATUS/capture/consent when the facade owns the same operation. Do not recreate provider/host consent with `ask_user_choice`.
-
-This is not cosmetic. The Laboratorio field train proved that direct shell START can preserve provider-native consent while bypassing the Pi host layer that exposes the third host-owned action `Review and allow this session`, breaking the qualified one-touch contract.
-
-Native CLI remains valid only when:
-- the current facade does not expose the required provider-owned operation and current authority explicitly permits the native path; or
-- the command is an isolated read-only diagnostic outside live review authority.
-
-Neither case authorizes reconstructing provider tokens, consent, bindings or lifecycle state.
-
-### 7.1.2 One-touch consent lifetime
-
-```text
-reload                PRESERVES
-new                    REVOKES
-resume                 REVOKES
-fork                   REVOKES
-quit                   REVOKES
-process restart        REVOKES
-explicit revoke        REVOKES
-different repository   NEW HUMAN GRANT REQUIRED
-```
-
-A package-owned child may use the parent's permission only through Gentle Pi's supported bounded permission channel and exact target/repository binding.
-
-### 7.1.3 Native reviewer continuation is provider-owned
-
-Reviewer lens, refuter and targeted-validator prompts/tokens are provider-owned. Preserve materialization/submission/binding values exactly.
-
-Do not collapse different provider operations into one capture shape. Ordinary lenses, refuter and targeted validator follow the exact operation returned by the provider. Missing configured model routing for a requested GP3.3 host-mediated role is a typed STOP, not permission to fall back to Pi's ambient/default model.
-
-Approval is not publishable until provider-required work is terminal and acknowledgement/burn succeeds.
-
-### 7.1.4 Qualified GP3.3 host bridge — narrow compatibility shim
-
-The current 3.3 installation carries the versioned patch `patches/gentle-pi-3.3.0-atenea-host-bridge.patch`. It may (a) forward the exact current reviewer group retained by the host after fresh STATUS so the model does not reserialize opaque `collectBindings`, and (b) expose `host_consent_resolved=true` after native host consent has completed so the model does not ask the human again.
-
-This shim MUST NOT invent bindings, verdicts, lenses or role routes. `gentle_review_capture_current_group` is valid only for the current retained reviewer group; refuter, validator and other provider-issued role transitions use their exact native operations. Version/hash drift is STOP. Retirement condition: upstream provides equivalent supported exact-binding transport and consent-resolved signaling.
-
-### 7.2 Parent continuity and ODD internal delegation policy
-
-The parent may stay alive across a compatible bounded train. Atenea does not prescribe one child per external ticket; Gentle Shell/ODD chooses internal bounded workers according to its own enforced delegation rules. The parent must re-read external authority between externally authorized units/frontiers. A process restart/new session starts a new one-touch permission boundary.
-
-### 7.2.1 Workload composition is resolved before substantial implementation
-
-Gentle Shell/ODD owns work-unit composition. Atenea's responsibility is to prevent the persistent parent from bypassing that upstream planning boundary.
-
-Before launching a writer for substantial work, the parent MUST consume the available Review Workload Forecast/task shape and resolve delivery/composition when over-budget risk is material.
-
-Authority order:
-
-```text
-explicit project/session review_budget_lines
-> upstream Gentle delivery/work-unit semantics
-> accepted task/project size:exception decision
-> Atenea default planning heuristic
-```
-
-With no explicit session budget, Gentle's current default planning budget is 400 authored changed lines. `400` is a review-composition boundary, not a risk-tier input or hard reviewer-capacity limit.
-
-Atenea's default heuristic when no stronger budget exists is:
-
-```text
-<=400      normal target
-401-600    soft overage; no Atenea-forced split solely for size, but upstream delivery/size:exception rules still apply
-601-800    explicit durable size:exception / semantic-coherence rationale required before implementation
->800       not an ordinary work unit; STOP/reslice by default unless the human explicitly authorizes an indivisibility exception
-```
-
-The 600/800 bands are Atenea operator heuristics informed by observed Gentleman practice, not upstream technical limits. They MUST NOT be used to compute `review_due`, synthesize START, or claim that a reviewer cannot process a larger high-risk candidate.
-
-Never code-golf to hit a number. Do not remove tests/docs/comments, split tests away from the behavior they verify, or create file-layer commits that are not independently coherent. After one honest coherent slicing pass, an indivisible over-budget unit may proceed only under the explicit exception semantics above.
-
-Current details and unpublished-history recovery: `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`.
-
-### 7.2.2 Native assessment owns review timing
-
-After each substantial/delegated work-unit commit becomes durable, the parent MUST run the read-only native assessment for that exact candidate and follow its provider-owned timing result.
-
-```text
-work-unit commit
-→ gentle_review ASSESS
-→ review_due / review_due_reason
-→ wrapper/provider continuation
-→ negotiated STATUS
-→ provider-owned START/collect/stop as returned
-```
-
-Atenea MUST NOT turn external-ticket completion into an unconditional START, and MUST NOT implement its own line-count threshold for medium-risk slicing. `gentle_review inspect` is not a substitute for this path: candidate inspection/selection does not replace `ASSESS → wrapper continuation → target-scoped STATUS`. If ASSESS is unavailable, schema-incompatible or does not expose the required timing result, STOP rather than invent START. The current GP3.3/GAI3.4 compatibility bridge only preserves GAI3.4's timing fields and exposes a host-safe STATUS continuation; it does not decide review timing. Current committed-range ASSESS defect tracking: issue #90.
-
-### 7.3 Operator prompt surface
-
-The operator prompt states intent and bounded context, not provider tokens or a rewritten review protocol. Current mechanics live in `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md`.
-
-### 7.4 Supervision efficiency and observability
-
-Herdr keeps the parent visible. Use native lifecycle events and bounded waits rather than fixed sleeps, pane-polling loops or a second supervisor.
-
-## 8. Process/session substrate
-
-Herdr owns process/session primitives only in the currently qualified architecture.
-
-Atenea MUST NOT move product authority, blocker reasoning, publication policy or independent lifecycle state into bespoke Herdr gates.
-
-## 9. Implementation and engineering methods
-
-A persistent Pi parent with Gentle Pi 3.3 + package-paired Gentle AI 3.4 is the current one-touch train owner. Gentle Shell/ODD owns internal engineering micro-orchestration; the parent retains external authority/frontier context and host-side provider lifecycle coordination. OpenCode is an attended/alternate runtime, not a required component of the normal path.
-
-Until upstream fixes the reproduced ODD self-referential SHA bookkeeping defect, do not amend a work-unit commit after its identity has been recorded in ODD evidence. Record the final SHA in a subsequent evidence/bookkeeping commit. This is a temporary compatibility guardrail, not Atenea-owned commit orchestration.
-
-Engineering quality is separated into:
-
-```text
-ALWAYS-ON POLICY
-  CODING_STANDARDS.md
-
-TASK-TRIGGERED UPSTREAM METHODS
-  Matt tdd
-  Matt codebase-design
-  Matt domain-modeling
-  Matt diagnosing-bugs
-  Matt code-review when semantic/spec-compliance risk warrants it
-
-MACHINE ORACLES
-  deterministic repo tooling where justified
-
-FINAL CANDIDATE LIFECYCLE
-  Gentle native RDD
-```
-
-The Matt skills are not a mandatory execution sequence. `CODING_STANDARDS.md` MUST NOT restate entire upstream methods or become a generic Clean Code framework.
-
-Matt `code-review` may add value before RDD when semantic/spec-compliance risk warrants it. Atenea does not mandate a second LLM reviewer lifecycle after every candidate. Gentle native RDD owns final exact-candidate review authority.
-
-## 10. Deterministic evidence before claims
-
-Where the repository provides deterministic checks, run the relevant ones before accepting semantic claims.
-
-Examples include tests, linting, type checks, build checks, schema validation, dependency/security checks and project-specific invariant checks.
-
-Only adopt checks that are machine-decidable and justified by the repository's stack/risk. Passing checks do not override contradictory product authority or an invalid review candidate.
-
-## 11. Exact candidate and review authority
-
-Gentle AI alone owns the final candidate/RDD lifecycle.
-
-The current Gentle AI `3.4.0` provider contract, consumed with Gentle Pi `3.3.0`, is treated as provider authority. Atenea MUST NOT reconstruct:
-
-- candidate freezing or exact candidate identity;
-- reviewer lineage/authority;
-- provider-issued continuation or re-entry commands;
-- bounded correction state;
-- final causal capture or acknowledgement/burn semantics;
-- recovery/reconciliation algorithms;
-- mutation invalidation.
-
-The persistent Pi/Gentle-Pi parent MUST execute provider-issued lifecycle continuations as returned rather than reconstructing them from prose or local state. Native implementation children do not substitute themselves as the final Gentle/RDD authority.
-
-A post-review candidate mutation invalidates or supersedes prior review evidence according to Gentle's native lifecycle and may require a new exact-candidate review lineage.
-
-### 11.1 Historical/alternate OpenCode negotiated-v2 consent characterization
-
-Stable Gentle `2.5.0` retains multiple provider-owned consent behaviors.
-
-**Organic/plain START** preserves one-time clone/work consent semantics: an accepted interactive consent can be latched so later candidates review silently.
-
-**Undeclared non-interactive negotiated START** is also authorized silently by stable Gentle.
-
-In the characterized OpenCode/Gentle 2.5 negotiated-v2 route, the next-transition builder appended `--consent relay` to provider-issued START. That selected candidate-scoped negotiated semantics: relay returned the typed question; `granted` applied only to that frozen candidate; later changed medium/high candidates asked again. This subsection preserves that alternate-path evidence; it does not define the adopted Pi/Gentle-Pi consent transport.
-
-Therefore:
-
-```text
-STABLE_GENTLE_ZERO_TOUCH_CAPABILITY=EXISTS
-OPENCODE_NEGOTIATED_V2_ZERO_TOUCH=NOT_SATISFIED
-CAUSE=V2_NEXT_TRANSITION_FORCES_CONSENT_RELAY
-```
-
-If that historical/alternate OpenCode v2 route is explicitly selected:
-
-- its consumer MUST preserve the complete provider-issued consent semantics and MUST NOT inject `granted`, auto-click, remove `relay`, infer approval from `EXECUTION_READY`, or reconstruct START;
-- a candidate-scoped decline remains distinct from disabling RDD;
-- provider-issued lifecycle arguments remain exact/opaque.
-
-The current GP3.3 path follows §7.1: one explicit human host-session grant on the first eligible review, then fresh validated provider grants in the same live session/repository without another consent touch. It does not reuse this historical direct-human relay prescription or the later Atenea mechanical relay.
-
-Issue #36 owns any optional upstream-first parity work for the alternate OpenCode route. Preferred order if that parity work is pursued:
-
-1. determine whether current v2 already exposes a supported unattended/no-relay consent policy;
-2. determine whether an existing provider-owned organic path can preserve all required modern OpenCode/Gentle properties;
-3. use v1 only for characterization if useful, never as a durable dependency because v1 is frozen/legacy;
-4. if no supported current path exists, request the smallest upstream negotiated-v2 consent-policy parity feature.
-
-Atenea MAY consume a future provider-owned v2 unattended policy after bounded evidence proves exact candidate identity, provider-issued transitions, acknowledgement/burn and human control remain intact. Atenea MUST NOT create its own parallel consent state machine.
-
-RDD closes where Gentle's proof/lifecycle closes. Atenea MUST NOT add a synthetic `FINALIZE`, compact terminal receipt, or delivery gate after Gentle has completed its authority transition.
-
-Delivery remains ordinary repository policy and is separate from RDD approval/evidence.
-
-## 12. Engineering-quality policy
-
-Atenea's horizontal engineering standard is `CODING_STANDARDS.md`.
-
-The intended interpretation of scalability is:
-
-> software can be understood, modified, tested, operated and extended without each change multiplying fragility.
-
-Scalability does not imply premature microservices, distributed architecture, generic indirection or speculative abstractions.
-
-Technical debt may exist only as intentional, visible, bounded and owned debt.
-
-## 13. Material UI/UX activation
-
-Impeccable is conditional, not universal.
-
-Material UI/UX applicability MUST be decided during human-present shaping and become part of the executable contract before `EXECUTION_READY`. The unattended worker should not invent a new product-level decision about whether a slice is a redesign or material UX intervention.
-
-Typical activation:
-
-```text
-backend / API / data / CLI with no material UI
-  → no Impeccable requirement
-
-trivial copy or mechanical styling change
-  → normally no separate shape step
-  → audit only if actual risk warrants it
-
-new surface / flow / navigation / material layout
-  → Impeccable shape before final spec/tickets
-  → critique/audit/harden as relevant before final candidate
-
-forms / permissions / errors / loading / edge states with material UX
-  → shape if product interaction is material
-  → audit/harden as relevant
-
-visual-system / tokens / component-system change
-  → Impeccable + DESIGN.md authority where warranted
-```
-
-Do not create an Atenea UX framework around these methods.
-
-## 14. DESIGN.md authority
-
-Where a product has durable visual-system decisions worth preserving, `DESIGN.md` may be the visual-system authority.
-
-It owns visual identity/tokens/rationale, not product semantics.
-
-A missing `DESIGN.md` alone does not imply greenfield or authorize a redesign. Existing visual evidence and product authority still matter.
-
-## 15. PRODUCT.md compatibility rule
-
-Existing canonical product authority MUST NOT be duplicated merely because a design tool expects `PRODUCT.md`.
-
-Default for established Atenea verticals:
-
-```text
-canonical product authority
-→ deterministic compatibility projection
-→ PRODUCT.md
-→ Impeccable/design tooling
-```
-
-A derived `PRODUCT.md` must:
-
-- state that it is GENERATED / DERIVED;
-- name its canonical source(s);
-- state `DO NOT EDIT AS AUTHORITY` and that canonical sources win on conflict;
-- avoid manually duplicated product facts;
-- regenerate idempotently and produce reviewable diffs;
-- report/fail on material divergence rather than silently merge conflicting truth.
-
-Atenea does NOT mandate a universal PRODUCT generator. Implement the smallest repo-specific projection only when an adopted tool actually requires it.
-
-If a simple repo legitimately uses `PRODUCT.md` itself as canonical product authority without creating competing truth, shaping may explicitly choose that design.
-
-`DESIGN.md` remains a separate visual-system authority and is not generated from `PRODUCT.md`.
-
-## 16. Pre-publication authority revalidation
-
-Immediately before publication, perform one fresh read of current GitHub/product authority relevant to the work item.
-
-This is a single bounded revalidation, not a polling subsystem or Herdr gate.
-
-If blockers, scope, product authority or repository delivery instructions changed materially since execution began, do not publish the stale candidate: STOP for adjudication.
-
-If authority is unchanged, derive deterministic delivery validation from the **actual changed artifact types** before publication. This is changed-file-aware evidence, not a universal giant gate list.
-
-Examples:
-- changed `.github/workflows/*.yml` or `.github/workflows/*.yaml` → run a repo-native workflow/YAML validator or qualified upstream validator such as `actionlint`;
-- runtime-sensitive candidates → distinguish local-host results from the repository's declared CI runtime and establish parity when necessary to interpret the gate;
-- generated/config/deployment artifacts → use the owning repo-native/upstream parser or validator when applicable.
-
-Missing a required artifact validator is explicit evidence and may be STOP; tests, LLM review and `git diff --check` do not substitute for parsing an artifact whose syntax/semantics they do not validate.
-
-Current policy: `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md`.
-
-If authority and required artifact validation are both satisfied, continue to normal publication without adding another lifecycle layer.
-
-## 17. Publication boundary
-
-Normal non-force `git push` is allowed in the accepted autonomous path.
-
-Before publication, the effective credential/transport must have the capability required by the changed artifacts. Generic GitHub authentication is not proof of workflow-modification authority. When workflow files changed, verify the actual publication credential has the GitHub capability required for that push (for classic OAuth/PAT flows this may include `workflow`; other credential types may express it differently).
-
-If GitHub rejects publication for missing credential capability, preserve the exact candidate and repair the credential boundary. Do not reconstruct commits through another API or remove required workflow changes merely to bypass the permission.
-
-When an interactive runtime permission asks only whether to perform an operation that current repository/Atenea authority already authorizes — such as the ordinary non-force push for the current branch — Pi SHOULD grant that operational permission without escalating it to the human.
-
-This rule does **not** apply to genuine human decisions, destructive/high-risk operations, scope changes, final merge or provider-owned consent envelopes emitted by the selected Gentle route. Those remain subject to their owning authority.
-
-Do not add a second Herdr/publication permission subsystem solely to mediate normal push.
-
-Repository delivery policy decides whether an accepted work unit ends at:
-
-- an exact remote checkpoint; or
-- a pull request awaiting human merge.
-
-### 17.1 Conditional independent Promotion Review
-
-At a high-risk human promotion/merge boundary, the human/Cora planning surface MAY require `docs/PROMOTION_REVIEW_V1.md`. This is a fresh read-only audit of the exact integrated diff across Spec/clinical semantics, Standards/Clean Code and Adversarial/Safety & failure ordering. It requires the complete diff plus an explicit high-risk focus subset and zero blocking findings.
-
-Promotion Review is not part of the worker's Gentle lifecycle, creates no reviewer/candidate authority, and MUST NOT become a second mandatory LLM review after every ticket. Gentle native RDD remains the sole exact-candidate review authority; a Promotion Review PASS never authorizes merge by itself.
-
-Atenea does not auto-merge.
-
-The autonomous default MUST NOT use force-push, hidden reset/rebase/history rewrite or destructive recovery to make publication succeed.
-
-If publication partially succeeds, preserve the exact remote state and STOP for adjudication rather than silently inventing recovery semantics.
-
-## 18. Reconciliation
-
-Acceptance depends on exact repository evidence, not agent narration.
-
-A preserved product/tree oracle used for unpublished-history reconstruction is drift evidence, not authority above a proven defect. Byte/tree equivalence proves the reslicing did not redesign accepted content at that checkpoint; accepted specification, syntactic validity, deterministic tests, buildability and delivery validity may later prove that a preserved byte is defective. Preserve the equivalence evidence, then repair the proven defect as a separate bounded correction under current authority.
-
-Where applicable, verify the accepted candidate against current local/upstream/remote state and record the exact checkpoint.
-
-Unexpected same-branch drift or contradictory authoritative state is fail-closed.
-
-Work-unit acceptance, RDD closure, PR publication and final merge are distinct boundaries.
-
-## 19. STOP conditions
-
-STOP rather than improvise when any material condition is unresolved, including:
-
-- missing or contradictory authority;
-- blocked dependency or incompatible runtime;
-- unexpected dirty/topology state that would require destructive cleanup;
-- unexpected same-branch remote drift;
-- unresolved product decision;
-- inability to establish falsifiable acceptance for a requirement that needs it;
-- candidate/review state inconsistent with Gentle authority;
-- ASSESS unavailable/schema-incompatible or missing required provider timing fields for the exact candidate;
-- material changed artifact lacking required syntactic/build/delivery validation;
-- runtime-sensitive evidence that cannot be reconciled with the declared CI/runtime authority;
-- publication credential lacking capability required by the changed artifact;
-- material pre-publication authority change;
-- destructive publication/recovery being required;
-- publication partially succeeding without an explicit safe continuation.
-
-## 20. Model/provider routing
-
-Routing is operational configuration, not Atenea architecture.
-
-```text
-Pi default                    nan/deepseek-v4-flash · medium
-persistent parent             nan/glm5.3-flash · high
-gentle-ai-worker              nan/glm5.3-flash · high
-gentle-ai-verify              openai-codex/gpt-5.6-luna · high
-review-readability            openai-codex/gpt-5.6-luna · high
-review-reliability            openai-codex/gpt-5.6-luna · high
-review-resilience             nan/deepseek-v4-flash · high
-review-risk                   nan/glm5.3-flash · high
-review-refuter                nan/deepseek-v4-flash · high
-review-validator              openai-codex/gpt-5.6-luna · high
-```
-
-NaN's `deepseek-v4-flash` is the provider id for the DeepSeek V4.1 Flash family. The parent route is explicit at launch; Pi's ordinary default remains V4 medium.
-
-Current NaN per-answer ceilings are `32768` for DeepSeek and GLM in Pi/OpenCode. DeepSeek effort labels are not effective reasoning-depth controls; GLM supports effective `low`/`medium`/`high`/`max`. `review-reliability` is provisionally Luna high; `review-risk` is GLM high after exact materialized-prompt reproduction localized a DeepSeek reasoning-exhaustion failure. See `docs/NAN_PROVIDER_CAPABILITIES_V1.md`.
-
-No silent provider/model/effort/budget fallback is allowed. See `docs/ROUTING_EVIDENCE_LEDGER_V1.md`.
-
-## 21. Security boundary
-
-Pi and Herdr run with the privileges of their environment and are not security sandboxes.
-
-If a vertical requires stronger isolation, use an appropriate container/sandbox boundary. Do not build a bespoke Atenea security sandbox without a concrete requirement.
-
-## 22. Upstream-first change test
-
-Before adding any Atenea glue, answer all of these:
-
-1. Which required behavior has no current upstream owner?
-2. What field evidence proves the gap?
-3. Why can repo-local policy/configuration not close it?
-4. What is the smallest falsifiable addition?
-5. What is its deletion/retirement condition if upstream later owns the behavior?
-
-If those questions do not have concrete answers, DO NOT BUILD.
-
-For the current one-touch path, Gentle Pi + Gentle AI own the review lifecycle. The first eligible review-session grant is a real human host action; later same-session/repository grants are fresh provider grants validated by the host permission. The former GP2.7 no-TTY zero-touch bridge, Atenea worker-side relay and negotiated-v2/OpenCode policy-selection seam remain historical/alternate evidence, not current execution dependencies or consent bypasses.
-
-## 23. Current completion state
-
-Historical Stage 5–8, GP2.4/2.5 and GP2.7 evidence remains valid for the properties it proved.
-
-On 2026-09-20 the operational target moved to current Pi 0.86.1 + Gentle Pi 3.3.0 + package-paired Gentle AI 3.4.0. The strong Q10/Q11 baseline was Pi 0.86.0: Q10 proved the persistent parent can traverse multiple externally authorized units while ODD owns internal delegation and STOPs at an unauthorized frontier; Q11 proved one human session grant is sufficient for a later fresh candidate to begin/execute review without a second consent touch. The later refuter/validator stop was qualification-harness debt caused by forcing all role slots through one group-capture shape. Current GP3.3 provider operations remain authoritative. See `docs/GP33_Q10_Q11_ADOPTION_EVIDENCE_20260920.md`.
-
-```text
-CURRENT_RUNTIME                         PI_0_86_1_GP_3_3_0_GAI_3_4_0
-CURRENT_EXECUTION_MODE                  ONE_TOUCH
-FIRST_REVIEW_SESSION_GRANT              PASS
-LATER_SAME_SESSION_SECOND_TOUCH         NOT_REQUIRED_IN_QUALIFIED_FLOW
-DEFAULT_PI_MODEL                        nan/deepseek-v4-flash medium
-NAN_DEEPSEEK_OUTPUT_CEILING             32768
-NAN_GLM_OUTPUT_CEILING                  32768
-DEEPSEEK_REASONING_EFFORT_EFFECTIVE     NO
-REVIEW_RELIABILITY_MODEL                openai-codex/gpt-5.6-luna high
-REVIEW_RISK_MODEL                       nan/glm5.3-flash high
-PARENT_MODEL                            nan/glm5.3-flash high
-INTERNAL_MICRO_ORCHESTRATION            GENTLE_SHELL_ODD
-FRESH_CHILD_PER_EXTERNAL_TICKET         NOT_REQUIRED_BY_ATENEA
-DEFAULT_REVIEW_BUDGET_LINES             400_UNLESS_SESSION_OVERRIDE
-WORK_UNIT_401_600                       SOFT_COHERENT_OVERAGE
-WORK_UNIT_601_800                       EXPLICIT_SIZE_EXCEPTION
-WORK_UNIT_GT_800                        STOP_RESLICE_UNLESS_HUMAN_INDIVISIBILITY_EXCEPTION
-QUALIFIED_HOST_BRIDGE                   REQUIRED_FOR_CURRENT_GP3_3_INSTALL
-EXPLICIT_REVIEW_ROLE_ROUTING            REQUIRED
-ACKNOWLEDGEMENT_BURN                    REQUIRED
-FINAL_MERGE                             HUMAN_BOUNDARY
-```
-
-Current mechanics: `docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md`.
+A future regression must first be reproduced against the supported native stack. Historical machinery may not be restored to production without a new explicit architectural decision and qualification.

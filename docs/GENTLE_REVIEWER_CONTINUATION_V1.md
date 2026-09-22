@@ -1,3 +1,6 @@
+> **HISTORICAL / NON-OPERATIVE (vNext promoted 2026-09-22).**
+> Preserved for provenance and regression archaeology. Do not use this document to recover the current execution path. Start at README.md and docs/START_HERE.md.
+
 # Atenea — Gentle reviewer continuation contract v1
 
 Status: **HISTORICAL / NORMATIVE FOR THE PRE-GP2.7 ROLLBACK PATH; RETAINED AS REVIEWER-LIFECYCLE REGRESSION EVIDENCE**

@@ -1,3 +1,6 @@
+> **HISTORICAL / NON-OPERATIVE (vNext promoted 2026-09-22).**
+> Preserved for provenance and regression archaeology. Do not use this document to recover the current execution path. Start at README.md and docs/START_HERE.md.
+
 # Atenea — Gentle Pi 2.7 Hybrid-Native Train Recipe v1
 
 Date: 2026-09-15
