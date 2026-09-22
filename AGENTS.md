@@ -63,7 +63,7 @@ For runtime/version exceptions read:
 
 For provisioning/reproduction read:
 
-- `docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260922.md`.
+- `docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260923.md`.
 
 Historical stage documents and `historical/` are evidence, not forward-looking authority.
 

@@ -1,6 +1,8 @@
-# Atenea vNext — Native Stack Installation Recipe
+# Atenea vNext — Native Stack Installation Recipe (2026-09-22)
 
-Status: **P6 REPRODUCIBLE INSTALL RECIPE**
+> **HISTORICAL / SUPERSEDED FOR CURRENT INSTALLATION.** This recipe records the P6 3.3.0/3.4.0 baseline actually qualified on 2026-09-22. For current installation/update use `NATIVE_STACK_INSTALLATION_RECIPE_20260923.md`.
+
+Status: **P6 HISTORICAL REPRODUCIBLE INSTALL RECIPE**
 
 Qualified: 2026-09-22
 
