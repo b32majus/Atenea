@@ -39,6 +39,8 @@ const current = {
 
 requireText(current.readme, "It is no longer a custom execution harness.", "thin-layer front door");
 requireText(current.readme, "Pi 0.87.0", "qualified Pi version");
+requireText(current.readme, "Gentle Shell 3.5.1", "qualified Gentle Shell version");
+requireText(current.readme, "Gentle AI 3.6.0", "qualified Gentle AI version");
 requireText(current.readme, "Normal entry point:", "native entry point");
 requireText(current.readme, "historical/runtime/", "historical boundary");
 
@@ -57,7 +59,7 @@ requireText(current.contract, "Target Atenea-owned runtime controllers: **0**.",
 requireText(current.contract, "Atenea must not proxy or shadow that lifecycle.", "no shadow lifecycle");
 requireText(current.contract, "authority=burned", "terminal burn contract");
 
-requireText(current.install, "NATIVE_STACK_INSTALLATION_RECIPE_20260922.md", "canonical install recipe");
+requireText(current.install, "NATIVE_STACK_INSTALLATION_RECIPE_20260923.md", "canonical install recipe");
 requireText(current.install, "Herdr is operator infrastructure only", "Herdr boundary");
 
 requireText(current.runbook, "Native Gentle owns ODD, delegation, verify and review lifecycle.", "operator native ownership");
@@ -68,23 +70,32 @@ requireText(current.context, "Atenea vNext is a thin layer over native Pi + Gent
 
 requireText(current.decisions, "## C-055 — Atenea vNext is a thin policy/config/conformance layer", "vNext promotion decision");
 requireText(current.decisions, "## C-059 — Current compatibility seams do not justify Atenea runtime glue", "compatibility decision");
+requireText(current.decisions, "## C-060 — Stable runtime maintenance uses official upstream updaters", "official updater decision");
 
 const compat = "docs/vnext/CURRENT_COMPATIBILITY.md";
 const minimal = "docs/vnext/ATENEA_MINIMAL_CORE_V1.md";
 const p6 = "docs/vnext/P6_NATIVE_CUTOVER_QUALIFICATION_20260922.md";
-const installRecipe = "docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260922.md";
+const installRecipe = "docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260923.md";
 const providerSpec = "config/native-gentle/nan-provider.models.json";
+const stableRuntime = "docs/vnext/STABLE_RUNTIME_UPGRADE_20260923.md";
 
 requireText(compat, "Gentle AI #4791", "ASSESS upstream tracker");
 requireText(compat, "Gentle AI #4771", "post-burn upstream tracker");
 requireText(compat, "mem_search", "Engram memory canary");
+requireText(stableRuntime, "Gentle Shell: 3.5.1", "stable runtime Shell evidence");
+requireText(stableRuntime, "Gentle AI:    3.6.0", "stable runtime Gentle AI evidence");
+requireText(stableRuntime, "PI_GENTLE_OK", "stable runtime Gentle smoke");
+requireText(stableRuntime, "ENGRAM_MEMORY_OK", "stable runtime Engram smoke");
 
 requireText(minimal, "Target Atenea-owned runtime controllers:", "Minimal Core zero-controller budget");
 requireText(minimal, "Deterministic conformance layer", "deterministic oracle layer");
 
 requireText(p6, "P6 exit criterion is satisfied.", "P6 reproducibility closure");
 requireText(installRecipe, "@earendil-works/pi-coding-agent@0.87.0", "reproducible Pi install");
-requireText(installRecipe, "gentle-ai_3.4.0_linux_amd64.tar.gz", "reproducible Gentle install");
+requireText(installRecipe, "gentle-pi@3.5.1", "reproducible Gentle Shell install");
+requireText(installRecipe, "Gentle AI 3.6.0", "reproducible Gentle AI install");
+requireText(installRecipe, "gentle-ai update", "official Gentle update discipline");
+requireText(installRecipe, "pi auth print-api-key --provider nan", "custom-provider credential resolution");
 requireText(providerSpec, "\"api\": \"openai-completions\"", "NaN provider API");
 requireText(providerSpec, "\"id\": \"glm5.3-flash\"", "qualified NaN model");
 forbidText(providerSpec, "\"apiKey\"", "provider secret in desired state");

@@ -1,8 +1,8 @@
 # Project Execution Handoff — Native Gentle vNext
 
-Status: **OPERATIONAL / P6-CUTOVER-QUALIFIED**
+Status: **CURRENT / STABLE-RUNTIME-QUALIFIED**
 
-Date: 2026-09-22
+Date: 2026-09-23
 
 Audience: a fresh Cora / planning assistant / operator resuming an already-shaped Atenea project such as PROMueve, Symphonia or Laboratorio de Privacidad.
 
@@ -20,8 +20,8 @@ Current qualified stack:
 
 ```text
 Pi 0.87.0
-→ Gentle Shell / gentle-pi 3.3.0
-→ Gentle AI 3.4.0
+→ Gentle Shell / gentle-pi 3.5.1
+→ Gentle AI 3.6.0
 → native ODD
 → native workers / verify
 → native RDD / reviewers
@@ -61,6 +61,8 @@ Before writing code:
    - `docs/vnext/P0_NATIVE_GENTLE_QUALIFICATION_20260921.md`
    - `docs/vnext/ATENEA_CAPABILITY_RECONCILIATION.md`
    - `docs/vnext/P6_NATIVE_CUTOVER_QUALIFICATION_20260922.md`
+   - `docs/vnext/P7_PROMOTION_20260922.md`
+   - `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923.md`
 
 Do **not** mine old Atenea stage/handoff files unless historical evidence is specifically needed.
 
@@ -103,7 +105,7 @@ Do not regenerate specs/tickets merely because the old `AGENTS.md` describes how
 
 For greenfield work that has **not** yet completed shaping, the relevant Matt/OpenSpec instructions remain in force until durable executable authority exists.
 
-Phase 3 of Atenea vNext will separately decide how much of this shaping layer survives long term. Until then, do not delete the 37 Matt skills or redesign their workflow.
+P3 is closed. Matt skills remain optional discovery/shaping capability and OpenSpec remains optional native SDD; neither is a mandatory execution prelude. Do not delete historical/adopted capabilities merely because they are not on the normal execution path, but do not invoke them by ritual either.
 
 ### C. Historical execution mechanics — SUPERSEDED
 

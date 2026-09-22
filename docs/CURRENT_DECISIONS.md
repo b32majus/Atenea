@@ -1,6 +1,6 @@
 # Atenea — Current Decisions
 
-Date: 2026-09-22
+Date: 2026-09-23
 
 This file preserves accepted decision provenance. **C-055 onward is the current vNext cutover authority** and supersedes older execution-topology decisions where they conflict.
 
@@ -32,8 +32,8 @@ Qualified stack:
 
 ```text
 Pi 0.87.0
-→ gentle-pi / Gentle Shell 3.3.0
-→ Gentle AI 3.4.0
+→ gentle-pi / Gentle Shell 3.5.1
+→ Gentle AI 3.6.0
 → NaN
 → native ODD / workers / verify / RDD
 ```
@@ -81,7 +81,7 @@ node tools/check-native-gentle-profile.mjs
 node tools/check-vnext-authority.mjs
 ```
 
-The exact supported rebuild recipe is `docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260922.md`.
+The exact supported rebuild/update recipe is `docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260923.md`.
 
 ## C-059 — Current compatibility seams do not justify Atenea runtime glue
 
@@ -95,6 +95,16 @@ Current temporary seams live in `docs/vnext/CURRENT_COMPATIBILITY.md`.
 - `.atl/` must be ignored repo-locally before candidate work.
 
 These are compatibility policies, not authorization to recreate historical Atenea controllers.
+
+## C-060 — Stable runtime maintenance uses official upstream updaters
+
+**Accepted and qualified 2026-09-23.**
+
+Current maintenance baseline: Pi 0.87.0, Gentle Shell 3.5.1, Gentle AI 3.6.0, Engram 2.0.0 and GGA 2.10.1.
+
+Gentle Shell is updated through Pi's package manager. Gentle AI is updated through the updater reported by `gentle-ai update`, followed by `gentle-ai sync`. Gentle-managed companion tools are left untouched when the managed update inventory reports them current. Atenea updates its desired state/evidence only after health checks and real runtime smokes pass.
+
+Evidence: `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923.md` and `docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260923.md`.
 
 ## C-001 — Atenea is a contract over upstream tools, not an orchestration product
 

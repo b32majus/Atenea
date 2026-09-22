@@ -1,8 +1,8 @@
 # Atenea vNext — Target File Manifest
 
-Status: **P4 QUALIFIED TARGET / P5 SIMPLIFICATION NEXT**
+Status: **PROMOTED vNext TARGET / CURRENT TREE CONTRACT**
 
-Date: 2026-09-22
+Updated: 2026-09-23
 
 This file translates the P1 capability matrix into a concrete target-tree decision.
 
@@ -29,7 +29,7 @@ This file translates the P1 capability matrix into a concrete target-tree decisi
 | --- | --- |
 | `config/native-gentle/native-nan.profile.json` | secret-free native routing/effort specification |
 | `config/native-gentle/nan-provider.models.json` | secret-free NaN provider/model registry desired state |
-| `docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260922.md` | exact supported install/auth/profile/conformance recipe |
+| `docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260923.md` | exact supported install/auth/profile/conformance recipe |
 | `tools/check-vnext-authority.mjs` | deterministic current-authority consistency |
 | `tools/check-native-gentle-profile.mjs` | validate actual native profile against versioned spec |
 | publication-specific validators | only when changed artifact types justify them |

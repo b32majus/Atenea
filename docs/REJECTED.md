@@ -2,19 +2,19 @@
 
 This file prevents future agents from rediscovering rejected architecture without the evidence that led to rejection.
 
-## Current supersession index — 2026-09-15
+## Current supersession index — 2026-09-23
 
-Several entries below originated before Stage 7/8 and are preserved as historical decisions. Current interpretation:
+The entries below are historical architectural decisions. Current interpretation is governed by the promoted vNext authority in `README.md`, `AGENTS.md`, `docs/START_HERE.md` and C-055 onward in `docs/CURRENT_DECISIONS.md`.
 
-- OpenSpec is **no longer merely deferred in principle**: it is the intended brownfield/evolutionary authoring entry path, still awaiting a bounded real-project qualification.
-- The historical thin outer Pi supervisor path remains qualified provenance, but C-040 historically removed that separate supervisor for GP2.7; C-044 now owns normal GP3.3 operation.
-- Herdr remains the **process/session substrate**, not a policy/gating controller.
-- Current normal execution is one-touch/single-acceptance: one persistent visible Pi + Gentle Pi `3.3.0` parent, ODD-owned internal tasking/delegation, one explicit `Review and allow this session` grant on the first eligible review, then provider-owned Gentle AI `3.4.0` review with no second consent touch in the same live session/repository.
-- The pre-GP2.7 pi-intercom/mechanical-relay topology and OpenCode + Gentle paths remain qualified historical/rollback evidence, not normal dependencies.
-- Gentle Pi `2.2.0`, `2.4.0` and `2.5.0` qualification findings remain valid for their epochs; later adoption does not rewrite their historical results.
-- no custom execute-Issue launcher/controller is to be rebuilt from KairOS #271.
+- Normal execution is ordinary `pi` + native Gentle; Atenea owns zero runtime/review/worker/routing controllers.
+- Current maintenance baseline is Pi 0.87.0 + Gentle Shell 3.5.1 + Gentle AI 3.6.0.
+- Herdr remains persistent operator/session infrastructure, not policy/review authority.
+- Matt skills remain optional discovery/shaping; OpenSpec remains optional native SDD when durable specs/history add value.
+- Historical supervisor, pi-intercom, OpenCode-worker, one-touch/train and Gentle bridge mechanics remain provenance/rollback evidence only.
+- Historical Gentle/Pi version findings remain valid for their epochs; later maintenance does not rewrite them.
+- No custom execute-Issue launcher/controller is to be rebuilt from KairOS #271.
 
-Historical entries remain useful because they explain why the architecture converged.
+Historical entries remain useful because they explain why the architecture converged, but none overrides the current vNext front door.
 
 ## R-001 — Rebuild RDD inside Atenea/KairOS
 

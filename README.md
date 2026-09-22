@@ -15,12 +15,13 @@ Native Pi + Gentle own exploration, decomposition, workers, verification, work-u
 
 ## Current productive stack
 
-Qualified 2026-09-22:
+Maintenance-qualified 2026-09-23:
 
 ```text
 Pi 0.87.0
-→ gentle-pi / Gentle Shell 3.3.0
-→ Gentle AI 3.4.0
+→ gentle-pi / Gentle Shell 3.5.1
+→ Gentle AI 3.6.0
+→ Engram 2.0.0 / GGA 2.10.1
 → NaN
 → native ODD / workers / verify / RDD
 ```
@@ -45,7 +46,7 @@ For a fresh agent or human:
 
 Provisioning or rebuilding the stack:
 
-- `docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260922.md`.
+- `docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260923.md`.
 
 Current vNext architecture/evidence:
 
@@ -53,7 +54,8 @@ Current vNext architecture/evidence:
 - `docs/vnext/P4_POSITIVE_REBUILD_QUALIFICATION_20260922.md`;
 - `docs/vnext/P5_OPERATIONAL_SIMPLIFICATION_20260922.md`;
 - `docs/vnext/P6_NATIVE_CUTOVER_QUALIFICATION_20260922.md`;
-- `docs/vnext/P7_PROMOTION_20260922.md`.
+- `docs/vnext/P7_PROMOTION_20260922.md`;
+- `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923.md`.
 
 ## Execution rule
 
@@ -98,7 +100,9 @@ Validate the live machine against them:
 node tools/check-native-gentle-profile.mjs
 node tools/check-vnext-authority.mjs
 gentle-ai doctor
-pi auth check --provider nan
+gentle-ai update
+# For custom NaN auth, prove credential resolution without printing it,
+# then run the bounded real smokes from the canonical installation recipe.
 ```
 
 Credentials never belong in Git.

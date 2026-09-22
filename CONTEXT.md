@@ -29,12 +29,12 @@ It does not retain active custom:
 
 ## Current productive stack
 
-Qualified 2026-09-22:
+Maintenance-qualified 2026-09-23:
 
 ```text
 Pi 0.87.0
-Gentle Shell 3.3.0
-Gentle AI 3.4.0
+Gentle Shell 3.5.1
+Gentle AI 3.6.0
 NaN
 native-nan
 ```
@@ -54,8 +54,8 @@ Use the cheapest reliable owner for each fact:
 
 ## Current transition state
 
-P0–P6 qualification is complete.
+P0–P7 qualification and promotion are complete.
 
-P7 promotes the vNext policy/config/conformance layer as current repository authority and archives superseded runtime machinery as historical provenance.
+The current repository authority is the promoted vNext policy/config/conformance layer. Stable runtime maintenance on 2026-09-23 advanced Gentle Shell to 3.5.1 and Gentle AI to 3.6.0 without changing the zero-controller architecture.
 
 Runtime/provider compatibility debt is tracked in `docs/vnext/CURRENT_COMPATIBILITY.md`.

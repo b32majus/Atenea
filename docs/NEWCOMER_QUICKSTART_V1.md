@@ -47,16 +47,19 @@ Do not rerun shaping when executable authority already exists.
 
 ```bash
 gentle-ai doctor
+gentle-ai update
 node tools/check-native-gentle-profile.mjs
 node tools/check-vnext-authority.mjs
-pi auth check --provider nan
+# Then use the credential-resolution + real-smoke checks in the canonical recipe.
 ```
 
 ## Current versions
 
 - Pi 0.87.0
-- gentle-pi / Gentle Shell 3.3.0
-- Gentle AI 3.4.0
+- gentle-pi / Gentle Shell 3.5.1
+- Gentle AI 3.6.0
+- Engram 2.0.0
+- GGA 2.10.1
 - NaN provider
 - active profile: `native-nan`
 
@@ -66,7 +69,7 @@ Read `docs/vnext/CURRENT_COMPATIBILITY.md`.
 
 ## Reinstall/reproduce
 
-Read `docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260922.md`.
+Read `docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260923.md`.
 
 ## Historical material
 

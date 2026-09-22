@@ -6,11 +6,13 @@ Status: **CURRENT FRONT DOOR**
 
 ```text
 CURRENT_AUTHORITY = main
-QUALIFIED_DATE    = 2026-09-22
+QUALIFIED_DATE    = 2026-09-23
 P0_TO_P7          = PASS
 Pi                = 0.87.0
-gentle-pi         = 3.3.0
-Gentle AI         = 3.4.0
+gentle-pi         = 3.5.1
+Gentle AI         = 3.6.0
+Engram            = 2.0.0
+GGA               = 2.10.1
 provider          = NaN
 active profile    = native-nan
 normal entry      = pi
@@ -19,7 +21,7 @@ Atenea runtime controllers = 0
 
 This is the latest qualified and functional Atenea baseline. Historical Stage files, old run recipes, old profiles and `historical/` remain provenance only and do not override this baseline.
 
-If you need to rebuild the runtime, use `docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260922.md`. If you need provider/runtime exceptions, use `docs/vnext/CURRENT_COMPATIBILITY.md`.
+If you need to rebuild the runtime, use `docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260923.md`. If you need provider/runtime exceptions, use `docs/vnext/CURRENT_COMPATIBILITY.md`.
 
 ## 1. Is the work already shaped?
 
@@ -154,7 +156,7 @@ No automatic merge. No force-push/destructive recovery by default.
 
 Use:
 
-`docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260922.md`
+`docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260923.md`
 
 Do not reconstruct installation from historical Stage/run-recipe documents.
 

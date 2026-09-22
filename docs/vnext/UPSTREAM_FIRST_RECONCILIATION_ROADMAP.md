@@ -1,10 +1,12 @@
 # Atenea vNext — Upstream-first Reconciliation Roadmap
 
-Status: **WORKING PROGRAM / NOT YET NORMATIVE**
+Status: **HISTORICAL COMPLETED PROGRAM — P0–P7 CLOSED**
 
-Branch: `vnext/upstream-first-reconciliation`
+Historical working branch: `vnext/upstream-first-reconciliation` (merged/superseded by `main`)
 
-Date: 2026-09-22
+Closed: 2026-09-22
+
+> Current runtime versions are maintained separately. Do not infer today's baseline from version references inside this completed qualification program. Read `docs/START_HERE.md`, `docs/vnext/CURRENT_COMPATIBILITY.md`, and `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923.md`.
 
 ## 0. Why this exists
 
