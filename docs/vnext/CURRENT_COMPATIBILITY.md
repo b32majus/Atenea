@@ -10,9 +10,9 @@ This document contains version/provider-specific exceptions that are intentional
 
 ```text
 Pi                0.87.0
-gentle-pi         3.5.1
-Gentle AI         3.6.0
-Engram             2.0.0
+gentle-pi         3.7.0
+Gentle AI         3.7.0
+Engram             2.1.0
 GGA                2.10.1
 provider           NaN
 profile            native-nan
@@ -20,7 +20,7 @@ profile            native-nan
 
 Evidence:
 
-- `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923.md`.
+- `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md`.
 
 ## 1. NaN reviewer reasoning-only truncation
 
@@ -32,7 +32,7 @@ Current mitigation:
 review-* → nan/glm5.3-flash · thinking=low
 ```
 
-This is native Gentle profile configuration, not an Atenea runtime bridge.
+This is native Gentle profile configuration, not an Atenea runtime bridge. Gentle AI 3.7 adds native per-reviewer model selection, which means future reviewer diversity can remain entirely upstream. Atenea does not change the qualified all-GLM/low mapping until a representative higher-effort canary passes.
 
 Upstream trackers rechecked 2026-09-23 and still open:
 
@@ -51,6 +51,8 @@ Retirement condition:
 Tracker:
 
 - Gentle AI #4791 — still open on 2026-09-23.
+
+The defect was reproduced again on Gentle Shell 3.7.0 / Gentle AI 3.7.0: native Gentle AI returned `medium / executable_change` for a committed executable candidate, while the Pi/Gentle facade returned typed `risk=unassessable`, `schema-incompatible`, zero changed paths and `candidate=null`.
 
 Pre-ASSESS hygiene:
 
@@ -122,16 +124,35 @@ Use non-printing credential resolution plus the real bounded model smokes in `NA
 
 ## 5. Engram
 
-Engram remains auxiliary and is currently 2.0.0.
+Engram remains auxiliary and is currently 2.1.0. The 2.1 release is core-only; Pi `gentle-engram` remains 0.1.14.
 
-After maintenance:
+Post-maintenance evidence:
 
-- Gentle doctor reaches Engram MCP successfully;
-- a real Pi `mem_search` returned `ENGRAM_MEMORY_OK`;
-- `engram doctor` reports one warning for multiple still-active P4 disposable-canary sessions under `/var/tmp/atenea-p4-20260922/*`;
-- integrity/identity/SQLite/sync checks are otherwise healthy.
+- `gentle-ai doctor`: Engram MCP reachable;
+- `engram doctor`: 9/9 OK, 0 warnings after cleanup;
+- `engram test --quick`: PASS, including concurrent local writes;
+- real Pi `mem_search` memory canary: `ENGRAM_AFTER_CLEANUP_OK`;
+- production store reduced to `hermes-agent`, `symphonia` and canonical `atenea` session history;
+- no similar-name project groups remain.
 
-Do not delete historical/test sessions merely to make doctor cosmetically green.
+Disposable projects removed from the production store: `baseline`, `atenea-assess-370-20260923`, `dist`, `gentle-final-canary-20260921` and `tmp`.
+
+### Canary isolation
+
+Do not let disposable canaries write to the production Engram store.
+
+`ENGRAM_DATA_DIR` alone is **not sufficient** when a production `engram serve` already owns the default HTTP endpoint, because `gentle-engram` native `mem_*` tools use the HTTP server path.
+
+Qualified pattern:
+
+```text
+temporary ENGRAM_DATA_DIR
+→ separate engram serve on a non-production port
+→ ENGRAM_URL points Pi at that temporary server
+→ normal repo/project identity inside the isolated store
+```
+
+This pattern passed `ENGRAM_ISOLATION_OK`: the temporary store received its own observation/session data and the production store remained unchanged.
 
 Never treat Engram as product/spec/review authority.
 
@@ -162,4 +183,4 @@ The current baseline is defined by:
 - `docs/START_HERE.md`;
 - `docs/QUALIFICATION.md`;
 - this document;
-- `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923.md`.
+- `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md`.

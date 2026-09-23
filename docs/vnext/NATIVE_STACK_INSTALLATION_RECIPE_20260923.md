@@ -10,9 +10,9 @@ Current productive versions:
 
 ```text
 Pi                0.87.0
-gentle-pi         3.5.1
-Gentle AI         3.6.0
-Engram             2.0.0
+gentle-pi         3.7.0
+Gentle AI         3.7.0
+Engram             2.1.0
 GGA                2.10.1
 provider           NaN
 active profile     native-nan
@@ -84,12 +84,12 @@ Expected:
 
 Do not upgrade Pi as a side effect of a Gentle maintenance change unless Pi itself is intentionally being qualified.
 
-## 4. Gentle Shell 3.5.1
+## 4. Gentle Shell 3.7.0
 
 Install/update the Shell package through Pi:
 
 ```bash
-pi install npm:gentle-pi@3.5.1
+pi install npm:gentle-pi@3.7.0
 ```
 
 Verify:
@@ -101,12 +101,12 @@ node -p 'require(process.env.HOME + "/.pi/agent/npm/node_modules/gentle-pi/packa
 Expected:
 
 ```text
-3.5.1
+3.7.0
 ```
 
 ### Obsolete ask-user package
 
-Gentle Shell 3.5.1 provides its own `ask_user_question` tool.
+Gentle Shell 3.7.0 provides its own `ask_user_question` tool.
 
 If an older installation still contains:
 
@@ -122,7 +122,11 @@ pi remove npm:@juicesharp/rpiv-ask-user-question
 
 Do not delete package directories by hand.
 
-## 5. Gentle AI 3.6.0
+### Independent-repository subagents
+
+Gentle Shell 3.7 supports bounded subagents targeting another Git repository through native `repository_root`. The runtime requires explicit target consent and revalidates repository identity. Use it only when the accepted task actually authorizes work in the second repository; do not add an Atenea cross-repo supervisor.
+
+## 5. Gentle AI 3.7.0
 
 ### Existing host
 
@@ -132,13 +136,13 @@ First ask the installed binary:
 gentle-ai update
 ```
 
-On the qualified VPS, 3.4.0 reported the following official updater:
+On the 2026-09-23 qualification, the installed Gentle AI update check reported the following official updater for this installation:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/Gentleman-Programming/gentle-ai/main/scripts/install.sh | bash
 ```
 
-That installer selected v3.6.0, downloaded the official release artifact, verified its checksum, installed the binary and verified the version.
+That installer selected v3.7.0, downloaded the official release artifact, verified its checksum, installed the binary and verified the version.
 
 After update:
 
@@ -150,14 +154,14 @@ gentle-ai sync --agents pi
 Expected:
 
 ```text
-gentle-ai 3.6.0
+gentle-ai 3.7.0
 ```
 
 If a future `gentle-ai update` prints a different supported updater for the installation, follow the current command it reports rather than copying this historical command blindly.
 
 ### Fresh/reproducible install
 
-For an exact-version rebuild, prefer the official v3.6.0 release artifact plus published checksum, then verify `gentle-ai version`.
+For an exact-version rebuild, prefer the official v3.7.0 release artifact plus published checksum, then verify `gentle-ai version`.
 
 Do not install an arbitrary moving `latest` without verifying the resulting version against the versioned Atenea baseline.
 
@@ -181,12 +185,14 @@ gentle-ai update
 At the 2026-09-23 baseline, update inventory should report:
 
 ```text
-gentle-ai 3.6.0  up to date
-engram    2.0.0  up to date
+gentle-ai 3.7.0  up to date
+engram    2.1.0  up to date
 gga       2.10.1 up to date
 ```
 
 Do not independently replace Engram/GGA merely because a binary download exists if Gentle already owns and reports the current supported component.
+
+For an existing managed installation where `gentle-ai update` reports a newer Engram/GGA, back up state first and use the Gentle-managed upgrade path (`gentle-ai upgrade`) rather than replacing the companion binary manually.
 
 ## 7. NaN provider desired state
 
@@ -327,7 +333,7 @@ Keep explicit `</dev/null` in print-mode remote validation.
 Current stable/managed Engram:
 
 ```text
-2.0.0
+2.1.0
 ```
 
 First:
@@ -337,9 +343,23 @@ gentle-ai doctor
 engram doctor
 ```
 
-Then, when memory behavior matters, validate a real Pi `mem_search`.
+Then, when memory behavior matters, validate a real Pi `mem_search`. After an Engram core upgrade also run `engram test --quick`; the 2.1.0 qualification passed database, concurrent-write and search scenarios.
 
-A doctor warning about ambiguous old runtime sessions is not equivalent to storage corruption. Inspect its evidence and do not delete historical/test sessions merely to make diagnostics cosmetically green.
+### Disposable canaries must isolate memory
+
+Do not point temporary `/var/tmp` canaries at the production Engram HTTP server. `ENGRAM_DATA_DIR` alone is not enough if a healthy production `engram serve` is already listening on the default port.
+
+Use a separate temporary store and server, for example:
+
+```bash
+ENGRAM_DATA_DIR="$TMP_ENGRAM/data" ENGRAM_PORT=17437 engram serve 17437
+# In another process:
+ENGRAM_URL=http://127.0.0.1:17437 pi ...
+```
+
+Use a free non-production port, preserve normal repository/project identity, stop the temporary server when the canary finishes, and confirm the production `engram projects list` is unchanged. This pattern passed `ENGRAM_ISOLATION_OK` on 2026-09-23.
+
+Clean proven disposable projects with Engram's own `delete project` / `projects prune` commands after taking a consistent backup; do not edit SQLite rows manually.
 
 ## 13. Review compatibility after maintenance
 
@@ -373,7 +393,7 @@ review mode remains intended
 provider credential resolves without exposure
 PI_PURE_OK
 PI_GENTLE_OK
-Engram real-use canary passes when memory was touched
+Engram doctor/self-test and real-use canary pass when Engram was changed
 Atenea conformance oracles pass
 ```
 

@@ -1,8 +1,10 @@
 # Atenea vNext — Stable Runtime Upgrade 2026-09-23
 
-Status: **CURRENT MAINTENANCE QUALIFICATION / PASS**
+Status: **HISTORICAL PREDECESSOR MAINTENANCE QUALIFICATION / PASS**
 
 Date: 2026-09-23
+
+> Superseded later the same day by `STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md`. This file remains accurate evidence for the intermediate 3.5.1 / 3.6.0 / Engram 2.0.0 baseline.
 
 Purpose: record the first post-P7 stable runtime maintenance update while preserving the upstream-first installation discipline established during the vNext cutover.
 

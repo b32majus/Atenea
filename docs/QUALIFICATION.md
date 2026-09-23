@@ -10,8 +10,9 @@ Date: 2026-09-23
 Atenea policy / desired state / deterministic evidence
                     ↓
 Pi 0.87.0
-→ gentle-pi / Gentle Shell 3.5.1
-→ Gentle AI 3.6.0
+→ gentle-pi / Gentle Shell 3.7.0
+→ Gentle AI 3.7.0
+→ Engram 2.1.0 / GGA 2.10.1
 → NaN
 → native ODD / workers / verify / RDD
 ```
@@ -59,6 +60,31 @@ Post-update evidence:
 - both Atenea conformance oracles PASS.
 
 Evidence: `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923.md`.
+
+## Post-P7 Gentle 3.7 / Engram 2.1 maintenance — PASS
+
+Later on 2026-09-23 the stable runtime advanced again through official owner update surfaces:
+
+```text
+Gentle Shell 3.5.1 → 3.7.0
+Gentle AI    3.6.0 → 3.7.0
+Engram       2.0.0 → 2.1.0
+GGA          2.10.1 → 2.10.1
+```
+
+Qualification evidence:
+
+- `gentle-ai update`: all managed tools current;
+- `gentle-ai doctor`: 8/8 healthy;
+- Engram doctor: 9/9 healthy after memory-store cleanup;
+- Engram quick self-test: PASS, including concurrent writes;
+- `PI_PURE_370_OK`;
+- `PI_GENTLE_370_OK`;
+- `ENGRAM_210_OK`;
+- ASSESS #4791 reproduced on the 3.7 facade, so fail-closed compatibility remains active;
+- isolated Engram canary: `ENGRAM_ISOLATION_OK`, with production memory unchanged.
+
+Evidence: `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md`.
 
 ## Final native lifecycle evidence
 
@@ -124,7 +150,9 @@ Canonical install/rebuild/update recipe:
 
 Latest stable-runtime maintenance evidence:
 
-`docs/vnext/STABLE_RUNTIME_UPGRADE_20260923.md`
+`docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md`
+
+The earlier 3.5.1/3.6.0 maintenance evidence remains preserved at `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923.md`.
 
 ## Current compatibility debt
 

@@ -7,7 +7,7 @@ This file prevents future agents from rediscovering rejected architecture withou
 The entries below are historical architectural decisions. Current interpretation is governed by the promoted vNext authority in `README.md`, `AGENTS.md`, `docs/START_HERE.md` and C-055 onward in `docs/CURRENT_DECISIONS.md`.
 
 - Normal execution is ordinary `pi` + native Gentle; Atenea owns zero runtime/review/worker/routing controllers.
-- Current maintenance baseline is Pi 0.87.0 + Gentle Shell 3.5.1 + Gentle AI 3.6.0.
+- Current maintenance baseline is Pi 0.87.0 + Gentle Shell 3.7.0 + Gentle AI 3.7.0 + Engram 2.1.0.
 - Herdr remains persistent operator/session infrastructure, not policy/review authority.
 - Matt skills remain optional discovery/shaping; OpenSpec remains optional native SDD when durable specs/history add value.
 - Historical supervisor, pi-intercom, OpenCode-worker, one-touch/train and Gentle bridge mechanics remain provenance/rollback evidence only.

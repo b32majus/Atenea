@@ -32,8 +32,9 @@ Qualified stack:
 
 ```text
 Pi 0.87.0
-→ gentle-pi / Gentle Shell 3.5.1
-→ Gentle AI 3.6.0
+→ gentle-pi / Gentle Shell 3.7.0
+→ Gentle AI 3.7.0
+→ Engram 2.1.0 / GGA 2.10.1
 → NaN
 → native ODD / workers / verify / RDD
 ```
@@ -100,11 +101,25 @@ These are compatibility policies, not authorization to recreate historical Atene
 
 **Accepted and qualified 2026-09-23.**
 
-Current maintenance baseline: Pi 0.87.0, Gentle Shell 3.5.1, Gentle AI 3.6.0, Engram 2.0.0 and GGA 2.10.1.
+This policy was first qualified against Pi 0.87.0, Gentle Shell 3.5.1, Gentle AI 3.6.0 and Engram 2.0.0; later maintenance baselines continue to use the same owner-updater discipline.
 
 Gentle Shell is updated through Pi's package manager. Gentle AI is updated through the updater reported by `gentle-ai update`, followed by `gentle-ai sync`. Gentle-managed companion tools are left untouched when the managed update inventory reports them current. Atenea updates its desired state/evidence only after health checks and real runtime smokes pass.
 
 Evidence: `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923.md` and `docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260923.md`.
+
+## C-061 — Gentle 3.7 / Engram 2.1 keep lifecycle upstream and isolate canary memory
+
+**Accepted and qualified 2026-09-23.**
+
+Current maintenance baseline: Pi 0.87.0, Gentle Shell 3.7.0, Gentle AI 3.7.0, Engram 2.1.0 and GGA 2.10.1.
+
+Gentle 3.7 adds native reviewer-model selection and bounded independent-repository subagents. Atenea treats both as upstream capabilities: no routing engine or cross-repository supervisor is introduced. Reviewer diversity is not changed until the existing output/reasoning compatibility seam is requalified.
+
+Committed-range ASSESS #4791 was reproduced again on the 3.7 stack: native Gentle AI returned `medium / executable_change`, while the Pi/Gentle facade returned typed `unassessable / schema-incompatible`. The native fail-closed verifier path therefore remains current.
+
+Engram 2.1 was upgraded through Gentle AI's managed upgrader, backed up, self-tested and cleaned of disposable P4/canary projects. Disposable canaries must not write to the production Engram store. When memory is exercised, use a separate temporary Engram server and point Pi at it with `ENGRAM_URL`; `ENGRAM_DATA_DIR` alone is insufficient while a production server already owns the default HTTP endpoint.
+
+Evidence: `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md`.
 
 ## C-001 — Atenea is a contract over upstream tools, not an orchestration product
 
