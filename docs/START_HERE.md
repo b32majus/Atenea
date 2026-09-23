@@ -139,6 +139,7 @@ Current compatibility seams:
 - committed-range ASSESS (#4791): if native ASSESS returns a typed `risk=unassessable` fail-closed plan, follow its verifier path rather than synthesizing START;
 - post-burn STATUS (#4771): `acknowledge-approved → authority=burned` is terminal; do not call selectorless STATUS merely to prove the burn again;
 - reviewer `thinking=low` is a temporary NaN/Pi compatibility mitigation.
+- Gentle Shell #962: run with `GENTLE_PI_NO_SKILL_REGISTRY=1` so skills stay available while the crash-prone recursive registry watcher is disabled.
 
 Details: `docs/vnext/CURRENT_COMPATIBILITY.md`.
 

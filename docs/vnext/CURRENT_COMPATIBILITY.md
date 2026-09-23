@@ -163,7 +163,25 @@ On globally installed Pi 0.87.1, `pi-web-access` 0.31.0 may warn that dynamic to
 
 Operational rule: accept the functional eager fallback and track upstream. Do not add Atenea symlinks, loader patches or forked extension code to force lazy activation.
 
-## 7. Stable-update discipline
+## 7. Gentle skill-registry recursive watcher
+
+Tracker:
+
+- Gentle Shell #962 — still open on 2026-09-23.
+
+Observed on both Pi 0.87.0 and 0.87.1 with Gentle Shell 3.7.0: the Gentle skill-registry extension recursively watches user skill roots, including `~/.codex/skills`. When Codex replaces its `.system` skill subtree, Node can emit asynchronous `ENOENT` / `scandir` from the recursive `FSWatcher`. The extension does not attach an `error` listener, so Pi can exit via `uncaughtException`.
+
+Current mitigation:
+
+```bash
+export GENTLE_PI_NO_SKILL_REGISTRY=1
+```
+
+This is a supported Gentle switch. Skills remain available normally; only startup refresh/watch of `.atl/skill-registry.md` is disabled. Do not patch installed Gentle source or disable Codex skills. Existing Pi processes must be restarted to inherit the environment override.
+
+Retire only after a released Gentle version fixes #962 and a watched-subtree replacement canary passes. Evidence: `docs/vnext/SKILL_REGISTRY_WATCHER_INCIDENT_20260923.md`.
+
+## 8. Stable-update discipline
 
 The 2026-09-23 maintenance pass established the current rule:
 
@@ -178,7 +196,7 @@ official owner updater
 
 Do not update a managed component by manually overwriting its binary/package when its owner exposes a supported updater.
 
-## 8. Historical qualification evidence
+## 9. Historical qualification evidence
 
 P0–P7 documents that mention Gentle Shell 3.3.0 / Gentle AI 3.4.0 remain correct historical evidence for the versions actually tested then.
 
@@ -191,4 +209,5 @@ The current baseline is defined by:
 - `docs/QUALIFICATION.md`;
 - this document;
 - `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md`;
-- `docs/vnext/STABLE_RUNTIME_UPDATE_PI0871_20260923.md`.
+- `docs/vnext/STABLE_RUNTIME_UPDATE_PI0871_20260923.md`;
+- `docs/vnext/SKILL_REGISTRY_WATCHER_INCIDENT_20260923.md`.

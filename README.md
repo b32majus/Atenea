@@ -57,6 +57,7 @@ Current vNext architecture/evidence:
 - `docs/vnext/P7_PROMOTION_20260922.md`;
 - `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md`.
 - `docs/vnext/STABLE_RUNTIME_UPDATE_PI0871_20260923.md`.
+- `docs/vnext/SKILL_REGISTRY_WATCHER_INCIDENT_20260923.md`.
 
 ## Execution rule
 

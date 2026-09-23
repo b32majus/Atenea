@@ -55,6 +55,7 @@ requireText(current.start, "Status: **CURRENT FRONT DOOR**", "START_HERE current
 requireText(current.start, "Normal qualified entry point:", "START_HERE native entry");
 requireText(current.start, "committed-range ASSESS (#4791)", "ASSESS compatibility seam");
 requireText(current.start, "post-burn STATUS (#4771)", "post-burn compatibility seam");
+requireText(current.start, "Gentle Shell #962", "skill-registry watcher compatibility seam");
 
 requireText(current.contract, "Target Atenea-owned runtime controllers: **0**.", "zero-controller contract");
 requireText(current.contract, "Atenea must not proxy or shadow that lifecycle.", "no shadow lifecycle");
@@ -80,10 +81,13 @@ const installRecipe = "docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260923.md";
 const providerSpec = "config/native-gentle/nan-provider.models.json";
 const stableRuntime = "docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md";
 const piPatchRuntime = "docs/vnext/STABLE_RUNTIME_UPDATE_PI0871_20260923.md";
+const skillWatcherIncident = "docs/vnext/SKILL_REGISTRY_WATCHER_INCIDENT_20260923.md";
 
 requireText(compat, "Gentle AI #4791", "ASSESS upstream tracker");
 requireText(compat, "Gentle AI #4771", "post-burn upstream tracker");
 requireText(compat, "mem_search", "Engram memory canary");
+requireText(compat, "Gentle Shell #962", "skill-registry watcher tracker");
+requireText(compat, "GENTLE_PI_NO_SKILL_REGISTRY=1", "skill-registry watcher mitigation");
 requireText(stableRuntime, "gentle-pi         3.7.0", "stable runtime Shell evidence");
 requireText(stableRuntime, "Gentle AI         3.7.0", "stable runtime Gentle AI evidence");
 requireText(stableRuntime, "Engram            2.1.0", "stable runtime Engram evidence");
@@ -92,6 +96,8 @@ requireText(stableRuntime, "ENGRAM_ISOLATION_OK", "isolated Engram canary");
 requireText(piPatchRuntime, "Pi                0.87.1", "Pi 0.87.1 maintenance evidence");
 requireText(piPatchRuntime, "PI_0871_GENTLE_OK", "Pi 0.87.1 Gentle smoke");
 requireText(piPatchRuntime, "pi-web-access#428", "pi-web-access compatibility evidence");
+requireText(skillWatcherIncident, "Pi 0.87.0 and 0.87.1", "watcher crash cross-version evidence");
+requireText(skillWatcherIncident, "GENTLE_PI_NO_SKILL_REGISTRY=1", "watcher incident mitigation evidence");
 
 requireText(minimal, "Target Atenea-owned runtime controllers:", "Minimal Core zero-controller budget");
 requireText(minimal, "Deterministic conformance layer", "deterministic oracle layer");
@@ -104,6 +110,7 @@ requireText(installRecipe, "Engram             2.1.0", "reproducible Engram base
 requireText(installRecipe, "ENGRAM_URL=http://127.0.0.1:17437", "isolated Engram canary recipe");
 requireText(installRecipe, "gentle-ai update", "official Gentle update discipline");
 requireText(installRecipe, "pi auth print-api-key --provider nan", "custom-provider credential resolution");
+requireText(installRecipe, "GENTLE_PI_NO_SKILL_REGISTRY=1", "skill-registry compatibility recipe");
 requireText(providerSpec, "\"api\": \"openai-completions\"", "NaN provider API");
 requireText(providerSpec, "\"id\": \"glm5.3-flash\"", "qualified NaN model");
 forbidText(providerSpec, "\"apiKey\"", "provider secret in desired state");
