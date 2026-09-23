@@ -22,7 +22,8 @@ Pi 0.87.1
 → gentle-pi / Gentle Shell 3.7.0
 → Gentle AI 3.7.0
 → Engram 2.1.0 / GGA 2.10.1
-→ NaN
+→ NaN + OpenAI Codex
+→ active routing profile: native-balanced
 → native ODD / workers / verify / RDD
 ```
 
@@ -94,7 +95,8 @@ Current P3 decision:
 Versioned, secret-free:
 
 - `config/native-gentle/nan-provider.models.json`;
-- `config/native-gentle/native-nan.profile.json`.
+- `config/native-gentle/native-balanced.profile.json` — active multi-provider routing;
+- `config/native-gentle/native-nan.profile.json` — qualified NaN-only rollback.
 
 Validate the live machine against them:
 
@@ -115,7 +117,8 @@ See `docs/vnext/CURRENT_COMPATIBILITY.md`.
 
 Short version:
 
-- six review roles currently use `nan/glm5.3-flash · thinking=low` as a temporary NaN/Pi truncation mitigation;
+- active routing is `native-balanced`: GLM 5.3 Flash for implementation, DeepSeek V4.1 Flash for independent analysis/verify, GPT-6 Luna for most review roles, and GPT-6 Sol only for `review-risk`;
+- this routing change was applied by explicit operator choice without a pre-activation canary; `native-nan` remains the qualified rollback if a real execution exposes a problem;
 - typed `risk=unassessable` ASSESS follows Gentle's fail-closed plan;
 - `acknowledge-approved → authority=burned` is terminal; selectorless STATUS is not required afterward;
 - `.atl/` must already be ignored in the repository.

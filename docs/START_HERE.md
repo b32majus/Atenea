@@ -2,24 +2,27 @@
 
 Status: **CURRENT FRONT DOOR**
 
-## Current qualified baseline — read this first
+## Current runtime baseline — read this first
 
 ```text
 CURRENT_AUTHORITY = main
-QUALIFIED_DATE    = 2026-09-23
+RUNTIME_QUALIFIED = 2026-09-23
+ROUTING_CHANGED   = 2026-09-24
 P0_TO_P7          = PASS
 Pi                = 0.87.1
 gentle-pi         = 3.7.0
 Gentle AI         = 3.7.0
 Engram            = 2.1.0
 GGA               = 2.10.1
-provider          = NaN
-active profile    = native-nan
+providers         = NaN + OpenAI Codex
+active profile    = native-balanced
+rollback profile  = native-nan
+routing status    = operator-directed / no preflight canary
 normal entry      = pi
 Atenea runtime controllers = 0
 ```
 
-This is the latest qualified and functional Atenea baseline. Historical Stage files, old run recipes, old profiles and `historical/` remain provenance only and do not override this baseline.
+The runtime versions above are the latest qualified Atenea baseline. The `native-balanced` routing profile was activated on 2026-09-24 by explicit operator choice **without a preflight canary**; investigate only if a real execution fails. `native-nan` remains the qualified NaN-only rollback. Historical Stage files, old run recipes, old profiles and `historical/` remain provenance only and do not override this baseline.
 
 If you need to rebuild the runtime, use `docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260923.md`. If you need provider/runtime exceptions, use `docs/vnext/CURRENT_COMPATIBILITY.md`.
 

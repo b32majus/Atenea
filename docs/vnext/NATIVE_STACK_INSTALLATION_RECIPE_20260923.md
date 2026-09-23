@@ -14,8 +14,9 @@ gentle-pi         3.7.0
 Gentle AI         3.7.0
 Engram             2.1.0
 GGA                2.10.1
-provider           NaN
-active profile     native-nan
+providers          NaN + OpenAI Codex
+active profile     native-balanced
+rollback profile   native-nan
 ```
 
 This recipe supersedes `NATIVE_STACK_INSTALLATION_RECIPE_20260922.md`.
@@ -268,14 +269,22 @@ Then prove availability with a real bounded model smoke.
 Desired state:
 
 ```text
-config/native-gentle/native-nan.profile.json
+config/native-gentle/native-balanced.profile.json
 ```
 
 Active profile:
 
 ```text
+native-balanced
+```
+
+Qualified rollback profile:
+
+```text
 native-nan
 ```
+
+The active multi-provider routing was selected by explicit operator choice on 2026-09-24 without a pre-activation canary.
 
 The six review roles remain:
 

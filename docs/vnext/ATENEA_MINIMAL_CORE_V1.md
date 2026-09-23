@@ -315,7 +315,8 @@ skills-lock.json                # while those skills remain adopted
 
 config/
   native-gentle/
-    native-nan.profile.json     # secret-free declarative qualified profile spec
+    native-balanced.profile.json # active secret-free multi-provider routing spec
+    native-nan.profile.json      # qualified NaN-only rollback spec
     nan-provider.models.json    # secret-free provider/model registry desired state
 
 docs/

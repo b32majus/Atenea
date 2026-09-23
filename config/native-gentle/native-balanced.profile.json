@@ -1,0 +1,69 @@
+{
+  "schema": "atenea.native-gentle-profile/v1",
+  "name": "native-balanced",
+  "status": "active-user-directed-routing-not-prequalified",
+  "activated_at": "2026-09-24",
+  "providers": [
+    "nan",
+    "openai-codex"
+  ],
+  "notes": [
+    "Active multi-provider routing chosen to distribute token consumption and reduce correlated model errors.",
+    "GLM 5.3 Flash owns implementation-heavy roles; DeepSeek V4.1 Flash owns independent analysis/verification roles.",
+    "GPT-6 Luna owns most review diversity with high/xhigh/max reasoning; GPT-6 Sol is reserved for review-risk at high.",
+    "No pre-activation canary was run by explicit operator choice; investigate only if a real execution fails.",
+    "native-nan remains the qualified rollback profile."
+  ],
+  "roles": {
+    "orchestrator": {
+      "model": "nan/glm5.3-flash",
+      "thinking": "high"
+    },
+    "gentle-ai-explore": {
+      "model": "nan/deepseek-v4-flash"
+    },
+    "gentle-ai-worker": {
+      "model": "nan/glm5.3-flash",
+      "thinking": "high"
+    },
+    "gentle-ai-verify": {
+      "model": "nan/deepseek-v4-flash"
+    },
+    "jd-judge-a": {
+      "model": "nan/deepseek-v4-flash"
+    },
+    "jd-judge-b": {
+      "model": "openai-codex/gpt-6-luna",
+      "thinking": "xhigh"
+    },
+    "jd-fix-agent": {
+      "model": "nan/glm5.3-flash",
+      "thinking": "high"
+    },
+    "review-readability": {
+      "model": "openai-codex/gpt-6-luna",
+      "thinking": "high"
+    },
+    "review-reliability": {
+      "model": "openai-codex/gpt-6-luna",
+      "thinking": "xhigh"
+    },
+    "review-resilience": {
+      "model": "openai-codex/gpt-6-luna",
+      "thinking": "xhigh"
+    },
+    "review-risk": {
+      "model": "openai-codex/gpt-6-sol",
+      "thinking": "high"
+    },
+    "review-refuter": {
+      "model": "openai-codex/gpt-6-luna",
+      "thinking": "max"
+    },
+    "review-validator": {
+      "model": "openai-codex/gpt-6-luna",
+      "thinking": "max"
+    }
+  },
+  "rollback_profile": "native-nan"
+}

@@ -184,11 +184,19 @@ Do not resurrect historical Atenea environment variables, old profile pins or re
 
 ## 6. Native profile
 
-Qualified current profile:
+Current active profile:
+
+```text
+native-balanced
+```
+
+Qualified rollback profile:
 
 ```text
 native-nan
 ```
+
+The active routing was changed on 2026-09-24 by explicit operator choice without a pre-activation canary.
 
 Reviewer roles are currently pinned through **native Gentle model routing** to:
 

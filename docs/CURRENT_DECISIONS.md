@@ -71,7 +71,8 @@ No shaping workflow is mandatory by ritual after executable authority exists.
 Versioned desired state:
 
 - `config/native-gentle/nan-provider.models.json`;
-- `config/native-gentle/native-nan.profile.json`.
+- `config/native-gentle/native-balanced.profile.json` — active multi-provider routing;
+- `config/native-gentle/native-nan.profile.json` — qualified rollback.
 
 Credentials remain local and are never committed.
 
@@ -90,7 +91,7 @@ The exact supported rebuild/update recipe is `docs/vnext/NATIVE_STACK_INSTALLATI
 
 Current temporary seams live in `docs/vnext/CURRENT_COMPATIBILITY.md`.
 
-- reviewer `thinking=low` is temporary NaN/Pi compatibility;
+- `native-nan` preserves reviewer `thinking=low` as the qualified NaN-only compatibility rollback; active `native-balanced` is an explicit operator override while the upstream reviewer/output issues remain open;
 - typed `risk=unassessable` ASSESS follows Gentle's fail-closed plan rather than an Atenea bridge;
 - `acknowledge-approved → authority=burned` is terminal; selectorless STATUS is not required afterward;
 - `.atl/` must be ignored repo-locally before candidate work.
@@ -114,13 +115,32 @@ Evidence: `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923.md` and `docs/vnext/NATIVE
 
 Current maintenance baseline: Pi 0.87.1, Gentle Shell 3.7.0, Gentle AI 3.7.0, Engram 2.1.0 and GGA 2.10.1.
 
-Gentle 3.7 adds native reviewer-model selection and bounded independent-repository subagents. Atenea treats both as upstream capabilities: no routing engine or cross-repository supervisor is introduced. Reviewer diversity is not changed until the existing output/reasoning compatibility seam is requalified.
+Gentle 3.7 adds native reviewer-model selection and bounded independent-repository subagents. Atenea treats both as upstream capabilities: no routing engine or cross-repository supervisor is introduced. At the time of C-061 qualification reviewer diversity remained unchanged; C-062 later activates native multi-provider routing by explicit operator choice without a pre-activation canary.
 
 Committed-range ASSESS #4791 was reproduced again on the 3.7 stack: native Gentle AI returned `medium / executable_change`, while the Pi/Gentle facade returned typed `unassessable / schema-incompatible`. The native fail-closed verifier path therefore remains current.
 
 Engram 2.1 was upgraded through Gentle AI's managed upgrader, backed up, self-tested and cleaned of disposable P4/canary projects. Disposable canaries must not write to the production Engram store. When memory is exercised, use a separate temporary Engram server and point Pi at it with `ENGRAM_URL`; `ENGRAM_DATA_DIR` alone is insufficient while a production server already owns the default HTTP endpoint.
 
 Evidence: `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md` and the Pi 0.87.1 follow-up `docs/vnext/STABLE_RUNTIME_UPDATE_PI0871_20260923.md`.
+
+## C-062 — Active routing is multi-provider `native-balanced`
+
+**Accepted by explicit operator choice 2026-09-24.**
+
+The active Gentle profile is now `native-balanced`; `native-nan` remains the qualified rollback. No pre-activation canary was requested.
+
+Routing intent:
+
+```text
+orchestrator / worker / fix → GLM 5.3 Flash
+explore / verify / judge A  → DeepSeek V4.1 Flash
+judge B / most review       → GPT-6 Luna
+review-risk                 → GPT-6 Sol high
+```
+
+This is native Gentle routing only; Atenea does not add a routing engine. The change is intended to distribute NaN quota, reduce correlated model errors and reserve expensive Sol usage for a genuinely critical review role. If real execution fails, investigate the failing role/model and use `native-nan` as rollback rather than inventing Atenea glue.
+
+Desired state: `config/native-gentle/native-balanced.profile.json`.
 
 ## C-001 — Atenea is a contract over upstream tools, not an orchestration product
 
