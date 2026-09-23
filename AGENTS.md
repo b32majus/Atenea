@@ -81,6 +81,7 @@ Historical stage documents and `historical/` are evidence, not forward-looking a
 - Historical evidence may remain without remaining active runtime.
 - Hidden global state must not be the only place where behavior-affecting configuration is defined.
 - `.atl/` must be ignored repo-locally before Gentle candidate work begins.
+- Disposable canaries must not write memory/session state into the production Engram store; when a canary exercises `mem_*`, use an isolated Engram server/data store as documented in `docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260923.md`.
 
 ## 5. Shaping lifecycle
 

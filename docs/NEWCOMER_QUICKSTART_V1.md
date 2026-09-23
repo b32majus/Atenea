@@ -56,9 +56,9 @@ node tools/check-vnext-authority.mjs
 ## Current versions
 
 - Pi 0.87.0
-- gentle-pi / Gentle Shell 3.5.1
-- Gentle AI 3.6.0
-- Engram 2.0.0
+- gentle-pi / Gentle Shell 3.7.0
+- Gentle AI 3.7.0
+- Engram 2.1.0
 - GGA 2.10.1
 - NaN provider
 - active profile: `native-nan`

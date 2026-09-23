@@ -20,8 +20,8 @@ Current qualified stack:
 
 ```text
 Pi 0.87.0
-→ Gentle Shell / gentle-pi 3.5.1
-→ Gentle AI 3.6.0
+→ Gentle Shell / gentle-pi 3.7.0
+→ Gentle AI 3.7.0
 → native ODD
 → native workers / verify
 → native RDD / reviewers
@@ -62,7 +62,7 @@ Before writing code:
    - `docs/vnext/ATENEA_CAPABILITY_RECONCILIATION.md`
    - `docs/vnext/P6_NATIVE_CUTOVER_QUALIFICATION_20260922.md`
    - `docs/vnext/P7_PROMOTION_20260922.md`
-   - `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923.md`
+   - `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md`
 
 Do **not** mine old Atenea stage/handoff files unless historical evidence is specifically needed.
 

@@ -16,9 +16,9 @@ Current maintenance-qualified baseline:
 
 ```text
 Pi                0.87.0
-gentle-pi         3.5.1
-Gentle AI         3.6.0
-Engram             2.0.0
+gentle-pi         3.7.0
+Gentle AI         3.7.0
+Engram             2.1.0
 GGA                2.10.1
 provider           NaN
 active profile     native-nan
@@ -88,7 +88,7 @@ For a stable runtime update:
 8. run doctor, conformance oracles and real Pi smokes;
 9. update Atenea's baseline only after qualification.
 
-Current exact commands/evidence are in the canonical recipe and `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923.md`.
+Current exact commands/evidence are in the canonical recipe and `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md`.
 
 ## Rollback
 

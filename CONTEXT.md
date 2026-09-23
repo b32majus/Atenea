@@ -33,8 +33,8 @@ Maintenance-qualified 2026-09-23:
 
 ```text
 Pi 0.87.0
-Gentle Shell 3.5.1
-Gentle AI 3.6.0
+Gentle Shell 3.7.0
+Gentle AI 3.7.0
 NaN
 native-nan
 ```
@@ -56,6 +56,6 @@ Use the cheapest reliable owner for each fact:
 
 P0–P7 qualification and promotion are complete.
 
-The current repository authority is the promoted vNext policy/config/conformance layer. Stable runtime maintenance on 2026-09-23 advanced Gentle Shell to 3.5.1 and Gentle AI to 3.6.0 without changing the zero-controller architecture.
+The current repository authority is the promoted vNext policy/config/conformance layer. Stable runtime maintenance on 2026-09-23 advanced Gentle Shell and Gentle AI to 3.7.0 and Engram to 2.1.0 without changing the zero-controller architecture.
 
 Runtime/provider compatibility debt is tracked in `docs/vnext/CURRENT_COMPATIBILITY.md`.
