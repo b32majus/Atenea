@@ -9,7 +9,7 @@ This document contains version/provider-specific exceptions that are intentional
 ## Current maintenance-qualified stack
 
 ```text
-Pi                0.87.0
+Pi                0.87.1
 gentle-pi         3.7.0
 Gentle AI         3.7.0
 Engram             2.1.0
@@ -20,7 +20,8 @@ profile            native-nan
 
 Evidence:
 
-- `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md`.
+- `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md`;
+- `docs/vnext/STABLE_RUNTIME_UPDATE_PI0871_20260923.md`.
 
 ## 1. NaN reviewer reasoning-only truncation
 
@@ -156,7 +157,13 @@ This pattern passed `ENGRAM_ISOLATION_OK`: the temporary store received its own 
 
 Never treat Engram as product/spec/review authority.
 
-## 6. Stable-update discipline
+## 6. pi-web-access lazy-activation fallback
+
+On globally installed Pi 0.87.1, `pi-web-access` 0.31.0 may warn that dynamic tool activation requires Pi 0.86.1 or newer and fall back to eager web-tool availability. Upstream issue `nicobailon/pi-web-access#428` identifies this as a package-resolution false negative; PR #429 contains the upstream fix. The same defect was confirmed against Pi 0.87.0, so it is not a 0.87.1 regression.
+
+Operational rule: accept the functional eager fallback and track upstream. Do not add Atenea symlinks, loader patches or forked extension code to force lazy activation.
+
+## 7. Stable-update discipline
 
 The 2026-09-23 maintenance pass established the current rule:
 
@@ -171,7 +178,7 @@ official owner updater
 
 Do not update a managed component by manually overwriting its binary/package when its owner exposes a supported updater.
 
-## 7. Historical qualification evidence
+## 8. Historical qualification evidence
 
 P0–P7 documents that mention Gentle Shell 3.3.0 / Gentle AI 3.4.0 remain correct historical evidence for the versions actually tested then.
 
@@ -183,4 +190,5 @@ The current baseline is defined by:
 - `docs/START_HERE.md`;
 - `docs/QUALIFICATION.md`;
 - this document;
-- `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md`.
+- `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md`;
+- `docs/vnext/STABLE_RUNTIME_UPDATE_PI0871_20260923.md`.

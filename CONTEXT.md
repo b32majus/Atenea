@@ -32,7 +32,7 @@ It does not retain active custom:
 Maintenance-qualified 2026-09-23:
 
 ```text
-Pi 0.87.0
+Pi 0.87.1
 Gentle Shell 3.7.0
 Gentle AI 3.7.0
 NaN

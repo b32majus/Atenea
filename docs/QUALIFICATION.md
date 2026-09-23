@@ -9,7 +9,7 @@ Date: 2026-09-23
 ```text
 Atenea policy / desired state / deterministic evidence
                     ↓
-Pi 0.87.0
+Pi 0.87.1
 → gentle-pi / Gentle Shell 3.7.0
 → Gentle AI 3.7.0
 → Engram 2.1.0 / GGA 2.10.1
@@ -86,6 +86,23 @@ Qualification evidence:
 
 Evidence: `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md`.
 
+## Post-P7 Pi 0.87.1 maintenance — PASS
+
+Pi was advanced from 0.87.0 to 0.87.1 while Gentle Shell 3.7.0, Gentle AI 3.7.0, Engram 2.1.0 and GGA 2.10.1 remained unchanged.
+
+Qualification evidence:
+
+- `gentle-ai doctor`: 8/8 healthy;
+- `gentle-ai update`: all managed tools current;
+- `PI_0871_PURE_OK`;
+- `PI_0871_GENTLE_OK`;
+- isolated Engram smoke: `PI_0871_ENGRAM_OK`;
+- committed-range ASSESS #4791 still returns typed `unassessable / schema-incompatible`, so the existing fail-closed rule remains;
+- Pi #9718 remains open, so reviewer `thinking=low` remains;
+- `pi-web-access` #428 is an upstream lazy-activation false negative with functional eager fallback, not a Pi 0.87.1 regression.
+
+Evidence: `docs/vnext/STABLE_RUNTIME_UPDATE_PI0871_20260923.md`.
+
 ## Final native lifecycle evidence
 
 The final native canary proved:
@@ -150,7 +167,9 @@ Canonical install/rebuild/update recipe:
 
 Latest stable-runtime maintenance evidence:
 
-`docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md`
+`docs/vnext/STABLE_RUNTIME_UPDATE_PI0871_20260923.md`
+
+The Gentle 3.7 / Engram 2.1 qualification remains at `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md`.
 
 The earlier 3.5.1/3.6.0 maintenance evidence remains preserved at `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923.md`.
 

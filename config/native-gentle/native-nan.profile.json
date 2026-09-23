@@ -41,6 +41,7 @@
     "p6_cutover": "docs/vnext/P6_NATIVE_CUTOVER_QUALIFICATION_20260922.md",
     "stable_runtime_20260923": "docs/vnext/STABLE_RUNTIME_UPGRADE_20260923.md",
     "stable_runtime_gentle370_engram210": "docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md",
+    "stable_runtime_pi0871": "docs/vnext/STABLE_RUNTIME_UPDATE_PI0871_20260923.md",
     "upstream_gentle_issue": "https://github.com/Gentleman-Programming/gentle-shell/issues/1259",
     "upstream_pi_issue": "https://github.com/earendil-works/pi/issues/9718"
   },

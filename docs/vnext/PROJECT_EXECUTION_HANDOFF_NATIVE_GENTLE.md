@@ -19,7 +19,7 @@ pi
 Current qualified stack:
 
 ```text
-Pi 0.87.0
+Pi 0.87.1
 → Gentle Shell / gentle-pi 3.7.0
 → Gentle AI 3.7.0
 → native ODD

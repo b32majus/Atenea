@@ -9,7 +9,7 @@ Target: Linux x86_64 / Ubuntu-class host.
 Current productive versions:
 
 ```text
-Pi                0.87.0
+Pi                0.87.1
 gentle-pi         3.7.0
 Gentle AI         3.7.0
 Engram             2.1.0
@@ -67,22 +67,26 @@ Back up behavior-affecting local config, not entire historical HOME state:
 
 Never commit or paste the auth backup.
 
-## 3. Pi 0.87.0
+## 3. Pi 0.87.1
 
 For a fresh installation:
 
 ```bash
-npm install -g @earendil-works/pi-coding-agent@0.87.0
+npm install -g @earendil-works/pi-coding-agent@0.87.1
 pi --version
 ```
 
 Expected:
 
 ```text
-0.87.0
+0.87.1
 ```
 
 Do not upgrade Pi as a side effect of a Gentle maintenance change unless Pi itself is intentionally being qualified.
+
+Pi 0.87.1 is the qualified patch baseline. It does not retire Pi #9718; keep the current reviewer compatibility policy until a representative higher-effort reviewer canary passes.
+
+On globally installed Pi, `pi-web-access` 0.31.0 may currently fall back to eager web-tool availability because of upstream issue #428. Do not apply local loader/symlink patches; track the upstream fix (#429).
 
 ## 4. Gentle Shell 3.7.0
 
