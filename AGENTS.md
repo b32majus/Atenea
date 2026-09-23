@@ -131,7 +131,8 @@ Use the upstream runtime's native provider/model/profile configuration.
 Atenea versions secret-free desired state:
 
 - `config/native-gentle/nan-provider.models.json`;
-- `config/native-gentle/native-nan.profile.json`.
+- `config/native-gentle/native-balanced.profile.json` — active routing desired state;
+- `config/native-gentle/native-nan.profile.json` — qualified rollback.
 
 Atenea does not implement model routing.
 

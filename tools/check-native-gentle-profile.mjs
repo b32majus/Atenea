@@ -5,7 +5,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const specPath = path.join(root, "config/native-gentle/native-nan.profile.json");
+const specPath = path.join(root, "config/native-gentle/native-balanced.profile.json");
 const providerSpecPath = path.join(root, "config/native-gentle/nan-provider.models.json");
 const profilesPath = process.env.ATENEA_GENTLE_PROFILES_PATH ||
   path.join(os.homedir(), ".pi/gentle-ai/profiles.json");
@@ -76,14 +76,15 @@ if (failures.length === 0) {
     }
   }
 
-  if (!providerModels.providers?.[spec.provider]) {
-    failures.push(`provider ${spec.provider} is not registered in ${providerModelsPath}`);
+  const customProvider = "nan";
+  if (!providerModels.providers?.[customProvider]) {
+    failures.push(`provider ${customProvider} is not registered in ${providerModelsPath}`);
   } else {
-    const expectedProvider = providerSpec.providers?.[spec.provider];
+    const expectedProvider = providerSpec.providers?.[customProvider];
     if (!expectedProvider) {
-      failures.push(`provider desired state missing ${spec.provider} in ${providerSpecPath}`);
-    } else if (JSON.stringify(normalize(providerModels.providers[spec.provider])) !== JSON.stringify(normalize(expectedProvider))) {
-      failures.push(`provider ${spec.provider} differs from secret-free desired state ${providerSpecPath}`);
+      failures.push(`provider desired state missing ${customProvider} in ${providerSpecPath}`);
+    } else if (JSON.stringify(normalize(providerModels.providers[customProvider])) !== JSON.stringify(normalize(expectedProvider))) {
+      failures.push(`provider ${customProvider} differs from secret-free desired state ${providerSpecPath}`);
     }
   }
 

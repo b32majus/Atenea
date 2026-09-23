@@ -27,7 +27,8 @@ This file translates the P1 capability matrix into a concrete target-tree decisi
 
 | Surface | Purpose |
 | --- | --- |
-| `config/native-gentle/native-nan.profile.json` | secret-free native routing/effort specification |
+| `config/native-gentle/native-balanced.profile.json` | active secret-free multi-provider routing/effort specification |
+| `config/native-gentle/native-nan.profile.json` | qualified NaN-only rollback routing specification |
 | `config/native-gentle/nan-provider.models.json` | secret-free NaN provider/model registry desired state |
 | `docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260923.md` | exact supported install/auth/profile/conformance recipe |
 | `tools/check-vnext-authority.mjs` | deterministic current-authority consistency |

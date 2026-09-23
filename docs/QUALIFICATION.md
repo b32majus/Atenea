@@ -13,7 +13,7 @@ Pi 0.87.1
 → gentle-pi / Gentle Shell 3.7.0
 → Gentle AI 3.7.0
 → Engram 2.1.0 / GGA 2.10.1
-→ NaN
+→ NaN + OpenAI Codex
 → native ODD / workers / verify / RDD
 ```
 
@@ -24,6 +24,17 @@ Atenea-owned review controllers: **0**.
 Atenea-owned worker supervisors: **0**.
 
 Atenea-owned routing engines: **0**.
+
+## Current routing override — NOT PRE-QUALIFIED
+
+On 2026-09-24 the operator explicitly activated `native-balanced` without a pre-activation canary. Runtime versions and the vNext architecture remain qualified; this **routing change itself is not pre-qualified**.
+
+```text
+active   = native-balanced
+rollback = native-nan
+```
+
+The exact mapping is versioned in `config/native-gentle/native-balanced.profile.json`. Investigate only if real execution exposes a failure, and retain `native-nan` as the known-good rollback.
 
 ## Qualification phases
 

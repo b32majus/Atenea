@@ -60,8 +60,9 @@ node tools/check-vnext-authority.mjs
 - Gentle AI 3.7.0
 - Engram 2.1.0
 - GGA 2.10.1
-- NaN provider
-- active profile: `native-nan`
+- NaN + OpenAI Codex providers
+- active profile: `native-balanced`
+- rollback profile: `native-nan`
 
 ## Temporary exceptions
 

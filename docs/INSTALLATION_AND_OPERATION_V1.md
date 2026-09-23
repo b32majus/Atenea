@@ -20,8 +20,9 @@ gentle-pi         3.7.0
 Gentle AI         3.7.0
 Engram             2.1.0
 GGA                2.10.1
-provider           NaN
-active profile     native-nan
+providers          NaN + OpenAI Codex
+active profile     native-balanced
+rollback profile   native-nan
 ```
 
 Do not recover current installation steps from historical Stage files or old Gentle train recipes.
@@ -66,9 +67,11 @@ The versioned NaN provider desired state contains no key. The live NaN credentia
 
 ## Current routing
 
-Qualified profile: `native-nan`.
+Active profile: `native-balanced` (operator-directed on 2026-09-24, no pre-activation canary).
 
-The six review roles currently use `nan/glm5.3-flash · thinking=low` as a temporary compatibility mitigation.
+Qualified rollback profile: `native-nan`.
+
+The active routing intentionally spreads work across GLM 5.3 Flash, DeepSeek V4.1 Flash, GPT-6 Luna and GPT-6 Sol. See `config/native-gentle/native-balanced.profile.json` for the exact per-role mapping.
 
 See `docs/vnext/CURRENT_COMPATIBILITY.md` for retirement conditions.
 

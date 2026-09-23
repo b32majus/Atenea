@@ -15,7 +15,7 @@ Gentle AI         3.7.0
 Engram             2.1.0
 GGA                2.10.1
 provider           NaN
-profile            native-nan
+profile            native-balanced (active) / native-nan (rollback)
 ```
 
 Evidence:
@@ -23,29 +23,26 @@ Evidence:
 - `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md`;
 - `docs/vnext/STABLE_RUNTIME_UPDATE_PI0871_20260923.md`.
 
-## 1. NaN reviewer reasoning-only truncation
+## 1. Reviewer routing after native multi-model support
 
-The original exact-prompt qualification reproduced failures at default/medium reasoning and a pass with GLM low.
-
-Current mitigation:
-
-```text
-review-* → nan/glm5.3-flash · thinking=low
-```
-
-This is native Gentle profile configuration, not an Atenea runtime bridge. Gentle AI 3.7 adds native per-reviewer model selection, which means future reviewer diversity can remain entirely upstream. Atenea does not change the qualified all-GLM/low mapping until a representative higher-effort canary passes.
-
-Upstream trackers rechecked 2026-09-23 and still open:
+The original exact-prompt qualification reproduced failures at default/medium reasoning on the NaN review path and a pass with GLM low. The upstream trackers remain open:
 
 - Gentle Shell #1259;
 - Gentle Shell #1167;
 - Pi #9718.
 
-Retirement condition:
+On 2026-09-24 the operator explicitly chose to move the **active** profile away from the qualified all-GLM/low mitigation **without running a pre-activation canary**. Active routing now uses native Gentle per-role model selection:
 
-- upstream/provider behavior is fixed;
-- a representative reviewer canary passes at the intended higher effort;
-- reviewer routing is requalified rather than assuming low forever.
+```text
+review-readability  → openai-codex/gpt-6-luna · high
+review-reliability  → openai-codex/gpt-6-luna · xhigh
+review-resilience   → openai-codex/gpt-6-luna · xhigh
+review-risk         → openai-codex/gpt-6-sol  · high
+review-refuter      → openai-codex/gpt-6-luna · max
+review-validator    → openai-codex/gpt-6-luna · max
+```
+
+Operational rule: do not treat this change as evidence that #1259/#1167/#9718 are fixed. If real execution exposes reviewer-output or reasoning-budget failure, investigate that role/model combination and fall back to `native-nan` if necessary. The rollback profile preserves the previously qualified `nan/glm5.3-flash · low` reviewer mapping.
 
 ## 2. Committed-range ASSESS
 
