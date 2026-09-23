@@ -38,7 +38,7 @@ const current = {
 };
 
 requireText(current.readme, "It is no longer a custom execution harness.", "thin-layer front door");
-requireText(current.readme, "Pi 0.87.0", "qualified Pi version");
+requireText(current.readme, "Pi 0.87.1", "qualified Pi version");
 requireText(current.readme, "Gentle Shell 3.7.0", "qualified Gentle Shell version");
 requireText(current.readme, "Gentle AI 3.7.0", "qualified Gentle AI version");
 requireText(current.readme, "Normal entry point:", "native entry point");
@@ -79,6 +79,7 @@ const p6 = "docs/vnext/P6_NATIVE_CUTOVER_QUALIFICATION_20260922.md";
 const installRecipe = "docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260923.md";
 const providerSpec = "config/native-gentle/nan-provider.models.json";
 const stableRuntime = "docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md";
+const piPatchRuntime = "docs/vnext/STABLE_RUNTIME_UPDATE_PI0871_20260923.md";
 
 requireText(compat, "Gentle AI #4791", "ASSESS upstream tracker");
 requireText(compat, "Gentle AI #4771", "post-burn upstream tracker");
@@ -88,12 +89,15 @@ requireText(stableRuntime, "Gentle AI         3.7.0", "stable runtime Gentle AI 
 requireText(stableRuntime, "Engram            2.1.0", "stable runtime Engram evidence");
 requireText(stableRuntime, "PI_GENTLE_370_OK", "stable runtime Gentle smoke");
 requireText(stableRuntime, "ENGRAM_ISOLATION_OK", "isolated Engram canary");
+requireText(piPatchRuntime, "Pi                0.87.1", "Pi 0.87.1 maintenance evidence");
+requireText(piPatchRuntime, "PI_0871_GENTLE_OK", "Pi 0.87.1 Gentle smoke");
+requireText(piPatchRuntime, "pi-web-access#428", "pi-web-access compatibility evidence");
 
 requireText(minimal, "Target Atenea-owned runtime controllers:", "Minimal Core zero-controller budget");
 requireText(minimal, "Deterministic conformance layer", "deterministic oracle layer");
 
 requireText(p6, "P6 exit criterion is satisfied.", "P6 reproducibility closure");
-requireText(installRecipe, "@earendil-works/pi-coding-agent@0.87.0", "reproducible Pi install");
+requireText(installRecipe, "@earendil-works/pi-coding-agent@0.87.1", "reproducible Pi install");
 requireText(installRecipe, "gentle-pi@3.7.0", "reproducible Gentle Shell install");
 requireText(installRecipe, "Gentle AI 3.7.0", "reproducible Gentle AI install");
 requireText(installRecipe, "Engram             2.1.0", "reproducible Engram baseline");

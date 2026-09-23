@@ -8,7 +8,7 @@ Status: **CURRENT FRONT DOOR**
 CURRENT_AUTHORITY = main
 QUALIFIED_DATE    = 2026-09-23
 P0_TO_P7          = PASS
-Pi                = 0.87.0
+Pi                = 0.87.1
 gentle-pi         = 3.7.0
 Gentle AI         = 3.7.0
 Engram            = 2.1.0
