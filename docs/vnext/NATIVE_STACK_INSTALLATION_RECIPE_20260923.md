@@ -88,6 +88,14 @@ Pi 0.87.1 is the qualified patch baseline. It does not retire Pi #9718; keep the
 
 On globally installed Pi, `pi-web-access` 0.31.0 may currently fall back to eager web-tool availability because of upstream issue #428. Do not apply local loader/symlink patches; track the upstream fix (#429).
 
+Gentle Shell #962 is a separate recursive skill-registry watcher crash. Until a released Gentle version fixes it, keep the supported compatibility switch in the interactive shell environment:
+
+```bash
+export GENTLE_PI_NO_SKILL_REGISTRY=1
+```
+
+This keeps skills available normally and disables only startup refresh/watch of `.atl/skill-registry.md`. A shell/process that was already running before the export must be restarted before relying on the mitigation.
+
 ## 4. Gentle Shell 3.7.0
 
 Install/update the Shell package through Pi:

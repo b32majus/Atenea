@@ -103,6 +103,20 @@ Qualification evidence:
 
 Evidence: `docs/vnext/STABLE_RUNTIME_UPDATE_PI0871_20260923.md`.
 
+## Gentle skill-registry watcher #962 — MITIGATED
+
+A production Pi session reproduced the upstream Gentle Shell #962 crash class: a recursive skill-registry watcher received `ENOENT / scandir` while the Codex system-skill subtree was being replaced and the unhandled asynchronous watcher error terminated Pi. Pi crash history shows the same failure on 0.87.0 and 0.87.1, so this is not a Pi 0.87.1 regression.
+
+Qualified compatibility action:
+
+```bash
+export GENTLE_PI_NO_SKILL_REGISTRY=1
+```
+
+Gentle 3.7 documents this as keeping skills available while skipping only automatic `.atl/skill-registry.md` refresh/watch. Post-change interactive-shell checks saw the environment override, Pi 0.87.1, Gentle Shell 3.7.0, the supported CLI flag, and `gentle-ai doctor` 8/8 healthy.
+
+Evidence: `docs/vnext/SKILL_REGISTRY_WATCHER_INCIDENT_20260923.md`.
+
 ## Final native lifecycle evidence
 
 The final native canary proved:

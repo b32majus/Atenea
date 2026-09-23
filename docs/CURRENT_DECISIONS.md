@@ -94,6 +94,7 @@ Current temporary seams live in `docs/vnext/CURRENT_COMPATIBILITY.md`.
 - typed `risk=unassessable` ASSESS follows Gentle's fail-closed plan rather than an Atenea bridge;
 - `acknowledge-approved → authority=burned` is terminal; selectorless STATUS is not required afterward;
 - `.atl/` must be ignored repo-locally before candidate work.
+- Gentle Shell #962 uses the supported `GENTLE_PI_NO_SKILL_REGISTRY=1` compatibility switch rather than a local watcher patch.
 
 These are compatibility policies, not authorization to recreate historical Atenea controllers.
 
