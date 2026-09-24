@@ -132,14 +132,16 @@ Atenea versions secret-free desired state:
 
 - `config/native-gentle/nan-provider.models.json`;
 - `config/native-gentle/native-balanced.profile.json` — active routing desired state;
-- `config/native-gentle/native-nan.profile.json` — qualified rollback.
+- `config/native-gentle/native-nan.profile.json` — qualified rollback;
+- `config/native-gentle/pi-skill-policy.json` — current native skill ownership/deduplication desired state.
 
-Atenea does not implement model routing.
+Atenea does not implement model routing or skill resolution.
 
-Before a run where routing materially matters, validate with:
+Before a run where routing/runtime ownership materially matters, validate with:
 
 ```bash
 node tools/check-native-gentle-profile.mjs
+node tools/check-native-gentle-skills.mjs
 node tools/check-vnext-authority.mjs
 ```
 
@@ -169,7 +171,8 @@ In particular:
 
 - a typed `risk=unassessable` ASSESS fail-closed plan is followed natively; Atenea does not synthesize START;
 - successful `acknowledge-approved → authority=burned` is terminal; selectorless STATUS is not required to re-prove burn;
-- reviewer `thinking=low` is temporary NaN/Pi compatibility, not the desired permanent reviewer architecture.
+- active reviewer reasoning/model selection is defined by `native-balanced`; the old all-GLM/low mapping survives only in the `native-nan` rollback profile.
+- Pi exact-excludes only the shared Gentle duplicates listed in `config/native-gentle/pi-skill-policy.json`; `issue-creation` and `work-unit-commits` remain intentionally dual-visible until their upstream divergence is reconciled.
 
 ## 10. Publication
 

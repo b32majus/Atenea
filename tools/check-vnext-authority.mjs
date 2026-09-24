@@ -49,6 +49,8 @@ requireText(current.agents, "Atenea does **not** own:", "native execution owners
 requireText(current.agents, "Review approval is not publication or merge authority.", "publication boundary");
 requireText(current.agents, "config/native-gentle/nan-provider.models.json", "provider desired state");
 requireText(current.agents, "node tools/check-native-gentle-profile.mjs", "profile oracle");
+requireText(current.agents, "config/native-gentle/pi-skill-policy.json", "skill ownership desired state");
+requireText(current.agents, "node tools/check-native-gentle-skills.mjs", "skill ownership oracle");
 requireText(current.agents, "Disposable canaries must not write memory/session state into the production Engram store", "Engram canary isolation policy");
 
 requireText(current.start, "Status: **CURRENT FRONT DOOR**", "START_HERE current status");
@@ -56,6 +58,7 @@ requireText(current.start, "Normal qualified entry point:", "START_HERE native e
 requireText(current.start, "committed-range ASSESS (#4791)", "ASSESS compatibility seam");
 requireText(current.start, "post-burn STATUS (#4771)", "post-burn compatibility seam");
 requireText(current.start, "Gentle Shell #962", "skill-registry watcher compatibility seam");
+requireText(current.start, "pi-skill-policy.json", "native skill ownership seam");
 
 requireText(current.contract, "Target Atenea-owned runtime controllers: **0**.", "zero-controller contract");
 requireText(current.contract, "Atenea must not proxy or shadow that lifecycle.", "no shadow lifecycle");
@@ -73,6 +76,7 @@ requireText(current.context, "Atenea vNext is a thin layer over native Pi + Gent
 requireText(current.decisions, "## C-055 — Atenea vNext is a thin policy/config/conformance layer", "vNext promotion decision");
 requireText(current.decisions, "## C-059 — Current compatibility seams do not justify Atenea runtime glue", "compatibility decision");
 requireText(current.decisions, "## C-060 — Stable runtime maintenance uses official upstream updaters", "official updater decision");
+requireText(current.decisions, "## C-063 — Runtime owners keep their skill stores; Pi exact-excludes only safe shared duplicates", "skill ownership decision");
 
 const compat = "docs/vnext/CURRENT_COMPATIBILITY.md";
 const minimal = "docs/vnext/ATENEA_MINIMAL_CORE_V1.md";
@@ -82,12 +86,16 @@ const providerSpec = "config/native-gentle/nan-provider.models.json";
 const stableRuntime = "docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md";
 const piPatchRuntime = "docs/vnext/STABLE_RUNTIME_UPDATE_PI0871_20260923.md";
 const skillWatcherIncident = "docs/vnext/SKILL_REGISTRY_WATCHER_INCIDENT_20260923.md";
+const skillPolicy = "config/native-gentle/pi-skill-policy.json";
+const skillReconciliation = "docs/vnext/NATIVE_SKILL_RECONCILIATION_20260924.md";
 
 requireText(compat, "Gentle AI #4791", "ASSESS upstream tracker");
 requireText(compat, "Gentle AI #4771", "post-burn upstream tracker");
 requireText(compat, "mem_search", "Engram memory canary");
 requireText(compat, "Gentle Shell #962", "skill-registry watcher tracker");
 requireText(compat, "GENTLE_PI_NO_SKILL_REGISTRY=1", "skill-registry watcher mitigation");
+requireText(compat, "Gentle Shell #807", "duplicate-skill discovery tracker");
+requireText(compat, "issue-creation", "intentional dual-visible skill seam");
 requireText(stableRuntime, "gentle-pi         3.7.0", "stable runtime Shell evidence");
 requireText(stableRuntime, "Gentle AI         3.7.0", "stable runtime Gentle AI evidence");
 requireText(stableRuntime, "Engram            2.1.0", "stable runtime Engram evidence");
@@ -98,6 +106,10 @@ requireText(piPatchRuntime, "PI_0871_GENTLE_OK", "Pi 0.87.1 Gentle smoke");
 requireText(piPatchRuntime, "pi-web-access#428", "pi-web-access compatibility evidence");
 requireText(skillWatcherIncident, "Pi 0.87.0 and 0.87.1", "watcher crash cross-version evidence");
 requireText(skillWatcherIncident, "GENTLE_PI_NO_SKILL_REGISTRY=1", "watcher incident mitigation evidence");
+requireText(skillPolicy, "\"issue-creation\"", "skill-policy upstream-drift exception");
+requireText(skillPolicy, "\"work-unit-commits\"", "skill-policy work-unit upstream-drift exception");
+requireText(skillReconciliation, "PI_SHARED_DUPLICATE_FILTER=PASS", "skill reconciliation deterministic evidence");
+requireText(skillReconciliation, "GENTLE_AI_DOCTOR=8/8_PASS", "post-reconciliation Gentle health");
 
 requireText(minimal, "Target Atenea-owned runtime controllers:", "Minimal Core zero-controller budget");
 requireText(minimal, "Deterministic conformance layer", "deterministic oracle layer");

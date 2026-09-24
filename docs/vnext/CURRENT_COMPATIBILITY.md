@@ -208,3 +208,29 @@ The current baseline is defined by:
 - `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md`;
 - `docs/vnext/STABLE_RUNTIME_UPDATE_PI0871_20260923.md`;
 - `docs/vnext/SKILL_REGISTRY_WATCHER_INCIDENT_20260923.md`.
+
+## 10. Native skill ownership and Pi duplicate discovery
+
+Trackers:
+
+- Gentle Shell #807 — shared plain skills and package-prefixed Gentle skills can coexist in Pi discovery;
+- Gentle Shell #369 / PR #1320 — upstream registry/resolution ownership is still evolving;
+- Gentle Shell #962 — recursive registry watcher crash, separately mitigated as above.
+
+Current owner surfaces are intentionally runtime-specific:
+
+```text
+~/.agents/skills            → shared/cross-runtime skills
+~/.config/opencode/skills   → OpenCode assets managed/referenced by Gentle AI
+~/.codex/skills             → Codex assets managed/referenced by Gentle AI/Codex
+gentle-pi package skills    → Pi-specific Gentle variants (`gentle-ai-*`)
+repository .agents/skills   → project-local authority
+```
+
+Do not collapse these directories by filesystem cleanup alone. `gentle-ai sync` was used on 2026-09-24 as the ownership oracle for OpenCode/Codex managed assets. Graphify remained live and was migrated with its own supported installer to the shared skill root.
+
+Pi uses its native exact `-<path>` force-exclusion to suppress the nine safe shared Gentle duplicates listed in `config/native-gentle/pi-skill-policy.json`. A fresh deterministic Pi resource-loader resolution confirmed that their plain forms disappear while the `gentle-ai-*` package variants remain available.
+
+Two exceptions remain intentionally dual-visible: `issue-creation` and `work-unit-commits`. Their current Gentle AI and Gentle Shell upstream content is functionally divergent, so suppressing the shared form could remove behavior. This is tracked compatibility debt, not forgotten cleanup.
+
+Evidence and rollback locations: `docs/vnext/NATIVE_SKILL_RECONCILIATION_20260924.md`.

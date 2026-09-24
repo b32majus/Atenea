@@ -195,6 +195,26 @@ gentle-ai doctor
 gentle-ai update
 ```
 
+### Reconcile native skill ownership
+
+Do not delete OpenCode/Codex skill stores merely because Pi also discovers `~/.agents/skills`; Gentle AI still owns runtime-specific assets there. Use the secret-free desired state in `config/native-gentle/pi-skill-policy.json`.
+
+For Pi, apply native exact force-excludes (`-<absolute shared-skill path>`) for the nine `force_exclude_shared_duplicates` entries. **Do not exclude** `issue-creation` or `work-unit-commits` while they remain listed under `intentional_dual_visibility`. Preserve the #962 environment mitigation.
+
+Validate repository policy with:
+
+```bash
+node tools/check-native-gentle-skills.mjs
+```
+
+On the qualified VPS, validate the live Pi settings/bundle/stores as well:
+
+```bash
+ATENEA_CHECK_LIVE_SKILLS=1 node tools/check-native-gentle-skills.mjs
+```
+
+Evidence: `docs/vnext/NATIVE_SKILL_RECONCILIATION_20260924.md`.
+
 At the 2026-09-23 baseline, update inventory should report:
 
 ```text
