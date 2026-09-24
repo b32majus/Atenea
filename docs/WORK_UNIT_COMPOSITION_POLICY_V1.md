@@ -1,7 +1,7 @@
 # Atenea — Work-unit composition policy v1
 
 Status: **CURRENT EXECUTION POLICY**
-Date: 2026-09-20
+Date: 2026-09-24
 
 ## 1. Purpose
 
@@ -21,9 +21,9 @@ forecast composition before implementation
 
 Planning size and native review timing are separate concerns.
 
-## 2. Upstream authority
+## 2. Upstream provenance and operational authority
 
-Current pinned upstream Gentle AI v3.4.0 establishes all of the following:
+The original upstream evidence used to adopt this policy was pinned Gentle AI v3.4.0, which established all of the following at qualification time:
 
 - `internal/assets/skills/work-unit-commits/SKILL.md`
   - work-unit commits represent coherent deliverable behavior/fixes/migrations/docs units;
@@ -46,7 +46,9 @@ Current pinned upstream Gentle AI v3.4.0 establishes all of the following:
   - `medium` becomes review-due when the accumulated assessed range reaches the 400-line composition boundary;
   - therefore 400 is **not** a hard maximum size that the reviewer can never exceed.
 
-Atenea MUST NOT reinterpret 400 as a model-capacity limit or as an Atenea-owned `review_due` rule.
+Atenea MUST NOT reinterpret the planning budget as a model-capacity limit or as an Atenea-owned `review_due` rule.
+
+This document is the **single Atenea operational authority for default numeric composition thresholds/bands**. Other Atenea docs and consuming repositories should reference this policy rather than copy its numbers. Historical decision records may preserve provenance, but they are not a second live numeric source. An explicit project/session `review_budget_lines` or stronger authority still supersedes the defaults as defined below.
 
 ## 3. Atenea default planning heuristic
 
@@ -69,7 +71,7 @@ Generated files/goldens follow upstream counting semantics; do not manipulate au
 
 ## 4. Pre-implementation workload gate
 
-Before launching a writer for substantial ODD/SDD work, the parent must inspect the available workload forecast/task shape.
+Before launching a writer for every substantial Work Order, the parent must inspect the available workload forecast/task shape. **Product scope accepted is not equivalent to delivery composition resolved.** This gate applies whether the accepted authority came from SDD, ODD-directed planning, a GitHub Work Order or another valid shaping path.
 
 ```text
 substantial implementation selected

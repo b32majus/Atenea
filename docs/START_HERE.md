@@ -61,6 +61,19 @@ Once that authority is accepted, stop shaping and execute it.
 
 Do **not** rerun shaping by ritual.
 
+Accepted product scope is not, by itself, writer-ready. For every substantial Work Order, resolve delivery composition **before any writer edits code** under `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`.
+
+```text
+product scope accepted
+→ composition forecast
+→ delivery composition resolved
+→ writer authority
+```
+
+If material over-budget risk is forecast, define the semantic work-unit chain or the required size-exception decision before writing. If no honest path is resolved, STOP before implementation. A capability-sized Work Order may remain one issue; work units are delivery/review units, not necessarily issue-tracker units.
+
+This is an execution-readiness gate, not another shaping phase and not an Atenea scheduler. Native Gentle still owns ODD, internal decomposition, workers and `review_due`. Numerical planning thresholds live only in `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`; consumers reference that policy rather than copying its numbers.
+
 Reconcile current Git/GitHub/product state and start from the accepted task.
 
 ## 2. Reconcile repository entry
@@ -85,6 +98,7 @@ Before candidate work:
 
 - repository state is understood;
 - task authority is explicit;
+- for substantial work, delivery composition is resolved under `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` before writer authority;
 - `.atl/` is already in repo-local `.gitignore`;
 - unrelated untracked runtime artifacts are absent;
 - no push/PR/merge authority is assumed.

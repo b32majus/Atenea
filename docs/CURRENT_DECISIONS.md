@@ -166,6 +166,18 @@ Promotion Review remains selective and human/planning-owned. It may be required 
 
 Project-specific fixtures, domain scanners, debt semantics and security cases remain owned by the project. Evidence: `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md`, `docs/vnext/PROJECT_EXECUTION_HANDOFF_NATIVE_GENTLE.md`, `CODING_STANDARDS.md` and Laboratorio `docs/handoffs/ATENEA_LEARNINGS_PR35_20260924.md` from the PR #35 field train.
 
+## C-065 — Product scope acceptance does not grant writer readiness until delivery composition is resolved
+
+**Accepted from Laboratorio T06 field learning 2026-09-24.**
+
+A capability-sized Work Order may be valid product authority while still being too coarse as one implementation/review candidate. For every substantial accepted Work Order, Atenea therefore requires a composition forecast before writer authority. If material over-budget risk is foreseeable, resolve one bounded unit, a semantic work-unit chain, or the required size exception before any writer edits code; otherwise STOP before implementation.
+
+This is not another shaping phase, skill, scheduler or controller. Native Gentle still owns ODD/exploration, internal decomposition, workers, verification, `review_due`, reviewers and transitions. The project-level delivery boundary only limits what may materialize in the current candidate. Work Orders may remain capability-sized in GitHub.
+
+`docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` remains the single Atenea operational authority for numeric composition thresholds/bands; front doors, handoffs and consuming repositories reference it rather than duplicating values.
+
+Field evidence: Laboratorio de Privacidad `docs/handoffs/ATENEA_T06_COMPOSITION_FORECAST_LEARNING_20260924.md`, local evidence commit `bd543117076f4c93050efef56b885ec1685a3397`.
+
 ## C-001 — Atenea is a contract over upstream tools, not an orchestration product
 
 **Accepted.**
@@ -655,30 +667,19 @@ OpenCode Go is not an operational subscription/fallback even if residual credent
 
 Evidence: `docs/NAN_DEEPSEEK_INPROCESS_REVIEWER_INCIDENT_20260920.md`.
 
-## C-052 — Reviewability is designed before implementation; 400 is the default composition budget, not a hard review cap
+## C-052 — Reviewability is designed before implementation; composition budgets are planning boundaries, not hard review caps
 
-**Accepted from upstream Gentle v3.4.0 authority plus real-project field recovery 2026-09-20.**
+**Accepted from pinned upstream Gentle v3.4.0 authority plus real-project field recovery 2026-09-20.**
 
-Gentle's current `work-unit-commits` skill says that a forecast above 400 authored changed lines should be composed into chained/stacked work-unit slices before implementation; `400` is the default review budget unless the session supplies `review_budget_lines`. The same skill says the budget is not code-golf and that an honestly indivisible cohesive unit should be reported with a `size:exception` rather than repeatedly shrunk.
+This decision established two durable points: delivery composition is resolved before writing, and composition budgets must not be reinterpreted as model-capacity ceilings or Atenea-owned `review_due` logic. It also established the unpublished-history recovery pattern for an accepted product tree whose delivery history is too coarse for reliable review.
 
-Gentle's current `risk.go` explicitly defines `LargeChangeLines = 400` as a **review-composition boundary, not a tier input**. `review assess` independently makes all `high` candidates immediately review-due and uses the 400-line boundary only for accumulated `medium` slices. Therefore Atenea MUST NOT treat 400 as a hard reviewer capacity limit.
+The numeric defaults/bands adopted at that time are now governed operationally **only** by `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`. This decision record is provenance, not a second numeric source; consumers must read the current policy rather than copy values from historical decision text. Explicit project/session budget authority continues to supersede Atenea defaults according to that policy.
 
-When no explicit session budget exists, Atenea adopts this conservative planning heuristic:
-
-```text
-<=400      normal target
-401-600    soft overage when semantic/functional coherence justifies one unit; upstream delivery/size:exception rules still apply
-601-800    explicit durable size:exception / coherence rationale required before implementation
->800       default STOP/reslice; proceed only with explicit human-authorized indivisibility exception
-```
-
-The 600/800 bands are **Atenea operator heuristics informed by observed Gentleman practice**, not upstream technical limits. An explicit `review_budget_lines` or stronger project/delivery decision supersedes them.
-
-Required execution ordering:
+Required execution ordering remains:
 
 ```text
-workload forecast / task decomposition
-→ resolve composition before writing
+workload forecast / task shape
+→ resolve delivery composition before writing
 → implement one coherent work unit
 → deterministic verification
 → commit
@@ -686,9 +687,9 @@ workload forecast / task decomposition
 → provider-owned review timing/lifecycle
 ```
 
-If a local unpublished candidate is already accepted as product content but its history is too coarse for reliable review, preserve the exact final tree as an immutable reconstruction oracle, preserve durable backup evidence, obtain fresh STATUS on the frozen lineage, ABANDON only with exact operator/provider authorization, and reconstruct only the unpublished delivery history into coherent work units. Product semantics/bytes must not be changed merely to make the slices smaller; byte/tree equivalence is required at the reconstruction checkpoint to prove the reslicing itself did not redesign the product. C-054 governs the separate case where accepted spec/syntax/build/delivery evidence later proves that a preserved oracle byte is defective. For an oversized/coarse candidate, repeated identical reviewer retries, output-budget inflation, review disablement or serial routing experiments are not the first repair.
+If a local unpublished candidate is already accepted as product content but its history is too coarse for reliable review, preserve the exact final tree as an immutable reconstruction oracle, preserve durable backup evidence, obtain fresh STATUS on the frozen lineage, ABANDON only with exact operator/provider authorization, and reconstruct only the unpublished delivery history into coherent work units. Product semantics/bytes must not be changed merely to make slices smaller; C-054 governs the separate case where accepted spec/syntax/build/delivery evidence later proves a preserved oracle byte defective. Repeated reviewer retries, output-budget inflation, review disablement or routing experiments are not the first repair for coarse composition.
 
-Authority: `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` plus pinned upstream Gentle AI v3.4.0 `work-unit-commits`, `sdd-apply`, `review_assess.go`, and `risk.go` semantics.
+Authority: `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`. Original upstream provenance: pinned Gentle AI v3.4.0 `work-unit-commits`, `sdd-apply`, `review_assess.go`, and `risk.go` semantics.
 
 ## C-053 — Ordinary review lifecycle is facade-first; host one-touch semantics are transport-sensitive
 
