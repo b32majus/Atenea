@@ -102,6 +102,8 @@ Current P3 decision:
 - Matt skills are optional discovery/shaping;
 - OpenSpec is optional native SDD when durable specs/change history add real value.
 
+For material work, executable authority should be sufficiently falsifiable for its risk: applicable invariants, negative/adversarial examples, integration seams and deterministic acceptance should be resolved before execution. This is a quality requirement on the contract, not a requirement to use Matt, OpenSpec or any specific authoring method.
+
 ## 6. Native execution ownership
 
 Atenea does **not** own:
@@ -163,6 +165,8 @@ Prefer deterministic evidence that can independently disagree with the implement
 
 Deterministic oracles produce evidence. They do not grant product, review, publication or merge authority.
 
+A new/materially changed checker or scanner for security, privacy, state, parsing or trust-boundary behavior should prove it can fail on a representative planted violation, not merely pass on the intended implementation.
+
 ## 9. Review compatibility seams
 
 Current temporary seams are documented in `docs/vnext/CURRENT_COMPATIBILITY.md`.
@@ -177,6 +181,8 @@ In particular:
 ## 10. Publication
 
 Before publication, validate the actual changed artifact types.
+
+For a material multi-work-unit/train that crosses accepted seams, also validate the composed exact HEAD with repository-owned deterministic integration evidence before publication. Per-unit RDD does not substitute for cross-unit integration evidence, and the composed branch does not become a synthetic Gentle review candidate merely for closeout.
 
 Normal non-force push may be allowed by target repository policy.
 

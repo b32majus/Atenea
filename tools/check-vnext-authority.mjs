@@ -88,6 +88,16 @@ const piPatchRuntime = "docs/vnext/STABLE_RUNTIME_UPDATE_PI0871_20260923.md";
 const skillWatcherIncident = "docs/vnext/SKILL_REGISTRY_WATCHER_INCIDENT_20260923.md";
 const skillPolicy = "config/native-gentle/pi-skill-policy.json";
 const skillReconciliation = "docs/vnext/NATIVE_SKILL_RECONCILIATION_20260924.md";
+const prepublication = "docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md";
+const executionHandoff = "docs/vnext/PROJECT_EXECUTION_HANDOFF_NATIVE_GENTLE.md";
+const codingStandards = "CODING_STANDARDS.md";
+const promotionReview = "docs/PROMOTION_REVIEW_V1.md";
+
+requireText(current.decisions, "## C-064 — Executable authority is falsifiable; material trains close on composed-state evidence", "quality evidence decision");
+requireText(codingStandards, "representative planted violation", "falsifiable checker standard");
+requireText(executionHandoff, "### Execution-readiness quality gate", "execution readiness quality gate");
+requireText(prepublication, "## 7. Composed-state / train integration closeout", "composed-state closeout policy");
+requireText(promotionReview, "does not have to be irrevocably predicted before implementation starts", "promotion review late-risk rule");
 
 requireText(compat, "Gentle AI #4791", "ASSESS upstream tracker");
 requireText(compat, "Gentle AI #4771", "post-burn upstream tracker");

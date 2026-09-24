@@ -1,7 +1,7 @@
 # Atenea — Changed-file-aware pre-publication validation v1
 
 Status: **CURRENT EXECUTION POLICY**
-Date: 2026-09-21
+Date: 2026-09-24
 
 ## 1. Purpose
 
@@ -98,7 +98,27 @@ Prefer repo-native mechanisms for parity:
 
 Do not mutate the host globally merely to imitate CI when a narrower supported mechanism exists.
 
-## 7. Oracle semantics at publication
+## 7. Composed-state / train integration closeout
+
+Per-work-unit verification and native RDD prove each exact candidate; they do not by themselves prove that several accepted work units compose correctly across their seams.
+
+When a multi-work-unit or multi-ticket change materially crosses integration, domain, safety, privacy, state, parser, generated-artifact or CI boundaries, perform a deterministic closeout on the **composed exact HEAD** before publication. The project owns the concrete gates. Use only those justified by the changed surfaces and accepted authority, for example:
+
+- the full repository test/build/type/lint chain relevant to the composed change;
+- cross-work-unit scenarios that exercise seams introduced or modified by different units;
+- planted negative cases for new/materially changed checkers or scanners;
+- source plus built/generated-artifact checks where the invariant applies at runtime;
+- dependency/provenance/security checks when untrusted-input components were introduced or materially changed;
+- repository-specific debt/register reconciliation when the authorized work claims to close that debt;
+- exact base, HEAD, ordered work-unit inventory and a clean tracked tree after required build/generation.
+
+This closeout is deterministic integration evidence. It is **not** a second RDD controller, does not turn the whole feature branch into a synthetic Gentle review candidate, and does not require Promotion Review by ritual.
+
+If closeout finds a defect, create the smallest coherent correction unit under existing authority, verify and commit it, follow native Gentle review for that exact candidate when required, then rerun the affected closeout gates on the new composed HEAD. If the repair would exceed current product authority, STOP for a human decision.
+
+For a single-ticket change, apply the same principle only to its declared integration seams; do not manufacture train ceremony where no composed-state risk exists.
+
+## 8. Oracle semantics at publication
 
 An oracle used during history reconstruction is a **drift detector and intended-content reference**.
 
@@ -120,7 +140,7 @@ If a byte preserved by the oracle is later proven defective:
 
 Do not silently mutate the oracle during reconstruction merely because a defect is suspected; equally, do not preserve a proven defect forever merely to maintain byte equality.
 
-## 8. STOP conditions
+## 9. STOP conditions
 
 STOP rather than improvise when:
 
@@ -131,7 +151,7 @@ STOP rather than improvise when:
 - fixing a delivery defect would exceed current authorized scope;
 - publication authority changed during revalidation.
 
-## 9. Non-goals
+## 10. Non-goals
 
 This policy does **not** authorize:
 

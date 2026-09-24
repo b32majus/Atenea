@@ -68,6 +68,8 @@ When test-first/TDD is explicitly active, follow the adopted upstream method. Do
 
 Negative and adversarial verification should be proportional to actual risk, especially around authorization, parsing, trust boundaries, migrations, failure/retry behavior, state transitions and destructive operations.
 
+For a new or materially changed checker, scanner or gate over security, privacy, state, parsing or another trust boundary, prove that the oracle can disagree with the implementation: include at least one known-good case and at least one representative planted violation that must fail. When the invariant applies to shipped/generated runtime behavior, validate the built artifact as well as source where technically relevant. The goal is falsifiability, not ceremonial test volume.
+
 ## 8. Fail explicitly when correctness requires knowledge
 
 Do not hide invariant, authority, persistence or safety failures behind silent fallbacks, guessed defaults or "best effort" success.

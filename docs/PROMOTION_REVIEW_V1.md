@@ -22,6 +22,8 @@ Use it selectively before a human-authorized promotion/merge when the current pl
 
 Do **not** invoke it by ritual after every ticket, push or ordinary low-risk change. It is not part of the worker's Gentle lifecycle and the autonomous supervisor does not invent the requirement during execution.
 
+The need for Promotion Review does not have to be irrevocably predicted before implementation starts. The human/Cora planning surface may require it later if execution, deterministic closeout or newly discovered evidence exposes material promotion risk. That decision still belongs to the human/planning boundary, never to an autonomous runtime inventing a second review lifecycle.
+
 ## 3. Evidence pack — pin before reviewer launch
 
 The human/Cora planning surface resolves the exact review inputs before launch:
@@ -126,7 +128,7 @@ The intended order for a high-risk promotion is therefore:
 ```text
 accepted candidate + required product/QA gates
 → Gentle authority already closed where applicable
-→ fresh bounded Promotion Review if planning required it
+→ fresh bounded Promotion Review if the human/planning surface requires it
 → exact-head verification
 → explicit human promotion/merge authorization
 ```
