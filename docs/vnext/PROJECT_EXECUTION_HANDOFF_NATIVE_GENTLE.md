@@ -418,7 +418,33 @@ merge = human boundary
 
 If the human explicitly authorizes publication, follow the target repository's real policy.
 
-## 14. PROMueve immediate operating rule
+## 14. Post-merge worktree disposal
+
+Execution worktrees are ephemeral delivery surfaces. Do not retain them indefinitely merely because they once contained reviewed work. Git/GitHub/product authority should preserve the durable checkpoint; the VPS should retain only work surfaces that are still live.
+
+A merge is the normal disposal trigger, but remove an execution worktree only after all of the following are true:
+
+1. the corresponding PR/train is actually merged into the intended target branch;
+2. the final published/audited candidate and required CI/security/promotion evidence are durably represented outside the worktree;
+3. `git status` is clean, or every remaining uncommitted/untracked artifact has been deliberately classified and any required evidence preserved elsewhere;
+4. there is no required unpushed local-only commit or other local-only authority/evidence;
+5. no active Pi/Gentle/Herdr/shell process or session still depends on the directory;
+6. the path is a disposable execution worktree, not the repository's canonical checkout.
+
+When eligible:
+
+```bash
+git worktree remove <worktree-path>
+git worktree prune
+```
+
+Normal cleanup must not use `git worktree remove --force`. A refusal to remove is evidence to inspect, not an inconvenience to override. Preserve required evidence first, then remove the worktree.
+
+Worktree disposal and branch deletion are separate decisions. Removing a merged execution worktree is normal hygiene; deleting local/remote branch refs requires its own Git-safety judgment and must not discard unique history/evidence by assumption.
+
+For a train carried by one PR, keep its worktree until that train PR is merged. If each ticket has its own PR/worktree, each worktree may become disposal-eligible after its own merge gate passes. The next work should normally start from refreshed durable authority in a fresh clean worktree rather than reusing the merged surface.
+
+## 15. PROMueve immediate operating rule
 
 PROMueve is qualified to use ordinary production `pi` now.
 
@@ -436,7 +462,7 @@ When continuing PROMueve:
 10. treat successful `acknowledge-approved → authority=burned` as terminal; do not demand selectorless STATUS after burn;
 11. do not publish without explicit human publication authority.
 
-## 15. Symphonia / Laboratorio immediate operating rule
+## 16. Symphonia / Laboratorio immediate operating rule
 
 The old Pi sessions were intentionally stopped.
 
@@ -455,7 +481,7 @@ re-read remote Git/GitHub authority
 
 If an old branch contains legitimate unpublished product work, preserve it as Git evidence and reconcile it deliberately; do not copy hidden Pi/session state forward.
 
-## 16. What NOT to do
+## 17. What NOT to do
 
 Do not:
 
@@ -472,7 +498,7 @@ Do not:
 - turn ASSESS unavailability into a hand-built START/review decision;
 - push/merge just because native RDD approved a candidate.
 
-## 17. Short decision rule
+## 18. Short decision rule
 
 When a project Cora is unsure who owns something:
 

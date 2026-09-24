@@ -52,6 +52,7 @@ requireText(current.agents, "node tools/check-native-gentle-profile.mjs", "profi
 requireText(current.agents, "config/native-gentle/pi-skill-policy.json", "skill ownership desired state");
 requireText(current.agents, "node tools/check-native-gentle-skills.mjs", "skill ownership oracle");
 requireText(current.agents, "Disposable canaries must not write memory/session state into the production Engram store", "Engram canary isolation policy");
+requireText(current.agents, "Execution worktrees are ephemeral delivery surfaces", "ephemeral execution worktree policy");
 
 requireText(current.start, "Status: **CURRENT FRONT DOOR**", "START_HERE current status");
 requireText(current.start, "Normal qualified entry point:", "START_HERE native entry");
@@ -59,6 +60,7 @@ requireText(current.start, "committed-range ASSESS (#4791)", "ASSESS compatibili
 requireText(current.start, "post-burn STATUS (#4771)", "post-burn compatibility seam");
 requireText(current.start, "Gentle Shell #962", "skill-registry watcher compatibility seam");
 requireText(current.start, "pi-skill-policy.json", "native skill ownership seam");
+requireText(current.start, "## 8. Dispose merged execution worktrees", "front-door worktree disposal gate");
 
 requireText(current.contract, "Target Atenea-owned runtime controllers: **0**.", "zero-controller contract");
 requireText(current.contract, "Atenea must not proxy or shadow that lifecycle.", "no shadow lifecycle");
@@ -69,6 +71,7 @@ requireText(current.install, "Herdr is operator infrastructure only", "Herdr bou
 
 requireText(current.runbook, "Native Gentle owns ODD, delegation, verify and review lifecycle.", "operator native ownership");
 requireText(current.runbook, "do not require selectorless STATUS after burn", "operator burn rule");
+requireText(current.runbook, "## 8. Dispose the merged execution worktree", "operator worktree disposal step");
 
 requireText(current.quick, "Atenea vNext is simple by design.", "newcomer vNext map");
 requireText(current.context, "Atenea vNext is a thin layer over native Pi + Gentle.", "current domain context");
@@ -96,9 +99,12 @@ const workUnitComposition = "docs/WORK_UNIT_COMPOSITION_POLICY_V1.md";
 
 requireText(current.decisions, "## C-064 — Executable authority is falsifiable; material trains close on composed-state evidence", "quality evidence decision");
 requireText(current.decisions, "## C-065 — Product scope acceptance does not grant writer readiness until delivery composition is resolved", "pre-writer composition decision");
+requireText(current.decisions, "## C-066 — Merged execution worktrees are disposable after a fail-closed post-merge gate", "post-merge worktree disposal decision");
 requireText(current.start, "product scope accepted\n→ composition forecast\n→ delivery composition resolved\n→ writer authority", "front-door composition readiness gate");
 requireText(current.agents, "product scope accepted does not by itself grant writer authority", "stable pre-writer composition invariant");
 requireText(executionHandoff, "composition forecast is a **pre-writer readiness gate**", "handoff pre-writer composition gate");
+requireText(executionHandoff, "## 14. Post-merge worktree disposal", "handoff worktree disposal gate");
+requireText(executionHandoff, "Normal cleanup must not use `git worktree remove --force`", "fail-closed worktree removal rule");
 requireText(workUnitComposition, "single Atenea operational authority for default numeric composition thresholds/bands", "single numeric composition authority");
 requireText(codingStandards, "representative planted violation", "falsifiable checker standard");
 requireText(executionHandoff, "### Execution-readiness quality gate", "execution readiness quality gate");

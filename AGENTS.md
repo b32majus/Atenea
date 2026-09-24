@@ -82,6 +82,7 @@ Historical stage documents and `historical/` are evidence, not forward-looking a
 - Hidden global state must not be the only place where behavior-affecting configuration is defined.
 - `.atl/` must be ignored repo-locally before Gentle candidate work begins.
 - Disposable canaries must not write memory/session state into the production Engram store; when a canary exercises `mem_*`, use an isolated Engram server/data store as documented in `docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260923.md`.
+- Execution worktrees are ephemeral delivery surfaces, not historical authority stores. After the corresponding PR/train is merged and a post-merge disposal gate proves that no required local-only state/evidence or active process still depends on the worktree, remove it and prune worktree metadata. The canonical repository checkout is not an execution worktree. Do not use forced worktree removal as the normal path.
 
 ## 5. Shaping lifecycle
 
