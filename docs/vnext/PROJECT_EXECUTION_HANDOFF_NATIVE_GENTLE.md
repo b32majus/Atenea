@@ -2,7 +2,7 @@
 
 Status: **CURRENT / STABLE-RUNTIME-QUALIFIED**
 
-Date: 2026-09-23
+Date: 2026-09-24
 
 Audience: a fresh Cora / planning assistant / operator resuming an already-shaped Atenea project such as PROMueve, Symphonia or Laboratorio de Privacidad.
 
@@ -165,10 +165,20 @@ Confirm:
 6. task/spec authority identified
 7. project AGENTS stable rules understood
 8. no shaping rerun required
-9. .atl/ is already ignored before candidate work begins
-10. no unrelated untracked runtime artifacts are mixed into the candidate
-11. no push/PR/merge authority assumed
+9. for every substantial Work Order, composition forecast completed and delivery composition resolved under `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` before writer authority
+10. .atl/ is already ignored before candidate work begins
+11. no unrelated untracked runtime artifacts are mixed into the candidate
+12. no push/PR/merge authority assumed
 ```
+
+Execution readiness has two independent questions for substantial work:
+
+```text
+product scope accepted?
+delivery composition resolved?
+```
+
+The first does not imply the second. If material over-budget risk is visible and composition is unresolved, do not launch a writer merely because the Work Order is already accepted. Resolve one bounded unit, a semantic chain or the required size exception first.
 
 P4 qualification proved that a user-level Git exclude is **not sufficient** to prevent Gentle from creating a repository-local `.gitignore` for `.atl/`. Therefore every target repository used with Gentle should already ignore `.atl/` in its own `.gitignore` before candidate work begins. Do not let this file appear halfway through a candidate.
 
@@ -236,7 +246,9 @@ A good execution request contains:
 
 ### Execution-readiness quality gate
 
-The shaping method is optional; the quality of executable authority is not. For material behavior, safety, privacy, state, parser, dependency or CI work, resolve the applicable items before execution:
+The shaping method is optional; the quality of executable authority is not. Execution readiness also does not collapse product acceptance and delivery composition into one state: an accepted substantial Work Order is writer-ready only after any material composition risk has been resolved under `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`.
+
+For material behavior, safety, privacy, state, parser, dependency or CI work, resolve the applicable items before execution:
 
 - the invariant that must remain true;
 - concrete negative/adversarial cases capable of falsifying the intended behavior;
@@ -279,16 +291,21 @@ Do not invent a frozen oracle when the task does not justify one.
 
 ## 9. Work-unit composition
 
-Do not hand Gentle an unnecessarily gigantic candidate if the work can be decomposed coherently.
+For every substantial Work Order, composition forecast is a **pre-writer readiness gate**, not a recovery step after a coarse candidate already exists. Follow `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` before the first writer edit.
 
-Current planning intent survives:
+```text
+accepted capability-sized Work Order
+→ forecast expected delivery shape
+→ resolve one bounded unit / semantic chain / required size exception
+→ materialize only the current authorized work unit
+→ verify / commit / native review
+```
 
-- small coherent work units are preferred;
-- do not code-golf merely to reduce line count;
-- do not split one semantic change into artificial fragments that cannot be reviewed independently;
-- very large work should be composed before implementation when practical.
+The Work Order may remain capability-sized in the issue tracker. Do not split mechanically by line count, files or architectural layers, and do not separate behavior from the tests/oracle that prove it. Numerical thresholds are not copied here; `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` is their single Atenea operational authority.
 
-The exact review lifecycle and `review_due` decision belong to Gentle, not to Atenea line-count logic.
+A delivery work-unit boundary is **not** Gentle internal decomposition. It constrains what may materialize in the current candidate. Within that boundary, native Gentle remains free to perform ODD/exploration, internal decomposition and worker delegation, and it retains full ownership of `review_due`, reviewers and review transitions.
+
+If one honest forecast still leaves an indivisible oversized unit under current policy, STOP before writing that unit and obtain the required size-exception/human decision. Do not wait for `review.start` or a context-budget failure to discover a composition problem that was already foreseeable.
 
 ## 10. Review lifecycle
 

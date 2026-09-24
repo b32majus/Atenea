@@ -104,6 +104,8 @@ Current P3 decision:
 
 For material work, executable authority should be sufficiently falsifiable for its risk: applicable invariants, negative/adversarial examples, integration seams and deterministic acceptance should be resolved before execution. This is a quality requirement on the contract, not a requirement to use Matt, OpenSpec or any specific authoring method.
 
+For every substantial accepted Work Order, **product scope accepted does not by itself grant writer authority**. Before any writer edits code, resolve delivery composition under `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`: either one honest bounded unit, a semantic work-unit chain, or the required size-exception decision. If material over-budget risk exists and no path is resolved, STOP before implementation. A capability-sized issue may remain one issue. This gate bounds the delivery candidate; it does not take ODD, internal decomposition, workers or `review_due` ownership away from native Gentle. Do not copy numeric composition thresholds into consuming repositories; `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` is the Atenea operational authority for them.
+
 ## 6. Native execution ownership
 
 Atenea does **not** own:

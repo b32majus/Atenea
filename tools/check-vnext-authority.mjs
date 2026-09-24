@@ -92,8 +92,14 @@ const prepublication = "docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md";
 const executionHandoff = "docs/vnext/PROJECT_EXECUTION_HANDOFF_NATIVE_GENTLE.md";
 const codingStandards = "CODING_STANDARDS.md";
 const promotionReview = "docs/PROMOTION_REVIEW_V1.md";
+const workUnitComposition = "docs/WORK_UNIT_COMPOSITION_POLICY_V1.md";
 
 requireText(current.decisions, "## C-064 — Executable authority is falsifiable; material trains close on composed-state evidence", "quality evidence decision");
+requireText(current.decisions, "## C-065 — Product scope acceptance does not grant writer readiness until delivery composition is resolved", "pre-writer composition decision");
+requireText(current.start, "product scope accepted\n→ composition forecast\n→ delivery composition resolved\n→ writer authority", "front-door composition readiness gate");
+requireText(current.agents, "product scope accepted does not by itself grant writer authority", "stable pre-writer composition invariant");
+requireText(executionHandoff, "composition forecast is a **pre-writer readiness gate**", "handoff pre-writer composition gate");
+requireText(workUnitComposition, "single Atenea operational authority for default numeric composition thresholds/bands", "single numeric composition authority");
 requireText(codingStandards, "representative planted violation", "falsifiable checker standard");
 requireText(executionHandoff, "### Execution-readiness quality gate", "execution readiness quality gate");
 requireText(prepublication, "## 7. Composed-state / train integration closeout", "composed-state closeout policy");
