@@ -171,7 +171,30 @@ Follow target repository policy + explicit human authority.
 
 No automatic merge. No force-push/destructive recovery by default.
 
-## 8. Provision or reproduce the runtime
+## 8. Dispose merged execution worktrees
+
+Execution worktrees are temporary delivery surfaces. A successful merge is the normal trigger to evaluate disposal; it is not permission to delete blindly.
+
+Before removing the worktree that carried the merged ticket/train, confirm:
+
+- the intended PR/train is actually merged into the intended target branch;
+- the final published/audited candidate and required CI/security/promotion evidence are durably represented in Git/GitHub or another accepted authority surface;
+- the worktree has no uncommitted/untracked material that must survive and no required unpushed local-only commit/evidence;
+- no active Pi/Gentle/Herdr/shell process or session still depends on that directory;
+- the path is an execution worktree, not the canonical repository checkout.
+
+Then use normal Git worktree removal and prune stale metadata:
+
+```bash
+git worktree remove <worktree-path>
+git worktree prune
+```
+
+Do not use `--force` as routine cleanup. If normal removal refuses, inspect and reconcile the remaining state first. Local/remote branch deletion is separate Git hygiene and is not implied by worktree disposal.
+
+The next ticket/train should normally start from current durable repository authority in a fresh clean worktree rather than reusing the merged execution surface.
+
+## 9. Provision or reproduce the runtime
 
 Use:
 
@@ -179,7 +202,7 @@ Use:
 
 Do not reconstruct installation from historical Stage/run-recipe documents.
 
-## 9. Resume an old project
+## 10. Resume an old project
 
 Durable Git/GitHub/product evidence determines the last legitimate checkpoint.
 

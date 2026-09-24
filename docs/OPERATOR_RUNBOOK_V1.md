@@ -92,7 +92,22 @@ A correct technical completion reports:
 
 Review approval does not imply push/PR/merge.
 
-## 8. Do not do
+## 8. Dispose the merged execution worktree
+
+After the corresponding PR/train is merged, evaluate the execution worktree for disposal. It is eligible only when the merged/promotion evidence is durable elsewhere, no required local-only commit or uncommitted/untracked artifact remains, no active process/session depends on the directory, and the path is not the canonical repository checkout.
+
+Then remove it normally and prune metadata:
+
+```bash
+git worktree remove <worktree-path>
+git worktree prune
+```
+
+Do not use `--force` for routine cleanup. If Git refuses normal removal, reconcile the remaining state first. Branch deletion is separate from worktree disposal.
+
+Start subsequent work from refreshed durable authority in a fresh clean worktree rather than accumulating/reusing merged execution surfaces.
+
+## 9. Do not do
 
 Do not:
 

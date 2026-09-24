@@ -178,6 +178,18 @@ This is not another shaping phase, skill, scheduler or controller. Native Gentle
 
 Field evidence: Laboratorio de Privacidad `docs/handoffs/ATENEA_T06_COMPOSITION_FORECAST_LEARNING_20260924.md`, local evidence commit `bd543117076f4c93050efef56b885ec1685a3397`.
 
+## C-066 — Merged execution worktrees are disposable after a fail-closed post-merge gate
+
+**Accepted 2026-09-24 from VPS hygiene evidence and the vNext durable-authority model.**
+
+An execution worktree is an ephemeral delivery surface, not a historical state store. Once its corresponding ticket/train PR is merged, Atenea should evaluate that worktree for disposal instead of retaining it indefinitely. Git/GitHub/product authority preserves the durable checkpoint; stale local execution surfaces should not accumulate merely as implicit backup.
+
+Merge is the normal trigger, not sufficient proof by itself. Disposal requires that the final published/audited candidate and required CI/security/promotion evidence are durable elsewhere; no required local-only commit, dirty/untracked artifact or other unique evidence remains; no active process/session depends on the path; and the target is an execution worktree rather than the canonical checkout. If normal `git worktree remove` refuses, STOP and reconcile rather than routinely forcing deletion.
+
+After successful removal, prune worktree metadata. Worktree disposal does not automatically authorize deleting branch refs; branch cleanup remains a separate Git-safety decision. A single-PR train retains its worktree until that train PR merges, while independently merged ticket worktrees may be disposed independently. Subsequent work normally starts from refreshed durable authority in a new clean worktree.
+
+This is lifecycle hygiene, not a scheduler, daemon, garbage collector or execution controller.
+
 ## C-001 — Atenea is a contract over upstream tools, not an orchestration product
 
 **Accepted.**
