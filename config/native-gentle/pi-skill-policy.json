@@ -1,0 +1,53 @@
+{
+  "schema": "atenea.native-gentle-skill-policy/v1",
+  "name": "pi-gentle-skill-ownership",
+  "status": "current",
+  "reconciled_at": "2026-09-24",
+  "qualified_stack": {
+    "pi": "0.87.1",
+    "gentle_shell": "3.7.0",
+    "gentle_ai": "3.7.0"
+  },
+  "runtime_stores": {
+    "shared_agents": "~/.agents/skills",
+    "opencode": "~/.config/opencode/skills",
+    "codex": "~/.codex/skills",
+    "pi_bundle": "gentle-pi package skills"
+  },
+  "pi": {
+    "bundle_name_prefix": "gentle-ai-",
+    "force_exclude_shared_duplicates": [
+      "branch-pr",
+      "chained-pr",
+      "cognitive-doc-design",
+      "comment-writer",
+      "judgment-day",
+      "rdd-defect-workflow",
+      "skill-creator",
+      "skill-improver",
+      "skill-registry"
+    ],
+    "intentional_dual_visibility": [
+      "issue-creation",
+      "work-unit-commits"
+    ],
+    "dual_visibility_reason": "Current Gentle AI and Gentle Shell upstreams diverge functionally for these skills; hiding the shared copies could remove behavior not present in the Pi bundle.",
+    "skill_registry_watcher": {
+      "enabled": false,
+      "compatibility_switch": "GENTLE_PI_NO_SKILL_REGISTRY=1",
+      "tracker": "Gentle Shell #962"
+    }
+  },
+  "upstream_tracking": {
+    "duplicate_discovery": "Gentle Shell #807",
+    "skill_registry_resolution": "Gentle Shell #369 / PR #1320",
+    "watcher_crash": "Gentle Shell #962"
+  },
+  "rules": [
+    "Do not delete an owner-managed runtime store merely because another runtime can also discover ~/.agents/skills.",
+    "Use official gentle-ai sync for Gentle-managed OpenCode/Codex assets.",
+    "Use exact Pi force-excludes only for shared duplicates whose Pi bundle authority is accepted.",
+    "Do not force-exclude issue-creation or work-unit-commits until their upstream divergence is reconciled and released.",
+    "Project-specific skills belong in the target repository rather than hidden global legacy stores."
+  ]
+}

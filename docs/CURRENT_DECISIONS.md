@@ -142,6 +142,18 @@ This is native Gentle routing only; Atenea does not add a routing engine. The ch
 
 Desired state: `config/native-gentle/native-balanced.profile.json`.
 
+## C-063 — Runtime owners keep their skill stores; Pi exact-excludes only safe shared duplicates
+
+**Accepted and reconciled 2026-09-24.**
+
+Gentle AI still owns runtime-specific skill assets for OpenCode and Codex, so `~/.config/opencode/skills` and `~/.codex/skills` are not to be deleted merely because `~/.agents/skills` also exists. Reconcile owner-managed assets with the official `gentle-ai sync` path. Project-specific skills belong in the target repository.
+
+Pi 0.87.1 natively discovers `~/.agents/skills` as well as the `gentle-pi` package. The package uses `gentle-ai-*` frontmatter names, so Pi can otherwise expose both a shared plain skill and a package-prefixed semantic counterpart. Atenea does not build a semantic resolver. Instead, Pi's native exact force-exclusion (`-<path>`) suppresses only the nine shared duplicates qualified in `config/native-gentle/pi-skill-policy.json`.
+
+`issue-creation` and `work-unit-commits` remain deliberately dual-visible because current Gentle AI and Gentle Shell upstream content diverges functionally. Do not hide or merge those copies locally until upstream reconciles the behavior in a released version.
+
+Gentle Shell #807 remains the duplicate-discovery seam. Gentle Shell #962 remains separately mitigated with `GENTLE_PI_NO_SKILL_REGISTRY=1`. Evidence: `docs/vnext/NATIVE_SKILL_RECONCILIATION_20260924.md`.
+
 ## C-001 — Atenea is a contract over upstream tools, not an orchestration product
 
 **Accepted.**
