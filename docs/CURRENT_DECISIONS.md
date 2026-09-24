@@ -1,6 +1,6 @@
 # Atenea — Current Decisions
 
-Date: 2026-09-23
+Date: 2026-09-24
 
 This file preserves accepted decision provenance. **C-055 onward is the current vNext cutover authority** and supersedes older execution-topology decisions where they conflict.
 
@@ -153,6 +153,18 @@ Pi 0.87.1 natively discovers `~/.agents/skills` as well as the `gentle-pi` packa
 `issue-creation` and `work-unit-commits` remain deliberately dual-visible because current Gentle AI and Gentle Shell upstream content diverges functionally. Do not hide or merge those copies locally until upstream reconciles the behavior in a released version.
 
 Gentle Shell #807 remains the duplicate-discovery seam. Gentle Shell #962 remains separately mitigated with `GENTLE_PI_NO_SKILL_REGISTRY=1`. Evidence: `docs/vnext/NATIVE_SKILL_RECONCILIATION_20260924.md`.
+
+## C-064 — Executable authority is falsifiable; material trains close on composed-state evidence
+
+**Accepted from Laboratorio field learning 2026-09-24.**
+
+Atenea does not mandate Matt, OpenSpec or another shaping method. It does require that material executable authority be good enough to falsify where its risks make that practical: explicit invariants, representative negative/adversarial cases, declared integration seams and independent deterministic acceptance belong in the project/task contract when applicable. New/materially changed security/privacy/state/parser checkers should demonstrate a planted violation that they reject.
+
+Native Gentle continues to own per-work-unit execution and RDD. Per-unit approval does not prove that several correct units compose correctly. Before publication of a material multi-work-unit/train crossing accepted seams, the project must run deterministic integration evidence over the composed exact HEAD, scoped to its own domain and changed surfaces. Defects become bounded correction units with their own native lifecycle; Atenea does not manufacture a whole-branch review candidate or a second reviewer controller.
+
+Promotion Review remains selective and human/planning-owned. It may be required before execution or later when implementation/closeout reveals material risk; it does not replace deterministic composed-state evidence.
+
+Project-specific fixtures, domain scanners, debt semantics and security cases remain owned by the project. Evidence: `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md`, `docs/vnext/PROJECT_EXECUTION_HANDOFF_NATIVE_GENTLE.md`, `CODING_STANDARDS.md` and Laboratorio `docs/handoffs/ATENEA_LEARNINGS_PR35_20260924.md` from the PR #35 field train.
 
 ## C-001 — Atenea is a contract over upstream tools, not an orchestration product
 

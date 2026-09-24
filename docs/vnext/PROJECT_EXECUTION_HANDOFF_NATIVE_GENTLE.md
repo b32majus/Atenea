@@ -234,6 +234,18 @@ A good execution request contains:
 - permission boundaries for publication;
 - any explicit deterministic evidence requirement.
 
+### Execution-readiness quality gate
+
+The shaping method is optional; the quality of executable authority is not. For material behavior, safety, privacy, state, parser, dependency or CI work, resolve the applicable items before execution:
+
+- the invariant that must remain true;
+- concrete negative/adversarial cases capable of falsifying the intended behavior;
+- integration seams the work crosses and any behavior deliberately deferred to later work;
+- an independent deterministic oracle when the requirement is mechanically testable;
+- for a new/materially changed checker or scanner, a known-good case plus a representative planted violation it must reject.
+
+Use only the items that genuinely apply. Do not add document ceremony to trivial work. If a material requirement cannot yet be made sufficiently testable or bounded, repair the durable task/acceptance authority with the human/planning surface rather than letting Gentle invent product semantics during execution. Matt/OpenSpec may help produce this authority, but neither is required if another process already produced an equivalent executable contract.
+
 Do **not** prescribe:
 
 - which worker must edit each file;
