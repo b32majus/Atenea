@@ -34,7 +34,7 @@ Resolve composition, explicitly select the ticket/train route (`native-balanced`
 pi
 ```
 
-Use Gentle's native profile/pin surface and confirm the intended route before the first writer edit. Native Gentle owns workers, verify, RDD and burn.
+Use Gentle's native profile/pin surface and confirm the intended route before the first writer edit. Candidate/changed/incident routing also requires the policy's read-only child probe. Pins route subagents, not the session orchestrator. Native Gentle owns workers, verify, RDD and burn.
 
 ## To shape genuinely open work
 
@@ -65,7 +65,7 @@ node tools/check-vnext-authority.mjs
 - GGA 2.10.1
 - NaN + OpenAI Codex providers
 - global active profile: `native-balanced`
-- selectable ticket/train profiles: `native-balanced`, `native-v4-heavy`, `native-economy` (experimental/eligibility-gated)
+- selectable ticket/train profiles: `native-balanced`, `native-v4-heavy` (positive-field-canary candidate), `native-economy` (experimental/eligibility-gated)
 - rollback-only profile: `native-nan`
 
 ## Temporary exceptions

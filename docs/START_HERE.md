@@ -24,7 +24,7 @@ normal entry      = pi
 Atenea runtime controllers = 0
 ```
 
-The runtime versions above are the latest qualified Atenea baseline. `native-balanced` remains the global HOME baseline. Planned tickets/trains must explicitly select `native-balanced`, `native-v4-heavy` or eligibility-gated `native-economy` before writer authority under `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md`; a repository/local Gentle pin may override the global active profile without affecting parallel repositories. `native-v4-heavy` is a complementary DeepSeek-heavy candidate whose first real use is a field canary. `native-economy` is experimental after a positive but not globally quality-equivalent Symphonia canary. `native-nan` remains rollback only, not a normal route. Historical Stage files, old run recipes, old profiles and `historical/` remain provenance only and do not override this baseline.
+The runtime versions above are the latest qualified Atenea baseline. `native-balanced` remains the global HOME baseline. Planned tickets/trains must explicitly select `native-balanced`, `native-v4-heavy` or eligibility-gated `native-economy` before writer authority under `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md`; a repository/local Gentle pin may override the **subagent routing** without affecting parallel repositories; it does not move the session orchestrator. `native-v4-heavy` is a positive-field-canary candidate after PROMueve Nexus F3.2/#403; it is still not the global default or globally quality-equivalent. `native-economy` is experimental after a positive but not globally quality-equivalent Symphonia canary. `native-nan` remains rollback only, not a normal route. Historical Stage files, old run recipes, old profiles and `historical/` remain provenance only and do not override this baseline.
 
 If you need to rebuild the runtime, use `docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260923.md`. If you need provider/runtime exceptions, use `docs/vnext/CURRENT_COMPATIBILITY.md`.
 
@@ -102,7 +102,7 @@ Before candidate work:
 - repository state is understood;
 - task authority is explicit;
 - for substantial work, delivery composition is resolved under `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` before writer authority;
-- the ticket/train execution profile is explicitly selected under `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md` and any native Gentle pin is reconciled before writer authority;
+- the ticket/train execution profile is explicitly selected under `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md`; the native store envelope and any material pin resolution are reconciled before writer authority, and candidate/changed/incident routing has a matching real read-only child probe when the policy requires it;
 - `.atl/` is already in repo-local `.gitignore`;
 - unrelated untracked runtime artifacts are absent;
 - no push/PR/merge authority is assumed.

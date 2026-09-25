@@ -216,12 +216,14 @@ Qualified rollback only:
 native-nan
 ```
 
-Use `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md` as the single routing-selection authority. The global active profile does not decide every repository: Gentle's native local/repository pin mechanism may select another named profile for one project without changing parallel repositories.
+Use `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md` as the single routing-selection authority. The global active profile does not decide every repository: Gentle's native local/repository pin mechanism may select another named **subagent** profile for one project without changing parallel repositories. Pins do not move the parent/orchestrator; select/verify a differing orchestrator separately through Pi's native model surface.
 
 - `native-balanced`: GLM-heavy implementation baseline with DeepSeek independent analysis/verification and Luna/Sol review diversity.
-- `native-v4-heavy`: complementary candidate route; DeepSeek V4 Flash owns the high-volume worker while GLM remains orchestrator/verify/judge-A/fix. Its first real execution is a field canary.
+- `native-v4-heavy`: positive-field-canary candidate after PROMueve Nexus F3.2/#403; DeepSeek V4 Flash owns the high-volume worker while GLM remains orchestrator/verify/judge-A/fix. It is not yet a global default or globally quality-equivalent.
 - `native-economy`: DeepSeek + Qwen execution route imported from a positive Symphonia canary. It remains experimental because later independent audit found additional semantic corners; use only when the policy's eligibility gate passes.
 - `native-nan`: NaN-only rollback whose all-GLM reviewer `thinking=low` remains a compatibility mitigation, not a normal routing choice.
+
+Static profile/pin conformance is necessary but does not prove a child actually launched on the expected route. For candidate first-use, material routing/profile changes, profile-semantics runtime upgrades or prior routing incidents, require the policy's real read-only child probe before writer authority. A mismatch is STOP and yields no profile-quality evidence.
 
 Profile choice changes model/budget routing only. It does not alter native ODD, verification, `review_due`, reviewer/refuter/validator authority, correction lifecycle, acknowledgement/burn or STOP semantics.
 

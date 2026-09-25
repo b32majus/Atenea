@@ -12,7 +12,8 @@
     "DeepSeek V4 Flash owns orchestration, verification and correction; Qwen 3.8 Flash owns exploration/judge-A; Qwen 3.6 owns implementation.",
     "Reviewer routing remains independent through GPT-6 Luna and GPT-6 Sol.",
     "Symphonia produced strong deterministic and native-review evidence, but post-RDD findings mean one canary does not establish quality equivalence with native-balanced.",
-    "No silent fallback or profile switch is allowed inside an active lineage."
+    "No silent fallback or profile switch is allowed inside an active lineage.",
+    "Repository/local Gentle pins route subagents only. When HOME remains native-balanced, select and verify the desired DeepSeek V4 Flash orchestrator separately through Pi native session model selection."
   ],
   "roles": {
     "orchestrator": {

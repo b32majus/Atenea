@@ -1,7 +1,7 @@
 {
   "schema": "atenea.native-gentle-profile/v1",
   "name": "native-v4-heavy",
-  "status": "candidate-user-directed-routing-first-field-canary-required",
+  "status": "positive-field-canary-candidate",
   "added_at": "2026-09-25",
   "providers": [
     "nan",
@@ -11,7 +11,9 @@
     "Complementary execution route to native-balanced; it is not a lower-quality or automatic fallback profile.",
     "DeepSeek V4 Flash owns the high-volume implementation role while GLM 5.3 Flash provides independent orchestration, verification, judge-A and correction diversity.",
     "Reviewer routing stays identical to native-balanced: GPT-6 Luna for most review roles and GPT-6 Sol for review-risk.",
-    "The first real use is a field canary. Keep the selected profile stable through each active work-unit/review lineage and do not silently fall back to another profile."
+    "PROMueve Nexus F3.2 / issue #403 is the first positive field canary. This supports candidate status but does not establish global quality equivalence with native-balanced.",
+    "Keep the selected profile stable through each active work-unit/review lineage and do not silently fall back to another profile.",
+    "For candidate/changed routing or after a routing incident, static conformance is necessary but writer authority additionally requires a real read-only child probe of the effective route."
   ],
   "roles": {
     "orchestrator": {
@@ -64,5 +66,23 @@
       "model": "openai-codex/gpt-6-luna",
       "thinking": "max"
     }
+  },
+  "first_positive_field_canary_at": "2026-09-25",
+  "field_evidence": {
+    "source": "PROMueve Nexus F3.2 native-v4-heavy canary 2026-09-25",
+    "project_repo": "b32majus/Hub-Clinico-Badajoz",
+    "issue": 403,
+    "delivery_pr": 404,
+    "base_sha": "0847cbcc7891aaee7a776ac81d1f2a01bdc63ffe",
+    "wu_a_sha": "172fb2bf9789c18e1866a0dbc9071b07c5e81716",
+    "wu_b_sha": "17f9db676e810575bdeccc9b4d20c0c9d8ea07b5",
+    "candidate_sha": "61e6e9ca54a787940dc5dc241f0eb517ce5f264d",
+    "merge_sha": "e9096e9bda1d20ac50f9c395823152b7f005403c",
+    "routing": "orchestrator GLM 5.3 Flash high; pre-writer probe + WU-A/WU-B writers observed DeepSeek V4 Flash high",
+    "native_review": "WU-A APPROVED+BURNED with one informational non-blocking finding; WU-B APPROVED+BURNED with no findings",
+    "composed_result": "Home 11/11 PASS; navigation 11/11 PASS; verify:nexus PASS; GitHub deterministic gates success; post-RDD audit found no F3.2 blocker",
+    "attempt_0": "invalid routing attempt stopped before commit because effective writer was GLM 5.3 Flash; no product bytes from that attempt were published",
+    "remaining_scope": "candidate evidence only; no claim of global quality equivalence or default suitability",
+    "evidence_doc": "docs/vnext/NATIVE_V4_HEAVY_PROMUEVE_CANARY_20260925.md"
   }
 }
