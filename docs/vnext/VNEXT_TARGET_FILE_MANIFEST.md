@@ -2,7 +2,7 @@
 
 Status: **PROMOTED vNext TARGET / CURRENT TREE CONTRACT**
 
-Updated: 2026-09-23
+Updated: 2026-09-25
 
 This file translates the P1 capability matrix into a concrete target-tree decision.
 
@@ -27,9 +27,12 @@ This file translates the P1 capability matrix into a concrete target-tree decisi
 
 | Surface | Purpose |
 | --- | --- |
-| `config/native-gentle/native-balanced.profile.json` | active secret-free multi-provider routing/effort specification |
+| `config/native-gentle/native-balanced.profile.json` | global baseline secret-free multi-provider routing/effort specification |
+| `config/native-gentle/native-v4-heavy.profile.json` | complementary DeepSeek-heavy candidate routing specification |
+| `config/native-gentle/native-economy.profile.json` | experimental eligibility-gated economy routing specification |
 | `config/native-gentle/native-nan.profile.json` | qualified NaN-only rollback routing specification |
 | `config/native-gentle/nan-provider.models.json` | secret-free NaN provider/model registry desired state |
+| `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md` | explicit per-ticket/train profile-selection and economy-eligibility authority |
 | `docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260923.md` | exact supported install/auth/profile/conformance recipe |
 | `tools/check-vnext-authority.mjs` | deterministic current-authority consistency |
 | `tools/check-native-gentle-profile.mjs` | validate actual native profile against versioned spec |

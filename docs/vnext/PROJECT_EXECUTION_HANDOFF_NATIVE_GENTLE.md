@@ -2,7 +2,7 @@
 
 Status: **CURRENT / STABLE-RUNTIME-QUALIFIED**
 
-Date: 2026-09-24
+Date: 2026-09-25
 
 Audience: a fresh Cora / planning assistant / operator resuming an already-shaped Atenea project such as PROMueve, Symphonia or Laboratorio de Privacidad.
 
@@ -166,19 +166,21 @@ Confirm:
 7. project AGENTS stable rules understood
 8. no shaping rerun required
 9. for every substantial Work Order, composition forecast completed and delivery composition resolved under `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` before writer authority
-10. .atl/ is already ignored before candidate work begins
-11. no unrelated untracked runtime artifacts are mixed into the candidate
-12. no push/PR/merge authority assumed
+10. ticket/train execution profile explicitly selected under `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md`, with any native Gentle pin reconciled before writer authority
+11. .atl/ is already ignored before candidate work begins
+12. no unrelated untracked runtime artifacts are mixed into the candidate
+13. no push/PR/merge authority assumed
 ```
 
-Execution readiness has two independent questions for substantial work:
+Execution readiness has three independent questions for substantial work:
 
 ```text
 product scope accepted?
 delivery composition resolved?
+execution profile explicitly selected and natively resolved?
 ```
 
-The first does not imply the second. If material over-budget risk is visible and composition is unresolved, do not launch a writer merely because the Work Order is already accepted. Resolve one bounded unit, a semantic chain or the required size exception first.
+Product acceptance does not imply composition readiness, and neither implies a routing decision. If material over-budget risk is visible and composition is unresolved, do not launch a writer merely because the Work Order is accepted. Once composition is resolved, select the profile for this ticket/train under `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md` before the first writer edit.
 
 P4 qualification proved that a user-level Git exclude is **not sufficient** to prevent Gentle from creating a repository-local `.gitignore` for `.atl/`. Therefore every target repository used with Gentle should already ignore `.atl/` in its own `.gitignore` before candidate work begins. Do not let this file appear halfway through a candidate.
 
@@ -192,43 +194,38 @@ Ordinary production HOME is the qualified path after the 2026-09-22 clean reinst
 
 Do not resurrect historical Atenea environment variables, old profile pins or relay/plugin machinery around it.
 
-## 6. Native profile
+## 6. Native execution profiles
 
-Current active profile:
+Global HOME baseline:
 
 ```text
 native-balanced
 ```
 
-Qualified rollback profile:
+Normal preflight choices for a planned ticket/train:
+
+```text
+native-balanced
+native-v4-heavy
+native-economy   # experimental / eligibility-gated
+```
+
+Qualified rollback only:
 
 ```text
 native-nan
 ```
 
-The active routing was changed on 2026-09-24 by explicit operator choice without a pre-activation canary.
+Use `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md` as the single routing-selection authority. The global active profile does not decide every repository: Gentle's native local/repository pin mechanism may select another named profile for one project without changing parallel repositories.
 
-Reviewer roles are currently pinned through **native Gentle model routing** to:
+- `native-balanced`: GLM-heavy implementation baseline with DeepSeek independent analysis/verification and Luna/Sol review diversity.
+- `native-v4-heavy`: complementary candidate route; DeepSeek V4 Flash owns the high-volume worker while GLM remains orchestrator/verify/judge-A/fix. Its first real execution is a field canary.
+- `native-economy`: DeepSeek + Qwen execution route imported from a positive Symphonia canary. It remains experimental because later independent audit found additional semantic corners; use only when the policy's eligibility gate passes.
+- `native-nan`: NaN-only rollback whose all-GLM reviewer `thinking=low` remains a compatibility mitigation, not a normal routing choice.
 
-```text
-nan/glm5.3-flash
-thinking = low
-```
+Profile choice changes model/budget routing only. It does not alter native ODD, verification, `review_due`, reviewer/refuter/validator authority, correction lifecycle, acknowledgement/burn or STOP semantics.
 
-for:
-
-- review-risk;
-- review-readability;
-- review-reliability;
-- review-resilience;
-- review-refuter;
-- review-validator.
-
-Reason: current NaN OpenAI-compatible streaming can terminate long reviewer reasoning with a `reasoning_only_stream` truncation frame that is malformed JSON. The exact real PROMueve reviewer prompt passed at `low` and failed at default/medium.
-
-This is native user-owned Gentle configuration, not Atenea glue.
-
-Do not silently change reviewer effort/routing during a live review lineage.
+Do not silently switch profile during an active work-unit/review lineage. If a route degrades, follow the current native lifecycle to a valid boundary, preserve evidence, then make a new explicit profile decision before another candidate begins writing.
 
 ## 7. What to give Gentle
 

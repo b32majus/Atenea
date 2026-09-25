@@ -6,10 +6,32 @@
   "provider": "nan",
   "notes": [
     "Qualified NaN-only rollback profile preserved after native-balanced activation. Gentle remains the runtime owner.",
+    "The desired state is a complete profile snapshot so rollback cannot inherit stale routing from another profile.",
     "Reviewer thinking=low is a compatibility mitigation for NaN reasoning_only_stream malformed SSE truncation observed on long reviewer prompts.",
     "Do not infer API keys, base URLs or credentials from this file."
   ],
   "roles": {
+    "orchestrator": {
+      "model": "nan/glm5.3-flash"
+    },
+    "gentle-ai-explore": {
+      "model": "nan/glm5.3-flash"
+    },
+    "gentle-ai-worker": {
+      "model": "nan/glm5.3-flash"
+    },
+    "gentle-ai-verify": {
+      "model": "nan/glm5.3-flash"
+    },
+    "jd-judge-a": {
+      "model": "nan/glm5.3-flash"
+    },
+    "jd-judge-b": {
+      "model": "nan/glm5.3-flash"
+    },
+    "jd-fix-agent": {
+      "model": "nan/glm5.3-flash"
+    },
     "review-risk": {
       "model": "nan/glm5.3-flash",
       "thinking": "low"

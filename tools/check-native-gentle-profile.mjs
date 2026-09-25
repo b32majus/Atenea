@@ -5,7 +5,13 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const specPath = path.join(root, "config/native-gentle/native-balanced.profile.json");
+const activeSpecPath = path.join(root, "config/native-gentle/native-balanced.profile.json");
+const profileSpecPaths = [
+  activeSpecPath,
+  path.join(root, "config/native-gentle/native-v4-heavy.profile.json"),
+  path.join(root, "config/native-gentle/native-economy.profile.json"),
+  path.join(root, "config/native-gentle/native-nan.profile.json"),
+];
 const providerSpecPath = path.join(root, "config/native-gentle/nan-provider.models.json");
 const profilesPath = process.env.ATENEA_GENTLE_PROFILES_PATH ||
   path.join(os.homedir(), ".pi/gentle-ai/profiles.json");
@@ -30,50 +36,36 @@ const normalize = (value) => {
   return value;
 };
 
-for (const p of [specPath, providerSpecPath, profilesPath, modelsPath, providerModelsPath]) {
+for (const p of [...profileSpecPaths, providerSpecPath, profilesPath, modelsPath, providerModelsPath]) {
   if (!fs.existsSync(p)) failures.push(`missing required file: ${p}`);
 }
 
 if (failures.length === 0) {
-  const spec = readJson(specPath);
+  const specs = profileSpecPaths.map(readJson);
+  const activeSpec = readJson(activeSpecPath);
   const providerSpec = readJson(providerSpecPath);
   const profiles = readJson(profilesPath);
   const models = readJson(modelsPath);
   const providerModels = readJson(providerModelsPath);
 
-  if (profiles.active !== spec.name) {
-    failures.push(`active profile is ${profiles.active ?? "<unset>"}, expected ${spec.name}`);
+  if (profiles.active !== activeSpec.name) {
+    failures.push(`global active profile is ${profiles.active ?? "<unset>"}, expected ${activeSpec.name}`);
   }
 
-  const active = profiles.profiles?.[spec.name];
-  if (!active) {
-    failures.push(`profile ${spec.name} not found in ${profilesPath}`);
-  } else {
-    for (const [role, expected] of Object.entries(spec.roles ?? {})) {
-      const profileActual = active[role];
-      const modelActual = models[role];
-
-      if (!profileActual) {
-        failures.push(`active profile missing role ${role}`);
-        continue;
-      }
-      if (profileActual.model !== expected.model) {
-        failures.push(`${role} profile model=${profileActual.model}, expected ${expected.model}`);
-      }
-      if ((profileActual.thinking ?? null) !== (expected.thinking ?? null)) {
-        failures.push(`${role} profile thinking=${profileActual.thinking ?? "<unset>"}, expected ${expected.thinking ?? "<unset>"}`);
-      }
-      if (!modelActual) {
-        failures.push(`runtime models mapping missing role ${role}`);
-      } else {
-        if (modelActual.model !== expected.model) {
-          failures.push(`${role} runtime model=${modelActual.model}, expected ${expected.model}`);
-        }
-        if ((modelActual.thinking ?? null) !== (expected.thinking ?? null)) {
-          failures.push(`${role} runtime thinking=${modelActual.thinking ?? "<unset>"}, expected ${expected.thinking ?? "<unset>"}`);
-        }
-      }
+  for (const spec of specs) {
+    const actual = profiles.profiles?.[spec.name];
+    if (!actual) {
+      failures.push(`profile ${spec.name} not found in ${profilesPath}`);
+      continue;
     }
+    if (JSON.stringify(normalize(actual)) !== JSON.stringify(normalize(spec.roles ?? {}))) {
+      failures.push(`profile ${spec.name} differs from complete desired-state snapshot ${path.relative(root, profileSpecPaths.find((candidate) => readJson(candidate).name === spec.name))}`);
+    }
+  }
+
+  const active = profiles.profiles?.[activeSpec.name];
+  if (active && JSON.stringify(normalize(models)) !== JSON.stringify(normalize(activeSpec.roles ?? {}))) {
+    failures.push(`runtime models mapping differs from active desired-state profile ${activeSpec.name}`);
   }
 
   const customProvider = "nan";
@@ -85,6 +77,17 @@ if (failures.length === 0) {
       failures.push(`provider desired state missing ${customProvider} in ${providerSpecPath}`);
     } else if (JSON.stringify(normalize(providerModels.providers[customProvider])) !== JSON.stringify(normalize(expectedProvider))) {
       failures.push(`provider ${customProvider} differs from secret-free desired state ${providerSpecPath}`);
+    }
+  }
+
+  const desiredNanModels = new Set((providerSpec.providers?.nan?.models ?? []).map((m) => m.id));
+  for (const spec of specs) {
+    for (const [role, route] of Object.entries(spec.roles ?? {})) {
+      if (!route.model?.startsWith("nan/")) continue;
+      const id = route.model.slice("nan/".length);
+      if (!desiredNanModels.has(id)) {
+        failures.push(`${spec.name}/${role} references NaN model ${id} absent from ${providerSpecPath}`);
+      }
     }
   }
 

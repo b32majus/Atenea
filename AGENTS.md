@@ -107,6 +107,8 @@ For material work, executable authority should be sufficiently falsifiable for i
 
 For every substantial accepted Work Order, **product scope accepted does not by itself grant writer authority**. Before any writer edits code, resolve delivery composition under `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`: either one honest bounded unit, a semantic work-unit chain, or the required size-exception decision. If material over-budget risk exists and no path is resolved, STOP before implementation. A capability-sized issue may remain one issue. This gate bounds the delivery candidate; it does not take ODD, internal decomposition, workers or `review_due` ownership away from native Gentle. Do not copy numeric composition thresholds into consuming repositories; `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` is the Atenea operational authority for them.
 
+For every planned ticket/train, resolve an **explicit execution-profile decision before writer authority** under `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md`. Normal selectable routes are `native-balanced`, `native-v4-heavy` and eligibility-gated experimental `native-economy`; `native-nan` is rollback only. The chosen profile is stable through an active work-unit/review lineage. Do not auto-route by quota, silently fall back after a failure or switch profile inside a lineage. Profile choice changes model/budget routing only; it never weakens acceptance, composition, deterministic verification, native `review_due`, correction/burn, STOP or publication authority.
+
 ## 6. Native execution ownership
 
 Atenea does **not** own:
@@ -136,8 +138,10 @@ Use the upstream runtime's native provider/model/profile configuration.
 Atenea versions secret-free desired state:
 
 - `config/native-gentle/nan-provider.models.json`;
-- `config/native-gentle/native-balanced.profile.json` — active routing desired state;
-- `config/native-gentle/native-nan.profile.json` — qualified rollback;
+- `config/native-gentle/native-balanced.profile.json` — global baseline routing desired state;
+- `config/native-gentle/native-v4-heavy.profile.json` — complementary DeepSeek-heavy candidate route;
+- `config/native-gentle/native-economy.profile.json` — experimental eligibility-gated economy route;
+- `config/native-gentle/native-nan.profile.json` — qualified rollback only;
 - `config/native-gentle/pi-skill-policy.json` — current native skill ownership/deduplication desired state.
 
 Atenea does not implement model routing or skill resolution.
@@ -178,7 +182,7 @@ In particular:
 
 - a typed `risk=unassessable` ASSESS fail-closed plan is followed natively; Atenea does not synthesize START;
 - successful `acknowledge-approved → authority=burned` is terminal; selectorless STATUS is not required to re-prove burn;
-- active reviewer reasoning/model selection is defined by `native-balanced`; the old all-GLM/low mapping survives only in the `native-nan` rollback profile.
+- reviewer reasoning/model selection is defined by the explicitly selected native profile; the old all-GLM/low mapping survives only in the `native-nan` rollback profile.
 - Pi exact-excludes only the shared Gentle duplicates listed in `config/native-gentle/pi-skill-policy.json`; `issue-creation` and `work-unit-commits` remain intentionally dual-visible until their upstream divergence is reconciled.
 
 ## 10. Publication

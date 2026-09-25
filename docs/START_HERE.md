@@ -8,6 +8,7 @@ Status: **CURRENT FRONT DOOR**
 CURRENT_AUTHORITY = main
 RUNTIME_QUALIFIED = 2026-09-23
 ROUTING_CHANGED   = 2026-09-24
+PROFILE_CATALOG   = 2026-09-25
 P0_TO_P7          = PASS
 Pi                = 0.87.1
 gentle-pi         = 3.7.0
@@ -15,14 +16,15 @@ Gentle AI         = 3.7.0
 Engram            = 2.1.0
 GGA               = 2.10.1
 providers         = NaN + OpenAI Codex
-active profile    = native-balanced
-rollback profile  = native-nan
-routing status    = operator-directed / no preflight canary
+global active profile = native-balanced
+selectable profiles    = native-balanced | native-v4-heavy | native-economy (experimental)
+rollback profile       = native-nan
+routing status         = explicit per-ticket/train preflight choice
 normal entry      = pi
 Atenea runtime controllers = 0
 ```
 
-The runtime versions above are the latest qualified Atenea baseline. The `native-balanced` routing profile was activated on 2026-09-24 by explicit operator choice **without a preflight canary**; investigate only if a real execution fails. `native-nan` remains the qualified NaN-only rollback. Historical Stage files, old run recipes, old profiles and `historical/` remain provenance only and do not override this baseline.
+The runtime versions above are the latest qualified Atenea baseline. `native-balanced` remains the global HOME baseline. Planned tickets/trains must explicitly select `native-balanced`, `native-v4-heavy` or eligibility-gated `native-economy` before writer authority under `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md`; a repository/local Gentle pin may override the global active profile without affecting parallel repositories. `native-v4-heavy` is a complementary DeepSeek-heavy candidate whose first real use is a field canary. `native-economy` is experimental after a positive but not globally quality-equivalent Symphonia canary. `native-nan` remains rollback only, not a normal route. Historical Stage files, old run recipes, old profiles and `historical/` remain provenance only and do not override this baseline.
 
 If you need to rebuild the runtime, use `docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260923.md`. If you need provider/runtime exceptions, use `docs/vnext/CURRENT_COMPATIBILITY.md`.
 
@@ -67,6 +69,7 @@ Accepted product scope is not, by itself, writer-ready. For every substantial Wo
 product scope accepted
 → composition forecast
 → delivery composition resolved
+→ execution profile selected and resolved natively
 → writer authority
 ```
 
@@ -99,6 +102,7 @@ Before candidate work:
 - repository state is understood;
 - task authority is explicit;
 - for substantial work, delivery composition is resolved under `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` before writer authority;
+- the ticket/train execution profile is explicitly selected under `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md` and any native Gentle pin is reconciled before writer authority;
 - `.atl/` is already in repo-local `.gitignore`;
 - unrelated untracked runtime artifacts are absent;
 - no push/PR/merge authority is assumed.
@@ -155,7 +159,7 @@ Current compatibility seams:
 
 - committed-range ASSESS (#4791): if native ASSESS returns a typed `risk=unassessable` fail-closed plan, follow its verifier path rather than synthesizing START;
 - post-burn STATUS (#4771): `acknowledge-approved → authority=burned` is terminal; do not call selectorless STATUS merely to prove the burn again;
-- active reviewer model/reasoning selection comes from `native-balanced`; the previously qualified all-GLM/low mapping remains only in the `native-nan` rollback profile.
+- reviewer model/reasoning selection comes from the explicitly selected native profile; `native-balanced`, `native-v4-heavy` and `native-economy` preserve Luna/Sol reviewer diversity, while the all-GLM/low mapping remains only in the `native-nan` rollback profile.
 - Gentle skill ownership follows `config/native-gentle/pi-skill-policy.json`: Pi suppresses nine safe shared duplicates, while `issue-creation` and `work-unit-commits` remain intentionally dual-visible pending upstream reconciliation.
 - Gentle Shell #962: run with `GENTLE_PI_NO_SKILL_REGISTRY=1` so skills stay available while the crash-prone recursive registry watcher is disabled.
 

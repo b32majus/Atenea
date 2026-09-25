@@ -190,6 +190,22 @@ After successful removal, prune worktree metadata. Worktree disposal does not au
 
 This is lifecycle hygiene, not a scheduler, daemon, garbage collector or execution controller.
 
+## C-067 — Execution profile is an explicit pre-writer decision; balanced, V4-heavy and economy remain distinct routes
+
+**Accepted 2026-09-25 from NaN quota-balancing needs plus Symphonia `native-economy` field evidence.**
+
+For every planned ticket/train, Atenea requires an explicit execution-profile decision after delivery composition is resolved and before writer authority. The normal selectable catalog is `native-balanced`, `native-v4-heavy` and eligibility-gated experimental `native-economy`. `native-nan` remains rollback only. Global HOME stays on `native-balanced`; project/local Gentle pins may select another route without changing parallel repositories.
+
+`native-v4-heavy` is a complementary quality-preserving candidate, not an economy tier: DeepSeek V4 Flash owns the high-volume implementation worker while GLM 5.3 Flash remains orchestrator, independent verifier, judge-A and fix agent; Luna/Sol reviewer routing stays aligned with balanced. Its first real use is a field canary so Atenea changes one major variable at a time and can compare deterministic first-pass quality, review findings, corrections, post-RDD findings, wall time and model/token evidence.
+
+`native-economy` is adopted from Symphonia as an experimental global route, not promoted to default or declared quality-equivalent. The first canary (ticket #3) achieved full typecheck, 224/224 unit/integration tests, 14/14 E2E, server/web builds and native APPROVED+BURNED lineages, while later independent audit still found additional effective-dating/idempotency corners. That mixed evidence supports preserving the route with binding eligibility and cross-project measurement, not automatic promotion.
+
+Economy therefore requires closed execution authority, independently falsifiable acceptance, normal-band composition under `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`, no unattended size exception, bounded/low-novelty implementation and intact native review gates. CRITICAL work is not economy-eligible by default; novel architecture, security/privacy/tenancy boundaries, complex concurrency/temporal semantics, unusually large context or repeated semantic failures are economy-ineligible by default. Unresolved semantics remain STOP rather than a profile-selection problem.
+
+The selected profile is stable through an active work-unit/review lineage. There is no automatic quota router and no silent fallback. A route change occurs only at a valid lifecycle boundary after evidence is preserved and before another candidate begins writing. Profile selection changes model/budget routing only; it never changes acceptance, deterministic verification, native `review_due`, correction/burn, STOP or publication authority.
+
+`docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md` is the single operational authority for selection/eligibility. Secret-free desired-state mappings live in `config/native-gentle/native-balanced.profile.json`, `native-v4-heavy.profile.json`, `native-economy.profile.json` and rollback `native-nan.profile.json`.
+
 ## C-001 — Atenea is a contract over upstream tools, not an orchestration product
 
 **Accepted.**

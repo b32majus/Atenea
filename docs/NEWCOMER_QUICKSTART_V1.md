@@ -21,17 +21,20 @@ Atenea is the policy/config/evidence layer. It is not the runtime controller.
 1. `README.md`
 2. `AGENTS.md`
 3. `docs/START_HERE.md`
-4. `CODING_STANDARDS.md`
+4. `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md` when executing a planned ticket/train
+5. `CODING_STANDARDS.md`
 
 Only then read task-specific specs/ADRs/issues.
 
 ## To execute accepted work
 
+Resolve composition, explicitly select the ticket/train route (`native-balanced`, `native-v4-heavy` or eligible experimental `native-economy`), then launch:
+
 ```bash
 pi
 ```
 
-Native Gentle owns workers, verify, RDD and burn.
+Use Gentle's native profile/pin surface and confirm the intended route before the first writer edit. Native Gentle owns workers, verify, RDD and burn.
 
 ## To shape genuinely open work
 
@@ -61,8 +64,9 @@ node tools/check-vnext-authority.mjs
 - Engram 2.1.0
 - GGA 2.10.1
 - NaN + OpenAI Codex providers
-- active profile: `native-balanced`
-- rollback profile: `native-nan`
+- global active profile: `native-balanced`
+- selectable ticket/train profiles: `native-balanced`, `native-v4-heavy`, `native-economy` (experimental/eligibility-gated)
+- rollback-only profile: `native-nan`
 
 ## Temporary exceptions
 
