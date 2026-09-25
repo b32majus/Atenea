@@ -43,6 +43,7 @@ requireText(current.readme, "Gentle Shell 3.7.0", "qualified Gentle Shell versio
 requireText(current.readme, "Gentle AI 3.7.0", "qualified Gentle AI version");
 requireText(current.readme, "Normal entry point:", "native entry point");
 requireText(current.readme, "historical/runtime/", "historical boundary");
+requireText(current.readme, "selectable per-ticket/train: native-balanced | native-v4-heavy | native-economy (experimental)", "README profile catalog");
 
 requireText(current.agents, "Status: **CURRENT AUTHORITY**", "AGENTS current status");
 requireText(current.agents, "Atenea does **not** own:", "native execution ownership");
@@ -53,6 +54,7 @@ requireText(current.agents, "config/native-gentle/pi-skill-policy.json", "skill 
 requireText(current.agents, "node tools/check-native-gentle-skills.mjs", "skill ownership oracle");
 requireText(current.agents, "Disposable canaries must not write memory/session state into the production Engram store", "Engram canary isolation policy");
 requireText(current.agents, "Execution worktrees are ephemeral delivery surfaces", "ephemeral execution worktree policy");
+requireText(current.agents, "explicit execution-profile decision before writer authority", "stable execution-profile preflight invariant");
 
 requireText(current.start, "Status: **CURRENT FRONT DOOR**", "START_HERE current status");
 requireText(current.start, "Normal qualified entry point:", "START_HERE native entry");
@@ -61,6 +63,8 @@ requireText(current.start, "post-burn STATUS (#4771)", "post-burn compatibility 
 requireText(current.start, "Gentle Shell #962", "skill-registry watcher compatibility seam");
 requireText(current.start, "pi-skill-policy.json", "native skill ownership seam");
 requireText(current.start, "## 8. Dispose merged execution worktrees", "front-door worktree disposal gate");
+requireText(current.start, "native-v4-heavy", "front-door V4-heavy route");
+requireText(current.start, "native-economy", "front-door economy route");
 
 requireText(current.contract, "Target Atenea-owned runtime controllers: **0**.", "zero-controller contract");
 requireText(current.contract, "Atenea must not proxy or shadow that lifecycle.", "no shadow lifecycle");
@@ -68,10 +72,12 @@ requireText(current.contract, "authority=burned", "terminal burn contract");
 
 requireText(current.install, "NATIVE_STACK_INSTALLATION_RECIPE_20260923.md", "canonical install recipe");
 requireText(current.install, "Herdr is operator infrastructure only", "Herdr boundary");
+requireText(current.install, "Normal ticket/train choices: `native-balanced`, complementary `native-v4-heavy`, or eligibility-gated experimental `native-economy`", "installation profile selection");
 
 requireText(current.runbook, "Native Gentle owns ODD, delegation, verify and review lifecycle.", "operator native ownership");
 requireText(current.runbook, "do not require selectorless STATUS after burn", "operator burn rule");
 requireText(current.runbook, "## 8. Dispose the merged execution worktree", "operator worktree disposal step");
+requireText(current.runbook, "Select the execution profile, then give Pi the accepted work", "operator profile preflight step");
 
 requireText(current.quick, "Atenea vNext is simple by design.", "newcomer vNext map");
 requireText(current.context, "Atenea vNext is a thin layer over native Pi + Gentle.", "current domain context");
@@ -96,16 +102,26 @@ const executionHandoff = "docs/vnext/PROJECT_EXECUTION_HANDOFF_NATIVE_GENTLE.md"
 const codingStandards = "CODING_STANDARDS.md";
 const promotionReview = "docs/PROMOTION_REVIEW_V1.md";
 const workUnitComposition = "docs/WORK_UNIT_COMPOSITION_POLICY_V1.md";
+const executionProfileSelection = "docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md";
+const v4HeavyProfile = "config/native-gentle/native-v4-heavy.profile.json";
+const economyProfile = "config/native-gentle/native-economy.profile.json";
 
 requireText(current.decisions, "## C-064 — Executable authority is falsifiable; material trains close on composed-state evidence", "quality evidence decision");
 requireText(current.decisions, "## C-065 — Product scope acceptance does not grant writer readiness until delivery composition is resolved", "pre-writer composition decision");
 requireText(current.decisions, "## C-066 — Merged execution worktrees are disposable after a fail-closed post-merge gate", "post-merge worktree disposal decision");
-requireText(current.start, "product scope accepted\n→ composition forecast\n→ delivery composition resolved\n→ writer authority", "front-door composition readiness gate");
+requireText(current.decisions, "## C-067 — Execution profile is an explicit pre-writer decision; balanced, V4-heavy and economy remain distinct routes", "execution profile selection decision");
+requireText(current.start, "product scope accepted\n→ composition forecast\n→ delivery composition resolved\n→ execution profile selected and resolved natively\n→ writer authority", "front-door execution readiness flow");
 requireText(current.agents, "product scope accepted does not by itself grant writer authority", "stable pre-writer composition invariant");
 requireText(executionHandoff, "composition forecast is a **pre-writer readiness gate**", "handoff pre-writer composition gate");
 requireText(executionHandoff, "## 14. Post-merge worktree disposal", "handoff worktree disposal gate");
 requireText(executionHandoff, "Normal cleanup must not use `git worktree remove --force`", "fail-closed worktree removal rule");
+requireText(executionHandoff, "ticket/train execution profile explicitly selected", "handoff explicit profile preflight");
 requireText(workUnitComposition, "single Atenea operational authority for default numeric composition thresholds/bands", "single numeric composition authority");
+requireText(executionProfileSelection, "There is no automatic quota-based profile selection and no silent fallback.", "manual profile selection invariant");
+requireText(executionProfileSelection, "A CRITICAL task is not economy-eligible by default.", "economy critical-work gate");
+requireText(executionProfileSelection, "post-RDD independent-audit defects per accepted work unit", "economy promotion metric");
+requireText(v4HeavyProfile, '"name": "native-v4-heavy"', "V4-heavy desired state");
+requireText(economyProfile, '"name": "native-economy"', "economy desired state");
 requireText(codingStandards, "representative planted violation", "falsifiable checker standard");
 requireText(executionHandoff, "### Execution-readiness quality gate", "execution readiness quality gate");
 requireText(prepublication, "## 7. Composed-state / train integration closeout", "composed-state closeout policy");

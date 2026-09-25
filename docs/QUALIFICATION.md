@@ -2,7 +2,7 @@
 
 Status: **CURRENT vNext QUALIFICATION**
 
-Date: 2026-09-23
+Date: 2026-09-25
 
 ## Current qualified architecture
 
@@ -34,7 +34,7 @@ active   = native-balanced
 rollback = native-nan
 ```
 
-The exact mapping is versioned in `config/native-gentle/native-balanced.profile.json`. Investigate only if real execution exposes a failure, and retain `native-nan` as the known-good rollback.
+The exact baseline mapping is versioned in `config/native-gentle/native-balanced.profile.json`. On 2026-09-25 Atenea added `native-v4-heavy` and experimental `native-economy` to the selectable catalog without changing the globally active profile. Those additional routes are governed by `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md`; their existence does not claim qualification equivalence. `native-nan` remains known-good rollback only.
 
 ## Qualification phases
 
@@ -109,7 +109,7 @@ Qualification evidence:
 - `PI_0871_GENTLE_OK`;
 - isolated Engram smoke: `PI_0871_ENGRAM_OK`;
 - committed-range ASSESS #4791 still returns typed `unassessable / schema-incompatible`, so the existing fail-closed rule remains;
-- Pi #9718 remains open, so reviewer `thinking=low` remains;
+- Pi #9718 remains open; the previously qualified all-GLM reviewer `thinking=low` mapping remains preserved in `native-nan` rollback, while the active/selectable multi-provider profiles do not imply that upstream issue is fixed;
 - `pi-web-access` #428 is an upstream lazy-activation false negative with functional eager fallback, not a Pi 0.87.1 regression.
 
 Evidence: `docs/vnext/STABLE_RUNTIME_UPDATE_PI0871_20260923.md`.

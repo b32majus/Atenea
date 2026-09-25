@@ -15,8 +15,9 @@ Gentle AI         3.7.0
 Engram             2.1.0
 GGA                2.10.1
 providers          NaN + OpenAI Codex
-active profile     native-balanced
-rollback profile   native-nan
+global active profile  native-balanced
+selectable profiles     native-balanced | native-v4-heavy | native-economy (experimental)
+rollback profile        native-nan
 ```
 
 This recipe supersedes `NATIVE_STACK_INSTALLATION_RECIPE_20260922.md`.
@@ -284,42 +285,28 @@ pi auth print-api-key --provider nan >/dev/null 2>&1 && echo NAN_CREDENTIAL_OK
 
 Then prove availability with a real bounded model smoke.
 
-## 9. Native Gentle profile
+## 9. Native Gentle profile catalog
 
-Desired state:
+Versioned desired state:
 
 ```text
 config/native-gentle/native-balanced.profile.json
+config/native-gentle/native-v4-heavy.profile.json
+config/native-gentle/native-economy.profile.json
+config/native-gentle/native-nan.profile.json
 ```
 
-Active profile:
+Global HOME active profile remains:
 
 ```text
 native-balanced
 ```
 
-Qualified rollback profile:
+Normal ticket/train selection is governed by `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md`. Materialize/import the desired profiles through Gentle's supported `/gentle:profiles` surface; use native local/repository pins for per-project choices rather than changing unrelated repositories globally.
 
-```text
-native-nan
-```
+`native-v4-heavy` is a complementary candidate whose first real execution is a field canary. `native-economy` is experimental/eligibility-gated after one positive Symphonia canary. `native-nan` remains qualified rollback only.
 
-The active multi-provider routing was selected by explicit operator choice on 2026-09-24 without a pre-activation canary.
-
-The six review roles remain:
-
-```text
-review-risk
-review-readability
-review-reliability
-review-resilience
-review-refuter
-review-validator
-    → nan/glm5.3-flash
-    → thinking=low
-```
-
-This remains a temporary compatibility profile while the upstream reviewer/output issues documented in `CURRENT_COMPATIBILITY.md` remain open.
+The normal selectable profiles keep Luna/Sol review diversity. The previous all-GLM reviewer `thinking=low` mapping is retained only in `native-nan` as compatibility rollback while the upstream reviewer/output issues in `CURRENT_COMPATIBILITY.md` remain open.
 
 ## 10. Deterministic conformance
 
@@ -416,7 +403,7 @@ As of 2026-09-23 all remain open.
 
 Therefore:
 
-- keep reviewer `thinking=low`;
+- preserve the qualified all-GLM reviewer `thinking=low` mapping in `native-nan` rollback; do not infer that the upstream issue is fixed merely because the selected multi-provider profile uses Luna/Sol;
 - keep native typed ASSESS fail-closed continuation;
 - treat terminal burn as terminal;
 - do not recreate Atenea runtime glue.
@@ -429,7 +416,9 @@ An existing-host stable update is accepted only when all of the following are tr
 versions match desired baseline
 gentle-ai update says current
 gentle-ai doctor is healthy
-native-nan remains active
+native-balanced remains globally active
+native-v4-heavy and native-economy are present in the native profile catalog with desired-state mappings
+native-nan remains available as rollback only
 review mode remains intended
 provider credential resolves without exposure
 PI_PURE_OK

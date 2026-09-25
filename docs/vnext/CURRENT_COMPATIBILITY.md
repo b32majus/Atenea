@@ -2,7 +2,7 @@
 
 Status: **CURRENT TRANSITIONAL EVIDENCE**
 
-Date: 2026-09-23
+Date: 2026-09-25
 
 This document contains version/provider-specific exceptions that are intentionally **not** part of stable `AGENTS.md` policy.
 
@@ -14,8 +14,10 @@ gentle-pi         3.7.0
 Gentle AI         3.7.0
 Engram             2.1.0
 GGA                2.10.1
-provider           NaN
-profile            native-balanced (active) / native-nan (rollback)
+providers          NaN + OpenAI Codex
+global profile     native-balanced
+selectable          native-balanced | native-v4-heavy | native-economy (experimental)
+rollback            native-nan
 ```
 
 Evidence:
@@ -42,7 +44,7 @@ review-refuter      → openai-codex/gpt-6-luna · max
 review-validator    → openai-codex/gpt-6-luna · max
 ```
 
-Operational rule: do not treat this change as evidence that #1259/#1167/#9718 are fixed. If real execution exposes reviewer-output or reasoning-budget failure, investigate that role/model combination and fall back to `native-nan` if necessary. The rollback profile preserves the previously qualified `nan/glm5.3-flash · low` reviewer mapping.
+Operational rule: do not treat the multi-provider reviewer routes in `native-balanced`, `native-v4-heavy` or `native-economy` as evidence that #1259/#1167/#9718 are fixed. If real execution exposes reviewer-output or reasoning-budget failure, preserve the active lineage/evidence and make any move to `native-nan` only as an explicit decision at a valid lifecycle boundary. The rollback profile preserves the previously qualified `nan/glm5.3-flash · low` reviewer mapping.
 
 ## 2. Committed-range ASSESS
 

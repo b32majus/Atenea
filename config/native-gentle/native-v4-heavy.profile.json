@@ -1,0 +1,68 @@
+{
+  "schema": "atenea.native-gentle-profile/v1",
+  "name": "native-v4-heavy",
+  "status": "candidate-user-directed-routing-first-field-canary-required",
+  "added_at": "2026-09-25",
+  "providers": [
+    "nan",
+    "openai-codex"
+  ],
+  "notes": [
+    "Complementary execution route to native-balanced; it is not a lower-quality or automatic fallback profile.",
+    "DeepSeek V4 Flash owns the high-volume implementation role while GLM 5.3 Flash provides independent orchestration, verification, judge-A and correction diversity.",
+    "Reviewer routing stays identical to native-balanced: GPT-6 Luna for most review roles and GPT-6 Sol for review-risk.",
+    "The first real use is a field canary. Keep the selected profile stable through each active work-unit/review lineage and do not silently fall back to another profile."
+  ],
+  "roles": {
+    "orchestrator": {
+      "model": "nan/glm5.3-flash",
+      "thinking": "high"
+    },
+    "gentle-ai-explore": {
+      "model": "nan/deepseek-v4-flash"
+    },
+    "gentle-ai-worker": {
+      "model": "nan/deepseek-v4-flash"
+    },
+    "gentle-ai-verify": {
+      "model": "nan/glm5.3-flash",
+      "thinking": "high"
+    },
+    "jd-judge-a": {
+      "model": "nan/glm5.3-flash",
+      "thinking": "high"
+    },
+    "jd-judge-b": {
+      "model": "openai-codex/gpt-6-luna",
+      "thinking": "xhigh"
+    },
+    "jd-fix-agent": {
+      "model": "nan/glm5.3-flash",
+      "thinking": "high"
+    },
+    "review-readability": {
+      "model": "openai-codex/gpt-6-luna",
+      "thinking": "high"
+    },
+    "review-reliability": {
+      "model": "openai-codex/gpt-6-luna",
+      "thinking": "xhigh"
+    },
+    "review-resilience": {
+      "model": "openai-codex/gpt-6-luna",
+      "thinking": "xhigh"
+    },
+    "review-risk": {
+      "model": "openai-codex/gpt-6-sol",
+      "thinking": "high"
+    },
+    "review-refuter": {
+      "model": "openai-codex/gpt-6-luna",
+      "thinking": "max"
+    },
+    "review-validator": {
+      "model": "openai-codex/gpt-6-luna",
+      "thinking": "max"
+    }
+  }
+}

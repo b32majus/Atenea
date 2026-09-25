@@ -11,14 +11,21 @@ From a clean target worktree:
 ```bash
 git status --short
 grep -Fx '.atl/' .gitignore
-pi
 ```
 
 If repository/task authority is unclear, stop and return to `docs/START_HERE.md`.
 
-## 2. Give Pi the accepted work
+## 2. Select the execution profile, then give Pi the accepted work
 
-Provide the bounded task/spec/work order and material constraints.
+Before writer authority, resolve composition and explicitly choose `native-balanced`, `native-v4-heavy` or eligibility-gated `native-economy` under `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md`. `native-nan` is rollback only. Keep the chosen profile stable through every active work-unit/review lineage; no quota-based auto-routing or silent fallback.
+
+Use Gentle's native profile/pin surface so parallel repositories remain independent. Then launch:
+
+```bash
+pi
+```
+
+Confirm the intended profile is the effective route before the first writer edit, then provide the bounded task/spec/work order and material constraints.
 
 Do not paste a second Gentle state machine into the prompt.
 
@@ -52,7 +59,7 @@ Operationally:
 - do not synthesize START because ASSESS is unavailable;
 - when `acknowledge-approved` reports `authority=burned`, review is terminal;
 - do not require selectorless STATUS after burn;
-- reviewer `thinking=low` is temporary compatibility.
+- reviewer routing comes from the selected profile; the all-GLM `thinking=low` mitigation belongs only to `native-nan` rollback compatibility.
 
 ## 5. Deterministic verification
 
@@ -62,6 +69,7 @@ For Atenea itself:
 
 ```bash
 node tools/check-native-gentle-profile.mjs
+node tools/check-native-gentle-skills.mjs
 node tools/check-vnext-authority.mjs
 ```
 

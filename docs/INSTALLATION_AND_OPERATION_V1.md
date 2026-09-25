@@ -2,7 +2,7 @@
 
 Status: **CURRENT**
 
-Date: 2026-09-23
+Date: 2026-09-25
 
 Atenea vNext deliberately keeps installation thin and upstream-owned.
 
@@ -21,8 +21,9 @@ Gentle AI         3.7.0
 Engram             2.1.0
 GGA                2.10.1
 providers          NaN + OpenAI Codex
-active profile     native-balanced
-rollback profile   native-nan
+global active profile  native-balanced
+selectable profiles     native-balanced | native-v4-heavy | native-economy (experimental)
+rollback profile        native-nan
 ```
 
 Do not recover current installation steps from historical Stage files or old Gentle train recipes.
@@ -67,13 +68,13 @@ The versioned NaN provider desired state contains no key. The live NaN credentia
 
 ## Current routing
 
-Active profile: `native-balanced` (operator-directed on 2026-09-24, no pre-activation canary).
+Global HOME baseline: `native-balanced`.
 
-Qualified rollback profile: `native-nan`.
+Normal ticket/train choices: `native-balanced`, complementary `native-v4-heavy`, or eligibility-gated experimental `native-economy`. Resolve the choice before writer authority using `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md` and Gentle's native profile/pin surface.
 
-The active routing intentionally spreads work across GLM 5.3 Flash, DeepSeek V4.1 Flash, GPT-6 Luna and GPT-6 Sol. See `config/native-gentle/native-balanced.profile.json` for the exact per-role mapping.
+Qualified rollback only: `native-nan`. No profile is a silent fallback.
 
-See `docs/vnext/CURRENT_COMPATIBILITY.md` for retirement conditions.
+Exact per-role desired state is versioned in `config/native-gentle/*.profile.json`. See `docs/vnext/CURRENT_COMPATIBILITY.md` for provider-specific caveats.
 
 ## Updating
 

@@ -1,0 +1,72 @@
+{
+  "schema": "atenea.native-gentle-profile/v1",
+  "name": "native-economy",
+  "status": "experimental-field-canary-positive-not-quality-equivalent",
+  "added_at": "2026-09-25",
+  "providers": [
+    "nan",
+    "openai-codex"
+  ],
+  "notes": [
+    "Imported from the Symphonia field canary as an eligibility-gated experimental route, not as the global default.",
+    "DeepSeek V4 Flash owns orchestration, verification and correction; Qwen 3.8 Flash owns exploration/judge-A; Qwen 3.6 owns implementation.",
+    "Reviewer routing remains independent through GPT-6 Luna and GPT-6 Sol.",
+    "Symphonia produced strong deterministic and native-review evidence, but post-RDD findings mean one canary does not establish quality equivalence with native-balanced.",
+    "No silent fallback or profile switch is allowed inside an active lineage."
+  ],
+  "roles": {
+    "orchestrator": {
+      "model": "nan/deepseek-v4-flash"
+    },
+    "gentle-ai-explore": {
+      "model": "nan/qwen3.8-flash"
+    },
+    "gentle-ai-worker": {
+      "model": "nan/qwen3.6",
+      "thinking": "high"
+    },
+    "gentle-ai-verify": {
+      "model": "nan/deepseek-v4-flash"
+    },
+    "jd-judge-a": {
+      "model": "nan/qwen3.8-flash"
+    },
+    "jd-judge-b": {
+      "model": "openai-codex/gpt-6-luna",
+      "thinking": "xhigh"
+    },
+    "jd-fix-agent": {
+      "model": "nan/deepseek-v4-flash"
+    },
+    "review-readability": {
+      "model": "openai-codex/gpt-6-luna",
+      "thinking": "high"
+    },
+    "review-reliability": {
+      "model": "openai-codex/gpt-6-luna",
+      "thinking": "xhigh"
+    },
+    "review-resilience": {
+      "model": "openai-codex/gpt-6-luna",
+      "thinking": "xhigh"
+    },
+    "review-risk": {
+      "model": "openai-codex/gpt-6-sol",
+      "thinking": "high"
+    },
+    "review-refuter": {
+      "model": "openai-codex/gpt-6-luna",
+      "thinking": "max"
+    },
+    "review-validator": {
+      "model": "openai-codex/gpt-6-luna",
+      "thinking": "max"
+    }
+  },
+  "field_evidence": {
+    "source": "Symphonia native-economy canary handoff 2026-09-25",
+    "first_canary": "ticket #3 Configure Sites and durable physical-resource structure",
+    "deterministic_result": "typecheck PASS; 224/224 unit/integration PASS; 14/14 E2E PASS; server/web builds PASS",
+    "caution": "post-RDD independent audit found additional effective-dating/idempotency corners; cross-project validation remains required"
+  }
+}
