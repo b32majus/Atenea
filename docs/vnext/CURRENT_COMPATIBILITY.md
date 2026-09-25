@@ -46,6 +46,16 @@ review-validator    → openai-codex/gpt-6-luna · max
 
 Operational rule: do not treat the multi-provider reviewer routes in `native-balanced`, `native-v4-heavy` or `native-economy` as evidence that #1259/#1167/#9718 are fixed. If real execution exposes reviewer-output or reasoning-budget failure, preserve the active lineage/evidence and make any move to `native-nan` only as an explicit decision at a valid lifecycle boundary. The rollback profile preserves the previously qualified `nan/glm5.3-flash · low` reviewer mapping.
 
+### Profile store / pin resolution incident — 2026-09-25
+
+PROMueve Nexus #403 Attempt 0 exposed a local configuration drift: `~/.pi/gentle-ai/profiles.json` had profile mappings but lacked Gentle Pi 3.7.0's required `kind: gentle-pi.agent_model_profiles` / `version: 1` envelope. Gentle rejected the store, the repo declaration could not resolve `native-v4-heavy`, and the worker silently inherited globally materialized `native-balanced` routing. The attempt stopped before commit and is not V4-heavy quality evidence.
+
+Current Atenea conformance now checks the native store envelope and can resolve local/repository pin precedence for a target worktree. Candidate first-use, material routing/profile changes, profile-semantics runtime upgrades and routing incidents additionally require a real read-only child probe before writer authority.
+
+Gentle Pi pins route subagents only. They do **not** move the parent/orchestrator model. A profile whose desired orchestrator differs from the current Pi session must select/verify that orchestrator separately through Pi's native model surface.
+
+Evidence: `docs/vnext/NATIVE_V4_HEAVY_PROMUEVE_CANARY_20260925.md`.
+
 ## 2. Committed-range ASSESS
 
 Tracker:

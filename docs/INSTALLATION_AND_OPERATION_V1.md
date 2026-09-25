@@ -70,7 +70,7 @@ The versioned NaN provider desired state contains no key. The live NaN credentia
 
 Global HOME baseline: `native-balanced`.
 
-Normal ticket/train choices: `native-balanced`, complementary `native-v4-heavy`, or eligibility-gated experimental `native-economy`. Resolve the choice before writer authority using `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md` and Gentle's native profile/pin surface.
+Normal ticket/train choices: `native-balanced`, positive-field-canary candidate `native-v4-heavy`, or eligibility-gated experimental `native-economy`. Resolve the choice before writer authority using `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md` and Gentle's native profile/pin surface. Candidate/changed/incident routing requires the read-only child probe defined there; a repository/local pin routes subagents only, not the orchestrator.
 
 Qualified rollback only: `native-nan`. No profile is a silent fallback.
 

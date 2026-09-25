@@ -194,9 +194,9 @@ This is lifecycle hygiene, not a scheduler, daemon, garbage collector or executi
 
 **Accepted 2026-09-25 from NaN quota-balancing needs plus Symphonia `native-economy` field evidence.**
 
-For every planned ticket/train, Atenea requires an explicit execution-profile decision after delivery composition is resolved and before writer authority. The normal selectable catalog is `native-balanced`, `native-v4-heavy` and eligibility-gated experimental `native-economy`. `native-nan` remains rollback only. Global HOME stays on `native-balanced`; project/local Gentle pins may select another route without changing parallel repositories.
+For every planned ticket/train, Atenea requires an explicit execution-profile decision after delivery composition is resolved and before writer authority. The normal selectable catalog is `native-balanced`, `native-v4-heavy` and eligibility-gated experimental `native-economy`. `native-nan` remains rollback only. Global HOME stays on `native-balanced`; project/local Gentle pins may select another subagent route without changing parallel repositories, while the orchestrator remains session-owned.
 
-`native-v4-heavy` is a complementary quality-preserving candidate, not an economy tier: DeepSeek V4 Flash owns the high-volume implementation worker while GLM 5.3 Flash remains orchestrator, independent verifier, judge-A and fix agent; Luna/Sol reviewer routing stays aligned with balanced. Its first real use is a field canary so Atenea changes one major variable at a time and can compare deterministic first-pass quality, review findings, corrections, post-RDD findings, wall time and model/token evidence.
+`native-v4-heavy` is a complementary quality-preserving candidate, not an economy tier: DeepSeek V4 Flash owns the high-volume implementation worker while GLM 5.3 Flash remains orchestrator, independent verifier, judge-A and fix agent; Luna/Sol reviewer routing stays aligned with balanced. At C-067 adoption its first real use was still pending; C-068 now records the positive PROMueve field canary and current candidate status.
 
 `native-economy` is adopted from Symphonia as an experimental global route, not promoted to default or declared quality-equivalent. The first canary (ticket #3) achieved full typecheck, 224/224 unit/integration tests, 14/14 E2E, server/web builds and native APPROVED+BURNED lineages, while later independent audit still found additional effective-dating/idempotency corners. That mixed evidence supports preserving the route with binding eligibility and cross-project measurement, not automatic promotion.
 
@@ -205,6 +205,20 @@ Economy therefore requires closed execution authority, independently falsifiable
 The selected profile is stable through an active work-unit/review lineage. There is no automatic quota router and no silent fallback. A route change occurs only at a valid lifecycle boundary after evidence is preserved and before another candidate begins writing. Profile selection changes model/budget routing only; it never changes acceptance, deterministic verification, native `review_due`, correction/burn, STOP or publication authority.
 
 `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md` is the single operational authority for selection/eligibility. Secret-free desired-state mappings live in `config/native-gentle/native-balanced.profile.json`, `native-v4-heavy.profile.json`, `native-economy.profile.json` and rollback `native-nan.profile.json`.
+
+## C-068 — V4-heavy has a positive field canary; candidate routing requires proof of the effective child route
+
+**Accepted 2026-09-25 from PROMueve Nexus F3.2 / issue #403.**
+
+The first valid `native-v4-heavy` field canary used GLM 5.3 Flash high as orchestrator and observed DeepSeek V4 Flash high in the pre-writer probe, WU-A writer and WU-B writer. Both work units completed native review `APPROVED + BURNED`; composed Home/navigation/Nexus deterministic gates passed; independent post-RDD audit found no F3.2 blocker. This advances `native-v4-heavy` from first-canary-required to **positive-field-canary candidate**. It does not establish global quality equivalence with `native-balanced`, does not make it the default and does not authorize automatic quota routing.
+
+Attempt 0 is explicitly excluded from quality evidence. Its declared repository pin named `native-v4-heavy`, but the effective worker was GLM because the global `profiles.json` lacked Gentle Pi 3.7.0's required `kind/version` envelope. The attempt STOPped before commit and its bytes were discarded. This incident proved that role-map equality alone is not routing conformance.
+
+Atenea therefore requires the native profile-store envelope and complete snapshots to pass deterministic conformance. When a repository pin is material, preflight must also prove the profile that the native pin precedence resolves. For a candidate's first field use, after material profile/routing changes, after profile-semantics runtime upgrades, or after a routing incident, one read-only real child probe must match the expected provider/model/reasoning before writer authority. A mismatch is STOP and the attempt produces no profile-quality evidence.
+
+This remains upstream-first: Atenea does not add a launcher or router. The probe is launched through Gentle's native subagent path. Repository/local profile pins govern subagents only; the parent/orchestrator is session routing and must be selected/verified separately when it differs from the global HOME route.
+
+Evidence: `docs/vnext/NATIVE_V4_HEAVY_PROMUEVE_CANARY_20260925.md`.
 
 ## C-001 — Atenea is a contract over upstream tools, not an orchestration product
 

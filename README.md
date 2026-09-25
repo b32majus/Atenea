@@ -60,6 +60,7 @@ Current vNext architecture/evidence:
 - `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md`.
 - `docs/vnext/STABLE_RUNTIME_UPDATE_PI0871_20260923.md`.
 - `docs/vnext/SKILL_REGISTRY_WATCHER_INCIDENT_20260923.md`.
+- `docs/vnext/NATIVE_V4_HEAVY_PROMUEVE_CANARY_20260925.md` — first positive `native-v4-heavy` field canary + routing-conformance learning.
 
 ## Execution rule
 
@@ -97,7 +98,7 @@ Versioned, secret-free:
 
 - `config/native-gentle/nan-provider.models.json`;
 - `config/native-gentle/native-balanced.profile.json` — global baseline routing;
-- `config/native-gentle/native-v4-heavy.profile.json` — complementary DeepSeek-heavy candidate;
+- `config/native-gentle/native-v4-heavy.profile.json` — positive-field-canary DeepSeek-heavy candidate;
 - `config/native-gentle/native-economy.profile.json` — experimental eligibility-gated route;
 - `config/native-gentle/native-nan.profile.json` — qualified NaN-only rollback;
 - `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md` — explicit per-ticket/train route selection authority.
@@ -122,9 +123,10 @@ See `docs/vnext/CURRENT_COMPATIBILITY.md`.
 Short version:
 
 - global HOME routing remains `native-balanced`, while each planned ticket/train explicitly selects `native-balanced`, `native-v4-heavy` or eligibility-gated `native-economy` before writer authority;
-- `native-v4-heavy` is a DeepSeek-heavy complementary candidate whose first real use is a field canary; `native-economy` remains experimental after one positive-but-not-equivalent Symphonia canary; `native-nan` is rollback only;
+- `native-v4-heavy` is now a **positive-field-canary candidate** after PROMueve Nexus F3.2/#403; `native-economy` remains experimental after one positive-but-not-equivalent Symphonia canary; `native-nan` is rollback only;
 - typed `risk=unassessable` ASSESS follows Gentle's fail-closed plan;
 - `acknowledge-approved → authority=burned` is terminal; selectorless STATUS is not required afterward;
+- candidate/changed/incident routing requires a real read-only child probe before writer authority; repository/local pins route subagents only and do not move the orchestrator;
 - `.atl/` must already be ignored in the repository.
 
 ## Historical material

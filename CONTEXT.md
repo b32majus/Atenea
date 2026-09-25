@@ -57,6 +57,6 @@ Use the cheapest reliable owner for each fact:
 
 P0–P7 qualification and promotion are complete.
 
-The current repository authority is the promoted vNext policy/config/conformance layer. Stable runtime maintenance on 2026-09-23 advanced Gentle Shell and Gentle AI to 3.7.0 and Engram to 2.1.0 without changing the zero-controller architecture. On 2026-09-24 the global active routing changed to `native-balanced`; on 2026-09-25 Atenea added explicit per-ticket/train profile selection with complementary `native-v4-heavy` and eligibility-gated experimental `native-economy`, while `native-nan` remains qualified rollback only.
+The current repository authority is the promoted vNext policy/config/conformance layer. Stable runtime maintenance on 2026-09-23 advanced Gentle Shell and Gentle AI to 3.7.0 and Engram to 2.1.0 without changing the zero-controller architecture. On 2026-09-24 the global active routing changed to `native-balanced`; on 2026-09-25 Atenea added explicit per-ticket/train profile selection with complementary `native-v4-heavy` and eligibility-gated experimental `native-economy`, while `native-nan` remains qualified rollback only. PROMueve Nexus F3.2/#403 then produced the first positive `native-v4-heavy` field canary, advancing it to candidate status without changing the global HOME baseline.
 
 Runtime/provider compatibility debt is tracked in `docs/vnext/CURRENT_COMPATIBILITY.md`.

@@ -24,16 +24,22 @@ product scope accepted
 | Profile | Status | Normal use |
 |---|---|---|
 | `native-balanced` | active global baseline | General-purpose route. GLM 5.3 Flash owns implementation-heavy roles; DeepSeek provides independent analysis/verification; Luna/Sol own review diversity. |
-| `native-v4-heavy` | complementary candidate; first real use is a canary | Move high-volume implementation to DeepSeek V4 Flash while GLM remains the independent orchestration/verification/correction side. Use when we deliberately want more V4 consumption without lowering lifecycle quality gates. |
+| `native-v4-heavy` | positive-field-canary candidate | Move high-volume implementation to DeepSeek V4 Flash while GLM remains the independent orchestration/verification/correction side. PROMueve Nexus F3.2/#403 is the first positive field canary; broader equivalence is not yet established. |
 | `native-economy` | experimental, eligibility-gated | DeepSeek + Qwen execution route validated positively in one Symphonia field canary, but not yet established as globally quality-equivalent. |
 
 `native-nan` is a qualified rollback profile. It is **not** a normal preflight choice and must not become an invisible fallback.
 
-The global HOME active profile remains `native-balanced`. Parallel projects should use Gentle's native repository/local pin mechanism when they need another route rather than changing unrelated repositories by global side effect.
+The global HOME active profile remains `native-balanced`. Parallel projects should use Gentle's native repository/local pin mechanism when they need another **subagent route** rather than changing unrelated repositories by global side effect. Orchestrator selection remains session-owned and is handled separately when it differs.
 
 ## 3. Selection boundary
 
 Choose the route before the first writer edit for the selected ticket/train and record it in the execution contract/hardening surface when one exists.
+
+A declared profile is not writer-ready merely because its JSON and pin look correct. Static conformance must validate the native `profiles.json` envelope (`kind`, `version`), complete desired-state snapshots and the effective pin resolution for the target repository when a pin is used.
+
+For the **first field use of a candidate profile**, after a material routing/profile-store change, after a Gentle update that changes profile/pin semantics, or after any observed routing mismatch, writer authority additionally requires one real **read-only child probe** through Gentle's native subagent launch path. The probe must target the materially relevant native child role (for `native-v4-heavy`, `gentle-ai-worker`), report the effective `PI_PROVIDER`, `PI_MODEL`, `PI_REASONING_LEVEL`, working directory and `git status --porcelain`, then stop without mutation. The observed provider/model/reasoning must match the intended child route; mismatch is STOP and the attempt is not profile-quality evidence.
+
+A successful static resolution does not replace this runtime probe when the gate above applies, and Atenea does not implement a custom child launcher to perform it.
 
 The chosen profile is stable through every active work-unit/review lineage. Do not switch profiles because a reviewer found a defect, because a provider is slower than expected or because one quota bucket is temporarily inconvenient.
 
@@ -61,7 +67,9 @@ DeepSeek V4 Flash writes the high-volume implementation
 
 The orchestrator remains GLM 5.3 Flash initially. This changes one major variable at a time: implementation volume moves to V4 while planning and the independent counter-model remain familiar.
 
-The first real execution under this profile is a field canary. Capture deterministic first-pass result, native review findings/corrections, post-RDD findings when audited, wall time and role/model token evidence when available. A normal correction does not itself invalidate the profile.
+PROMueve Nexus F3.2 / issue #403 completed the first valid field canary with the probe and both implementation workers observed on DeepSeek V4 Flash high, WU-A and WU-B `APPROVED + BURNED`, composed deterministic gates green and no post-RDD F3.2 blocker. The profile therefore advances to **positive-field-canary candidate**, not to default or globally quality-equivalent. Evidence: `docs/vnext/NATIVE_V4_HEAVY_PROMUEVE_CANARY_20260925.md`.
+
+Continue capturing deterministic first-pass result, native review findings/corrections, post-RDD findings when audited, wall time and role/model token evidence when available. A normal correction does not itself invalidate the profile. Prefer a second canary that exercises a different work class.
 
 ## 6. `native-economy` eligibility
 
@@ -104,9 +112,11 @@ Do not infer global quality equivalence from one approved native review or one p
 
 The last metric is especially important because Symphonia's first canary passed deterministic and native-review gates yet a later independent audit still found additional semantic corners.
 
-## 9. Native ownership
+## 9. Native ownership and orchestrator scope
 
 Profile selection uses Gentle's supported profile/pin surfaces. Atenea versions secret-free desired state in `config/native-gentle/*.profile.json` and verifies conformance; it does not proxy subagents or rewrite provider lifecycle decisions.
+
+Gentle Pi repository/local profile pins resolve **subagent routes only**. They do not move the parent/orchestrator model. When a selected profile's desired orchestrator differs from the current Pi session — notably `native-economy` versus a global `native-balanced` HOME — preflight must select and verify the orchestrator separately through Pi's native model surface. Never infer orchestrator routing from a repository pin.
 
 A profile selection must never change:
 

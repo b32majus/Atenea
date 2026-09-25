@@ -34,7 +34,7 @@ active   = native-balanced
 rollback = native-nan
 ```
 
-The exact baseline mapping is versioned in `config/native-gentle/native-balanced.profile.json`. On 2026-09-25 Atenea added `native-v4-heavy` and experimental `native-economy` to the selectable catalog without changing the globally active profile. Those additional routes are governed by `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md`; their existence does not claim qualification equivalence. `native-nan` remains known-good rollback only.
+The exact baseline mapping is versioned in `config/native-gentle/native-balanced.profile.json`. On 2026-09-25 Atenea added `native-v4-heavy` and experimental `native-economy` to the selectable catalog without changing the globally active profile. PROMueve Nexus F3.2/#403 subsequently produced the first **positive field canary** for `native-v4-heavy`, advancing it to candidate status only; this is not global qualification equivalence. The additional routes remain governed by `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md`. `native-nan` remains known-good rollback only.
 
 ## Qualification phases
 

@@ -302,9 +302,20 @@ Global HOME active profile remains:
 native-balanced
 ```
 
-Normal ticket/train selection is governed by `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md`. Materialize/import the desired profiles through Gentle's supported `/gentle:profiles` surface; use native local/repository pins for per-project choices rather than changing unrelated repositories globally.
+Normal ticket/train selection is governed by `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md`. Materialize/import the desired profiles through Gentle's supported `/gentle:profiles` surface; use native local/repository pins for per-project **subagent** choices rather than changing unrelated repositories globally. A pin does not move the Pi parent/orchestrator.
 
-`native-v4-heavy` is a complementary candidate whose first real execution is a field canary. `native-economy` is experimental/eligibility-gated after one positive Symphonia canary. `native-nan` remains qualified rollback only.
+The native store must be a Gentle Pi profile-store envelope, not merely an object containing `active` and `profiles`:
+
+```json
+{
+  "kind": "gentle-pi.agent_model_profiles",
+  "version": 1,
+  "active": "native-balanced",
+  "profiles": {}
+}
+```
+
+`native-v4-heavy` is a positive-field-canary candidate after PROMueve Nexus F3.2/#403. `native-economy` is experimental/eligibility-gated after one positive Symphonia canary. `native-nan` remains qualified rollback only.
 
 The normal selectable profiles keep Luna/Sol review diversity. The previous all-GLM reviewer `thinking=low` mapping is retained only in `native-nan` as compatibility rollback while the upstream reviewer/output issues in `CURRENT_COMPATIBILITY.md` remain open.
 
@@ -318,6 +329,16 @@ node tools/check-vnext-authority.mjs
 gentle-ai doctor
 gentle-ai update
 ```
+
+When a project/local pin is material, additionally prove what native pin precedence resolves:
+
+```bash
+ATENEA_PROFILE_PIN_CWD=/absolute/path/to/worktree \
+ATENEA_EXPECT_PROFILE=native-v4-heavy \
+node tools/check-native-gentle-profile.mjs
+```
+
+Expected output includes `ATENEA_PROFILE_PIN_RESOLUTION=PASS`. For candidate first-use, material routing/profile changes, profile-semantics runtime upgrades or a prior routing incident, this static PASS is still followed by one read-only child probe through Gentle's native subagent path. The probe must match expected provider/model/reasoning before writer authority.
 
 Expected:
 

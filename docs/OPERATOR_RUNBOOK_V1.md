@@ -19,13 +19,13 @@ If repository/task authority is unclear, stop and return to `docs/START_HERE.md`
 
 Before writer authority, resolve composition and explicitly choose `native-balanced`, `native-v4-heavy` or eligibility-gated `native-economy` under `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md`. `native-nan` is rollback only. Keep the chosen profile stable through every active work-unit/review lineage; no quota-based auto-routing or silent fallback.
 
-Use Gentle's native profile/pin surface so parallel repositories remain independent. Then launch:
+Use Gentle's native profile/pin surface so parallel repositories remain independent. A repository/local pin selects subagent routing only; if the intended orchestrator differs from the current session, select/verify it separately through Pi's native model surface. Then launch:
 
 ```bash
 pi
 ```
 
-Confirm the intended profile is the effective route before the first writer edit, then provide the bounded task/spec/work order and material constraints.
+Run `node tools/check-native-gentle-profile.mjs` for static store/snapshot conformance. When a pin is material, run it with `ATENEA_PROFILE_PIN_CWD=<worktree>` and `ATENEA_EXPECT_PROFILE=<profile>` to prove the native pin winner. For candidate first-use, material routing changes, profile-semantics runtime upgrades or routing incidents, launch one **read-only native child probe** and require matching `PI_PROVIDER`, `PI_MODEL`, `PI_REASONING_LEVEL`, correct `pwd` and zero probe mutation before the first writer edit. Then provide the bounded task/spec/work order and material constraints.
 
 Do not paste a second Gentle state machine into the prompt.
 
