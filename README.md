@@ -4,7 +4,7 @@ Atenea is an **upstream-first policy, configuration and conformance layer** for 
 
 It is no longer a custom execution harness.
 
-Native Pi + Gentle own exploration, decomposition, workers, verification, work-unit commits, RDD, reviewers, consent and acknowledgement/burn. Atenea keeps only the durable layer that remains valuable above upstream:
+Atenea is not a second engineering/review harness around Gentle. Gentle owns candidate review/correction/burn. Atenea now also owns one thin deterministic outer train supervisor for fresh-process launch, exact bounded consent transport, checkpoint reconciliation and next-or-STOP. It keeps the durable layer that remains valuable above upstream:
 
 - repository and engineering policy;
 - phase-scoped shaping guidance;
@@ -13,42 +13,39 @@ Native Pi + Gentle own exploration, decomposition, workers, verification, work-u
 - publication/Git guardrails;
 - architectural and qualification provenance.
 
-## Current productive stack
+## Current runtime state
 
-Maintenance-qualified 2026-09-23:
+Qualified from the clean rebuild and two-ticket zero-touch train on 2026-09-27:
 
 ```text
-Pi 0.87.1
-→ gentle-pi / Gentle Shell 3.7.0
-→ Gentle AI 3.7.0
-→ Engram 2.1.0 / GGA 2.10.1
-→ NaN + OpenAI Codex
-→ global active profile: native-balanced
-→ selectable per-ticket/train: native-balanced | native-v4-heavy | native-economy (experimental)
-→ native ODD / workers / verify / RDD
+thin deterministic Atenea supervisor
+→ fresh OpenCode host per bounded ticket/phase
+→ one bounded `atenea-writer` session (direct primary; lean tool surface)
+→ Gentle AI 3.7.0 lifecycle
+→ deterministic project verification
+→ Gentle review / correction / acknowledge-burn
+→ durable checkpoint
+→ fresh host/context for next ticket or STOP
 ```
 
-Normal entry point:
+The current qualified runtime uses OpenCode `1.18.32` and Gentle AI `3.7.0`. The old `1.18.10` zero-touch train remains valid historical evidence, but it is no longer a version pin. One-shot `opencode run` remains blocked for unattended use because a clean `1.18.32` HOME reproduces an intermittent pre-session `init` hang. Fresh `opencode serve` hosts for bounded writer/review roles passed a two-ticket zero-touch train with 2/2 terminal Gentle burns, 2/2 Git checkpoints and `HUMAN_TOUCH_AFTER_LAUNCH=0`.
 
-```bash
-pi
-```
-
-Herdr may host persistent operator sessions. It is not review or product authority.
+Context7 and Engram remain installed capabilities but are disabled by default in ordinary OpenCode execution. The global OpenCode `AGENTS.md` is intentionally small; Gentle persona/Engram protocol is not restored as unconditional global context.
 
 ## Start here
 
 For a fresh agent or human:
 
 1. `AGENTS.md` — stable repository policy.
-2. `docs/START_HERE.md` — decide shape vs execute and enter safely.
-3. `CODING_STANDARDS.md` — horizontal engineering quality.
-4. Current product/task/ADR authority for the work being executed.
-5. `docs/vnext/CURRENT_COMPATIBILITY.md` only when runtime/provider exceptions matter.
+2. `docs/START_HERE.md` — current front door.
+3. `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md` — minimal ordinary preflight and prompt contract.
+4. `CODING_STANDARDS.md` — horizontal engineering quality.
+5. Current product/task/ADR authority for the work being executed.
+6. `docs/vnext/CURRENT_COMPATIBILITY.md` only when runtime/provider exceptions matter.
 
 Provisioning or rebuilding the stack:
 
-- `docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260923.md`.
+- `docs/vnext/OPENCODE_SERVE_RUNTIME_RECIPE_20260927.md`.
 
 Current vNext architecture/evidence:
 
@@ -58,28 +55,28 @@ Current vNext architecture/evidence:
 - `docs/vnext/P6_NATIVE_CUTOVER_QUALIFICATION_20260922.md`;
 - `docs/vnext/P7_PROMOTION_20260922.md`;
 - `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md`.
-- `docs/vnext/STABLE_RUNTIME_UPDATE_PI0871_20260923.md`.
+- `docs/OPENCODE_11832_SERVE_ZERO_TOUCH_QUALIFICATION_20260927.md` — current zero-touch runtime qualification.
+- `docs/vnext/STABLE_RUNTIME_UPDATE_PI0871_20260923.md` — retained Pi rollback provenance.
 - `docs/vnext/SKILL_REGISTRY_WATCHER_INCIDENT_20260923.md`.
 - `docs/vnext/NATIVE_V4_HEAVY_PROMUEVE_CANARY_20260925.md` — first positive `native-v4-heavy` field canary + routing-conformance learning.
 
 ## Execution rule
 
-If durable executable authority already exists, do not rerun shaping by ritual.
-
-Use:
+If durable executable authority already exists, do not rerun shaping by ritual. Use the minimal preflight in `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`, then:
 
 ```text
-accepted task/spec
-→ native Pi/Gentle
+accepted bounded ticket/train authority
+→ thin deterministic supervisor
+→ fresh lean `atenea-writer`
 → deterministic verification
-→ native RDD when provider/runtime requires it
-→ APPROVED
-→ acknowledge-approved
-→ authority=burned
+→ native Gentle review/correction lifecycle
+→ APPROVED + acknowledge-approved + authority burned
+→ durable checkpoint
+→ fresh context for next compatible ticket or STOP
 → publication boundary remains human/repository-owned
 ```
 
-Atenea does not recreate that lifecycle.
+Do not place `gentle-orchestrator` beneath the Atenea supervisor as another ticket parent. Do not restore a long-lived model parent merely to carry train continuity.
 
 ## Shaping rule
 
@@ -96,22 +93,21 @@ Current P3 decision:
 
 Versioned, secret-free:
 
-- `config/native-gentle/nan-provider.models.json`;
-- `config/native-gentle/native-balanced.profile.json` — global baseline routing;
-- `config/native-gentle/native-v4-heavy.profile.json` — positive-field-canary DeepSeek-heavy candidate;
-- `config/native-gentle/native-economy.profile.json` — experimental eligibility-gated route;
-- `config/native-gentle/native-nan.profile.json` — qualified NaN-only rollback;
-- `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md` — explicit per-ticket/train route selection authority.
+- `config/native-gentle/opencode-nan-provider.models.json` — current OpenCode NaN model declarations;
+- `config/native-gentle/nan-provider.models.json` — Pi-era provider snapshot retained for rollback/provenance;
+- `config/native-gentle/opencode-runtime-policy.json` — current runtime/skills/MCP/compatibility policy.
+- `config/native-gentle/opencode-routing-policy.json` — current two-profile routing authority (`production-volume` / `complex`).
+- `docs/OPENCODE_MODEL_ROUTING_QUALIFICATION_20260927.md` — current MiMo/V4/GLM/Luna/Sol role evidence.
 
-Validate the live machine against them:
+Pi-era profile and skill-policy files remain rollback/provenance surfaces. Current OpenCode routing is `production-volume` by default with trigger-driven `complex`; this is not a mandatory per-ticket selection step.
+
+After runtime changes/rebuilds/incidents, validate current authority with:
 
 ```bash
-node tools/check-native-gentle-profile.mjs
+node tools/check-opencode-runtime-policy.mjs
+node tools/check-opencode-routing-profiles.mjs
 node tools/check-vnext-authority.mjs
 gentle-ai doctor
-gentle-ai update
-# For custom NaN auth, prove credential resolution without printing it,
-# then run the bounded real smokes from the canonical installation recipe.
 ```
 
 Credentials never belong in Git.
@@ -122,12 +118,12 @@ See `docs/vnext/CURRENT_COMPATIBILITY.md`.
 
 Short version:
 
-- global HOME routing remains `native-balanced`, while each planned ticket/train explicitly selects `native-balanced`, `native-v4-heavy` or eligibility-gated `native-economy` before writer authority;
-- `native-v4-heavy` is now a **positive-field-canary candidate** after PROMueve Nexus F3.2/#403; `native-economy` remains experimental after one positive-but-not-equivalent Symphonia canary; `native-nan` is rollback only;
-- typed `risk=unassessable` ASSESS follows Gentle's fail-closed plan;
-- `acknowledge-approved → authority=burned` is terminal; selectorless STATUS is not required afterward;
-- candidate/changed/incident routing requires a real read-only child probe before writer authority; repository/local pins route subagents only and do not move the orchestrator;
-- `.atl/` must already be ignored in the repository.
+- OpenCode `1.18.32` + Gentle AI `3.7.0` + fresh `serve` writer/review hosts is the current qualified runtime; historical `1.18.10` and V2 `2.0.18` results remain evidence only;
+- one-shot `opencode run` is blocked for unattended promotion while the clean-state pre-session `init` hang remains reproducible;
+- Gentle-managed runtime skills live in `~/.config/opencode/skills`; legacy shared `~/.agents/skills` is not active globally;
+- Context7 and Engram are disabled by default and enabled only when the task needs them;
+- ordinary `atenea-writer` tickets use `production-volume`; `atenea-review-host` uses MiMo 2.6 for Gentle lifecycle continuation; `complex` is trigger-driven and Sol is not a normal-path fallback;
+- `.atl/` must already be ignored in candidate repositories.
 
 ## Historical material
 

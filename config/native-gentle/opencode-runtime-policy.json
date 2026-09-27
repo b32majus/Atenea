@@ -1,0 +1,60 @@
+{
+  "schema": "atenea.opencode-runtime-policy/v1",
+  "status": "current-qualified-runtime",
+  "qualified_at": "2026-09-27",
+  "runtime": {
+    "opencode": "1.18.32",
+    "gentle_ai": "3.7.0",
+    "normal_topology": "thin-deterministic-supervisor -> fresh-serve-writer-host -> direct-build-session -> gentle-start/consent -> fresh-serve-review-host -> gentle-owned-review/burn -> checkpoint",
+    "runtime_install_must_not_live_under_home_dot_opencode": true,
+    "qualification": "two-ticket-zero-touch-passed; 2/2 terminal review burns; 2/2 git checkpoints; human_touches_after_launch=0"
+  },
+  "skills": {
+    "runtime_owned_root": "~/.config/opencode/skills",
+    "shared_global_root_active": false,
+    "project_skills": "project-local .agents/skills when explicitly adopted"
+  },
+  "mcp_defaults": {
+    "context7": false,
+    "engram": false,
+    "rule": "installed-capability-does-not-imply-per-ticket-startup"
+  },
+  "review": {
+    "standing_session_permission_required": false,
+    "consent_transport": "exact provider consent/v3 candidate grant from pre-authorized train authority",
+    "supervisor_owns_review_semantics": false
+  },
+  "compatibility": {
+    "legacy_v1_1_18_10": "historical-zero-touch-evidence-only",
+    "one_shot_run": "blocked-for-unattended-promotion: intermittent clean-state pre-session init hang",
+    "serve_transport": "qualified: fresh host per bounded writer/review role; one HTTP session per host",
+    "legacy_v2_2_0_18": "historical plugin-transport failure; not current stable candidate",
+    "version_probe": "version-neutral fast shim required while Gentle 3.7 retains the 3-second OpenCode major probe",
+    "skill_registry": "retained managed plugin; measured small startup overhead/jitter; not the one-shot init-hang root cause"
+  },
+  "routing": {
+    "default_interactive_model": "nan/glm5.3-flash",
+    "lifecycle_host": "profile-owned: MiMo 2.6 Flash qualified in production-volume and complex",
+    "nontrivial_writer": "profile-owned: production-volume=DeepSeek V4 Flash; complex=GLM 5.3 Flash high",
+    "selection_ceremony": "none-on-ordinary-ticket",
+    "interactive_default_agent": "build",
+    "writer_agent": "atenea-writer",
+    "review_host_agent": "atenea-review-host",
+    "writer_denies": [
+      "task",
+      "skill",
+      "webfetch",
+      "websearch",
+      "codesearch",
+      "todowrite",
+      "question"
+    ],
+    "review_task_allow": "review-*",
+    "context_budget_evidence": "docs/OPENCODE_LEAN_CONTEXT_QUALIFICATION_20260927.md",
+    "default_profile": "production-volume",
+    "complex_profile": "complex",
+    "profile_policy": "config/native-gentle/opencode-routing-policy.json",
+    "sdd_in_normal_train": false,
+    "sol_normal_path": false
+  }
+}

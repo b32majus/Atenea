@@ -1,7 +1,7 @@
 {
   "schema": "atenea.native-gentle-profile/v1",
   "name": "native-balanced",
-  "status": "active-user-directed-routing-not-prequalified",
+  "status": "historical-pi-era-provenance",
   "activated_at": "2026-09-24",
   "providers": [
     "nan",
@@ -65,5 +65,6 @@
       "thinking": "max"
     }
   },
-  "rollback_profile": "native-nan"
+  "rollback_profile": "native-nan",
+  "superseded_by": "C-075 / opencode-production-volume + opencode-complex"
 }

@@ -1,98 +1,58 @@
 # Atenea — Promotion Review v1
 
-Status: **CURRENT / NORMATIVE WHEN INVOKED**
-Date: 2026-09-06
+Status: **CURRENT / CONDITIONAL WHEN INVOKED**
+Date: 2026-09-27
 
 ## 1. Purpose
 
-Promotion Review is a small independent **read-only** audit at a human promotion/merge boundary when semantic, integration, clinical-safety or harness-authority risk warrants it.
+Promotion Review is an optional independent **read-only** audit at a human promotion/merge boundary when material semantic, integration, safety or harness-authority risk warrants a second look.
 
-It does not replace or extend Gentle native RDD. Gentle remains the sole owner of exact-candidate review authority, reviewer lineage, correction state and acknowledgement/burn. Promotion Review creates no candidate authority and no second review controller.
+It is not part of every ticket/train and it does not extend Gentle RDD. Gentle remains the sole owner of candidate review/correction/burn authority.
 
-Matt `code-review` remains an upstream task-triggered engineering method. Atenea does not copy its implementation or smell baseline into this contract. Where useful, its Spec/Standards output may be supporting evidence; Promotion Review itself remains an independent promotion-boundary audit.
+## 2. Trigger
 
-## 2. When to invoke
+Invoke Promotion Review only when the human/planning surface identifies a concrete promotion risk, for example:
 
-Use it selectively before a human-authorized promotion/merge when the current planning authority identifies material risk, for example:
+- a composed train crosses several material seams and deterministic integration evidence is not enough to answer a semantic/safety question;
+- clinical/security/privacy write behavior or fail-closed boundaries deserve independent promotion scrutiny;
+- recovery/main promotion combines previously separate branches or authority surfaces;
+- a harness/runtime-authority change could silently broaden agent authority.
 
-- a multi-ticket train or composed candidate crossing several accepted seams;
-- clinical/semantic write behavior or fail-closed safety boundaries;
-- a recovery/main promotion that composes previously separate branches/artifacts;
-- a harness/runtime-authority change whose failure could silently broaden agent authority.
+Do **not** invoke it by ritual after ordinary tickets, pushes or low-risk changes.
 
-Do **not** invoke it by ritual after every ticket, push or ordinary low-risk change. It is not part of the worker's Gentle lifecycle and the autonomous supervisor does not invent the requirement during execution.
+## 3. Minimum evidence
 
-The need for Promotion Review does not have to be irrevocably predicted before implementation starts. The human/Cora planning surface may require it later if execution, deterministic closeout or newly discovered evidence exposes material promotion risk. That decision still belongs to the human/planning boundary, never to an autonomous runtime inventing a second review lifecycle.
-
-## 3. Evidence pack — pin before reviewer launch
-
-The human/Cora planning surface resolves the exact review inputs before launch:
+Bind the audit to the exact candidate with only the evidence needed to prevent drift:
 
 ```text
-REPOSITORY=
-BASE_SHA=
-HEAD_SHA=
-SPEC_OR_AUTHORITY_SOURCES=
-STANDARDS_SOURCES=
-FULL_DIFF_PATH=
-FULL_DIFF_SHA256=
-HIGH_RISK_DIFF_PATH=
-HIGH_RISK_DIFF_SHA256=
-MANIFEST_PATH=
-REVIEWER_NAME=
-REVIEWER_MODEL=
-REVIEWER_THINKING=
+REPOSITORY
+BASE_SHA
+HEAD_SHA
+AUTHORITY_REFS
+APPLICABLE_VERIFICATION_RESULTS
+FULL_DIFF or exact repository access to BASE..HEAD
 ```
 
-`FULL_DIFF_PATH` contains the complete review delta. `HIGH_RISK_DIFF_PATH` is an explicit focus subset chosen because those files/hunks carry higher semantic, safety, authority or failure-ordering risk.
+A focused high-risk subset may be supplied when useful, but it is optional and never replaces access to the complete delta. Do not build hashes/manifests/subsets merely as paperwork when exact immutable Git identities already bind the evidence sufficiently.
+## 4. Reviewer
 
-The subset MUST NOT replace the full diff. A review that sees only the selected high-risk subset is incomplete.
+Use one fresh read-only reviewer/session with no mutation or publication authority. The reviewer may inspect the bound diff plus only the authority/standards needed to adjudicate concrete findings.
 
-The manifest records exact base/head, changed paths, deterministic/QA gates already run, authority sources, diff hashes and the selected reviewer route. Missing/mismatched evidence is STOP before review, not a reason to rediscover a different candidate.
+Do not prescribe a Pi-era launcher, model table or special transport here. Use the current supported runtime/reviewer surface available at the promotion boundary. A runtime mismatch is a setup problem, not permission to mutate the candidate.
 
-## 4. Fresh read-only reviewer
+## 5. Review axes
 
-Use a fresh Pi session isolated from the implementation worker. The selected route is explicit and observable; no silent model fallback/substitution is allowed.
+Check proportionately:
 
-Normal bounded launch shape:
+1. **Semantics / authority** — does the candidate satisfy accepted behavior without unsupported inference or scope creep?
+2. **Engineering / maintainability** — are there material clarity, failure-mode or maintainability problems not already covered by deterministic evidence/native review?
+3. **Adversarial / safety** — are there fail-open, stale-authority, partial-mutation, ordering or destructive-path risks material to promotion?
 
-```bash
-herdr agent start "$REVIEWER_NAME" --kind pi --pane "$REVIEWER_PANE" --timeout 30000 -- \
-  --model "$REVIEWER_MODEL" \
-  --thinking "$REVIEWER_THINKING" \
-  --name "$REVIEWER_NAME" \
-  --tools read,grep,find,ls \
-  --no-extensions \
-  --no-skills \
-  --no-prompt-templates
-```
+Skip an axis that is genuinely inapplicable; do not manufacture findings to fill a template.
 
-`--no-extensions` means extension-provided autoformat/autofix surfaces are not loaded. Do not also pass their extension-owned `--no-autoformat` / `--no-autofix` flags: on Pi `0.85.1` those flags are unavailable when extension discovery is disabled. The read-only tool allowlist provides the mutation boundary.
+## 6. Output
 
-A rejected model/flag or identity mismatch is STOP. Planning may start a fresh reviewer with a corrected literal only under the same human promotion authority; the reviewer itself does not discover or substitute models.
-
-The reviewer has no mutation surface, executes zero Gentle lifecycle commands and does not modify Git/GitHub/product state.
-
-## 5. Three independent axes
-
-Review all three axes and keep findings attributed to their axis:
-
-1. **Spec / clinical semantics** — required behavior, explicit authority, unsupported inference, missing requirements, scope creep, treatment/validation distinctions where applicable.
-2. **Standards / Clean Code** — repository coding standards, clarity, duplication, failure readability and maintainability. Reuse upstream review evidence when available; do not fork upstream review methodology into Atenea.
-3. **Adversarial / Safety & failure ordering** — fail-open paths, partial mutation, stale authorization, unsafe fallback, ordering-dependent corruption, identity/authority mismatch, hidden destructive behavior and unsupported interaction paths.
-
-A finding may be blocking on one axis while the other axes pass. Do not average or rerank axes into a softer overall result.
-
-## 6. Bounded prompt and output
-
-The reviewer reads the manifest, complete diff and high-risk subset, then only the authority/standards sources needed to adjudicate concrete findings. No broad host/repo archaeology.
-
-Output rules:
-
-- blocking findings first;
-- then material nonblocking findings only;
-- state PASS/FAIL per axis;
-- finish with exactly one token:
+Report blocking findings first, then material nonblocking findings. Finish with exactly one token:
 
 ```text
 PROMOTION_REVIEW=PASS
@@ -104,33 +64,19 @@ or
 PROMOTION_REVIEW=FAIL
 ```
 
-`PASS` requires **zero blocking findings**. Nonblocking observations remain visible but do not acquire candidate authority.
+PASS requires zero blocking promotion findings. The result is evidence for the human boundary, not candidate authority or merge authorization.
 
-## 7. Candidate binding and invalidation
+## 7. Invalidation and publication
 
-Promotion Review is bound to the exact `BASE_SHA`, `HEAD_SHA`, full-diff hash and high-risk-subset hash in the evidence pack.
+The audit is bound to exact BASE/HEAD. Candidate mutation invalidates it when Promotion Review is still required.
 
-Any candidate/head mutation after the review invalidates that Promotion Review result and requires a fresh review if the promotion boundary still requires one. This is a promotion-governance rule, not a Gentle lineage implementation.
-
-## 8. Relationship to other gates
-
-Promotion Review never substitutes for:
-
-- repository tests/checkers/build/type/lint evidence;
-- supported browser/manual QA where required;
-- independent product acceptance/oracles;
-- Gentle exact-candidate RDD and acknowledgement/burn;
-- fresh pre-publication authority revalidation;
-- explicit human merge/promotion authorization.
-
-The intended order for a high-risk promotion is therefore:
+Normal order when invoked:
 
 ```text
-accepted candidate + required product/QA gates
-→ Gentle authority already closed where applicable
-→ fresh bounded Promotion Review if the human/planning surface requires it
-→ exact-head verification
-→ explicit human promotion/merge authorization
+required deterministic/composed-state evidence
+→ Gentle lifecycle already closed where applicable
+→ bounded Promotion Review
+→ explicit human/repository promotion decision
 ```
 
-No automatic merge follows from `PROMOTION_REVIEW=PASS`.
+No automatic merge follows from PASS.

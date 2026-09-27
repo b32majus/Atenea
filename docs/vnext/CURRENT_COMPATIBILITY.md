@@ -2,30 +2,41 @@
 
 Status: **CURRENT TRANSITIONAL EVIDENCE**
 
-Date: 2026-09-25
+Date: 2026-09-27
 
 This document contains version/provider-specific exceptions that are intentionally **not** part of stable `AGENTS.md` policy.
 
-## Current maintenance-qualified stack
+## Current qualified OpenCode baseline
 
 ```text
-Pi                0.87.1
-gentle-pi         3.7.0
+OpenCode          1.18.32
 Gentle AI         3.7.0
-Engram             2.1.0
-GGA                2.10.1
-providers          NaN + OpenAI Codex
-global profile     native-balanced
-selectable          native-balanced | native-v4-heavy | native-economy (experimental)
-rollback            native-nan
+NaN               baseline provider
+Context7          installed; disabled by default
+Engram            installed; disabled by default in ordinary OpenCode
+Pi / Gentle Pi    rollback/provenance only
+serve lifecycle   QUALIFIED — two-ticket zero-touch PASS
 ```
 
-Evidence:
+Current OpenCode-specific seams:
 
-- `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md`;
-- `docs/vnext/STABLE_RUNTIME_UPDATE_PI0871_20260923.md`.
+- **One-shot startup defect:** clean `opencode run` can stall after `message=init` and before session creation. Unattended one-shot use remains blocked.
+- **Qualified transport:** use a fresh `opencode serve` host per bounded writer/review role, one HTTP session per host, then tear it down. The final two-ticket train passed 2/2 terminal Gentle burns, 2/2 Git checkpoints and `HUMAN_TOUCH_AFTER_LAUNCH=0`.
+- **Version-probe seam:** Gentle 3.7 uses a hard 3-second `opencode --version` probe. The qualified version-neutral shim answers only exact `--version` / `-v` from real npm package metadata and delegates every other invocation unchanged to the single real OpenCode binary.
+- **Freshness boundary:** qualification does not authorize a persistent global OpenCode daemon or long-lived model context.
+- **Skill registry:** the managed OpenCode skill-registry plugin remains installed. A/B measurement found small startup overhead/jitter, but removing it did not explain the historical 20–30 second one-shot `init` hang. Do not patch/remove it by default merely for startup optimization.
+- `~/.config/opencode/skills` is the active global runtime skill root; legacy shared `~/.agents/skills` is not part of the ordinary global surface.
+- Context7 and Engram remain available but disabled by default.
+- The generated Gentle persona + mandatory Engram protocol is not part of the minimal global OpenCode `AGENTS.md`.
+- **Role/context routing:** ordinary tickets use `atenea-writer`; Gentle review continuation uses `atenea-review-host`. Tool surfaces remain C-074. Model routing is C-075: `production-volume` is the default; `complex` activates only on concrete material complexity. There is no universal per-ticket profile ceremony and no normal-path Sol fallback.
+- Historical OpenCode `1.18.10` + Gentle 3.7 zero-touch evidence remains valid for what it tested; it does not authorize reinstalling or pinning 1.18.10.
+- Historical OpenCode V2 `2.0.18` plugin-transport failure remains provenance only.
 
-## 1. Reviewer routing after native multi-model support
+Current qualification evidence: `docs/OPENCODE_11832_SERVE_ZERO_TOUCH_QUALIFICATION_20260927.md`, `docs/OPENCODE_LEAN_CONTEXT_QUALIFICATION_20260927.md`, and `docs/OPENCODE_MODEL_ROUTING_QUALIFICATION_20260927.md`. Historical V1 lifecycle evidence: `docs/OPENCODE_V1_ZERO_TOUCH_RECOVERY_EVIDENCE_20260927.md`.
+
+The Pi/Gentle-Pi compatibility sections below apply **only when deliberately using that rollback/provenance surface**; they do not define current OpenCode preflight or routing.
+
+## 1. Historical Pi reviewer routing after native multi-model support
 
 The original exact-prompt qualification reproduced failures at default/medium reasoning on the NaN review path and a pass with GLM low. The upstream trackers remain open:
 
@@ -33,7 +44,7 @@ The original exact-prompt qualification reproduced failures at default/medium re
 - Gentle Shell #1167;
 - Pi #9718.
 
-On 2026-09-24 the operator explicitly chose to move the **active** profile away from the qualified all-GLM/low mitigation **without running a pre-activation canary**. Active routing now uses native Gentle per-role model selection:
+In the Pi/Gentle-Pi epoch, on 2026-09-24 the operator explicitly moved the then-active profile away from the qualified all-GLM/low mitigation without a pre-activation canary. The historical routing was:
 
 ```text
 review-readability  → openai-codex/gpt-6-luna · high
@@ -44,7 +55,7 @@ review-refuter      → openai-codex/gpt-6-luna · max
 review-validator    → openai-codex/gpt-6-luna · max
 ```
 
-Operational rule: do not treat the multi-provider reviewer routes in `native-balanced`, `native-v4-heavy` or `native-economy` as evidence that #1259/#1167/#9718 are fixed. If real execution exposes reviewer-output or reasoning-budget failure, preserve the active lineage/evidence and make any move to `native-nan` only as an explicit decision at a valid lifecycle boundary. The rollback profile preserves the previously qualified `nan/glm5.3-flash · low` reviewer mapping.
+Historical Pi operational rule: do not treat the multi-provider reviewer routes in `native-balanced`, `native-v4-heavy` or `native-economy` as evidence that #1259/#1167/#9718 are fixed. If real execution exposes reviewer-output or reasoning-budget failure, preserve the active lineage/evidence and make any move to `native-nan` only as an explicit decision at a valid lifecycle boundary. The rollback profile preserves the previously qualified `nan/glm5.3-flash · low` reviewer mapping.
 
 ### Profile store / pin resolution incident — 2026-09-25
 

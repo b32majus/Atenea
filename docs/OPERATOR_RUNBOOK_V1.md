@@ -1,6 +1,8 @@
 # Atenea Operator Runbook
 
-Status: **CURRENT / EXECUTION-READY WORK**
+Status: **SUPERSEDED OPERATOR PATH — ROLLBACK/PROVENANCE**
+
+Current operational authority: `docs/OPERATOR_RUNBOOK_OPENCODE_ZERO_TOUCH_V1.md`. The Pi path below remains rollback/provenance.
 
 This runbook starts after product/task authority is already accepted.
 

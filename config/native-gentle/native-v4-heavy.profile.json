@@ -1,7 +1,7 @@
 {
   "schema": "atenea.native-gentle-profile/v1",
   "name": "native-v4-heavy",
-  "status": "positive-field-canary-candidate",
+  "status": "historical-pi-era-provenance",
   "added_at": "2026-09-25",
   "providers": [
     "nan",
@@ -84,5 +84,6 @@
     "attempt_0": "invalid routing attempt stopped before commit because effective writer was GLM 5.3 Flash; no product bytes from that attempt were published",
     "remaining_scope": "candidate evidence only; no claim of global quality equivalence or default suitability",
     "evidence_doc": "docs/vnext/NATIVE_V4_HEAVY_PROMUEVE_CANARY_20260925.md"
-  }
+  },
+  "superseded_by": "C-075 / opencode-production-volume + opencode-complex"
 }

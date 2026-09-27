@@ -4,59 +4,41 @@ Status: **CURRENT DOMAIN CONTEXT**
 
 ## Purpose
 
-Atenea exists to make autonomous engineering work safer, more reproducible and easier to operate **without competing with the upstream runtime it adopts**.
+Atenea makes autonomous engineering work safer, reproducible and operable without competing with Gentle's implementation/review lifecycle.
 
 ## Current architecture
 
-Atenea vNext is a thin layer over native Pi + Gentle.
+Atenea is a thin policy/config/conformance layer **plus one thin deterministic train supervisor**. The supervisor owns only already-authorized frontier, fresh OpenCode process launch, exact bounded consent transport, durable checkpoint reconciliation and next-or-STOP.
 
-It retains:
+Inside one bounded ticket, fresh OpenCode + Gentle own execution-facing lifecycle. Atenea does not own reviewer verdicts, correction semantics or burn state.
 
-- stable repository/engineering policy;
-- optional phase-scoped shaping;
-- secret-free desired-state provider/profile config;
-- deterministic conformance checks;
-- publication/Git guardrails;
-- historical architectural evidence.
+## Current qualified runtime
 
-It does not retain active custom:
-
-- execution controllers;
-- worker supervisors;
-- review controllers;
-- routing engines;
-- consent relays.
-
-## Current productive stack
-
-Maintenance-qualified 2026-09-23:
+Clean runtime qualified 2026-09-27:
 
 ```text
-Pi 0.87.1
-Gentle Shell 3.7.0
+OpenCode 1.18.32 (latest stable candidate observed 2026-09-27)
 Gentle AI 3.7.0
-NaN + OpenAI Codex
-global active: native-balanced
-selectable: native-balanced | native-v4-heavy | native-economy (experimental)
+NaN baseline
+Gentle-managed OpenCode skills under the runtime-owned root
+Context7 / Engram installed but OFF by default
+Pi / Gentle Pi retained as rollback/provenance only
 ```
 
-Normal entry: `pi`.
-
-Herdr is optional persistent operator infrastructure.
+The historical OpenCode `1.18.10` two-ticket zero-touch qualification remains evidence for the lifecycle topology, not authority to reinstall that version. Clean `1.18.32` reproduces an intermittent one-shot `opencode run` hang at `init` before session creation, so unattended one-shot use remains blocked. Fresh `opencode serve` hosts for bounded writer/review roles passed the full two-ticket Gentle lifecycle with terminal burn and Git checkpoint continuity.
 
 ## Current design principle
 
 Use the cheapest reliable owner for each fact:
 
 - product meaning → human/repository authority;
-- execution lifecycle → upstream Gentle;
+- cross-ticket frontier/process/checkpoint → thin deterministic supervisor;
+- candidate review/correction/burn → Gentle;
 - machine-decidable facts → deterministic tooling;
 - publication → human/target repo policy.
 
 ## Current transition state
 
-P0–P7 qualification and promotion are complete.
+C-072 supersedes the C-070 exact-version pin; C-073 supersedes Pi-era universal pre-writer ceremony; C-074 qualifies lean OpenCode role surfaces; C-075 replaces Pi-era routing profiles with `production-volume` default + trigger-driven `complex`. The clean rebuild removed split OpenCode installations and historical runtime state instead of migrating them. Stable policy remains version-neutral; compatibility owns exact runtime seams. Ordinary tickets use minimal preflight, `atenea-writer` and `production-volume`; complex routing/composition/promotion gates activate only on concrete triggers.
 
-The current repository authority is the promoted vNext policy/config/conformance layer. Stable runtime maintenance on 2026-09-23 advanced Gentle Shell and Gentle AI to 3.7.0 and Engram to 2.1.0 without changing the zero-controller architecture. On 2026-09-24 the global active routing changed to `native-balanced`; on 2026-09-25 Atenea added explicit per-ticket/train profile selection with complementary `native-v4-heavy` and eligibility-gated experimental `native-economy`, while `native-nan` remains qualified rollback only. PROMueve Nexus F3.2/#403 then produced the first positive `native-v4-heavy` field canary, advancing it to candidate status without changing the global HOME baseline.
-
-Runtime/provider compatibility debt is tracked in `docs/vnext/CURRENT_COMPATIBILITY.md`.
+Current evidence: `docs/OPENCODE_11832_SERVE_ZERO_TOUCH_QUALIFICATION_20260927.md`. Current execution entry: `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`. Historical V1 lifecycle evidence: `docs/OPENCODE_V1_ZERO_TOUCH_RECOVERY_EVIDENCE_20260927.md`. Runtime/provider compatibility debt: `docs/vnext/CURRENT_COMPATIBILITY.md`.

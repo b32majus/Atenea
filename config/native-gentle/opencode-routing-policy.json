@@ -1,0 +1,24 @@
+{
+  "schema": "atenea.opencode-routing-policy/v1",
+  "status": "current",
+  "default_profile": "production-volume",
+  "complex_profile": "complex",
+  "selection": "production-volume unless concrete complexity evidence is already present; profile selection is not a universal ceremony",
+  "complex_triggers": [
+    "novel or cross-cutting architecture",
+    "complex concurrency, temporal or state semantics",
+    "material security/privacy/tenancy boundary",
+    "unusually large or coupled reasoning surface",
+    "repeated semantic/correction failure on production-volume"
+  ],
+  "sol_policy": "No normal-path Sol. In complex, Sol is pinned only to review-refuter, which runs only when severe findings require adversarial adjudication. Additional Sol use requires explicit bounded escalation.",
+  "excluded_workflows": [
+    "SDD"
+  ],
+  "historical_profiles": [
+    "native-balanced",
+    "native-v4-heavy",
+    "native-economy",
+    "native-nan"
+  ]
+}
