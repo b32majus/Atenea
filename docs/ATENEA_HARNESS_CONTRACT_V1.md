@@ -4,7 +4,7 @@ Status: **CURRENT NORMATIVE BOUNDARY**
 
 Atenea is not a second execution harness around Gentle.
 
-The contract is the ownership boundary between durable repository authority, native Pi/Gentle execution, deterministic evidence and human publication authority.
+The contract is the ownership boundary between durable repository authority, the thin Atenea train supervisor, fresh OpenCode + Gentle candidate execution, deterministic evidence and human publication authority.
 
 ## 1. Product authority
 
@@ -31,11 +31,11 @@ Atenea owns only durable policy/configuration/evidence that adds value above ups
 - publication/Git guardrails;
 - architectural and qualification provenance.
 
-Target Atenea-owned runtime controllers: **0**.
+Target Atenea-owned runtime controllers: **1 thin deterministic train supervisor; 0 review/implementation controllers**.
 
 ## 3. Native execution authority
 
-Pi + Gentle own the execution lifecycle:
+Fresh OpenCode + Gentle own the bounded candidate lifecycle:
 
 ```text
 explore/classify
@@ -51,7 +51,7 @@ explore/classify
 → authority burned
 ```
 
-Atenea must not proxy or shadow that lifecycle.
+The thin supervisor must not proxy or shadow that lifecycle. It may only launch a fresh bounded process, transport exact already-authorized candidate consent, reconcile durable checkpoints and advance next-or-STOP.
 
 ## 4. Review authority
 
@@ -78,7 +78,7 @@ Machine-decidable facts should be proven mechanically.
 For Atenea:
 
 ```bash
-node tools/check-native-gentle-profile.mjs
+node tools/check-opencode-runtime-policy.mjs
 node tools/check-vnext-authority.mjs
 ```
 
@@ -91,9 +91,11 @@ Oracles produce evidence; they do not grant review or publication authority.
 Versioned desired state is secret-free:
 
 - `config/native-gentle/nan-provider.models.json`;
-- `config/native-gentle/native-nan.profile.json`.
+- `config/native-gentle/opencode-runtime-policy.json`.
 
-Upstream Pi/Gentle owns application and runtime routing.
+Pi-era profile files remain rollback/provenance rather than current OpenCode writer-routing authority.
+
+OpenCode/Gentle own candidate execution mechanics. C-071 keeps nontrivial writer-model routing explicit until field-qualified.
 
 Credentials remain in supported local credential storage/environment and are never committed.
 

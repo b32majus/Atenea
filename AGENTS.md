@@ -6,7 +6,7 @@ Atenea is a thin upstream-first policy, configuration and conformance layer over
 
 This file defines stable repository policy. It is **not** a product specification, task tracker, runtime state store or duplicate Gentle manual.
 
-Do not build or reintroduce an Atenea execution controller, worker supervisor, review lifecycle, routing engine or consent relay when the adopted upstream runtime already owns that behavior.
+Do not rebuild Gentle implementation/review lifecycle, routing semantics or correction state inside Atenea. One thin deterministic outer supervisor is current and may own only cross-ticket frontier, fresh-process launch, exact transport of already-authorized bounded consent, durable checkpoint reconciliation and terminal STOP; it must not become a second engineering/review harness.
 
 ## 1. Ownership
 
@@ -20,8 +20,11 @@ stable engineering quality
 shaping, only while genuinely active
 → adopted shaping workflow
 
-HOW to explore / decompose / delegate / verify / review
-→ native execution runtime (currently Pi + Gentle)
+HOW to implement / verify / review inside one bounded ticket
+→ fresh OpenCode 1.18.10 process + Gentle AI 3.7
+
+cross-ticket launch / checkpoint / next-or-STOP
+→ thin deterministic Atenea supervisor
 
 deterministic facts
 → tests / validators / oracles / CI
@@ -107,9 +110,17 @@ For material work, executable authority should be sufficiently falsifiable for i
 
 For every substantial accepted Work Order, **product scope accepted does not by itself grant writer authority**. Before any writer edits code, resolve delivery composition under `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`: either one honest bounded unit, a semantic work-unit chain, or the required size-exception decision. If material over-budget risk exists and no path is resolved, STOP before implementation. A capability-sized issue may remain one issue. This gate bounds the delivery candidate; it does not take ODD, internal decomposition, workers or `review_due` ownership away from native Gentle. Do not copy numeric composition thresholds into consuming repositories; `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` is the Atenea operational authority for them.
 
-For every planned ticket/train, resolve an **explicit execution-profile decision before writer authority** under `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md`. Normal selectable routes are `native-balanced`, `native-v4-heavy` and eligibility-gated experimental `native-economy`; `native-nan` is rollback only. Static conformance must validate the native profile-store envelope and any material pin resolution. For a candidate's first field use, after material routing/profile changes, after profile-semantics runtime upgrades or after a routing incident, a real read-only child probe must match the intended effective provider/model/reasoning before writer authority. Repository/local pins route subagents only; orchestrator selection remains session-owned. The chosen profile is stable through an active work-unit/review lineage. Do not auto-route by quota, silently fall back after a failure or switch profile inside a lineage. Profile choice changes model/budget routing only; it never weakens acceptance, composition, deterministic verification, native `review_due`, correction/burn, STOP or publication authority.
+For every planned ticket/train, resolve the runtime/model route before writer authority. The Pi-era `native-balanced` / `native-v4-heavy` / `native-economy` catalog remains provenance and rollback evidence; it is not current OpenCode writer-routing authority. C-071 owns the transition: GLM 5.3 Flash is synthetic-qualified for thin lifecycle-host work and remains the interactive default, while nontrivial direct-writer routing requires focused real-work qualification before promotion. Do not put `gentle-orchestrator` inside a ticket that already has the Atenea outer supervisor. Never auto-route by quota, silently fall back after a failure or switch models inside an active Gentle lineage. Routing changes model/cost behavior only; it never weakens acceptance, deterministic verification, Gentle review/correction/burn, STOP or publication authority.
 
 ## 6. Native execution ownership
+
+The thin outer supervisor owns only:
+
+- already-authorized train frontier;
+- fresh OpenCode process launch/termination at bounded lifecycle boundaries;
+- exact transport of already-authorized candidate-scoped consent;
+- durable Git/checkpoint reconciliation;
+- next compatible ticket or terminal STOP.
 
 Atenea does **not** own:
 
@@ -138,19 +149,14 @@ Use the upstream runtime's native provider/model/profile configuration.
 Atenea versions secret-free desired state:
 
 - `config/native-gentle/nan-provider.models.json`;
-- `config/native-gentle/native-balanced.profile.json` — global baseline routing desired state;
-- `config/native-gentle/native-v4-heavy.profile.json` — positive-field-canary DeepSeek-heavy candidate route;
-- `config/native-gentle/native-economy.profile.json` — experimental eligibility-gated economy route;
-- `config/native-gentle/native-nan.profile.json` — qualified rollback only;
-- `config/native-gentle/pi-skill-policy.json` — current native skill ownership/deduplication desired state.
+- `config/native-gentle/opencode-runtime-policy.json` — current OpenCode/Gentle runtime, skills, MCP and compatibility desired state.
 
-Atenea does not implement model routing or skill resolution.
+Pi/Gentle-Pi profile and skill-policy files remain rollback/provenance surfaces until explicitly archived; they are not current OpenCode routing authority. Atenea does not implement model routing or skill resolution.
 
-Before a run where routing/runtime ownership materially matters, validate with:
+Before a run where runtime ownership materially matters, validate with:
 
 ```bash
-node tools/check-native-gentle-profile.mjs
-node tools/check-native-gentle-skills.mjs
+node tools/check-opencode-runtime-policy.mjs
 node tools/check-vnext-authority.mjs
 ```
 
@@ -182,8 +188,10 @@ In particular:
 
 - a typed `risk=unassessable` ASSESS fail-closed plan is followed natively; Atenea does not synthesize START;
 - successful `acknowledge-approved → authority=burned` is terminal; selectorless STATUS is not required to re-prove burn;
-- reviewer reasoning/model selection is defined by the explicitly selected native profile; the old all-GLM/low mapping survives only in the `native-nan` rollback profile.
-- Pi exact-excludes only the shared Gentle duplicates listed in `config/native-gentle/pi-skill-policy.json`; `issue-creation` and `work-unit-commits` remain intentionally dual-visible until their upstream divergence is reconciled.
+- OpenCode is pinned to V1 `1.18.10` until V2 proves Gentle review/correction/burn parity;
+- Gentle 3.7's 3-second OpenCode version probe uses the qualified exact-version wrapper, which delegates every non-version invocation to the real pinned binary;
+- `~/.config/opencode/skills` is the ordinary global runtime skill root; legacy shared `~/.agents/skills` is not active globally; project skills remain project-local;
+- Context7 and Engram are installed capabilities but disabled by default for ordinary ticket execution.
 
 ## 10. Publication
 

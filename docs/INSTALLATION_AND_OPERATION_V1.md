@@ -1,6 +1,8 @@
 # Atenea Installation and Operation
 
-Status: **CURRENT**
+Status: **SUPERSEDED RUNTIME DETAILS — ROLLBACK/PROVENANCE**
+
+Current reproduction authority: `docs/vnext/OPENCODE_ZERO_TOUCH_RUNTIME_RECIPE_20260927.md`. The Pi/Gentle-Pi material below is retained for rollback/provenance.
 
 Date: 2026-09-25
 

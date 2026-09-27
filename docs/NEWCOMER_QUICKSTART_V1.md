@@ -1,6 +1,8 @@
 # Atenea Newcomer Quickstart
 
-Status: **CURRENT**
+Status: **SUPERSEDED QUICKSTART — ROLLBACK/PROVENANCE**
+
+Current entry: `docs/START_HERE.md`. The Pi-era quickstart below is retained as provenance.
 
 Atenea vNext is simple by design.
 
@@ -49,24 +51,29 @@ Do not rerun shaping when executable authority already exists.
 ## To verify the Atenea environment
 
 ```bash
+opencode --version
+# expected productive runtime: 1.18.10
 gentle-ai doctor
-gentle-ai update
-node tools/check-native-gentle-profile.mjs
+node tools/check-opencode-runtime-policy.mjs
 node tools/check-vnext-authority.mjs
-# Then use the credential-resolution + real-smoke checks in the canonical recipe.
 ```
 
-## Current versions
+## Current productive runtime
 
-- Pi 0.87.1
-- gentle-pi / Gentle Shell 3.7.0
-- Gentle AI 3.7.0
-- Engram 2.1.0
-- GGA 2.10.1
-- NaN + OpenAI Codex providers
-- global active profile: `native-balanced`
-- selectable ticket/train profiles: `native-balanced`, `native-v4-heavy` (positive-field-canary candidate), `native-economy` (experimental/eligibility-gated)
-- rollback-only profile: `native-nan`
+- OpenCode 1.18.10 — pinned compatibility baseline for Gentle AI 3.7 immutable review;
+- Gentle AI 3.7.0;
+- NaN provider for current writer/lifecycle qualification;
+- one Gentle-managed OpenCode skill root; shared `~/.agents/skills` is not part of the productive runtime;
+- Context7 and Engram MCP integrations installed but disabled by default;
+- thin deterministic Atenea train supervisor;
+- fresh OpenCode context per ticket / bounded lifecycle continuation;
+- Pi 0.87.1 + Gentle Shell 3.7.0 remain installed rollback/historical capability, not the normal productive entry.
+
+Writer-model routing for nontrivial real work remains under focused qualification (C-071); the former Pi profile catalog is provenance/rollback evidence, not current OpenCode routing authority.
+
+## Reinstall/reproduce
+
+Read `docs/vnext/OPENCODE_ZERO_TOUCH_RUNTIME_RECIPE_20260927.md`.
 
 ## Temporary exceptions
 

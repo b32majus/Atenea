@@ -1,10 +1,58 @@
 # Atenea — Current Decisions
 
-Date: 2026-09-24
+Date: 2026-09-27
 
-This file preserves accepted decision provenance. **C-055 onward is the current vNext cutover authority** and supersedes older execution-topology decisions where they conflict.
+This file preserves accepted decision provenance. **C-069 onward is the current productive-runtime authority** and supersedes earlier execution-topology/routing decisions where they conflict. C-055–C-068 remain accepted provenance for the Pi/Gentle vNext epoch and for stable policy that C-069+ does not reopen.
 
 Historical `docs/DECISIONS.md`, Stage files, old run recipes and pre-vNext field evidence remain valuable provenance, but they do not define the current execution path.
+
+## C-069 — Restore a thin outer supervisor; OpenCode V1 + Gentle 3.7 is the productive zero-touch topology
+
+**Accepted from 2026-09-27 recovery qualification.**
+
+The zero-controller topology is superseded. Atenea again owns one **thin deterministic train supervisor**, but does not regain implementation or review semantics. The supervisor owns only already-authorized train frontier, fresh OpenCode process launch, exact bounded consent transport, durable Git/checkpoint reconciliation, next-ticket launch and terminal STOP.
+
+Current productive topology:
+
+```text
+explicit train authorization
+→ thin deterministic Atenea supervisor
+→ fresh OpenCode 1.18.10 process for the bounded ticket/phase
+→ Gentle AI 3.7 owns implementation-facing review/risk/correction/burn lifecycle
+→ durable checkpoint
+→ fresh OpenCode context for the next ticket
+→ human pre-merge boundary
+```
+
+Two independent two-ticket synthetic trains completed with `HUMAN_TOUCH_AFTER_LAUNCH=0`, 2/2 terminal Gentle reviews and 2/2 Git checkpoints. The clean rebuild reproduced the result in ~8m16s. No `/compact`, `/reload`, long-lived parent context or standing review-session permission is part of the topology.
+
+This reopens the Sep-15 `PASS_DELETE` only for the **outer train-supervision responsibility** because its GP2.7 assumptions no longer hold under the later consent/session behavior. It does not restore the historical Kairos Ticket Driver or a second review controller.
+
+Pi/Gentle Pi remain installed and historically qualified as rollback/alternate surfaces; they are not the normal productive train runtime. Evidence: `docs/OPENCODE_V1_ZERO_TOUCH_RECOVERY_EVIDENCE_20260927.md`.
+
+## C-070 — Productive OpenCode is a clean pinned V1 runtime; global state/skills are bounded and V2 is deferred
+
+**Accepted from 2026-09-27 clean rebuild and global smoke.**
+
+OpenCode is pinned to `1.18.10`, the V1 runtime exercised successfully with Gentle AI 3.7.0. The executable runtime must live outside `~/.opencode` because OpenCode treats that path as a discovery/configuration root; installing hundreds of MB of runtime `node_modules` there materially degraded bootstrap. The current stable install lives outside that root and an exact `--version` wrapper protects Gentle 3.7's 3-second runtime-version probe while delegating every other invocation to the real pinned binary.
+
+Global OpenCode starts from fresh operational state rather than inheriting the prior ~2.79 GB state / ~2.46 GB SQLite history. Gentle-managed OpenCode skills have one active global runtime root, `~/.config/opencode/skills`; legacy shared `~/.agents/skills` is not part of the ordinary global runtime. Project-specific skills remain project-local when explicitly adopted. Context7 and Engram stay installed capabilities but are disabled by default for ordinary ticket execution; a tool is activated when the task needs it rather than on every process start.
+
+OpenCode V2 `2.0.18` was tested rather than rejected by version prejudice. With Gentle 3.7, required plugins including `opencode-review-transport.ts` failed to load because the V2 runtime could not resolve the V1 plugin package contract; the review capability probe therefore failed closed. V2 remains upgrade-candidate only after full Gentle review/correction/burn parity is demonstrated.
+
+Secret-free desired state: `config/native-gentle/opencode-runtime-policy.json`.
+
+## C-071 — OpenCode topology promotion does not promote a universal writer model; nested orchestrators are forbidden
+
+**Accepted from the 2026-09-27 real-work replay finding.**
+
+The former Gentle-Pi profile catalog is not current authority for OpenCode writer routing. Synthetic zero-touch qualification proves the transport/topology, not that one model is optimal for every writer role.
+
+When Atenea already provides the outer train supervisor, a ticket must not be handed to `gentle-orchestrator` as though it were another train parent. A T8 replay showed that this reintroduced exploration, ODD documentation and delegated `general` writer work inside the fresh ticket process. The intended execution shape is supervisor → **direct bounded writer** → deterministic verification → Gentle lifecycle.
+
+A second T8 attempt used OpenCode `build` + GLM 5.3 Flash directly. It removed nested delegation but entered multi-minute design rumination before first mutation and was terminated with zero product mutation. Therefore GLM is not promoted as a universal nontrivial writer route from this evidence. GLM remains synthetic-qualified for thin lifecycle-host work and the normal interactive default while a focused real-work writer benchmark selects the productive writer route.
+
+Routing optimization must preserve fresh contexts and the native Gentle review/correction/burn boundary. Do not repair model overthinking by restoring persistent parent sessions, compaction machinery or duplicate verification controllers.
 
 ## C-055 — Atenea vNext is a thin policy/config/conformance layer
 

@@ -1,6 +1,6 @@
 # Atenea — Execution profile selection policy v1
 
-Status: **CURRENT EXECUTION POLICY**
+Status: **PI-ERA ROUTING POLICY — ROLLBACK/PROVENANCE; superseded for current OpenCode writers by C-071**
 Date: 2026-09-25
 
 ## 1. Purpose

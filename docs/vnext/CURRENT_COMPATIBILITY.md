@@ -2,28 +2,34 @@
 
 Status: **CURRENT TRANSITIONAL EVIDENCE**
 
-Date: 2026-09-25
+Date: 2026-09-27
 
 This document contains version/provider-specific exceptions that are intentionally **not** part of stable `AGENTS.md` policy.
 
-## Current maintenance-qualified stack
+## Current productive compatibility baseline
 
 ```text
-Pi                0.87.1
-gentle-pi         3.7.0
+OpenCode          1.18.10 (V1 pinned)
 Gentle AI         3.7.0
-Engram             2.1.0
-GGA                2.10.1
-providers          NaN + OpenAI Codex
-global profile     native-balanced
-selectable          native-balanced | native-v4-heavy | native-economy (experimental)
-rollback            native-nan
+NaN               baseline provider
+Context7          installed; disabled by default
+Engram            2.1.0 installed; disabled by default in ordinary OpenCode
+Pi / Gentle Pi    rollback/alternate only
+OpenCode V2       2.0.18 tested; not promoted
 ```
 
-Evidence:
+Current OpenCode-specific seams:
 
-- `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md`;
-- `docs/vnext/STABLE_RUNTIME_UPDATE_PI0871_20260923.md`.
+- Gentle 3.7 probes `opencode --version` with a hard 3-second bound. The qualified wrapper answers only exact `--version` / `-v` immediately and delegates every other invocation to the real pinned 1.18.10 binary.
+- The OpenCode runtime must not be installed under `~/.opencode`; that path is a discovery/configuration surface and a large runtime tree materially degrades bootstrap.
+- `~/.config/opencode/skills` is the active global runtime skill root. Legacy `~/.agents/skills` is not part of the ordinary global surface.
+- Context7 and Engram remain available but disabled by default; ordinary tickets do not pay their startup cost unless the task requires them.
+- OpenCode V2 2.0.18 currently fails Gentle 3.7 plugin/review transport loading and is fail-closed pending parity.
+- C-071 keeps nontrivial writer-model routing under focused field qualification. This is not permission to restore persistent parent sessions or nested orchestrators.
+
+Evidence: `docs/OPENCODE_V1_ZERO_TOUCH_RECOVERY_EVIDENCE_20260927.md`.
+
+The Pi/Gentle-Pi compatibility sections below remain current **only when deliberately using that rollback/alternate surface**; they do not define the normal productive train.
 
 ## 1. Reviewer routing after native multi-model support
 

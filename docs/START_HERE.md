@@ -6,27 +6,24 @@ Status: **CURRENT FRONT DOOR**
 
 ```text
 CURRENT_AUTHORITY = main
-RUNTIME_QUALIFIED = 2026-09-23
-ROUTING_CHANGED   = 2026-09-24
-PROFILE_CATALOG   = 2026-09-25
-P0_TO_P7          = PASS
-Pi                = 0.87.1
-gentle-pi         = 3.7.0
+RUNTIME_QUALIFIED = 2026-09-27
+OpenCode          = 1.18.10 (V1 pinned)
 Gentle AI         = 3.7.0
-Engram            = 2.1.0
-GGA               = 2.10.1
-providers         = NaN + OpenAI Codex
-global active profile = native-balanced
-selectable profiles    = native-balanced | native-v4-heavy | native-economy (experimental)
-rollback profile       = native-nan
-routing status         = explicit per-ticket/train preflight choice
-normal entry      = pi
-Atenea runtime controllers = 0
+Engram            = 2.1.0 installed capability; OFF by default in OpenCode
+Context7          = installed capability; OFF by default in OpenCode
+provider baseline = NaN
+default interactive/lifecycle host model = GLM 5.3 Flash
+nontrivial writer route = FIELD_QUALIFICATION_REQUIRED (C-071)
+normal topology   = thin deterministic supervisor → fresh OpenCode per ticket → Gentle lifecycle
+Atenea train supervisors = 1 thin deterministic supervisor
+Atenea review controllers = 0
+Pi / Gentle Pi    = installed rollback/alternate surface, not normal productive train entry
+OpenCode V2 2.0.18 = BLOCKED pending Gentle immutable-review transport parity
 ```
 
-The runtime versions above are the latest qualified Atenea baseline. `native-balanced` remains the global HOME baseline. Planned tickets/trains must explicitly select `native-balanced`, `native-v4-heavy` or eligibility-gated `native-economy` before writer authority under `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md`; a repository/local Gentle pin may override the **subagent routing** without affecting parallel repositories; it does not move the session orchestrator. `native-v4-heavy` is a positive-field-canary candidate after PROMueve Nexus F3.2/#403; it is still not the global default or globally quality-equivalent. `native-economy` is experimental after a positive but not globally quality-equivalent Symphonia canary. `native-nan` remains rollback only, not a normal route. Historical Stage files, old run recipes, old profiles and `historical/` remain provenance only and do not override this baseline.
+The topology above is the latest qualified Atenea baseline. The Pi-era profile catalog remains provenance/rollback evidence and does not silently become OpenCode routing authority. C-071 deliberately leaves the nontrivial writer route open after the real T8 replay exposed excessive GLM design rumination; resolve that route with focused evidence rather than rebuilding long-lived parent sessions. Each ticket starts with fresh model context, while Git/GitHub/product authority and Gentle's durable review transaction provide continuity. Historical Stage files, old run recipes, old profiles and `historical/` remain provenance only.
 
-If you need to rebuild the runtime, use `docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260923.md`. If you need provider/runtime exceptions, use `docs/vnext/CURRENT_COMPATIBILITY.md`.
+If you need to rebuild the runtime, use `docs/vnext/OPENCODE_ZERO_TOUCH_RUNTIME_RECIPE_20260927.md`. If you need provider/runtime exceptions, use `docs/vnext/CURRENT_COMPATIBILITY.md`.
 
 ## 1. Is the work already shaped?
 
@@ -69,7 +66,7 @@ Accepted product scope is not, by itself, writer-ready. For every substantial Wo
 product scope accepted
 → composition forecast
 → delivery composition resolved
-→ execution profile selected and resolved natively
+→ OpenCode runtime/model route explicitly resolved
 → writer authority
 ```
 
@@ -102,34 +99,25 @@ Before candidate work:
 - repository state is understood;
 - task authority is explicit;
 - for substantial work, delivery composition is resolved under `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` before writer authority;
-- the ticket/train execution profile is explicitly selected under `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md`; the native store envelope and any material pin resolution are reconciled before writer authority, and candidate/changed/incident routing has a matching real read-only child probe when the policy requires it;
+- the OpenCode runtime/model route is explicitly resolved before writer authority; nontrivial writer routes not yet promoted by C-071 require a focused real-work canary rather than inherited Pi-profile assumptions;
 - `.atl/` is already in repo-local `.gitignore`;
 - unrelated untracked runtime artifacts are absent;
 - no push/PR/merge authority is assumed.
 
 ## 4. Execute
 
-Normal qualified entry point:
+Normal qualified topology:
 
-```bash
-pi
+```text
+thin deterministic supervisor
+→ fresh OpenCode 1.18.10 process for the bounded ticket/phase
+→ deterministic project verification
+→ Gentle AI 3.7 review / correction / acknowledgement-burn
+→ durable checkpoint
+→ fresh OpenCode for the next compatible ticket or STOP
 ```
 
-Native Gentle owns:
-
-- ODD/exploration;
-- decomposition;
-- bounded workers;
-- allowed-edit enforcement;
-- verification;
-- work-unit commits;
-- RDD/risk/review timing;
-- reviewers/refuter/validator;
-- native consent;
-- correction lifecycle;
-- acknowledgement/burn.
-
-Atenea adds policy and evidence, not a second controller.
+The supervisor does not implement, review or invent transitions. It owns only train frontier, process lifecycle, exact already-authorized consent transport, checkpoint reconciliation and next/STOP. Gentle owns risk/review timing, reviewer execution, correction and acknowledgement/burn. No long-lived model parent, manual `/compact`, `/reload` or standing review-session permission belongs in the normal path.
 
 ## 5. Verify
 
@@ -145,7 +133,7 @@ Use deterministic evidence whenever possible:
 For Atenea itself:
 
 ```bash
-node tools/check-native-gentle-profile.mjs
+node tools/check-opencode-runtime-policy.mjs
 node tools/check-vnext-authority.mjs
 ```
 
@@ -157,12 +145,12 @@ Do not invent verdicts, START decisions, timing or authority.
 
 Current compatibility seams:
 
-- committed-range ASSESS (#4791): if native ASSESS returns a typed `risk=unassessable` fail-closed plan, follow its verifier path rather than synthesizing START;
 - post-burn STATUS (#4771): `acknowledge-approved → authority=burned` is terminal; do not call selectorless STATUS merely to prove the burn again;
-- reviewer model/reasoning selection comes from the explicitly selected native profile; `native-balanced`, `native-v4-heavy` and `native-economy` preserve Luna/Sol reviewer diversity, while the all-GLM/low mapping remains only in the `native-nan` rollback profile.
-- Gentle skill ownership follows `config/native-gentle/pi-skill-policy.json`: Pi suppresses nine safe shared duplicates, while `issue-creation` and `work-unit-commits` remain intentionally dual-visible pending upstream reconciliation.
-- Gentle Shell #962: run with `GENTLE_PI_NO_SKILL_REGISTRY=1` so skills stay available while the crash-prone recursive registry watcher is disabled.
-
+- OpenCode is pinned to V1 `1.18.10`; V2 `2.0.18` remains fail-closed until Gentle immutable-review transport parity is demonstrated;
+- Gentle 3.7's OpenCode runtime probe has a 3-second version bound; the qualified wrapper answers only exact `--version`/`-v` immediately and delegates every other invocation to the real pinned binary;
+- Gentle-managed OpenCode skills live in `~/.config/opencode/skills`; legacy `~/.agents/skills` is not active globally; project skills stay project-local;
+- Context7 and Engram are installed but disabled by default for ordinary execution and enabled only when the task needs them;
+- nontrivial writer-model routing remains under C-071 field qualification; do not use `gentle-orchestrator` as a nested ticket parent beneath the Atenea supervisor.
 Details: `docs/vnext/CURRENT_COMPATIBILITY.md`.
 
 ## 7. Publish
@@ -184,7 +172,7 @@ Before removing the worktree that carried the merged ticket/train, confirm:
 - the intended PR/train is actually merged into the intended target branch;
 - the final published/audited candidate and required CI/security/promotion evidence are durably represented in Git/GitHub or another accepted authority surface;
 - the worktree has no uncommitted/untracked material that must survive and no required unpushed local-only commit/evidence;
-- no active Pi/Gentle/Herdr/shell process or session still depends on that directory;
+- no active OpenCode/Gentle/supervisor/shell process or session still depends on that directory;
 - the path is an execution worktree, not the canonical repository checkout.
 
 Then use normal Git worktree removal and prune stale metadata:
@@ -202,7 +190,7 @@ The next ticket/train should normally start from current durable repository auth
 
 Use:
 
-`docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260923.md`
+`docs/vnext/OPENCODE_ZERO_TOUCH_RUNTIME_RECIPE_20260927.md`
 
 Do not reconstruct installation from historical Stage/run-recipe documents.
 
@@ -210,8 +198,8 @@ Do not reconstruct installation from historical Stage/run-recipe documents.
 
 Durable Git/GitHub/product evidence determines the last legitimate checkpoint.
 
-Create a clean worktree/session and continue from accepted authority through native Gentle.
+Create a clean worktree and continue from accepted authority through a fresh OpenCode process + Gentle lifecycle under the thin supervisor.
 
 Operational handoff:
 
-`docs/vnext/PROJECT_EXECUTION_HANDOFF_NATIVE_GENTLE.md`
+`docs/OPERATOR_RUNBOOK_OPENCODE_ZERO_TOUCH_V1.md`

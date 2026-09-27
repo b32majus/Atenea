@@ -1,6 +1,8 @@
 # Project Execution Handoff — Native Gentle vNext
 
-Status: **CURRENT / STABLE-RUNTIME-QUALIFIED**
+Status: **SUPERSEDED CURRENT-RUNTIME HANDOFF — PI ROLLBACK/PROVENANCE**
+
+Current train operation: `docs/OPERATOR_RUNBOOK_OPENCODE_ZERO_TOUCH_V1.md`; current runtime recipe: `docs/vnext/OPENCODE_ZERO_TOUCH_RUNTIME_RECIPE_20260927.md`.
 
 Date: 2026-09-25
 
