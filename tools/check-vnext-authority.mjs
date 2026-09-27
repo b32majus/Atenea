@@ -22,6 +22,10 @@ req("docs/OPERATOR_RUNBOOK_OPENCODE_SERVE_V1.md","Status: **CURRENT QUALIFIED RU
 req("docs/vnext/OPENCODE_SERVE_RUNTIME_RECIPE_20260927.md","Status: **CURRENT QUALIFIED RECIPE**","current serve recipe");
 req("docs/OPENCODE_11832_SERVE_ZERO_TOUCH_QUALIFICATION_20260927.md","Status: **QUALIFIED CURRENT EVIDENCE**","serve qualification evidence");
 req("docs/CURRENT_DECISIONS.md","## C-074 — Train roles use lean OpenCode tool surfaces; full `build` is not the ordinary writer","lean context decision");
+req("docs/CURRENT_DECISIONS.md","## C-075 — Two OpenCode routing profiles replace Pi-era per-ticket profile ceremony","current routing decision");
+req("config/native-gentle/opencode-routing-policy.json","production-volume","current routing policy");
+req("config/native-gentle/opencode-nan-provider.models.json","mimo-v2.6-flash","current OpenCode NaN model catalog");
+req("docs/OPENCODE_MODEL_ROUTING_QUALIFICATION_20260927.md","Status: **CURRENT ROUTING EVIDENCE**","current routing evidence");
 req("docs/CURRENT_DECISIONS.md","## C-073 — Lean execution is the default; heavy gates are trigger-driven","lean execution decision");
 req("docs/OPENCODE_LEAN_CONTEXT_QUALIFICATION_20260927.md","Status: **QUALIFIED CURRENT EVIDENCE**","lean context qualification evidence");
 req("docs/CURRENT_DECISIONS.md","## C-072 — Rebuild from zero on current stable upstream; exact versions move out of stable policy","runtime transition decision");

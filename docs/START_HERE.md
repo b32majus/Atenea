@@ -12,8 +12,9 @@ Gentle AI          = 3.7.0
 Engram              = installed capability; OFF by default in OpenCode
 Context7            = installed capability; OFF by default in OpenCode
 provider baseline   = NaN
-default interactive/lifecycle host model = GLM 5.3 Flash
-writer role        = atenea-writer (lean direct primary); model route = runtime default unless explicit override/experiment (C-073/C-074)
+default interactive model = GLM 5.3 Flash
+lifecycle host model = MiMo 2.6 Flash (production-volume + complex)
+writer role        = atenea-writer (lean direct primary); routing = production-volume by default, complex only on concrete trigger (C-073/C-075)
 review host role    = atenea-review-host (Task limited to review-*)
 one-shot `opencode run` = BLOCKED_FOR_UNATTENDED_PROMOTION (clean-state init hang)
 normal transport    = fresh `opencode serve` host per bounded writer/review role + one HTTP session
@@ -57,7 +58,7 @@ Open extra policy only when its trigger exists:
 - runtime/version incident → `vnext/CURRENT_COMPATIBILITY.md`;
 - unresolved product meaning → shaping/human authority.
 
-Ordinary tickets use `atenea-writer` and the runtime default model route. Gentle continuation uses `atenea-review-host`. There is no per-ticket profile-selection ceremony.
+Ordinary tickets use `atenea-writer` under the `production-volume` routing profile. Gentle continuation uses `atenea-review-host`. `complex` is trigger-driven, not a per-ticket profile-selection ceremony.
 
 ## 4. Execute
 
@@ -109,7 +110,7 @@ Current compatibility seams:
 - one-shot `opencode run` is not unattended-eligible while its clean-state `init` hang remains reproducible; fresh bounded `serve` hosts are the qualified normal transport;
 - Gentle-managed OpenCode skills live in `~/.config/opencode/skills`; legacy `~/.agents/skills` is not active globally; project skills stay project-local;
 - Context7 and Engram are installed but disabled by default for ordinary execution and enabled only when the task needs them;
-- ordinary tickets use the runtime default model route without a selection ceremony; alternate routes remain explicit overrides/experiments. Never use `gentle-orchestrator` as a nested ticket parent beneath the Atenea supervisor.
+- ordinary tickets use `production-volume`; `complex` is selected only from concrete complexity evidence already present in the work. Sol is never a normal-path fallback. Never use `gentle-orchestrator` as a nested ticket parent beneath the Atenea supervisor.
 Details: `docs/vnext/CURRENT_COMPATIBILITY.md`.
 
 ## 7. Publish

@@ -1,11 +1,11 @@
 # Atenea — Execution profile selection policy v1
 
-Status: **PI-ERA ROUTING POLICY — ROLLBACK/PROVENANCE; superseded for current OpenCode writers by C-071**
+Status: **PI-ERA ROUTING POLICY — ROLLBACK/PROVENANCE; superseded for current OpenCode routing by C-075**
 Date: 2026-09-25
 
 ## 1. Purpose
 
-This document preserves Pi-era routing policy and experimental evidence. **Do not use it as the current OpenCode preflight.** Current ordinary OpenCode tickets use the runtime default model route under C-073; alternate routing is an explicit override/experiment or response to a concrete route failure.
+This document preserves Pi-era routing policy and experimental evidence. **Do not use it as the current OpenCode preflight.** Current ordinary OpenCode tickets use `production-volume`; trigger-driven `complex` and Sol escalation are defined by C-075. The Pi catalog below is provenance only.
 
 Atenea does not implement a model router, quota scheduler or fallback controller. Historical Pi/Gentle profile choices below remain provenance for those experiments, not a mandatory current per-ticket decision. The profile changes model/budget routing only; it does not change acceptance, deterministic verification, native `review_due`, reviewer authority, correction semantics, acknowledgement/burn, STOP behavior or publication authority.
 

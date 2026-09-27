@@ -1,0 +1,30 @@
+{
+  "schema": "atenea.opencode-provider-models/v1",
+  "status": "current",
+  "provider": "nan",
+  "observed_at": "2026-09-27",
+  "note": "Secret-free OpenCode model declarations used by current Atenea routing. Output limits remain at the qualified conservative 32768 for routed agents; larger provider-advertised ceilings are not required by these profiles.",
+  "models": {
+    "deepseek-v4-flash": {
+      "name": "DeepSeek V4 Flash",
+      "context": 1048575,
+      "output": 32768,
+      "input": ["text", "image"],
+      "reasoning_control": "adaptive"
+    },
+    "glm5.3-flash": {
+      "name": "GLM 5.3 Flash",
+      "context": 1048576,
+      "output": 32768,
+      "input": ["text", "image"],
+      "reasoning_control": ["low", "medium", "high", "max"]
+    },
+    "mimo-v2.6-flash": {
+      "name": "Xiaomi MiMo V2.6 Flash",
+      "context": 1048576,
+      "output": 32768,
+      "input": ["text", "image", "audio"],
+      "reasoning_control": "adaptive"
+    }
+  }
+}

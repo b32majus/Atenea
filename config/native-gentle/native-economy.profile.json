@@ -1,7 +1,7 @@
 {
   "schema": "atenea.native-gentle-profile/v1",
   "name": "native-economy",
-  "status": "experimental-field-canary-positive-not-quality-equivalent",
+  "status": "historical-pi-era-provenance",
   "added_at": "2026-09-25",
   "providers": [
     "nan",
@@ -69,5 +69,6 @@
     "first_canary": "ticket #3 Configure Sites and durable physical-resource structure",
     "deterministic_result": "typecheck PASS; 224/224 unit/integration PASS; 14/14 E2E PASS; server/web builds PASS",
     "caution": "post-RDD independent audit found additional effective-dating/idempotency corners; cross-project validation remains required"
-  }
+  },
+  "superseded_by": "C-075 / opencode-production-volume + opencode-complex"
 }

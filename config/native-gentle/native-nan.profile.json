@@ -1,7 +1,7 @@
 {
   "schema": "atenea.native-gentle-profile/v1",
   "name": "native-nan",
-  "status": "qualified-rollback-profile",
+  "status": "historical-pi-era-provenance",
   "qualified_at": "2026-09-23",
   "provider": "nan",
   "notes": [
@@ -67,5 +67,6 @@
     "upstream_gentle_issue": "https://github.com/Gentleman-Programming/gentle-shell/issues/1259",
     "upstream_pi_issue": "https://github.com/earendil-works/pi/issues/9718"
   },
-  "retirement_condition": "Re-evaluate reviewer effort after NaN/Pi reasoning-only truncation is fixed and a bounded exact-prompt canary passes at a higher intended effort."
+  "retirement_condition": "Re-evaluate reviewer effort after NaN/Pi reasoning-only truncation is fixed and a bounded exact-prompt canary passes at a higher intended effort.",
+  "superseded_by": "C-075 / opencode-production-volume + opencode-complex"
 }

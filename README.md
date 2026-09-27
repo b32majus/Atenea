@@ -93,15 +93,19 @@ Current P3 decision:
 
 Versioned, secret-free:
 
-- `config/native-gentle/nan-provider.models.json`;
+- `config/native-gentle/opencode-nan-provider.models.json` — current OpenCode NaN model declarations;
+- `config/native-gentle/nan-provider.models.json` — Pi-era provider snapshot retained for rollback/provenance;
 - `config/native-gentle/opencode-runtime-policy.json` — current runtime/skills/MCP/compatibility policy.
+- `config/native-gentle/opencode-routing-policy.json` — current two-profile routing authority (`production-volume` / `complex`).
+- `docs/OPENCODE_MODEL_ROUTING_QUALIFICATION_20260927.md` — current MiMo/V4/GLM/Luna/Sol role evidence.
 
-Pi-era profile and skill-policy files remain rollback/provenance surfaces. Ordinary OpenCode tickets use the runtime default model route; alternate routing is an explicit override/experiment, not a mandatory per-ticket selection step.
+Pi-era profile and skill-policy files remain rollback/provenance surfaces. Current OpenCode routing is `production-volume` by default with trigger-driven `complex`; this is not a mandatory per-ticket selection step.
 
 After runtime changes/rebuilds/incidents, validate current authority with:
 
 ```bash
 node tools/check-opencode-runtime-policy.mjs
+node tools/check-opencode-routing-profiles.mjs
 node tools/check-vnext-authority.mjs
 gentle-ai doctor
 ```
@@ -118,7 +122,7 @@ Short version:
 - one-shot `opencode run` is blocked for unattended promotion while the clean-state pre-session `init` hang remains reproducible;
 - Gentle-managed runtime skills live in `~/.config/opencode/skills`; legacy shared `~/.agents/skills` is not active globally;
 - Context7 and Engram are disabled by default and enabled only when the task needs them;
-- ordinary `atenea-writer` tickets use the runtime default model route; `atenea-review-host` is reserved for Gentle lifecycle continuation; alternate routes require an explicit override/experiment and bounded evidence;
+- ordinary `atenea-writer` tickets use `production-volume`; `atenea-review-host` uses MiMo 2.6 for Gentle lifecycle continuation; `complex` is trigger-driven and Sol is not a normal-path fallback;
 - `.atl/` must already be ignored in candidate repositories.
 
 ## Historical material

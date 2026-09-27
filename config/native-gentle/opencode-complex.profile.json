@@ -1,0 +1,61 @@
+{
+  "schema": "atenea.opencode-routing-profile/v1",
+  "name": "complex",
+  "status": "current-triggered",
+  "qualified_at": "2026-09-27",
+  "purpose": "Escalated route for materially complex trains; stronger cross-provider review without making Sol a normal-path model.",
+  "roles": {
+    "writer": {
+      "agent": "atenea-writer",
+      "model": "nan/glm5.3-flash",
+      "variant": "high"
+    },
+    "lifecycle-host": {
+      "agent": "atenea-review-host",
+      "model": "nan/mimo-v2.6-flash"
+    },
+    "review-readability": {
+      "agent": "review-readability",
+      "model": "openai/gpt-6-luna",
+      "variant": "high"
+    },
+    "review-reliability": {
+      "agent": "review-reliability",
+      "model": "openai/gpt-6-luna",
+      "variant": "xhigh"
+    },
+    "review-resilience": {
+      "agent": "review-resilience",
+      "model": "nan/deepseek-v4-flash"
+    },
+    "review-risk": {
+      "agent": "review-risk",
+      "model": "openai/gpt-6-luna",
+      "variant": "xhigh"
+    },
+    "review-refuter": {
+      "agent": "review-refuter",
+      "model": "openai/gpt-6-sol",
+      "variant": "xhigh"
+    },
+    "review-validator": {
+      "agent": "review-validator",
+      "model": "openai/gpt-6-luna",
+      "variant": "high"
+    },
+    "jd-judge-a": {
+      "agent": "jd-judge-a",
+      "model": "nan/mimo-v2.6-flash"
+    },
+    "jd-judge-b": {
+      "agent": "jd-judge-b",
+      "model": "openai/gpt-6-luna",
+      "variant": "xhigh"
+    },
+    "jd-fix-agent": {
+      "agent": "jd-fix-agent",
+      "model": "nan/glm5.3-flash",
+      "variant": "high"
+    }
+  }
+}
