@@ -39,6 +39,6 @@ Use the cheapest reliable owner for each fact:
 
 ## Current transition state
 
-C-072 supersedes the C-070 exact-version pin; C-073 supersedes Pi-era language that made composition forecasting or model/profile selection universal pre-writer gates. The clean rebuild removed split OpenCode installations and historical runtime state instead of migrating them. Stable policy remains version-neutral; compatibility owns exact runtime seams. Ordinary tickets use minimal preflight, direct `build` and the runtime default route; heavier composition/routing/promotion gates activate only on concrete triggers.
+C-072 supersedes the C-070 exact-version pin; C-073 supersedes Pi-era universal pre-writer ceremony; C-074 qualifies role-specific lean OpenCode tool surfaces for train execution. The clean rebuild removed split OpenCode installations and historical runtime state instead of migrating them. Stable policy remains version-neutral; compatibility owns exact runtime seams. Ordinary tickets use minimal preflight, `atenea-writer` and the runtime default route; heavier composition/routing/promotion gates activate only on concrete triggers.
 
 Current evidence: `docs/OPENCODE_11832_SERVE_ZERO_TOUCH_QUALIFICATION_20260927.md`. Current execution entry: `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`. Historical V1 lifecycle evidence: `docs/OPENCODE_V1_ZERO_TOUCH_RECOVERY_EVIDENCE_20260927.md`. Runtime/provider compatibility debt: `docs/vnext/CURRENT_COMPATIBILITY.md`.

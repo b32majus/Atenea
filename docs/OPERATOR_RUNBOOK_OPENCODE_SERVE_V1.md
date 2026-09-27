@@ -28,7 +28,7 @@ Train-wide facts are not re-prompted at each ticket boundary.
 For each ticket:
 
 1. start a fresh bounded `opencode serve` host in the authorized worktree;
-2. create one direct `build` session;
+2. create one `atenea-writer` session;
 3. send the short semantic execution request for that ticket;
 4. let OpenCode/Gentle own internal exploration/decomposition/delegation;
 5. stop the writer host after the bounded turn;

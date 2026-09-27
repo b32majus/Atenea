@@ -20,7 +20,7 @@ Qualified from the clean rebuild and two-ticket zero-touch train on 2026-09-27:
 ```text
 thin deterministic Atenea supervisor
 → fresh OpenCode host per bounded ticket/phase
-→ one bounded OpenCode session with direct `build`
+→ one bounded `atenea-writer` session (direct primary; lean tool surface)
 → Gentle AI 3.7.0 lifecycle
 → deterministic project verification
 → Gentle review / correction / acknowledge-burn
@@ -67,7 +67,7 @@ If durable executable authority already exists, do not rerun shaping by ritual. 
 ```text
 accepted bounded ticket/train authority
 → thin deterministic supervisor
-→ fresh direct OpenCode writer
+→ fresh lean `atenea-writer`
 → deterministic verification
 → native Gentle review/correction lifecycle
 → APPROVED + acknowledge-approved + authority burned
@@ -118,7 +118,7 @@ Short version:
 - one-shot `opencode run` is blocked for unattended promotion while the clean-state pre-session `init` hang remains reproducible;
 - Gentle-managed runtime skills live in `~/.config/opencode/skills`; legacy shared `~/.agents/skills` is not active globally;
 - Context7 and Engram are disabled by default and enabled only when the task needs them;
-- ordinary direct-build tickets use the runtime default model route; alternate routes require an explicit override/experiment and bounded evidence;
+- ordinary `atenea-writer` tickets use the runtime default model route; `atenea-review-host` is reserved for Gentle lifecycle continuation; alternate routes require an explicit override/experiment and bounded evidence;
 - `.atl/` must already be ignored in candidate repositories.
 
 ## Historical material

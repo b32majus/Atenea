@@ -13,7 +13,8 @@ Engram              = installed capability; OFF by default in OpenCode
 Context7            = installed capability; OFF by default in OpenCode
 provider baseline   = NaN
 default interactive/lifecycle host model = GLM 5.3 Flash
-writer = direct build; model route = runtime default unless explicit override/experiment (C-073)
+writer role        = atenea-writer (lean direct primary); model route = runtime default unless explicit override/experiment (C-073/C-074)
+review host role    = atenea-review-host (Task limited to review-*)
 one-shot `opencode run` = BLOCKED_FOR_UNATTENDED_PROMOTION (clean-state init hang)
 normal transport    = fresh `opencode serve` host per bounded writer/review role + one HTTP session
 transport qualification = TWO-TICKET ZERO-TOUCH PASS; 2/2 terminal burn; 2/2 checkpoints
@@ -56,7 +57,7 @@ Open extra policy only when its trigger exists:
 - runtime/version incident → `vnext/CURRENT_COMPATIBILITY.md`;
 - unresolved product meaning → shaping/human authority.
 
-Ordinary tickets use direct `build` and the runtime default model route. There is no per-ticket profile-selection ceremony.
+Ordinary tickets use `atenea-writer` and the runtime default model route. Gentle continuation uses `atenea-review-host`. There is no per-ticket profile-selection ceremony.
 
 ## 4. Execute
 
@@ -64,7 +65,7 @@ Ordinary tickets use direct `build` and the runtime default model route. There i
 accepted bounded ticket/train
 → minimal preflight once
 → fresh qualified OpenCode serve host
-→ one bounded direct-build session
+→ one bounded `atenea-writer` session
 → applicable deterministic checks
 → native Gentle lifecycle when due
 → terminal burn where review applies

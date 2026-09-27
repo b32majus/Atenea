@@ -11,7 +11,7 @@ The ordinary path must be short. Atenea validates the facts that can change the 
 accepted bounded work
 → minimal deterministic preflight
 → short semantic execution request
-→ direct build
+→ `atenea-writer`
 → applicable deterministic checks
 → native Gentle lifecycle when due
 → checkpoint / next-or-STOP

@@ -2,9 +2,25 @@
 
 Date: 2026-09-27
 
-This file preserves accepted decision provenance. **C-073 is the current ordinary-execution authority; C-072 remains the current runtime-transition authority** and supersedes the exact-version/install claims in C-070 while preserving C-069–C-071 as accepted topology/routing evidence. C-055–C-068 remain accepted provenance for the Pi/Gentle vNext epoch and for stable policy not explicitly reopened.
+This file preserves accepted decision provenance. **C-073 and C-074 jointly define current ordinary execution; C-072 remains the current runtime-transition authority** and supersedes the exact-version/install claims in C-070 while preserving C-069–C-071 as accepted topology/routing evidence. C-055–C-068 remain accepted provenance for the Pi/Gentle vNext epoch and for stable policy not explicitly reopened.
 
 Historical `docs/DECISIONS.md`, Stage files, old run recipes and pre-vNext field evidence remain valuable provenance, but they do not define the current execution path.
+
+## C-074 — Train roles use lean OpenCode tool surfaces; full `build` is not the ordinary writer
+
+**Accepted 2026-09-27 after controlled context-budget A/B and a two-ticket zero-touch train.**
+
+OpenCode's full `build` surface carried substantial prompt/tool-schema context that ordinary bounded writers did not need. Removing the old `gentle-orchestrator` definition reduced config bytes but did not reduce model context; the useful reduction came from hiding capabilities the role must not use.
+
+The qualified normal roles are:
+
+- `atenea-writer`: primary OpenCode role, no custom orchestration prompt; denies `task`, `skill`, web/codesearch, todo and question surfaces while retaining native repository/code tools;
+- `atenea-review-host`: primary OpenCode role; same nonessential surfaces denied, with Task restricted to `review-*` so Gentle's immutable review transport remains usable;
+- interactive `build`: remains the user/default interactive agent and an explicit escalation surface, not the normal unattended train writer.
+
+Controlled trivial-message A/B measured ~9.6k input tokens on the former full writer versus ~5.1k on the lean writer. The qualifying two-ticket train completed with writer contexts ~6.0k and review-host contexts ~14.4–15.1k, 2/2 terminal burns, 2/2 Git checkpoints, clean final tree and `HUMAN_TOUCH_AFTER_LAUNCH=0`. Wall time fell from the immediately prior qualified train's ~595.6 s to ~416.5 s; this is supporting performance evidence, not a timing contract.
+
+Managed Gentle agents/skills remain installed. C-074 narrows what each train role advertises to its model; it does not delete upstream capability or weaken Gentle review/correction/burn. A task that genuinely needs a denied capability requires an explicit bounded escalation rather than silently broadening every ordinary ticket. Evidence: `docs/OPENCODE_LEAN_CONTEXT_QUALIFICATION_20260927.md`.
 
 ## C-073 — Lean execution is the default; heavy gates are trigger-driven
 
@@ -14,7 +30,7 @@ Atenea no longer treats every substantial ticket as requiring a composition fore
 
 The normal entry contract is `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`: correct repo/base, accepted task authority, executable outcome/acceptance/constraints, current qualified runtime and publication boundary. Facts already durable in repository/train authority are not re-asked. Train-wide facts are established once; ticket boundaries re-check only state that can actually change.
 
-Ordinary ticket prompts carry the semantic execution contract only. They do not restate `AGENTS.md`, `CODING_STANDARDS.md`, ODD/RDD mechanics, reviewer ordering, tool ownership or historical compatibility prose. Direct `build` uses the runtime default model route unless the human explicitly overrides it, the run is a declared routing experiment, or a concrete route failure justifies a new bounded decision. C-071 remains evidence that no model is universally optimal; it no longer creates a mandatory per-ticket model-selection ceremony.
+Ordinary ticket prompts carry the semantic execution contract only. They do not restate `AGENTS.md`, `CODING_STANDARDS.md`, ODD/RDD mechanics, reviewer ordering, tool ownership or historical compatibility prose. `atenea-writer` uses the runtime default model route unless the human explicitly overrides it, the run is a declared routing experiment, or a concrete route failure justifies a new bounded decision. C-071 remains evidence that no model is universally optimal; it no longer creates a mandatory per-ticket model-selection ceremony.
 
 `WORK_UNIT_COMPOSITION_POLICY_V1.md` becomes conditional. The upstream/default 400 authored-line budget remains a planning signal when composition risk is actually visible, but Atenea drops its extra 600/800 bands and does not require estimates for ordinary bounded tickets. Promotion Review likewise remains available only when material promotion risk is identified.
 
@@ -26,7 +42,7 @@ This decision supersedes prior current-language that made composition forecastin
 
 The productive host was not migrated. Both OpenCode installations, OpenCode state/cache/config history, legacy binaries and temporary runtime residue were removed from active paths into a reversible quarantine. OpenCode was reinstalled from the current stable npm channel as `1.18.32`; Gentle AI was reinstalled from its official checksum-verified binary installer as `3.7.0`. The historical `1.18.10` zero-touch result remains evidence for the lifecycle shape but is no longer installation authority or a version pin.
 
-Stable `AGENTS.md` policy is version-neutral. Exact runtime versions, provider/runtime defects and temporary transport exceptions belong in `docs/vnext/CURRENT_COMPATIBILITY.md`. Global OpenCode context is deliberately bounded: direct `build` is the ticket parent beneath the Atenea outer supervisor; Context7 and Engram are disabled by default; the generated Gentle persona/mandatory Engram protocol is not restored as unconditional global `AGENTS.md` context.
+Stable `AGENTS.md` policy is version-neutral. Exact runtime versions, provider/runtime defects and temporary transport exceptions belong in `docs/vnext/CURRENT_COMPATIBILITY.md`. Global OpenCode context is deliberately bounded: `atenea-writer` is the ordinary ticket role beneath the Atenea outer supervisor, while `atenea-review-host` carries Gentle review continuation; Context7 and Engram are disabled by default; the generated Gentle persona/mandatory Engram protocol is not restored as unconditional global `AGENTS.md` context.
 
 The clean rebuild disproved the hypothesis that the 20–30 second pre-session stalls were caused only by accumulated local state. OpenCode `1.18.32` reproduces an intermittent one-shot `opencode run` hang at `message=init` even with a brand-new HOME, empty Git repository, `--pure`, no provider config and no Gentle assets. This matches the upstream one-shot init-hang class. Therefore one-shot `run` is not eligible for unattended promotion while that defect remains reproducible.
 

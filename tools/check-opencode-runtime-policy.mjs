@@ -22,5 +22,11 @@ eq(d.compatibility?.legacy_v1_1_18_10,"historical-zero-touch-evidence-only","leg
 eq(d.compatibility?.one_shot_run,"blocked-for-unattended-promotion: intermittent clean-state pre-session init hang","one-shot gate");
 eq(d.routing?.nontrivial_writer,"runtime-default-unless-explicit-override-or-experiment","writer routing default");
 eq(d.routing?.selection_ceremony,"none-on-ordinary-ticket","ordinary routing ceremony");
+eq(d.routing?.interactive_default_agent,"build","interactive default agent");
+eq(d.routing?.writer_agent,"atenea-writer","train writer agent");
+eq(d.routing?.review_host_agent,"atenea-review-host","review host agent");
+eq(d.routing?.review_task_allow,"review-*","review task boundary");
+eq(d.routing?.context_budget_evidence,"docs/OPENCODE_LEAN_CONTEXT_QUALIFICATION_20260927.md","context budget evidence");
+eq(JSON.stringify(d.routing?.writer_denies),JSON.stringify(["task","skill","webfetch","websearch","codesearch","todowrite","question"]),"writer deny surface");
 if(failures.length){ console.error("ATENEA_OPENCODE_RUNTIME_POLICY_CHECK=FAIL"); failures.forEach(x=>console.error(`- ${x}`)); process.exit(1); }
 console.log("ATENEA_OPENCODE_RUNTIME_POLICY_CHECK=PASS");

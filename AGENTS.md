@@ -97,7 +97,7 @@ Do **not** require a composition forecast, model/profile-selection ceremony, bro
 
 Open `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` only when there is concrete evidence of a coarse/over-budget delivery shape. Ordinary bounded tickets need no authored-line estimate.
 
-The current OpenCode writer is direct `build`. Ordinary tickets use the runtime default model route; alternate routing requires an explicit override, declared experiment or concrete route failure. Do not put `gentle-orchestrator` inside a ticket already bounded by the Atenea outer supervisor.
+The ordinary train writer is `atenea-writer`: a direct primary OpenCode role with no custom orchestration prompt and a narrowed tool surface. `atenea-review-host` is a separate primary role whose Task surface is limited to `review-*` for Gentle lifecycle continuation. Interactive `build` remains available but is not the default train writer. Ordinary tickets use the runtime default model route; alternate routing requires an explicit override, declared experiment or concrete route failure. Do not put `gentle-orchestrator` inside a ticket already bounded by the Atenea outer supervisor.
 
 For material work, executable authority must still be sufficiently falsifiable for its risk: applicable invariants, negative/adversarial cases, integration seams and deterministic acceptance belong in the durable task when they materially change correctness. This is a quality requirement, not a paperwork requirement.
 
@@ -180,7 +180,7 @@ In particular:
 - exact OpenCode/Gentle versions and transport exceptions live in `docs/vnext/CURRENT_COMPATIBILITY.md`; stable repository policy does not pin runtime versions;
 - `~/.config/opencode/skills` is the ordinary global runtime skill root; legacy shared `~/.agents/skills` is not active globally; project skills remain project-local;
 - Context7 and Engram are installed capabilities but disabled by default for ordinary ticket execution;
-- when the Atenea outer supervisor already owns the train frontier, the bounded ticket writer is direct `build`; do not nest `gentle-orchestrator` as another ticket parent.
+- when the Atenea outer supervisor already owns the train frontier, use the current lean writer/review-host roles from `config/native-gentle/opencode-runtime-policy.json`; do not nest `gentle-orchestrator` as another ticket parent.
 
 ## 10. Publication
 

@@ -10,7 +10,7 @@ OpenCode 1.18.32 (single real npm-global install)
 Gentle AI 3.7.0
 fresh `opencode serve` host per bounded writer/review role
 one HTTP session per host
-direct `build` writer
+`atenea-writer` direct primary writer
 Context7 / Engram OFF by default
 ```
 
@@ -32,10 +32,10 @@ Gentle 3.7 detects OpenCode major with a hard 3-second `opencode --version` prob
 
 1. Start a fresh `opencode serve --hostname 127.0.0.1 --port <ephemeral>` host in the authorized worktree.
 2. Wait until the native HTTP API is ready.
-3. `POST /session`, then `POST /session/:id/message` with `agent=build` and the explicitly resolved model route.
+3. `POST /session`, then `POST /session/:id/message` with `agent=atenea-writer` and the resolved model route.
 4. Stop the writer host after the bounded turn completes.
 5. Run deterministic verification and native Gentle STATUS. Follow only provider-issued START/consent transitions.
-6. When review collection is required, start a new fresh serve host and one bounded `build` session carrying the exact provider-issued review continuation. Reviewer Tasks flow through `opencode-review-transport.ts`.
+6. When review collection is required, start a new fresh serve host and one bounded `atenea-review-host` session carrying the exact provider-issued review continuation. Its Task surface is limited to `review-*`; Reviewer Tasks flow through `opencode-review-transport.ts`.
 7. Stop only after exact acknowledgement burns terminal authority or Gentle returns a typed STOP/refusal.
 8. Tear down the review host, run final deterministic checks, create the authorized Git checkpoint, then launch the next ticket from durable authority or STOP.
 
@@ -52,4 +52,4 @@ Gentle 3.7 detects OpenCode major with a hard 3-second `opencode --version` prob
 
 Require a bounded real-message smoke plus a synthetic two-ticket train proving: direct writer, deterministic checks, exact Gentle consent transport, reviewer capture, terminal acknowledge/burn, Git checkpoint, clean final tree and `HUMAN_TOUCH_AFTER_LAUNCH=0`.
 
-Current evidence: `docs/OPENCODE_11832_SERVE_ZERO_TOUCH_QUALIFICATION_20260927.md`.
+Current transport evidence: `docs/OPENCODE_11832_SERVE_ZERO_TOUCH_QUALIFICATION_20260927.md`. Current lean-role/context evidence: `docs/OPENCODE_LEAN_CONTEXT_QUALIFICATION_20260927.md`.

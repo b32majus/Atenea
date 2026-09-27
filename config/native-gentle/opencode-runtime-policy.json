@@ -36,6 +36,20 @@
     "default_interactive_model": "nan/glm5.3-flash",
     "lifecycle_host": "thin/fresh; GLM synthetic-qualified",
     "nontrivial_writer": "runtime-default-unless-explicit-override-or-experiment",
-    "selection_ceremony": "none-on-ordinary-ticket"
+    "selection_ceremony": "none-on-ordinary-ticket",
+    "interactive_default_agent": "build",
+    "writer_agent": "atenea-writer",
+    "review_host_agent": "atenea-review-host",
+    "writer_denies": [
+      "task",
+      "skill",
+      "webfetch",
+      "websearch",
+      "codesearch",
+      "todowrite",
+      "question"
+    ],
+    "review_task_allow": "review-*",
+    "context_budget_evidence": "docs/OPENCODE_LEAN_CONTEXT_QUALIFICATION_20260927.md"
   }
 }

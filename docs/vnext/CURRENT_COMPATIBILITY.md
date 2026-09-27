@@ -28,7 +28,7 @@ Current OpenCode-specific seams:
 - `~/.config/opencode/skills` is the active global runtime skill root; legacy shared `~/.agents/skills` is not part of the ordinary global surface.
 - Context7 and Engram remain available but disabled by default.
 - The generated Gentle persona + mandatory Engram protocol is not part of the minimal global OpenCode `AGENTS.md`.
-- **Routing:** ordinary direct-`build` tickets use the runtime default route without a per-ticket model-selection ceremony under C-073. C-071 remains evidence that no model is universally optimal; alternate routes are explicit overrides/experiments and require bounded evidence before broader promotion.
+- **Role/context routing:** ordinary tickets use `atenea-writer`; Gentle review continuation uses `atenea-review-host`. The former hides task/skill/web/todo/question surfaces, while the latter permits Task only for `review-*`. Interactive `build` remains the user default. This is C-074 and does not create a second orchestration layer. Ordinary tickets still use the runtime default model route without a per-ticket model-selection ceremony under C-073. C-071 remains evidence that no model is universally optimal; alternate routes are explicit overrides/experiments and require bounded evidence before broader promotion.
 - Historical OpenCode `1.18.10` + Gentle 3.7 zero-touch evidence remains valid for what it tested; it does not authorize reinstalling or pinning 1.18.10.
 - Historical OpenCode V2 `2.0.18` plugin-transport failure remains provenance only.
 
