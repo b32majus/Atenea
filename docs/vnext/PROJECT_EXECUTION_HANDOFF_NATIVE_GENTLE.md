@@ -2,7 +2,9 @@
 
 Status: **SUPERSEDED CURRENT-RUNTIME HANDOFF — PI ROLLBACK/PROVENANCE**
 
-Current train operation: `docs/OPERATOR_RUNBOOK_OPENCODE_ZERO_TOUCH_V1.md`; current runtime recipe: `docs/vnext/OPENCODE_ZERO_TOUCH_RUNTIME_RECIPE_20260927.md`.
+Current execution authority: `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md` + `docs/OPERATOR_RUNBOOK_OPENCODE_SERVE_V1.md`; current runtime recipe: `docs/vnext/OPENCODE_SERVE_RUNTIME_RECIPE_20260927.md`.
+
+**Do not use the long Pi-era preflight/routing sections below for current OpenCode execution.** The remainder is retained as rollback/provenance only.
 
 Date: 2026-09-25
 

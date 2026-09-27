@@ -5,119 +5,76 @@ Status: **CURRENT FRONT DOOR**
 ## Current runtime baseline — read this first
 
 ```text
-CURRENT_AUTHORITY = main
-RUNTIME_QUALIFIED = 2026-09-27
-OpenCode          = 1.18.10 (V1 pinned)
-Gentle AI         = 3.7.0
-Engram            = 2.1.0 installed capability; OFF by default in OpenCode
-Context7          = installed capability; OFF by default in OpenCode
-provider baseline = NaN
+CURRENT_AUTHORITY = main after this reconciliation is promoted
+RUNTIME_STATE      = QUALIFIED
+OpenCode           = 1.18.32 (qualified stable runtime)
+Gentle AI          = 3.7.0
+Engram              = installed capability; OFF by default in OpenCode
+Context7            = installed capability; OFF by default in OpenCode
+provider baseline   = NaN
 default interactive/lifecycle host model = GLM 5.3 Flash
-nontrivial writer route = FIELD_QUALIFICATION_REQUIRED (C-071)
-normal topology   = thin deterministic supervisor → fresh OpenCode per ticket → Gentle lifecycle
+writer = direct build; model route = runtime default unless explicit override/experiment (C-073)
+one-shot `opencode run` = BLOCKED_FOR_UNATTENDED_PROMOTION (clean-state init hang)
+normal transport    = fresh `opencode serve` host per bounded writer/review role + one HTTP session
+transport qualification = TWO-TICKET ZERO-TOUCH PASS; 2/2 terminal burn; 2/2 checkpoints
 Atenea train supervisors = 1 thin deterministic supervisor
 Atenea review controllers = 0
-Pi / Gentle Pi    = installed rollback/alternate surface, not normal productive train entry
-OpenCode V2 2.0.18 = BLOCKED pending Gentle immutable-review transport parity
+Pi / Gentle Pi      = rollback/provenance surface, not normal productive train entry
 ```
 
-The topology above is the latest qualified Atenea baseline. The Pi-era profile catalog remains provenance/rollback evidence and does not silently become OpenCode routing authority. C-071 deliberately leaves the nontrivial writer route open after the real T8 replay exposed excessive GLM design rumination; resolve that route with focused evidence rather than rebuilding long-lived parent sessions. Each ticket starts with fresh model context, while Git/GitHub/product authority and Gentle's durable review transaction provide continuity. Historical Stage files, old run recipes, old profiles and `historical/` remain provenance only.
+The old OpenCode `1.18.10` two-ticket zero-touch result remains valid historical lifecycle evidence, but it no longer pins the runtime. Stable `AGENTS.md` policy is version-neutral. Exact candidate versions, upstream defects and temporary transport decisions live in `docs/vnext/CURRENT_COMPATIBILITY.md`.
 
-If you need to rebuild the runtime, use `docs/vnext/OPENCODE_ZERO_TOUCH_RUNTIME_RECIPE_20260927.md`. If you need provider/runtime exceptions, use `docs/vnext/CURRENT_COMPATIBILITY.md`.
+The qualified runtime preserves fresh context without restoring a long-lived model parent: the supervisor launches a fresh OpenCode server for the bounded writer or review role, creates one bounded session through OpenCode's native HTTP interface, and terminates the host at that lifecycle boundary. Two-ticket zero-touch qualification proved writer, review capture, acknowledge/burn and checkpoint continuity end to end.
 
-## 1. Is the work already shaped?
+If you need to rebuild the current runtime, use `docs/vnext/OPENCODE_SERVE_RUNTIME_RECIPE_20260927.md`. Version/provider exceptions remain in `docs/vnext/CURRENT_COMPATIBILITY.md`. The prior `OPENCODE_ZERO_TOUCH_RUNTIME_RECIPE_20260927.md` is retained as historical V1 reproduction evidence.
 
-### No — product/shaping work is open
+## 1. Shape only when needed
 
-Read existing repository authority first.
+If product meaning, acceptance or material constraints are genuinely unresolved, shape only enough to create durable executable authority. Do not regenerate specs/tickets by ritual when accepted authority already exists.
 
-Classify the situation only as much as needed:
+If executable authority exists, use `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`.
 
-- greenfield;
-- small brownfield;
-- large brownfield;
-- mixed-corpus brownfield.
+## 2. Ordinary preflight
 
-Use the smallest adopted shaping workflow that materially improves the work.
+The normal preflight has five facts only:
 
-Current P3 policy:
+1. correct repo/worktree/base and no unrelated dirty state;
+2. current accepted task/work-order/spec identified;
+3. outcome, acceptance and material constraints are executable without inventing product meaning;
+4. current qualified runtime is available;
+5. publication boundary is known.
 
-- Matt skills are optional discovery/shaping;
-- OpenSpec is optional native SDD;
-- neither is a mandatory prelude.
+If durable authority already proves a fact, do not ask the human to repeat it.
 
-Produce durable executable authority:
+## 3. Conditional escalations
 
-- accepted spec/proposal when needed;
-- tickets/work orders;
-- acceptance criteria;
-- constraints and non-goals;
-- required architectural/domain decisions.
+Open extra policy only when its trigger exists:
 
-Once that authority is accepted, stop shaping and execute it.
+- coarse/over-budget candidate evidence → `WORK_UNIT_COMPOSITION_POLICY_V1.md`;
+- explicit routing override/experiment or concrete route failure → current routing decision/evidence;
+- material human promotion risk → `PROMOTION_REVIEW_V1.md`;
+- runtime/version incident → `vnext/CURRENT_COMPATIBILITY.md`;
+- unresolved product meaning → shaping/human authority.
 
-### Yes — executable authority exists
-
-Do **not** rerun shaping by ritual.
-
-Accepted product scope is not, by itself, writer-ready. For every substantial Work Order, resolve delivery composition **before any writer edits code** under `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`.
-
-```text
-product scope accepted
-→ composition forecast
-→ delivery composition resolved
-→ OpenCode runtime/model route explicitly resolved
-→ writer authority
-```
-
-If material over-budget risk is forecast, define the semantic work-unit chain or the required size-exception decision before writing. If no honest path is resolved, STOP before implementation. A capability-sized Work Order may remain one issue; work units are delivery/review units, not necessarily issue-tracker units.
-
-This is an execution-readiness gate, not another shaping phase and not an Atenea scheduler. Native Gentle still owns ODD, internal decomposition, workers and `review_due`. Numerical planning thresholds live only in `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`; consumers reference that policy rather than copying its numbers.
-
-Reconcile current Git/GitHub/product state and start from the accepted task.
-
-## 2. Reconcile repository entry
-
-Before changing tools or code:
-
-1. identify the live branch/PR/checkpoint;
-2. read `AGENTS.md`, `CODING_STANDARDS.md`, relevant ADR/spec/ticket authority;
-3. inventory old Atenea/Pi/Gentle/Herdr signals read-only;
-4. classify them as current / compatibility-required / historical / stale-or-unknown;
-5. STOP on unresolved material authority conflict.
-
-Do not clean a brownfield repository merely because old tooling exists.
-
-Do not resume stale Pi/session state merely because it exists.
-
-## 3. Prepare the execution surface
-
-Use a clean isolated worktree/session when prior worktrees or sessions are stale.
-
-Before candidate work:
-
-- repository state is understood;
-- task authority is explicit;
-- for substantial work, delivery composition is resolved under `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` before writer authority;
-- the OpenCode runtime/model route is explicitly resolved before writer authority; nontrivial writer routes not yet promoted by C-071 require a focused real-work canary rather than inherited Pi-profile assumptions;
-- `.atl/` is already in repo-local `.gitignore`;
-- unrelated untracked runtime artifacts are absent;
-- no push/PR/merge authority is assumed.
+Ordinary tickets use direct `build` and the runtime default model route. There is no per-ticket profile-selection ceremony.
 
 ## 4. Execute
 
-Normal qualified topology:
-
 ```text
-thin deterministic supervisor
-→ fresh OpenCode 1.18.10 process for the bounded ticket/phase
-→ deterministic project verification
-→ Gentle AI 3.7 review / correction / acknowledgement-burn
+accepted bounded ticket/train
+→ minimal preflight once
+→ fresh qualified OpenCode serve host
+→ one bounded direct-build session
+→ applicable deterministic checks
+→ native Gentle lifecycle when due
+→ terminal burn where review applies
 → durable checkpoint
-→ fresh OpenCode for the next compatible ticket or STOP
+→ next authorized ticket or STOP
 ```
 
-The supervisor does not implement, review or invent transitions. It owns only train frontier, process lifecycle, exact already-authorized consent transport, checkpoint reconciliation and next/STOP. Gentle owns risk/review timing, reviewer execution, correction and acknowledgement/burn. No long-lived model parent, manual `/compact`, `/reload` or standing review-session permission belongs in the normal path.
+Train-wide repo/base/publication/runtime facts are established once. At ticket boundaries re-check only checkpoint/HEAD, clean candidate state and whether the next ticket remains inside the authorized frontier.
+
+The supervisor does not implement, review or invent transitions. Gentle owns internal decomposition, verification/review timing, reviewer execution, correction and acknowledgement/burn.
 
 ## 5. Verify
 
@@ -146,11 +103,12 @@ Do not invent verdicts, START decisions, timing or authority.
 Current compatibility seams:
 
 - post-burn STATUS (#4771): `acknowledge-approved → authority=burned` is terminal; do not call selectorless STATUS merely to prove the burn again;
-- OpenCode is pinned to V1 `1.18.10`; V2 `2.0.18` remains fail-closed until Gentle immutable-review transport parity is demonstrated;
-- Gentle 3.7's OpenCode runtime probe has a 3-second version bound; the qualified wrapper answers only exact `--version`/`-v` immediately and delegates every other invocation to the real pinned binary;
+- exact OpenCode/Gentle versions and transport status live in `docs/vnext/CURRENT_COMPATIBILITY.md`, not in stable policy;
+- Gentle 3.7 runtime detection uses the qualified version-neutral fast `opencode --version` shim; all non-version invocations delegate unchanged to the single real OpenCode binary;
+- one-shot `opencode run` is not unattended-eligible while its clean-state `init` hang remains reproducible; fresh bounded `serve` hosts are the qualified normal transport;
 - Gentle-managed OpenCode skills live in `~/.config/opencode/skills`; legacy `~/.agents/skills` is not active globally; project skills stay project-local;
 - Context7 and Engram are installed but disabled by default for ordinary execution and enabled only when the task needs them;
-- nontrivial writer-model routing remains under C-071 field qualification; do not use `gentle-orchestrator` as a nested ticket parent beneath the Atenea supervisor.
+- ordinary tickets use the runtime default model route without a selection ceremony; alternate routes remain explicit overrides/experiments. Never use `gentle-orchestrator` as a nested ticket parent beneath the Atenea supervisor.
 Details: `docs/vnext/CURRENT_COMPATIBILITY.md`.
 
 ## 7. Publish
@@ -190,9 +148,9 @@ The next ticket/train should normally start from current durable repository auth
 
 Use:
 
-`docs/vnext/OPENCODE_ZERO_TOUCH_RUNTIME_RECIPE_20260927.md`
+`docs/vnext/OPENCODE_SERVE_RUNTIME_RECIPE_20260927.md`
 
-Do not reconstruct installation from historical Stage/run-recipe documents.
+Use `docs/vnext/CURRENT_COMPATIBILITY.md` for temporary runtime/provider seams. The older `OPENCODE_ZERO_TOUCH_RUNTIME_RECIPE_20260927.md` is historical V1 evidence, not current installation authority.
 
 ## 10. Resume an old project
 
@@ -200,6 +158,6 @@ Durable Git/GitHub/product evidence determines the last legitimate checkpoint.
 
 Create a clean worktree and continue from accepted authority through a fresh OpenCode process + Gentle lifecycle under the thin supervisor.
 
-Operational handoff:
+Current operation: `docs/OPERATOR_RUNBOOK_OPENCODE_SERVE_V1.md`.
 
-`docs/OPERATOR_RUNBOOK_OPENCODE_ZERO_TOUCH_V1.md`
+Historical V1 operational evidence remains in `docs/OPERATOR_RUNBOOK_OPENCODE_ZERO_TOUCH_V1.md`.

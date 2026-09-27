@@ -1,6 +1,6 @@
 # Atenea — OpenCode zero-touch operator runbook v1
 
-Status: **CURRENT OPERATIONAL RUNBOOK**
+Status: **HISTORICAL QUALIFIED RUNBOOK — OpenCode 1.18.10**
 Date: 2026-09-27
 
 ## 1. Human boundary before launch

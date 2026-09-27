@@ -6,30 +6,35 @@ Date: 2026-09-27
 
 This document contains version/provider-specific exceptions that are intentionally **not** part of stable `AGENTS.md` policy.
 
-## Current productive compatibility baseline
+## Current qualified OpenCode baseline
 
 ```text
-OpenCode          1.18.10 (V1 pinned)
+OpenCode          1.18.32
 Gentle AI         3.7.0
 NaN               baseline provider
 Context7          installed; disabled by default
-Engram            2.1.0 installed; disabled by default in ordinary OpenCode
-Pi / Gentle Pi    rollback/alternate only
-OpenCode V2       2.0.18 tested; not promoted
+Engram            installed; disabled by default in ordinary OpenCode
+Pi / Gentle Pi    rollback/provenance only
+serve lifecycle   QUALIFIED — two-ticket zero-touch PASS
 ```
 
 Current OpenCode-specific seams:
 
-- Gentle 3.7 probes `opencode --version` with a hard 3-second bound. The qualified wrapper answers only exact `--version` / `-v` immediately and delegates every other invocation to the real pinned 1.18.10 binary.
-- The OpenCode runtime must not be installed under `~/.opencode`; that path is a discovery/configuration surface and a large runtime tree materially degrades bootstrap.
-- `~/.config/opencode/skills` is the active global runtime skill root. Legacy `~/.agents/skills` is not part of the ordinary global surface.
-- Context7 and Engram remain available but disabled by default; ordinary tickets do not pay their startup cost unless the task requires them.
-- OpenCode V2 2.0.18 currently fails Gentle 3.7 plugin/review transport loading and is fail-closed pending parity.
-- C-071 keeps nontrivial writer-model routing under focused field qualification. This is not permission to restore persistent parent sessions or nested orchestrators.
+- **One-shot startup defect:** clean `opencode run` can stall after `message=init` and before session creation. Unattended one-shot use remains blocked.
+- **Qualified transport:** use a fresh `opencode serve` host per bounded writer/review role, one HTTP session per host, then tear it down. The final two-ticket train passed 2/2 terminal Gentle burns, 2/2 Git checkpoints and `HUMAN_TOUCH_AFTER_LAUNCH=0`.
+- **Version-probe seam:** Gentle 3.7 uses a hard 3-second `opencode --version` probe. The qualified version-neutral shim answers only exact `--version` / `-v` from real npm package metadata and delegates every other invocation unchanged to the single real OpenCode binary.
+- **Freshness boundary:** qualification does not authorize a persistent global OpenCode daemon or long-lived model context.
+- **Skill registry:** the managed OpenCode skill-registry plugin remains installed. A/B measurement found small startup overhead/jitter, but removing it did not explain the historical 20–30 second one-shot `init` hang. Do not patch/remove it by default merely for startup optimization.
+- `~/.config/opencode/skills` is the active global runtime skill root; legacy shared `~/.agents/skills` is not part of the ordinary global surface.
+- Context7 and Engram remain available but disabled by default.
+- The generated Gentle persona + mandatory Engram protocol is not part of the minimal global OpenCode `AGENTS.md`.
+- **Routing:** ordinary direct-`build` tickets use the runtime default route without a per-ticket model-selection ceremony under C-073. C-071 remains evidence that no model is universally optimal; alternate routes are explicit overrides/experiments and require bounded evidence before broader promotion.
+- Historical OpenCode `1.18.10` + Gentle 3.7 zero-touch evidence remains valid for what it tested; it does not authorize reinstalling or pinning 1.18.10.
+- Historical OpenCode V2 `2.0.18` plugin-transport failure remains provenance only.
 
-Evidence: `docs/OPENCODE_V1_ZERO_TOUCH_RECOVERY_EVIDENCE_20260927.md`.
+Current qualification evidence: `docs/OPENCODE_11832_SERVE_ZERO_TOUCH_QUALIFICATION_20260927.md`. Historical V1 lifecycle evidence: `docs/OPENCODE_V1_ZERO_TOUCH_RECOVERY_EVIDENCE_20260927.md`.
 
-The Pi/Gentle-Pi compatibility sections below remain current **only when deliberately using that rollback/alternate surface**; they do not define the normal productive train.
+The Pi/Gentle-Pi compatibility sections below apply **only when deliberately using that rollback/provenance surface**; they do not define current OpenCode preflight or routing.
 
 ## 1. Reviewer routing after native multi-model support
 

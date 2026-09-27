@@ -5,9 +5,9 @@ Date: 2026-09-25
 
 ## 1. Purpose
 
-Atenea uses native Gentle model profiles. It does not implement a model router, quota scheduler or fallback controller.
+This document preserves Pi-era routing policy and experimental evidence. **Do not use it as the current OpenCode preflight.** Current ordinary OpenCode tickets use the runtime default model route under C-073; alternate routing is an explicit override/experiment or response to a concrete route failure.
 
-For every planned ticket/train, execution-profile choice is an explicit pre-writer decision. The profile changes model/budget routing only; it does not change acceptance, deterministic verification, native `review_due`, reviewer authority, correction semantics, acknowledgement/burn, STOP behavior or publication authority.
+Atenea does not implement a model router, quota scheduler or fallback controller. Historical Pi/Gentle profile choices below remain provenance for those experiments, not a mandatory current per-ticket decision. The profile changes model/budget routing only; it does not change acceptance, deterministic verification, native `review_due`, reviewer authority, correction semantics, acknowledgement/burn, STOP behavior or publication authority.
 
 ```text
 product scope accepted

@@ -12,20 +12,20 @@ Atenea is a thin policy/config/conformance layer **plus one thin deterministic t
 
 Inside one bounded ticket, fresh OpenCode + Gentle own execution-facing lifecycle. Atenea does not own reviewer verdicts, correction semantics or burn state.
 
-## Current productive stack
+## Current qualified runtime
 
-Qualified 2026-09-27:
+Clean runtime qualified 2026-09-27:
 
 ```text
-OpenCode 1.18.10 (V1 pinned)
+OpenCode 1.18.32 (latest stable candidate observed 2026-09-27)
 Gentle AI 3.7.0
 NaN baseline
-20 Gentle-managed OpenCode skills
+Gentle-managed OpenCode skills under the runtime-owned root
 Context7 / Engram installed but OFF by default
-Pi / Gentle Pi retained as rollback/alternate
+Pi / Gentle Pi retained as rollback/provenance only
 ```
 
-OpenCode V2 2.0.18 is not productive until Gentle immutable-review transport parity passes.
+The historical OpenCode `1.18.10` two-ticket zero-touch qualification remains evidence for the lifecycle topology, not authority to reinstall that version. Clean `1.18.32` reproduces an intermittent one-shot `opencode run` hang at `init` before session creation, so unattended one-shot use remains blocked. Fresh `opencode serve` hosts for bounded writer/review roles passed the full two-ticket Gentle lifecycle with terminal burn and Git checkpoint continuity.
 
 ## Current design principle
 
@@ -39,6 +39,6 @@ Use the cheapest reliable owner for each fact:
 
 ## Current transition state
 
-C-069–C-071 supersede the zero-controller Pi topology where they conflict. Two independent two-ticket OpenCode/Gentle trains proved zero human touches after launch. The global OpenCode runtime was rebuilt from fresh state and smoke-qualified. Nontrivial writer-model routing remains under focused field qualification after the T8 replay exposed nested-orchestrator and GLM-rumination anti-patterns.
+C-072 supersedes the C-070 exact-version pin; C-073 supersedes Pi-era language that made composition forecasting or model/profile selection universal pre-writer gates. The clean rebuild removed split OpenCode installations and historical runtime state instead of migrating them. Stable policy remains version-neutral; compatibility owns exact runtime seams. Ordinary tickets use minimal preflight, direct `build` and the runtime default route; heavier composition/routing/promotion gates activate only on concrete triggers.
 
-Evidence: `docs/OPENCODE_V1_ZERO_TOUCH_RECOVERY_EVIDENCE_20260927.md`. Runtime/provider compatibility debt: `docs/vnext/CURRENT_COMPATIBILITY.md`.
+Current evidence: `docs/OPENCODE_11832_SERVE_ZERO_TOUCH_QUALIFICATION_20260927.md`. Current execution entry: `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`. Historical V1 lifecycle evidence: `docs/OPENCODE_V1_ZERO_TOUCH_RECOVERY_EVIDENCE_20260927.md`. Runtime/provider compatibility debt: `docs/vnext/CURRENT_COMPATIBILITY.md`.

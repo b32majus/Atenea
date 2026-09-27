@@ -21,7 +21,7 @@ shaping, only while genuinely active
 → adopted shaping workflow
 
 HOW to implement / verify / review inside one bounded ticket
-→ fresh OpenCode 1.18.10 process + Gentle AI 3.7
+→ supported OpenCode process + Gentle AI; exact current version/transport lives in `docs/vnext/CURRENT_COMPATIBILITY.md`
 
 cross-ticket launch / checkpoint / next-or-STOP
 → thin deterministic Atenea supervisor
@@ -87,30 +87,19 @@ Historical stage documents and `historical/` are evidence, not forward-looking a
 - Disposable canaries must not write memory/session state into the production Engram store; when a canary exercises `mem_*`, use an isolated Engram server/data store as documented in `docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260923.md`.
 - Execution worktrees are ephemeral delivery surfaces, not historical authority stores. After the corresponding PR/train is merged and a post-merge disposal gate proves that no required local-only state/evidence or active process still depends on the worktree, remove it and prune worktree metadata. The canonical repository checkout is not an execution worktree. Do not use forced worktree removal as the normal path.
 
-## 5. Shaping lifecycle
+## 5. Shaping and execution entry
 
-Shaping is phase-scoped.
+Shaping is phase-scoped. If work is genuinely unshaped, use the smallest adopted workflow that produces durable executable authority. Matt skills and OpenSpec remain optional; neither is a mandatory execution prelude.
 
-If work is genuinely unshaped, use the smallest adopted workflow that produces durable executable authority.
+For already-shaped work, use `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`. The ordinary writer-ready check is intentionally small: correct repository/base, accepted task authority, executable outcome/acceptance/constraints, current qualified runtime, and known publication boundary.
 
-For already-shaped work:
+Do **not** require a composition forecast, model/profile-selection ceremony, broad archaeology or Promotion Review for every substantial ticket merely because those controls exist.
 
-- do not regenerate specs/tickets by ritual;
-- do not rerun greenfield shaping merely because historical instructions describe it;
-- execute accepted authority through native Gentle.
+Open `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` only when there is concrete evidence of a coarse/over-budget delivery shape. Ordinary bounded tickets need no authored-line estimate.
 
-Current P3 decision:
+The current OpenCode writer is direct `build`. Ordinary tickets use the runtime default model route; alternate routing requires an explicit override, declared experiment or concrete route failure. Do not put `gentle-orchestrator` inside a ticket already bounded by the Atenea outer supervisor.
 
-- minimal semantic execution contract → native Gentle is the normal execution-ready seam;
-- native ODD direct is valid when the task is already unambiguous;
-- Matt skills are optional discovery/shaping;
-- OpenSpec is optional native SDD when durable specs/change history add real value.
-
-For material work, executable authority should be sufficiently falsifiable for its risk: applicable invariants, negative/adversarial examples, integration seams and deterministic acceptance should be resolved before execution. This is a quality requirement on the contract, not a requirement to use Matt, OpenSpec or any specific authoring method.
-
-For every substantial accepted Work Order, **product scope accepted does not by itself grant writer authority**. Before any writer edits code, resolve delivery composition under `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`: either one honest bounded unit, a semantic work-unit chain, or the required size-exception decision. If material over-budget risk exists and no path is resolved, STOP before implementation. A capability-sized issue may remain one issue. This gate bounds the delivery candidate; it does not take ODD, internal decomposition, workers or `review_due` ownership away from native Gentle. Do not copy numeric composition thresholds into consuming repositories; `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` is the Atenea operational authority for them.
-
-For every planned ticket/train, resolve the runtime/model route before writer authority. The Pi-era `native-balanced` / `native-v4-heavy` / `native-economy` catalog remains provenance and rollback evidence; it is not current OpenCode writer-routing authority. C-071 owns the transition: GLM 5.3 Flash is synthetic-qualified for thin lifecycle-host work and remains the interactive default, while nontrivial direct-writer routing requires focused real-work qualification before promotion. Do not put `gentle-orchestrator` inside a ticket that already has the Atenea outer supervisor. Never auto-route by quota, silently fall back after a failure or switch models inside an active Gentle lineage. Routing changes model/cost behavior only; it never weakens acceptance, deterministic verification, Gentle review/correction/burn, STOP or publication authority.
+For material work, executable authority must still be sufficiently falsifiable for its risk: applicable invariants, negative/adversarial cases, integration seams and deterministic acceptance belong in the durable task when they materially change correctness. This is a quality requirement, not a paperwork requirement.
 
 ## 6. Native execution ownership
 
@@ -153,7 +142,7 @@ Atenea versions secret-free desired state:
 
 Pi/Gentle-Pi profile and skill-policy files remain rollback/provenance surfaces until explicitly archived; they are not current OpenCode routing authority. Atenea does not implement model routing or skill resolution.
 
-Before a run where runtime ownership materially matters, validate with:
+After a runtime rebuild/change, compatibility incident or when runtime ownership is materially in question, validate with:
 
 ```bash
 node tools/check-opencode-runtime-policy.mjs
@@ -188,10 +177,10 @@ In particular:
 
 - a typed `risk=unassessable` ASSESS fail-closed plan is followed natively; Atenea does not synthesize START;
 - successful `acknowledge-approved → authority=burned` is terminal; selectorless STATUS is not required to re-prove burn;
-- OpenCode is pinned to V1 `1.18.10` until V2 proves Gentle review/correction/burn parity;
-- Gentle 3.7's 3-second OpenCode version probe uses the qualified exact-version wrapper, which delegates every non-version invocation to the real pinned binary;
+- exact OpenCode/Gentle versions and transport exceptions live in `docs/vnext/CURRENT_COMPATIBILITY.md`; stable repository policy does not pin runtime versions;
 - `~/.config/opencode/skills` is the ordinary global runtime skill root; legacy shared `~/.agents/skills` is not active globally; project skills remain project-local;
-- Context7 and Engram are installed capabilities but disabled by default for ordinary ticket execution.
+- Context7 and Engram are installed capabilities but disabled by default for ordinary ticket execution;
+- when the Atenea outer supervisor already owns the train frontier, the bounded ticket writer is direct `build`; do not nest `gentle-orchestrator` as another ticket parent.
 
 ## 10. Publication
 

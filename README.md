@@ -13,38 +13,39 @@ Atenea is not a second engineering/review harness around Gentle. Gentle owns can
 - publication/Git guardrails;
 - architectural and qualification provenance.
 
-## Current productive stack
+## Current runtime state
 
-Qualified 2026-09-27:
+Qualified from the clean rebuild and two-ticket zero-touch train on 2026-09-27:
 
 ```text
 thin deterministic Atenea supervisor
-→ fresh OpenCode 1.18.10 per bounded ticket/phase
-→ Gentle AI 3.7.0
-→ NaN baseline
+→ fresh OpenCode host per bounded ticket/phase
+→ one bounded OpenCode session with direct `build`
+→ Gentle AI 3.7.0 lifecycle
 → deterministic project verification
 → Gentle review / correction / acknowledge-burn
 → durable checkpoint
-→ fresh context for next ticket or STOP
+→ fresh host/context for next ticket or STOP
 ```
 
-Normal productive train entry is the thin-supervisor path, not a persistent Pi parent. Pi/Gentle Pi remain installed rollback/alternate surfaces. OpenCode V2 2.0.18 is not promoted until Gentle immutable-review transport parity passes.
+The current qualified runtime uses OpenCode `1.18.32` and Gentle AI `3.7.0`. The old `1.18.10` zero-touch train remains valid historical evidence, but it is no longer a version pin. One-shot `opencode run` remains blocked for unattended use because a clean `1.18.32` HOME reproduces an intermittent pre-session `init` hang. Fresh `opencode serve` hosts for bounded writer/review roles passed a two-ticket zero-touch train with 2/2 terminal Gentle burns, 2/2 Git checkpoints and `HUMAN_TOUCH_AFTER_LAUNCH=0`.
 
-Context7 and Engram remain installed capabilities but are disabled by default in ordinary OpenCode execution.
+Context7 and Engram remain installed capabilities but are disabled by default in ordinary OpenCode execution. The global OpenCode `AGENTS.md` is intentionally small; Gentle persona/Engram protocol is not restored as unconditional global context.
 
 ## Start here
 
 For a fresh agent or human:
 
 1. `AGENTS.md` — stable repository policy.
-2. `docs/START_HERE.md` — decide shape vs execute and enter safely.
-3. `CODING_STANDARDS.md` — horizontal engineering quality.
-4. Current product/task/ADR authority for the work being executed.
-5. `docs/vnext/CURRENT_COMPATIBILITY.md` only when runtime/provider exceptions matter.
+2. `docs/START_HERE.md` — current front door.
+3. `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md` — minimal ordinary preflight and prompt contract.
+4. `CODING_STANDARDS.md` — horizontal engineering quality.
+5. Current product/task/ADR authority for the work being executed.
+6. `docs/vnext/CURRENT_COMPATIBILITY.md` only when runtime/provider exceptions matter.
 
 Provisioning or rebuilding the stack:
 
-- `docs/vnext/OPENCODE_ZERO_TOUCH_RUNTIME_RECIPE_20260927.md`.
+- `docs/vnext/OPENCODE_SERVE_RUNTIME_RECIPE_20260927.md`.
 
 Current vNext architecture/evidence:
 
@@ -54,16 +55,14 @@ Current vNext architecture/evidence:
 - `docs/vnext/P6_NATIVE_CUTOVER_QUALIFICATION_20260922.md`;
 - `docs/vnext/P7_PROMOTION_20260922.md`;
 - `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md`.
-- `docs/OPENCODE_V1_ZERO_TOUCH_RECOVERY_EVIDENCE_20260927.md` — current zero-touch topology and clean global runtime qualification.
+- `docs/OPENCODE_11832_SERVE_ZERO_TOUCH_QUALIFICATION_20260927.md` — current zero-touch runtime qualification.
 - `docs/vnext/STABLE_RUNTIME_UPDATE_PI0871_20260923.md` — retained Pi rollback provenance.
 - `docs/vnext/SKILL_REGISTRY_WATCHER_INCIDENT_20260923.md`.
 - `docs/vnext/NATIVE_V4_HEAVY_PROMUEVE_CANARY_20260925.md` — first positive `native-v4-heavy` field canary + routing-conformance learning.
 
 ## Execution rule
 
-If durable executable authority already exists, do not rerun shaping by ritual.
-
-Use:
+If durable executable authority already exists, do not rerun shaping by ritual. Use the minimal preflight in `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`, then:
 
 ```text
 accepted bounded ticket/train authority
@@ -97,9 +96,9 @@ Versioned, secret-free:
 - `config/native-gentle/nan-provider.models.json`;
 - `config/native-gentle/opencode-runtime-policy.json` — current runtime/skills/MCP/compatibility policy.
 
-Pi-era profile and skill-policy files remain rollback/provenance surfaces while OpenCode writer routing is requalified under C-071.
+Pi-era profile and skill-policy files remain rollback/provenance surfaces. Ordinary OpenCode tickets use the runtime default model route; alternate routing is an explicit override/experiment, not a mandatory per-ticket selection step.
 
-Validate current authority with:
+After runtime changes/rebuilds/incidents, validate current authority with:
 
 ```bash
 node tools/check-opencode-runtime-policy.mjs
@@ -115,11 +114,11 @@ See `docs/vnext/CURRENT_COMPATIBILITY.md`.
 
 Short version:
 
-- OpenCode is pinned to V1 `1.18.10`; V2 `2.0.18` remains blocked on Gentle review-transport parity;
-- Gentle 3.7's 3-second OpenCode version probe uses the qualified exact-version wrapper;
+- OpenCode `1.18.32` + Gentle AI `3.7.0` + fresh `serve` writer/review hosts is the current qualified runtime; historical `1.18.10` and V2 `2.0.18` results remain evidence only;
+- one-shot `opencode run` is blocked for unattended promotion while the clean-state pre-session `init` hang remains reproducible;
 - Gentle-managed runtime skills live in `~/.config/opencode/skills`; legacy shared `~/.agents/skills` is not active globally;
 - Context7 and Engram are disabled by default and enabled only when the task needs them;
-- nontrivial direct-writer model routing remains a focused C-071 qualification task;
+- ordinary direct-build tickets use the runtime default model route; alternate routes require an explicit override/experiment and bounded evidence;
 - `.atl/` must already be ignored in candidate repositories.
 
 ## Historical material

@@ -2,9 +2,38 @@
 
 Date: 2026-09-27
 
-This file preserves accepted decision provenance. **C-069 onward is the current productive-runtime authority** and supersedes earlier execution-topology/routing decisions where they conflict. C-055–C-068 remain accepted provenance for the Pi/Gentle vNext epoch and for stable policy that C-069+ does not reopen.
+This file preserves accepted decision provenance. **C-073 is the current ordinary-execution authority; C-072 remains the current runtime-transition authority** and supersedes the exact-version/install claims in C-070 while preserving C-069–C-071 as accepted topology/routing evidence. C-055–C-068 remain accepted provenance for the Pi/Gentle vNext epoch and for stable policy not explicitly reopened.
 
 Historical `docs/DECISIONS.md`, Stage files, old run recipes and pre-vNext field evidence remain valuable provenance, but they do not define the current execution path.
+
+## C-073 — Lean execution is the default; heavy gates are trigger-driven
+
+**Accepted 2026-09-27 after OpenCode 1.18.32 serve zero-touch qualification and review of accumulated Pi-era ceremony.**
+
+Atenea no longer treats every substantial ticket as requiring a composition forecast, profile/model selection, child-route probe, broad repository archaeology or Promotion Review before writer authority. Those controls accumulated while Pi/Gentle routing and unattended review seams were unstable; applying all of them universally now duplicates native Gentle ownership and inflates prompts/context without reliably changing the next action.
+
+The normal entry contract is `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`: correct repo/base, accepted task authority, executable outcome/acceptance/constraints, current qualified runtime and publication boundary. Facts already durable in repository/train authority are not re-asked. Train-wide facts are established once; ticket boundaries re-check only state that can actually change.
+
+Ordinary ticket prompts carry the semantic execution contract only. They do not restate `AGENTS.md`, `CODING_STANDARDS.md`, ODD/RDD mechanics, reviewer ordering, tool ownership or historical compatibility prose. Direct `build` uses the runtime default model route unless the human explicitly overrides it, the run is a declared routing experiment, or a concrete route failure justifies a new bounded decision. C-071 remains evidence that no model is universally optimal; it no longer creates a mandatory per-ticket model-selection ceremony.
+
+`WORK_UNIT_COMPOSITION_POLICY_V1.md` becomes conditional. The upstream/default 400 authored-line budget remains a planning signal when composition risk is actually visible, but Atenea drops its extra 600/800 bands and does not require estimates for ordinary bounded tickets. Promotion Review likewise remains available only when material promotion risk is identified.
+
+This decision supersedes prior current-language that made composition forecasting or execution-profile selection universal pre-writer gates. It does not weaken product authority, deterministic checks, native Gentle review/correction/burn, STOP semantics or human publication authority.
+
+## C-072 — Rebuild from zero on current stable upstream; exact versions move out of stable policy
+
+**Accepted 2026-09-27 after the operator-authorized root-clean rebuild.**
+
+The productive host was not migrated. Both OpenCode installations, OpenCode state/cache/config history, legacy binaries and temporary runtime residue were removed from active paths into a reversible quarantine. OpenCode was reinstalled from the current stable npm channel as `1.18.32`; Gentle AI was reinstalled from its official checksum-verified binary installer as `3.7.0`. The historical `1.18.10` zero-touch result remains evidence for the lifecycle shape but is no longer installation authority or a version pin.
+
+Stable `AGENTS.md` policy is version-neutral. Exact runtime versions, provider/runtime defects and temporary transport exceptions belong in `docs/vnext/CURRENT_COMPATIBILITY.md`. Global OpenCode context is deliberately bounded: direct `build` is the ticket parent beneath the Atenea outer supervisor; Context7 and Engram are disabled by default; the generated Gentle persona/mandatory Engram protocol is not restored as unconditional global `AGENTS.md` context.
+
+The clean rebuild disproved the hypothesis that the 20–30 second pre-session stalls were caused only by accumulated local state. OpenCode `1.18.32` reproduces an intermittent one-shot `opencode run` hang at `message=init` even with a brand-new HOME, empty Git repository, `--pure`, no provider config and no Gentle assets. This matches the upstream one-shot init-hang class. Therefore one-shot `run` is not eligible for unattended promotion while that defect remains reproducible.
+
+A fresh `opencode serve` process creates sessions through OpenCode's native HTTP API without that pre-session stall. Bare and fully configured canaries passed, including one real NaN/GLM direct-`build` response. The candidate topology is **fresh serve host per ticket → one bounded session → Gentle lifecycle → terminate host**, preserving fresh-process isolation without introducing a long-lived daemon. This transport remains under requalification until Gentle review/correction/acknowledge-burn and two-ticket zero-touch behavior pass end to end.
+
+Compatibility evidence: `docs/vnext/CURRENT_COMPATIBILITY.md`.
+
 
 ## C-069 — Restore a thin outer supervisor; OpenCode V1 + Gentle 3.7 is the productive zero-touch topology
 

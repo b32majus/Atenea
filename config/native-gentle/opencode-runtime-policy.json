@@ -3,10 +3,11 @@
   "status": "current-qualified-runtime",
   "qualified_at": "2026-09-27",
   "runtime": {
-    "opencode": "1.18.10",
+    "opencode": "1.18.32",
     "gentle_ai": "3.7.0",
-    "normal_topology": "thin-deterministic-supervisor -> fresh-opencode-per-ticket -> gentle-owned-lifecycle",
-    "runtime_install_must_not_live_under_home_dot_opencode": true
+    "normal_topology": "thin-deterministic-supervisor -> fresh-serve-writer-host -> direct-build-session -> gentle-start/consent -> fresh-serve-review-host -> gentle-owned-review/burn -> checkpoint",
+    "runtime_install_must_not_live_under_home_dot_opencode": true,
+    "qualification": "two-ticket-zero-touch-passed; 2/2 terminal review burns; 2/2 git checkpoints; human_touches_after_launch=0"
   },
   "skills": {
     "runtime_owned_root": "~/.config/opencode/skills",
@@ -24,12 +25,17 @@
     "supervisor_owns_review_semantics": false
   },
   "compatibility": {
-    "version_probe": "instant exact --version wrapper; all other invocations delegate to pinned real binary",
-    "opencode_v2_2_0_18": "blocked-until-gentle-review-transport-parity"
+    "legacy_v1_1_18_10": "historical-zero-touch-evidence-only",
+    "one_shot_run": "blocked-for-unattended-promotion: intermittent clean-state pre-session init hang",
+    "serve_transport": "qualified: fresh host per bounded writer/review role; one HTTP session per host",
+    "legacy_v2_2_0_18": "historical plugin-transport failure; not current stable candidate",
+    "version_probe": "version-neutral fast shim required while Gentle 3.7 retains the 3-second OpenCode major probe",
+    "skill_registry": "retained managed plugin; measured small startup overhead/jitter; not the one-shot init-hang root cause"
   },
   "routing": {
     "default_interactive_model": "nan/glm5.3-flash",
     "lifecycle_host": "thin/fresh; GLM synthetic-qualified",
-    "nontrivial_writer": "field-qualification-required"
+    "nontrivial_writer": "runtime-default-unless-explicit-override-or-experiment",
+    "selection_ceremony": "none-on-ordinary-ticket"
   }
 }

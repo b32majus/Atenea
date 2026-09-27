@@ -1,6 +1,6 @@
 # Atenea — OpenCode V1 zero-touch runtime recipe
 
-Status: **CURRENT REPRODUCTION RECIPE**
+Status: **HISTORICAL QUALIFIED RECIPE — OpenCode 1.18.10**
 Date: 2026-09-27
 
 ## Qualified baseline
