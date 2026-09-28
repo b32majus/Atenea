@@ -22,9 +22,11 @@ shaping, only while genuinely active
 
 HOW to implement one already-shaped bounded ticket
 → one plain Pi worker (`pi --no-extensions`)
+→ production-volume by default; complex only on material reasoning/semantic-risk trigger
 
 native candidate review when due
 → Gentle AI through Codex review transport
+→ distinct review-risk/readability/reliability/resilience + conditional refuter/validator
 
 cross-ticket launch / checkpoint / next-or-STOP
 → Pi supervisor + Herdr
@@ -67,6 +69,7 @@ Read:
 6. the specific accepted issue/work order/spec being executed.
 
 For current operation read `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`.
+For prepared routing read `config/native-gentle/prepared-routing-policy.json`.
 For runtime/version exceptions read `docs/vnext/CURRENT_COMPATIBILITY.md`.
 Historical stage documents and `historical/` are evidence, not forward-looking authority.
 
@@ -94,7 +97,9 @@ For already-shaped work, use `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md` and `d
 
 Do **not** send prepared tickets through ODD or `gentle-orchestrator` merely to rediscover product meaning, decomposition or tracking already made durable by the project.
 
-Do **not** require a composition forecast, model/profile-selection ceremony, broad archaeology or Promotion Review for every substantial ticket merely because those controls exist. Open `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` only when concrete evidence shows a coarse/over-budget or genuinely multi-unit delivery shape.
+Do **not** require a composition forecast, broad archaeology or Promotion Review for every substantial ticket merely because those controls exist. `production-volume` is the default implementation route; use `complex` only when the current ticket already carries a material trigger defined in `config/native-gentle/prepared-routing-policy.json`.
+
+Open `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` only when concrete evidence shows a coarse/over-budget or genuinely multi-unit delivery shape.
 
 For material work, executable authority must still be sufficiently falsifiable for its risk: applicable invariants, negative/adversarial cases, integration seams, performance criteria when material, and deterministic acceptance belong in durable task authority when they change correctness. This is a quality requirement, not paperwork.
 
@@ -104,12 +109,22 @@ The thin outer supervisor owns only:
 
 - already-authorized train frontier;
 - launch/observation of exactly one ticket worker;
+- prepared-profile selection at a clean candidate/work-unit boundary;
 - procedural answers already contained in durable authority;
 - exact relay of already-authorized candidate-scoped review consent;
 - durable Git/checkpoint reconciliation;
 - next compatible ticket or terminal STOP.
 
 The normal ticket worker is one plain Pi child launched through Herdr with `--no-extensions` in the target worktree.
+
+Prepared implementation routing:
+
+```text
+production-volume (default) → nan/deepseek-v4-flash
+complex                     → nan/glm5.3-flash · high
+```
+
+`complex` is for material reasoning/semantic risk, not mere mechanical volume. Do not switch profile in the middle of an active candidate/review lineage.
 
 Before product writes the worker reads the target repository's current authority, normally including:
 
@@ -133,7 +148,7 @@ Use supported native surfaces and follow provider/runtime-issued transitions exa
 
 Runtime mechanics may decide **how** accepted work is performed. They may not expand **what** accepted authority authorized.
 
-## 7. Review transport
+## 7. Review transport and reviewer routing
 
 Prepared-ticket review enters native Gentle through Codex transport after the candidate commit:
 
@@ -147,6 +162,21 @@ gentle-ai review assess \
 ```
 
 If `review_due=true`, execute the returned `next_transition.command` literally. After START, preserve the exact lineage/revision/target and route only through provider-issued transitions.
+
+Codex transport preserves distinct native roles:
+
+```text
+review-risk
+review-readability
+review-reliability
+review-resilience
+review-refuter      # conditional
+review-validator    # conditional
+```
+
+Both implementation profiles share `config/native-gentle/prepared-codex-rdd-quality.profile.json`. This avoids cross-project races on global reviewer-routing state.
+
+Current Gentle Codex per-phase model assignments use model IDs exposed by Codex. Do not assume historical OpenCode V4/GLM/MiMo reviewer pins apply to the C-077 Codex transport.
 
 Plain Pi is **not** a Gentle Pi review host. Never manually export `GENTLE_PI_REVIEW_RELAY_CONTRACT` to make `pi --no-extensions` impersonate the Gentle Shell relay.
 
