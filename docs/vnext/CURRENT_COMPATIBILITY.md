@@ -101,11 +101,18 @@ That contract belongs to the Gentle Shell/Pi host relay. A plain Pi child cannot
 
 Prepared-ticket Atenea therefore uses Codex as review transport.
 
-## 4. Pi resource discovery and project skills
+## 4. Pi resource discovery, trust and project skills
 
-`pi --no-extensions` disables extensions, not repository context or skills. In qualification, plain Pi still discovered `AGENTS.md`, global skills and the project-local `.agents/skills` tree.
+`pi --no-extensions` disables extensions; it does not disable repository context or skill discovery. Pi supports trusted project skills from both:
 
-Pi rejected a project skill lacking a description with:
+```text
+.pi/skills/
+.agents/skills/
+```
+
+Pi project trust gates protected project resources, including both project skill roots. In unattended/non-interactive use, if no saved trust decision applies and the worker must consume intentionally trusted repository resources, pass Pi's one-run `--approve` override together with `--no-extensions`. This grants resource loading for that run; it is not a sandbox or permission to trust arbitrary checkouts.
+
+Qualification directly observed `AGENTS.md`, global skills and a project-local `.agents/skills` tree under plain Pi. It also observed fail-closed skill validation when a project skill lacked a description:
 
 ```text
 Skill conflicts
@@ -113,20 +120,13 @@ Skill conflicts
   description is required
 ```
 
-Compatibility rule for active project-local skills intended for the prepared-ticket worker:
+Compatibility rules:
 
-```text
-.agents/skills/<skill>/SKILL.md
-```
-
-with valid YAML frontmatter containing at least:
-
-```yaml
-name: <skill-name>
-description: <non-empty trigger/purpose>
-```
-
-Do not bulk-copy runtime-specific skills between `.pi`, `.agents`, OpenCode or Codex roots merely to make directory layouts look uniform. Canonicalize a project-local skill under `.agents/skills` when it is actual cross-runtime project authority; leave runtime-owned/global assets with their owner.
+- keep valid `.pi/skills` where they are intentionally Pi-specific/project-local;
+- prefer `.agents/skills/<skill>/SKILL.md` when the skill is intended as cross-runtime project authority;
+- do not bulk-copy or migrate skills merely to normalize directory layout;
+- discovered `SKILL.md` files should contain valid YAML frontmatter with at least non-empty `name` and `description`;
+- leave runtime-owned/global assets with their owner.
 
 ## 5. Review entry and committed candidates
 
@@ -207,6 +207,7 @@ The current productive baseline is defined by:
 
 - `AGENTS.md`;
 - `docs/START_HERE.md`;
+- `docs/CURRENT_EXECUTION_DECISION_C077.md`;
 - `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`;
 - `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`;
 - this document.
