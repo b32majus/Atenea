@@ -1,0 +1,20 @@
+{
+  "schema": "atenea.prepared-ticket-profile/v1",
+  "name": "complex",
+  "status": "current-triggered",
+  "purpose": "Triggered prepared-ticket route for materially harder reasoning while preserving the same qualified native Gentle review boundary.",
+  "implementation": {
+    "runtime": "pi",
+    "agent_args": ["--no-extensions"],
+    "model": "nan/glm5.3-flash",
+    "variant": "high"
+  },
+  "review": {
+    "transport": "codex",
+    "profile": "codex-rdd-quality"
+  },
+  "fallback": {
+    "runtime": "opencode-build",
+    "condition": "concrete Pi runtime/tooling failure"
+  }
+}
