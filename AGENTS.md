@@ -25,7 +25,7 @@ HOW to implement one already-shaped bounded ticket
 → production-volume by default; complex only on material reasoning/semantic-risk trigger
 
 native candidate review when due
-→ Gentle AI through Codex review transport
+→ Gentle AI through qualified OpenCode V1 review transport
 → distinct review-risk/readability/reliability/resilience + conditional refuter/validator
 
 cross-ticket launch / checkpoint / next-or-STOP
@@ -38,7 +38,7 @@ publish / merge
 → target repository policy + explicit human authority
 ```
 
-OpenCode Build is the qualified fallback ticket worker. It does not become authority to reopen product shaping.
+OpenCode Build V1 is the qualified fallback implementation worker. It does not become authority to reopen product shaping.
 
 No methodology or runtime tool may silently invent product semantics, acceptance criteria, domain rules or publication authority merely because it needs them to proceed.
 
@@ -97,7 +97,7 @@ For already-shaped work, use `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md` and `d
 
 Do **not** send prepared tickets through ODD or `gentle-orchestrator` merely to rediscover product meaning, decomposition or tracking already made durable by the project.
 
-Do **not** require a composition forecast, broad archaeology or Promotion Review for every substantial ticket merely because those controls exist. `production-volume` is the default implementation route; use `complex` only when the current ticket already carries a material trigger defined in `config/native-gentle/prepared-routing-policy.json`.
+Do **not** require a composition forecast, broad archaeology or Promotion Review for every substantial ticket merely because those controls exist. `production-volume` is the default route; use `complex` only when the current ticket already carries a material trigger defined in `config/native-gentle/prepared-routing-policy.json`.
 
 Open `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` only when concrete evidence shows a coarse/over-budget or genuinely multi-unit delivery shape.
 
@@ -117,11 +117,11 @@ The thin outer supervisor owns only:
 
 The normal ticket worker is one plain Pi child launched through Herdr with `--no-extensions` in the target worktree.
 
-Prepared implementation routing:
+Prepared routing:
 
 ```text
-production-volume (default) → nan/deepseek-v4-flash
-complex                     → nan/glm5.3-flash · high
+production-volume (default) → Pi + nan/deepseek-v4-flash
+complex                     → Pi + nan/glm5.3-flash · high
 ```
 
 `complex` is for material reasoning/semantic risk, not mere mechanical volume. Do not switch profile in the middle of an active candidate/review lineage.
@@ -135,35 +135,26 @@ Before product writes the worker reads the target repository's current authority
 
 The worker owns implementation, deterministic checks/oracles, the authorized local candidate commit and entry into native Gentle review.
 
-Atenea does **not** own or reconstruct:
-
-- Gentle review transaction state;
-- lens selection;
-- candidate-causality classification;
-- refuter/validator semantics;
-- bounded correction authority;
-- acknowledgement/burn.
-
-Use supported native surfaces and follow provider/runtime-issued transitions exactly.
+Atenea does **not** own or reconstruct Gentle review transaction state, lens selection, candidate-causality classification, refuter/validator semantics, bounded correction authority or acknowledgement/burn. Use supported native surfaces and follow provider/runtime-issued transitions exactly.
 
 Runtime mechanics may decide **how** accepted work is performed. They may not expand **what** accepted authority authorized.
 
 ## 7. Review transport and reviewer routing
 
-Prepared-ticket review enters native Gentle through Codex transport after the candidate commit:
+Prepared-ticket review enters native Gentle through the qualified OpenCode V1 transport after the candidate commit:
 
 ```bash
 gentle-ai review assess \
   --cwd "$PWD" \
-  --agent codex \
+  --agent opencode \
   --base-ref <last-reviewed-or-ticket-base> \
   --committed-only \
   --json
 ```
 
-If `review_due=true`, execute the returned `next_transition.command` literally. After START, preserve the exact lineage/revision/target and route only through provider-issued transitions.
+If `review_due=true`, execute the returned `next_transition.command` literally. After START, preserve exact lineage/revision/target and route only through provider-issued transitions.
 
-Codex transport preserves distinct native roles:
+OpenCode V1 preserves distinct native roles:
 
 ```text
 review-risk
@@ -174,9 +165,10 @@ review-refuter      # conditional
 review-validator    # conditional
 ```
 
-Both implementation profiles share `config/native-gentle/prepared-codex-rdd-quality.profile.json`. This avoids cross-project races on global reviewer-routing state.
+Profile-specific desired routing is stored in:
 
-Current Gentle Codex per-phase model assignments use model IDs exposed by Codex. Do not assume historical OpenCode V4/GLM/MiMo reviewer pins apply to the C-077 Codex transport.
+- `config/native-gentle/prepared-production-volume.profile.json`;
+- `config/native-gentle/prepared-complex.profile.json`.
 
 Plain Pi is **not** a Gentle Pi review host. Never manually export `GENTLE_PI_REVIEW_RELAY_CONTRACT` to make `pi --no-extensions` impersonate the Gentle Shell relay.
 
@@ -197,26 +189,17 @@ Keep intentional Pi-specific/project resources under `.pi/skills`. Prefer `.agen
 
 Project skill resources are subject to Pi project trust. An unattended worker that must consume intentionally trusted project-local skills/settings may use Pi's one-run `--approve` trust override. Project trust controls resource loading; it is not a sandbox or permission to trust arbitrary code.
 
-Discovered `SKILL.md` files should contain valid YAML frontmatter with non-empty:
-
-```yaml
-name: <skill-name>
-description: <when/why to use it>
-```
+Discovered `SKILL.md` files should contain valid YAML frontmatter with non-empty `name` and `description`.
 
 Do not duplicate Atenea lifecycle/model-routing/provider policy into product skills. Project skills own domain, engineering, UI, QA and documentation guidance.
 
 Legacy/runtime-owned global skill roots remain owned by their runtimes; do not mass-migrate or duplicate them without a concrete compatibility reason.
 
-Matt Pocock skills remain optional discovery/shaping tools, not a mandatory runtime prelude.
-
 ## 9. Fallback
 
-If plain Pi has a concrete runtime/tooling failure, preserve the current worktree and durable checkpoint and relaunch the **same prepared-ticket contract** with qualified OpenCode Build.
+If plain Pi has a concrete runtime/tooling failure, preserve the current worktree and durable checkpoint and relaunch the **same prepared-ticket contract** with qualified OpenCode Build V1.
 
-Do not use `gentle-orchestrator` as the fallback merely because OpenCode is the host. OpenCode implementation and Codex review transport remain separate responsibilities.
-
-Exact fallback/runtime compatibility lives in `docs/vnext/CURRENT_COMPATIBILITY.md`.
+Do not use `gentle-orchestrator` as the fallback merely because OpenCode is the host. Exact fallback/runtime compatibility lives in `docs/vnext/CURRENT_COMPATIBILITY.md`.
 
 ## 10. Verification and engineering quality
 
@@ -234,13 +217,6 @@ Review approval is not push/PR/merge/deploy authority. Follow target repository 
 
 ## 12. Repository entry and resumption
 
-When entering or resuming a repository:
-
-- find current Git/GitHub/product authority first;
-- inventory old harness/tooling read-only when relevant;
-- classify signals as current / compatibility-required / historical / stale-or-unknown;
-- do not delete or reactivate old tooling by assumption;
-- do not resume stale hidden session state merely because it exists;
-- preserve existing worktree/commit progress when adapting a train to the current protocol.
+When entering or resuming a repository, find current Git/GitHub/product authority first; inventory old harness/tooling read-only when relevant; do not resume stale hidden session state merely because it exists; and preserve existing worktree/commit progress when adapting a train to the current protocol.
 
 Durable Git/GitHub/product evidence outranks remembered agent/session state.
