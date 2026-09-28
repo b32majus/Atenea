@@ -1,131 +1,44 @@
 # Atenea Operator Runbook
 
-Status: **SUPERSEDED OPERATOR PATH — ROLLBACK/PROVENANCE**
+Status: **CURRENT POINTER**
 
-Current operational authority: `docs/OPERATOR_RUNBOOK_OPENCODE_ZERO_TOUCH_V1.md`. The Pi path below remains rollback/provenance.
+Current productive prepared-ticket authority:
 
-This runbook starts after product/task authority is already accepted.
+- `docs/START_HERE.md`
+- `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`
+- `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`
+- `docs/vnext/CURRENT_COMPATIBILITY.md`
 
-## 1. Enter safely
-
-From a clean target worktree:
-
-```bash
-git status --short
-grep -Fx '.atl/' .gitignore
-```
-
-If repository/task authority is unclear, stop and return to `docs/START_HERE.md`.
-
-## 2. Select the execution profile, then give Pi the accepted work
-
-Before writer authority, resolve composition and explicitly choose `native-balanced`, `native-v4-heavy` or eligibility-gated `native-economy` under `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md`. `native-nan` is rollback only. Keep the chosen profile stable through every active work-unit/review lineage; no quota-based auto-routing or silent fallback.
-
-Use Gentle's native profile/pin surface so parallel repositories remain independent. A repository/local pin selects subagent routing only; if the intended orchestrator differs from the current session, select/verify it separately through Pi's native model surface. Then launch:
-
-```bash
-pi
-```
-
-Run `node tools/check-native-gentle-profile.mjs` for static store/snapshot conformance. When a pin is material, run it with `ATENEA_PROFILE_PIN_CWD=<worktree>` and `ATENEA_EXPECT_PROFILE=<profile>` to prove the native pin winner. For candidate first-use, material routing changes, profile-semantics runtime upgrades or routing incidents, launch one **read-only native child probe** and require matching `PI_PROVIDER`, `PI_MODEL`, `PI_REASONING_LEVEL`, correct `pwd` and zero probe mutation before the first writer edit. Then provide the bounded task/spec/work order and material constraints.
-
-Do not paste a second Gentle state machine into the prompt.
-
-Native Gentle owns ODD, delegation, verify and review lifecycle.
-
-## 3. Let native workflow run
-
-Expected shape when required:
+## Current normal path
 
 ```text
-accepted work
-→ ODD/classification
-→ bounded worker(s)
-→ verify/tests
-→ work-unit commit
-→ ASSESS / provider review decision
-→ native reviewer lifecycle
-→ acknowledge-approved
-→ authority burned
+accepted prepared ticket/train
+→ Pi supervisor + Herdr
+→ ONE plain Pi child (`pi --no-extensions`)
+→ repository authority + applicable project skills
+→ implementation + deterministic checks/oracles
+→ local candidate commit
+→ native Gentle ASSESS with `--agent codex`
+→ exact provider-issued review continuation when due
+→ terminal / durable checkpoint
 ```
 
-Not every small task must exercise every stage. Follow native/provider output rather than manufacturing ceremony.
+OpenCode Build is the qualified fallback ticket worker after a concrete Pi runtime/tooling failure. Do not route prepared tickets through `gentle-orchestrator` merely because OpenCode is used as fallback.
 
-## 4. Known compatibility behavior
+Plain Pi is not a Gentle Shell review host. Never manually set `GENTLE_PI_REVIEW_RELAY_CONTRACT`; native review uses Codex transport.
 
-See `docs/vnext/CURRENT_COMPATIBILITY.md`.
+## Historical operator paths
 
-Operationally:
+The following remain evidence/recovery references for the runtimes they actually qualified; they are not the current prepared-ticket entry:
 
-- if ASSESS yields a typed `risk=unassessable` fail-closed plan, follow its requested verification path;
-- do not synthesize START because ASSESS is unavailable;
-- when `acknowledge-approved` reports `authority=burned`, review is terminal;
-- do not require selectorless STATUS after burn;
-- reviewer routing comes from the selected profile; the all-GLM `thinking=low` mitigation belongs only to `native-nan` rollback compatibility.
+- `docs/OPERATOR_RUNBOOK_OPENCODE_SERVE_V1.md`
+- `docs/OPERATOR_RUNBOOK_OPENCODE_ZERO_TOUCH_V1.md`
+- older Gentle-Pi/native-profile run recipes
 
-## 5. Deterministic verification
+Do not rewrite historical evidence to pretend it tested the current topology.
 
-Run the target repository's real checks.
+## Publication and worktree hygiene
 
-For Atenea itself:
+Review approval does not authorize push/PR/merge/deploy. Follow the target repository's explicit publication policy and human authority.
 
-```bash
-node tools/check-native-gentle-profile.mjs
-node tools/check-native-gentle-skills.mjs
-node tools/check-vnext-authority.mjs
-```
-
-Before publication, validate the artifact types actually changed.
-
-## 6. Persistent sessions
-
-Herdr is allowed for session persistence and observability.
-
-It does not grant:
-
-- product authority;
-- review consent;
-- reviewer verdicts;
-- merge authority.
-
-A normal `herdr server` process is not legacy Atenea contamination.
-
-## 7. Finish
-
-A correct technical completion reports:
-
-- what changed;
-- deterministic verification;
-- native review outcome when applicable;
-- remaining findings/debt;
-- whether publication happened.
-
-Review approval does not imply push/PR/merge.
-
-## 8. Dispose the merged execution worktree
-
-After the corresponding PR/train is merged, evaluate the execution worktree for disposal. It is eligible only when the merged/promotion evidence is durable elsewhere, no required local-only commit or uncommitted/untracked artifact remains, no active process/session depends on the directory, and the path is not the canonical repository checkout.
-
-Then remove it normally and prune metadata:
-
-```bash
-git worktree remove <worktree-path>
-git worktree prune
-```
-
-Do not use `--force` for routine cleanup. If Git refuses normal removal, reconcile the remaining state first. Branch deletion is separate from worktree disposal.
-
-Start subsequent work from refreshed durable authority in a fresh clean worktree rather than accumulating/reusing merged execution surfaces.
-
-## 9. Do not do
-
-Do not:
-
-- start pi-intercom for review consent;
-- load Atenea RDD relay;
-- apply historical Gentle bridge patches;
-- resurrect effective-mode;
-- infer current authority from old sessions;
-- rerun shaping on accepted work by ritual;
-- create a second review lifecycle;
-- auto-merge.
+Do not delete or recycle an execution worktree until required local state/evidence is durable elsewhere and no active process depends on it. Do not use forced worktree removal as routine cleanup.
