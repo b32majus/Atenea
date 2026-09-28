@@ -2,43 +2,53 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),"..");
-const failures=[];
-const read=(rel)=>{ const p=path.join(root,rel); if(!fs.existsSync(p)){ failures.push(`missing current authority surface: ${rel}`); return ""; } return fs.readFileSync(p,"utf8"); };
-const req=(rel,text,label)=>{ const b=read(rel); if(b && !b.includes(text)) failures.push(`${label} missing in ${rel}`); };
-const forbid=(rel,text,label)=>{ const b=read(rel); if(b.includes(text)) failures.push(`${label} forbidden in ${rel}`); };
-const surfaces=["README.md","AGENTS.md","CONTEXT.md","docs/START_HERE.md","docs/ATENEA_HARNESS_CONTRACT_V1.md"];
 
-req("README.md","Qualified from the clean rebuild and two-ticket zero-touch train on 2026-09-27","current qualified runtime");
-req("README.md","docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md","lean preflight front door");
-req("AGENTS.md","docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md","lean execution entry policy");
-req("CONTEXT.md","OpenCode 1.18.32","current runtime in context");
-req("docs/START_HERE.md","RUNTIME_STATE      = QUALIFIED","front-door qualification state");
-req("docs/START_HERE.md","writer role        = atenea-writer","lean writer role");
-req("docs/START_HERE.md","review host role    = atenea-review-host","lean review-host role");
-req("docs/START_HERE.md","normal transport    = fresh `opencode serve` host per bounded writer/review role + one HTTP session","qualified serve transport");
-req("docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md","Status: **CURRENT EXECUTION ENTRY CONTRACT**","lean execution entry contract");
-req("docs/OPERATOR_RUNBOOK_OPENCODE_SERVE_V1.md","Status: **CURRENT QUALIFIED RUNBOOK**","current serve runbook");
-req("docs/vnext/OPENCODE_SERVE_RUNTIME_RECIPE_20260927.md","Status: **CURRENT QUALIFIED RECIPE**","current serve recipe");
-req("docs/OPENCODE_11832_SERVE_ZERO_TOUCH_QUALIFICATION_20260927.md","Status: **QUALIFIED CURRENT EVIDENCE**","serve qualification evidence");
-req("docs/CURRENT_DECISIONS.md","## C-074 — Train roles use lean OpenCode tool surfaces; full `build` is not the ordinary writer","lean context decision");
-req("docs/CURRENT_DECISIONS.md","## C-075 — Two OpenCode routing profiles replace Pi-era per-ticket profile ceremony","current routing decision");
-req("config/native-gentle/opencode-routing-policy.json","production-volume","current routing policy");
-req("config/native-gentle/opencode-nan-provider.models.json","mimo-v2.6-flash","current OpenCode NaN model catalog");
-req("docs/OPENCODE_MODEL_ROUTING_QUALIFICATION_20260927.md","Status: **CURRENT ROUTING EVIDENCE**","current routing evidence");
-req("docs/CURRENT_DECISIONS.md","## C-073 — Lean execution is the default; heavy gates are trigger-driven","lean execution decision");
-req("docs/OPENCODE_LEAN_CONTEXT_QUALIFICATION_20260927.md","Status: **QUALIFIED CURRENT EVIDENCE**","lean context qualification evidence");
-req("docs/CURRENT_DECISIONS.md","## C-072 — Rebuild from zero on current stable upstream; exact versions move out of stable policy","runtime transition decision");
-req("config/native-gentle/opencode-runtime-policy.json","current-qualified-runtime","runtime policy qualification state");
-req(".gitignore",".atl/","Gentle runtime ignore");
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const failures = [];
+const read = (r) => {
+  const p = path.join(root, r);
+  if (!fs.existsSync(p)) { failures.push(`missing current authority surface: ${r}`); return ""; }
+  return fs.readFileSync(p, "utf8");
+};
+const req = (r,t,l) => { const b=read(r); if (b && !b.includes(t)) failures.push(`${l} missing in ${r}`); };
+const forbid = (r,t,l) => { const b=read(r); if (b.includes(t)) failures.push(`${l} forbidden in ${r}`); };
 
-for(const rel of surfaces){
-  forbid(rel,"Atenea runtime controllers = 0","obsolete zero-controller front door");
-  forbid(rel,"native execution runtime (currently Pi + Gentle)","obsolete Pi current runtime");
-  forbid(rel,"OpenCode is pinned to V1 `1.18.10`","obsolete V1 current pin");
-  forbid(rel,"FIELD_QUALIFICATION_REQUIRED","obsolete universal writer-selection gate");
-  forbid(rel,"For every planned ticket/train","obsolete universal profile-selection ceremony");
-  forbid(rel,"For every substantial accepted Work Order","obsolete universal composition ceremony");
+const current = [
+  "README.md",
+  "AGENTS.md",
+  "CONTEXT.md",
+  "docs/START_HERE.md",
+  "docs/CURRENT_EXECUTION_DECISION_C077.md",
+  "docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md",
+  "docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md",
+  "docs/PREPARED_TRAIN_HANDOFF_C077.md",
+  "docs/vnext/CURRENT_COMPATIBILITY.md",
+  "config/native-gentle/prepared-routing-policy.json",
+  "config/native-gentle/prepared-production-volume.profile.json",
+  "config/native-gentle/prepared-complex.profile.json"
+];
+for (const r of current) read(r);
+
+req("docs/START_HERE.md", "prepared worker     = ONE plain Pi child", "plain Pi prepared worker");
+req("docs/START_HERE.md", "review transport    = qualified OpenCode V1", "OpenCode V1 review transport");
+req("docs/START_HERE.md", "production-volume → Pi worker on nan/deepseek-v4-flash", "production-volume Pi route");
+req("docs/START_HERE.md", "complex → Pi worker on nan/glm5.3-flash", "complex Pi route");
+req("AGENTS.md", "OpenCode V1 is not the ordinary prepared-ticket writer", "OpenCode review/fallback boundary");
+req("docs/CURRENT_EXECUTION_DECISION_C077.md", "Status: **CURRENT EXECUTION DECISION**", "C-077 current decision");
+req("docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md", "--agent opencode", "native OpenCode review entry");
+req("docs/PREPARED_TRAIN_HANDOFF_C077.md", "no ODD, no gentle-orchestrator", "prepared-ticket ODD bypass");
+
+for (const r of current) {
+  forbid(r, "review assess --agent codex", "stale Codex review transport");
+  forbid(r, "native Gentle review via Codex", "stale Codex review prose");
+  forbid(r, "Pi / Gentle Pi      = rollback/provenance surface, not normal productive train entry", "stale Pi rollback-only authority");
+  forbid(r, "ordinary train writer is `atenea-writer`", "stale OpenCode prepared writer authority");
+  forbid(r, "ticket primary     = gentle-orchestrator", "stale orchestrator primary");
 }
-if(failures.length){ console.error("ATENEA_VNEXT_AUTHORITY_CHECK=FAIL"); failures.forEach(x=>console.error(`- ${x}`)); process.exit(1); }
+
+if (failures.length) {
+  console.error("ATENEA_VNEXT_AUTHORITY_CHECK=FAIL");
+  failures.forEach((x)=>console.error(`- ${x}`));
+  process.exit(1);
+}
 console.log("ATENEA_VNEXT_AUTHORITY_CHECK=PASS");

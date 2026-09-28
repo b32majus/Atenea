@@ -1,0 +1,22 @@
+{
+  "schema": "atenea.prepared-ticket-routing-policy/v1",
+  "status": "current",
+  "default_profile": "production-volume",
+  "complex_profile": "complex",
+  "selection": "Start with production-volume unless durable task authority already contains a material complex trigger. Change profile only at a clean candidate/work-unit boundary.",
+  "complex_triggers": [
+    "novel or cross-cutting architecture spanning materially coupled modules",
+    "complex concurrency, temporal, scheduling, state-machine, solver or optimization semantics",
+    "material security, privacy, authorization, tenancy, clinical-meaning or trust-boundary risk",
+    "delicate data migration, backwards compatibility or distributed invariant work",
+    "repeated semantic or bounded-correction failure under production-volume"
+  ],
+  "non_triggers": [
+    "file count by itself",
+    "a long but mechanically clear ticket",
+    "ordinary UI work",
+    "many tests by itself",
+    "business importance without corresponding reasoning or semantic risk"
+  ],
+  "profile_boundary": "Do not switch profile inside an active candidate/review lineage."
+}

@@ -1,140 +1,102 @@
 # Atenea
 
-Atenea is an **upstream-first policy, configuration and conformance layer** for autonomous engineering work.
+Atenea is an **upstream-first policy, configuration and conformance layer** for autonomous engineering work. It is not a second implementation/review framework around Gentle.
 
-It is no longer a custom execution harness.
+## Current prepared-ticket runtime
 
-Atenea is not a second engineering/review harness around Gentle. Gentle owns candidate review/correction/burn. Atenea now also owns one thin deterministic outer train supervisor for fresh-process launch, exact bounded consent transport, checkpoint reconciliation and next-or-STOP. It keeps the durable layer that remains valuable above upstream:
-
-- repository and engineering policy;
-- phase-scoped shaping guidance;
-- secret-free provider/profile desired state;
-- deterministic conformance evidence;
-- publication/Git guardrails;
-- architectural and qualification provenance.
-
-## Current runtime state
-
-Qualified from the clean rebuild and two-ticket zero-touch train on 2026-09-27:
+Qualified 2026-09-28:
 
 ```text
-thin deterministic Atenea supervisor
-→ fresh OpenCode host per bounded ticket/phase
-→ one bounded `atenea-writer` session (direct primary; lean tool surface)
-→ Gentle AI 3.7.0 lifecycle
-→ deterministic project verification
-→ Gentle review / correction / acknowledge-burn
+Pi supervisor + Herdr
+→ select prepared profile at a clean candidate/work-unit boundary
+   - production-volume (default) → DeepSeek V4 Flash
+   - complex → GLM 5.3 Flash high
+→ ONE plain Pi ticket worker (`pi --no-extensions`)
+→ repository authority + applicable project skills
+→ implementation + deterministic checks/oracles
+→ local candidate commit
+→ native Gentle ASSESS / RDD through qualified OpenCode V1 review transport
+→ risk / readability / reliability / resilience
+→ conditional refuter / bounded correction / validator
+→ acknowledge-approved / burn
 → durable checkpoint
-→ fresh host/context for next ticket or STOP
+→ next authorized ticket or STOP
 ```
 
-The current qualified runtime uses OpenCode `1.18.32` and Gentle AI `3.7.0`. The old `1.18.10` zero-touch train remains valid historical evidence, but it is no longer a version pin. One-shot `opencode run` remains blocked for unattended use because a clean `1.18.32` HOME reproduces an intermittent pre-session `init` hang. Fresh `opencode serve` hosts for bounded writer/review roles passed a two-ticket zero-touch train with 2/2 terminal Gentle burns, 2/2 Git checkpoints and `HUMAN_TOUCH_AFTER_LAUNCH=0`.
-
-Context7 and Engram remain installed capabilities but are disabled by default in ordinary OpenCode execution. The global OpenCode `AGENTS.md` is intentionally small; Gentle persona/Engram protocol is not restored as unconditional global context.
+OpenCode V1 is **review transport and qualified fallback implementation runtime**, not the normal prepared-ticket writer. Prepared tickets do not enter ODD or `gentle-orchestrator`.
 
 ## Start here
 
-For a fresh agent or human:
+For a fresh agent or human, read in this order:
 
 1. `AGENTS.md` — stable repository policy.
 2. `docs/START_HERE.md` — current front door.
-3. `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md` — minimal ordinary preflight and prompt contract.
-4. `CODING_STANDARDS.md` — horizontal engineering quality.
-5. Current product/task/ADR authority for the work being executed.
-6. `docs/vnext/CURRENT_COMPATIBILITY.md` only when runtime/provider exceptions matter.
+3. `docs/CURRENT_EXECUTION_DECISION_C077.md` — current prepared-ticket topology/routing decision.
+4. `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md` — minimal execution entry contract.
+5. `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md` — current operator path.
+6. `docs/PREPARED_TRAIN_HANDOFF_C077.md` — reusable train-adaptation handoff.
+7. `CODING_STANDARDS.md` — horizontal engineering quality.
+8. current product/task/ADR authority for the work being executed.
+9. `docs/vnext/CURRENT_COMPATIBILITY.md` only when runtime/provider exceptions matter.
 
-Provisioning or rebuilding the stack:
+Historical OpenCode-first, Gentle-Pi and ODD documents remain evidence for what they tested; they do not define the current prepared-ticket entry.
 
-- `docs/vnext/OPENCODE_SERVE_RUNTIME_RECIPE_20260927.md`.
+## Prepared profiles
 
-Current vNext architecture/evidence:
-
-- `docs/vnext/ATENEA_MINIMAL_CORE_V1.md`;
-- `docs/vnext/P4_POSITIVE_REBUILD_QUALIFICATION_20260922.md`;
-- `docs/vnext/P5_OPERATIONAL_SIMPLIFICATION_20260922.md`;
-- `docs/vnext/P6_NATIVE_CUTOVER_QUALIFICATION_20260922.md`;
-- `docs/vnext/P7_PROMOTION_20260922.md`;
-- `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md`.
-- `docs/OPENCODE_11832_SERVE_ZERO_TOUCH_QUALIFICATION_20260927.md` — current zero-touch runtime qualification.
-- `docs/vnext/STABLE_RUNTIME_UPDATE_PI0871_20260923.md` — retained Pi rollback provenance.
-- `docs/vnext/SKILL_REGISTRY_WATCHER_INCIDENT_20260923.md`.
-- `docs/vnext/NATIVE_V4_HEAVY_PROMUEVE_CANARY_20260925.md` — first positive `native-v4-heavy` field canary + routing-conformance learning.
-
-## Execution rule
-
-If durable executable authority already exists, do not rerun shaping by ritual. Use the minimal preflight in `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`, then:
+`production-volume` is the default:
 
 ```text
-accepted bounded ticket/train authority
-→ thin deterministic supervisor
-→ fresh lean `atenea-writer`
-→ deterministic verification
-→ native Gentle review/correction lifecycle
-→ APPROVED + acknowledge-approved + authority burned
-→ durable checkpoint
-→ fresh context for next compatible ticket or STOP
-→ publication boundary remains human/repository-owned
+Pi worker → nan/deepseek-v4-flash
 ```
 
-Do not place `gentle-orchestrator` beneath the Atenea supervisor as another ticket parent. Do not restore a long-lived model parent merely to carry train continuity.
+`complex` is trigger-driven:
 
-## Shaping rule
-
-If work is genuinely unshaped, use the smallest adopted shaping path that produces durable executable authority.
-
-Current P3 decision:
-
-- minimal semantic execution contract → native Gentle by default;
-- native ODD direct for already-unambiguous work;
-- Matt skills optional for discovery/shaping;
-- OpenSpec optional native SDD when durable specs/change history add value.
-
-## Desired-state configuration
-
-Versioned, secret-free:
-
-- `config/native-gentle/opencode-nan-provider.models.json` — current OpenCode NaN model declarations;
-- `config/native-gentle/nan-provider.models.json` — Pi-era provider snapshot retained for rollback/provenance;
-- `config/native-gentle/opencode-runtime-policy.json` — current runtime/skills/MCP/compatibility policy.
-- `config/native-gentle/opencode-routing-policy.json` — current two-profile routing authority (`production-volume` / `complex`).
-- `docs/OPENCODE_MODEL_ROUTING_QUALIFICATION_20260927.md` — current MiMo/V4/GLM/Luna/Sol role evidence.
-
-Pi-era profile and skill-policy files remain rollback/provenance surfaces. Current OpenCode routing is `production-volume` by default with trigger-driven `complex`; this is not a mandatory per-ticket selection step.
-
-After runtime changes/rebuilds/incidents, validate current authority with:
-
-```bash
-node tools/check-opencode-runtime-policy.mjs
-node tools/check-opencode-routing-profiles.mjs
-node tools/check-vnext-authority.mjs
-gentle-ai doctor
+```text
+Pi worker → nan/glm5.3-flash · high
 ```
 
-Credentials never belong in Git.
+Use `complex` only for material reasoning/semantic risk: novel or cross-cutting architecture; difficult concurrency/temporal/scheduling/state/solver semantics; material security/privacy/auth/tenancy/clinical/trust-boundary semantics; delicate migration/back-compat/distributed invariants; or repeated semantic/correction failure under `production-volume`.
 
-## Current compatibility exceptions
+File count, ticket length, ordinary UI, many tests, or business importance alone are not triggers.
 
-See `docs/vnext/CURRENT_COMPATIBILITY.md`.
+Canonical prepared routing:
 
-Short version:
+- `config/native-gentle/prepared-routing-policy.json`;
+- `config/native-gentle/prepared-production-volume.profile.json`;
+- `config/native-gentle/prepared-complex.profile.json`.
 
-- OpenCode `1.18.32` + Gentle AI `3.7.0` + fresh `serve` writer/review hosts is the current qualified runtime; historical `1.18.10` and V2 `2.0.18` results remain evidence only;
-- one-shot `opencode run` is blocked for unattended promotion while the clean-state pre-session `init` hang remains reproducible;
-- Gentle-managed runtime skills live in `~/.config/opencode/skills`; legacy shared `~/.agents/skills` is not active globally;
-- Context7 and Engram are disabled by default and enabled only when the task needs them;
-- ordinary `atenea-writer` tickets use `production-volume`; `atenea-review-host` uses MiMo 2.6 for Gentle lifecycle continuation; `complex` is trigger-driven and Sol is not a normal-path fallback;
-- `.atl/` must already be ignored in candidate repositories.
+## Native review routing
 
-## Historical material
+Gentle keeps distinct review roles under the qualified OpenCode V1 transport.
 
-Pre-vNext runtime machinery is preserved under `historical/runtime/` and in Git history for provenance/regression archaeology.
+`production-volume` review routing:
 
-Old Stage documents, old run recipes and old field evidence do not become current merely because they remain in the repository.
+- risk → GLM 5.3 Flash high;
+- readability → GPT-6 Luna high;
+- reliability → DeepSeek V4 Flash;
+- resilience → DeepSeek V4 Flash;
+- refuter → MiMo 2.6 Flash when required;
+- validator → GPT-6 Luna high when required.
 
-Use current front-door documents first.
+`complex` review routing:
+
+- risk → GPT-6 Luna xhigh;
+- readability → GPT-6 Luna high;
+- reliability → GPT-6 Luna xhigh;
+- resilience → DeepSeek V4 Flash;
+- refuter → GPT-6 Sol xhigh when required;
+- validator → GPT-6 Luna high when required.
+
+Explicit-only Judgment Day keeps Judge A=MiMo, Judge B=Luna xhigh, fix=GLM high.
+
+These reviewer mappings are the already-qualified OpenCode V1 routing evidence from 2026-09-27. C-077 changes the prepared implementation runtime to Pi; it does not discard the qualified reviewer graph.
+
+## Skills
+
+Pi supports trusted project skills from both `.pi/skills/` and `.agents/skills/`. Keep runtime-specific project resources where they belong; prefer `.agents/skills/<name>/SKILL.md` for cross-runtime project authority. Discovered skills need valid frontmatter with non-empty `name` and `description`.
+
+Do not duplicate Atenea lifecycle/model-routing policy into product skills.
 
 ## Publication boundary
 
-Native review approval is not publication authority.
-
-No automatic merge, force-push or destructive history recovery. Follow the target repository policy and explicit human publication authority.
+Native review approval is not publication authority. No automatic merge, force-push or destructive history recovery. Follow target-repository policy and explicit human authority.
