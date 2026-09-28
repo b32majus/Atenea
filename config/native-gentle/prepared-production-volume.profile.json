@@ -2,18 +2,28 @@
   "schema": "atenea.prepared-ticket-profile/v1",
   "name": "production-volume",
   "status": "current-default",
-  "purpose": "Default prepared-ticket route for bounded implementation work where complexity is mainly execution volume rather than novel or high-risk reasoning.",
+  "purpose": "Default prepared-ticket route: plain Pi implements with DeepSeek V4 Flash; qualified OpenCode V1 carries native Gentle review with the established multimodel reviewer map.",
   "implementation": {
     "runtime": "pi",
     "agent_args": ["--no-extensions"],
     "model": "nan/deepseek-v4-flash"
   },
   "review": {
-    "transport": "codex",
-    "profile": "codex-rdd-quality"
+    "transport": "opencode-v1",
+    "roles": {
+      "review-risk": {"model": "nan/glm5.3-flash", "variant": "high"},
+      "review-readability": {"model": "openai/gpt-6-luna", "variant": "high"},
+      "review-reliability": {"model": "openai/gpt-6-luna", "variant": "high"},
+      "review-resilience": {"model": "nan/deepseek-v4-flash"},
+      "review-refuter": {"model": "nan/mimo-v2.6-flash"},
+      "review-validator": {"model": "openai/gpt-6-luna", "variant": "high"},
+      "jd-judge-a": {"model": "nan/mimo-v2.6-flash"},
+      "jd-judge-b": {"model": "openai/gpt-6-luna", "variant": "xhigh"},
+      "jd-fix-agent": {"model": "nan/glm5.3-flash", "variant": "high"}
+    }
   },
   "fallback": {
-    "runtime": "opencode-build",
+    "runtime": "opencode-build-v1",
     "condition": "concrete Pi runtime/tooling failure"
   }
 }
