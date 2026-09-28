@@ -14,6 +14,8 @@ Gentle AI          3.7.0
 OpenCode           1.18.32 — qualified fallback worker
 prepared supervisor Pi + Herdr
 prepared worker     plain Pi child: `pi --no-extensions`
+default worker      production-volume → nan/deepseek-v4-flash
+complex worker      complex → nan/glm5.3-flash · high
 review transport    Codex via native Gentle review integration
 Gentle Shell / ODD  not the prepared-ticket implementation entry
 ```
@@ -23,6 +25,7 @@ Qualified prepared-ticket topology:
 ```text
 accepted executable authority
 → Pi supervisor + Herdr
+→ select production-volume|complex at a clean candidate/work-unit boundary
 → one plain Pi worker
 → repository AGENTS / standards / applicable project skills
 → implementation + deterministic checks/oracles
@@ -35,6 +38,7 @@ accepted executable authority
 OpenCode Build remains a qualified fallback implementation host after a concrete Pi runtime/tooling failure. Fallback does not reopen shaping and does not restore `gentle-orchestrator` as the prepared-ticket parent.
 
 Canonical operation: `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`.
+Canonical routing: `config/native-gentle/prepared-routing-policy.json`.
 
 ## 2. Qualification evidence — 2026-09-28
 
@@ -87,7 +91,28 @@ gentle-ai review assess \
 
 It returned the expected high-risk candidate identity and an exact `review.status` continuation carrying `--agent=codex`. Therefore implementation runtime and review transport are intentionally decoupled: Pi authors the candidate; Codex transports native Gentle review work.
 
-## 3. Plain Pi is not Gentle Shell review relay
+## 3. Prepared implementation profiles
+
+C-077 keeps only two implementation routes:
+
+```text
+production-volume (default) → Pi + nan/deepseek-v4-flash
+complex                     → Pi + nan/glm5.3-flash · high
+```
+
+`complex` is triggered by material reasoning or semantic risk: novel/cross-cutting architecture, difficult concurrency/temporal/scheduling/state/solver semantics, material security/privacy/auth/tenancy/clinical/trust boundaries, delicate migration/back-compat/distributed invariants, or repeated semantic/correction failure under production-volume.
+
+File count, ticket length, ordinary UI work, many tests, or business importance alone are not triggers.
+
+Do not switch profiles in the middle of an active candidate/review lineage. Preserve evidence and change route only at the next clean candidate/work-unit boundary.
+
+Desired state:
+
+- `config/native-gentle/prepared-production-volume.profile.json`;
+- `config/native-gentle/prepared-complex.profile.json`;
+- `config/native-gentle/prepared-routing-policy.json`.
+
+## 4. Plain Pi is not Gentle Shell review relay
 
 `gentle-ai review assess --agent pi` fails closed under plain `pi --no-extensions` unless the Gentle Pi host-relay contract is present. That refusal is correct.
 
@@ -101,7 +126,7 @@ That contract belongs to the Gentle Shell/Pi host relay. A plain Pi child cannot
 
 Prepared-ticket Atenea therefore uses Codex as review transport.
 
-## 4. Pi resource discovery, trust and project skills
+## 5. Pi resource discovery, trust and project skills
 
 `pi --no-extensions` disables extensions; it does not disable repository context or skill discovery. Pi supports trusted project skills from both:
 
@@ -128,7 +153,45 @@ Compatibility rules:
 - discovered `SKILL.md` files should contain valid YAML frontmatter with at least non-empty `name` and `description`;
 - leave runtime-owned/global assets with their owner.
 
-## 5. Review entry and committed candidates
+## 6. Codex reviewer graph and model boundary
+
+Codex is only the review **transport**. Native Gentle still owns separate RDD roles:
+
+```text
+review-risk
+review-readability
+review-reliability
+review-resilience
+review-refuter      # conditional
+review-validator    # conditional
+```
+
+Gentle 3.7 supports per-phase Codex model assignments for these roles. However, the Codex adapter selects from model IDs exposed by the local Codex CLI. The current Gentle Codex catalog/discovery path is OpenAI-model based. Therefore the old OpenCode profile's V4/GLM/MiMo reviewer assignments cannot be assumed to work through the qualified Codex transport.
+
+Current shared RDD desired state:
+
+| role | model | effort |
+|---|---|---|
+| `review-risk` | `gpt-6-sol` | high |
+| `review-readability` | `gpt-6-luna` | high |
+| `review-reliability` | `gpt-6-luna` | high |
+| `review-resilience` | `gpt-6-luna` | high |
+| `review-refuter` | `gpt-6-sol` | xhigh, conditional |
+| `review-validator` | `gpt-6-luna` | high, conditional |
+
+Explicit-only Judgment Day desired state:
+
+| role | model | effort |
+|---|---|---|
+| `jd-judge-a` | `gpt-6-sol` | high |
+| `jd-judge-b` | `gpt-6-luna` | xhigh |
+| `jd-fix-agent` | `gpt-6-sol` | high |
+
+Both `production-volume` and `complex` use this one shared Codex RDD profile. This avoids cross-project races because Gentle's Codex phase-model assignments are runtime state rather than per-candidate arguments.
+
+Desired state: `config/native-gentle/prepared-codex-rdd-quality.profile.json`.
+
+## 7. Review entry and committed candidates
 
 `review assess` derives risk from the Git candidate. `--agent` declares the runtime identity that will carry the provider-issued continuation; it does not identify who authored the code.
 
@@ -140,11 +203,11 @@ With a committed-only transaction, an authorized bounded correction may need a n
 
 Successful `acknowledge-approved → authority=burned` is terminal. Do not call selectorless STATUS merely to prove burn again.
 
-## 6. Judgment Day
+## 8. Judgment Day
 
 Judgment Day is a standalone explicit dual/adversarial review tool. It activates only when the user/ticket requests it for a concrete target. It replaces ordinary 4R as the adversarial method for that target; do not run both by ritual. It does not grant commit/push/PR/merge/release authority.
 
-## 7. OpenCode fallback compatibility
+## 9. OpenCode fallback compatibility
 
 OpenCode 1.18.32 remains qualified as a direct Build implementation host and has separately qualified native Gentle review/correction evidence.
 
@@ -163,15 +226,15 @@ Evidence:
 
 Do not reinstall/pin an old OpenCode merely because an historical evidence file mentions it.
 
-## 8. Engram / Context7
+## 10. Engram / Context7
 
 Engram and Context7 remain auxiliary capabilities, not product/spec/review authority. Ordinary prepared-ticket execution does not require them by default.
 
 Disposable canaries must not write production Engram state. Preserve the isolated Engram pattern documented in the stable installation/evidence files when a canary genuinely exercises memory.
 
-## 9. Historical Gentle-Pi/profile evidence
+## 11. Historical Gentle-Pi/profile evidence
 
-The old `native-balanced`, `native-v4-heavy`, `native-economy`, Pi reviewer-routing, committed-range facade defects, skill-registry watcher incident and related profile-store findings remain valid historical evidence for the runtimes/topologies actually tested.
+The old `native-balanced`, `native-v4-heavy`, `native-economy`, Pi reviewer-routing, OpenCode `production-volume`/`complex`, committed-range facade defects, skill-registry watcher incident and related profile-store findings remain valid historical evidence for the runtimes/topologies actually tested.
 
 They do **not** define the normal prepared-ticket worker now that the worker is plain Pi `--no-extensions` and review transport is Codex.
 
@@ -186,7 +249,7 @@ Relevant provenance remains in:
 
 Do not rewrite historical evidence to current terminology.
 
-## 10. Stable-update discipline
+## 12. Stable-update discipline
 
 For managed runtime maintenance:
 
@@ -201,7 +264,7 @@ official owner updater
 
 Do not manually overwrite managed package/binary contents when its owner provides a supported updater.
 
-## 11. Current authority set
+## 13. Current authority set
 
 The current productive baseline is defined by:
 
@@ -210,6 +273,7 @@ The current productive baseline is defined by:
 - `docs/CURRENT_EXECUTION_DECISION_C077.md`;
 - `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`;
 - `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`;
+- `config/native-gentle/prepared-routing-policy.json`;
 - this document.
 
 Dated qualification documents are evidence, not competing runtime authority.
