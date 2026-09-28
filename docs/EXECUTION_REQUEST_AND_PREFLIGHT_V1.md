@@ -14,7 +14,9 @@ accepted bounded work
 → ONE Pi implementation worker
 → deterministic checks/oracles
 → candidate commit
-→ native Gentle review through OpenCode V1 when due
+→ native Gentle ASSESS
+→ no review host when review_due=false
+→ exact provider-issued review route when due
 → checkpoint / next-or-STOP
 ```
 
@@ -25,7 +27,7 @@ Confirm only:
 1. correct repository/worktree/base and no unrelated dirty state;
 2. current accepted ticket/work-order/spec;
 3. executable outcome, acceptance and material constraints/non-goals;
-4. current qualified Pi/Herdr/Gentle/OpenCode V1 review runtime available;
+4. compatible Pi/Herdr/Gentle/OpenCode V1 review runtime available;
 5. publication boundary known.
 
 If durable authority already proves a fact, do not ask the human to repeat it.
@@ -49,11 +51,12 @@ Before writing, read and obey repository AGENTS.md, CODING_STANDARDS.md when pre
 Preserve the principal acceptance oracle; do not weaken tests/checkers to make implementation pass.
 Implement the smallest coherent authorized change, run required deterministic checks, and create the authorized local candidate commit.
 Do not broaden scope or publish beyond current authority.
-After the candidate commit, enter native Gentle review through the qualified OpenCode V1 transport and follow exact provider-issued continuations to terminal when review is due.
 ```
+
+Do not teach the implementation worker reviewer ordering or transport mechanics. After its candidate commit, the supervisor follows C-078: native Gentle decides `review_due` and lens depth; OpenCode is started only for provider-issued collection and always with process-local routing config.
 
 ## STOP conditions
 
 STOP for unresolved/contradictory product authority, new material scope, acceptance/oracle changes, destructive action outside authority, missing required secrets handling, publication beyond authority, or a typed provider refusal with no exact safe continuation.
 
-Do not stop merely because a fresh process/context is used or an already-authorized provider continuation needs transport.
+The C-078 `review-resilience` empty-output recovery is a pre-authorized exact safe continuation only when all of its same-lineage/same-slot conditions hold.
