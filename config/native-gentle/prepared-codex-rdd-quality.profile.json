@@ -1,0 +1,65 @@
+{
+  "schema": "atenea.prepared-codex-rdd-profile/v1",
+  "name": "codex-rdd-quality",
+  "status": "current",
+  "qualified_transport": "codex",
+  "purpose": "Shared native Gentle RDD/Judgment Day routing for prepared-ticket execution. Reviewer roles remain distinct; Codex transport limits reviewer models to Codex-supported model IDs.",
+  "roles": {
+    "rdd-risk": {
+      "agent": "review-risk",
+      "model": "gpt-6-sol",
+      "reasoning_effort": "high"
+    },
+    "rdd-readability": {
+      "agent": "review-readability",
+      "model": "gpt-6-luna",
+      "reasoning_effort": "high"
+    },
+    "rdd-reliability": {
+      "agent": "review-reliability",
+      "model": "gpt-6-luna",
+      "reasoning_effort": "high"
+    },
+    "rdd-resilience": {
+      "agent": "review-resilience",
+      "model": "gpt-6-luna",
+      "reasoning_effort": "high"
+    },
+    "rdd-refuter": {
+      "agent": "review-refuter",
+      "model": "gpt-6-sol",
+      "reasoning_effort": "xhigh",
+      "conditional": true
+    },
+    "rdd-validator": {
+      "agent": "review-validator",
+      "model": "gpt-6-luna",
+      "reasoning_effort": "high",
+      "conditional": true
+    },
+    "jd-judge-a": {
+      "agent": "jd-judge-a",
+      "model": "gpt-6-sol",
+      "reasoning_effort": "high",
+      "explicit_only": true
+    },
+    "jd-judge-b": {
+      "agent": "jd-judge-b",
+      "model": "gpt-6-luna",
+      "reasoning_effort": "xhigh",
+      "explicit_only": true
+    },
+    "jd-fix-agent": {
+      "agent": "jd-fix-agent",
+      "model": "gpt-6-sol",
+      "reasoning_effort": "high",
+      "explicit_only": true
+    }
+  },
+  "notes": [
+    "The four RDD lenses remain separate reviewer agents; Codex is transport, not one monolithic reviewer.",
+    "V4/GLM/MiMo are not valid reviewer assignments on the qualified Codex transport unless the local Codex runtime itself exposes those model IDs; the current Gentle Codex catalog is OpenAI-model based.",
+    "Refuter is conditional on provider rules; deterministic severe findings may skip refutation.",
+    "Judgment Day is explicit-only and is not an automatic post-RDD phase."
+  ]
+}
