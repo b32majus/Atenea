@@ -1,261 +1,214 @@
 # Atenea vNext — Current Compatibility Notes
 
-Status: **CURRENT TRANSITIONAL EVIDENCE**
-
+Status: **CURRENT RUNTIME / PROVIDER EVIDENCE**
 Date: 2026-09-28
 
-This document contains version/provider-specific exceptions that are intentionally **not** part of stable `AGENTS.md` policy.
+This document owns version/provider-specific exceptions that do not belong in stable `AGENTS.md` policy. Historical qualification remains in the dated evidence documents; this file describes what an operator should assume **now**.
 
-## Current qualified OpenCode baseline
-
-```text
-OpenCode          1.18.32
-Gentle AI         3.7.0
-NaN               baseline provider
-Context7          installed; disabled by default
-Engram            installed; disabled by default in ordinary OpenCode
-Pi / Gentle Pi    rollback/provenance only
-serve lifecycle   QUALIFIED — two-ticket zero-touch PASS
-```
-
-Current OpenCode-specific seams:
-
-- **One-shot startup defect:** clean `opencode run` can stall after `message=init` and before session creation. Unattended one-shot use remains blocked.
-- **Qualified transport:** use a fresh `opencode serve` host per bounded ticket and one primary `gentle-orchestrator` session, then tear it down at the ticket boundary. Prior two-ticket direct-role evidence remains transport provenance; the 2026-09-28 high-risk canary qualifies the current upstream-orchestrator path through terminal burn.
-- **Version-probe seam:** Gentle 3.7 uses a hard 3-second `opencode --version` probe. The qualified version-neutral shim answers only exact `--version` / `-v` from real npm package metadata and delegates every other invocation unchanged to the single real OpenCode binary.
-- **Freshness boundary:** qualification does not authorize a persistent global OpenCode daemon or long-lived model context.
-- **Skill registry:** the managed OpenCode skill-registry plugin remains installed. A/B measurement found small startup overhead/jitter, but removing it did not explain the historical 20–30 second one-shot `init` hang. Do not patch/remove it by default merely for startup optimization.
-- `~/.config/opencode/skills` is the active global runtime skill root; legacy shared `~/.agents/skills` is not part of the ordinary global surface.
-- Context7 and Engram remain available but disabled by default.
-- The generated Gentle persona + mandatory Engram protocol is not part of the minimal global OpenCode `AGENTS.md`.
-- **Role/context routing:** ordinary tickets use upstream `gentle-orchestrator` (GLM 5.3 Flash high) as the primary. Gentle-owned `explore`/`general` and reviewers follow C-075/C-076 profiles. Atenea owns zero semantic agents. `production-volume` is default; `complex` activates only on concrete material complexity. There is no universal per-ticket profile ceremony and no normal-path Sol fallback.
-- **Reliability lens seam:** the 2026-09-28 high-risk canary reproduced four `opencode_task_output_empty` results from `review-reliability` on DeepSeek V4 while `review-resilience` on the same model succeeded. Rebinding only `review-reliability` to GPT-6 Luna high produced a valid result on the same durable lineage, which then reached `acknowledge-approved` and terminal consumption. Production reliability is therefore Luna high; complex remains Luna xhigh.
-- **Bound-lineage re-entry:** after START is durable, a fresh host resumes from exact lineage + provider-issued `next_transition`; it must not create a replacement lineage or rerun ASSESS/START.
-- Historical OpenCode `1.18.10` + Gentle 3.7 zero-touch evidence remains valid for what it tested; it does not authorize reinstalling or pinning 1.18.10.
-- Historical OpenCode V2 `2.0.18` plugin-transport failure remains provenance only.
-
-Current qualification evidence: `docs/OPENCODE_GENTLE_ORCHESTRATOR_QUALIFICATION_20260928.md`, `docs/OPENCODE_11832_SERVE_ZERO_TOUCH_QUALIFICATION_20260927.md`, and `docs/OPENCODE_MODEL_ROUTING_QUALIFICATION_20260927.md`. `docs/OPENCODE_LEAN_CONTEXT_QUALIFICATION_20260927.md` remains historical optimization evidence. Historical V1 lifecycle evidence: `docs/OPENCODE_V1_ZERO_TOUCH_RECOVERY_EVIDENCE_20260927.md`.
-
-The Pi/Gentle-Pi compatibility sections below apply **only when deliberately using that rollback/provenance surface**; they do not define current OpenCode preflight or routing.
-
-## 1. Historical Pi reviewer routing after native multi-model support
-
-The original exact-prompt qualification reproduced failures at default/medium reasoning on the NaN review path and a pass with GLM low. The upstream trackers remain open:
-
-- Gentle Shell #1259;
-- Gentle Shell #1167;
-- Pi #9718.
-
-In the Pi/Gentle-Pi epoch, on 2026-09-24 the operator explicitly moved the then-active profile away from the qualified all-GLM/low mitigation without a pre-activation canary. The historical routing was:
+## 1. Current prepared-ticket baseline
 
 ```text
-review-readability  → openai-codex/gpt-6-luna · high
-review-reliability  → openai-codex/gpt-6-luna · xhigh
-review-resilience   → openai-codex/gpt-6-luna · xhigh
-review-risk         → openai-codex/gpt-6-sol  · high
-review-refuter      → openai-codex/gpt-6-luna · max
-review-validator    → openai-codex/gpt-6-luna · max
+Pi                 0.87.1
+Herdr              0.9.1
+Gentle AI          3.7.0
+OpenCode           1.18.32 — qualified fallback worker
+prepared supervisor Pi + Herdr
+prepared worker     plain Pi child: `pi --no-extensions`
+review transport    Codex via native Gentle review integration
+Gentle Shell / ODD  not the prepared-ticket implementation entry
 ```
 
-Historical Pi operational rule: do not treat the multi-provider reviewer routes in `native-balanced`, `native-v4-heavy` or `native-economy` as evidence that #1259/#1167/#9718 are fixed. If real execution exposes reviewer-output or reasoning-budget failure, preserve the active lineage/evidence and make any move to `native-nan` only as an explicit decision at a valid lifecycle boundary. The rollback profile preserves the previously qualified `nan/glm5.3-flash · low` reviewer mapping.
-
-### Profile store / pin resolution incident — 2026-09-25
-
-PROMueve Nexus #403 Attempt 0 exposed a local configuration drift: `~/.pi/gentle-ai/profiles.json` had profile mappings but lacked Gentle Pi 3.7.0's required `kind: gentle-pi.agent_model_profiles` / `version: 1` envelope. Gentle rejected the store, the repo declaration could not resolve `native-v4-heavy`, and the worker silently inherited globally materialized `native-balanced` routing. The attempt stopped before commit and is not V4-heavy quality evidence.
-
-Current Atenea conformance now checks the native store envelope and can resolve local/repository pin precedence for a target worktree. Candidate first-use, material routing/profile changes, profile-semantics runtime upgrades and routing incidents additionally require a real read-only child probe before writer authority.
-
-Gentle Pi pins route subagents only. They do **not** move the parent/orchestrator model. A profile whose desired orchestrator differs from the current Pi session must select/verify that orchestrator separately through Pi's native model surface.
-
-Evidence: `docs/vnext/NATIVE_V4_HEAVY_PROMUEVE_CANARY_20260925.md`.
-
-## 2. Committed-range ASSESS
-
-Tracker:
-
-- Gentle AI #4791 — still open on 2026-09-23.
-
-The defect was reproduced again on Gentle Shell 3.7.0 / Gentle AI 3.7.0: native Gentle AI returned `medium / executable_change` for a committed executable candidate, while the Pi/Gentle facade returned typed `risk=unassessable`, `schema-incompatible`, zero changed paths and `candidate=null`.
-
-Pre-ASSESS hygiene:
+Qualified prepared-ticket topology:
 
 ```text
-repo-local .atl/ ignore already present
-→ intentional candidate only
-→ no unrelated runtime artifacts
-→ native gentle_review assess
+accepted executable authority
+→ Pi supervisor + Herdr
+→ one plain Pi worker
+→ repository AGENTS / standards / applicable project skills
+→ implementation + deterministic checks/oracles
+→ local candidate commit
+→ `gentle-ai review assess --agent codex ...`
+→ exact provider-issued native lifecycle when due
+→ terminal / durable checkpoint
 ```
 
-Production rule:
+OpenCode Build remains a qualified fallback implementation host after a concrete Pi runtime/tooling failure. Fallback does not reopen shaping and does not restore `gentle-orchestrator` as the prepared-ticket parent.
+
+Canonical operation: `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`.
+
+## 2. Qualification evidence — 2026-09-28
+
+### Plain Pi implementation path
+
+A Herdr-launched Pi child with argv `pi --no-extensions` completed the implementation canary in about 57 seconds of worker runtime / about 73 seconds supervisor wall time.
+
+Observed properties:
+
+- exactly one ticket worker;
+- read `AGENTS.md`, `CODING_STANDARDS.md`, the applicable project skill and acceptance test before writing;
+- changed only the authorized source path;
+- 4/4 tests passed;
+- `git diff --check` passed;
+- independent hidden authorization oracle passed;
+- produced one local candidate commit;
+- no Gentle Shell, ODD or `gentle-orchestrator` execution path.
+
+This qualifies plain Pi as the normal prepared-ticket implementation worker. It does not claim Pi is a native Gentle review host.
+
+### Native review/correction path
+
+Separate current qualification proved the native Gentle downstream lifecycle on an intentionally defective committed candidate:
 
 ```text
-ASSESS returns native risk tier
-→ follow native plan
-
-ASSESS returns risk=unassessable + typed fail-closed plan
-→ follow that plan
-→ writer verification when requested
-→ independent verifier when requested
-→ never claim a lower tier
-
-no typed safe continuation / ambiguous state
-→ STOP
+ASSESS high-risk
+→ native reviewer lenses
+→ deterministic severe findings
+→ bounded correction authority
+→ correction
+→ targeted validator PASS
+→ acknowledge-approved
+→ authority burned
 ```
 
-Never synthesize START or restore the historical Atenea ASSESS bridge.
+No refuter ran in that canary because the accepted findings were deterministic; the native refuter path remains conditional on the provider's inferential-finding rules rather than a mandatory ritual.
 
-## 3. Post-burn selectorless STATUS
+### Codex review transport seam
 
-Tracker:
-
-- Gentle AI #4771 — still open on 2026-09-23.
-
-Terminal rule:
-
-```text
-review.acknowledge-approved
-→ status=closed
-→ authority=burned
-→ burn_evidence
-```
-
-That response is terminal evidence. Do not call selectorless STATUS merely to re-prove burn, and do not repeat review on the unchanged candidate because that redundant STATUS fails.
-
-## 4. Custom NaN auth-check observation
-
-After the 2026-09-23 stable update, NaN credentials were moved from the provider registry to Pi's supported local credential store.
-
-Current:
+The same Git candidate produced by plain Pi was successfully assessed with:
 
 ```bash
-pi auth check --provider nan --json
+gentle-ai review assess \
+  --cwd "$PWD" \
+  --agent codex \
+  --base-ref <candidate-base> \
+  --committed-only \
+  --json
 ```
 
-returns `invalid_state` for this custom provider even though:
+It returned the expected high-risk candidate identity and an exact `review.status` continuation carrying `--agent=codex`. Therefore implementation runtime and review transport are intentionally decoupled: Pi authors the candidate; Codex transports native Gentle review work.
 
-- `pi auth print-api-key --provider nan` resolves the stored credential;
-- Pi without extensions completes a real NaN model call;
-- Pi with normal Gentle extensions completes a real NaN model call.
+## 3. Plain Pi is not Gentle Shell review relay
 
-No matching upstream Pi issue was found during this pass.
+`gentle-ai review assess --agent pi` fails closed under plain `pi --no-extensions` unless the Gentle Pi host-relay contract is present. That refusal is correct.
 
-Operational rule:
-
-> Do not use `pi auth check` alone as the NaN health gate.
-
-Use non-printing credential resolution plus the real bounded model smokes in `NATIVE_STACK_INSTALLATION_RECIPE_20260923.md`.
-
-## 5. Engram
-
-Engram remains auxiliary and is currently 2.1.0. The 2.1 release is core-only; Pi `gentle-engram` remains 0.1.14.
-
-Post-maintenance evidence:
-
-- `gentle-ai doctor`: Engram MCP reachable;
-- `engram doctor`: 9/9 OK, 0 warnings after cleanup;
-- `engram test --quick`: PASS, including concurrent local writes;
-- real Pi `mem_search` memory canary: `ENGRAM_AFTER_CLEANUP_OK`;
-- production store reduced to `hermes-agent`, `symphonia` and canonical `atenea` session history;
-- no similar-name project groups remain.
-
-Disposable projects removed from the production store: `baseline`, `atenea-assess-370-20260923`, `dist`, `gentle-final-canary-20260921` and `tmp`.
-
-### Canary isolation
-
-Do not let disposable canaries write to the production Engram store.
-
-`ENGRAM_DATA_DIR` alone is **not sufficient** when a production `engram serve` already owns the default HTTP endpoint, because `gentle-engram` native `mem_*` tools use the HTTP server path.
-
-Qualified pattern:
+Never work around it by manually exporting:
 
 ```text
-temporary ENGRAM_DATA_DIR
-→ separate engram serve on a non-production port
-→ ENGRAM_URL points Pi at that temporary server
-→ normal repo/project identity inside the isolated store
+GENTLE_PI_REVIEW_RELAY_CONTRACT=gentle-pi.review-relay/v1
 ```
 
-This pattern passed `ENGRAM_ISOLATION_OK`: the temporary store received its own observation/session data and the production store remained unchanged.
+That contract belongs to the Gentle Shell/Pi host relay. A plain Pi child cannot self-attest that it provides the relay.
 
-Never treat Engram as product/spec/review authority.
+Prepared-ticket Atenea therefore uses Codex as review transport.
 
-## 6. pi-web-access lazy-activation fallback
+## 4. Pi resource discovery and project skills
 
-On globally installed Pi 0.87.1, `pi-web-access` 0.31.0 may warn that dynamic tool activation requires Pi 0.86.1 or newer and fall back to eager web-tool availability. Upstream issue `nicobailon/pi-web-access#428` identifies this as a package-resolution false negative; PR #429 contains the upstream fix. The same defect was confirmed against Pi 0.87.0, so it is not a 0.87.1 regression.
+`pi --no-extensions` disables extensions, not repository context or skills. In qualification, plain Pi still discovered `AGENTS.md`, global skills and the project-local `.agents/skills` tree.
 
-Operational rule: accept the functional eager fallback and track upstream. Do not add Atenea symlinks, loader patches or forked extension code to force lazy activation.
+Pi rejected a project skill lacking a description with:
 
-## 7. Gentle skill-registry recursive watcher
-
-Tracker:
-
-- Gentle Shell #962 — still open on 2026-09-23.
-
-Observed on both Pi 0.87.0 and 0.87.1 with Gentle Shell 3.7.0: the Gentle skill-registry extension recursively watches user skill roots, including `~/.codex/skills`. When Codex replaces its `.system` skill subtree, Node can emit asynchronous `ENOENT` / `scandir` from the recursive `FSWatcher`. The extension does not attach an `error` listener, so Pi can exit via `uncaughtException`.
-
-Current mitigation:
-
-```bash
-export GENTLE_PI_NO_SKILL_REGISTRY=1
+```text
+Skill conflicts
+.../SKILL.md
+  description is required
 ```
 
-This is a supported Gentle switch. Skills remain available normally; only startup refresh/watch of `.atl/skill-registry.md` is disabled. Do not patch installed Gentle source or disable Codex skills. Existing Pi processes must be restarted to inherit the environment override.
+Compatibility rule for active project-local skills intended for the prepared-ticket worker:
 
-Retire only after a released Gentle version fixes #962 and a watched-subtree replacement canary passes. Evidence: `docs/vnext/SKILL_REGISTRY_WATCHER_INCIDENT_20260923.md`.
+```text
+.agents/skills/<skill>/SKILL.md
+```
 
-## 8. Stable-update discipline
+with valid YAML frontmatter containing at least:
 
-The 2026-09-23 maintenance pass established the current rule:
+```yaml
+name: <skill-name>
+description: <non-empty trigger/purpose>
+```
+
+Do not bulk-copy runtime-specific skills between `.pi`, `.agents`, OpenCode or Codex roots merely to make directory layouts look uniform. Canonicalize a project-local skill under `.agents/skills` when it is actual cross-runtime project authority; leave runtime-owned/global assets with their owner.
+
+## 5. Review entry and committed candidates
+
+`review assess` derives risk from the Git candidate. `--agent` declares the runtime identity that will carry the provider-issued continuation; it does not identify who authored the code.
+
+For a committed prepared-ticket candidate use the actual last-reviewed/ticket base plus `--committed-only`. If intended untracked files belong to the candidate, use the provider-supported untracked inventory/scope arguments instead of hiding them.
+
+If `review_due=true`, execute `next_transition.command` exactly as returned. After START, preserve exact lineage/revision/target and use only provider-issued continuations.
+
+With a committed-only transaction, an authorized bounded correction may need a new local commit before Gentle can see the corrected candidate. Follow the provider's typed continuation/stop contract; do not synthesize a replacement lineage.
+
+Successful `acknowledge-approved → authority=burned` is terminal. Do not call selectorless STATUS merely to prove burn again.
+
+## 6. Judgment Day
+
+Judgment Day is a standalone explicit dual/adversarial review tool. It activates only when the user/ticket requests it for a concrete target. It replaces ordinary 4R as the adversarial method for that target; do not run both by ritual. It does not grant commit/push/PR/merge/release authority.
+
+## 7. OpenCode fallback compatibility
+
+OpenCode 1.18.32 remains qualified as a direct Build implementation host and has separately qualified native Gentle review/correction evidence.
+
+Known OpenCode seams retained for fallback/provenance:
+
+- clean one-shot `opencode run` can stall during initialization;
+- fresh `opencode serve` was qualified for the prior bounded-host path;
+- current prepared-ticket fallback should use direct Build semantics, not `gentle-orchestrator`/ODD;
+- the historical reliability-lens empty-output incident on DeepSeek V4 was resolved by using Luna for that reviewer in the old OpenCode-orchestrator profile; this remains historical routing evidence rather than a rule for the Codex review transport.
+
+Evidence:
+
+- `docs/OPENCODE_11832_SERVE_ZERO_TOUCH_QUALIFICATION_20260927.md`
+- `docs/OPENCODE_GENTLE_ORCHESTRATOR_QUALIFICATION_20260928.md`
+- `docs/OPENCODE_MODEL_ROUTING_QUALIFICATION_20260927.md`
+
+Do not reinstall/pin an old OpenCode merely because an historical evidence file mentions it.
+
+## 8. Engram / Context7
+
+Engram and Context7 remain auxiliary capabilities, not product/spec/review authority. Ordinary prepared-ticket execution does not require them by default.
+
+Disposable canaries must not write production Engram state. Preserve the isolated Engram pattern documented in the stable installation/evidence files when a canary genuinely exercises memory.
+
+## 9. Historical Gentle-Pi/profile evidence
+
+The old `native-balanced`, `native-v4-heavy`, `native-economy`, Pi reviewer-routing, committed-range facade defects, skill-registry watcher incident and related profile-store findings remain valid historical evidence for the runtimes/topologies actually tested.
+
+They do **not** define the normal prepared-ticket worker now that the worker is plain Pi `--no-extensions` and review transport is Codex.
+
+Relevant provenance remains in:
+
+- `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md`
+- `docs/GP33_Q10_Q11_ADOPTION_EVIDENCE_20260920.md`
+- `docs/vnext/NATIVE_V4_HEAVY_PROMUEVE_CANARY_20260925.md`
+- `docs/vnext/NATIVE_SKILL_RECONCILIATION_20260924.md`
+- `docs/vnext/SKILL_REGISTRY_WATCHER_INCIDENT_20260923.md`
+- `docs/vnext/STABLE_RUNTIME_UPDATE_PI0871_20260923.md`
+
+Do not rewrite historical evidence to current terminology.
+
+## 10. Stable-update discipline
+
+For managed runtime maintenance:
 
 ```text
 official owner updater
 → sync/reconcile managed assets
 → doctor
 → deterministic conformance
-→ real bounded smokes
+→ real bounded smoke only when the runtime seam changed
 → update Atenea desired-state/evidence
 ```
 
-Do not update a managed component by manually overwriting its binary/package when its owner exposes a supported updater.
+Do not manually overwrite managed package/binary contents when its owner provides a supported updater.
 
-## 9. Historical qualification evidence
+## 11. Current authority set
 
-P0–P7 documents that mention Gentle Shell 3.3.0 / Gentle AI 3.4.0 remain correct historical evidence for the versions actually tested then.
+The current productive baseline is defined by:
 
-Do not rewrite them to newer versions.
-
-The current baseline is defined by:
-
-- `README.md`;
+- `AGENTS.md`;
 - `docs/START_HERE.md`;
-- `docs/QUALIFICATION.md`;
-- this document;
-- `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md`;
-- `docs/vnext/STABLE_RUNTIME_UPDATE_PI0871_20260923.md`;
-- `docs/vnext/SKILL_REGISTRY_WATCHER_INCIDENT_20260923.md`.
+- `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`;
+- `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`;
+- this document.
 
-## 10. Native skill ownership and Pi duplicate discovery
-
-Trackers:
-
-- Gentle Shell #807 — shared plain skills and package-prefixed Gentle skills can coexist in Pi discovery;
-- Gentle Shell #369 / PR #1320 — upstream registry/resolution ownership is still evolving;
-- Gentle Shell #962 — recursive registry watcher crash, separately mitigated as above.
-
-Current owner surfaces are intentionally runtime-specific:
-
-```text
-~/.agents/skills            → shared/cross-runtime skills
-~/.config/opencode/skills   → OpenCode assets managed/referenced by Gentle AI
-~/.codex/skills             → Codex assets managed/referenced by Gentle AI/Codex
-gentle-pi package skills    → Pi-specific Gentle variants (`gentle-ai-*`)
-repository .agents/skills   → project-local authority
-```
-
-Do not collapse these directories by filesystem cleanup alone. `gentle-ai sync` was used on 2026-09-24 as the ownership oracle for OpenCode/Codex managed assets. Graphify remained live and was migrated with its own supported installer to the shared skill root.
-
-Pi uses its native exact `-<path>` force-exclusion to suppress the nine safe shared Gentle duplicates listed in `config/native-gentle/pi-skill-policy.json`. A fresh deterministic Pi resource-loader resolution confirmed that their plain forms disappear while the `gentle-ai-*` package variants remain available.
-
-Two exceptions remain intentionally dual-visible: `issue-creation` and `work-unit-commits`. Their current Gentle AI and Gentle Shell upstream content is functionally divergent, so suppressing the shared form could remove behavior. This is tracked compatibility debt, not forgotten cleanup.
-
-Evidence and rollback locations: `docs/vnext/NATIVE_SKILL_RECONCILIATION_20260924.md`.
+Dated qualification documents are evidence, not competing runtime authority.
