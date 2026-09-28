@@ -76,13 +76,13 @@ The same Git candidate produced by plain Pi was then assessed successfully with 
 
 ## Skills decision
 
-Project-local skills that are actual cross-runtime project authority should use:
+Pi natively supports trusted project skills in both `.pi/skills/` and `.agents/skills/`.
 
-```text
-.agents/skills/<skill>/SKILL.md
-```
-
-with valid YAML frontmatter containing at least non-empty `name` and `description`.
+- Keep valid `.pi/skills` when they are intentionally Pi-specific/project-local resources.
+- Prefer `.agents/skills/<skill>/SKILL.md` when the skill is intended as cross-runtime project authority.
+- Do not migrate or duplicate skills solely to normalize directory layout.
+- Project-local skills/settings are subject to Pi project trust; an unattended worker may use `--approve` as a one-run trust override only for an intentionally trusted repository.
+- Discovered `SKILL.md` files must carry valid frontmatter with at least non-empty `name` and `description`.
 
 Do not duplicate lifecycle/model-routing policy into project skills. Runtime-owned/global skill roots remain owned by their runtimes; no mass filesystem unification is authorized.
 
