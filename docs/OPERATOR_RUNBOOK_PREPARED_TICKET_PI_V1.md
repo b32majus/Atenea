@@ -1,6 +1,6 @@
 # Atenea — Prepared-ticket Pi runtime v1
 
-Status: **CURRENT PRODUCTIVE PATH FOR PREPARED WORK**
+Status: **CURRENT PRODUCTIVE PATH FOR PREPARED WORK — C-078 HARDENED**
 Date: 2026-09-28
 
 This runbook begins only after product/task authority is executable.
@@ -9,57 +9,45 @@ This runbook begins only after product/task authority is executable.
 
 ```text
 accepted prepared ticket/train
-→ Pi supervisor + Herdr
-→ select prepared profile
+→ clean Pi supervisor + Herdr
+→ select prepared implementation profile
 → ONE plain Pi implementation worker
 → repo authority + project skills
 → implementation + deterministic verification
 → candidate commit
 → Gentle ASSESS
-→ qualified OpenCode V1 review transport when due
-→ native RDD / correction / validator / burn
+→ no review host when review_due=false
+→ native Gentle-selected lens collection when due
+→ isolated OpenCode V1 transport
+→ correction / validator / burn when provider-issued
 → checkpoint / next-or-STOP
 ```
 
-OpenCode V1 review transport is not a second product writer. OpenCode Build V1 is fallback implementation only after a concrete Pi failure.
+## 2. Implementation profile
 
-## 2. Profile selection
+Default:
 
-`production-volume` is default:
-
-```text
-Pi --no-extensions --model nan/deepseek-v4-flash
+```bash
+pi --no-extensions --model nan/deepseek-v4-flash
 ```
 
-`complex`:
+Complex:
 
-```text
-Pi --no-extensions --model nan/glm5.3-flash --thinking high
+```bash
+pi --no-extensions --model nan/glm5.3-flash --thinking high
 ```
 
-Use `complex` only on material triggers defined in `config/native-gentle/prepared-routing-policy.json`.
+Use `complex` only on material triggers from `config/native-gentle/prepared-routing-policy.json`. Add `--approve` only for an intentionally trusted repository whose protected project resources require it.
 
-If a trusted repository requires protected project resources, add `--approve` for that run. This is project trust, not a sandbox.
+The supervisor itself should also be clean (`pi --no-extensions`) when local extensions would otherwise load Gentle Shell or another conflicting runtime surface.
 
-## 3. Worker launch
+## 3. Implementation and evidence
 
-The supervisor launches exactly one Pi implementation child in the target worktree. The child reads repository authority and applicable skills before product writes.
+The worker reads repository authority and applicable skills, implements only accepted scope, preserves the principal oracle/tests, runs repository-required deterministic checks and creates the authorized local candidate commit. It does not publish unless separately authorized.
 
-Do not launch Gentle Shell, ODD or `gentle-orchestrator` for a prepared ticket.
+## 4. Review entry
 
-## 4. Implementation and deterministic evidence
-
-The Pi worker:
-
-- implements only accepted scope;
-- preserves the principal oracle/tests;
-- runs repository-required deterministic checks;
-- creates the authorized local candidate commit;
-- does not push/PR/merge unless separately authorized.
-
-## 5. Review entry
-
-Use the actual candidate base:
+Use the real candidate base:
 
 ```bash
 gentle-ai review assess \
@@ -70,62 +58,57 @@ gentle-ai review assess \
   --json
 ```
 
-If `review_due=false`, checkpoint the timing result.
+If `review_due=false`, record the assessment and checkpoint. **Do not launch OpenCode review transport.**
 
-If `review_due=true`, execute the exact `next_transition.command` returned by Gentle.
+If `review_due=true`, execute the exact `next_transition.command`. Gentle owns risk and lens selection: medium review when due uses one focus lens; high uses canonical 4R. Atenea never expands or substitutes that set.
 
-When collection requires the OpenCode transport, use the already-qualified **fresh bounded OpenCode V1 review-host/session** path from `docs/OPERATOR_RUNBOOK_OPENCODE_SERVE_V1.md`. The host exists only to carry native Gentle review work and must not reopen product scope or become another ticket parent.
+## 5. Isolated review-host launch
 
-Preserve exact lineage/revision/target after START. Never invent review transitions.
+Before any OpenCode collection host, render the matching routing profile for that process:
 
-## 6. Native reviewer graph
-
-Production-volume:
-
-```text
-risk        → GLM high
-readability → Luna high
-reliability → V4 Flash
-resilience  → V4 Flash
-refuter     → MiMo, conditional
-validator   → Luna high, conditional
+```bash
+export OPENCODE_CONFIG_CONTENT="$(node <ATENEA>/tools/render-opencode-routing-overlay.mjs <profile>)"
+opencode serve ...
 ```
 
-Complex:
+Prefer setting the environment only on the child process rather than exporting it in a long-lived shared shell. Do not log the rendered config under shell tracing. Do not use `tools/apply-opencode-routing-profile.mjs` for train routing and do not modify `~/.config/opencode/opencode.json` while trains are active.
 
-```text
-risk        → Luna xhigh
-readability → Luna high
-reliability → Luna xhigh
-resilience  → V4 Flash
-refuter     → Sol xhigh, conditional
-validator   → Luna high, conditional
+Preserve exact lineage/revision/target after START and follow provider-issued transitions literally.
+
+## 6. `review-resilience` empty-output recovery
+
+If the required slot is `review-resilience`, default route is V4, and the host returns typed `opencode_task_output_empty`:
+
+1. stop that host cleanly;
+2. query bound STATUS with the existing lineage/target/revision;
+3. verify it reoffers the exact same slot;
+4. start one fresh host with:
+
+```bash
+OPENCODE_CONFIG_CONTENT="$(node <ATENEA>/tools/render-opencode-routing-overlay.mjs <profile> --resilience-recovery-luna)" \
+  opencode serve ...
 ```
 
-The authoritative snapshots are `config/native-gentle/opencode-production-volume.profile.json` and `config/native-gentle/opencode-complex.profile.json`.
+5. execute only the reoffered provider-owned slot;
+6. if admitted, continue the same lineage;
+7. otherwise HUMAN STOP.
 
-Deterministic findings may bypass refuter; inferential findings use native refutation when required.
+Do not retry V4 again first. Do not RESET, new-START, skip the lens or try additional models.
 
 ## 7. Correction and validation
 
-A correction is allowed only when Gentle grants bounded correction authority. Keep it inside that boundary, rerun the required deterministic checks and follow the provider-issued continuation. For committed-only review, the corrected candidate may require its own local commit before validator can see it.
+A correction is allowed only when Gentle grants bounded correction authority. Keep it inside that boundary, rerun required deterministic checks and follow provider-issued continuation. After `acknowledge-approved` returns burned authority, do not re-review an unchanged candidate merely to prove closure.
 
-After `acknowledge-approved` returns burned authority, the review is terminal. Do not re-review an unchanged candidate merely to prove closure.
+## 8. Efficiency capture
 
-## 8. Supervisor escalation
+Telemetry is non-blocking and adds no model calls. At each ticket boundary, retain usage artifacts already produced by Pi/OpenCode plus ASSESS/STATUS facts when practical. Use `tools/extract-execution-usage.mjs` to normalize Pi/OpenCode session usage. See `docs/EXECUTION_EFFICIENCY_LEDGER_V1.md`.
 
-The supervisor may answer procedural questions already resolved by durable authority. HUMAN STOP for new/broadened scope, changed acceptance/product meaning, weakened oracle, destructive action, publication authority or provider refusal without a safe continuation.
+## 9. Supervisor escalation
 
-## 9. Train operation
+The supervisor may answer procedural questions already resolved by durable authority. HUMAN STOP for new/broadened scope, changed acceptance/product meaning, weakened oracle, destructive action, publication authority or provider/runtime refusal without a current safe continuation.
 
-Establish train-wide repo/base/publication facts once. At ticket boundaries re-check only checkpoint/HEAD, clean candidate surface, blockers/dependencies and whether the next ticket remains authorized.
+## 10. Fallback and publication
 
-Do not delete/recycle an active worktree merely because runtime protocol changed.
-
-## 10. Fallback
-
-A concrete Pi runtime/tooling failure may switch the same prepared contract to qualified OpenCode Build V1. Preserve checkpoint and scope; do not re-enter ODD.
-
-## 11. Publication
+A concrete Pi runtime/tooling failure may switch implementation to qualified OpenCode Build V1 under the same prepared contract. Do not re-enter ODD.
 
 Review approval is evidence, not push/PR/merge/deploy authority.

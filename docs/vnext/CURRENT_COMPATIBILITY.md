@@ -9,69 +9,49 @@ Date: 2026-09-28
 Pi                 0.87.1
 Herdr              0.9.1
 Gentle AI          3.7.0
-OpenCode           1.18.32 (qualified V1 review/fallback runtime)
+OpenCode transport V1 / 1.18.x line
 prepared supervisor Pi + Herdr
 prepared worker     one plain Pi child (`pi --no-extensions`)
 default profile     production-volume → nan/deepseek-v4-flash
 complex profile     complex → nan/glm5.3-flash high
-review transport    qualified OpenCode V1 native Gentle transport
+current decision    C-078
 ```
+
+OpenCode `1.18.32` is the exact synthetic qualification baseline. The 2026-09-28 field trains exercised the same V1 transport family; patch-level drift must be recorded in evidence, but ordinary prepared work should fail closed on actual transport incompatibility rather than re-running qualification by ritual.
 
 Prepared tickets do not enter Gentle Shell/ODD/`gentle-orchestrator`.
 
-## OpenCode V1 review boundary
+## Adaptive review boundary
 
-The 2026-09-27 OpenCode V1 zero-touch and routing qualifications remain the current review/fallback evidence. OpenCode 1.18.32 is the current stable 1.x runtime. One-shot `opencode run` remains blocked for unattended use while its clean-state init hang remains reproducible; fresh bounded `opencode serve` hosts/sessions are the qualified transport surface.
+`review assess` derives risk from the actual Git candidate. Preserve exact base/lineage/target and follow only provider-issued transitions.
 
-For C-077, OpenCode is used after the Pi-authored candidate commit for native Gentle review collection when due, and as fallback implementation only after a concrete Pi runtime/tooling failure.
+- `review_due=false` → no OpenCode collection host.
+- medium review when due → one Gentle-selected focus lens.
+- high → canonical 4R.
+- refuter/validator are conditional.
 
-Review entry:
+## OpenCode configuration isolation
 
-```bash
-gentle-ai review assess --cwd "$PWD" --agent opencode --base-ref <base> --committed-only --json
-```
+The global `~/.config/opencode/opencode.json` is baseline configuration, not per-train routing state. Concurrent trains use `OPENCODE_CONFIG_CONTENT` per review-host process, rendered by `tools/render-opencode-routing-overlay.mjs`.
 
-## Reviewer routing
+The legacy profile-apply helper requires an explicit target file and is maintenance-only.
 
-Production-volume uses the already-qualified mapping in `config/native-gentle/opencode-production-volume.profile.json`:
+## `review-resilience` empty-output seam
 
-- risk GLM high;
-- readability Luna high;
-- reliability V4 Flash;
-- resilience V4 Flash;
-- refuter MiMo conditional;
-- validator Luna high conditional.
+Current default remains `nan/deepseek-v4-flash` for `review-resilience`.
 
-Complex uses `config/native-gentle/opencode-complex.profile.json`:
+Known field class: Task completes with typed `opencode_task_output_empty` / reasoning-only and no capturable text. Historical Atenea #91 proved the same role/provider class on normal-sized work and exact-prompt Luna admission. PsO C-077 reproduced it again on 2026-09-28.
 
-- risk Luna xhigh;
-- readability Luna high;
-- reliability Luna xhigh;
-- resilience V4 Flash;
-- refuter Sol xhigh conditional;
-- validator Luna high conditional.
-
-Explicit Judgment Day: Judge A MiMo, Judge B Luna xhigh, fix GLM high.
+Current recovery is narrow: same frozen candidate/lineage/revision/target, bound STATUS, exact same slot reoffered, then one fresh-host route override of only `review-resilience` to `openai/gpt-6-luna` high. Failure after that recovery is HUMAN STOP. Do not hammer V4, mutate global routing or build a review controller.
 
 ## Plain Pi boundary
 
-`pi --no-extensions` disables extensions but keeps repository context and skill discovery. Pi supports trusted project skills from `.pi/skills/` and `.agents/skills/`.
+`pi --no-extensions` disables extensions but keeps repository context and skill discovery. Plain Pi is not the Gentle-Pi host relay; never self-attest `GENTLE_PI_REVIEW_RELAY_CONTRACT` manually.
 
-Plain Pi is not the Gentle-Pi host relay. `gentle-ai review assess --agent pi` may fail closed without the host relay contract; never self-attest `GENTLE_PI_REVIEW_RELAY_CONTRACT` manually.
+## Efficiency evidence
 
-Use `--approve` only as a one-run project-trust override for intentionally trusted repositories that require protected project resources.
-
-## Committed candidates
-
-`review assess` derives risk from the Git candidate. Preserve exact base/lineage/target. With committed-only review, an authorized correction may require a new local commit before validator can see the corrected candidate. `acknowledge-approved → authority=burned` is terminal.
+Token/cost telemetry is observational. Runtime-native Pi/OpenCode usage and Gentle assessment facts may be normalized with `tools/extract-execution-usage.mjs`. Missing telemetry does not invalidate otherwise valid product evidence.
 
 ## Historical evidence
 
-Keep, but do not treat as current prepared-entry authority:
-
-- `docs/OPENCODE_11832_SERVE_ZERO_TOUCH_QUALIFICATION_20260927.md` — review/fallback transport evidence;
-- `docs/OPENCODE_MODEL_ROUTING_QUALIFICATION_20260927.md` — reviewer model evidence;
-- older OpenCode-first writer runbooks;
-- Gentle-Pi/ODD profile evidence.
-
-Current operation is defined by C-077 and `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`.
+Keep older OpenCode-first writer and Gentle-Pi/ODD qualification as provenance only. Current operation is C-078 + `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`.
