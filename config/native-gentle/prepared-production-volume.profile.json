@@ -1,0 +1,19 @@
+{
+  "schema": "atenea.prepared-ticket-profile/v1",
+  "name": "production-volume",
+  "status": "current-default",
+  "purpose": "Default prepared-ticket route for bounded implementation work where complexity is mainly execution volume rather than novel or high-risk reasoning.",
+  "implementation": {
+    "runtime": "pi",
+    "agent_args": ["--no-extensions"],
+    "model": "nan/deepseek-v4-flash"
+  },
+  "review": {
+    "transport": "codex",
+    "profile": "codex-rdd-quality"
+  },
+  "fallback": {
+    "runtime": "opencode-build",
+    "condition": "concrete Pi runtime/tooling failure"
+  }
+}
