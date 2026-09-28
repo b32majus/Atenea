@@ -3,7 +3,6 @@
   "status": "current",
   "default_profile": "production-volume",
   "complex_profile": "complex",
-  "shared_review_profile": "codex-rdd-quality",
   "selection": "Start with production-volume unless current durable ticket authority already contains a complex trigger. Escalation changes the next clean implementation boundary, not an active candidate mid-flight.",
   "complex_triggers": [
     "novel or cross-cutting architecture spanning materially coupled modules",
@@ -19,6 +18,10 @@
     "many tests by itself",
     "business importance without corresponding reasoning or semantic risk"
   ],
-  "review_ownership": "Both implementation profiles use the same shared Codex RDD profile so parallel project trains do not race on global reviewer routing state. Gentle still selects lenses/refuter/validator from the native lifecycle.",
-  "profile_boundary": "Do not switch implementation profile in the middle of an active candidate/review lineage. Preserve evidence and change route at the next clean candidate/work-unit boundary."
+  "implementation_routing": {
+    "production-volume": "Pi + nan/deepseek-v4-flash",
+    "complex": "Pi + nan/glm5.3-flash high"
+  },
+  "review_transport": "Qualified OpenCode V1 native Gentle transport. Review roles remain separate and use the profile-specific multimodel mappings already established for production-volume and complex.",
+  "profile_boundary": "Do not switch implementation/review profile in the middle of an active candidate/review lineage. Preserve evidence and change route at the next clean candidate/work-unit boundary."
 }
