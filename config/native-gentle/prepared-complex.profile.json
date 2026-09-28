@@ -2,7 +2,7 @@
   "schema": "atenea.prepared-ticket-profile/v1",
   "name": "complex",
   "status": "current-triggered",
-  "purpose": "Triggered prepared-ticket route for materially harder reasoning while preserving the same qualified native Gentle review boundary.",
+  "purpose": "Triggered prepared-ticket route: plain Pi implements with GLM 5.3 Flash high; qualified OpenCode V1 carries native Gentle review with the stronger established reviewer map.",
   "implementation": {
     "runtime": "pi",
     "agent_args": ["--no-extensions"],
@@ -10,11 +10,21 @@
     "variant": "high"
   },
   "review": {
-    "transport": "codex",
-    "profile": "codex-rdd-quality"
+    "transport": "opencode-v1",
+    "roles": {
+      "review-risk": {"model": "openai/gpt-6-luna", "variant": "xhigh"},
+      "review-readability": {"model": "openai/gpt-6-luna", "variant": "high"},
+      "review-reliability": {"model": "openai/gpt-6-luna", "variant": "xhigh"},
+      "review-resilience": {"model": "nan/deepseek-v4-flash"},
+      "review-refuter": {"model": "openai/gpt-6-sol", "variant": "xhigh"},
+      "review-validator": {"model": "openai/gpt-6-luna", "variant": "high"},
+      "jd-judge-a": {"model": "nan/mimo-v2.6-flash"},
+      "jd-judge-b": {"model": "openai/gpt-6-luna", "variant": "xhigh"},
+      "jd-fix-agent": {"model": "nan/glm5.3-flash", "variant": "high"}
+    }
   },
   "fallback": {
-    "runtime": "opencode-build",
+    "runtime": "opencode-build-v1",
     "condition": "concrete Pi runtime/tooling failure"
   }
 }
