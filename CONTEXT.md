@@ -4,41 +4,56 @@ Status: **CURRENT DOMAIN CONTEXT**
 
 ## Purpose
 
-Atenea makes autonomous engineering work safer, reproducible and operable without competing with Gentle's implementation/review lifecycle.
+Atenea makes autonomous engineering work safer, reproducible and operable without competing with project product authority or Gentle's native review lifecycle.
 
 ## Current architecture
 
-Atenea is a thin policy/config/conformance layer **plus one thin deterministic train supervisor**. The supervisor owns only already-authorized frontier, fresh OpenCode process launch, exact bounded consent transport, durable checkpoint reconciliation and next-or-STOP.
+For work whose product meaning and acceptance are already durable, Atenea uses one thin train supervisor and one ticket worker:
 
-Inside one bounded ticket, fresh OpenCode + Gentle own execution-facing lifecycle. Atenea does not own reviewer verdicts, correction semantics or burn state.
+```text
+Pi supervisor + Herdr
+→ one plain Pi worker (`pi --no-extensions`)
+→ repository authority + applicable project skills
+→ implementation + deterministic checks/oracles
+→ local candidate commit
+→ Gentle ASSESS through Codex review transport
+→ exact native review continuation when due
+→ terminal / durable checkpoint
+```
+
+The supervisor owns only the already-authorized frontier, worker launch/observation, procedural relay already covered by authority, checkpoint reconciliation and next-or-STOP. It does not implement product code or invent review transitions.
+
+OpenCode Build remains a qualified fallback implementation worker after a concrete Pi runtime/tooling failure.
 
 ## Current qualified runtime
 
-Clean runtime qualified 2026-09-27:
-
 ```text
-OpenCode 1.18.32 (latest stable candidate observed 2026-09-27)
+Pi        0.87.1
+Herdr     0.9.1
 Gentle AI 3.7.0
-NaN baseline
-Gentle-managed OpenCode skills under the runtime-owned root
-Context7 / Engram installed but OFF by default
-Pi / Gentle Pi retained as rollback/provenance only
+OpenCode  1.18.32 — fallback worker
+review transport = Codex
 ```
 
-The historical OpenCode `1.18.10` two-ticket zero-touch qualification remains evidence for the lifecycle topology, not authority to reinstall that version. Clean `1.18.32` reproduces an intermittent one-shot `opencode run` hang at `init` before session creation, so unattended one-shot use remains blocked. Fresh `opencode serve` remains the transport. The 2026-09-28 upstream-orchestrator canary proved a full high-risk ticket path through `gentle-orchestrator`, delegated `explore`/`general`, native review collection and terminal acknowledgement/burn on a durable lineage.
+Plain Pi is intentionally launched with `--no-extensions` so the prepared-ticket worker does not enter Gentle Shell/ODD. Repository context and skills remain discoverable. Plain Pi is not a Gentle Shell review relay; never self-assert `GENTLE_PI_REVIEW_RELAY_CONTRACT`.
 
 ## Current design principle
 
 Use the cheapest reliable owner for each fact:
 
 - product meaning → human/repository authority;
-- cross-ticket frontier/process/checkpoint → thin deterministic supervisor;
-- candidate review/correction/burn → Gentle;
-- machine-decidable facts → deterministic tooling;
+- cross-ticket frontier/checkpoint → thin Pi supervisor + Herdr;
+- implementation of accepted work → one plain Pi ticket worker;
+- candidate review/correction/burn → native Gentle through Codex transport;
+- machine-decidable facts → deterministic tooling/oracles;
 - publication → human/target repo policy.
 
-## Current transition state
+## Current decision state
 
-C-072 supersedes the C-070 exact-version pin; C-073 supersedes Pi-era universal pre-writer ceremony; C-074 is retained as context-budget evidence but its custom ordinary roles are superseded by C-076; C-075 retains the two-profile routing policy; C-076 restores upstream `gentle-orchestrator` as the ordinary ticket parent and pins production reliability to Luna high after the high-risk canary. Stable policy remains version-neutral; compatibility owns exact runtime seams. Ordinary tickets use minimal preflight + `production-volume`; complex routing/composition/promotion gates activate only on concrete triggers.
+`docs/CURRENT_EXECUTION_DECISION_C077.md` is the current execution-topology authority. It supersedes C-076/C-075 for prepared-ticket entry/routing while preserving those decisions as qualification provenance. C-073 remains the lean-entry principle: heavy gates activate only on evidence that they can change the next action.
 
-Current evidence: `docs/OPENCODE_GENTLE_ORCHESTRATOR_QUALIFICATION_20260928.md` plus `docs/OPENCODE_11832_SERVE_ZERO_TOUCH_QUALIFICATION_20260927.md`. Current execution entry: `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`. Historical V1 lifecycle evidence: `docs/OPENCODE_V1_ZERO_TOUCH_RECOVERY_EVIDENCE_20260927.md`. Runtime/provider compatibility debt: `docs/vnext/CURRENT_COMPATIBILITY.md`.
+Prepared tickets do not re-enter ODD or `gentle-orchestrator`. Unresolved work is shaped before execution until durable authority is sufficient.
+
+Current entry: `docs/START_HERE.md`.
+Current runbook: `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`.
+Current runtime/provider seams: `docs/vnext/CURRENT_COMPATIBILITY.md`.
