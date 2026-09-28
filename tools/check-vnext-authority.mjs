@@ -30,8 +30,13 @@ const current = [
   "docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md",
   "docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md",
   "docs/CURRENT_EXECUTION_DECISION_C077.md",
+  "docs/PREPARED_TRAIN_HANDOFF_C077.md",
   "docs/QUALIFICATION.md",
   "docs/vnext/CURRENT_COMPATIBILITY.md",
+  "config/native-gentle/prepared-routing-policy.json",
+  "config/native-gentle/prepared-production-volume.profile.json",
+  "config/native-gentle/prepared-complex.profile.json",
+  "config/native-gentle/prepared-codex-rdd-quality.profile.json",
 ];
 
 for (const r of current) read(r);
@@ -42,14 +47,26 @@ req("AGENTS.md", "plain Pi child", "plain Pi worker policy");
 req("AGENTS.md", "GENTLE_PI_REVIEW_RELAY_CONTRACT", "Pi relay boundary");
 req("CONTEXT.md", "CURRENT_EXECUTION_DECISION_C077.md", "current decision pointer");
 req("docs/START_HERE.md", "RUNTIME_STATE      = QUALIFIED FOR PREPARED TICKETS", "qualification state");
-req("docs/START_HERE.md", "one plain Pi child (`--no-extensions`)", "current worker topology");
+req("docs/START_HERE.md", "production-volume → DeepSeek V4 Flash", "default prepared route");
+req("docs/START_HERE.md", "complex → GLM 5.3 Flash high", "complex prepared route");
 req("docs/START_HERE.md", "`gentle-ai review assess --agent codex`", "current review entry");
 req("docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md", "Status: **CURRENT EXECUTION ENTRY CONTRACT**", "entry contract");
 req("docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md", "do not reopen product meaning, run ODD or use gentle-orchestrator", "prepared-ticket bypass");
 req("docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md", "Status: **CURRENT PRODUCTIVE PATH FOR PREPARED WORK**", "current runbook");
+req("docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md", "review-risk", "RDD reviewer graph");
 req("docs/CURRENT_EXECUTION_DECISION_C077.md", "C-077 supersedes C-076 and C-075", "current topology decision");
+req("docs/CURRENT_EXECUTION_DECISION_C077.md", "Current shared Codex RDD quality profile", "shared reviewer profile");
+req("docs/PREPARED_TRAIN_HANDOFF_C077.md", "production-volume (default)", "handoff routing");
 req("docs/vnext/CURRENT_COMPATIBILITY.md", "review transport    Codex", "compatibility review transport");
 req("docs/vnext/CURRENT_COMPATIBILITY.md", "OpenCode Build remains a qualified fallback", "fallback policy");
+req("config/native-gentle/prepared-routing-policy.json", "\"default_profile\": \"production-volume\"", "prepared default profile");
+req("config/native-gentle/prepared-routing-policy.json", "\"complex_profile\": \"complex\"", "prepared complex profile");
+req("config/native-gentle/prepared-production-volume.profile.json", "nan/deepseek-v4-flash", "production worker model");
+req("config/native-gentle/prepared-complex.profile.json", "nan/glm5.3-flash", "complex worker model");
+req("config/native-gentle/prepared-codex-rdd-quality.profile.json", "review-risk", "risk reviewer role");
+req("config/native-gentle/prepared-codex-rdd-quality.profile.json", "review-validator", "validator role");
+req("config/native-gentle/prepared-codex-rdd-quality.profile.json", "gpt-6-sol", "Codex strong review model");
+req("config/native-gentle/prepared-codex-rdd-quality.profile.json", "gpt-6-luna", "Codex volume review model");
 req(".gitignore", ".atl/", "Gentle ignore");
 
 for (const r of current) {
