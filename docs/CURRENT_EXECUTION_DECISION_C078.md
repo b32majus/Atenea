@@ -14,6 +14,8 @@ Two real C-077 trains completed on 2026-09-28:
 
 Atenea #91 already contained independent earlier evidence of the same role/provider failure class on correctly composed candidates; the exact resilience prompt completed and passed provider admission with Luna while V4 exhausted. The new C-077 field incident promotes that historical evidence into current operational hardening.
 
+Detailed durable evidence: `docs/C078_FIELD_EVIDENCE_20260928.md`.
+
 ## 1. C-077 topology remains
 
 ```text
