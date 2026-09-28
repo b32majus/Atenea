@@ -1,0 +1,24 @@
+{
+  "schema": "atenea.prepared-ticket-routing-policy/v1",
+  "status": "current",
+  "default_profile": "production-volume",
+  "complex_profile": "complex",
+  "shared_review_profile": "codex-rdd-quality",
+  "selection": "Start with production-volume unless current durable ticket authority already contains a complex trigger. Escalation changes the next clean implementation boundary, not an active candidate mid-flight.",
+  "complex_triggers": [
+    "novel or cross-cutting architecture spanning materially coupled modules",
+    "complex concurrency, temporal, scheduling, state-machine, solver or optimization semantics",
+    "material security, privacy, authorization, tenancy, clinical-meaning or trust-boundary risk",
+    "delicate data migration, backwards compatibility or distributed invariant work",
+    "repeated semantic or bounded-correction failure under production-volume"
+  ],
+  "non_triggers": [
+    "file count by itself",
+    "a long but mechanically clear ticket",
+    "ordinary UI work",
+    "many tests by itself",
+    "business importance without corresponding reasoning or semantic risk"
+  ],
+  "review_ownership": "Both implementation profiles use the same shared Codex RDD profile so parallel project trains do not race on global reviewer routing state. Gentle still selects lenses/refuter/validator from the native lifecycle.",
+  "profile_boundary": "Do not switch implementation profile in the middle of an active candidate/review lineage. Preserve evidence and change route at the next clean candidate/work-unit boundary."
+}
