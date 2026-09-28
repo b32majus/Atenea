@@ -1,13 +1,70 @@
 #!/usr/bin/env node
-import fs from "node:fs"; import path from "node:path"; import { fileURLToPath } from "node:url";
-const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),".."); const failures=[];
-const read=r=>{const p=path.join(root,r); if(!fs.existsSync(p)){failures.push(`missing current authority surface: ${r}`); return ""} return fs.readFileSync(p,"utf8")};
-const req=(r,t,l)=>{const b=read(r); if(b&&!b.includes(t)) failures.push(`${l} missing in ${r}`)}; const forbid=(r,t,l)=>{const b=read(r); if(b.includes(t)) failures.push(`${l} forbidden in ${r}`)};
-const surfaces=["README.md","AGENTS.md","CONTEXT.md","docs/START_HERE.md","docs/ATENEA_HARNESS_CONTRACT_V1.md"];
-req("README.md","docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md","lean front door"); req("AGENTS.md","docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md","entry policy"); req("CONTEXT.md","OpenCode 1.18.32","current runtime");
-req("docs/START_HERE.md","RUNTIME_STATE      = QUALIFIED","qualification state"); req("docs/START_HERE.md","ticket primary     = gentle-orchestrator","upstream primary"); req("docs/START_HERE.md","Atenea semantic agents = 0","zero semantic agents"); req("docs/START_HERE.md","normal transport    = fresh `opencode serve` host per bounded ticket + one primary orchestrator session","serve transport");
-req("docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md","Status: **CURRENT EXECUTION ENTRY CONTRACT**","entry contract"); req("docs/OPERATOR_RUNBOOK_OPENCODE_SERVE_V1.md","Status: **CURRENT QUALIFIED RUNBOOK**","runbook"); req("docs/vnext/OPENCODE_SERVE_RUNTIME_RECIPE_20260927.md","Status: **CURRENT QUALIFIED RECIPE**","recipe");
-req("docs/CURRENT_DECISIONS.md","## C-076 — Upstream Gentle orchestrator is the ordinary ticket parent; Atenea owns zero semantic agents","current topology decision"); req("docs/CURRENT_DECISIONS.md","## C-075 — Two OpenCode routing profiles replace Pi-era per-ticket profile ceremony","routing decision"); req("docs/CURRENT_DECISIONS.md","## C-073 — Lean execution is the default; heavy gates are trigger-driven","lean execution decision");
-req("docs/OPENCODE_GENTLE_ORCHESTRATOR_QUALIFICATION_20260928.md","Status: **QUALIFIED CURRENT EVIDENCE**","orchestrator evidence"); req("docs/OPENCODE_MODEL_ROUTING_QUALIFICATION_20260927.md","amended 2026-09-28","amended routing evidence"); req("config/native-gentle/opencode-routing-policy.json","gentle-orchestrator","routing primary"); req("config/native-gentle/opencode-runtime-policy.json","current-qualified-runtime","runtime policy"); req(".gitignore",".atl/","Gentle ignore");
-for(const r of surfaces){forbid(r,"Atenea runtime controllers = 0","obsolete zero-controller front door"); forbid(r,"native execution runtime (currently Pi + Gentle)","obsolete Pi runtime"); forbid(r,"OpenCode is pinned to V1 `1.18.10`","obsolete pin"); forbid(r,"FIELD_QUALIFICATION_REQUIRED","obsolete writer gate"); forbid(r,"For every planned ticket/train","obsolete profile ceremony"); forbid(r,"For every substantial accepted Work Order","obsolete composition ceremony"); forbid(r,"atenea-writer","superseded Atenea writer role"); forbid(r,"atenea-review-host","superseded Atenea review-host role")}
-if(failures.length){console.error("ATENEA_VNEXT_AUTHORITY_CHECK=FAIL"); failures.forEach(x=>console.error(`- ${x}`)); process.exit(1)} console.log("ATENEA_VNEXT_AUTHORITY_CHECK=PASS");
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const failures = [];
+const read = (r) => {
+  const p = path.join(root, r);
+  if (!fs.existsSync(p)) {
+    failures.push(`missing current authority surface: ${r}`);
+    return "";
+  }
+  return fs.readFileSync(p, "utf8");
+};
+const req = (r, t, l) => {
+  const b = read(r);
+  if (b && !b.includes(t)) failures.push(`${l} missing in ${r}`);
+};
+const forbid = (r, t, l) => {
+  const b = read(r);
+  if (b.includes(t)) failures.push(`${l} forbidden in ${r}`);
+};
+
+const current = [
+  "README.md",
+  "AGENTS.md",
+  "CONTEXT.md",
+  "docs/START_HERE.md",
+  "docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md",
+  "docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md",
+  "docs/CURRENT_EXECUTION_DECISION_C077.md",
+  "docs/QUALIFICATION.md",
+  "docs/vnext/CURRENT_COMPATIBILITY.md",
+];
+
+for (const r of current) read(r);
+
+req("README.md", "ONE plain Pi ticket worker (`pi --no-extensions`)", "prepared Pi worker");
+req("README.md", "Codex transport", "Codex review transport");
+req("AGENTS.md", "plain Pi child", "plain Pi worker policy");
+req("AGENTS.md", "GENTLE_PI_REVIEW_RELAY_CONTRACT", "Pi relay boundary");
+req("CONTEXT.md", "CURRENT_EXECUTION_DECISION_C077.md", "current decision pointer");
+req("docs/START_HERE.md", "RUNTIME_STATE      = QUALIFIED FOR PREPARED TICKETS", "qualification state");
+req("docs/START_HERE.md", "one plain Pi child (`--no-extensions`)", "current worker topology");
+req("docs/START_HERE.md", "`gentle-ai review assess --agent codex`", "current review entry");
+req("docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md", "Status: **CURRENT EXECUTION ENTRY CONTRACT**", "entry contract");
+req("docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md", "do not reopen product meaning, run ODD or use gentle-orchestrator", "prepared-ticket bypass");
+req("docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md", "Status: **CURRENT PRODUCTIVE PATH FOR PREPARED WORK**", "current runbook");
+req("docs/CURRENT_EXECUTION_DECISION_C077.md", "C-077 supersedes C-076 and C-075", "current topology decision");
+req("docs/vnext/CURRENT_COMPATIBILITY.md", "review transport    Codex", "compatibility review transport");
+req("docs/vnext/CURRENT_COMPATIBILITY.md", "OpenCode Build remains a qualified fallback", "fallback policy");
+req(".gitignore", ".atl/", "Gentle ignore");
+
+for (const r of current) {
+  forbid(r, "ticket primary     = gentle-orchestrator", "stale C-076 current primary");
+  forbid(r, "normal transport    = fresh `opencode serve` host per bounded ticket + one primary orchestrator session", "stale OpenCode current transport");
+  forbid(r, "Pi / Gentle Pi      = rollback/provenance surface, not normal productive train entry", "stale Pi rollback-only current language");
+  forbid(r, "native execution runtime (currently Pi + Gentle)", "obsolete runtime wording");
+  forbid(r, "FIELD_QUALIFICATION_REQUIRED", "obsolete writer gate");
+  forbid(r, "atenea-writer", "superseded Atenea writer role");
+  forbid(r, "atenea-review-host", "superseded Atenea review-host role");
+}
+
+if (failures.length) {
+  console.error("ATENEA_VNEXT_AUTHORITY_CHECK=FAIL");
+  failures.forEach((x) => console.error(`- ${x}`));
+  process.exit(1);
+}
+console.log("ATENEA_VNEXT_AUTHORITY_CHECK=PASS");
