@@ -28,7 +28,7 @@ req('docs/START_HERE.md', 'CURRENT_DECISION      = C-078', 'C-078 front door');
 req('docs/START_HERE.md', 'lens depth            = native Gentle: 0 / 1 / 4', 'adaptive lens depth');
 req('docs/START_HERE.md', 'OPENCODE_CONFIG_CONTENT', 'process-local OpenCode config');
 req('docs/CURRENT_EXECUTION_DECISION_C078.md', 'opencode_task_output_empty', 'typed resilience recovery');
-req('docs/CURRENT_EXECUTION_DECISION_C078.md', 'max', 'bounded recovery wording');
+req('docs/CURRENT_EXECUTION_DECISION_C078.md', 'start one fresh isolated OpenCode V1 host', 'bounded one-host recovery');
 req('docs/PREPARED_TRAIN_HANDOFF_C078.md', 'review_due=false → checkpoint; DO NOT launch OpenCode', 'no-review host suppression');
 req('AGENTS.md', 'Never mutate `~/.config/opencode/opencode.json` as train routing state.', 'global config race guard');
 req('README.md', 'Current authority: **C-078**', 'README current authority');
