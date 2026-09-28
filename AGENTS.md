@@ -6,7 +6,7 @@ Atenea is a thin upstream-first policy, configuration and conformance layer over
 
 This file defines stable repository policy. It is **not** a product specification, task tracker, runtime state store or duplicate Gentle manual.
 
-Do not rebuild Gentle implementation/review lifecycle, routing semantics or correction state inside Atenea. One thin deterministic outer supervisor is current and may own only cross-ticket frontier, fresh-process launch, exact transport of already-authorized bounded consent, durable checkpoint reconciliation and terminal STOP; it must not become a second engineering/review harness.
+Do not rebuild Gentle review lifecycle, provider routing semantics or correction state inside Atenea. One thin outer supervisor is current and may own only cross-ticket frontier, worker launch, exact transport of already-authorized procedural choices, durable checkpoint reconciliation and terminal STOP; it must not become a second engineering/review harness.
 
 ## 1. Ownership
 
@@ -15,16 +15,19 @@ WHAT / WHY / acceptance / domain authority
 → human + durable repository authority
 
 stable engineering quality
-→ AGENTS.md + CODING_STANDARDS.md
+→ target repository AGENTS.md + CODING_STANDARDS.md
 
 shaping, only while genuinely active
 → adopted shaping workflow
 
-HOW to implement / verify / review inside one bounded ticket
-→ supported OpenCode process + Gentle AI; exact current version/transport lives in `docs/vnext/CURRENT_COMPATIBILITY.md`
+HOW to implement one already-shaped bounded ticket
+→ one plain Pi worker (`pi --no-extensions`)
+
+native candidate review when due
+→ Gentle AI through Codex review transport
 
 cross-ticket launch / checkpoint / next-or-STOP
-→ thin deterministic Atenea supervisor
+→ Pi supervisor + Herdr
 
 deterministic facts
 → tests / validators / oracles / CI
@@ -32,6 +35,8 @@ deterministic facts
 publish / merge
 → target repository policy + explicit human authority
 ```
+
+OpenCode Build is the qualified fallback ticket worker. It does not become authority to reopen product shaping.
 
 No methodology or runtime tool may silently invent product semantics, acceptance criteria, domain rules or publication authority merely because it needs them to proceed.
 
@@ -41,7 +46,7 @@ When compatible sources overlap:
 
 1. accepted current product/domain authority — live specs, ADRs, accepted issues/work orders and canonical product docs;
 2. the currently authorized task/change artifacts derived from that authority;
-3. stable repository policy — this file, `CODING_STANDARDS.md`, contribution/security rules;
+3. stable repository policy — target `AGENTS.md`, `CODING_STANDARDS.md`, contribution/security rules;
 4. active phase-specific methodology guidance;
 5. upstream tool defaults;
 6. historical docs, stale config, chat/session memory and remembered setups.
@@ -60,21 +65,15 @@ Read:
 4. `docs/CURRENT_DECISIONS.md` / relevant ADRs;
 5. the specific accepted issue/work order/spec being executed.
 
-For runtime/version exceptions read:
-
-- `docs/vnext/CURRENT_COMPATIBILITY.md`.
-
-For provisioning/reproduction read:
-
-- `docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260923.md`.
-
+For current operation read `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`.
+For runtime/version exceptions read `docs/vnext/CURRENT_COMPATIBILITY.md`.
 Historical stage documents and `historical/` are evidence, not forward-looking authority.
 
 ## 4. Stable invariants
 
 - Upstream-first is operational, not rhetorical.
 - Prefer supported upstream behavior and public interfaces.
-- Do not copy or rebuild upstream lifecycle logic inside Atenea without a demonstrated unsupported seam.
+- Do not copy or rebuild upstream review-state machinery inside Atenea without a demonstrated unsupported seam.
 - Keep changes scoped to accepted authority.
 - Preserve one durable authority for each fact.
 - Machine-decidable invariants belong in deterministic tooling.
@@ -83,141 +82,129 @@ Historical stage documents and `historical/` are evidence, not forward-looking a
 - Secrets never belong in repository config, prompts, logs or committed desired-state files.
 - Historical evidence may remain without remaining active runtime.
 - Hidden global state must not be the only place where behavior-affecting configuration is defined.
-- `.atl/` must be ignored repo-locally before Gentle candidate work begins.
-- Disposable canaries must not write memory/session state into the production Engram store; when a canary exercises `mem_*`, use an isolated Engram server/data store as documented in `docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260923.md`.
-- Execution worktrees are ephemeral delivery surfaces, not historical authority stores. After the corresponding PR/train is merged and a post-merge disposal gate proves that no required local-only state/evidence or active process still depends on the worktree, remove it and prune worktree metadata. The canonical repository checkout is not an execution worktree. Do not use forced worktree removal as the normal path.
+- Disposable canaries must not write production memory/session state.
+- Execution worktrees are ephemeral delivery surfaces, not historical authority stores; dispose only after publication evidence is durable and no required local state/process depends on them.
 
 ## 5. Shaping and execution entry
 
 Shaping is phase-scoped. If work is genuinely unshaped, use the smallest adopted workflow that produces durable executable authority. Matt skills and OpenSpec remain optional; neither is a mandatory execution prelude.
 
-For already-shaped work, use `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`. The ordinary writer-ready check is intentionally small: correct repository/base, accepted task authority, executable outcome/acceptance/constraints, current qualified runtime, and known publication boundary.
+For already-shaped work, use `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md` and `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`.
 
-Do **not** require a composition forecast, model/profile-selection ceremony, broad archaeology or Promotion Review for every substantial ticket merely because those controls exist.
+Do **not** send prepared tickets through ODD or `gentle-orchestrator` merely to rediscover product meaning, decomposition or tracking already made durable by the project.
 
-Open `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` only when there is concrete evidence of a coarse/over-budget delivery shape. Ordinary bounded tickets need no authored-line estimate.
+Do **not** require a composition forecast, model/profile-selection ceremony, broad archaeology or Promotion Review for every substantial ticket merely because those controls exist. Open `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` only when concrete evidence shows a coarse/over-budget or genuinely multi-unit delivery shape.
 
-The ordinary ticket parent is upstream `gentle-orchestrator`, pinned to GLM 5.3 Flash high in both current profiles. Gentle may use its own `explore` and `general` subagents; production routes both to DeepSeek V4 Flash, while `complex` may move `general` to GLM high. Atenea owns **zero semantic writer/reviewer agents**. Interactive `build` remains available for the human surface. `production-volume` is default; `complex` activates only from concrete material complexity under C-075/C-076. Additional routing overrides require a declared experiment or concrete route failure.
+For material work, executable authority must still be sufficiently falsifiable for its risk: applicable invariants, negative/adversarial cases, integration seams, performance criteria when material, and deterministic acceptance belong in durable task authority when they change correctness. This is a quality requirement, not paperwork.
 
-For material work, executable authority must still be sufficiently falsifiable for its risk: applicable invariants, negative/adversarial cases, integration seams and deterministic acceptance belong in the durable task when they materially change correctness. This is a quality requirement, not a paperwork requirement.
-
-## 6. Native execution ownership
+## 6. Prepared-ticket execution ownership
 
 The thin outer supervisor owns only:
 
 - already-authorized train frontier;
-- fresh OpenCode process launch/termination at bounded lifecycle boundaries;
-- exact transport of already-authorized candidate-scoped consent;
+- launch/observation of exactly one ticket worker;
+- procedural answers already contained in durable authority;
+- exact relay of already-authorized candidate-scoped review consent;
 - durable Git/checkpoint reconciliation;
 - next compatible ticket or terminal STOP.
 
-Atenea does **not** own:
+The normal ticket worker is one plain Pi child launched through Herdr with `--no-extensions` in the target worktree.
 
-- ODD/exploration classification;
-- internal task decomposition;
-- worker delegation;
-- allowed-edit enforcement;
-- verification lifecycle;
-- work-unit commits;
-- RDD/risk/review timing;
-- reviewer/refuter/validator execution;
-- native review consent;
-- correction lifecycle;
+Before product writes the worker reads the target repository's current authority, normally including:
+
+- `AGENTS.md`;
+- `CODING_STANDARDS.md` when present/required;
+- accepted ticket/work-order/spec and cited live authority;
+- applicable project-local skills.
+
+The worker owns implementation, deterministic checks/oracles, the authorized local candidate commit and entry into native Gentle review.
+
+Atenea does **not** own or reconstruct:
+
+- Gentle review transaction state;
+- lens selection;
+- candidate-causality classification;
+- refuter/validator semantics;
+- bounded correction authority;
 - acknowledgement/burn.
 
-Use supported native surfaces and follow provider/runtime-issued transitions.
+Use supported native surfaces and follow provider/runtime-issued transitions exactly.
 
-Do not reconstruct review state or transitions in prompt prose, shell glue or Atenea shadow state.
+Runtime mechanics may decide **how** accepted work is performed. They may not expand **what** accepted authority authorized.
 
-Runtime decomposition may decide **how** accepted work is performed. It may not expand **what** the accepted authority authorized.
+## 7. Review transport
 
-## 7. Configuration
-
-Use the upstream runtime's native provider/model/profile configuration.
-
-Atenea versions secret-free desired state:
-
-- `config/native-gentle/nan-provider.models.json`;
-- `config/native-gentle/opencode-runtime-policy.json` — current OpenCode/Gentle runtime, skills, MCP and compatibility desired state.
-
-Pi/Gentle-Pi profile and skill-policy files remain rollback/provenance surfaces until explicitly archived; they are not current OpenCode routing authority. Atenea does not implement model routing or skill resolution.
-
-After a runtime rebuild/change, compatibility incident or when runtime ownership is materially in question, validate with:
+Prepared-ticket review enters native Gentle through Codex transport after the candidate commit:
 
 ```bash
-node tools/check-opencode-runtime-policy.mjs
-node tools/check-opencode-routing-profiles.mjs
-node tools/check-vnext-authority.mjs
+gentle-ai review assess \
+  --cwd "$PWD" \
+  --agent codex \
+  --base-ref <last-reviewed-or-ticket-base> \
+  --committed-only \
+  --json
 ```
 
-Temporary version/provider exceptions live only in `docs/vnext/CURRENT_COMPATIBILITY.md`.
+If `review_due=true`, execute the returned `next_transition.command` literally. After START, preserve the exact lineage/revision/target and route only through provider-issued transitions.
 
-## 8. Verification and engineering quality
+Plain Pi is **not** a Gentle Pi review host. Never manually export `GENTLE_PI_REVIEW_RELAY_CONTRACT` to make `pi --no-extensions` impersonate the Gentle Shell relay.
 
-`CODING_STANDARDS.md` is the stable horizontal engineering-quality authority.
+Native Gentle owns lenses, refutation when applicable, bounded correction, targeted validation and acknowledgement/burn. A deterministic finding need not pass through refuter; inferential findings use the provider's refutation path when required.
 
-Prefer deterministic evidence that can independently disagree with the implementation:
+Judgment Day is a separate explicit dual/adversarial review tool. Invoke it only when the user/ticket explicitly requests it for a concrete target; it is not an automatic post-RDD ritual and does not grant delivery authority.
 
-- tests;
-- typecheck/build;
-- schema/YAML validation;
-- repository cleanliness;
-- changed-path checks;
-- secrets scanning;
-- runtime/profile conformance.
+## 8. Skills and repository setup
 
-Deterministic oracles produce evidence. They do not grant product, review, publication or merge authority.
+Project-local skills intended for Pi discovery should live under:
+
+```text
+.agents/skills/<skill>/SKILL.md
+```
+
+and contain valid YAML frontmatter with non-empty:
+
+```yaml
+name: <skill-name>
+description: <when/why to use it>
+```
+
+Do not duplicate Atenea lifecycle/model-routing/provider policy into product skills. Project skills own domain, engineering, UI, QA and documentation guidance.
+
+Legacy or runtime-specific skill roots may remain where they are still owned/needed; do not mass-migrate or duplicate skills without a concrete compatibility reason.
+
+Matt Pocock skills remain optional discovery/shaping tools, not a mandatory runtime prelude.
+
+## 9. Fallback
+
+If plain Pi has a concrete runtime/tooling failure, preserve the current worktree and durable checkpoint and relaunch the **same prepared-ticket contract** with qualified OpenCode Build.
+
+Do not use `gentle-orchestrator` as the fallback merely because OpenCode is the host. OpenCode implementation and Codex review transport remain separate responsibilities.
+
+Exact fallback/runtime compatibility lives in `docs/vnext/CURRENT_COMPATIBILITY.md`.
+
+## 10. Verification and engineering quality
+
+`CODING_STANDARDS.md` is the stable horizontal engineering-quality authority for Atenea itself. Target repositories own their corresponding product engineering standards.
+
+Prefer deterministic evidence that can independently disagree with implementation: tests, typecheck/build, schema validation, repository cleanliness, changed-path checks, security/privacy checks, performance benchmarks when material, and independent acceptance oracles where required.
 
 A new/materially changed checker or scanner for security, privacy, state, parsing or trust-boundary behavior should prove it can fail on a representative planted violation, not merely pass on the intended implementation.
 
-## 9. Review compatibility seams
+## 11. Publication
 
-Current temporary seams are documented in `docs/vnext/CURRENT_COMPATIBILITY.md`.
+For a material multi-work-unit/train that crosses accepted seams, validate the composed exact HEAD with repository-owned deterministic integration evidence before publication. Per-unit RDD does not substitute for cross-unit integration evidence, and a composed branch does not become a synthetic Gentle candidate merely for closeout.
 
-In particular:
+Review approval is not push/PR/merge/deploy authority. Follow target repository policy and explicit human authorization. No automatic merge.
 
-- a typed `risk=unassessable` ASSESS fail-closed plan is followed natively; Atenea does not synthesize START;
-- successful `acknowledge-approved → authority=burned` is terminal; selectorless STATUS is not required to re-prove burn;
-- exact OpenCode/Gentle versions and transport exceptions live in `docs/vnext/CURRENT_COMPATIBILITY.md`; stable repository policy does not pin runtime versions;
-- `~/.config/opencode/skills` is the ordinary global runtime skill root; legacy shared `~/.agents/skills` is not active globally; project skills remain project-local;
-- Context7 and Engram are installed capabilities but disabled by default for ordinary ticket execution;
-- when the Atenea outer supervisor owns the train frontier, start one fresh bounded OpenCode host and use upstream `gentle-orchestrator` as the ticket parent; the supervisor must not duplicate ODD/delegation/RDD semantics in Atenea-owned agents.
-
-## 10. Publication
-
-Before publication, validate the actual changed artifact types.
-
-For a material multi-work-unit/train that crosses accepted seams, also validate the composed exact HEAD with repository-owned deterministic integration evidence before publication. Per-unit RDD does not substitute for cross-unit integration evidence, and the composed branch does not become a synthetic Gentle review candidate merely for closeout.
-
-Normal non-force push may be allowed by target repository policy.
-
-No automatic merge.
-
-A high-risk human promotion boundary may request an independent read-only audit, but that audit is evidence at the human boundary, not a second Gentle RDD lifecycle.
-
-## 11. Repository entry and resumption
+## 12. Repository entry and resumption
 
 When entering or resuming a repository:
 
 - find current Git/GitHub/product authority first;
-- inventory old harness/tooling read-only;
+- inventory old harness/tooling read-only when relevant;
 - classify signals as current / compatibility-required / historical / stale-or-unknown;
 - do not delete or reactivate old tooling by assumption;
 - do not resume stale hidden session state merely because it exists;
-- create a clean isolated execution surface when old sessions/worktrees are stale.
+- preserve existing worktree/commit progress when adapting a train to the current protocol.
 
 Durable Git/GitHub/product evidence outranks remembered agent/session state.
-
-## 12. Agent skills / repo setup
-
-Matt Pocock skills remain optional discovery/shaping tools, not a mandatory runtime prelude.
-
-Generated metadata owned by an upstream skill should remain separable from Atenea stable policy.
-
-Repository setup references:
-
-- issue tracker: `docs/agents/issue-tracker.md`;
-- triage labels: `docs/agents/triage-labels.md`;
-- domain-doc layout: `docs/agents/domain.md`.
-
-Do not fork third-party skills into Atenea merely to freeze their internals.
