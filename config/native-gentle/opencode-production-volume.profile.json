@@ -1,64 +1,22 @@
 {
   "schema": "atenea.opencode-routing-profile/v1",
   "name": "production-volume",
-  "status": "current-default",
+  "status": "historical-c075",
+  "superseded_by": "config/native-gentle/prepared-production-volume.profile.json",
   "qualified_at": "2026-09-28",
-  "purpose": "Default high-volume route through upstream Gentle orchestration; V4 for volume child work and evidence-backed reviewer pins.",
+  "purpose": "Historical OpenCode/Gentle-orchestrator production-volume route retained as qualification provenance.",
   "roles": {
-    "writer": {
-      "agent": "general",
-      "model": "nan/deepseek-v4-flash"
-    },
-    "review-readability": {
-      "agent": "review-readability",
-      "model": "openai/gpt-6-luna",
-      "variant": "high"
-    },
-    "review-reliability": {
-      "agent": "review-reliability",
-      "model": "openai/gpt-6-luna",
-      "variant": "high"
-    },
-    "review-resilience": {
-      "agent": "review-resilience",
-      "model": "nan/deepseek-v4-flash"
-    },
-    "review-risk": {
-      "agent": "review-risk",
-      "model": "nan/glm5.3-flash",
-      "variant": "high"
-    },
-    "review-refuter": {
-      "agent": "review-refuter",
-      "model": "nan/mimo-v2.6-flash"
-    },
-    "review-validator": {
-      "agent": "review-validator",
-      "model": "openai/gpt-6-luna",
-      "variant": "high"
-    },
-    "jd-judge-a": {
-      "agent": "jd-judge-a",
-      "model": "nan/mimo-v2.6-flash"
-    },
-    "jd-judge-b": {
-      "agent": "jd-judge-b",
-      "model": "openai/gpt-6-luna",
-      "variant": "xhigh"
-    },
-    "jd-fix-agent": {
-      "agent": "jd-fix-agent",
-      "model": "nan/glm5.3-flash",
-      "variant": "high"
-    },
-    "explore": {
-      "agent": "explore",
-      "model": "nan/deepseek-v4-flash"
-    },
-    "ticket-primary": {
-      "agent": "gentle-orchestrator",
-      "model": "nan/glm5.3-flash",
-      "variant": "high"
-    }
+    "writer": {"agent": "general", "model": "nan/deepseek-v4-flash"},
+    "review-readability": {"agent": "review-readability", "model": "openai/gpt-6-luna", "variant": "high"},
+    "review-reliability": {"agent": "review-reliability", "model": "openai/gpt-6-luna", "variant": "high"},
+    "review-resilience": {"agent": "review-resilience", "model": "nan/deepseek-v4-flash"},
+    "review-risk": {"agent": "review-risk", "model": "nan/glm5.3-flash", "variant": "high"},
+    "review-refuter": {"agent": "review-refuter", "model": "nan/mimo-v2.6-flash"},
+    "review-validator": {"agent": "review-validator", "model": "openai/gpt-6-luna", "variant": "high"},
+    "jd-judge-a": {"agent": "jd-judge-a", "model": "nan/mimo-v2.6-flash"},
+    "jd-judge-b": {"agent": "jd-judge-b", "model": "openai/gpt-6-luna", "variant": "xhigh"},
+    "jd-fix-agent": {"agent": "jd-fix-agent", "model": "nan/glm5.3-flash", "variant": "high"},
+    "explore": {"agent": "explore", "model": "nan/deepseek-v4-flash"},
+    "ticket-primary": {"agent": "gentle-orchestrator", "model": "nan/glm5.3-flash", "variant": "high"}
   }
 }
