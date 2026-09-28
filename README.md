@@ -4,19 +4,21 @@ Atenea is an **upstream-first policy, configuration and conformance layer** for 
 
 ## Current prepared-ticket runtime
 
-Qualified 2026-09-28:
+Current authority: **C-078** (2026-09-28), which hardens the C-077 Pi-first topology with field evidence from PsO Valme and PROMueve Reuma/Farmacia.
 
 ```text
 Pi supervisor + Herdr
-→ select prepared profile at a clean candidate/work-unit boundary
+→ select prepared implementation profile at a clean boundary
    - production-volume (default) → DeepSeek V4 Flash
    - complex → GLM 5.3 Flash high
 → ONE plain Pi ticket worker (`pi --no-extensions`)
 → repository authority + applicable project skills
 → implementation + deterministic checks/oracles
 → local candidate commit
-→ native Gentle ASSESS / RDD through qualified OpenCode V1 review transport
-→ risk / readability / reliability / resilience
+→ native Gentle ASSESS
+→ if review_due=false: checkpoint; do not start a review host
+→ if review_due=true: follow Gentle-selected 1 or 4 lens route exactly
+→ qualified OpenCode V1 transport only when Gentle requests collection
 → conditional refuter / bounded correction / validator
 → acknowledge-approved / burn
 → durable checkpoint
@@ -29,19 +31,19 @@ OpenCode V1 is **review transport and qualified fallback implementation runtime*
 
 For a fresh agent or human, read in this order:
 
-1. `AGENTS.md` — stable repository policy.
-2. `docs/START_HERE.md` — current front door.
-3. `docs/CURRENT_EXECUTION_DECISION_C077.md` — current prepared-ticket topology/routing decision.
-4. `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md` — minimal execution entry contract.
-5. `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md` — current operator path.
-6. `docs/PREPARED_TRAIN_HANDOFF_C077.md` — reusable train-adaptation handoff.
-7. `CODING_STANDARDS.md` — horizontal engineering quality.
-8. current product/task/ADR authority for the work being executed.
-9. `docs/vnext/CURRENT_COMPATIBILITY.md` only when runtime/provider exceptions matter.
+1. `AGENTS.md`;
+2. `docs/START_HERE.md`;
+3. `docs/CURRENT_EXECUTION_DECISION_C078.md`;
+4. `docs/CURRENT_EXECUTION_DECISION_C077.md` for the preserved base topology;
+5. `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`;
+6. `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`;
+7. `docs/PREPARED_TRAIN_HANDOFF_C078.md`;
+8. `CODING_STANDARDS.md`;
+9. current product/task/ADR authority.
 
-Historical OpenCode-first, Gentle-Pi and ODD documents remain evidence for what they tested; they do not define the current prepared-ticket entry.
+Historical OpenCode-first, Gentle-Pi and ODD documents remain evidence for what they tested; they do not define current prepared-ticket execution.
 
-## Prepared profiles
+## Prepared implementation profiles
 
 `production-volume` is the default:
 
@@ -55,47 +57,36 @@ Pi worker → nan/deepseek-v4-flash
 Pi worker → nan/glm5.3-flash · high
 ```
 
-Use `complex` only for material reasoning/semantic risk: novel or cross-cutting architecture; difficult concurrency/temporal/scheduling/state/solver semantics; material security/privacy/auth/tenancy/clinical/trust-boundary semantics; delicate migration/back-compat/distributed invariants; or repeated semantic/correction failure under `production-volume`.
+Use `complex` only for material reasoning/semantic risk. File count, ticket length, ordinary UI, many tests, or business importance alone are not triggers.
 
-File count, ticket length, ordinary UI, many tests, or business importance alone are not triggers.
+## Adaptive native review
 
-Canonical prepared routing:
+Atenea never chooses reviewer depth. Gentle owns risk and lens selection from the frozen candidate:
 
-- `config/native-gentle/prepared-routing-policy.json`;
-- `config/native-gentle/prepared-production-volume.profile.json`;
-- `config/native-gentle/prepared-complex.profile.json`.
+```text
+passive / low        → 0 lenses
+medium when due      → 1 focus lens
+high                 → canonical 4R
+```
 
-## Native review routing
+`review_due=false` means no OpenCode review host should be started for that candidate. Refuter and validator remain conditional provider-owned roles.
 
-Gentle keeps distinct review roles under the qualified OpenCode V1 transport.
+Default reviewer mappings remain in `config/native-gentle/opencode-production-volume.profile.json` and `opencode-complex.profile.json`. C-078 does **not** globally replace DeepSeek for `review-resilience`; it adds one evidence-backed same-lineage recovery route to Luna high after a typed V4 empty-output failure.
 
-`production-volume` review routing:
+## Review transport isolation
 
-- risk → GLM 5.3 Flash high;
-- readability → GPT-6 Luna high;
-- reliability → DeepSeek V4 Flash;
-- resilience → DeepSeek V4 Flash;
-- refuter → MiMo 2.6 Flash when required;
-- validator → GPT-6 Luna high when required.
+Concurrent trains must not rewrite `~/.config/opencode/opencode.json`. Render the selected profile as a per-process overlay:
 
-`complex` review routing:
+```bash
+OPENCODE_CONFIG_CONTENT="$(node tools/render-opencode-routing-overlay.mjs production-volume)" \
+  opencode serve ...
+```
 
-- risk → GPT-6 Luna xhigh;
-- readability → GPT-6 Luna high;
-- reliability → GPT-6 Luna xhigh;
-- resilience → DeepSeek V4 Flash;
-- refuter → GPT-6 Sol xhigh when required;
-- validator → GPT-6 Luna high when required.
+Use `complex` when that is the selected prepared profile. The legacy apply helper now requires an explicit target file and is maintenance-only.
 
-Explicit-only Judgment Day keeps Judge A=MiMo, Judge B=Luna xhigh, fix=GLM high.
+## Efficiency evidence
 
-These reviewer mappings are the already-qualified OpenCode V1 routing evidence from 2026-09-27. C-077 changes the prepared implementation runtime to Pi; it does not discard the qualified reviewer graph.
-
-## Skills
-
-Pi supports trusted project skills from both `.pi/skills/` and `.agents/skills/`. Keep runtime-specific project resources where they belong; prefer `.agents/skills/<name>/SKILL.md` for cross-runtime project authority. Discovered skills need valid frontmatter with non-empty `name` and `description`.
-
-Do not duplicate Atenea lifecycle/model-routing policy into product skills.
+Execution telemetry is observational and must add **zero LLM calls**. Capture runtime-native Pi usage, Gentle ASSESS/risk/lens facts, OpenCode review-session usage and failed transport attempts when available. See `docs/EXECUTION_EFFICIENCY_LEDGER_V1.md` and `tools/extract-execution-usage.mjs`.
 
 ## Publication boundary
 

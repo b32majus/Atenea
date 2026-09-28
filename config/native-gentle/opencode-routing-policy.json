@@ -1,18 +1,25 @@
 {
   "schema": "atenea.opencode-routing-policy/v1",
   "status": "current-review-and-fallback",
-  "usage_under_c077": "OpenCode V1 reviewer routing and fallback implementation compatibility. Prepared implementation routing is owned by prepared-routing-policy.json and Pi.",
+  "usage_under_c078": "OpenCode V1 reviewer transport and fallback implementation compatibility. Prepared implementation routing is owned by prepared-routing-policy.json and Pi.",
   "default_profile": "production-volume",
   "complex_profile": "complex",
-  "selection": "Use the reviewer/fallback profile matching the selected prepared profile; this file is not the prepared implementation entry.",
-  "complex_triggers": [
-    "novel or cross-cutting architecture",
-    "complex concurrency, temporal or state semantics",
-    "material security/privacy/tenancy boundary",
-    "unusually coupled reasoning surface",
-    "repeated semantic/correction failure on production-volume"
-  ],
-  "sol_policy": "No normal-path Sol. In complex, Sol is pinned only to review-refuter, which runs only when severe inferential findings require adversarial adjudication.",
+  "selection": "Use the reviewer/fallback profile matching the selected prepared profile; Gentle alone selects review depth and lens slots.",
+  "transport_config_scope": "per-process",
+  "global_config_mutation_during_trains": "forbidden",
+  "overlay_renderer": "tools/render-opencode-routing-overlay.mjs",
+  "resilience_empty_output_recovery": {
+    "trigger_role": "review-resilience",
+    "trigger_model": "nan/deepseek-v4-flash",
+    "trigger_error": "opencode_task_output_empty",
+    "require_bound_status_same_slot": true,
+    "recovery_model": "openai/gpt-6-luna",
+    "recovery_variant": "high",
+    "max_recovery_attempts": 1,
+    "mutate_global_profile": false,
+    "new_start": false
+  },
+  "sol_policy": "No normal-path Sol. In complex, Sol is pinned only to review-refuter when native Gentle requires adversarial refutation.",
   "excluded_workflows": ["SDD"],
   "historical_profiles": ["native-balanced", "native-v4-heavy", "native-economy", "native-nan"]
 }

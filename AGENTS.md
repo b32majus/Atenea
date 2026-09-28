@@ -21,9 +21,12 @@ prepared implementation
 → ONE plain Pi child (`pi --no-extensions`)
 → production-volume by default; complex only on material trigger
 
-native candidate review when due
-→ Gentle AI through qualified OpenCode V1 review transport
-→ distinct review-risk/readability/reliability/resilience
+candidate risk / review timing / lens selection
+→ native Gentle
+
+review execution when due
+→ qualified OpenCode V1 transport with per-process routing config
+→ only the provider-issued lens slots
 → conditional refuter / bounded correction / validator / burn
 
 machine-decidable facts
@@ -33,15 +36,13 @@ publish / merge
 → target repository policy + explicit human authority
 ```
 
-OpenCode V1 is not the ordinary prepared-ticket writer. It remains the qualified review transport and fallback implementation runtime.
+OpenCode V1 is not the ordinary prepared-ticket writer. It remains review transport and qualified implementation fallback.
 
 ## 2. Authority precedence
 
-When compatible sources overlap:
-
 1. current accepted product/domain authority;
 2. current authorized task/change artifacts;
-3. target repository policy (`AGENTS.md`, `CODING_STANDARDS.md`, contribution/security rules);
+3. target repository policy;
 4. current Atenea execution authority;
 5. upstream tool defaults;
 6. historical docs, stale config and remembered session state.
@@ -54,12 +55,14 @@ Read:
 
 1. `README.md`;
 2. `docs/START_HERE.md`;
-3. `docs/CURRENT_EXECUTION_DECISION_C077.md`;
-4. `CODING_STANDARDS.md`;
-5. relevant decision provenance only when needed;
-6. the specific accepted issue/work-order/spec being executed.
+3. `docs/CURRENT_EXECUTION_DECISION_C078.md`;
+4. `docs/CURRENT_EXECUTION_DECISION_C077.md` for base-topology provenance;
+5. `CODING_STANDARDS.md`;
+6. relevant decision provenance only when needed;
+7. the accepted issue/work-order/spec being executed.
 
 Current operation: `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`.
+Current handoff: `docs/PREPARED_TRAIN_HANDOFF_C078.md`.
 Prepared routing: `config/native-gentle/prepared-routing-policy.json`.
 Runtime exceptions: `docs/vnext/CURRENT_COMPATIBILITY.md`.
 
@@ -67,88 +70,57 @@ Runtime exceptions: `docs/vnext/CURRENT_COMPATIBILITY.md`.
 
 If executable authority already exists, do **not** rerun ODD, `gentle-orchestrator`, broad archaeology or shaping by ritual.
 
-Before product writes the Pi ticket worker reads the target repository's current authority, normally including:
-
-- `AGENTS.md`;
-- `CODING_STANDARDS.md` when present/required;
-- accepted ticket/work-order/spec and cited live authority;
-- applicable project-local skills.
-
-The worker implements the smallest coherent authorized change, preserves the principal acceptance oracle, runs deterministic checks and creates the authorized local candidate commit.
+The Pi worker reads target-repository authority and applicable project skills, implements the smallest coherent authorized change, preserves the principal acceptance oracle, runs deterministic checks and creates the authorized local candidate commit.
 
 ## 5. Prepared profiles
 
-Default:
+Default: `production-volume → Pi + nan/deepseek-v4-flash`.
 
-```text
-production-volume → Pi + nan/deepseek-v4-flash
-```
+Triggered: `complex → Pi + nan/glm5.3-flash · high`.
 
-Triggered:
-
-```text
-complex → Pi + nan/glm5.3-flash · high
-```
-
-Use `complex` only for material reasoning/semantic risk: novel/cross-cutting architecture; complex concurrency/temporal/scheduling/state/solver semantics; material security/privacy/auth/tenancy/clinical/trust boundaries; delicate migration/back-compat/distributed invariants; or repeated semantic/correction failure under `production-volume`.
-
-Do not escalate from file count, ticket length, ordinary UI, many tests or business importance alone. Do not switch profile in the middle of an active candidate/review lineage.
+Use `complex` only for material reasoning/semantic risk. Do not escalate from file count, ticket length, ordinary UI, many tests or business importance alone. Do not switch the implementation profile inside an active candidate/review lineage.
 
 ## 6. Native review
 
-After the candidate commit, enter Gentle with the actual candidate base:
+After candidate commit, run Gentle ASSESS against the actual base and obey its result. Atenea does not select lenses.
 
-```bash
-gentle-ai review assess \
-  --cwd "$PWD" \
-  --agent opencode \
-  --base-ref <last-reviewed-or-ticket-base> \
-  --committed-only \
-  --json
-```
+- `review_due=false` → no review host; checkpoint.
+- medium review when due → the one focus lens Gentle selected.
+- high → Gentle's canonical 4R set.
+- refuter/validator run only when Gentle requires them.
 
-The `opencode` identity is the qualified **OpenCode V1 review transport**. When provider-issued collection requires a live host, use the existing fresh bounded OpenCode V1 review-host path; that host is transport, not a second Atenea implementation worker.
+When provider-issued collection requires OpenCode, start a fresh bounded V1 review host with **per-process** routing configuration. Never mutate `~/.config/opencode/opencode.json` as train routing state.
 
-Follow `next_transition.command` literally. Gentle owns review timing, lens selection, candidate causality, refutation, correction authority, targeted validation and acknowledgement/burn.
+A typed `opencode_task_output_empty` on required `review-resilience` while routed to DeepSeek V4 has one C-078 recovery path: preserve candidate/lineage/revision/target, query bound STATUS, require the exact same slot to be reoffered, then make one fresh-host attempt with only `review-resilience` overridden to GPT-6 Luna high. If that attempt is not admitted, HUMAN STOP. No RESET/new START/fallback loop.
 
-Current qualified review mappings remain in:
-
-- `config/native-gentle/opencode-production-volume.profile.json`;
-- `config/native-gentle/opencode-complex.profile.json`.
-
-Judgment Day is explicit-only for a concrete target; it is not an automatic post-RDD phase.
-
-Plain Pi is not a Gentle-Pi review host. Never manually assert `GENTLE_PI_REVIEW_RELAY_CONTRACT` from `pi --no-extensions`.
+Judgment Day is explicit-only. Plain Pi is not a Gentle-Pi review host; never manually assert `GENTLE_PI_REVIEW_RELAY_CONTRACT`.
 
 ## 7. Skills and trust
 
-Pi supports trusted project skills from both `.pi/skills/` and `.agents/skills/`.
+Pi supports trusted project skills from `.pi/skills/` and `.agents/skills/`.
 
-- keep intentional Pi-project resources under `.pi/skills`;
+- keep intentional runtime-specific resources where they belong;
 - prefer `.agents/skills/<name>/SKILL.md` for cross-runtime project authority;
 - do not duplicate skills solely to normalize layout;
 - discovered skills require non-empty `name` and `description` frontmatter;
-- use `--approve` only as a one-run project-trust override for an intentionally trusted repository that needs protected project resources.
+- use `--approve` only as a one-run trust override for an intentionally trusted repository that needs protected project resources.
 
 Project skills own domain/engineering/UI/QA guidance. Atenea owns execution routing.
 
 ## 8. Supervisor boundary
 
-The thin Pi supervisor owns only:
-
-- authorized train frontier;
-- profile selection at clean boundaries;
-- launch/observation of one Pi implementation worker;
-- already-authorized procedural relay/consent;
-- durable Git/checkpoint reconciliation;
-- next compatible ticket or terminal STOP.
+The supervisor owns only authorized frontier, profile selection at clean boundaries, launch/observation of one Pi implementation worker, already-authorized procedural relay, durable checkpoints and next-or-STOP.
 
 Material product/scope/acceptance/oracle/publication changes are HUMAN STOP.
 
-## 9. Fallback
+## 9. Implementation fallback
 
-If plain Pi has a concrete runtime/tooling failure, preserve the worktree/checkpoint and use qualified OpenCode Build V1 under the same prepared-ticket contract. Do not re-enter ODD.
+If plain Pi has a concrete runtime/tooling failure, preserve the worktree, checkpoint, scope and acceptance and use qualified OpenCode Build V1 under the same prepared-ticket contract. Do not re-enter ODD, re-shape accepted work or silently change publication authority.
 
-## 10. Publication
+## 10. Efficiency evidence
+
+Usage telemetry is observational and non-blocking. It must not add model calls, choose reviewer depth, change product acceptance or trigger profile changes inside a lineage. See `docs/EXECUTION_EFFICIENCY_LEDGER_V1.md`.
+
+## 11. Publication
 
 Review approval is not push/PR/merge/deploy authority. No automatic merge, force-push or destructive history recovery.
