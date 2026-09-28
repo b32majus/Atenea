@@ -1,9 +1,10 @@
 {
   "schema": "atenea.opencode-routing-policy/v1",
-  "status": "current",
+  "status": "historical-c075",
+  "superseded_by": "C-077 prepared-ticket routing",
   "default_profile": "production-volume",
   "complex_profile": "complex",
-  "selection": "production-volume unless concrete complexity evidence is already present; profile selection is not a universal ceremony",
+  "selection": "Historical OpenCode/Gentle-orchestrator routing evidence only. Do not use this file as current prepared-ticket routing authority.",
   "complex_triggers": [
     "novel or cross-cutting architecture",
     "complex concurrency, temporal or state semantics",
@@ -11,20 +12,13 @@
     "unusually large or coupled reasoning surface",
     "repeated semantic/correction failure on production-volume"
   ],
-  "sol_policy": "No normal-path Sol. In complex, Sol is pinned only to review-refuter, which runs only when severe findings require adversarial adjudication. Additional Sol use requires explicit bounded escalation.",
-  "excluded_workflows": [
-    "SDD"
-  ],
-  "historical_profiles": [
-    "native-balanced",
-    "native-v4-heavy",
-    "native-economy",
-    "native-nan"
-  ],
+  "sol_policy": "Historical: no normal-path Sol; complex pinned Sol only to review-refuter.",
+  "excluded_workflows": ["SDD"],
+  "historical_profiles": ["native-balanced", "native-v4-heavy", "native-economy", "native-nan"],
   "qualified_at": "2026-09-28",
   "primary_agent": "gentle-orchestrator",
   "primary_model": "nan/glm5.3-flash",
   "primary_variant": "high",
   "atenea_semantic_agents": 0,
-  "ownership": "Atenea selects secret-free routing desired state; Gentle owns ODD, explore/general delegation and RDD semantics."
+  "ownership": "Historical C-075/C-076 desired state. Current prepared-ticket routing lives in config/native-gentle/prepared-routing-policy.json."
 }
