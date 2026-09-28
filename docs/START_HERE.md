@@ -5,161 +5,125 @@ Status: **CURRENT FRONT DOOR**
 ## Current runtime baseline — read this first
 
 ```text
-CURRENT_AUTHORITY = main after this reconciliation is promoted
-RUNTIME_STATE      = QUALIFIED
-OpenCode           = 1.18.32 (qualified stable runtime)
+CURRENT_AUTHORITY = main after C-077 promotion
+RUNTIME_STATE      = QUALIFIED FOR PREPARED TICKETS
+Pi                 = 0.87.1
+Herdr              = 0.9.1
 Gentle AI          = 3.7.0
-Engram              = installed capability; OFF by default in OpenCode
-Context7            = installed capability; OFF by default in OpenCode
-provider baseline   = NaN
-default interactive model = GLM 5.3 Flash
-lifecycle host model = MiMo 2.6 Flash (production-volume + complex)
-writer role        = atenea-writer (lean direct primary); routing = production-volume by default, complex only on concrete trigger (C-073/C-075)
-review host role    = atenea-review-host (Task limited to review-*)
-one-shot `opencode run` = BLOCKED_FOR_UNATTENDED_PROMOTION (clean-state init hang)
-normal transport    = fresh `opencode serve` host per bounded writer/review role + one HTTP session
-transport qualification = TWO-TICKET ZERO-TOUCH PASS; 2/2 terminal burn; 2/2 checkpoints
-Atenea train supervisors = 1 thin deterministic supervisor
-Atenea review controllers = 0
-Pi / Gentle Pi      = rollback/provenance surface, not normal productive train entry
+OpenCode           = 1.18.32 / qualified V1 review + fallback runtime
+prepared supervisor = Pi + Herdr
+prepared worker     = ONE plain Pi child (`pi --no-extensions`)
+default profile     = production-volume → DeepSeek V4 Flash
+complex profile     = complex → GLM 5.3 Flash high
+review transport    = qualified OpenCode V1 native Gentle transport
+review graph        = risk + readability + reliability + resilience + conditional refuter + validator
+Gentle Shell / ODD  = NOT the prepared-ticket implementation entry
 ```
 
-The old OpenCode `1.18.10` two-ticket zero-touch result remains valid historical lifecycle evidence, but it no longer pins the runtime. Stable `AGENTS.md` policy is version-neutral. Exact candidate versions, upstream defects and temporary transport decisions live in `docs/vnext/CURRENT_COMPATIBILITY.md`.
+If a ticket/train is already shaped and executable, **do not route it through ODD or `gentle-orchestrator`**.
 
-The qualified runtime preserves fresh context without restoring a long-lived model parent: the supervisor launches a fresh OpenCode server for the bounded writer or review role, creates one bounded session through OpenCode's native HTTP interface, and terminates the host at that lifecycle boundary. Two-ticket zero-touch qualification proved writer, review capture, acknowledge/burn and checkpoint continuity end to end.
+Canonical current documents:
 
-If you need to rebuild the current runtime, use `docs/vnext/OPENCODE_SERVE_RUNTIME_RECIPE_20260927.md`. Version/provider exceptions remain in `docs/vnext/CURRENT_COMPATIBILITY.md`. The prior `OPENCODE_ZERO_TOUCH_RUNTIME_RECIPE_20260927.md` is retained as historical V1 reproduction evidence.
+- `docs/CURRENT_EXECUTION_DECISION_C077.md`;
+- `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`;
+- `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`;
+- `docs/PREPARED_TRAIN_HANDOFF_C077.md`;
+- `config/native-gentle/prepared-routing-policy.json`.
 
-## 1. Shape only when needed
+## 1. Minimal preflight
 
-If product meaning, acceptance or material constraints are genuinely unresolved, shape only enough to create durable executable authority. Do not regenerate specs/tickets by ritual when accepted authority already exists.
-
-If executable authority exists, use `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`.
-
-## 2. Ordinary preflight
-
-The normal preflight has five facts only:
+Establish only facts that can change the next action:
 
 1. correct repo/worktree/base and no unrelated dirty state;
-2. current accepted task/work-order/spec identified;
-3. outcome, acceptance and material constraints are executable without inventing product meaning;
-4. current qualified runtime is available;
-5. publication boundary is known.
+2. current accepted ticket/work-order/spec;
+3. executable outcome, acceptance and material constraints;
+4. qualified runtime available;
+5. publication boundary known.
 
-If durable authority already proves a fact, do not ask the human to repeat it.
+Do not ask the human to restate durable authority.
 
-## 3. Conditional escalations
+## 2. Select the prepared profile
 
-Open extra policy only when its trigger exists:
-
-- coarse/over-budget candidate evidence → `WORK_UNIT_COMPOSITION_POLICY_V1.md`;
-- explicit routing override/experiment or concrete route failure → current routing decision/evidence;
-- material human promotion risk → `PROMOTION_REVIEW_V1.md`;
-- runtime/version incident → `vnext/CURRENT_COMPATIBILITY.md`;
-- unresolved product meaning → shaping/human authority.
-
-Ordinary tickets use `atenea-writer` under the `production-volume` routing profile. Gentle continuation uses `atenea-review-host`. `complex` is trigger-driven, not a per-ticket profile-selection ceremony.
-
-## 4. Execute
+Default:
 
 ```text
-accepted bounded ticket/train
-→ minimal preflight once
-→ fresh qualified OpenCode serve host
-→ one bounded `atenea-writer` session
-→ applicable deterministic checks
-→ native Gentle lifecycle when due
-→ terminal burn where review applies
-→ durable checkpoint
+production-volume → Pi worker on nan/deepseek-v4-flash
+```
+
+Use `complex` only on a material trigger:
+
+```text
+complex → Pi worker on nan/glm5.3-flash · high
+```
+
+Triggers: novel/cross-cutting architecture; difficult concurrency/temporal/scheduling/state/solver semantics; material security/privacy/auth/tenancy/clinical/trust-boundary semantics; delicate migration/back-compat/distributed invariants; or repeated semantic/correction failure under production-volume.
+
+Non-triggers: file count, ticket length, ordinary UI, many tests, business importance by itself.
+
+## 3. Execute prepared work
+
+```text
+accepted ticket/train
+→ Pi supervisor + Herdr
+→ ONE Pi child with selected model
+→ read repo authority + applicable skills
+→ implement smallest coherent authorized change
+→ deterministic checks/oracles
+→ local candidate commit
+→ `gentle-ai review assess --agent opencode`
+→ exact provider-issued native continuation when due
+→ terminal burn/checkpoint
 → next authorized ticket or STOP
 ```
 
-Train-wide repo/base/publication/runtime facts are established once. At ticket boundaries re-check only checkpoint/HEAD, clean candidate state and whether the next ticket remains inside the authorized frontier.
+For trusted repositories that require protected project resources (for example Symphonia `.pi/skills`), the Pi child may add `--approve` as the one-run project-trust override.
 
-The supervisor does not implement, review or invent transitions. Gentle owns internal decomposition, verification/review timing, reviewer execution, correction and acknowledgement/burn.
+## 4. Review routing
 
-## 5. Verify
+OpenCode V1 is the **review transport**, not the prepared implementation primary.
 
-Use deterministic evidence whenever possible:
+When native collection requires a live host, use a fresh bounded OpenCode V1 review-host/session as already qualified by the 2026-09-27 zero-touch evidence. Do not turn that transport into another product writer.
 
-- tests;
-- typecheck/build;
-- schema/YAML validation;
-- changed-path-specific checks;
-- secrets scan;
-- profile/runtime conformance.
+Production-volume reviewers:
 
-For Atenea itself:
+- risk → GLM 5.3 Flash high;
+- readability → Luna high;
+- reliability → DeepSeek V4 Flash;
+- resilience → DeepSeek V4 Flash;
+- refuter → MiMo 2.6 Flash when required;
+- validator → Luna high when required.
 
-```bash
-node tools/check-opencode-runtime-policy.mjs
-node tools/check-vnext-authority.mjs
-```
+Complex reviewers:
 
-## 6. Review
+- risk → Luna xhigh;
+- readability → Luna high;
+- reliability → Luna xhigh;
+- resilience → DeepSeek V4 Flash;
+- refuter → Sol xhigh when required;
+- validator → Luna high when required.
 
-Follow native Gentle/provider transitions exactly.
+Judgment Day is explicit-only: Judge A=MiMo, Judge B=Luna xhigh, fix=GLM high.
 
-Do not invent verdicts, START decisions, timing or authority.
+Gentle owns review timing, lenses, causality, refutation, bounded correction, validation and burn. Do not invent transitions.
 
-Current compatibility seams:
+## 5. Skills
 
-- post-burn STATUS (#4771): `acknowledge-approved → authority=burned` is terminal; do not call selectorless STATUS merely to prove the burn again;
-- exact OpenCode/Gentle versions and transport status live in `docs/vnext/CURRENT_COMPATIBILITY.md`, not in stable policy;
-- Gentle 3.7 runtime detection uses the qualified version-neutral fast `opencode --version` shim; all non-version invocations delegate unchanged to the single real OpenCode binary;
-- one-shot `opencode run` is not unattended-eligible while its clean-state `init` hang remains reproducible; fresh bounded `serve` hosts are the qualified normal transport;
-- Gentle-managed OpenCode skills live in `~/.config/opencode/skills`; legacy `~/.agents/skills` is not active globally; project skills stay project-local;
-- Context7 and Engram are installed but disabled by default for ordinary execution and enabled only when the task needs them;
-- ordinary tickets use `production-volume`; `complex` is selected only from concrete complexity evidence already present in the work. Sol is never a normal-path fallback. Never use `gentle-orchestrator` as a nested ticket parent beneath the Atenea supervisor.
-Details: `docs/vnext/CURRENT_COMPATIBILITY.md`.
+Before product writes, read target repository authority in its own declared order. Normally this includes `AGENTS.md`, `CODING_STANDARDS.md`, accepted ticket/work-order/spec and applicable project-local skills.
 
-## 7. Publish
+Pi supports `.pi/skills/` and `.agents/skills/`; discovered skills need valid `name` + `description` frontmatter. Do not bulk-migrate valid project skills.
 
-Review approval is not merge authority.
+## 6. Fallback
 
-Validate the actual changed artifact types.
+A concrete Pi runtime/tooling failure may switch the same prepared ticket to qualified OpenCode Build V1. Preserve the worktree/checkpoint; do not reopen shaping or ODD.
 
-Follow target repository policy + explicit human authority.
+## 7. Train operation
 
-No automatic merge. No force-push/destructive recovery by default.
+Train-wide repo/base/publication facts are established once. At ticket boundaries re-check only HEAD/checkpoint, clean candidate state, blockers/dependencies and whether the next ticket remains inside the authorized frontier.
 
-## 8. Dispose merged execution worktrees
+Material product/scope/acceptance/oracle/publication changes are HUMAN STOP.
 
-Execution worktrees are temporary delivery surfaces. A successful merge is the normal trigger to evaluate disposal; it is not permission to delete blindly.
+## 8. Historical material
 
-Before removing the worktree that carried the merged ticket/train, confirm:
+OpenCode-first writer runbooks, Gentle-Pi/ODD qualification and older profile documents remain valid evidence for the seams they tested. They are not current merely because they remain in the repository.
 
-- the intended PR/train is actually merged into the intended target branch;
-- the final published/audited candidate and required CI/security/promotion evidence are durably represented in Git/GitHub or another accepted authority surface;
-- the worktree has no uncommitted/untracked material that must survive and no required unpushed local-only commit/evidence;
-- no active OpenCode/Gentle/supervisor/shell process or session still depends on that directory;
-- the path is an execution worktree, not the canonical repository checkout.
-
-Then use normal Git worktree removal and prune stale metadata:
-
-```bash
-git worktree remove <worktree-path>
-git worktree prune
-```
-
-Do not use `--force` as routine cleanup. If normal removal refuses, inspect and reconcile the remaining state first. Local/remote branch deletion is separate Git hygiene and is not implied by worktree disposal.
-
-The next ticket/train should normally start from current durable repository authority in a fresh clean worktree rather than reusing the merged execution surface.
-
-## 9. Provision or reproduce the runtime
-
-Use:
-
-`docs/vnext/OPENCODE_SERVE_RUNTIME_RECIPE_20260927.md`
-
-Use `docs/vnext/CURRENT_COMPATIBILITY.md` for temporary runtime/provider seams. The older `OPENCODE_ZERO_TOUCH_RUNTIME_RECIPE_20260927.md` is historical V1 evidence, not current installation authority.
-
-## 10. Resume an old project
-
-Durable Git/GitHub/product evidence determines the last legitimate checkpoint.
-
-Create a clean worktree and continue from accepted authority through a fresh OpenCode process + Gentle lifecycle under the thin supervisor.
-
-Current operation: `docs/OPERATOR_RUNBOOK_OPENCODE_SERVE_V1.md`.
-
-Historical V1 operational evidence remains in `docs/OPERATOR_RUNBOOK_OPENCODE_ZERO_TOUCH_V1.md`.
+`docs/OPERATOR_RUNBOOK_OPENCODE_SERVE_V1.md` remains review/fallback provenance, not the normal prepared implementation entry.

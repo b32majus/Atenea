@@ -1,0 +1,18 @@
+{
+  "schema": "atenea.prepared-ticket-profile/v1",
+  "name": "production-volume",
+  "status": "current-default",
+  "implementation": {
+    "runtime": "pi",
+    "agent_args": ["--no-extensions"],
+    "model": "nan/deepseek-v4-flash"
+  },
+  "review": {
+    "transport": "opencode-v1",
+    "profile": "opencode-production-volume"
+  },
+  "fallback": {
+    "runtime": "opencode-build-v1",
+    "condition": "concrete Pi runtime/tooling failure"
+  }
+}
