@@ -104,7 +104,7 @@ Pi can consume trusted project skills from `.pi/skills/` and `.agents/skills/`. 
 
 When a trusted repo intentionally depends on protected `.pi` project resources, the unattended worker may use the one-run `--approve` project-trust override. Do not use that override on unknown/untrusted repositories.
 
-Project skills own domain/engineering/UI/QA guidance. They must not copy Atenea lifecycle, model-routing or provider-state machinery into product repositories.
+Project skills own domain/engineering/UI/QA guidance. They must not copy Atenea lifecycle/model-routing or provider-state machinery into product repositories.
 
 ## 6. Conditional escalations
 
