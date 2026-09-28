@@ -56,6 +56,14 @@ cwd: target worktree
 
 The exact Herdr invocation may vary with pane/session layout; preserve the semantic requirement: exactly one Pi child for the ticket, launched with `--no-extensions` in the target worktree.
 
+Pi protects project-local `.pi` resources and project `.agents/skills` behind project trust. When an unattended worker must consume trusted repository-owned project skills/settings and no durable trust decision already applies, add Pi's one-run trust override:
+
+```text
+agent args: --no-extensions --approve
+```
+
+Use `--approve` only for a repository whose project-local resources are intentionally trusted; it is not a sandbox and must not be used to make an untrusted checkout executable.
+
 The worker must read before product writes:
 
 - repository `AGENTS.md`;
@@ -63,7 +71,16 @@ The worker must read before product writes:
 - the accepted ticket/work-order/spec and its cited current authority;
 - every applicable project-local skill.
 
-Project-local skills intended for Pi discovery should live under `.agents/skills/<skill>/SKILL.md` and include valid YAML frontmatter with a non-empty `name` and `description`.
+Pi natively supports both project skill roots after project trust:
+
+```text
+.pi/skills/
+.agents/skills/
+```
+
+Keep existing valid `.pi/skills` when they are intentionally Pi-project resources. Prefer `.agents/skills/<skill>/SKILL.md` when the skill is intended as cross-runtime project authority. Do not duplicate or migrate a skill merely to normalize directory layout.
+
+Every discovered `SKILL.md` should have valid YAML frontmatter including a non-empty `name` and `description`; Pi reports malformed project skills at startup rather than silently treating them as valid authority.
 
 Do not duplicate Atenea lifecycle/model-routing policy inside project skills. Skills own domain/engineering/UI/QA guidance; Atenea owns execution transport.
 
