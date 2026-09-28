@@ -1,217 +1,123 @@
 # Atenea Qualification
 
-Status: **CURRENT vNext QUALIFICATION**
-
-Date: 2026-09-25
+Status: **CURRENT PREPARED-TICKET QUALIFICATION**
+Date: 2026-09-28
 
 ## Current qualified architecture
 
 ```text
-Atenea policy / desired state / deterministic evidence
+Atenea policy / repository authority
                     ↓
-Pi 0.87.1
-→ gentle-pi / Gentle Shell 3.7.0
-→ Gentle AI 3.7.0
-→ Engram 2.1.0 / GGA 2.10.1
-→ NaN + OpenAI Codex
-→ native ODD / workers / verify / RDD
+Pi supervisor + Herdr
+                    ↓
+ONE plain Pi ticket worker (`pi --no-extensions`)
+                    ↓
+implementation + deterministic checks/oracles
+                    ↓
+local candidate commit
+                    ↓
+Gentle AI 3.7 native ASSESS through Codex transport
+                    ↓
+RDD / correction / validator / acknowledge-burn when due
 ```
 
-Atenea-owned runtime controllers: **0**.
+OpenCode 1.18.32 Build is the qualified fallback implementation worker.
 
-Atenea-owned review controllers: **0**.
+Current execution decision: `docs/CURRENT_EXECUTION_DECISION_C077.md`.
+Current operator path: `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`.
+Current runtime seams: `docs/vnext/CURRENT_COMPATIBILITY.md`.
 
-Atenea-owned worker supervisors: **0**.
+## What is qualified
 
-Atenea-owned routing engines: **0**.
+### Prepared-ticket implementation discipline — PASS
 
-## Current routing override — NOT PRE-QUALIFIED
+Direct implementation without `gentle-orchestrator` has been exercised in two runtimes:
 
-On 2026-09-24 the operator explicitly activated `native-balanced` without a pre-activation canary. Runtime versions and the vNext architecture remain qualified; this **routing change itself is not pre-qualified**.
+- OpenCode Build;
+- plain Pi `--no-extensions` launched as one Herdr ticket worker.
+
+The canaries proved that the worker can read repository policy/standards/applicable skills before writing, remain inside allowed paths, pass deterministic tests and hidden oracle evidence, and create the intended local candidate commit without ODD.
+
+The plain-Pi worker completed its bounded authorization canary in about 57 seconds worker runtime / 73 seconds supervisor wall time and changed only the authorized source path.
+
+### Native Gentle clean review path — PASS
+
+Current evidence includes a high-risk native review reaching approved acknowledgement/burn on one durable lineage.
+
+### Native Gentle correction path — PASS
+
+An intentionally fail-open committed authorization candidate exercised:
 
 ```text
-active   = native-balanced
-rollback = native-nan
-```
-
-The exact baseline mapping is versioned in `config/native-gentle/native-balanced.profile.json`. On 2026-09-25 Atenea added `native-v4-heavy` and experimental `native-economy` to the selectable catalog without changing the globally active profile. PROMueve Nexus F3.2/#403 subsequently produced the first **positive field canary** for `native-v4-heavy`, advancing it to candidate status only; this is not global qualification equivalence. The additional routes remain governed by `docs/EXECUTION_PROFILE_SELECTION_POLICY_V1.md`. `native-nan` remains known-good rollback only.
-
-## Qualification phases
-
-- **P0 — PASS:** native Gentle path qualified without historical Atenea runtime glue.
-- **P1 — PASS:** capability reconciliation separated durable Atenea value from duplicated upstream lifecycle.
-- **P2 — PASS:** Minimal Core defined.
-- **P3 — PASS:** shaping decision closed; minimal semantic execution contract → native Gentle is the default execution-ready seam.
-- **P4 — PASS:** positive rebuild; stable policy, secret-free profile desired state and deterministic oracles survived against Golden Control.
-- **P5 — PASS:** superseded runtime machinery archived from active path; native smoke/oracles remained green.
-- **P6 — PASS:** clean VPS cutover + exact install recipe + secret-free provider desired state + independent fresh-clone reproduction.
-- **P7 — PASS:** vNext is promoted as current repository authority; historical runtime/qualification surfaces are explicitly non-operative, and the final fresh clone passed both conformance oracles, doctor/auth checks and `P7_FINAL_CLONE_OK`.
-
-## Post-P7 stable runtime maintenance — PASS
-
-On 2026-09-23 the supported stable runtime was advanced using official owner update surfaces:
-
-```text
-Gentle Shell 3.3.0 → 3.5.1
-Gentle AI    3.4.0 → 3.6.0
-Engram       2.0.0 → 2.0.0 (already current)
-GGA          2.10.1 → 2.10.1 (already current)
-```
-
-Post-update evidence:
-
-- `gentle-ai update`: all managed tools current;
-- `gentle-ai doctor`: 8/8 healthy;
-- active profile: `native-nan`;
-- review mode: on;
-- NaN credential resolves from Pi's supported credential store;
-- `PI_PURE_OK`;
-- `PI_GENTLE_OK`;
-- `ENGRAM_MEMORY_OK`;
-- both Atenea conformance oracles PASS.
-
-Evidence: `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923.md`.
-
-## Post-P7 Gentle 3.7 / Engram 2.1 maintenance — PASS
-
-Later on 2026-09-23 the stable runtime advanced again through official owner update surfaces:
-
-```text
-Gentle Shell 3.5.1 → 3.7.0
-Gentle AI    3.6.0 → 3.7.0
-Engram       2.0.0 → 2.1.0
-GGA          2.10.1 → 2.10.1
-```
-
-Qualification evidence:
-
-- `gentle-ai update`: all managed tools current;
-- `gentle-ai doctor`: 8/8 healthy;
-- Engram doctor: 9/9 healthy after memory-store cleanup;
-- Engram quick self-test: PASS, including concurrent writes;
-- `PI_PURE_370_OK`;
-- `PI_GENTLE_370_OK`;
-- `ENGRAM_210_OK`;
-- ASSESS #4791 reproduced on the 3.7 facade, so fail-closed compatibility remains active;
-- isolated Engram canary: `ENGRAM_ISOLATION_OK`, with production memory unchanged.
-
-Evidence: `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md`.
-
-## Post-P7 Pi 0.87.1 maintenance — PASS
-
-Pi was advanced from 0.87.0 to 0.87.1 while Gentle Shell 3.7.0, Gentle AI 3.7.0, Engram 2.1.0 and GGA 2.10.1 remained unchanged.
-
-Qualification evidence:
-
-- `gentle-ai doctor`: 8/8 healthy;
-- `gentle-ai update`: all managed tools current;
-- `PI_0871_PURE_OK`;
-- `PI_0871_GENTLE_OK`;
-- isolated Engram smoke: `PI_0871_ENGRAM_OK`;
-- committed-range ASSESS #4791 still returns typed `unassessable / schema-incompatible`, so the existing fail-closed rule remains;
-- Pi #9718 remains open; the previously qualified all-GLM reviewer `thinking=low` mapping remains preserved in `native-nan` rollback, while the active/selectable multi-provider profiles do not imply that upstream issue is fixed;
-- `pi-web-access` #428 is an upstream lazy-activation false negative with functional eager fallback, not a Pi 0.87.1 regression.
-
-Evidence: `docs/vnext/STABLE_RUNTIME_UPDATE_PI0871_20260923.md`.
-
-## Gentle skill-registry watcher #962 — MITIGATED
-
-A production Pi session reproduced the upstream Gentle Shell #962 crash class: a recursive skill-registry watcher received `ENOENT / scandir` while the Codex system-skill subtree was being replaced and the unhandled asynchronous watcher error terminated Pi. Pi crash history shows the same failure on 0.87.0 and 0.87.1, so this is not a Pi 0.87.1 regression.
-
-Qualified compatibility action:
-
-```bash
-export GENTLE_PI_NO_SKILL_REGISTRY=1
-```
-
-Gentle 3.7 documents this as keeping skills available while skipping only automatic `.atl/skill-registry.md` refresh/watch. Post-change interactive-shell checks saw the environment override, Pi 0.87.1, Gentle Shell 3.7.0, the supported CLI flag, and `gentle-ai doctor` 8/8 healthy.
-
-Evidence: `docs/vnext/SKILL_REGISTRY_WATCHER_INCIDENT_20260923.md`.
-
-## Final native lifecycle evidence
-
-The final native canary proved:
-
-```text
-primary work
-→ native delegation boundary
-→ worker
-→ deterministic tests
-→ independent verify
-→ native review consent
-→ review-reliability
-→ APPROVED
+ASSESS high-risk
+→ multiple severe deterministic findings
+→ bounded correction authority
+→ one-line fail-closed correction
+→ deterministic checks
+→ targeted validator PASS
 → acknowledge-approved
-→ status=closed
-→ authority=burned
+→ authority burned
 ```
 
-No Atenea relay/controller was required.
+No refuter ran because the admitted findings were deterministic. The native refuter remains conditional on inferential findings; it is not a mandatory stage that must be synthetically forced on every qualification.
 
-## Current deterministic qualification
+### Pi supervisor + Herdr single-worker topology — PASS
 
-Run:
+The supervisor launched exactly one child, observed it, did not implement itself, and preserved the one-ticket-worker ownership model.
 
-```bash
-node tools/check-native-gentle-profile.mjs
-node tools/check-vnext-authority.mjs
-gentle-ai doctor
-gentle-ai update
-# NaN: verify credential resolution without printing it, then run the real bounded smokes.
-```
+### Plain Pi as Gentle review host — NOT QUALIFIED / NOT USED
 
-Qualified expected results:
+This is deliberate. Plain Pi correctly fails closed for `--agent pi` without the Gentle-Pi host relay contract. Manually exporting `GENTLE_PI_REVIEW_RELAY_CONTRACT` is not accepted because plain Pi does not provide that relay.
+
+The same Git candidate produced by Pi successfully entered assessment with `--agent codex`, returning the expected candidate/risk identity and exact Codex-bound continuation. Therefore:
 
 ```text
-ATENEA_NATIVE_GENTLE_PROFILE_CHECK=PASS
-ATENEA_VNEXT_AUTHORITY_CHECK=PASS
-doctor: 8 passed / 0 failed / 0 warnings
-gentle-ai update: all managed tools current
-NaN credential: resolves from Pi credential store
-Pi pure smoke: PASS
-Pi + Gentle smoke: PASS
-Engram memory smoke: PASS
+Pi = implementation runtime
+Codex = native Gentle review transport
 ```
 
-## Historical P6 reproduction evidence
+is the qualified boundary.
 
-The 2026-09-22 P6 fresh clone independently passed on the then-qualified 3.3.0/3.4.0 runtime:
+### Judgment Day
 
-- repo-local `.atl/` hygiene;
-- both Atenea conformance oracles;
-- Pi 0.87.0;
-- Gentle AI 3.4.0;
-- doctor 8/8;
-- NaN auth;
-- real Pi + Gentle + NaN smoke: `P6_FRESH_CLONE_OK`;
-- clean Git status.
+Judgment Day is upstream standalone capability, not part of the mandatory RDD path. It is invoked only when explicitly requested for a concrete target and does not grant delivery authority.
 
-Canonical install/rebuild/update recipe:
+## Engineering-quality boundary
 
-`docs/vnext/NATIVE_STACK_INSTALLATION_RECIPE_20260923.md`
+Qualification proves the execution architecture can preserve repository policy, deterministic checks/oracles and native review/correction/validation.
 
-Latest stable-runtime maintenance evidence:
+It does not turn reviewer opinion into a performance benchmark. A production-relevant performance requirement must be encoded in a measurable repository-owned check/benchmark/oracle when material.
 
-`docs/vnext/STABLE_RUNTIME_UPDATE_PI0871_20260923.md`
+## Skills compatibility
 
-The Gentle 3.7 / Engram 2.1 qualification remains at `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md`.
+Plain Pi with `--no-extensions` still discovers repository context and skills. Project-local skills intended for cross-runtime project use should live at `.agents/skills/<name>/SKILL.md` with valid YAML frontmatter containing non-empty `name` and `description` fields.
 
-The earlier 3.5.1/3.6.0 maintenance evidence remains preserved at `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923.md`.
+Observed Pi behavior fails the skill closed when `description` is missing. This is now part of project compatibility review.
 
-## Current compatibility debt
+Do not bulk-duplicate runtime-owned global skills merely to normalize filesystem layout.
 
-See:
+## Fallback qualification
 
-`docs/vnext/CURRENT_COMPATIBILITY.md`
-
-The remaining seams are fail-safe compatibility notes, not missing Atenea runtime features.
+OpenCode Build remains qualified for direct prepared-ticket implementation. Native Gentle review/correction/burn has also been exercised from the OpenCode-era qualification. If plain Pi has a concrete tooling/runtime defect, preserve the candidate/worktree and use OpenCode Build under the same prepared-ticket contract; do not reopen ODD.
 
 ## Historical qualification
 
-Pre-vNext qualification detail is preserved at:
+Earlier Pi/Gentle Shell ODD, OpenCode serve/orchestrator, profile-routing and context-optimization qualifications remain valid historical evidence for the exact topologies they tested.
 
-`historical/qualification/QUALIFICATION_PRE_VNEXT.md`
+They do not define current prepared-ticket entry. In particular:
 
-and in other explicitly historical field-evidence documents.
+- C-076 proves upstream-orchestrator behavior but is superseded for prepared tickets by C-077;
+- C-075 profile routing remains OpenCode-orchestrator provenance rather than the current normal ticket route;
+- old Gentle-Pi profile and review-relay findings remain useful compatibility provenance but the normal worker is plain Pi.
 
-Historical qualification does not define the current execution path.
+Do not rewrite dated evidence to current terminology.
+
+## Current deterministic authority check
+
+`tools/check-vnext-authority.mjs` validates that current front-door documents point to the prepared-ticket Pi runtime and no longer advertise C-076/OpenCode-orchestrator as the current ordinary entry.
+
+Runtime maintenance/doctor checks remain owned by the exact component being changed. Do not rerun broad qualification for ordinary product tickets when no runtime seam changed.
+
+## Publication boundary
+
+Qualification does not authorize push, PR, merge, deploy or destructive cleanup in target projects. Those remain target-repository/human decisions.
