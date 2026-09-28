@@ -1,7 +1,7 @@
 # Atenea — Execution request and preflight v1
 
 Status: **CURRENT EXECUTION ENTRY CONTRACT**
-Date: 2026-09-27
+Date: 2026-09-28
 
 ## 1. Principle
 
@@ -11,7 +11,7 @@ The ordinary path must be short. Atenea validates the facts that can change the 
 accepted bounded work
 → minimal deterministic preflight
 → short semantic execution request
-→ `atenea-writer`
+→ upstream `gentle-orchestrator`
 → applicable deterministic checks
 → native Gentle lifecycle when due
 → checkpoint / next-or-STOP
@@ -32,7 +32,7 @@ Before the first writer turn, confirm only:
 If these five facts are already established by durable authority, do not ask the human to restate them.
 ## 3. Default execution request
 
-Give the writer the semantic contract, not an orchestration manual. A normal ticket request should fit this shape:
+Give the upstream ticket orchestrator the semantic contract, not an orchestration manual. A normal ticket request should fit this shape:
 
 ```text
 Execute <ticket/work unit> only.

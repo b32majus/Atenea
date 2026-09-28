@@ -1,6 +1,6 @@
 # Atenea — OpenCode model routing qualification
 
-Status: **CURRENT ROUTING EVIDENCE**
+Status: **CURRENT ROUTING EVIDENCE — amended 2026-09-28 by upstream-orchestrator canary**
 Date: 2026-09-27
 
 ## Decision supported
@@ -70,11 +70,11 @@ All four routes found the planted strict-validation defect. MiMo, V4 and Luna co
 MiMo therefore qualifies as Judge A when paired with Luna Judge B: it supplies independent adversarial reasoning without reproducing GLM's observed finding fragmentation. Severity calibration remains a reason to retain Luna as Judge B.
 
 Evidence root: `/srv/kairos-lab/outbox/mimo-refuter-judge-bench-20260927`.
-## Final role interpretation
+## Final role interpretation — current after 2026-09-28 canary
 
-`production-volume` uses V4 for high-volume implementation/reliability/resilience; MiMo for lifecycle hosting, refutation and Judge A; GLM for risk and correction; Luna for readability, validation and Judge B.
+`production-volume` uses GLM 5.3 Flash high for upstream `gentle-orchestrator`; V4 for `explore`, `general`, and resilience; Luna high for readability, reliability and validation; GLM high for risk/correction; and MiMo for refutation/Judge A.
 
-`complex` moves the writer to GLM and the most reasoning-sensitive normal reviews to Luna, retains V4 as an independent resilience family, retains MiMo as lifecycle host/Judge A, and uses Sol only for `review-refuter`. Refuter is not a happy-path role: Sol therefore consumes nothing unless a severe finding actually requires adversarial adjudication.
+`complex` keeps the orchestrator on GLM high, keeps `explore` + independent resilience on V4, moves `general` and correction to GLM high, uses Luna xhigh for reliability/risk, retains MiMo as Judge A, and uses Sol only for `review-refuter`. Refuter is not a happy-path role: Sol therefore consumes nothing unless a severe finding actually requires adversarial adjudication.
 
 No automatic fallback to Sol is authorized. Additional Sol use requires an explicit bounded escalation such as unresolved material cross-model disagreement or repeated failure to resolve the same critical defect.
 
@@ -90,3 +90,13 @@ A final isolated canary pinned `review-reliability` to `nan/deepseek-v4-flash` w
 OpenCode server evidence showed the parent session streaming as `agent=atenea-review-host modelID=mimo-v2.6-flash` and the child Task session streaming as `agent=review-reliability modelID=deepseek-v4-flash`. Agent-level model pins therefore override parent-host routing as required by the profile design.
 
 Evidence root: `/srv/kairos-lab/outbox/mimo26-host-v4-reviewer-canary-20260927`.
+
+## 2026-09-28 upstream-orchestrator correction
+
+The MiMo 2.6 lifecycle-host train remains valid evidence for a thin protocol host, but that role is not equivalent to Gentle's full `gentle-orchestrator`, which owns ODD proportionality, exploration/delegation and native lifecycle decisions. C-076 therefore keeps the full orchestrator on GLM 5.3 Flash high in both current profiles.
+
+The high-risk re-entry canary also superseded production `review-reliability = V4`. V4 produced four consecutive empty Task outputs for the exact reliability slot while a V4 resilience slot in the same lineage completed. After changing only reliability to GPT-6 Luna high, the exact bound slot returned a valid artifact and the same lineage reached terminal acknowledgement/consumption. This is role-specific routing evidence, not a claim that V4 is generally unhealthy.
+
+The earlier MiMo-host/V4-reviewer cross-model proof remains useful evidence that child agent pins override a primary host. Its `atenea-review-host` parent is historical after C-076, not the current ordinary topology.
+
+Evidence: `docs/OPENCODE_GENTLE_ORCHESTRATOR_QUALIFICATION_20260928.md`.

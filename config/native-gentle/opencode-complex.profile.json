@@ -2,17 +2,13 @@
   "schema": "atenea.opencode-routing-profile/v1",
   "name": "complex",
   "status": "current-triggered",
-  "qualified_at": "2026-09-27",
-  "purpose": "Escalated route for materially complex trains; stronger cross-provider review without making Sol a normal-path model.",
+  "qualified_at": "2026-09-28",
+  "purpose": "Triggered complex route through the same upstream GLM orchestrator; stronger child/reviewer routes without normal-path Sol.",
   "roles": {
     "writer": {
-      "agent": "atenea-writer",
+      "agent": "general",
       "model": "nan/glm5.3-flash",
       "variant": "high"
-    },
-    "lifecycle-host": {
-      "agent": "atenea-review-host",
-      "model": "nan/mimo-v2.6-flash"
     },
     "review-readability": {
       "agent": "review-readability",
@@ -54,6 +50,15 @@
     },
     "jd-fix-agent": {
       "agent": "jd-fix-agent",
+      "model": "nan/glm5.3-flash",
+      "variant": "high"
+    },
+    "explore": {
+      "agent": "explore",
+      "model": "nan/deepseek-v4-flash"
+    },
+    "ticket-primary": {
+      "agent": "gentle-orchestrator",
       "model": "nan/glm5.3-flash",
       "variant": "high"
     }

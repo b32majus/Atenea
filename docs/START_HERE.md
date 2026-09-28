@@ -13,12 +13,14 @@ Engram              = installed capability; OFF by default in OpenCode
 Context7            = installed capability; OFF by default in OpenCode
 provider baseline   = NaN
 default interactive model = GLM 5.3 Flash
-lifecycle host model = MiMo 2.6 Flash (production-volume + complex)
-writer role        = atenea-writer (lean direct primary); routing = production-volume by default, complex only on concrete trigger (C-073/C-075)
-review host role    = atenea-review-host (Task limited to review-*)
+ticket primary     = gentle-orchestrator · GLM 5.3 Flash high (production-volume + complex)
+explore role        = upstream explore · DeepSeek V4 Flash
+writer delegation  = upstream general · production-volume=DeepSeek V4 Flash; complex=GLM 5.3 Flash high
+review reliability = production-volume=GPT-6 Luna high; complex=GPT-6 Luna xhigh
+Atenea semantic agents = 0
 one-shot `opencode run` = BLOCKED_FOR_UNATTENDED_PROMOTION (clean-state init hang)
-normal transport    = fresh `opencode serve` host per bounded writer/review role + one HTTP session
-transport qualification = TWO-TICKET ZERO-TOUCH PASS; 2/2 terminal burn; 2/2 checkpoints
+normal transport    = fresh `opencode serve` host per bounded ticket + one primary orchestrator session
+transport qualification = UPSTREAM-ORCHESTRATOR HIGH-RISK PASS; terminal consumption/burn; hidden oracle PASS; 8/8 tests
 Atenea train supervisors = 1 thin deterministic supervisor
 Atenea review controllers = 0
 Pi / Gentle Pi      = rollback/provenance surface, not normal productive train entry
@@ -26,7 +28,7 @@ Pi / Gentle Pi      = rollback/provenance surface, not normal productive train e
 
 The old OpenCode `1.18.10` two-ticket zero-touch result remains valid historical lifecycle evidence, but it no longer pins the runtime. Stable `AGENTS.md` policy is version-neutral. Exact candidate versions, upstream defects and temporary transport decisions live in `docs/vnext/CURRENT_COMPATIBILITY.md`.
 
-The qualified runtime preserves fresh context without restoring a long-lived model parent: the supervisor launches a fresh OpenCode server for the bounded writer or review role, creates one bounded session through OpenCode's native HTTP interface, and terminates the host at that lifecycle boundary. Two-ticket zero-touch qualification proved writer, review capture, acknowledge/burn and checkpoint continuity end to end.
+The qualified runtime preserves fresh context without restoring a long-lived model parent: the supervisor launches a fresh OpenCode server for one bounded ticket, creates one `gentle-orchestrator` session through OpenCode's native HTTP interface, and terminates the host at the ticket boundary. If a host dies after review authority becomes durable, re-enter from the exact lineage/`next_transition`; do not rebuild or synthesize review state.
 
 If you need to rebuild the current runtime, use `docs/vnext/OPENCODE_SERVE_RUNTIME_RECIPE_20260927.md`. Version/provider exceptions remain in `docs/vnext/CURRENT_COMPATIBILITY.md`. The prior `OPENCODE_ZERO_TOUCH_RUNTIME_RECIPE_20260927.md` is retained as historical V1 reproduction evidence.
 
@@ -58,7 +60,7 @@ Open extra policy only when its trigger exists:
 - runtime/version incident → `vnext/CURRENT_COMPATIBILITY.md`;
 - unresolved product meaning → shaping/human authority.
 
-Ordinary tickets use `atenea-writer` under the `production-volume` routing profile. Gentle continuation uses `atenea-review-host`. `complex` is trigger-driven, not a per-ticket profile-selection ceremony.
+Ordinary tickets use upstream `gentle-orchestrator` under `production-volume`. Gentle owns `explore`/`general`, review collection and correction. `complex` is trigger-driven, not a per-ticket profile-selection ceremony.
 
 ## 4. Execute
 
@@ -66,8 +68,8 @@ Ordinary tickets use `atenea-writer` under the `production-volume` routing profi
 accepted bounded ticket/train
 → minimal preflight once
 → fresh qualified OpenCode serve host
-→ one bounded `atenea-writer` session
-→ applicable deterministic checks
+→ one bounded `gentle-orchestrator` session
+→ upstream exploration/delegation + applicable deterministic checks
 → native Gentle lifecycle when due
 → terminal burn where review applies
 → durable checkpoint
@@ -93,6 +95,7 @@ For Atenea itself:
 
 ```bash
 node tools/check-opencode-runtime-policy.mjs
+node tools/check-opencode-routing-profiles.mjs
 node tools/check-vnext-authority.mjs
 ```
 
@@ -110,7 +113,8 @@ Current compatibility seams:
 - one-shot `opencode run` is not unattended-eligible while its clean-state `init` hang remains reproducible; fresh bounded `serve` hosts are the qualified normal transport;
 - Gentle-managed OpenCode skills live in `~/.config/opencode/skills`; legacy `~/.agents/skills` is not active globally; project skills stay project-local;
 - Context7 and Engram are installed but disabled by default for ordinary execution and enabled only when the task needs them;
-- ordinary tickets use `production-volume`; `complex` is selected only from concrete complexity evidence already present in the work. Sol is never a normal-path fallback. Never use `gentle-orchestrator` as a nested ticket parent beneath the Atenea supervisor.
+- ordinary tickets use `production-volume`; `complex` is selected only from concrete complexity evidence already present in the work. Sol is never a normal-path fallback. Upstream `gentle-orchestrator` is the ordinary ticket parent; Atenea must not replace its semantic orchestration with parallel custom workers.
+- if a bound review must resume after host/session failure, query the exact lineage and execute only the provider-issued `next_transition`; do not restart ASSESS/START or fabricate a replacement lineage.
 Details: `docs/vnext/CURRENT_COMPATIBILITY.md`.
 
 ## 7. Publish

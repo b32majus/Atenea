@@ -1,6 +1,6 @@
 # OpenCode lean role/context qualification — 2026-09-27
 
-Status: **QUALIFIED CURRENT EVIDENCE**
+Status: **HISTORICAL QUALIFICATION EVIDENCE — ordinary-role recommendation superseded by C-076**
 
 ## Question
 
@@ -51,6 +51,6 @@ wall time                  = 416.52 s (~6m57s)
 
 The immediately prior serve qualification used the full `build` surface and observed writer totals ~10.4k and review-host totals ~18.9k, with 595.61 s wall time. The lean result therefore materially reduces context while preserving the qualified lifecycle. Timing is environment/provider dependent and is not a service-level promise.
 
-## Promotion
+## Current interpretation
 
-Use `atenea-writer` for ordinary bounded train implementation and `atenea-review-host` for Gentle lifecycle continuation. Keep managed agents/skills installed and keep `build` as the interactive default. Do not silently re-enable denied capabilities on every ticket; escalate only when the accepted task actually needs one.
+These custom primaries proved that tool-surface narrowing can reduce context, but C-076 supersedes them as the ordinary execution topology because they bypass upstream Gentle orchestration semantics. Keep this document as performance/optimization evidence; do not use it to recreate Atenea-owned semantic workers. The current ordinary ticket parent is upstream `gentle-orchestrator`; `build` remains the human interactive default.

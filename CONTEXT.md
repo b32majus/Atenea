@@ -25,7 +25,7 @@ Context7 / Engram installed but OFF by default
 Pi / Gentle Pi retained as rollback/provenance only
 ```
 
-The historical OpenCode `1.18.10` two-ticket zero-touch qualification remains evidence for the lifecycle topology, not authority to reinstall that version. Clean `1.18.32` reproduces an intermittent one-shot `opencode run` hang at `init` before session creation, so unattended one-shot use remains blocked. Fresh `opencode serve` hosts for bounded writer/review roles passed the full two-ticket Gentle lifecycle with terminal burn and Git checkpoint continuity.
+The historical OpenCode `1.18.10` two-ticket zero-touch qualification remains evidence for the lifecycle topology, not authority to reinstall that version. Clean `1.18.32` reproduces an intermittent one-shot `opencode run` hang at `init` before session creation, so unattended one-shot use remains blocked. Fresh `opencode serve` remains the transport. The 2026-09-28 upstream-orchestrator canary proved a full high-risk ticket path through `gentle-orchestrator`, delegated `explore`/`general`, native review collection and terminal acknowledgement/burn on a durable lineage.
 
 ## Current design principle
 
@@ -39,6 +39,6 @@ Use the cheapest reliable owner for each fact:
 
 ## Current transition state
 
-C-072 supersedes the C-070 exact-version pin; C-073 supersedes Pi-era universal pre-writer ceremony; C-074 qualifies lean OpenCode role surfaces; C-075 replaces Pi-era routing profiles with `production-volume` default + trigger-driven `complex`. The clean rebuild removed split OpenCode installations and historical runtime state instead of migrating them. Stable policy remains version-neutral; compatibility owns exact runtime seams. Ordinary tickets use minimal preflight, `atenea-writer` and `production-volume`; complex routing/composition/promotion gates activate only on concrete triggers.
+C-072 supersedes the C-070 exact-version pin; C-073 supersedes Pi-era universal pre-writer ceremony; C-074 is retained as context-budget evidence but its custom ordinary roles are superseded by C-076; C-075 retains the two-profile routing policy; C-076 restores upstream `gentle-orchestrator` as the ordinary ticket parent and pins production reliability to Luna high after the high-risk canary. Stable policy remains version-neutral; compatibility owns exact runtime seams. Ordinary tickets use minimal preflight + `production-volume`; complex routing/composition/promotion gates activate only on concrete triggers.
 
-Current evidence: `docs/OPENCODE_11832_SERVE_ZERO_TOUCH_QUALIFICATION_20260927.md`. Current execution entry: `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`. Historical V1 lifecycle evidence: `docs/OPENCODE_V1_ZERO_TOUCH_RECOVERY_EVIDENCE_20260927.md`. Runtime/provider compatibility debt: `docs/vnext/CURRENT_COMPATIBILITY.md`.
+Current evidence: `docs/OPENCODE_GENTLE_ORCHESTRATOR_QUALIFICATION_20260928.md` plus `docs/OPENCODE_11832_SERVE_ZERO_TOUCH_QUALIFICATION_20260927.md`. Current execution entry: `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`. Historical V1 lifecycle evidence: `docs/OPENCODE_V1_ZERO_TOUCH_RECOVERY_EVIDENCE_20260927.md`. Runtime/provider compatibility debt: `docs/vnext/CURRENT_COMPATIBILITY.md`.

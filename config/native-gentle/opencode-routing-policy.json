@@ -20,5 +20,11 @@
     "native-v4-heavy",
     "native-economy",
     "native-nan"
-  ]
+  ],
+  "qualified_at": "2026-09-28",
+  "primary_agent": "gentle-orchestrator",
+  "primary_model": "nan/glm5.3-flash",
+  "primary_variant": "high",
+  "atenea_semantic_agents": 0,
+  "ownership": "Atenea selects secret-free routing desired state; Gentle owns ODD, explore/general delegation and RDD semantics."
 }

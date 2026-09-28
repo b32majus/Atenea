@@ -11,6 +11,9 @@ const target=process.argv[3]||path.join(os.homedir(),'.config/opencode/opencode.
 const profile=JSON.parse(fs.readFileSync(profilePath,'utf8'));
 const config=JSON.parse(fs.readFileSync(target,'utf8'));
 const agents=config.agent||{};
+config.default_agent='build';
+delete agents['atenea-writer'];
+delete agents['atenea-review-host'];
 for(const [role,route] of Object.entries(profile.roles)){
  if(!agents[route.agent]) throw new Error(`${role}: agent ${route.agent} not present in ${target}`);
  agents[route.agent].model=route.model;

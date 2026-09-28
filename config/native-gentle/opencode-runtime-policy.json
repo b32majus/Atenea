@@ -1,13 +1,13 @@
 {
   "schema": "atenea.opencode-runtime-policy/v1",
   "status": "current-qualified-runtime",
-  "qualified_at": "2026-09-27",
+  "qualified_at": "2026-09-28",
   "runtime": {
     "opencode": "1.18.32",
     "gentle_ai": "3.7.0",
-    "normal_topology": "thin-deterministic-supervisor -> fresh-serve-writer-host -> direct-build-session -> gentle-start/consent -> fresh-serve-review-host -> gentle-owned-review/burn -> checkpoint",
+    "normal_topology": "thin-deterministic-supervisor -> fresh-serve-ticket-host -> gentle-orchestrator -> upstream-explore/general -> native-gentle-review/correction/burn -> checkpoint",
     "runtime_install_must_not_live_under_home_dot_opencode": true,
-    "qualification": "two-ticket-zero-touch-passed; 2/2 terminal review burns; 2/2 git checkpoints; human_touches_after_launch=0"
+    "qualification": "upstream-orchestrator-high-risk-canary-passed; terminal consumption/burn; hidden oracle PASS; 8/8 tests; production reliability Luna high"
   },
   "skills": {
     "runtime_owned_root": "~/.config/opencode/skills",
@@ -34,27 +34,21 @@
   },
   "routing": {
     "default_interactive_model": "nan/glm5.3-flash",
-    "lifecycle_host": "profile-owned: MiMo 2.6 Flash qualified in production-volume and complex",
-    "nontrivial_writer": "profile-owned: production-volume=DeepSeek V4 Flash; complex=GLM 5.3 Flash high",
     "selection_ceremony": "none-on-ordinary-ticket",
     "interactive_default_agent": "build",
-    "writer_agent": "atenea-writer",
-    "review_host_agent": "atenea-review-host",
-    "writer_denies": [
-      "task",
-      "skill",
-      "webfetch",
-      "websearch",
-      "codesearch",
-      "todowrite",
-      "question"
-    ],
-    "review_task_allow": "review-*",
-    "context_budget_evidence": "docs/OPENCODE_LEAN_CONTEXT_QUALIFICATION_20260927.md",
+    "ordinary_primary_agent": "gentle-orchestrator",
+    "orchestrator_model": "nan/glm5.3-flash",
+    "orchestrator_variant": "high",
+    "explore_agent": "explore",
+    "writer_agent": "general",
+    "atenea_semantic_agents": 0,
     "default_profile": "production-volume",
     "complex_profile": "complex",
     "profile_policy": "config/native-gentle/opencode-routing-policy.json",
     "sdd_in_normal_train": false,
-    "sol_normal_path": false
+    "sol_normal_path": false,
+    "production_reliability": "openai/gpt-6-luna high",
+    "orchestrator_evidence": "docs/OPENCODE_GENTLE_ORCHESTRATOR_QUALIFICATION_20260928.md",
+    "historical_context_budget_evidence": "docs/OPENCODE_LEAN_CONTEXT_QUALIFICATION_20260927.md"
   }
 }

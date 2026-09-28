@@ -1,18 +1,51 @@
 # Atenea — Current Decisions
 
-Date: 2026-09-27
+Date: 2026-09-28
 
-This file preserves accepted decision provenance. **C-073 through C-075 jointly define current ordinary execution/routing; C-072 remains the current runtime-transition authority** and supersedes the exact-version/install claims in C-070 while preserving C-069–C-071 as accepted topology/routing evidence. C-055–C-068 remain accepted provenance for the Pi/Gentle vNext epoch and for stable policy not explicitly reopened.
+This file preserves accepted decision provenance. **C-076 defines the current ordinary execution topology; C-075 remains the current two-profile routing policy as refined by C-076; C-073 remains the lean entry policy; C-074 is retained as superseded context-optimization evidence; C-072 remains the runtime-transition authority.** C-069–C-071 remain accepted topology/routing provenance; C-055–C-068 remain Pi/Gentle vNext provenance unless explicitly reopened.
 
 Historical `docs/DECISIONS.md`, Stage files, old run recipes and pre-vNext field evidence remain valuable provenance, but they do not define the current execution path.
 
+## C-076 — Upstream Gentle orchestrator is the ordinary ticket parent; Atenea owns zero semantic agents
+
+**Accepted 2026-09-28 after two staged canaries and one bound-lineage recovery on OpenCode 1.18.32 + Gentle AI 3.7.0.**
+
+C-074's lean custom primaries proved that hiding unused tool surfaces can reduce model context, but the optimization also bypassed upstream Gentle orchestration semantics: proportional ODD/exploration, native delegation to `explore`/`general`, and the upstream decision of whether review is due. Atenea must not trade those semantics away merely to reduce prompt/tool tokens.
+
+Current ordinary topology is therefore:
+
+```text
+authorized train frontier
+→ thin deterministic Atenea supervisor
+→ fresh `opencode serve` host for one bounded ticket
+→ upstream `gentle-orchestrator` primary · GLM 5.3 Flash high
+→ Gentle-owned `explore` / `general` delegation as needed
+→ deterministic verification + native ASSESS/STATUS/START
+→ Gentle reviewer/refuter/correction/validator lifecycle
+→ acknowledge-approved + terminal consumption/burn
+→ durable checkpoint
+→ next authorized ticket or STOP
+```
+
+Atenea semantic agents = **0**. `atenea-writer` and `atenea-review-host` are no longer ordinary runtime authority; C-074 and its qualification document remain evidence about context cost only. The human interactive default may remain OpenCode `build`.
+
+The canary first proved proportional behavior on a small candidate: the orchestrator classified the second file as mechanical, kept the change inline, ran native `review assess`, received `medium / under_budget / review_due=false`, and correctly did not manufacture RDD. A second auth/security fixture forced nontrivial delegation: `explore` and `general` both ran on DeepSeek V4 Flash, the work-unit commit passed its hidden oracle and 8/8 tests, native ASSESS returned high-risk and START created a bound four-lens review.
+
+That high-risk lineage exposed one routing defect: `review-reliability` on DeepSeek V4 Flash returned `opencode_task_output_empty` four times, while `review-resilience` on the same V4 route succeeded. The lineage remained bound and unacknowledged. Changing **only** `review-reliability` to GPT-6 Luna high and resuming the exact provider-issued collect slot produced a valid reviewer result; Gentle then reached `acknowledge-approved`, wrote terminal consumption, and STATUS returned `stop / target_already_acknowledged`. Production reliability is therefore Luna high; complex reliability remains Luna xhigh.
+
+The current two-profile selection policy from C-075 remains: `production-volume` by default; `complex` only on concrete material complexity. Both profiles keep `gentle-orchestrator` on GLM 5.3 Flash high. Production routes `explore` + `general` to V4; complex keeps `explore` on V4 and moves `general` to GLM high. Sol remains conditional to complex `review-refuter`, not a happy-path fallback.
+
+If a host/session fails after review authority is durable, re-entry must select the exact lineage and obey its `next_transition`; fresh process context does not authorize rerunning ASSESS/START or inventing a replacement review.
+
+Evidence: `docs/OPENCODE_GENTLE_ORCHESTRATOR_QUALIFICATION_20260928.md`.
+
 ## C-075 — Two OpenCode routing profiles replace Pi-era per-ticket profile ceremony
 
-**Accepted 2026-09-27 after current-model inventory, controlled writer/reviewer/refuter/Judge-A comparisons and repeated MiMo 2.6 Gentle lifecycle qualification.**
+**Accepted 2026-09-27 after current-model inventory and controlled comparisons; exact ordinary agent bindings and production reliability were refined by C-076 on 2026-09-28.**
 
 Atenea has two current routing snapshots: `production-volume` is the default and `complex` is a triggered escalation for concrete material complexity. Profile choice is not a universal preflight question. Ordinary bounded work remains on `production-volume`; `complex` is selected only when the accepted work already exposes architectural novelty/cross-cutting change, difficult concurrency/state/temporal semantics, material security/privacy/tenancy boundaries, unusually coupled reasoning, or repeated semantic/correction failure.
 
-`production-volume` uses DeepSeek V4 Flash for volume writing/reliability/resilience, MiMo 2.6 Flash for Gentle lifecycle hosting/refutation/Judge A, GLM 5.3 Flash high for risk/correction, and GPT-6 Luna selectively for readability/validation/Judge B. `complex` moves writing and correction to GLM high, moves reliability/risk to Luna xhigh, retains V4 for independent resilience, retains MiMo for lifecycle hosting/Judge A, and reserves GPT-6 Sol xhigh for `review-refuter` only. Refuter is severe-finding conditional, so Sol is not a happy-path model. Additional Sol use requires explicit bounded escalation; there is no automatic Sol fallback.
+`production-volume` uses GLM 5.3 Flash high for upstream `gentle-orchestrator`, DeepSeek V4 Flash for `explore`/`general` and resilience, GPT-6 Luna high for readability/reliability/validation, GLM high for risk/correction, and MiMo 2.6 for refutation/Judge A. `complex` keeps the orchestrator on GLM high, keeps `explore` and independent resilience on V4, moves `general` and correction to GLM high, moves reliability/risk to Luna xhigh, retains MiMo for Judge A, and reserves GPT-6 Sol xhigh for `review-refuter` only. Refuter is severe-finding conditional, so Sol is not a happy-path model. Additional Sol use requires explicit bounded escalation; there is no automatic Sol fallback.
 
 SDD is excluded from the normal Atenea train; installed `sdd-*` agents remain upstream capability, not routed Atenea work. Historical `native-balanced`, `native-v4-heavy`, `native-economy` and `native-nan` remain Pi-era provenance, not the current selectable catalog.
 
@@ -20,7 +53,7 @@ Evidence: `docs/OPENCODE_MODEL_ROUTING_QUALIFICATION_20260927.md`. Current snaps
 
 ## C-074 — Train roles use lean OpenCode tool surfaces; full `build` is not the ordinary writer
 
-**Accepted 2026-09-27 after controlled context-budget A/B and a two-ticket zero-touch train.**
+**Accepted 2026-09-27 after controlled context-budget A/B and a two-ticket zero-touch train. Superseded for the ordinary execution topology by C-076; retained as optimization evidence.**
 
 OpenCode's full `build` surface carried substantial prompt/tool-schema context that ordinary bounded writers did not need. Removing the old `gentle-orchestrator` definition reduced config bytes but did not reduce model context; the useful reduction came from hiding capabilities the role must not use.
 
@@ -42,7 +75,7 @@ Atenea no longer treats every substantial ticket as requiring a composition fore
 
 The normal entry contract is `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`: correct repo/base, accepted task authority, executable outcome/acceptance/constraints, current qualified runtime and publication boundary. Facts already durable in repository/train authority are not re-asked. Train-wide facts are established once; ticket boundaries re-check only state that can actually change.
 
-Ordinary ticket prompts carry the semantic execution contract only. They do not restate `AGENTS.md`, `CODING_STANDARDS.md`, ODD/RDD mechanics, reviewer ordering, tool ownership or historical compatibility prose. `atenea-writer` uses the runtime default model route unless the human explicitly overrides it, the run is a declared routing experiment, or a concrete route failure justifies a new bounded decision. C-071 remains evidence that no model is universally optimal; it no longer creates a mandatory per-ticket model-selection ceremony.
+Ordinary ticket prompts carry the semantic execution contract only. They do not restate `AGENTS.md`, `CODING_STANDARDS.md`, ODD/RDD mechanics, reviewer ordering, tool ownership or historical compatibility prose. The current upstream runtime route is applied without asking the human to select a model on every ticket unless the human explicitly overrides it, the run is a declared routing experiment, or a concrete route failure justifies a new bounded decision. C-071 remains evidence that no model is universally optimal; it no longer creates a mandatory per-ticket model-selection ceremony.
 
 `WORK_UNIT_COMPOSITION_POLICY_V1.md` becomes conditional. The upstream/default 400 authored-line budget remains a planning signal when composition risk is actually visible, but Atenea drops its extra 600/800 bands and does not require estimates for ordinary bounded tickets. Promotion Review likewise remains available only when material promotion risk is identified.
 
@@ -54,7 +87,7 @@ This decision supersedes prior current-language that made composition forecastin
 
 The productive host was not migrated. Both OpenCode installations, OpenCode state/cache/config history, legacy binaries and temporary runtime residue were removed from active paths into a reversible quarantine. OpenCode was reinstalled from the current stable npm channel as `1.18.32`; Gentle AI was reinstalled from its official checksum-verified binary installer as `3.7.0`. The historical `1.18.10` zero-touch result remains evidence for the lifecycle shape but is no longer installation authority or a version pin.
 
-Stable `AGENTS.md` policy is version-neutral. Exact runtime versions, provider/runtime defects and temporary transport exceptions belong in `docs/vnext/CURRENT_COMPATIBILITY.md`. Global OpenCode context is deliberately bounded: `atenea-writer` is the ordinary ticket role beneath the Atenea outer supervisor, while `atenea-review-host` carries Gentle review continuation; Context7 and Engram are disabled by default; the generated Gentle persona/mandatory Engram protocol is not restored as unconditional global `AGENTS.md` context.
+Stable `AGENTS.md` policy is version-neutral. Exact runtime versions, provider/runtime defects and temporary transport exceptions belong in `docs/vnext/CURRENT_COMPATIBILITY.md`. Global OpenCode context is deliberately bounded. C-076 supersedes C-072's earlier custom-role binding: the ordinary ticket primary is upstream `gentle-orchestrator`, Atenea owns no semantic agents, Context7 and Engram are disabled by default, and the generated Gentle persona/mandatory Engram protocol is not restored as unconditional global `AGENTS.md` context.
 
 The clean rebuild disproved the hypothesis that the 20–30 second pre-session stalls were caused only by accumulated local state. OpenCode `1.18.32` reproduces an intermittent one-shot `opencode run` hang at `message=init` even with a brand-new HOME, empty Git repository, `--pure`, no provider config and no Gentle assets. This matches the upstream one-shot init-hang class. Therefore one-shot `run` is not eligible for unattended promotion while that defect remains reproducible.
 

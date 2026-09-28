@@ -19,16 +19,16 @@ Qualified from the clean rebuild and two-ticket zero-touch train on 2026-09-27:
 
 ```text
 thin deterministic Atenea supervisor
-→ fresh OpenCode host per bounded ticket/phase
-→ one bounded `atenea-writer` session (direct primary; lean tool surface)
-→ Gentle AI 3.7.0 lifecycle
-→ deterministic project verification
-→ Gentle review / correction / acknowledge-burn
+→ fresh `opencode serve` host per bounded ticket/phase
+→ one `gentle-orchestrator` primary session (GLM 5.3 Flash high)
+→ upstream `explore` / `general` delegation as Gentle decides
+→ deterministic verification + native Gentle assess/START
+→ reviewer Task / capture / correction / acknowledge-burn
 → durable checkpoint
 → fresh host/context for next ticket or STOP
 ```
 
-The current qualified runtime uses OpenCode `1.18.32` and Gentle AI `3.7.0`. The old `1.18.10` zero-touch train remains valid historical evidence, but it is no longer a version pin. One-shot `opencode run` remains blocked for unattended use because a clean `1.18.32` HOME reproduces an intermittent pre-session `init` hang. Fresh `opencode serve` hosts for bounded writer/review roles passed a two-ticket zero-touch train with 2/2 terminal Gentle burns, 2/2 Git checkpoints and `HUMAN_TOUCH_AFTER_LAUNCH=0`.
+The current qualified runtime uses OpenCode `1.18.32` and Gentle AI `3.7.0`. The old `1.18.10` zero-touch train remains valid historical evidence, but it is no longer a version pin. One-shot `opencode run` remains blocked for unattended use because a clean `1.18.32` HOME reproduces an intermittent pre-session `init` hang. Fresh `opencode serve` hosts remain the qualified transport. On 2026-09-28 an upstream-orchestrator high-risk canary proved `gentle-orchestrator → explore/general → native assess/START → reviewer collection → acknowledge/burn` on the same durable lineage, with hidden oracle PASS and 8/8 tests.
 
 Context7 and Engram remain installed capabilities but are disabled by default in ordinary OpenCode execution. The global OpenCode `AGENTS.md` is intentionally small; Gentle persona/Engram protocol is not restored as unconditional global context.
 
@@ -55,7 +55,8 @@ Current vNext architecture/evidence:
 - `docs/vnext/P6_NATIVE_CUTOVER_QUALIFICATION_20260922.md`;
 - `docs/vnext/P7_PROMOTION_20260922.md`;
 - `docs/vnext/STABLE_RUNTIME_UPGRADE_20260923_GENTLE370_ENGRAM210.md`.
-- `docs/OPENCODE_11832_SERVE_ZERO_TOUCH_QUALIFICATION_20260927.md` — current zero-touch runtime qualification.
+- `docs/OPENCODE_11832_SERVE_ZERO_TOUCH_QUALIFICATION_20260927.md` — serve/zero-touch transport qualification.
+- `docs/OPENCODE_GENTLE_ORCHESTRATOR_QUALIFICATION_20260928.md` — current upstream-orchestrator + high-risk RDD qualification.
 - `docs/vnext/STABLE_RUNTIME_UPDATE_PI0871_20260923.md` — retained Pi rollback provenance.
 - `docs/vnext/SKILL_REGISTRY_WATCHER_INCIDENT_20260923.md`.
 - `docs/vnext/NATIVE_V4_HEAVY_PROMUEVE_CANARY_20260925.md` — first positive `native-v4-heavy` field canary + routing-conformance learning.
@@ -67,16 +68,17 @@ If durable executable authority already exists, do not rerun shaping by ritual. 
 ```text
 accepted bounded ticket/train authority
 → thin deterministic supervisor
-→ fresh lean `atenea-writer`
-→ deterministic verification
-→ native Gentle review/correction lifecycle
+→ fresh `opencode serve` ticket host
+→ `gentle-orchestrator` primary session
+→ upstream exploration/delegation + deterministic verification
+→ native Gentle review/correction lifecycle when due
 → APPROVED + acknowledge-approved + authority burned
 → durable checkpoint
 → fresh context for next compatible ticket or STOP
 → publication boundary remains human/repository-owned
 ```
 
-Do not place `gentle-orchestrator` beneath the Atenea supervisor as another ticket parent. Do not restore a long-lived model parent merely to carry train continuity.
+The Atenea supervisor is deliberately outside the ticket runtime, but the ordinary ticket parent is upstream `gentle-orchestrator`. Atenea does not replace it with semantic writer/review-host agents and does not keep a long-lived model parent merely to carry train continuity.
 
 ## Shaping rule
 
@@ -118,11 +120,11 @@ See `docs/vnext/CURRENT_COMPATIBILITY.md`.
 
 Short version:
 
-- OpenCode `1.18.32` + Gentle AI `3.7.0` + fresh `serve` writer/review hosts is the current qualified runtime; historical `1.18.10` and V2 `2.0.18` results remain evidence only;
+- OpenCode `1.18.32` + Gentle AI `3.7.0` + a fresh `serve` host per bounded ticket is the current qualified runtime; historical `1.18.10` and V2 `2.0.18` results remain evidence only;
 - one-shot `opencode run` is blocked for unattended promotion while the clean-state pre-session `init` hang remains reproducible;
 - Gentle-managed runtime skills live in `~/.config/opencode/skills`; legacy shared `~/.agents/skills` is not active globally;
 - Context7 and Engram are disabled by default and enabled only when the task needs them;
-- ordinary `atenea-writer` tickets use `production-volume`; `atenea-review-host` uses MiMo 2.6 for Gentle lifecycle continuation; `complex` is trigger-driven and Sol is not a normal-path fallback;
+- ordinary tickets enter through `gentle-orchestrator` on GLM 5.3 Flash high; `explore`/`general` and reviewers follow the active routing profile; production `review-reliability` uses GPT-6 Luna high; `complex` is trigger-driven and Sol is not a normal-path fallback;
 - `.atl/` must already be ignored in candidate repositories.
 
 ## Historical material

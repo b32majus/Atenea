@@ -1,55 +1,51 @@
 # Atenea — current OpenCode serve runtime recipe
 
 Status: **CURRENT QUALIFIED RECIPE**
-Date: 2026-09-27
+Date: 2026-09-28
 
 ## Baseline
 
 ```text
 OpenCode 1.18.32 (single real npm-global install)
 Gentle AI 3.7.0
-fresh `opencode serve` host per bounded writer/review role
-one HTTP session per host
-`atenea-writer` direct primary writer
+fresh `opencode serve` host per bounded ticket
+one primary `gentle-orchestrator` session per ticket
+gentle-orchestrator = GLM 5.3 Flash high
 Context7 / Engram OFF by default
+Atenea semantic agents = 0
 ```
 
-Install OpenCode from the current stable npm channel outside `~/.opencode`. Install/update Gentle AI through its official owner path, then reconcile managed OpenCode assets with `gentle-ai sync --agent opencode` before applying Atenea's bounded desired state.
+Install OpenCode from the current stable npm channel outside `~/.opencode`. Install/update Gentle AI through its official owner path, then reconcile managed OpenCode assets with `gentle-ai sync --agent opencode` before applying Atenea's secret-free routing desired state.
 
-Atenea's current OpenCode desired state requires:
-
-- `default_agent = build`;
-- NaN provider configuration from local secret-bearing configuration plus versioned secret-free model metadata;
-- Context7 and Engram disabled by default;
-- minimal global `AGENTS.md`, without unconditional Gentle persona/Engram protocol;
-- Gentle-managed review transport and skills under `~/.config/opencode`;
-- no active legacy `~/.agents/skills` global duplicate surface.
+Atenea's current OpenCode desired state requires `default_agent = build` for the human interactive surface; `gentle-orchestrator` as the unattended ticket primary; NaN/OpenAI model pins from the active routing profile; Context7/Engram disabled by default; minimal global `AGENTS.md`; Gentle-managed review transport/skills under `~/.config/opencode`; and no active legacy `~/.agents/skills` duplicate surface.
 
 ## Version-probe compatibility shim
 
-Gentle 3.7 detects OpenCode major with a hard 3-second `opencode --version` probe. Keep one thin shim at `~/.local/bin/opencode`: exact single-argument `--version` / `-v` reads the real npm package version; every other invocation execs `~/.npm-global/bin/opencode` unchanged.
+Gentle 3.7 detects OpenCode major with a hard 3-second `opencode --version` probe. Keep the qualified version-neutral shim at `~/.local/bin/opencode`: exact `--version` / `-v` reads the real npm package version; every other invocation execs the real npm-global binary unchanged.
+
 ## Normal bounded ticket flow
 
-1. Start a fresh `opencode serve --hostname 127.0.0.1 --port <ephemeral>` host in the authorized worktree.
-2. Wait until the native HTTP API is ready.
-3. `POST /session`, then `POST /session/:id/message` with `agent=atenea-writer` and the resolved model route.
-4. Stop the writer host after the bounded turn completes.
-5. Run deterministic verification and native Gentle STATUS. Follow only provider-issued START/consent transitions.
-6. When review collection is required, start a new fresh serve host and one bounded `atenea-review-host` session carrying the exact provider-issued review continuation. Its Task surface is limited to `review-*`; Reviewer Tasks flow through `opencode-review-transport.ts`.
-7. Stop only after exact acknowledgement burns terminal authority or Gentle returns a typed STOP/refusal.
-8. Tear down the review host, run final deterministic checks, create the authorized Git checkpoint, then launch the next ticket from durable authority or STOP.
+1. Start fresh `opencode serve --hostname 127.0.0.1 --port <ephemeral>` in the authorized worktree.
+2. Wait for the HTTP API, create one session, and send the bounded ticket with `agent=gentle-orchestrator`.
+3. Gentle owns ODD/exploration/delegation. Under `production-volume`, `explore` and `general` use DeepSeek V4 Flash; `complex` keeps `explore` on V4 and moves `general` to GLM high.
+4. Follow native deterministic verification and Gentle ASSESS/STATUS. Follow only provider-issued START/consent/collect/correction transitions.
+5. Reviewer Tasks run through Gentle-managed OpenCode review transport with the active profile pins. Production `review-reliability` is GPT-6 Luna high; the 2026-09-28 high-risk canary superseded V4 for that lens after four reproducible empty Task outputs.
+6. Continue until exact acknowledgement creates terminal consumption/burn or Gentle returns a typed STOP/refusal.
+7. Run final deterministic checks, create/preserve the authorized Git checkpoint, tear down the bounded host, then advance or STOP.
+
+If the host dies after a lineage is bound, re-enter on a fresh host from the exact lineage and provider-issued `next_transition`. Do not reconstruct the lifecycle from prose or restart it from ASSESS.
 
 ## Hard exclusions
 
-- Do not use one-shot `opencode run` for unattended trains while the clean pre-session `init` hang remains reproducible.
-- Do not use `gentle-orchestrator` as a nested ticket parent beneath the Atenea supervisor.
-- Do not keep a global/persistent OpenCode server to carry model context between tickets.
-- Do not restore historical OpenCode DB/session/cache state.
-- Do not enable Context7/Engram globally merely because they are installed.
-- Do not remove or patch Gentle-managed review transport assets by hand.
+- no one-shot `opencode run` for unattended trains while the clean pre-session `init` hang remains reproducible;
+- no Atenea-owned semantic writer/review-host agents on the ordinary path;
+- no global/persistent OpenCode server to carry model context between tickets;
+- no restoration of historical OpenCode DB/session/cache state;
+- no global Context7/Engram merely because installed;
+- no hand-patching Gentle-managed review transport assets.
 
 ## Qualification gate after material runtime changes
 
-Require a bounded real-message smoke plus a synthetic two-ticket train proving: direct writer, deterministic checks, exact Gentle consent transport, reviewer capture, terminal acknowledge/burn, Git checkpoint, clean final tree and `HUMAN_TOUCH_AFTER_LAUNCH=0`.
+Require a bounded real-message canary proving the changed route. For a material orchestration/review change, prove upstream delegation where applicable, deterministic checks, native risk/START, exact consent transport, reviewer capture, terminal acknowledge/burn and clean durable state.
 
-Current transport evidence: `docs/OPENCODE_11832_SERVE_ZERO_TOUCH_QUALIFICATION_20260927.md`. Current lean-role/context evidence: `docs/OPENCODE_LEAN_CONTEXT_QUALIFICATION_20260927.md`.
+Current orchestration evidence: `docs/OPENCODE_GENTLE_ORCHESTRATOR_QUALIFICATION_20260928.md`. Serve/zero-touch transport evidence: `docs/OPENCODE_11832_SERVE_ZERO_TOUCH_QUALIFICATION_20260927.md`. Historical context-budget evidence: `docs/OPENCODE_LEAN_CONTEXT_QUALIFICATION_20260927.md`.

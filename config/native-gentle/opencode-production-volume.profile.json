@@ -2,16 +2,12 @@
   "schema": "atenea.opencode-routing-profile/v1",
   "name": "production-volume",
   "status": "current-default",
-  "qualified_at": "2026-09-27",
-  "purpose": "Default high-volume route: preserve model-family independence while using each proven route where it compensates.",
+  "qualified_at": "2026-09-28",
+  "purpose": "Default high-volume route through upstream Gentle orchestration; V4 for volume child work and evidence-backed reviewer pins.",
   "roles": {
     "writer": {
-      "agent": "atenea-writer",
+      "agent": "general",
       "model": "nan/deepseek-v4-flash"
-    },
-    "lifecycle-host": {
-      "agent": "atenea-review-host",
-      "model": "nan/mimo-v2.6-flash"
     },
     "review-readability": {
       "agent": "review-readability",
@@ -20,7 +16,8 @@
     },
     "review-reliability": {
       "agent": "review-reliability",
-      "model": "nan/deepseek-v4-flash"
+      "model": "openai/gpt-6-luna",
+      "variant": "high"
     },
     "review-resilience": {
       "agent": "review-resilience",
@@ -51,6 +48,15 @@
     },
     "jd-fix-agent": {
       "agent": "jd-fix-agent",
+      "model": "nan/glm5.3-flash",
+      "variant": "high"
+    },
+    "explore": {
+      "agent": "explore",
+      "model": "nan/deepseek-v4-flash"
+    },
+    "ticket-primary": {
+      "agent": "gentle-orchestrator",
       "model": "nan/glm5.3-flash",
       "variant": "high"
     }

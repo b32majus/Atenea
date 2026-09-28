@@ -97,7 +97,7 @@ Do **not** require a composition forecast, model/profile-selection ceremony, bro
 
 Open `docs/WORK_UNIT_COMPOSITION_POLICY_V1.md` only when there is concrete evidence of a coarse/over-budget delivery shape. Ordinary bounded tickets need no authored-line estimate.
 
-The ordinary train writer is `atenea-writer`: a direct primary OpenCode role with no custom orchestration prompt and a narrowed tool surface. `atenea-review-host` is a separate primary role whose Task surface is limited to `review-*` for Gentle lifecycle continuation. Interactive `build` remains available but is not the default train writer. Ordinary tickets use the `production-volume` routing profile; `complex` activates only from concrete material complexity under C-075. Additional routing overrides require a declared experiment or concrete route failure. Do not put `gentle-orchestrator` inside a ticket already bounded by the Atenea outer supervisor.
+The ordinary ticket parent is upstream `gentle-orchestrator`, pinned to GLM 5.3 Flash high in both current profiles. Gentle may use its own `explore` and `general` subagents; production routes both to DeepSeek V4 Flash, while `complex` may move `general` to GLM high. Atenea owns **zero semantic writer/reviewer agents**. Interactive `build` remains available for the human surface. `production-volume` is default; `complex` activates only from concrete material complexity under C-075/C-076. Additional routing overrides require a declared experiment or concrete route failure.
 
 For material work, executable authority must still be sufficiently falsifiable for its risk: applicable invariants, negative/adversarial cases, integration seams and deterministic acceptance belong in the durable task when they materially change correctness. This is a quality requirement, not a paperwork requirement.
 
@@ -146,6 +146,7 @@ After a runtime rebuild/change, compatibility incident or when runtime ownership
 
 ```bash
 node tools/check-opencode-runtime-policy.mjs
+node tools/check-opencode-routing-profiles.mjs
 node tools/check-vnext-authority.mjs
 ```
 
@@ -180,7 +181,7 @@ In particular:
 - exact OpenCode/Gentle versions and transport exceptions live in `docs/vnext/CURRENT_COMPATIBILITY.md`; stable repository policy does not pin runtime versions;
 - `~/.config/opencode/skills` is the ordinary global runtime skill root; legacy shared `~/.agents/skills` is not active globally; project skills remain project-local;
 - Context7 and Engram are installed capabilities but disabled by default for ordinary ticket execution;
-- when the Atenea outer supervisor already owns the train frontier, use the current lean writer/review-host roles from `config/native-gentle/opencode-runtime-policy.json`; do not nest `gentle-orchestrator` as another ticket parent.
+- when the Atenea outer supervisor owns the train frontier, start one fresh bounded OpenCode host and use upstream `gentle-orchestrator` as the ticket parent; the supervisor must not duplicate ODD/delegation/RDD semantics in Atenea-owned agents.
 
 ## 10. Publication
 
