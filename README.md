@@ -17,11 +17,15 @@ Qualified 2026-09-28:
 
 ```text
 Pi supervisor + Herdr
+→ select prepared implementation profile at a clean candidate/work-unit boundary
+   - production-volume (default) → DeepSeek V4 Flash
+   - complex → GLM 5.3 Flash high
 → ONE plain Pi ticket worker (`pi --no-extensions`)
 → repository authority + applicable project skills
 → implementation + deterministic checks/oracles
 → local candidate commit
 → native Gentle ASSESS via Codex transport
+→ distinct RDD reviewer roles + conditional refuter/validator
 → exact native review/correction/validation/burn when due
 → durable checkpoint
 → next authorized ticket or STOP
@@ -37,12 +41,13 @@ For a fresh agent or human:
 
 1. `AGENTS.md` — stable repository policy.
 2. `docs/START_HERE.md` — current front door.
-3. `docs/CURRENT_EXECUTION_DECISION_C077.md` — current prepared-ticket topology decision.
+3. `docs/CURRENT_EXECUTION_DECISION_C077.md` — current prepared-ticket topology/routing decision.
 4. `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md` — minimal ordinary preflight and prompt contract.
 5. `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md` — current operator path.
-6. `CODING_STANDARDS.md` — horizontal engineering quality.
-7. current product/task/ADR authority for the work being executed.
-8. `docs/vnext/CURRENT_COMPATIBILITY.md` only when runtime/provider exceptions matter.
+6. `docs/PREPARED_TRAIN_HANDOFF_C077.md` — reusable train adaptation handoff.
+7. `CODING_STANDARDS.md` — horizontal engineering quality.
+8. current product/task/ADR authority for the work being executed.
+9. `docs/vnext/CURRENT_COMPATIBILITY.md` only when runtime/provider exceptions matter.
 
 Historical OpenCode/Gentle-orchestrator and Gentle-Pi documents remain evidence for what they tested. They are not current merely because they remain in the repository.
 
@@ -53,18 +58,37 @@ If durable executable authority already exists, do not rerun shaping by ritual a
 ```text
 accepted bounded ticket/train
 → minimal preflight
-→ one prepared-ticket worker
+→ production-volume|complex implementation profile
+→ one prepared-ticket Pi worker
 → deterministic implementation evidence
-→ native Gentle review when due
+→ native Gentle review via Codex when due
 → checkpoint
 → publication remains human/repository-owned
 ```
 
+`production-volume` is default and uses `nan/deepseek-v4-flash`. `complex` uses `nan/glm5.3-flash · high` only for material reasoning/semantic-risk triggers defined in `config/native-gentle/prepared-routing-policy.json`.
+
+Both implementation profiles use the same shared Codex RDD quality profile so concurrent project trains do not race on reviewer-routing state.
+
 If product meaning or acceptance is genuinely unresolved, shape only enough to create durable executable authority before entering this path.
+
+## Reviewer graph
+
+Codex is the **transport**, not one reviewer. Native Gentle still owns:
+
+- `review-risk`;
+- `review-readability`;
+- `review-reliability`;
+- `review-resilience`;
+- conditional `review-refuter`;
+- conditional `review-validator`;
+- explicit-only Judgment Day roles when requested.
+
+Current shared review desired state lives in `config/native-gentle/prepared-codex-rdd-quality.profile.json`. Current Gentle Codex phase-model routing is limited to model IDs exposed by Codex, so the former OpenCode V4/GLM/MiMo reviewer pins are historical rather than literal C-077 routing.
 
 ## Skills
 
-Project-local skills intended as cross-runtime project authority should live under `.agents/skills/<name>/SKILL.md` with valid YAML frontmatter containing a non-empty `name` and `description`.
+Pi supports trusted project skills from both `.pi/skills/` and `.agents/skills/`. Keep runtime-specific project resources where they belong; prefer `.agents/skills/<name>/SKILL.md` for cross-runtime project authority. Active discovered skills need valid frontmatter with non-empty `name` and `description`.
 
 Do not duplicate Atenea lifecycle/model-routing policy into project skills. Runtime-owned/global skills stay with their owner.
 
@@ -76,13 +100,20 @@ Native Gentle owns review transaction state, lenses, candidate causality, refuta
 
 Judgment Day is explicit standalone dual/adversarial review for a concrete target, not an automatic post-RDD ritual.
 
-## Compatibility and fallback
+## Compatibility and desired state
 
 Current exact versions/seams live in `docs/vnext/CURRENT_COMPATIBILITY.md`.
 
 Current baseline includes Pi `0.87.1`, Herdr `0.9.1`, Gentle AI `3.7.0`, and OpenCode `1.18.32` as fallback worker.
 
-Older profile/routing/canary documents remain provenance; do not infer current routing from their filenames.
+Current routing desired state:
+
+- `config/native-gentle/prepared-routing-policy.json`;
+- `config/native-gentle/prepared-production-volume.profile.json`;
+- `config/native-gentle/prepared-complex.profile.json`;
+- `config/native-gentle/prepared-codex-rdd-quality.profile.json`.
+
+Older OpenCode profile/routing/canary documents remain provenance; do not infer current routing from their filenames.
 
 ## Publication boundary
 
