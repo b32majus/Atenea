@@ -18,7 +18,8 @@ Current prepared-ticket protocol:
 - Create the authorized local candidate commit.
 - Enter native Gentle review from the real candidate boundary with `gentle-ai review assess --agent codex ...`; if review is due, execute only exact provider-issued continuations through terminal. Do not manually set `GENTLE_PI_REVIEW_RELAY_CONTRACT`.
 - Codex is review transport, not one reviewer: Gentle still owns the four RDD reviewer roles (`review-risk`, `review-readability`, `review-reliability`, `review-resilience`), conditional `review-refuter`, conditional `review-validator`, and explicit-only Judgment Day roles when requested.
-- Both implementation profiles use the same shared Codex RDD quality routing so parallel trains cannot race on global reviewer assignment state. Current desired routing lives in `config/native-gentle/prepared-codex-rdd-quality.profile.json`.
+- Both implementation profiles use the same shared Codex RDD quality routing. Current desired map: risk=Sol high; readability=Luna high; reliability=Luna high; resilience=Luna high; refuter=Sol xhigh when invoked; validator=Luna high when invoked. This common review map avoids parallel trains racing on runtime-global reviewer assignments.
+- The former OpenCode V4/GLM/MiMo reviewer mapping is historical and must not be copied into the Codex transport; current Codex review roles use models exposed by Codex.
 - Standard candidate review consent may be relayed by the supervisor only if the train/ticket authority already pre-authorizes it.
 - Material scope/product/acceptance/oracle/publication changes are HUMAN STOP.
 - Review approval never grants push/PR/merge/deploy authority.
