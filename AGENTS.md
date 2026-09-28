@@ -63,6 +63,7 @@ Read:
 
 Current operation: `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`.
 Current handoff: `docs/PREPARED_TRAIN_HANDOFF_C078.md`.
+Prepared routing: `config/native-gentle/prepared-routing-policy.json`.
 Runtime exceptions: `docs/vnext/CURRENT_COMPATIBILITY.md`.
 
 ## 4. Prepared-ticket entry
@@ -96,7 +97,15 @@ Judgment Day is explicit-only. Plain Pi is not a Gentle-Pi review host; never ma
 
 ## 7. Skills and trust
 
-Pi supports trusted project skills from `.pi/skills/` and `.agents/skills/`. Keep intentional runtime-specific resources where they belong; do not duplicate skills solely to normalize layout. Use `--approve` only as a one-run trust override for an intentionally trusted repository that needs protected project resources.
+Pi supports trusted project skills from `.pi/skills/` and `.agents/skills/`.
+
+- keep intentional runtime-specific resources where they belong;
+- prefer `.agents/skills/<name>/SKILL.md` for cross-runtime project authority;
+- do not duplicate skills solely to normalize layout;
+- discovered skills require non-empty `name` and `description` frontmatter;
+- use `--approve` only as a one-run trust override for an intentionally trusted repository that needs protected project resources.
+
+Project skills own domain/engineering/UI/QA guidance. Atenea owns execution routing.
 
 ## 8. Supervisor boundary
 
@@ -104,10 +113,14 @@ The supervisor owns only authorized frontier, profile selection at clean boundar
 
 Material product/scope/acceptance/oracle/publication changes are HUMAN STOP.
 
-## 9. Efficiency evidence
+## 9. Implementation fallback
+
+If plain Pi has a concrete runtime/tooling failure, preserve the worktree, checkpoint, scope and acceptance and use qualified OpenCode Build V1 under the same prepared-ticket contract. Do not re-enter ODD, re-shape accepted work or silently change publication authority.
+
+## 10. Efficiency evidence
 
 Usage telemetry is observational and non-blocking. It must not add model calls, choose reviewer depth, change product acceptance or trigger profile changes inside a lineage. See `docs/EXECUTION_EFFICIENCY_LEDGER_V1.md`.
 
-## 10. Publication
+## 11. Publication
 
 Review approval is not push/PR/merge/deploy authority. No automatic merge, force-push or destructive history recovery.
