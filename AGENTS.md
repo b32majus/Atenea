@@ -61,9 +61,10 @@ Read:
 
 1. `README.md`;
 2. `docs/START_HERE.md`;
-3. `CODING_STANDARDS.md`;
-4. `docs/CURRENT_DECISIONS.md` / relevant ADRs;
-5. the specific accepted issue/work order/spec being executed.
+3. `docs/CURRENT_EXECUTION_DECISION_C077.md`;
+4. `CODING_STANDARDS.md`;
+5. `docs/CURRENT_DECISIONS.md` / relevant ADRs for provenance;
+6. the specific accepted issue/work order/spec being executed.
 
 For current operation read `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`.
 For runtime/version exceptions read `docs/vnext/CURRENT_COMPATIBILITY.md`.
@@ -155,13 +156,18 @@ Judgment Day is a separate explicit dual/adversarial review tool. Invoke it only
 
 ## 8. Skills and repository setup
 
-Project-local skills intended for Pi discovery should live under:
+Pi natively supports trusted project skills from both:
 
 ```text
-.agents/skills/<skill>/SKILL.md
+.pi/skills/
+.agents/skills/
 ```
 
-and contain valid YAML frontmatter with non-empty:
+Keep intentional Pi-specific/project resources under `.pi/skills`. Prefer `.agents/skills/<skill>/SKILL.md` when the skill is intended to be shared across runtimes. Do not copy or migrate valid skills merely to normalize directory layout.
+
+Project skill resources are subject to Pi project trust. An unattended worker that must consume intentionally trusted project-local skills/settings may use Pi's one-run `--approve` trust override. Project trust controls resource loading; it is not a sandbox or permission to trust arbitrary code.
+
+Discovered `SKILL.md` files should contain valid YAML frontmatter with non-empty:
 
 ```yaml
 name: <skill-name>
@@ -170,7 +176,7 @@ description: <when/why to use it>
 
 Do not duplicate Atenea lifecycle/model-routing/provider policy into product skills. Project skills own domain, engineering, UI, QA and documentation guidance.
 
-Legacy or runtime-specific skill roots may remain where they are still owned/needed; do not mass-migrate or duplicate skills without a concrete compatibility reason.
+Legacy/runtime-owned global skill roots remain owned by their runtimes; do not mass-migrate or duplicate them without a concrete compatibility reason.
 
 Matt Pocock skills remain optional discovery/shaping tools, not a mandatory runtime prelude.
 
