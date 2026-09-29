@@ -15,28 +15,36 @@ const forbid = (r, t, l) => { const b = read(r); if (b.includes(t)) failures.pus
 
 const current = [
   'README.md', 'AGENTS.md', 'CONTEXT.md', 'docs/START_HERE.md',
+  'docs/CURRENT_EXECUTION_DECISION_C079.md',
   'docs/CURRENT_EXECUTION_DECISION_C078.md', 'docs/CURRENT_EXECUTION_DECISION_C077.md',
   'docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md', 'docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md',
-  'docs/PREPARED_TRAIN_HANDOFF_C078.md', 'docs/EXECUTION_EFFICIENCY_LEDGER_V1.md',
+  'docs/PREPARED_TRAIN_HANDOFF_C079.md', 'docs/EXECUTION_EFFICIENCY_LEDGER_V1.md',
   'docs/vnext/CURRENT_COMPATIBILITY.md', 'config/native-gentle/prepared-routing-policy.json',
   'config/native-gentle/prepared-production-volume.profile.json', 'config/native-gentle/prepared-complex.profile.json',
   'config/native-gentle/opencode-routing-policy.json'
 ];
 for (const r of current) read(r);
 
-req('docs/START_HERE.md', 'CURRENT_DECISION      = C-078', 'C-078 front door');
+req('docs/START_HERE.md', 'CURRENT_DECISION      = C-079', 'C-079 front door');
 req('docs/START_HERE.md', 'lens depth            = native Gentle: 0 / 1 / 4', 'adaptive lens depth');
-req('docs/START_HERE.md', 'OPENCODE_CONFIG_CONTENT', 'process-local OpenCode config');
-req('docs/CURRENT_EXECUTION_DECISION_C078.md', 'opencode_task_output_empty', 'typed resilience recovery');
-req('docs/CURRENT_EXECUTION_DECISION_C078.md', 'start one fresh isolated OpenCode V1 host', 'bounded one-host recovery');
-req('docs/PREPARED_TRAIN_HANDOFF_C078.md', 'review_due=false → checkpoint; DO NOT launch OpenCode', 'no-review host suppression');
+req('docs/START_HERE.md', 'qualified recoveries  = V4 resilience/reliability → Luna high', 'qualified zero-output routes');
+req('docs/CURRENT_EXECUTION_DECISION_C079.md', 'atenea.review-zero-output/v1', 'typed zero-output failure');
+req('docs/CURRENT_EXECUTION_DECISION_C079.md', 'atenea.review-zero-output-recovery-permit/v1', 'bound recovery permit');
+req('docs/CURRENT_EXECUTION_DECISION_C079.md', 'review-reliability', 'reliability recovery');
+req('docs/CURRENT_EXECUTION_DECISION_C078.md', 'Status: **SUPERSEDED BY C-079 — PRESERVED FIELD BASE**', 'C-078 supersession marker');
+req('docs/PREPARED_TRAIN_HANDOFF_C078.md', 'Status: **SUPERSEDED BY C-079**', 'C-078 handoff supersession marker');
+req('docs/PREPARED_TRAIN_HANDOFF_C079.md', 'review_due=false → checkpoint; DO NOT launch OpenCode', 'no-review host suppression');
+req('docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md', '--recovery-permit', 'evidence-bound recovery renderer');
 req('AGENTS.md', 'Never mutate `~/.config/opencode/opencode.json` as train routing state.', 'global config race guard');
-req('README.md', 'Current authority: **C-078**', 'README current authority');
+req('README.md', 'Current authority: **C-079**', 'README current authority');
 
 for (const r of current) {
   forbid(r, 'review assess --agent codex', 'stale Codex review transport');
   forbid(r, 'ticket primary     = gentle-orchestrator', 'stale orchestrator primary');
 }
+forbid('docs/START_HERE.md', '--resilience-recovery-luna', 'legacy free-form resilience recovery');
+forbid('docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md', '--resilience-recovery-luna', 'legacy free-form resilience recovery');
+forbid('docs/PREPARED_TRAIN_HANDOFF_C079.md', '--resilience-recovery-luna', 'legacy free-form resilience recovery');
 forbid('docs/CURRENT_EXECUTION_DECISION_C077.md', '→ four RDD lenses /', 'stale always-four-lenses topology');
 
 if (failures.length) {

@@ -29,12 +29,14 @@ The supervisor owns train frontier and transport orchestration only. Product mea
 
 ## Current field hardening
 
-C-078 preserves C-077's Pi-first implementation topology and adds:
+C-079 preserves C-078/C-077 and adds:
 
-- adaptive `0 / 1 / 4` RDD semantics explicitly in Atenea authority;
-- per-process OpenCode routing overlays so concurrent trains do not mutate shared global config;
-- one bounded same-lineage `review-resilience` recovery from DeepSeek V4 empty-output to Luna high;
-- no repeated V4 hammering after the typed failure;
-- non-blocking token/usage telemetry with no extra model calls.
+- one durable deterministic failure class for a completed required reviewer slot with zero capturable output;
+- immediate stop of useless same-route parent narration/retry after that terminal observation;
+- an independent bound-STATUS identity/slot check before any recovery permit exists;
+- exactly one fresh-host recovery attempt only for qualified lens/model pairs;
+- current qualified pairs: V4 `review-resilience` and V4 `review-reliability`, both recovering to Luna high;
+- no global model-default change and no generic fallback carousel;
+- per-process OpenCode routing and zero-call telemetry preserved from C-078.
 
-Current authority: `docs/CURRENT_EXECUTION_DECISION_C078.md`.
+Current authority: `docs/CURRENT_EXECUTION_DECISION_C079.md`.

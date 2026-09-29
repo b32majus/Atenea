@@ -26,7 +26,7 @@ candidate risk / review timing / lens selection
 
 review execution when due
 → qualified OpenCode V1 transport with per-process routing config
-→ only the provider-issued lens slots
+→ only provider-issued lens slots
 → conditional refuter / bounded correction / validator / burn
 
 machine-decidable facts
@@ -55,22 +55,23 @@ Read:
 
 1. `README.md`;
 2. `docs/START_HERE.md`;
-3. `docs/CURRENT_EXECUTION_DECISION_C078.md`;
-4. `docs/CURRENT_EXECUTION_DECISION_C077.md` for base-topology provenance;
-5. `CODING_STANDARDS.md`;
-6. relevant decision provenance only when needed;
-7. the accepted issue/work-order/spec being executed.
+3. `docs/CURRENT_EXECUTION_DECISION_C079.md`;
+4. `docs/CURRENT_EXECUTION_DECISION_C078.md` for field-hardening provenance;
+5. `docs/CURRENT_EXECUTION_DECISION_C077.md` for base-topology provenance;
+6. `CODING_STANDARDS.md`;
+7. relevant decision provenance only when needed;
+8. the accepted issue/work-order/spec being executed.
 
-Current operation: `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`.
-Current handoff: `docs/PREPARED_TRAIN_HANDOFF_C078.md`.
-Prepared routing: `config/native-gentle/prepared-routing-policy.json`.
+Current operation: `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`.  
+Current handoff: `docs/PREPARED_TRAIN_HANDOFF_C079.md`.  
+Prepared routing: `config/native-gentle/prepared-routing-policy.json`.  
 Runtime exceptions: `docs/vnext/CURRENT_COMPATIBILITY.md`.
 
 ## 4. Prepared-ticket entry
 
 If executable authority already exists, do **not** rerun ODD, `gentle-orchestrator`, broad archaeology or shaping by ritual.
 
-The Pi worker reads target-repository authority and applicable project skills, implements the smallest coherent authorized change, preserves the principal acceptance oracle, runs deterministic checks and creates the authorized local candidate commit.
+The Pi worker reads target-repository authority and applicable skills, implements the smallest coherent authorized change, preserves the principal acceptance oracle, runs deterministic checks and creates the authorized local candidate commit.
 
 ## 5. Prepared profiles
 
@@ -91,7 +92,16 @@ After candidate commit, run Gentle ASSESS against the actual base and obey its r
 
 When provider-issued collection requires OpenCode, start a fresh bounded V1 review host with **per-process** routing configuration. Never mutate `~/.config/opencode/opencode.json` as train routing state.
 
-A typed `opencode_task_output_empty` on required `review-resilience` while routed to DeepSeek V4 has one C-078 recovery path: preserve candidate/lineage/revision/target, query bound STATUS, require the exact same slot to be reoffered, then make one fresh-host attempt with only `review-resilience` overridden to GPT-6 Luna high. If that attempt is not admitted, HUMAN STOP. No RESET/new START/fallback loop.
+A completed required reviewer Task with zero capturable result must be normalized through the C-079 deterministic classifier. That typed failure does not itself authorize a model swap. Recovery requires bound STATUS to reoffer the exact same candidate/lineage/revision/target/lens and a C-079 recovery permit.
+
+Current qualified zero-output recoveries are only:
+
+```text
+review-resilience  / V4 → Luna high
+review-reliability / V4 → Luna high
+```
+
+Each permits one fresh-host attempt. Unknown lens/model, identity drift, profile mismatch or a failed recovery => HUMAN STOP. No repeated V4 retry, RESET, new START/ASSESS, generic fallback loop, skipped lens or global config mutation.
 
 Judgment Day is explicit-only. Plain Pi is not a Gentle-Pi review host; never manually assert `GENTLE_PI_REVIEW_RELAY_CONTRACT`.
 

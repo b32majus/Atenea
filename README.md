@@ -4,7 +4,7 @@ Atenea is an **upstream-first policy, configuration and conformance layer** for 
 
 ## Current prepared-ticket runtime
 
-Current authority: **C-078** (2026-09-28), which hardens the C-077 Pi-first topology with field evidence from PsO Valme and PROMueve Reuma/Farmacia.
+Current authority: **C-079** (2026-09-29). C-079 preserves the C-077 Pi-first topology and C-078 field hardening, then normalizes required-lens zero-output failures and binds recovery to exact same-lineage provider state plus an explicitly qualified route.
 
 ```text
 Pi supervisor + Herdr
@@ -33,13 +33,14 @@ For a fresh agent or human, read in this order:
 
 1. `AGENTS.md`;
 2. `docs/START_HERE.md`;
-3. `docs/CURRENT_EXECUTION_DECISION_C078.md`;
-4. `docs/CURRENT_EXECUTION_DECISION_C077.md` for the preserved base topology;
-5. `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`;
-6. `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`;
-7. `docs/PREPARED_TRAIN_HANDOFF_C078.md`;
-8. `CODING_STANDARDS.md`;
-9. current product/task/ADR authority.
+3. `docs/CURRENT_EXECUTION_DECISION_C079.md`;
+4. `docs/CURRENT_EXECUTION_DECISION_C078.md` for preserved field-hardening provenance;
+5. `docs/CURRENT_EXECUTION_DECISION_C077.md` for the preserved base topology;
+6. `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`;
+7. `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`;
+8. `docs/PREPARED_TRAIN_HANDOFF_C079.md`;
+9. `CODING_STANDARDS.md`;
+10. current product/task/ADR authority.
 
 Historical OpenCode-first, Gentle-Pi and ODD documents remain evidence for what they tested; they do not define current prepared-ticket execution.
 
@@ -69,9 +70,33 @@ medium when due      → 1 focus lens
 high                 → canonical 4R
 ```
 
-`review_due=false` means no OpenCode review host should be started for that candidate. Refuter and validator remain conditional provider-owned roles.
+`review_due=false` means no OpenCode review host should be started. Refuter and validator remain conditional provider-owned roles.
 
-Default reviewer mappings remain in `config/native-gentle/opencode-production-volume.profile.json` and `opencode-complex.profile.json`. C-078 does **not** globally replace DeepSeek for `review-resilience`; it adds one evidence-backed same-lineage recovery route to Luna high after a typed V4 empty-output failure.
+Default reviewer mappings remain in `config/native-gentle/opencode-production-volume.profile.json` and `opencode-complex.profile.json`; C-079 does not globally replace any default model.
+
+## Required-lens zero-output hardening
+
+C-079 normalizes a terminal required reviewer completion with zero capturable result into `atenea.review-zero-output/v1`. That record is failure evidence, not automatic fallback authority.
+
+Recovery requires:
+
+```text
+typed zero-output
+→ preserve candidate / lineage / revision / target
+→ bound STATUS
+→ exact same collect slot
+→ deterministic recovery permit
+→ ONE fresh-host qualified route
+```
+
+Only two zero-output routes are currently qualified:
+
+```text
+review-resilience  / DeepSeek V4 Flash → GPT-6 Luna high
+review-reliability / DeepSeek V4 Flash → GPT-6 Luna high
+```
+
+Unknown routes or failed recovery stop for the human. No RESET/new START/ASSESS, model carousel or global config mutation is authorized.
 
 ## Review transport isolation
 
@@ -82,11 +107,18 @@ OPENCODE_CONFIG_CONTENT="$(node tools/render-opencode-routing-overlay.mjs produc
   opencode serve ...
 ```
 
-Use `complex` when that is the selected prepared profile. The legacy apply helper now requires an explicit target file and is maintenance-only.
+A recovery host instead requires a C-079 permit:
+
+```bash
+OPENCODE_CONFIG_CONTENT="$(
+  node tools/render-opencode-routing-overlay.mjs \
+    production-volume --recovery-permit <permit.json>
+)" opencode serve ...
+```
 
 ## Efficiency evidence
 
-Execution telemetry is observational and must add **zero LLM calls**. Capture runtime-native Pi usage, Gentle ASSESS/risk/lens facts, OpenCode review-session usage and failed transport attempts when available. See `docs/EXECUTION_EFFICIENCY_LEDGER_V1.md` and `tools/extract-execution-usage.mjs`.
+Execution telemetry is observational and adds **zero LLM calls**. Capture runtime-native Pi usage, Gentle ASSESS/risk/lens facts, OpenCode review-session usage and failed transport attempts when available. See `docs/EXECUTION_EFFICIENCY_LEDGER_V1.md` and `tools/extract-execution-usage.mjs`.
 
 ## Publication boundary
 

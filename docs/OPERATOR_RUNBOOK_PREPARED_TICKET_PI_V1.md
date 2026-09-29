@@ -1,7 +1,7 @@
 # Atenea — Prepared-ticket Pi runtime v1
 
-Status: **CURRENT PRODUCTIVE PATH FOR PREPARED WORK — C-078 HARDENED**
-Date: 2026-09-28
+Status: **CURRENT PRODUCTIVE PATH FOR PREPARED WORK — C-079 HARDENED**  
+Date: 2026-09-29
 
 This runbook begins only after product/task authority is executable.
 
@@ -64,50 +64,135 @@ If `review_due=true`, execute the exact `next_transition.command`. Gentle owns r
 
 ## 5. Isolated review-host launch
 
-Before any OpenCode collection host, render the matching routing profile for that process:
+Before any normal OpenCode collection host, render the matching routing profile for that process:
 
 ```bash
-export OPENCODE_CONFIG_CONTENT="$(node <ATENEA>/tools/render-opencode-routing-overlay.mjs <profile>)"
-opencode serve ...
+OPENCODE_CONFIG_CONTENT="$(node <ATENEA>/tools/render-opencode-routing-overlay.mjs <profile>)" \
+  opencode serve ...
 ```
 
 Prefer setting the environment only on the child process rather than exporting it in a long-lived shared shell. Do not log the rendered config under shell tracing. Do not use `tools/apply-opencode-routing-profile.mjs` for train routing and do not modify `~/.config/opencode/opencode.json` while trains are active.
 
 Preserve exact lineage/revision/target after START and follow provider-issued transitions literally.
 
-## 6. `review-resilience` empty-output recovery
+## 6. Required-lens zero-output classification
 
-If the required slot is `review-resilience`, default route is V4, and the host returns typed `opencode_task_output_empty`:
+A reviewer timeout while still running is not a terminal zero-output result.
 
-1. stop that host cleanly;
-2. query bound STATUS with the existing lineage/target/revision;
-3. verify it reoffers the exact same slot;
-4. start one fresh host with:
+When the qualified review transport or supervisor first **observes** that a required reviewer Task has terminally completed and exposes either:
+
+```text
+provider_error = opencode_task_output_empty
+```
+
+or:
+
+```text
+completed = true
+capturable_output = empty
+output_tokens = 0
+```
+
+stop that failed host at that observable boundary. Do not queue another same-route reviewer turn or continue a recovery-by-narration loop.
+
+C-079 does not add an in-process OpenCode Task interceptor. If the runtime does not surface a child's terminal state until the parent turn ends, record that delay as runtime observability debt; do not add polling/controller logic to Atenea.
+
+Create a small normalized observation containing:
+
+```json
+{
+  "required": true,
+  "completed": true,
+  "lens": "review-reliability",
+  "model": "nan/deepseek-v4-flash",
+  "reason": "length",
+  "capturable_output": "",
+  "output_tokens": 0,
+  "candidate": "<candidate identity>",
+  "lineage": "<lineage>",
+  "revision": "<revision>",
+  "target": "<target>"
+}
+```
+
+For provider-typed empty-output, include `provider_error: "opencode_task_output_empty"`.
+
+Classify without a model call:
 
 ```bash
-OPENCODE_CONFIG_CONTENT="$(node <ATENEA>/tools/render-opencode-routing-overlay.mjs <profile> --resilience-recovery-luna)" \
+node <ATENEA>/tools/classify-required-lens-zero-output.mjs \
+  <normalized-observation.json> > <typed-failure.json>
+```
+
+A matching terminal observation becomes `atenea.review-zero-output/v1`. If `recovery_qualified=false`, HUMAN STOP.
+
+## 7. Bound STATUS and recovery permit
+
+For a qualified failure, query **bound STATUS** on the existing review lineage. Do not START again and do not ASSESS the unchanged candidate again.
+
+Normalize the provider continuity facts plus the local recovery-ledger counter:
+
+```json
+{
+  "bound": true,
+  "next_transition_kind": "collect",
+  "prior_recovery_attempts": 0,
+  "reoffered_lens": "review-reliability",
+  "candidate": "<same candidate>",
+  "lineage": "<same lineage>",
+  "revision": "<same revision>",
+  "target": "<same target>"
+}
+```
+
+Then authorize deterministically:
+
+```bash
+node <ATENEA>/tools/authorize-required-lens-recovery.mjs \
+  <typed-failure.json> \
+  <normalized-bound-status.json> > <recovery-permit.json>
+```
+
+Any candidate/lineage/revision/target/lens drift, non-collect STATUS, or `prior_recovery_attempts != 0` fails closed.
+
+## 8. One qualified fresh-host recovery
+
+Current qualified zero-output routes:
+
+```text
+review-resilience  / nan/deepseek-v4-flash → openai/gpt-6-luna high
+review-reliability / nan/deepseek-v4-flash → openai/gpt-6-luna high
+```
+
+Start one fresh isolated host:
+
+```bash
+OPENCODE_CONFIG_CONTENT="$(
+  node <ATENEA>/tools/render-opencode-routing-overlay.mjs \
+    <profile> --recovery-permit <recovery-permit.json>
+)" \
   opencode serve ...
 ```
 
-5. execute only the reoffered provider-owned slot;
-6. if admitted, continue the same lineage;
-7. otherwise HUMAN STOP.
+The renderer changes only the permitted reviewer agent. Execute only the reoffered provider-owned slot. If it is admitted, continue the same lineage. If it fails, HUMAN STOP.
 
-Do not retry V4 again first. Do not RESET, new-START, skip the lens or try additional models.
+The permit authorizes exactly one recovery attempt. Do not retry V4 first or again, RESET, new-START, new-ASSESS, skip the lens, use another fallback model, or change the implementation profile inside the active lineage.
 
-## 7. Correction and validation
+## 9. Correction and validation
 
 A correction is allowed only when Gentle grants bounded correction authority. Keep it inside that boundary, rerun required deterministic checks and follow provider-issued continuation. After `acknowledge-approved` returns burned authority, do not re-review an unchanged candidate merely to prove closure.
 
-## 8. Efficiency capture
+## 10. Efficiency capture
 
 Telemetry is non-blocking and adds no model calls. At each ticket boundary, retain usage artifacts already produced by Pi/OpenCode plus ASSESS/STATUS facts when practical. Use `tools/extract-execution-usage.mjs` to normalize Pi/OpenCode session usage. See `docs/EXECUTION_EFFICIENCY_LEDGER_V1.md`.
 
-## 9. Supervisor escalation
+Record failed/recovery attempts so reasoning-only zero-output cost remains visible instead of disappearing into aggregate review usage.
 
-The supervisor may answer procedural questions already resolved by durable authority. HUMAN STOP for new/broadened scope, changed acceptance/product meaning, weakened oracle, destructive action, publication authority or provider/runtime refusal without a current safe continuation.
+## 11. Supervisor escalation
 
-## 10. Fallback and publication
+The supervisor may answer procedural questions already resolved by durable authority. HUMAN STOP for new/broadened scope, changed acceptance/product meaning, weakened oracle, destructive action, publication authority, unqualified recovery route or provider/runtime refusal without a current safe continuation.
+
+## 12. Fallback and publication
 
 A concrete Pi runtime/tooling failure may switch implementation to qualified OpenCode Build V1 under the same prepared contract. Do not re-enter ODD.
 

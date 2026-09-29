@@ -1,9 +1,12 @@
 # Atenea C-078 — Prepared-train handoff
 
-Use this for an already-shaped/executable train.
+Status: **SUPERSEDED BY C-079**  
+Preserved only as C-078 operational provenance. Use `docs/PREPARED_TRAIN_HANDOFF_C079.md` for current prepared trains.
+
+Use this historical handoff for understanding an already-shaped/executable C-078 train.
 
 ```text
-Authority: Atenea C-078 on current main. Preserve valid project scope, acceptance, dependencies, worktree, commits and deterministic evidence. Do not repeat shaping.
+Authority at the time: Atenea C-078. Preserve valid project scope, acceptance, dependencies, worktree, commits and deterministic evidence. Do not repeat shaping.
 
 Implementation:
 - supervisor: clean `pi --no-extensions` + Herdr;
@@ -23,13 +26,7 @@ Every OpenCode review host:
 - use per-process `OPENCODE_CONFIG_CONTENT` rendered from `tools/render-opencode-routing-overlay.mjs`;
 - never rewrite ~/.config/opencode/opencode.json as train routing state.
 
-If required review-resilience on V4 returns typed opencode_task_output_empty:
-- preserve candidate/lineage/revision/target;
-- bound STATUS must reoffer the exact same slot;
-- make ONE fresh-host recovery using `--resilience-recovery-luna`;
-- recovery changes only resilience to GPT-6 Luna high;
-- if not admitted, HUMAN STOP;
-- no repeated V4 retry, RESET, new START, skipped lens or model carousel.
+C-078 originally allowed one narrow `review-resilience` V4 empty-output recovery to Luna high after exact bound STATUS. That command surface is superseded by C-079's typed failure + recovery-permit path.
 
 At ticket boundaries:
 - re-check HEAD/checkpoint, clean state, blockers/dependencies and authorized frontier only;
