@@ -5,7 +5,12 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const policy = JSON.parse(fs.readFileSync(path.join(root, 'config/native-gentle/opencode-routing-policy.json'), 'utf8'));
-const recovery = policy.required_lens_zero_output_recovery;
+const technical = policy.technical_review_failure;
+
+// Route-independent normalizer: an observable terminal required-review
+// transport failure becomes one typed technical failure whose next action is
+// always HUMAN STOP. It selects no model, authorizes no recovery, issues no
+// permit and counts no attempts. Gentle and the human own everything after it.
 
 function fail(message) {
   console.error(`ATENEA_REQUIRED_LENS_ZERO_OUTPUT_CLASSIFIER=FAIL\n- ${message}`);
@@ -48,41 +53,20 @@ if (observation.required !== true || !zeroOutput) {
   process.exit(0);
 }
 
-const lens = nonEmpty(observation.lens, 'lens');
-const model = nonEmpty(observation.model, 'model');
-const candidate = nonEmpty(observation.candidate, 'candidate');
-const lineage = nonEmpty(observation.lineage, 'lineage');
-const revision = nonEmpty(observation.revision, 'revision');
-const target = nonEmpty(observation.target, 'target');
-const reason = nonEmpty(observation.reason || providerError || 'completed_without_capturable_output', 'reason');
-
-const route = recovery.qualified_routes.find((item) =>
-  item.trigger_role === lens && item.trigger_model === model
-);
-
 const record = {
-  schema: recovery.failure_schema,
-  code: recovery.failure_code,
+  schema: technical.failure_schema,
+  code: technical.failure_code,
   classified: true,
-  lens,
-  model,
-  reason,
+  lens: nonEmpty(observation.lens, 'lens'),
+  model: nonEmpty(observation.model, 'model'),
+  reason: nonEmpty(observation.reason || providerError || 'completed_without_capturable_output', 'reason'),
   provider_error: providerError || null,
-  candidate,
-  lineage,
-  revision,
-  target,
-  mutation_outcome: recovery.mutation_outcome,
-  retry_same_route: false,
-  recovery_qualified: Boolean(route),
-  recovery: route ? {
-    route_id: route.id,
-    model: route.recovery_model,
-    variant: route.recovery_variant,
-    max_attempts: recovery.max_recovery_attempts_per_slot,
-    require_bound_status_same_slot: recovery.require_bound_status_same_slot
-  } : null,
-  next_action: route ? 'bound_status_same_slot' : 'human_stop'
+  candidate: nonEmpty(observation.candidate, 'candidate'),
+  lineage: nonEmpty(observation.lineage, 'lineage'),
+  revision: nonEmpty(observation.revision, 'revision'),
+  target: nonEmpty(observation.target, 'target'),
+  mutation_outcome: technical.mutation_outcome,
+  next_action: technical.next_action
 };
 
 process.stdout.write(JSON.stringify(record, null, 2) + '\n');

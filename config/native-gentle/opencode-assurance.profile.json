@@ -1,15 +1,11 @@
 {
-  "schema": "atenea.opencode-routing-profile/v1",
-  "name": "complex",
-  "status": "current-triggered",
-  "qualified_at": "2026-09-27",
-  "purpose": "Escalated route for materially complex trains; stronger cross-provider review without making Sol a normal-path model.",
+  "schema": "atenea.opencode-assurance-profile/v1",
+  "name": "assurance",
+  "status": "current-single",
+  "qualified_at": "2026-09-29",
+  "purpose": "The ONE Atenea assurance routing profile. Reviewer routes are independent of the prepared implementation profile; Gentle alone selects review depth and lens slots. DeepSeek V4 holds no reviewer role and no review-* role uses Luna xhigh.",
+  "decision": "docs/CURRENT_EXECUTION_DECISION_C080.md",
   "roles": {
-    "writer": {
-      "agent": "atenea-writer",
-      "model": "nan/glm5.3-flash",
-      "variant": "high"
-    },
     "lifecycle-host": {
       "agent": "atenea-review-host",
       "model": "nan/mimo-v2.6-flash"
@@ -22,21 +18,22 @@
     "review-reliability": {
       "agent": "review-reliability",
       "model": "openai/gpt-6-luna",
-      "variant": "xhigh"
+      "variant": "high"
     },
     "review-resilience": {
       "agent": "review-resilience",
-      "model": "nan/deepseek-v4-flash"
+      "model": "openai/gpt-6-luna",
+      "variant": "high"
     },
     "review-risk": {
       "agent": "review-risk",
-      "model": "openai/gpt-6-luna",
-      "variant": "xhigh"
+      "model": "nan/glm5.3-flash",
+      "variant": "high"
     },
     "review-refuter": {
       "agent": "review-refuter",
-      "model": "openai/gpt-6-sol",
-      "variant": "xhigh"
+      "model": "nan/mimo-v2.6-flash",
+      "selection": "conditional-provider-issued"
     },
     "review-validator": {
       "agent": "review-validator",
@@ -57,5 +54,6 @@
       "model": "nan/glm5.3-flash",
       "variant": "high"
     }
-  }
+  },
+  "notes": "jd-* roles serve explicit-only Judgment Day sessions, not the Gentle review-lens surface. review-refuter is executed only when native Gentle requires adversarial refutation."
 }

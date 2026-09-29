@@ -8,10 +8,6 @@
     "model": "nan/glm5.3-flash",
     "variant": "high"
   },
-  "review": {
-    "transport": "opencode-v1",
-    "profile": "opencode-complex"
-  },
   "fallback": {
     "runtime": "opencode-build-v1",
     "condition": "concrete Pi runtime/tooling failure"

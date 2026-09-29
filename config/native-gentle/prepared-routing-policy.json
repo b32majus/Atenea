@@ -18,5 +18,6 @@
     "many tests by itself",
     "business importance without corresponding reasoning or semantic risk"
   ],
-  "profile_boundary": "Do not switch profile inside an active candidate/review lineage."
+  "profile_boundary": "Do not switch profile inside an active candidate/review lineage.",
+  "assurance_note": "The profile selects the implementation worker only. Assurance/reviewer routing is independent of it: ONE assurance profile (config/native-gentle/opencode-assurance.profile.json) serves every train, and the review host never asks for production-volume|complex."
 }

@@ -34,8 +34,8 @@
   },
   "routing": {
     "default_interactive_model": "nan/glm5.3-flash",
-    "lifecycle_host": "profile-owned: MiMo 2.6 Flash qualified in production-volume and complex",
-    "nontrivial_writer": "profile-owned: production-volume=DeepSeek V4 Flash; complex=GLM 5.3 Flash high",
+    "lifecycle_host": "assurance-profile-owned: MiMo 2.6 Flash for every train",
+    "nontrivial_writer": "prepared-profile-owned: production-volume=DeepSeek V4 Flash; complex=GLM 5.3 Flash high (implementation/fallback writer only)",
     "selection_ceremony": "none-on-ordinary-ticket",
     "interactive_default_agent": "build",
     "writer_agent": "atenea-writer",
@@ -51,8 +51,9 @@
     ],
     "review_task_allow": "review-*",
     "context_budget_evidence": "docs/OPENCODE_LEAN_CONTEXT_QUALIFICATION_20260927.md",
-    "default_profile": "production-volume",
-    "complex_profile": "complex",
+    "implementation_profiles": "config/native-gentle/prepared-routing-policy.json",
+    "assurance_profile": "config/native-gentle/opencode-assurance.profile.json",
+    "review_profile_selection": "none — one assurance profile serves every train",
     "profile_policy": "config/native-gentle/opencode-routing-policy.json",
     "sdd_in_normal_train": false,
     "sol_normal_path": false

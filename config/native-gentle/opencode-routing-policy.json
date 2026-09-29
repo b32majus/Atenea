@@ -1,48 +1,29 @@
 {
   "schema": "atenea.opencode-routing-policy/v1",
-  "status": "current-review-and-fallback",
-  "usage_under_c079": "OpenCode V1 reviewer transport and fallback implementation compatibility. Prepared implementation routing is owned by prepared-routing-policy.json and Pi. C-079 normalizes required-lens zero-output failures and authorizes only evidence-backed same-slot recovery routes.",
-  "default_profile": "production-volume",
-  "complex_profile": "complex",
-  "selection": "Use the reviewer/fallback profile matching the selected prepared profile; Gentle alone selects review depth and lens slots.",
+  "status": "current-review-transport",
+  "usage": "OpenCode V1 reviewer transport for native Gentle review collection. Prepared implementation routing is owned by prepared-routing-policy.json and Pi. Assurance routing is owned by the single assurance profile and never depends on the implementation profile.",
+  "assurance_profile": "config/native-gentle/opencode-assurance.profile.json",
+  "review_profile_selection": "none — one assurance profile serves every train",
   "transport_config_scope": "per-process",
   "global_config_mutation_during_trains": "forbidden",
   "overlay_renderer": "tools/render-opencode-routing-overlay.mjs",
-  "required_lens_zero_output_recovery": {
+  "technical_review_failure": {
     "failure_schema": "atenea.review-zero-output/v1",
-    "permit_schema": "atenea.review-zero-output-recovery-permit/v1",
     "failure_code": "required_lens_zero_output",
     "classifier": "tools/classify-required-lens-zero-output.mjs",
-    "authorizer": "tools/authorize-required-lens-recovery.mjs",
-    "fail_fast_boundary": "first_observable_terminal_transport_event",
-    "in_process_task_interception": false,
-    "require_bound_status_same_slot": true,
-    "max_recovery_attempts_per_slot": 1,
+    "normalization": "observable terminal required-review transport failure → typed technical failure",
+    "next_action": "human_stop",
+    "automatic_recovery": "none",
+    "recovery_permits": false,
+    "alternate_model_fallback": false,
     "preserve_candidate": true,
     "preserve_lineage": true,
     "preserve_revision": true,
     "preserve_target": true,
     "mutation_outcome": "not_started",
-    "mutate_global_profile": false,
-    "new_start": false,
-    "qualified_routes": [
-      {
-        "id": "review-resilience:v4-zero-output:luna-high",
-        "trigger_role": "review-resilience",
-        "trigger_model": "nan/deepseek-v4-flash",
-        "recovery_model": "openai/gpt-6-luna",
-        "recovery_variant": "high"
-      },
-      {
-        "id": "review-reliability:v4-zero-output:luna-high",
-        "trigger_role": "review-reliability",
-        "trigger_model": "nan/deepseek-v4-flash",
-        "recovery_model": "openai/gpt-6-luna",
-        "recovery_variant": "high"
-      }
-    ]
+    "in_process_task_interception": false
   },
-  "sol_policy": "No normal-path Sol. In complex, Sol is pinned only to review-refuter when native Gentle requires adversarial refutation.",
+  "sol_policy": "No normal-path Sol. Sol is not pinned to any assurance role.",
   "excluded_workflows": [
     "SDD"
   ],
@@ -50,6 +31,8 @@
     "native-balanced",
     "native-v4-heavy",
     "native-economy",
-    "native-nan"
+    "native-nan",
+    "opencode-production-volume",
+    "opencode-complex"
   ]
 }
