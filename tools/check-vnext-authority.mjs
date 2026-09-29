@@ -58,6 +58,15 @@ forbid('config/native-gentle/opencode-routing-policy.json', 'required_lens_zero_
 req('config/native-gentle/opencode-routing-policy.json', '"next_action": "human_stop"', 'technical failure next action');
 req('config/native-gentle/opencode-routing-policy.json', '"automatic_recovery": "none"', 'no automatic recovery');
 
+// C-080 routing identifiers: operational routing tables must name the transport
+// model actually pinned in the assurance profile, not the Pi-visible qualification alias.
+req('docs/CURRENT_EXECUTION_DECISION_C080.md', 'openai/gpt-6-luna', 'C-080 transport Luna identifier');
+forbid('docs/CURRENT_EXECUTION_DECISION_C080.md', '| openai-codex/gpt-6-luna |', 'qualification-only Luna alias in C-080 routing table');
+
+// The deleted dual reviewer tables must not be described as current anywhere.
+forbid('docs/CURRENT_DECISIONS.md', 'opencode-production-volume.profile.json', 'deleted dual reviewer table as current');
+forbid('docs/CURRENT_DECISIONS.md', 'opencode-complex.profile.json', 'deleted dual reviewer table as current');
+
 // Reviewer pins: no V4, no xhigh review roles, one profile only.
 const assurance = read('config/native-gentle/opencode-assurance.profile.json');
 forbid('config/native-gentle/opencode-assurance.profile.json', 'deepseek-v4', 'V4 reviewer role');

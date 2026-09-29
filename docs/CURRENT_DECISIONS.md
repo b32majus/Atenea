@@ -18,13 +18,13 @@ Evidence: the read-only qualification `atenea-lean-assurance-20260929` plus pres
 
 **Accepted 2026-09-27 after current-model inventory, controlled writer/reviewer/refuter/Judge-A comparisons and repeated MiMo 2.6 Gentle lifecycle qualification. Superseded for review routing by C-080: the two reviewer tables collapsed into the single assurance profile.**
 
-Atenea has two current routing snapshots: `production-volume` is the default and `complex` is a triggered escalation for concrete material complexity. Profile choice is not a universal preflight question. Ordinary bounded work remains on `production-volume`; `complex` is selected only when the accepted work already exposes architectural novelty/cross-cutting change, difficult concurrency/state/temporal semantics, material security/privacy/tenancy boundaries, unusually coupled reasoning, or repeated semantic/correction failure.
+Atenea had two routing snapshots at C-075 time: `production-volume` was the default and `complex` was a triggered escalation for concrete material complexity. Profile choice is not a universal preflight question. Ordinary bounded work remains on `production-volume`; `complex` is selected only when the accepted work already exposes architectural novelty/cross-cutting change, difficult concurrency/state/temporal semantics, material security/privacy/tenancy boundaries, unusually coupled reasoning, or repeated semantic/correction failure. This trigger learning survives in `config/native-gentle/prepared-routing-policy.json` as implementation-worker routing only.
 
 `production-volume` uses DeepSeek V4 Flash for volume writing/reliability/resilience, MiMo 2.6 Flash for Gentle lifecycle hosting/refutation/Judge A, GLM 5.3 Flash high for risk/correction, and GPT-6 Luna selectively for readability/validation/Judge B. `complex` moves writing and correction to GLM high, moves reliability/risk to Luna xhigh, retains V4 for independent resilience, retains MiMo for lifecycle hosting/Judge A, and reserves GPT-6 Sol xhigh for `review-refuter` only. Refuter is severe-finding conditional, so Sol is not a happy-path model. Additional Sol use requires explicit bounded escalation; there is no automatic Sol fallback.
 
 SDD is excluded from the normal Atenea train; installed `sdd-*` agents remain upstream capability, not routed Atenea work. Historical `native-balanced`, `native-v4-heavy`, `native-economy` and `native-nan` remain Pi-era provenance, not the current selectable catalog.
 
-Evidence: `docs/OPENCODE_MODEL_ROUTING_QUALIFICATION_20260927.md`. Current snapshots: `config/native-gentle/opencode-production-volume.profile.json`, `config/native-gentle/opencode-complex.profile.json`, and `config/native-gentle/opencode-routing-policy.json`.
+Evidence: `docs/OPENCODE_MODEL_ROUTING_QUALIFICATION_20260927.md`. Its dual reviewer snapshots were deleted by C-080 and are not current authority. Current assurance routing lives only in `config/native-gentle/opencode-assurance.profile.json`; prepared `production-volume` / `complex` profiles are implementation-routing only.
 
 ## C-074 — Train roles use lean OpenCode tool surfaces; full `build` is not the ordinary writer
 

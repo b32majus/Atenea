@@ -5,7 +5,7 @@ Accepted: 2026-09-29
 
 C-080 is a SUBTRACTION decision. It preserves C-077's Pi-first prepared-ticket topology and every durable C-078/C-079 field lesson, then deletes the machinery those lessons no longer justify: the dual reviewer tables and the C-079 automatic recovery path. It does not add a review controller, does not restore ODD or `gentle-orchestrator`, and does not change product acceptance or publication authority.
 
-Evidence basis: the completed read-only qualification `atenea-lean-assurance-20260929` (FINAL_REPORT) plus preserved field evidence C-078/C-079. That qualification found no surviving evidence for V4 in any reviewer role, no material value in Luna xhigh, and no justification for two reviewer tables.
+Evidence basis: the completed read-only qualification `atenea-lean-assurance-20260929` (FINAL_REPORT) plus preserved field evidence C-078/C-079. That qualification found no surviving evidence for V4 in any reviewer role, no material value in Luna xhigh, and no justification for two reviewer tables. Provenance note: the qualification executed Luna through Pi under the Pi-visible identifier `openai-codex/gpt-6-luna`; the OpenCode review transport routes the same role via `openai/gpt-6-luna` as pinned in the assurance profile. Operational docs use the transport identifier only.
 
 ## 1. ONE assurance profile
 
@@ -13,11 +13,11 @@ Reviewer routing is owned by a single profile, `config/native-gentle/opencode-as
 
 | Role | Model | Variant |
 |---|---|---|
-| review-readability | openai-codex/gpt-6-luna | high |
-| review-reliability | openai-codex/gpt-6-luna | high |
-| review-resilience | openai-codex/gpt-6-luna | high |
+| review-readability | openai/gpt-6-luna | high |
+| review-reliability | openai/gpt-6-luna | high |
+| review-resilience | openai/gpt-6-luna | high |
 | review-risk | nan/glm5.3-flash | high |
-| review-validator | openai-codex/gpt-6-luna | high |
+| review-validator | openai/gpt-6-luna | high |
 | review-refuter | nan/mimo-v2.6-flash | conditional, provider-issued |
 | lifecycle-host | nan/mimo-v2.6-flash | — |
 
