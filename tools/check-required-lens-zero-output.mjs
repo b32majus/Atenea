@@ -61,12 +61,12 @@ try {
   if (relFailure) {
     const failurePath = write('rel-failure.json', relFailure);
     const goodStatus = write('good-status.json', {
-      bound: true, next_transition_kind: 'collect', reoffered_lens: 'review-reliability', ...identity
+      bound: true, next_transition_kind: 'collect', prior_recovery_attempts: 0, reoffered_lens: 'review-reliability', ...identity
     });
     const permit = jsonOut(run('authorize-required-lens-recovery.mjs', [failurePath, goodStatus]), 'reliability authorizer');
     if (permit) {
       if (permit.schema !== 'atenea.review-zero-output-recovery-permit/v1' || permit.attempt !== 1 ||
-          permit.max_attempts !== 1 || permit.new_start !== false || permit.mutate_global_profile !== false) {
+          permit.prior_recovery_attempts !== 0 || permit.max_attempts !== 1 || permit.new_start !== false || permit.mutate_global_profile !== false) {
         failures.push('reliability permit invariants are incomplete');
       }
       const permitPath = write('permit.json', permit);
@@ -80,15 +80,23 @@ try {
       if (complex.status === 0) failures.push('complex accepted a V4 reliability recovery even though complex reliability default is Luna');
     }
 
+    const repeatedStatus = write('repeated-status.json', {
+      bound: true, next_transition_kind: 'collect', prior_recovery_attempts: 1,
+      reoffered_lens: 'review-reliability', ...identity
+    });
+    if (run('authorize-required-lens-recovery.mjs', [failurePath, repeatedStatus]).status === 0) {
+      failures.push('second recovery attempt did not fail closed');
+    }
+
     const driftStatus = write('drift-status.json', {
-      bound: true, next_transition_kind: 'collect', reoffered_lens: 'review-reliability',
+      bound: true, next_transition_kind: 'collect', prior_recovery_attempts: 0, reoffered_lens: 'review-reliability',
       ...identity, target: 'different-target'
     });
     if (run('authorize-required-lens-recovery.mjs', [failurePath, driftStatus]).status === 0) {
       failures.push('target drift did not fail closed');
     }
     const wrongSlot = write('wrong-slot.json', {
-      bound: true, next_transition_kind: 'collect', reoffered_lens: 'review-resilience', ...identity
+      bound: true, next_transition_kind: 'collect', prior_recovery_attempts: 0, reoffered_lens: 'review-resilience', ...identity
     });
     if (run('authorize-required-lens-recovery.mjs', [failurePath, wrongSlot]).status === 0) {
       failures.push('slot drift did not fail closed');

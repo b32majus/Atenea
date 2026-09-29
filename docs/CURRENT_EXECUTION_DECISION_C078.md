@@ -1,7 +1,8 @@
 # C-078 — Field-harden C-077: adaptive RDD, isolated review routing, bounded resilience recovery, usage telemetry
 
-Status: **CURRENT EXECUTION DECISION**
-Accepted: 2026-09-28
+Status: **SUPERSEDED BY C-079 — PRESERVED FIELD BASE**
+Accepted: 2026-09-28  
+Superseded operationally: 2026-09-29 by `docs/CURRENT_EXECUTION_DECISION_C079.md`.
 
 C-078 preserves C-077's prepared-ticket implementation topology. It changes no product semantics and does not restore ODD, `gentle-orchestrator` or OpenCode-first implementation.
 
@@ -75,8 +76,8 @@ Allowed recovery:
 1. preserve exact candidate, lineage, revision, target and subject;
 2. query **bound STATUS**;
 3. require Gentle to reoffer the exact same `review-resilience` slot;
-4. start one fresh isolated OpenCode V1 host with the same selected profile plus `--resilience-recovery-luna`;
-5. that flag changes only `review-resilience` to `openai/gpt-6-luna` high for that host;
+4. start one fresh isolated OpenCode V1 host with the same selected profile plus the then-current C-078 resilience override;
+5. that C-078 override changed only `review-resilience` to `openai/gpt-6-luna` high for that host;
 6. execute only the fresh provider-owned slot;
 7. if the result is admitted, continue the same lineage normally;
 8. if the recovery attempt fails or the slot/binding changes unexpectedly, HUMAN STOP.
@@ -89,7 +90,7 @@ Forbidden:
 - walking through multiple fallback models;
 - weakening or skipping the required lens.
 
-This is transport-route recovery for an unavailable result, not verdict shopping.
+This is preserved C-078 provenance. Current recovery mechanics are defined by C-079.
 
 ## 6. Efficiency evidence is observational
 

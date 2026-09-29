@@ -30,6 +30,7 @@ if (failure.mutation_outcome !== recovery.mutation_outcome) fail('failure mutati
 if (failure.recovery_qualified !== true || !failure.recovery?.route_id) fail('failure has no qualified recovery route');
 if (status.bound !== true) fail('STATUS is not explicitly bound');
 if (status.next_transition_kind !== 'collect') fail('bound STATUS does not reoffer collect');
+if (status.prior_recovery_attempts !== 0) fail('recovery already attempted for this slot');
 
 for (const key of ['candidate', 'lineage', 'revision', 'target']) {
   if (status[key] !== failure[key]) fail(`bound STATUS identity drift: ${key}`);
@@ -52,6 +53,7 @@ const permit = {
   revision: failure.revision,
   target: failure.target,
   attempt: 1,
+  prior_recovery_attempts: 0,
   max_attempts: recovery.max_recovery_attempts_per_slot,
   require_bound_status_same_slot: true,
   mutation_outcome: recovery.mutation_outcome,

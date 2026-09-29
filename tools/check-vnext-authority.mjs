@@ -31,6 +31,8 @@ req('docs/START_HERE.md', 'qualified recoveries  = V4 resilience/reliability →
 req('docs/CURRENT_EXECUTION_DECISION_C079.md', 'atenea.review-zero-output/v1', 'typed zero-output failure');
 req('docs/CURRENT_EXECUTION_DECISION_C079.md', 'atenea.review-zero-output-recovery-permit/v1', 'bound recovery permit');
 req('docs/CURRENT_EXECUTION_DECISION_C079.md', 'review-reliability', 'reliability recovery');
+req('docs/CURRENT_EXECUTION_DECISION_C078.md', 'Status: **SUPERSEDED BY C-079 — PRESERVED FIELD BASE**', 'C-078 supersession marker');
+req('docs/PREPARED_TRAIN_HANDOFF_C078.md', 'Status: **SUPERSEDED BY C-079**', 'C-078 handoff supersession marker');
 req('docs/PREPARED_TRAIN_HANDOFF_C079.md', 'review_due=false → checkpoint; DO NOT launch OpenCode', 'no-review host suppression');
 req('docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md', '--recovery-permit', 'evidence-bound recovery renderer');
 req('AGENTS.md', 'Never mutate `~/.config/opencode/opencode.json` as train routing state.', 'global config race guard');

@@ -56,7 +56,7 @@ if (permitPath) {
   catch (error) { console.error(`cannot parse recovery permit: ${error.message}`); process.exit(2); }
 
   if (permit.schema !== recovery.permit_schema) { console.error('invalid recovery permit schema'); process.exit(2); }
-  if (permit.attempt !== 1 || permit.max_attempts !== 1) { console.error('recovery permit must authorize exactly one attempt'); process.exit(2); }
+  if (permit.attempt !== 1 || permit.prior_recovery_attempts !== 0 || permit.max_attempts !== 1) { console.error('recovery permit must authorize exactly one first recovery attempt'); process.exit(2); }
   if (permit.require_bound_status_same_slot !== true || permit.new_start !== false || permit.mutate_global_profile !== false) {
     console.error('recovery permit violates C-079 safety invariants'); process.exit(2);
   }

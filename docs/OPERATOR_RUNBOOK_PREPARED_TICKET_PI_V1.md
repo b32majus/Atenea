@@ -134,6 +134,7 @@ Normalize only the provider facts needed for continuity:
 {
   "bound": true,
   "next_transition_kind": "collect",
+  "prior_recovery_attempts": 0,
   "reoffered_lens": "review-reliability",
   "candidate": "<same candidate>",
   "lineage": "<same lineage>",
@@ -150,7 +151,7 @@ node <ATENEA>/tools/authorize-required-lens-recovery.mjs \
   <normalized-bound-status.json> > <recovery-permit.json>
 ```
 
-Any candidate/lineage/revision/target/lens drift or non-collect STATUS fails closed.
+Any candidate/lineage/revision/target/lens drift, non-collect STATUS, or `prior_recovery_attempts != 0` fails closed.
 
 ## 8. One qualified fresh-host recovery
 

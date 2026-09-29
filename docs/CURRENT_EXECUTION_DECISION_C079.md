@@ -109,13 +109,14 @@ target
 required lens
 ```
 
-and STATUS is explicitly bound and reoffers `collect` for the same lens.
+and STATUS is explicitly bound, reoffers `collect` for the same lens, and the local slot ledger reports `prior_recovery_attempts=0`.
 
 The resulting permit is:
 
 ```text
 schema atenea.review-zero-output-recovery-permit/v1
 attempt = 1
+prior_recovery_attempts = 0
 max_attempts = 1
 new_start = false
 mutate_global_profile = false

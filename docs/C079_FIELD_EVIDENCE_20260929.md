@@ -89,6 +89,7 @@ Conformance proves:
 - C-078 resilience typed empty-output remains qualified;
 - an unqualified lens/model classifies but can only HUMAN STOP;
 - candidate/lineage/revision/target or slot drift rejects authorization;
+- a slot with a prior recovery attempt rejects a second permit;
 - production reliability recovery changes only `review-reliability` to Luna high;
 - complex rejects the V4 reliability permit because its current default reliability route is already Luna;
 - the legacy free-form recovery flag is rejected;

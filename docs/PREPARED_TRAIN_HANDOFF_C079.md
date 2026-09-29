@@ -34,7 +34,7 @@ If a REQUIRED reviewer Task reaches terminal completion with no capturable resul
 
 For a qualified failure:
 - query bound STATUS on the existing lineage;
-- STATUS must reoffer `collect` for the exact same lens and identity;
+- STATUS must reoffer `collect` for the exact same lens and identity, with zero prior recovery attempts recorded for that slot;
 - run `tools/authorize-required-lens-recovery.mjs` on failure + normalized bound STATUS;
 - launch ONE fresh host with
   `render-opencode-routing-overlay.mjs <profile> --recovery-permit <permit.json>`;
