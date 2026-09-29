@@ -75,17 +75,19 @@ mutation_outcome
 
 A zero-output record is **failure evidence, not fallback authority**. If the exact lens/model pair has no qualified route, the next action is `human_stop`.
 
-## 3. Stop useless parent/retry loops early
+## 3. Stop useless retries at the first observable terminal boundary
 
-Once a required reviewer Task has terminal zero-output evidence, the review host must not continue narrating, retry the same model, or spin through another parent loop merely hoping for JSON.
+Once the qualified review transport or supervisor can observe terminal zero-output evidence for a required reviewer Task, the failed host must not launch another same-route reviewer turn or continue a recovery-by-narration loop merely hoping for JSON.
 
 ```text
-terminal required-lens zero-output
+first observable terminal required-lens zero-output
 → classify once
 → stop the failed host
 → bound STATUS
 → exact-same-slot recovery permit OR HUMAN STOP
 ```
+
+C-079 deliberately does **not** instrument or intercept OpenCode's internal Task event stream. `fail_fast` means the earliest terminal zero-output boundary exposed by the qualified transport/supervisor. If a runtime hides child terminal state until the parent turn closes, that latency remains upstream/runtime observability debt; Atenea must not solve it by adding polling loops or a second review controller.
 
 A timeout that kills a still-running reviewer is not automatically classified as terminal zero-output.
 
@@ -170,6 +172,7 @@ C-079 does not authorize:
 - model carousel or generic Luna fallback;
 - lens substitution or skipping;
 - global `~/.config/opencode/opencode.json` mutation;
+- in-process Task interception/polling as an Atenea review controller;
 - changing implementation profile inside an active candidate/review lineage.
 
 If the one qualified recovery does not produce an admitted result, **HUMAN STOP**.

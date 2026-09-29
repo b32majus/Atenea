@@ -14,6 +14,8 @@
     "failure_code": "required_lens_zero_output",
     "classifier": "tools/classify-required-lens-zero-output.mjs",
     "authorizer": "tools/authorize-required-lens-recovery.mjs",
+    "fail_fast_boundary": "first_observable_terminal_transport_event",
+    "in_process_task_interception": false,
     "require_bound_status_same_slot": true,
     "max_recovery_attempts_per_slot": 1,
     "preserve_candidate": true,

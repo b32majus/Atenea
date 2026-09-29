@@ -79,7 +79,7 @@ Preserve exact lineage/revision/target after START and follow provider-issued tr
 
 A reviewer timeout while still running is not a terminal zero-output result.
 
-If a **required** reviewer Task terminally completes and exposes either:
+When the qualified review transport or supervisor first **observes** that a required reviewer Task has terminally completed and exposes either:
 
 ```text
 provider_error = opencode_task_output_empty
@@ -93,7 +93,9 @@ capturable_output = empty
 output_tokens = 0
 ```
 
-stop that failed host. Do not allow the parent to narrate, relaunch the same reviewer, or consume another same-route model turn.
+stop that failed host at that observable boundary. Do not queue another same-route reviewer turn or continue a recovery-by-narration loop.
+
+C-079 does not add an in-process OpenCode Task interceptor. If the runtime does not surface a child's terminal state until the parent turn ends, record that delay as runtime observability debt; do not add polling/controller logic to Atenea.
 
 Create a small normalized observation containing:
 
@@ -128,7 +130,7 @@ A matching terminal observation becomes `atenea.review-zero-output/v1`. If `reco
 
 For a qualified failure, query **bound STATUS** on the existing review lineage. Do not START again and do not ASSESS the unchanged candidate again.
 
-Normalize only the provider facts needed for continuity:
+Normalize the provider continuity facts plus the local recovery-ledger counter:
 
 ```json
 {

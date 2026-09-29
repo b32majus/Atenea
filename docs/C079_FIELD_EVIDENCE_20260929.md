@@ -81,11 +81,13 @@ authorize-required-lens-recovery.mjs
 render-opencode-routing-overlay.mjs --recovery-permit ...
 ```
 
-The first normalizes terminal zero-output. The second checks exact bound-STATUS identity and slot continuity. The third can change only the qualified reviewer agent encoded by the permit.
+The first normalizes terminal zero-output once that terminal observation is exposed by the qualified transport/supervisor. The second checks exact bound-STATUS identity and slot continuity. The third can change only the qualified reviewer agent encoded by the permit.
+
+C-079 does not add an in-process OpenCode Task-event interceptor. Therefore its fail-fast guarantee begins at the **first observable terminal transport event**, not at a hidden internal child event. If OpenCode delays exposing child termination until the parent turn closes, that latency remains runtime observability debt rather than a reason to add a second controller.
 
 Conformance proves:
 
-- reliability `length + output=0` classifies to a qualified failure;
+- reliability `length + output=0` classifies to a qualified failure once observed;
 - C-078 resilience typed empty-output remains qualified;
 - an unqualified lens/model classifies but can only HUMAN STOP;
 - candidate/lineage/revision/target or slot drift rejects authorization;

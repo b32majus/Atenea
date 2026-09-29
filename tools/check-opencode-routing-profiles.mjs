@@ -27,6 +27,8 @@ const zero = policy.required_lens_zero_output_recovery;
 eq(zero?.failure_schema, 'atenea.review-zero-output/v1', 'zero-output failure schema');
 eq(zero?.permit_schema, 'atenea.review-zero-output-recovery-permit/v1', 'zero-output permit schema');
 eq(zero?.failure_code, 'required_lens_zero_output', 'zero-output failure code');
+eq(zero?.fail_fast_boundary, 'first_observable_terminal_transport_event', 'fail-fast boundary');
+eq(zero?.in_process_task_interception, false, 'in-process Task interception');
 eq(zero?.require_bound_status_same_slot, true, 'bound-status same-slot requirement');
 eq(zero?.max_recovery_attempts_per_slot, 1, 'recovery attempts');
 eq(zero?.preserve_candidate, true, 'candidate preservation');
