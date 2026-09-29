@@ -20,11 +20,12 @@ eq(d.review?.standing_session_permission_required,false,"standing review permiss
 eq(d.review?.supervisor_owns_review_semantics,false,"review ownership");
 eq(d.compatibility?.legacy_v1_1_18_10,"historical-zero-touch-evidence-only","legacy V1 status");
 eq(d.compatibility?.one_shot_run,"blocked-for-unattended-promotion: intermittent clean-state pre-session init hang","one-shot gate");
-eq(d.routing?.nontrivial_writer,"profile-owned: production-volume=DeepSeek V4 Flash; complex=GLM 5.3 Flash high","writer routing default");
+eq(d.routing?.nontrivial_writer,"prepared-profile-owned: production-volume=DeepSeek V4 Flash; complex=GLM 5.3 Flash high (implementation/fallback writer only)","writer routing default");
 eq(d.routing?.selection_ceremony,"none-on-ordinary-ticket","ordinary routing ceremony");
-eq(d.routing?.lifecycle_host,"profile-owned: MiMo 2.6 Flash qualified in production-volume and complex","lifecycle host route");
-eq(d.routing?.default_profile,"production-volume","default routing profile");
-eq(d.routing?.complex_profile,"complex","complex routing profile");
+eq(d.routing?.lifecycle_host,"assurance-profile-owned: MiMo 2.6 Flash for every train","lifecycle host route");
+eq(d.routing?.implementation_profiles,"config/native-gentle/prepared-routing-policy.json","implementation profiles pointer");
+eq(d.routing?.assurance_profile,"config/native-gentle/opencode-assurance.profile.json","assurance profile pointer");
+eq(d.routing?.review_profile_selection,"none — one assurance profile serves every train","review profile selection");
 eq(d.routing?.sdd_in_normal_train,false,"SDD normal-train exclusion");
 eq(d.routing?.sol_normal_path,false,"Sol normal-path exclusion");
 eq(d.routing?.interactive_default_agent,"build","interactive default agent");

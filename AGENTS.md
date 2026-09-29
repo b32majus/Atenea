@@ -26,7 +26,7 @@ candidate risk / review timing / lens selection
 
 review execution when due
 → qualified OpenCode V1 transport with per-process routing config
-→ only provider-issued lens slots
+→ single assurance profile, independent of implementation profile
 → conditional refuter / bounded correction / validator / burn
 
 machine-decidable facts
@@ -55,16 +55,16 @@ Read:
 
 1. `README.md`;
 2. `docs/START_HERE.md`;
-3. `docs/CURRENT_EXECUTION_DECISION_C079.md`;
-4. `docs/CURRENT_EXECUTION_DECISION_C078.md` for field-hardening provenance;
-5. `docs/CURRENT_EXECUTION_DECISION_C077.md` for base-topology provenance;
-6. `CODING_STANDARDS.md`;
-7. relevant decision provenance only when needed;
-8. the accepted issue/work-order/spec being executed.
+3. `docs/CURRENT_EXECUTION_DECISION_C080.md`;
+4. `docs/CURRENT_EXECUTION_DECISION_C079.md`, C-078 and C-077 for provenance of what C-080 removed;
+5. `CODING_STANDARDS.md`;
+6. relevant decision provenance only when needed;
+7. the accepted issue/work-order/spec being executed.
 
-Current operation: `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`.  
-Current handoff: `docs/PREPARED_TRAIN_HANDOFF_C079.md`.  
-Prepared routing: `config/native-gentle/prepared-routing-policy.json`.  
+Current operation: `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`.
+Current handoff: `docs/PREPARED_TRAIN_HANDOFF_C080.md`.
+Prepared routing: `config/native-gentle/prepared-routing-policy.json`.
+Assurance routing: `config/native-gentle/opencode-assurance.profile.json`.
 Runtime exceptions: `docs/vnext/CURRENT_COMPATIBILITY.md`.
 
 ## 4. Prepared-ticket entry
@@ -90,18 +90,9 @@ After candidate commit, run Gentle ASSESS against the actual base and obey its r
 - high → Gentle's canonical 4R set.
 - refuter/validator run only when Gentle requires them.
 
-When provider-issued collection requires OpenCode, start a fresh bounded V1 review host with **per-process** routing configuration. Never mutate `~/.config/opencode/opencode.json` as train routing state.
+When provider-issued collection requires OpenCode, start a fresh bounded V1 review host with **per-process** routing configuration rendered from the single assurance profile (`tools/render-opencode-routing-overlay.mjs`, no profile argument). Never mutate `~/.config/opencode/opencode.json` as train routing state.
 
-A completed required reviewer Task with zero capturable result must be normalized through the C-079 deterministic classifier. That typed failure does not itself authorize a model swap. Recovery requires bound STATUS to reoffer the exact same candidate/lineage/revision/target/lens and a C-079 recovery permit.
-
-Current qualified zero-output recoveries are only:
-
-```text
-review-resilience  / V4 → Luna high
-review-reliability / V4 → Luna high
-```
-
-Each permits one fresh-host attempt. Unknown lens/model, identity drift, profile mismatch or a failed recovery => HUMAN STOP. No repeated V4 retry, RESET, new START/ASSESS, generic fallback loop, skipped lens or global config mutation.
+A completed required reviewer Task with zero capturable result is a **technical reviewer failure**: normalize it with the deterministic zero-output classifier into a typed failure whose next action is HUMAN STOP. There is no recovery route, no permit, no same-route retry, no alternate model, no model carousel, no RESET, no new START/ASSESS, no skipped lens, no profile switch and no global config mutation. Candidate/lineage/revision/target stay preserved.
 
 Judgment Day is explicit-only. Plain Pi is not a Gentle-Pi review host; never manually assert `GENTLE_PI_REVIEW_RELAY_CONTRACT`.
 

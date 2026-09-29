@@ -4,7 +4,7 @@ Atenea is an **upstream-first policy, configuration and conformance layer** for 
 
 ## Current prepared-ticket runtime
 
-Current authority: **C-079** (2026-09-29). C-079 preserves the C-077 Pi-first topology and C-078 field hardening, then normalizes required-lens zero-output failures and binds recovery to exact same-lineage provider state plus an explicitly qualified route.
+Current authority: **C-080** (2026-09-29). C-080 preserves the C-077 Pi-first topology, collapses review routing to ONE assurance profile independent of the implementation profile, and removes automatic reviewer recovery: every technical reviewer failure resolves to a typed deterministic failure and HUMAN STOP.
 
 ```text
 Pi supervisor + Herdr
@@ -33,14 +33,12 @@ For a fresh agent or human, read in this order:
 
 1. `AGENTS.md`;
 2. `docs/START_HERE.md`;
-3. `docs/CURRENT_EXECUTION_DECISION_C079.md`;
-4. `docs/CURRENT_EXECUTION_DECISION_C078.md` for preserved field-hardening provenance;
-5. `docs/CURRENT_EXECUTION_DECISION_C077.md` for the preserved base topology;
-6. `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`;
-7. `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`;
-8. `docs/PREPARED_TRAIN_HANDOFF_C079.md`;
-9. `CODING_STANDARDS.md`;
-10. current product/task/ADR authority.
+3. `docs/CURRENT_EXECUTION_DECISION_C080.md`;
+4. `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`;
+5. `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`;
+6. `docs/PREPARED_TRAIN_HANDOFF_C080.md`;
+7. `CODING_STANDARDS.md`;
+8. current product/task/ADR authority.
 
 Historical OpenCode-first, Gentle-Pi and ODD documents remain evidence for what they tested; they do not define current prepared-ticket execution.
 
@@ -58,7 +56,7 @@ Pi worker → nan/deepseek-v4-flash
 Pi worker → nan/glm5.3-flash · high
 ```
 
-Use `complex` only for material reasoning/semantic risk. File count, ticket length, ordinary UI, many tests, or business importance alone are not triggers.
+Use `complex` only for material reasoning/semantic risk. File count, ticket length, ordinary UI, many tests, or business importance alone are not triggers. The profile selects the implementation worker only; it never routes review.
 
 ## Adaptive native review
 
@@ -72,49 +70,24 @@ high                 → canonical 4R
 
 `review_due=false` means no OpenCode review host should be started. Refuter and validator remain conditional provider-owned roles.
 
-Default reviewer mappings remain in `config/native-gentle/opencode-production-volume.profile.json` and `opencode-complex.profile.json`; C-079 does not globally replace any default model.
+Reviewer mappings live in the single `config/native-gentle/opencode-assurance.profile.json`: readability/reliability/resilience/validator → GPT-6 Luna high; risk → GLM 5.3 Flash high; refuter → conditional provider-issued. DeepSeek V4 holds no reviewer role and no review role uses Luna xhigh.
 
-## Required-lens zero-output hardening
+## Technical reviewer failure → HUMAN STOP
 
-C-079 normalizes a terminal required reviewer completion with zero capturable result into `atenea.review-zero-output/v1`. That record is failure evidence, not automatic fallback authority.
+A terminal required reviewer completion with zero capturable result is normalized by `tools/classify-required-lens-zero-output.mjs` into `atenea.review-zero-output/v1` with `next_action = human_stop`. That record is failure evidence for the human; the candidate, lineage, revision and target stay preserved.
 
-Recovery requires:
-
-```text
-typed zero-output
-→ preserve candidate / lineage / revision / target
-→ bound STATUS
-→ exact same collect slot
-→ deterministic recovery permit
-→ ONE fresh-host qualified route
-```
-
-Only two zero-output routes are currently qualified:
-
-```text
-review-resilience  / DeepSeek V4 Flash → GPT-6 Luna high
-review-reliability / DeepSeek V4 Flash → GPT-6 Luna high
-```
-
-Unknown routes or failed recovery stop for the human. No RESET/new START/ASSESS, model carousel or global config mutation is authorized.
+There is no recovery route, no permit, no alternate model, no same-route retry, no model carousel, no RESET/new START/ASSESS, no skipped lens and no profile switch inside an active lineage.
 
 ## Review transport isolation
 
-Concurrent trains must not rewrite `~/.config/opencode/opencode.json`. Render the selected profile as a per-process overlay:
+Concurrent trains must not rewrite `~/.config/opencode/opencode.json`. Render the single assurance profile as a per-process overlay:
 
 ```bash
-OPENCODE_CONFIG_CONTENT="$(node tools/render-opencode-routing-overlay.mjs production-volume)" \
+OPENCODE_CONFIG_CONTENT="$(node tools/render-opencode-routing-overlay.mjs)" \
   opencode serve ...
 ```
 
-A recovery host instead requires a C-079 permit:
-
-```bash
-OPENCODE_CONFIG_CONTENT="$(
-  node tools/render-opencode-routing-overlay.mjs \
-    production-volume --recovery-permit <permit.json>
-)" opencode serve ...
-```
+An OpenCode Build V1 fallback implementation host additionally passes `--implementation <production-volume|complex>` to select the fallback writer model.
 
 ## Efficiency evidence
 

@@ -7,10 +7,6 @@
     "agent_args": ["--no-extensions"],
     "model": "nan/deepseek-v4-flash"
   },
-  "review": {
-    "transport": "opencode-v1",
-    "profile": "opencode-production-volume"
-  },
   "fallback": {
     "runtime": "opencode-build-v1",
     "condition": "concrete Pi runtime/tooling failure"

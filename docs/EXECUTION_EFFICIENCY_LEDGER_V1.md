@@ -36,13 +36,12 @@ REVIEW TRANSPORT / ROLES (OpenCode)
   admitted | failed + typed failure code
   wall time
 
-RECOVERY
+TECHNICAL FAILURE (when one occurs)
   slot
-  original model
+  model
   failure class
-  recovery model
-  attempts
-  outcome
+  typed failure code
+  outcome = human_stop
 
 TERMINAL
   approved/burned | stopped

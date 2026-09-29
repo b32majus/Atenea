@@ -1,22 +1,30 @@
 # Atenea — Current Decisions
 
-Date: 2026-09-27
+Date: 2026-09-29
 
-This file preserves accepted decision provenance. **C-073 through C-075 jointly define current ordinary execution/routing; C-072 remains the current runtime-transition authority** and supersedes the exact-version/install claims in C-070 while preserving C-069–C-071 as accepted topology/routing evidence. C-055–C-068 remain accepted provenance for the Pi/Gentle vNext epoch and for stable policy not explicitly reopened.
+This file preserves accepted decision provenance. **C-080 is the current execution decision** (`docs/CURRENT_EXECUTION_DECISION_C080.md`); C-072 remains the current runtime-transition authority and supersedes the exact-version/install claims in C-070 while preserving C-069–C-071 as accepted topology/routing evidence. C-055–C-068 remain accepted provenance for the Pi/Gentle vNext epoch and for stable policy not explicitly reopened.
 
 Historical `docs/DECISIONS.md`, Stage files, old run recipes and pre-vNext field evidence remain valuable provenance, but they do not define the current execution path.
 
+## C-080 — Lean assurance runtime: one review profile, no automatic recovery
+
+**Accepted 2026-09-29 after the read-only lean-assurance qualification.**
+
+Subtraction successor to C-079. Reviewer routing collapses from the C-075 dual `production-volume`/`complex` tables into ONE assurance profile (`config/native-gentle/opencode-assurance.profile.json`), independent of the prepared implementation profile: readability/reliability/resilience/validator → GPT-6 Luna high, risk → GLM 5.3 Flash high, refuter → conditional provider-issued MiMo. DeepSeek V4 holds zero reviewer roles (it remains the production-volume implementation writer) and no review role uses Luna xhigh. The C-078/C-079 automatic recovery machinery — qualified V4→Luna routes, recovery permits, bound-STATUS authorization and the recovery ledger — is deleted; every technical reviewer failure now normalizes to a typed deterministic failure with `next_action = human_stop`. Gentle's ownership of ASSESS, `review_due`, lens depth, correction, acknowledge/burn and lifecycle state is unchanged; no second review controller exists. Composition stays signal-driven; the publication boundary is unchanged.
+
+Evidence: the read-only qualification `atenea-lean-assurance-20260929` plus preserved C-078/C-079 field evidence. Current surfaces: `docs/CURRENT_EXECUTION_DECISION_C080.md`, `docs/PREPARED_TRAIN_HANDOFF_C080.md`, `config/native-gentle/opencode-assurance.profile.json`.
+
 ## C-075 — Two OpenCode routing profiles replace Pi-era per-ticket profile ceremony
 
-**Accepted 2026-09-27 after current-model inventory, controlled writer/reviewer/refuter/Judge-A comparisons and repeated MiMo 2.6 Gentle lifecycle qualification.**
+**Accepted 2026-09-27 after current-model inventory, controlled writer/reviewer/refuter/Judge-A comparisons and repeated MiMo 2.6 Gentle lifecycle qualification. Superseded for review routing by C-080: the two reviewer tables collapsed into the single assurance profile.**
 
-Atenea has two current routing snapshots: `production-volume` is the default and `complex` is a triggered escalation for concrete material complexity. Profile choice is not a universal preflight question. Ordinary bounded work remains on `production-volume`; `complex` is selected only when the accepted work already exposes architectural novelty/cross-cutting change, difficult concurrency/state/temporal semantics, material security/privacy/tenancy boundaries, unusually coupled reasoning, or repeated semantic/correction failure.
+Atenea had two routing snapshots at C-075 time: `production-volume` was the default and `complex` was a triggered escalation for concrete material complexity. Profile choice is not a universal preflight question. Ordinary bounded work remains on `production-volume`; `complex` is selected only when the accepted work already exposes architectural novelty/cross-cutting change, difficult concurrency/state/temporal semantics, material security/privacy/tenancy boundaries, unusually coupled reasoning, or repeated semantic/correction failure. This trigger learning survives in `config/native-gentle/prepared-routing-policy.json` as implementation-worker routing only.
 
 `production-volume` uses DeepSeek V4 Flash for volume writing/reliability/resilience, MiMo 2.6 Flash for Gentle lifecycle hosting/refutation/Judge A, GLM 5.3 Flash high for risk/correction, and GPT-6 Luna selectively for readability/validation/Judge B. `complex` moves writing and correction to GLM high, moves reliability/risk to Luna xhigh, retains V4 for independent resilience, retains MiMo for lifecycle hosting/Judge A, and reserves GPT-6 Sol xhigh for `review-refuter` only. Refuter is severe-finding conditional, so Sol is not a happy-path model. Additional Sol use requires explicit bounded escalation; there is no automatic Sol fallback.
 
 SDD is excluded from the normal Atenea train; installed `sdd-*` agents remain upstream capability, not routed Atenea work. Historical `native-balanced`, `native-v4-heavy`, `native-economy` and `native-nan` remain Pi-era provenance, not the current selectable catalog.
 
-Evidence: `docs/OPENCODE_MODEL_ROUTING_QUALIFICATION_20260927.md`. Current snapshots: `config/native-gentle/opencode-production-volume.profile.json`, `config/native-gentle/opencode-complex.profile.json`, and `config/native-gentle/opencode-routing-policy.json`.
+Evidence: `docs/OPENCODE_MODEL_ROUTING_QUALIFICATION_20260927.md`. Its dual reviewer snapshots were deleted by C-080 and are not current authority. Current assurance routing lives only in `config/native-gentle/opencode-assurance.profile.json`; prepared `production-volume` / `complex` profiles are implementation-routing only.
 
 ## C-074 — Train roles use lean OpenCode tool surfaces; full `build` is not the ordinary writer
 

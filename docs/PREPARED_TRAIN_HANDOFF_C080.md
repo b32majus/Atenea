@@ -1,11 +1,9 @@
-# Atenea C-079 — Prepared-train handoff
-
-Status: **SUPERSEDED BY C-080** — see `docs/PREPARED_TRAIN_HANDOFF_C080.md`. The recovery permit flow below is historical.
+# Atenea C-080 — Prepared-train handoff
 
 Use this for an already-shaped/executable train.
 
 ```text
-Authority: Atenea C-079 on current main.
+Authority: Atenea C-080 on current main.
 Preserve valid product scope, acceptance, dependencies, worktree, commits and deterministic evidence.
 Do not repeat shaping.
 
@@ -14,6 +12,7 @@ Implementation:
 - exactly ONE Pi implementation child per ticket;
 - production-volume default → nan/deepseek-v4-flash;
 - complex only on material trigger → nan/glm5.3-flash high;
+- implementation profile selects the worker ONLY; it never routes review;
 - no ODD, no gentle-orchestrator, no Gentle Shell ticket worker.
 
 After candidate commit:
@@ -24,31 +23,24 @@ After candidate commit:
 - OpenCode V1 is collection transport only.
 
 Every OpenCode review host:
-- use per-process OPENCODE_CONFIG_CONTENT from `tools/render-opencode-routing-overlay.mjs`;
+- use per-process OPENCODE_CONFIG_CONTENT from `tools/render-opencode-routing-overlay.mjs`
+  (no profile argument: ONE assurance profile serves every train);
 - never rewrite ~/.config/opencode/opencode.json as train routing state.
 
-If a REQUIRED reviewer Task reaches terminal completion with no capturable result:
-- do not let the parent narrate/retry the same route again;
-- stop the failed host;
+If a REQUIRED reviewer Task reaches terminal completion with no capturable result
+(empty output with output_tokens=0, or typed opencode_task_output_empty):
+- stop the failed host; do not narrate or retry the same route;
 - normalize the observation with `tools/classify-required-lens-zero-output.mjs`;
-- the typed failure preserves candidate/lineage/revision/target;
-- unqualified lens/model → HUMAN STOP.
+- the typed technical failure preserves candidate/lineage/revision/target;
+- next_action is always HUMAN STOP: no recovery route, no permit, no alternate
+  model, no second attempt, no RESET/new START/new ASSESS, no skipped lens,
+  no profile switch inside the active lineage.
 
-For a qualified failure:
-- query bound STATUS on the existing lineage;
-- STATUS must reoffer `collect` for the exact same lens and identity, with zero prior recovery attempts recorded for that slot;
-- run `tools/authorize-required-lens-recovery.mjs` on failure + normalized bound STATUS;
-- launch ONE fresh host with
-  `render-opencode-routing-overlay.mjs <profile> --recovery-permit <permit.json>`;
-- execute only the reoffered provider-owned slot;
-- if not admitted, HUMAN STOP.
-
-Qualified zero-output recoveries:
-- review-resilience / V4 → Luna high;
-- review-reliability / V4 → Luna high.
-
-No repeated V4 retry, RESET, new START, new ASSESS, skipped lens, model carousel,
-global config mutation or profile switch inside the active lineage.
+Review routing (single assurance profile, independent of implementation):
+- readability / reliability / resilience / validator → GPT-6 Luna high;
+- risk → GLM 5.3 Flash high;
+- refuter → conditional, provider-issued only;
+- DeepSeek V4 holds no reviewer role; no review role uses Luna xhigh.
 
 At ticket boundaries:
 - re-check HEAD/checkpoint, clean state, blockers/dependencies and authorized frontier only;
