@@ -1,7 +1,7 @@
 # Atenea C-078 — Prepared-train handoff
 
-Status: **SUPERSEDED BY C-079**  
-Preserved only as C-078 operational provenance. Use `docs/PREPARED_TRAIN_HANDOFF_C079.md` for current prepared trains.
+Status: **SUPERSEDED BY C-080 (via C-079)**
+Preserved only as C-078 operational provenance, including its now-removed recovery path. Use `docs/PREPARED_TRAIN_HANDOFF_C080.md` for current prepared trains.
 
 Use this historical handoff for understanding an already-shaped/executable C-078 train.
 

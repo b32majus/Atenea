@@ -14,7 +14,7 @@ prepared supervisor Pi + Herdr
 prepared worker     one plain Pi child (`pi --no-extensions`)
 default profile     production-volume → nan/deepseek-v4-flash
 complex profile     complex → nan/glm5.3-flash high
-current decision    C-078
+current decision    C-080
 ```
 
 OpenCode `1.18.32` is the exact synthetic qualification baseline. The 2026-09-28 field trains exercised the same V1 transport family; patch-level drift must be recorded in evidence, but ordinary prepared work should fail closed on actual transport incompatibility rather than re-running qualification by ritual.
@@ -36,13 +36,11 @@ The global `~/.config/opencode/opencode.json` is baseline configuration, not per
 
 The legacy profile-apply helper requires an explicit target file and is maintenance-only.
 
-## `review-resilience` empty-output seam
+## Reviewer routing and technical failure seam
 
-Current default remains `nan/deepseek-v4-flash` for `review-resilience`.
+ONE assurance profile (`config/native-gentle/opencode-assurance.profile.json`) routes every reviewer role, independent of the prepared implementation profile: readability/reliability/resilience/validator → GPT-6 Luna high, risk → GLM 5.3 Flash high, refuter → conditional provider-issued MiMo. DeepSeek V4 holds no reviewer role and no review role uses Luna xhigh. The review host never selects `production-volume | complex`.
 
-Known field class: Task completes with typed `opencode_task_output_empty` / reasoning-only and no capturable text. Historical Atenea #91 proved the same role/provider class on normal-sized work and exact-prompt Luna admission. PsO C-077 reproduced it again on 2026-09-28.
-
-Current recovery is narrow: same frozen candidate/lineage/revision/target, bound STATUS, exact same slot reoffered, then one fresh-host route override of only `review-resilience` to `openai/gpt-6-luna` high. Failure after that recovery is HUMAN STOP. Do not hammer V4, mutate global routing or build a review controller.
+Known field class: a required reviewer Task may terminate reasoning-only with typed `opencode_task_output_empty` / no capturable text. Current handling is fail-closed: stop the host, normalize with `tools/classify-required-lens-zero-output.mjs` into `atenea.review-zero-output/v1`, and HUMAN STOP. There is no recovery route, no permit and no alternate-model fallback; candidate/lineage/revision/target stay preserved. Do not hammer the route, mutate global routing or build a review controller.
 
 ## Plain Pi boundary
 
@@ -54,4 +52,4 @@ Token/cost telemetry is observational. Runtime-native Pi/OpenCode usage and Gent
 
 ## Historical evidence
 
-Keep older OpenCode-first writer and Gentle-Pi/ODD qualification as provenance only. Current operation is C-078 + `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`.
+Keep older OpenCode-first writer and Gentle-Pi/ODD qualification as provenance only. Current operation is C-080 + `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`.

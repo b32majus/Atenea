@@ -38,7 +38,7 @@ Default to `production-volume` → Pi on `nan/deepseek-v4-flash`.
 
 Use `complex` → Pi on `nan/glm5.3-flash` high only for material reasoning/semantic-risk triggers defined in `config/native-gentle/prepared-routing-policy.json`.
 
-Profile selection occurs at a clean candidate/work-unit boundary and remains stable through the active lineage.
+Profile selection occurs at a clean candidate/work-unit boundary and remains stable through the active lineage. The profile selects the implementation worker only; reviewer routing uses the single assurance profile and never depends on it.
 
 ## Default worker request
 
@@ -57,6 +57,4 @@ Do not teach the implementation worker reviewer ordering or transport mechanics.
 
 ## STOP conditions
 
-STOP for unresolved/contradictory product authority, new material scope, acceptance/oracle changes, destructive action outside authority, missing required secrets handling, publication beyond authority, or a typed provider refusal with no exact safe continuation.
-
-The C-078 `review-resilience` empty-output recovery is a pre-authorized exact safe continuation only when all of its same-lineage/same-slot conditions hold.
+STOP for unresolved/contradictory product authority, new material scope, acceptance/oracle changes, destructive action outside authority, missing required secrets handling, publication beyond authority, a typed provider refusal with no exact safe continuation, or a typed technical reviewer failure (next_action = human_stop). A technical reviewer failure has no automatic recovery: preserve candidate/lineage/revision/target and STOP.

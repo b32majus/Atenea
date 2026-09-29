@@ -1,8 +1,8 @@
 # C-078 — Field-harden C-077: adaptive RDD, isolated review routing, bounded resilience recovery, usage telemetry
 
-Status: **SUPERSEDED BY C-079 — PRESERVED FIELD BASE**
-Accepted: 2026-09-28  
-Superseded operationally: 2026-09-29 by `docs/CURRENT_EXECUTION_DECISION_C079.md`.
+Status: **SUPERSEDED (C-079; recovery machinery removed by C-080) — PRESERVED FIELD BASE**
+Accepted: 2026-09-28
+Superseded operationally: 2026-09-29 by `docs/CURRENT_EXECUTION_DECISION_C079.md`; its recovery machinery was removed by `docs/CURRENT_EXECUTION_DECISION_C080.md`.
 
 C-078 preserves C-077's prepared-ticket implementation topology. It changes no product semantics and does not restore ODD, `gentle-orchestrator` or OpenCode-first implementation.
 

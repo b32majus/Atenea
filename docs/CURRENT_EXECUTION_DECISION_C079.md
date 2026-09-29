@@ -1,7 +1,8 @@
 # C-079 — Normalize required-lens zero-output and bound recovery to qualified routes
 
-Status: **CURRENT EXECUTION DECISION**  
+Status: **SUPERSEDED BY C-080 — PRESERVED PROVENANCE**
 Accepted: 2026-09-29
+Superseded operationally: 2026-09-29 by `docs/CURRENT_EXECUTION_DECISION_C080.md`, which removes the dual reviewer tables and the entire automatic recovery path (qualified routes, permits, bound-STATUS authorization) and resolves every technical reviewer failure at HUMAN STOP. The zero-output failure class and its deterministic normalization survive in C-080; the recovery machinery below is historical.
 
 C-079 preserves C-077's Pi-first prepared-ticket topology and all C-078 hardening: adaptive Gentle-owned RDD, per-process OpenCode review routing, bounded same-lineage recovery and zero-call efficiency telemetry. It does not restore ODD, `gentle-orchestrator`, OpenCode-first implementation or any Atenea-owned review controller.
 

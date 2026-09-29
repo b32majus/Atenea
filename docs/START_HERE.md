@@ -5,19 +5,19 @@ Status: **CURRENT FRONT DOOR**
 ## Current authority — read this first
 
 ```text
-CURRENT_DECISION      = C-079
-FIELD_BASE            = C-078 preserved
+CURRENT_DECISION      = C-080
+FIELD_BASE            = C-078/C-079 preserved as provenance
 BASE_TOPOLOGY         = C-077 preserved
 prepared supervisor   = Pi + Herdr
 prepared worker       = ONE plain Pi child (`pi --no-extensions`)
-default profile       = production-volume → DeepSeek V4 Flash
-complex profile       = complex → GLM 5.3 Flash high
+default profile       = production-volume → DeepSeek V4 Flash (implementation worker only)
+complex profile       = complex → GLM 5.3 Flash high (implementation worker only)
 review owner          = Gentle AI
 review transport      = OpenCode V1 only when collection is due
+review profiles       = ONE assurance profile, independent of implementation profile
 lens depth            = native Gentle: 0 / 1 / 4, never Atenea-selected
+reviewer failure      = typed technical failure → HUMAN STOP (no automatic recovery)
 review config         = per-process; no shared global mutation during trains
-zero-output recovery  = typed failure → bound same-slot STATUS → ONE qualified route
-qualified recoveries  = V4 resilience/reliability → Luna high
 Gentle Shell / ODD    = NOT the prepared-ticket implementation entry
 ```
 
@@ -25,13 +25,13 @@ If a ticket/train is already shaped and executable, **do not route it through OD
 
 Canonical current documents:
 
-- `docs/CURRENT_EXECUTION_DECISION_C079.md`;
-- `docs/CURRENT_EXECUTION_DECISION_C078.md` — preserved field-hardening provenance;
-- `docs/CURRENT_EXECUTION_DECISION_C077.md` — preserved base topology;
+- `docs/CURRENT_EXECUTION_DECISION_C080.md`;
 - `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`;
 - `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`;
-- `docs/PREPARED_TRAIN_HANDOFF_C079.md`;
+- `docs/PREPARED_TRAIN_HANDOFF_C080.md`;
 - `docs/EXECUTION_EFFICIENCY_LEDGER_V1.md`.
+
+C-077/C-078/C-079 decision docs remain preserved provenance; they no longer define current operation.
 
 ## 1. Minimal preflight
 
@@ -52,6 +52,8 @@ complex → Pi worker on nan/glm5.3-flash · high
 ```
 
 Material triggers include novel/cross-cutting architecture; difficult concurrency/temporal/scheduling/state/solver semantics; material security/privacy/auth/tenancy/clinical/trust-boundary semantics; delicate migration/back-compat/distributed invariants; or repeated semantic/correction failure under production-volume.
+
+The profile selects the implementation worker only. Review routing never depends on it.
 
 ## 3. Execute prepared work
 
@@ -86,49 +88,31 @@ Refuter and targeted validator remain conditional provider-owned roles.
 
 ## 5. Isolated OpenCode review transport
 
-OpenCode V1 is transport, not implementation parent. Every normal review host uses a profile overlay scoped to that process:
+Every review host uses the single assurance profile rendered as a per-process overlay. There is no review-time `production-volume | complex` choice:
 
 ```bash
-OPENCODE_CONFIG_CONTENT="$(node <ATENEA>/tools/render-opencode-routing-overlay.mjs production-volume)" \
+OPENCODE_CONFIG_CONTENT="$(node <ATENEA>/tools/render-opencode-routing-overlay.mjs)" \
   opencode serve ...
 ```
 
-Use `complex` when selected. Do **not** rewrite `~/.config/opencode/opencode.json` to switch active train routing.
+An OpenCode Build V1 fallback implementation host additionally passes `--implementation <profile>` to select the fallback writer model. Do **not** rewrite `~/.config/opencode/opencode.json` to switch active train routing.
 
-## 6. Required-lens zero-output recovery
+Reviewer routes (ONE assurance profile): readability/reliability/resilience/validator → GPT-6 Luna high; risk → GLM 5.3 Flash high; refuter → conditional provider-issued. DeepSeek V4 holds no reviewer role and no review role uses Luna xhigh.
 
-When a **required** reviewer Task terminally completes with no capturable result:
+## 6. Technical reviewer failure → HUMAN STOP
+
+When a **required** reviewer Task terminally completes with no capturable result (empty output with `output_tokens=0`, or typed `opencode_task_output_empty`):
 
 1. stop the failed host; do not continue parent narration or repeat the same route;
 2. normalize the observation with `tools/classify-required-lens-zero-output.mjs`;
-3. preserve candidate, lineage, revision and target;
-4. query bound STATUS;
-5. require STATUS to reoffer `collect` for the exact same lens and identity;
-6. create a permit with `tools/authorize-required-lens-recovery.mjs`;
-7. launch one fresh host with:
+3. the typed technical failure preserves candidate, lineage, revision and target;
+4. **HUMAN STOP** — no recovery route, no permit, no alternate model, no second attempt, no RESET/new START/new ASSESS, no skipped lens, no profile switch.
 
-```bash
-OPENCODE_CONFIG_CONTENT="$(
-  node <ATENEA>/tools/render-opencode-routing-overlay.mjs \
-    <profile> --recovery-permit <permit.json>
-)" opencode serve ...
-```
-
-8. execute only that provider-owned slot;
-9. if the route is unqualified or the one recovery is not admitted, HUMAN STOP.
-
-Current qualified routes are only:
-
-```text
-review-resilience  / nan/deepseek-v4-flash → GPT-6 Luna high
-review-reliability / nan/deepseek-v4-flash → GPT-6 Luna high
-```
-
-Do not retry V4 repeatedly, RESET, create a new START/ASSESS, skip a lens, walk fallback models, or mutate global routing.
+A timeout that kills a still-running reviewer is not a terminal zero-output result.
 
 ## 7. Efficiency telemetry
 
-Capture runtime-native usage when available without adding model calls. Telemetry failure does not block the ticket. Record Pi usage, Gentle risk/review_due/selected lenses, OpenCode review usage and retry/recovery waste. See `docs/EXECUTION_EFFICIENCY_LEDGER_V1.md`.
+Capture runtime-native usage when available without adding model calls. Telemetry failure does not block the ticket. Record Pi usage, Gentle risk/review_due/selected lenses and OpenCode review usage including failed transport attempts. See `docs/EXECUTION_EFFICIENCY_LEDGER_V1.md`.
 
 ## 8. Fallback and publication
 
