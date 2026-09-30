@@ -36,6 +36,17 @@ req('README.md', 'Current authority: **C-080**', 'README current authority');
 req('docs/vnext/CURRENT_COMPATIBILITY.md', 'current decision    C-080', 'compatibility current decision');
 req('docs/CURRENT_DECISIONS.md', 'C-080 is the current execution decision', 'decision ledger current decision');
 
+// C-080 supervisor-routing addendum: supervisor stays V4 regardless of child profile.
+req('docs/START_HERE.md', 'prepared supervisor   = Pi + Herdr → DeepSeek V4 Flash (`nan/deepseek-v4-flash`)', 'V4 supervisor default');
+req('docs/CURRENT_EXECUTION_DECISION_C080.md', '## 7. Supervisor routing addendum — DeepSeek V4 Flash default', 'supervisor-routing addendum');
+req('docs/CURRENT_EXECUTION_DECISION_C080.md', 'There is no automatic supervisor escalation to GLM', 'no automatic supervisor GLM escalation');
+req('docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md', 'pi --no-extensions --model nan/deepseek-v4-flash', 'supervisor launch route');
+req('docs/PREPARED_TRAIN_HANDOFF_C080.md', 'supervisor: clean `pi --no-extensions --model nan/deepseek-v4-flash` + Herdr;', 'handoff supervisor route');
+req('docs/vnext/CURRENT_COMPATIBILITY.md', 'prepared supervisor Pi + Herdr → nan/deepseek-v4-flash', 'compatibility supervisor route');
+req('README.md', 'Pi supervisor + Herdr → DeepSeek V4 Flash', 'README supervisor route');
+req('docs/EXECUTION_EFFICIENCY_LEDGER_V1.md', 'SUPERVISOR (Pi)', 'supervisor telemetry');
+req('docs/EXECUTION_EFFICIENCY_LEDGER_V1.md', 'implementation profile changing the supervisor model => C-080 supervisor-routing violation;', 'supervisor/profile independence telemetry check');
+
 // Superseded provenance must be marked, not silently current.
 req('docs/CURRENT_EXECUTION_DECISION_C079.md', 'Status: **SUPERSEDED BY C-080 — PRESERVED PROVENANCE**', 'C-079 supersession marker');
 req('docs/CURRENT_EXECUTION_DECISION_C078.md', 'SUPERSEDED', 'C-078 supersession marker');
