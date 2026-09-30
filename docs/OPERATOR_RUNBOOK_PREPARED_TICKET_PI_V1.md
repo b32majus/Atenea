@@ -1,7 +1,7 @@
 # Atenea — Prepared-ticket Pi runtime v1
 
 Status: **CURRENT PRODUCTIVE PATH FOR PREPARED WORK — C-080 LEAN ASSURANCE**
-Date: 2026-09-29
+Date: 2026-09-30
 
 This runbook begins only after product/task authority is executable.
 
@@ -9,7 +9,7 @@ This runbook begins only after product/task authority is executable.
 
 ```text
 accepted prepared ticket/train
-→ clean Pi supervisor + Herdr
+→ clean Pi supervisor + Herdr on nan/deepseek-v4-flash
 → select prepared implementation profile
 → ONE plain Pi implementation worker
 → repo authority + project skills
@@ -22,6 +22,14 @@ accepted prepared ticket/train
 → correction / validator / burn when provider-issued
 → checkpoint / next-or-STOP
 ```
+
+Default supervisor launch:
+
+```bash
+pi --no-extensions --model nan/deepseek-v4-flash
+```
+
+The supervisor route is independent of the implementation profile. A `complex` child does not move the supervisor to GLM. There is no automatic supervisor fallback/model carousel; a concrete supervisor/runtime refusal or material procedural error preserves the checkpoint and becomes HUMAN STOP for explicit adjudication.
 
 ## 2. Implementation profile
 
@@ -37,9 +45,9 @@ Complex:
 pi --no-extensions --model nan/glm5.3-flash --thinking high
 ```
 
-Use `complex` only on material triggers from `config/native-gentle/prepared-routing-policy.json`. The profile selects the implementation worker only; review routing never depends on it. Add `--approve` only for an intentionally trusted repository whose protected project resources require it.
+Use `complex` only on material triggers from `config/native-gentle/prepared-routing-policy.json`. The profile selects the implementation worker only; review routing and supervisor routing never depend on it. Add `--approve` only for an intentionally trusted repository whose protected project resources require it.
 
-The supervisor itself should also be clean (`pi --no-extensions`) when local extensions would otherwise load Gentle Shell or another conflicting runtime surface.
+The supervisor itself must remain clean (`pi --no-extensions`) so local extensions do not load Gentle Shell or another conflicting runtime surface.
 
 ## 3. Implementation and evidence
 
@@ -136,16 +144,18 @@ A correction is allowed only when Gentle grants bounded correction authority. Ke
 
 ## 8. Efficiency capture
 
-Telemetry is non-blocking and adds no model calls. At each ticket boundary, retain usage artifacts already produced by Pi/OpenCode plus ASSESS/STATUS facts when practical. Use `tools/extract-execution-usage.mjs` to normalize Pi/OpenCode session usage. See `docs/EXECUTION_EFFICIENCY_LEDGER_V1.md`.
+Telemetry is non-blocking and adds no model calls. At each ticket boundary, retain usage artifacts already produced by the supervisor Pi, implementation Pi/OpenCode plus ASSESS/STATUS facts when practical. Use `tools/extract-execution-usage.mjs` to normalize Pi/OpenCode session usage. See `docs/EXECUTION_EFFICIENCY_LEDGER_V1.md`.
 
-Record failed transport attempts so reasoning-only zero-output cost remains visible instead of disappearing into aggregate review usage.
+Record the supervisor model separately from the implementation profile, and record failed transport attempts so reasoning-only zero-output cost remains visible instead of disappearing into aggregate review usage.
 
 ## 9. Supervisor escalation
 
-The supervisor may answer procedural questions already resolved by durable authority. HUMAN STOP for new/broadened scope, changed acceptance/product meaning, weakened oracle, destructive action, publication authority, or provider/runtime refusal without a current safe continuation. A typed technical reviewer failure is always such a STOP.
+The supervisor may answer procedural questions already resolved by durable authority. HUMAN STOP for new/broadened scope, changed acceptance/product meaning, weakened oracle, destructive action, publication authority, provider/runtime refusal without a current safe continuation, or a material supervisor procedural error. A typed technical reviewer failure is always such a STOP.
+
+Do not automatically relaunch the supervisor on GLM merely because a child is `complex` or because GLM quota is available. Model escalation is a separate human decision after an observed supervisor failure.
 
 ## 10. Fallback and publication
 
-A concrete Pi runtime/tooling failure may switch implementation to qualified OpenCode Build V1 under the same prepared contract. Do not re-enter ODD.
+A concrete Pi implementation-worker runtime/tooling failure may switch implementation to qualified OpenCode Build V1 under the same prepared contract. Do not re-enter ODD. This fallback does not change the supervisor route.
 
 Review approval is evidence, not push/PR/merge/deploy authority.
