@@ -1,7 +1,7 @@
 # Atenea vNext — Current Compatibility Notes
 
 Status: **CURRENT RUNTIME / PROVIDER EVIDENCE**
-Date: 2026-09-28
+Date: 2026-09-30
 
 ## Current baseline
 
@@ -10,16 +10,22 @@ Pi                 0.87.1
 Herdr              0.9.1
 Gentle AI          3.7.0
 OpenCode transport V1 / 1.18.x line
-prepared supervisor Pi + Herdr
+prepared supervisor Pi + Herdr → nan/deepseek-v4-flash
 prepared worker     one plain Pi child (`pi --no-extensions`)
 default profile     production-volume → nan/deepseek-v4-flash
 complex profile     complex → nan/glm5.3-flash high
-current decision    C-080
+current decision    C-080 (including 2026-09-30 supervisor-routing addendum)
 ```
 
-OpenCode `1.18.32` is the exact synthetic qualification baseline. The 2026-09-28 field trains exercised the same V1 transport family; patch-level drift must be recorded in evidence, but ordinary prepared work should fail closed on actual transport incompatibility rather than re-running qualification by ritual.
+OpenCode `1.18.32` is the exact synthetic qualification baseline. The 2026-09-28+ field trains exercised the same V1 transport family; patch-level drift must be recorded in evidence, but ordinary prepared work should fail closed on actual transport incompatibility rather than re-running qualification by ritual.
 
 Prepared tickets do not enter Gentle Shell/ODD/`gentle-orchestrator`.
+
+## Supervisor routing boundary
+
+The prepared supervisor is a thin procedural Pi + Herdr role and defaults to `nan/deepseek-v4-flash`. Its model is independent of the implementation profile: a `complex` child still runs GLM 5.3 Flash high while the supervisor remains V4 Flash.
+
+There is no automatic supervisor escalation/fallback to GLM. A concrete supervisor/runtime refusal or material procedural error preserves the durable checkpoint and becomes HUMAN STOP for explicit adjudication.
 
 ## Adaptive review boundary
 
@@ -48,7 +54,7 @@ Known field class: a required reviewer Task may terminate reasoning-only with ty
 
 ## Efficiency evidence
 
-Token/cost telemetry is observational. Runtime-native Pi/OpenCode usage and Gentle assessment facts may be normalized with `tools/extract-execution-usage.mjs`. Missing telemetry does not invalidate otherwise valid product evidence.
+Token/cost telemetry is observational. Runtime-native supervisor Pi, implementation Pi/OpenCode usage and Gentle assessment facts may be normalized with `tools/extract-execution-usage.mjs`. Missing telemetry does not invalidate otherwise valid product evidence.
 
 ## Historical evidence
 
