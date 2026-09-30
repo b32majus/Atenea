@@ -8,7 +8,7 @@ Status: **CURRENT FRONT DOOR**
 CURRENT_DECISION      = C-080
 FIELD_BASE            = C-078/C-079 preserved as provenance
 BASE_TOPOLOGY         = C-077 preserved
-prepared supervisor   = Pi + Herdr
+prepared supervisor   = Pi + Herdr → DeepSeek V4 Flash (`nan/deepseek-v4-flash`)
 prepared worker       = ONE plain Pi child (`pi --no-extensions`)
 default profile       = production-volume → DeepSeek V4 Flash (implementation worker only)
 complex profile       = complex → GLM 5.3 Flash high (implementation worker only)
@@ -53,14 +53,14 @@ complex → Pi worker on nan/glm5.3-flash · high
 
 Material triggers include novel/cross-cutting architecture; difficult concurrency/temporal/scheduling/state/solver semantics; material security/privacy/auth/tenancy/clinical/trust-boundary semantics; delicate migration/back-compat/distributed invariants; or repeated semantic/correction failure under production-volume.
 
-The profile selects the implementation worker only. Review routing never depends on it.
+The profile selects the implementation worker only. Review routing never depends on it, and the supervisor remains DeepSeek V4 Flash for both profiles.
 
 ## 3. Execute prepared work
 
 ```text
 accepted ticket/train
-→ clean Pi supervisor + Herdr
-→ ONE Pi child with selected model
+→ clean Pi supervisor + Herdr on nan/deepseek-v4-flash
+→ ONE Pi child with selected implementation model
 → repo authority + applicable skills
 → implement
 → deterministic checks/oracles
@@ -70,6 +70,8 @@ accepted ticket/train
 → checkpoint/burn as applicable
 → next authorized ticket or STOP
 ```
+
+There is no automatic supervisor escalation to GLM. A concrete supervisor/runtime refusal or material procedural error preserves the checkpoint and becomes HUMAN STOP for explicit adjudication.
 
 ## 4. Adaptive RDD — do not flatten this
 
@@ -112,10 +114,10 @@ A timeout that kills a still-running reviewer is not a terminal zero-output resu
 
 ## 7. Efficiency telemetry
 
-Capture runtime-native usage when available without adding model calls. Telemetry failure does not block the ticket. Record Pi usage, Gentle risk/review_due/selected lenses and OpenCode review usage including failed transport attempts. See `docs/EXECUTION_EFFICIENCY_LEDGER_V1.md`.
+Capture runtime-native usage when available without adding model calls. Telemetry failure does not block the ticket. Record supervisor Pi usage, implementation Pi usage, Gentle risk/review_due/selected lenses and OpenCode review usage including failed transport attempts. See `docs/EXECUTION_EFFICIENCY_LEDGER_V1.md`.
 
 ## 8. Fallback and publication
 
-A concrete Pi runtime/tooling failure may switch implementation to qualified OpenCode Build V1 under the same shaped contract; do not reopen ODD.
+A concrete Pi implementation-worker runtime/tooling failure may switch implementation to qualified OpenCode Build V1 under the same shaped contract; do not reopen ODD. This fallback does not change the supervisor model.
 
 Material product/scope/acceptance/oracle/publication changes are HUMAN STOP. Review approval never grants push/PR/merge/deploy authority.

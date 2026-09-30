@@ -3,16 +3,18 @@
 Use this for an already-shaped/executable train.
 
 ```text
-Authority: Atenea C-080 on current main.
+Authority: Atenea C-080 on current main, including the 2026-09-30 supervisor-routing addendum.
 Preserve valid product scope, acceptance, dependencies, worktree, commits and deterministic evidence.
 Do not repeat shaping.
 
 Implementation:
-- supervisor: clean `pi --no-extensions` + Herdr;
+- supervisor: clean `pi --no-extensions --model nan/deepseek-v4-flash` + Herdr;
+- supervisor model is independent of the implementation profile;
 - exactly ONE Pi implementation child per ticket;
 - production-volume default → nan/deepseek-v4-flash;
 - complex only on material trigger → nan/glm5.3-flash high;
-- implementation profile selects the worker ONLY; it never routes review;
+- implementation profile selects the worker ONLY; it never routes review or supervisor;
+- no automatic supervisor escalation/fallback to GLM;
 - no ODD, no gentle-orchestrator, no Gentle Shell ticket worker.
 
 After candidate commit:
@@ -44,8 +46,10 @@ Review routing (single assurance profile, independent of implementation):
 
 At ticket boundaries:
 - re-check HEAD/checkpoint, clean state, blockers/dependencies and authorized frontier only;
-- capture runtime-native usage telemetry when available; it adds zero LLM calls and never blocks valid work.
+- capture supervisor and implementation runtime-native usage separately when available;
+- telemetry adds zero LLM calls and never blocks valid work.
 
+A concrete supervisor/runtime refusal or material supervisor procedural error = preserve checkpoint + HUMAN STOP for explicit adjudication. Do not auto-relaunch on GLM.
 Material product/scope/acceptance/oracle/publication change = HUMAN STOP.
 Review approval never grants push/PR/merge/deploy authority.
 ```

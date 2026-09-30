@@ -2,6 +2,7 @@
 
 Status: **CURRENT EXECUTION DECISION**
 Accepted: 2026-09-29
+Operational supervisor-routing addendum accepted: 2026-09-30
 
 C-080 is a SUBTRACTION decision. It preserves C-077's Pi-first prepared-ticket topology and every durable C-078/C-079 field lesson, then deletes the machinery those lessons no longer justify: the dual reviewer tables and the C-079 automatic recovery path. It does not add a review controller, does not restore ODD or `gentle-orchestrator`, and does not change product acceptance or publication authority.
 
@@ -65,3 +66,28 @@ Composition remains signal-driven (`docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`): o
 ## 6. Publication boundary unchanged
 
 Review approval is not push/PR/merge/deploy authority. Material product/scope/acceptance/oracle/publication changes remain HUMAN STOP.
+
+## 7. Supervisor routing addendum — DeepSeek V4 Flash default
+
+The prepared supervisor remains a thin clean Pi + Herdr control-plane role, but its default model is now explicit:
+
+```text
+supervisor → pi --no-extensions --model nan/deepseek-v4-flash
+```
+
+This does **not** change implementation or assurance routing:
+
+```text
+implementation
+  production-volume → nan/deepseek-v4-flash
+  complex           → nan/glm5.3-flash high
+
+assurance
+  unchanged from sections 1–4
+```
+
+The supervisor model never inherits the implementation profile. A `complex` child still means V4 supervisor → GLM implementation worker → native Gentle lifecycle. There is no automatic supervisor escalation to GLM, no supervisor model carousel and no profile switch inside an active candidate/review lineage. A concrete supervisor/runtime refusal or a material procedural error preserves the current checkpoint and becomes HUMAN STOP for explicit adjudication.
+
+Field basis is operational rather than synthetic. Operator-confirmed V4 Flash supervisors successfully coordinated completed C-080 work in multiple repositories and task classes, including Laboratorio de Privacidad (prepared train T22→T24→T25 and later HARDEN-01), PsO-Valme (Train-B/Train-C technical completion), and Symphonia Planning Foundation. Those runs exercised ordinary production-volume work, complex GLM implementation children, native Gentle review, correction cycles and a real HUMAN STOP without a supervisor-attributable frontier, candidate/lineage, publication-boundary or review-routing failure being observed. PROMueve remained useful comparison evidence under a GLM supervisor but is not counted as V4-supervisor qualification.
+
+This is a routing-efficiency decision, not a claim that V4 is universally stronger than GLM. GLM remains reserved for implementation work that meets the existing material `complex` triggers and for the existing review-risk role.

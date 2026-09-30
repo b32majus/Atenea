@@ -4,10 +4,10 @@ Atenea is an **upstream-first policy, configuration and conformance layer** for 
 
 ## Current prepared-ticket runtime
 
-Current authority: **C-080** (2026-09-29). C-080 preserves the C-077 Pi-first topology, collapses review routing to ONE assurance profile independent of the implementation profile, and removes automatic reviewer recovery: every technical reviewer failure resolves to a typed deterministic failure and HUMAN STOP.
+Current authority: **C-080** (2026-09-29, supervisor-routing addendum 2026-09-30). C-080 preserves the C-077 Pi-first topology, collapses review routing to ONE assurance profile independent of the implementation profile, removes automatic reviewer recovery, and now makes DeepSeek V4 Flash the explicit default for the thin Pi supervisor.
 
 ```text
-Pi supervisor + Herdr
+Pi supervisor + Herdr → DeepSeek V4 Flash
 → select prepared implementation profile at a clean boundary
    - production-volume (default) → DeepSeek V4 Flash
    - complex → GLM 5.3 Flash high
@@ -24,6 +24,8 @@ Pi supervisor + Herdr
 → durable checkpoint
 → next authorized ticket or STOP
 ```
+
+The supervisor model is independent of the implementation profile: a `complex` child still uses GLM while the supervisor remains V4 Flash. There is no automatic supervisor escalation to GLM.
 
 OpenCode V1 is **review transport and qualified fallback implementation runtime**, not the normal prepared-ticket writer. Prepared tickets do not enter ODD or `gentle-orchestrator`.
 
@@ -56,7 +58,7 @@ Pi worker → nan/deepseek-v4-flash
 Pi worker → nan/glm5.3-flash · high
 ```
 
-Use `complex` only for material reasoning/semantic risk. File count, ticket length, ordinary UI, many tests, or business importance alone are not triggers. The profile selects the implementation worker only; it never routes review.
+Use `complex` only for material reasoning/semantic risk. File count, ticket length, ordinary UI, many tests, or business importance alone are not triggers. The profile selects the implementation worker only; it never routes review or supervisor.
 
 ## Adaptive native review
 
@@ -91,7 +93,7 @@ An OpenCode Build V1 fallback implementation host additionally passes `--impleme
 
 ## Efficiency evidence
 
-Execution telemetry is observational and adds **zero LLM calls**. Capture runtime-native Pi usage, Gentle ASSESS/risk/lens facts, OpenCode review-session usage and failed transport attempts when available. See `docs/EXECUTION_EFFICIENCY_LEDGER_V1.md` and `tools/extract-execution-usage.mjs`.
+Execution telemetry is observational and adds **zero LLM calls**. Capture supervisor Pi and implementation Pi usage separately, plus Gentle ASSESS/risk/lens facts, OpenCode review-session usage and failed transport attempts when available. See `docs/EXECUTION_EFFICIENCY_LEDGER_V1.md` and `tools/extract-execution-usage.mjs`.
 
 ## Publication boundary
 
