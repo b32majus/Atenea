@@ -27,6 +27,9 @@ After candidate commit:
 Every OpenCode review host:
 - use per-process OPENCODE_CONFIG_CONTENT from `tools/render-opencode-routing-overlay.mjs`
   (no profile argument: ONE assurance profile serves every train);
+- launch the review host only through `tools/launch-opencode-review-host.mjs`;
+- the launcher enforces `atenea-review-host = primary` and `review-* = subagent`
+  and rejects one-shot `opencode run --agent review-*`;
 - never rewrite ~/.config/opencode/opencode.json as train routing state.
 
 If a REQUIRED reviewer Task reaches terminal completion with no capturable result

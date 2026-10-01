@@ -43,6 +43,8 @@ If explicit train authority covers exact candidate-scoped consent, the superviso
 
 When collection is required, start a fresh bounded serve host/session for the provider-issued review continuation. Reviewer Tasks use the managed OpenCode review transport. Successful `acknowledge-approved` with burned authority is terminal; do not add a redundant post-burn STATUS ceremony.
 
+Launch that review host only through `tools/launch-opencode-review-host.mjs`; raw `opencode run --agent review-*` is not an alternative transport and is rejected by the launcher guard.
+
 ## 5. Checkpoint and next ticket
 
 After terminal review where applicable and final deterministic checks:

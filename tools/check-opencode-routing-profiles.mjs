@@ -36,13 +36,13 @@ eq(assurance.name, 'assurance', 'assurance name');
 eq(assurance.status, 'current-single', 'assurance status');
 
 const expectedRoles = {
-  'lifecycle-host': { agent: 'atenea-review-host', model: 'nan/mimo-v2.6-flash' },
-  'review-readability': { agent: 'review-readability', model: 'openai/gpt-6-luna', variant: 'high' },
-  'review-reliability': { agent: 'review-reliability', model: 'openai/gpt-6-luna', variant: 'high' },
-  'review-resilience': { agent: 'review-resilience', model: 'openai/gpt-6-luna', variant: 'high' },
-  'review-risk': { agent: 'review-risk', model: 'nan/glm5.3-flash', variant: 'high' },
-  'review-refuter': { agent: 'review-refuter', model: 'nan/mimo-v2.6-flash', selection: 'conditional-provider-issued' },
-  'review-validator': { agent: 'review-validator', model: 'openai/gpt-6-luna', variant: 'high' }
+  'lifecycle-host': { agent: 'atenea-review-host', model: 'nan/mimo-v2.6-flash', mode: 'primary' },
+  'review-readability': { agent: 'review-readability', model: 'openai/gpt-6-luna', variant: 'high', mode: 'subagent' },
+  'review-reliability': { agent: 'review-reliability', model: 'openai/gpt-6-luna', variant: 'high', mode: 'subagent' },
+  'review-resilience': { agent: 'review-resilience', model: 'openai/gpt-6-luna', variant: 'high', mode: 'subagent' },
+  'review-risk': { agent: 'review-risk', model: 'nan/glm5.3-flash', variant: 'high', mode: 'subagent' },
+  'review-refuter': { agent: 'review-refuter', model: 'nan/mimo-v2.6-flash', selection: 'conditional-provider-issued', mode: 'subagent' },
+  'review-validator': { agent: 'review-validator', model: 'openai/gpt-6-luna', variant: 'high', mode: 'subagent' }
 };
 const keys = Object.keys(assurance.roles || {}).sort();
 const expectedKeys = [...Object.keys(expectedRoles), 'jd-judge-a', 'jd-judge-b', 'jd-fix-agent'].sort();
@@ -103,6 +103,12 @@ if (overlayDefault) {
     }
   }
 }
+for (const [role, want] of Object.entries(expectedRoles)) {
+  const actual = overlayDefault?.agent?.[want.agent];
+  if (actual && (actual.mode ?? null) !== (want.mode ?? null)) {
+    failures.push('rendered ' + role + ' mode=' + (actual.mode ?? '<unset>') + ', expected ' + (want.mode ?? '<unset>'));
+  }
+}
 if (overlayComplex && overlayComplex.agent?.['atenea-writer']?.model !== 'nan/glm5.3-flash') {
   failures.push('--implementation complex must select the GLM fallback writer');
 }
@@ -123,6 +129,12 @@ if (runtimePath) {
     if (!actual) { failures.push(`runtime missing agent ${route.agent}`); continue; }
     if (actual.model !== route.model) failures.push(`runtime ${route.agent} model=${actual.model ?? '<unset>'}, expected ${route.model}`);
     if ((actual.variant ?? null) !== (route.variant ?? null)) failures.push(`runtime ${route.agent} variant=${actual.variant ?? '<unset>'}, expected ${route.variant ?? '<unset>'}`);
+  }
+  for (const [role, route] of Object.entries(assurance.roles || {})) {
+    const actual = runtime.agent?.[route.agent];
+    if (actual && (actual.mode ?? null) !== (route.mode ?? null)) {
+      failures.push('runtime ' + route.agent + ' mode=' + (actual.mode ?? '<unset>') + ', expected ' + (route.mode ?? '<unset>'));
+    }
   }
   if (!runtime.provider?.nan?.models?.['mimo-v2.6-flash']) failures.push('runtime NaN provider missing mimo-v2.6-flash');
 }

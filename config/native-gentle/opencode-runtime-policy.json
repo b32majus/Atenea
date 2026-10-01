@@ -56,6 +56,9 @@
     "review_profile_selection": "none — one assurance profile serves every train",
     "profile_policy": "config/native-gentle/opencode-routing-policy.json",
     "sdd_in_normal_train": false,
-    "sol_normal_path": false
+    "sol_normal_path": false,
+    "review_transport_launcher": "tools/launch-opencode-review-host.mjs",
+    "review_transport_entry": "serve-only",
+    "direct_reviewer_run": "blocked"
   }
 }

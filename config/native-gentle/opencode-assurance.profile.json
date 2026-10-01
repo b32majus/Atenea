@@ -8,37 +8,44 @@
   "roles": {
     "lifecycle-host": {
       "agent": "atenea-review-host",
-      "model": "nan/mimo-v2.6-flash"
+      "model": "nan/mimo-v2.6-flash",
+      "mode": "primary"
     },
     "review-readability": {
       "agent": "review-readability",
       "model": "openai/gpt-6-luna",
-      "variant": "high"
+      "variant": "high",
+      "mode": "subagent"
     },
     "review-reliability": {
       "agent": "review-reliability",
       "model": "openai/gpt-6-luna",
-      "variant": "high"
+      "variant": "high",
+      "mode": "subagent"
     },
     "review-resilience": {
       "agent": "review-resilience",
       "model": "openai/gpt-6-luna",
-      "variant": "high"
+      "variant": "high",
+      "mode": "subagent"
     },
     "review-risk": {
       "agent": "review-risk",
       "model": "nan/glm5.3-flash",
-      "variant": "high"
+      "variant": "high",
+      "mode": "subagent"
     },
     "review-refuter": {
       "agent": "review-refuter",
       "model": "nan/mimo-v2.6-flash",
-      "selection": "conditional-provider-issued"
+      "selection": "conditional-provider-issued",
+      "mode": "subagent"
     },
     "review-validator": {
       "agent": "review-validator",
       "model": "openai/gpt-6-luna",
-      "variant": "high"
+      "variant": "high",
+      "mode": "subagent"
     },
     "jd-judge-a": {
       "agent": "jd-judge-a",

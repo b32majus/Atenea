@@ -101,6 +101,8 @@ An OpenCode Build V1 fallback implementation host additionally passes `--impleme
 
 Reviewer routes (ONE assurance profile): readability/reliability/resilience/validator → GPT-6 Luna high; risk → GLM 5.3 Flash high; refuter → conditional provider-issued. DeepSeek V4 holds no reviewer role and no review role uses Luna xhigh.
 
+The review host must be launched through `tools/launch-opencode-review-host.mjs`. That deterministic guard requires the rendered per-process config, enforces `atenea-review-host = primary` and `review-* = subagent`, and rejects `opencode run`, direct reviewer `--agent` selection, alternate config sources and implementation-profile selection. Do not invoke raw `opencode run --agent review-*` as a review transport.
+
 ## 6. Technical reviewer failure → HUMAN STOP
 
 When a **required** reviewer Task terminally completes with no capturable result (empty output with `output_tokens=0`, or typed `opencode_task_output_empty`):

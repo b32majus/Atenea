@@ -35,7 +35,12 @@ Gentle 3.7 detects OpenCode major with a hard 3-second `opencode --version` prob
 3. `POST /session`, then `POST /session/:id/message` with `agent=atenea-writer` and the resolved model route.
 4. Stop the writer host after the bounded turn completes.
 5. Run deterministic verification and native Gentle STATUS. Follow only provider-issued START/consent transitions.
-6. When review collection is required, start a new fresh serve host and one bounded `atenea-review-host` session carrying the exact provider-issued review continuation. Its Task surface is limited to `review-*`; Reviewer Tasks flow through `opencode-review-transport.ts`.
+6. When review collection is required, launch a new fresh serve host through
+   tools/launch-opencode-review-host.mjs and create one bounded atenea-review-host
+   session carrying the exact provider-issued review continuation. Its Task surface is
+   limited to review-*; Reviewer Tasks flow through opencode-review-transport.ts.
+   The launcher guard rejects one-shot opencode run, direct reviewer --agent selection,
+   alternate config sources and implementation-profile flags.
 7. Stop only after exact acknowledgement burns terminal authority or Gentle returns a typed STOP/refusal.
 8. Tear down the review host, run final deterministic checks, create the authorized Git checkpoint, then launch the next ticket from durable authority or STOP.
 
