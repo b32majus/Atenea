@@ -3,6 +3,7 @@
 Status: **CURRENT EXECUTION DECISION**
 Accepted: 2026-09-29
 Operational supervisor-routing addendum accepted: 2026-09-30
+Review transport enforcement addendum accepted: 2026-10-01
 
 C-080 is a SUBTRACTION decision. It preserves C-077's Pi-first prepared-ticket topology and every durable C-078/C-079 field lesson, then deletes the machinery those lessons no longer justify: the dual reviewer tables and the C-079 automatic recovery path. It does not add a review controller, does not restore ODD or `gentle-orchestrator`, and does not change product acceptance or publication authority.
 
@@ -66,6 +67,14 @@ Composition remains signal-driven (`docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`): o
 ## 6. Publication boundary unchanged
 
 Review approval is not push/PR/merge/deploy authority. Material product/scope/acceptance/oracle/publication changes remain HUMAN STOP.
+
+## Review transport enforcement addendum — serve-only launcher
+
+The C-080 review topology is unchanged, but its operational seam is now fail-closed at the qualified launch surface. The review-host launcher is the only current review-host entry. It requires the per-process rendered assurance config, enforces atenea-review-host = primary and every review-* role as subagent, and rejects one-shot opencode run, direct reviewer --agent selection, alternate config sources and implementation-profile selection.
+
+This does not promote any review-* role to primary and does not add an Atenea review controller. OpenCode Tasks remain the reviewer transport inside the primary lifecycle host. The guard exists because OpenCode's one-shot CLI can accept a subagent as --agent and fall back to its primary agent instead of preserving the requested reviewer role; C-080 therefore treats direct reviewer one-shot invocation as an invalid transport, not a recoverable review attempt.
+
+The corresponding deterministic checker is tools/check-opencode-review-transport.mjs. Qualification must cover both the negative guard (run --agent review-* rejected before provider launch) and the positive fresh-serve → atenea-review-host → reviewer Task → capture → acknowledge/burn path.
 
 ## 7. Supervisor routing addendum — DeepSeek V4 Flash default
 

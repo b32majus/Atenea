@@ -81,6 +81,8 @@ OPENCODE_CONFIG_CONTENT="$(node <ATENEA>/tools/render-opencode-routing-overlay.m
 
 An OpenCode Build V1 fallback implementation host additionally passes `--implementation <production-volume|complex>` to select the fallback writer model. Prefer setting the environment only on the child process rather than exporting it in a long-lived shared shell. Do not log the rendered config under shell tracing. Do not use `tools/apply-opencode-routing-profile.mjs` for train routing and do not modify `~/.config/opencode/opencode.json` while trains are active.
 
+For review collection, `tools/launch-opencode-review-host.mjs` is the only qualified host launcher. It is serve-only and fail-closed: it requires the rendered per-process config, enforces `atenea-review-host` as primary and `review-*` as subagents, and rejects one-shot `opencode run`, direct reviewer `--agent` selection, alternate config sources and implementation-profile flags.
+
 Reviewer routes (ONE assurance profile, independent of the implementation profile): readability/reliability/resilience/validator → GPT-6 Luna high; risk → GLM 5.3 Flash high; refuter → conditional provider-issued. DeepSeek V4 holds no reviewer role and no review role uses Luna xhigh.
 
 Preserve exact lineage/revision/target after START and follow provider-issued transitions literally.

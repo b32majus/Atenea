@@ -44,6 +44,8 @@ for (const route of Object.values(assurance.roles || {})) {
   current.model = route.model;
   if (route.variant) current.variant = route.variant;
   else delete current.variant;
+  if (route.mode) current.mode = route.mode;
+  else delete current.mode;
   agents[route.agent] = current;
 }
 
