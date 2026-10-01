@@ -68,7 +68,7 @@ Composition remains signal-driven (`docs/WORK_UNIT_COMPOSITION_POLICY_V1.md`): o
 
 Review approval is not push/PR/merge/deploy authority. Material product/scope/acceptance/oracle/publication changes remain HUMAN STOP.
 
-## 7. Review transport enforcement addendum — serve-only launcher
+## Review transport enforcement addendum — serve-only launcher
 
 The C-080 review topology is unchanged, but its operational seam is now fail-closed at the qualified launch surface. The review-host launcher is the only current review-host entry. It requires the per-process rendered assurance config, enforces atenea-review-host = primary and every review-* role as subagent, and rejects one-shot opencode run, direct reviewer --agent selection, alternate config sources and implementation-profile selection.
 
@@ -76,7 +76,7 @@ This does not promote any review-* role to primary and does not add an Atenea re
 
 The corresponding deterministic checker is tools/check-opencode-review-transport.mjs. Qualification must cover both the negative guard (run --agent review-* rejected before provider launch) and the positive fresh-serve → atenea-review-host → reviewer Task → capture → acknowledge/burn path.
 
-## 8. Supervisor routing addendum — DeepSeek V4 Flash default
+## 7. Supervisor routing addendum — DeepSeek V4 Flash default
 
 The prepared supervisor remains a thin clean Pi + Herdr control-plane role, but its default model is now explicit:
 
