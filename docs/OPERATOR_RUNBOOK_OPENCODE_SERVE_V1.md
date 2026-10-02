@@ -37,13 +37,15 @@ For each ticket:
 Do not insert `gentle-orchestrator` beneath the Atenea supervisor.
 ## 4. Native review lifecycle
 
+After a Gentle AI upgrade, reconcile the managed OpenCode V1 assets explicitly with `gentle-ai sync --agent opencode` before qualification. Do not assume a generic `gentle-ai sync` includes OpenCode: the registered-agent inventory may contain only Pi. This is upgrade/maintenance work, not a per-train step.
+
 After deterministic checks, follow Gentle's current native STATUS/START/consent/capture/correction/acknowledge transitions exactly.
 
 If explicit train authority covers exact candidate-scoped consent, the supervisor may relay that exact provider choice. Otherwise stop for the human choice. The supervisor never broadens target/scope, chooses reviewer verdicts or manufactures review timing.
 
-When collection is required, start a fresh bounded serve host/session for the provider-issued review continuation. Reviewer Tasks use the managed OpenCode review transport. Successful `acknowledge-approved` with burned authority is terminal; do not add a redundant post-burn STATUS ceremony.
+When collection is required, start a fresh bounded OpenCode V1 serve process for the provider-issued review continuation. Launch it only through `tools/launch-opencode-review-host.mjs`; raw `opencode run --agent review-*` and any primary `--agent` selection are invalid transports.
 
-Launch that review host only through `tools/launch-opencode-review-host.mjs`; raw `opencode run --agent review-*` is not an alternative transport and is rejected by the launcher guard.
+For each exact `provider_task`, invoke `tools/dispatch-opencode-review-task.mjs --server <loopback-url> --cwd <repo>` with that JSON on stdin. The dispatcher creates one ephemeral session, submits one native `SubtaskPartInput` through `prompt_async`, waits only for that Task to complete, and aborts the default OpenCode parent before it can continue. Then re-enter through Gentle's exact STATUS. Any dispatcher/plugin/task failure is HUMAN STOP with no retry. Successful `acknowledge-approved` with burned authority is terminal; do not add a redundant post-burn STATUS ceremony.
 
 ## 5. Checkpoint and next ticket
 

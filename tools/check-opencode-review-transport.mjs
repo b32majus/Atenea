@@ -18,13 +18,30 @@ const rendered = spawnSync(
 assert.equal(rendered.status, 0, rendered.stderr);
 const overlay = JSON.parse(rendered.stdout);
 
+const dispatcher = await readFile(path.join(root, "tools/dispatch-opencode-review-task.mjs"), "utf8");
+assert.equal(overlay.agent?.["atenea-review-host"], undefined, "C-081 forbids the old lifecycle primary");
+assert.equal(overlay.agent?.["atenea-review-relay"], undefined, "C-081 forbids a relay primary");
+const stalePrimary = structuredClone(overlay);
+stalePrimary.agent["atenea-review-host"] = { mode: "primary", model: "nan/mimo-v2.6-flash" };
+assert.throws(
+  () => validateReviewHostInvocation({ command: ["serve"], config: stalePrimary, assurance }),
+  /must not contain legacy primary atenea-review-host/,
+);
+assert.match(dispatcher, /prompt_async/, "dispatcher must use asynchronous native subtask dispatch");
+assert.match(dispatcher, /type:'subtask'/, "dispatcher must submit a SubtaskPartInput");
+assert.doesNotMatch(dispatcher, /gentle-ai review/, "dispatcher must not own Gentle lifecycle commands");
+assert.match(dispatcher, /atenea\.review-task-dispatch-result\/v1/, "dispatcher success/failure must share the task-dispatch schema");
+assert.doesNotMatch(dispatcher, /atenea\.review-relay-result\/v1/, "legacy relay result schema must not remain");
+assert.doesNotMatch(dispatcher, /dispatch-opencode-review-relay\.mjs/, "legacy relay executable name must not remain");
+assert.match(dispatcher, /parent_abort_failed/, "dispatcher must fail closed when parent abort fails");
+
 assert.deepEqual(
   validateReviewHostInvocation({
     command: ["serve", "--hostname", "127.0.0.1", "--port", "41234"],
     config: overlay,
     assurance,
   }),
-  { transport: "opencode-serve", lifecycle_host: "atenea-review-host", reviewer_mode: "subagent" },
+  { transport: "opencode-serve", dispatch: "direct-subtask-part", reviewer_mode: "subagent" },
 );assert.throws(
   () => validateReviewHostInvocation({
     command: ["run", "--agent", "review-reliability", "inspect"],
@@ -40,7 +57,7 @@ assert.throws(
     config: overlay,
     assurance,
   }),
-  /cannot be a primary CLI agent/,
+  /must not select a primary agent/,
 );
 
 assert.throws(
@@ -59,14 +76,7 @@ assert.throws(
     assurance,
   }),
   /alternate config source/,
-);const badHostMode = structuredClone(overlay);
-badHostMode.agent["atenea-review-host"].mode = "subagent";
-assert.throws(
-  () => validateReviewHostInvocation({ command: ["serve"], config: badHostMode, assurance }),
-  /atenea-review-host mode must be primary/,
-);
-
-const badReviewerMode = structuredClone(overlay);
+);const badReviewerMode = structuredClone(overlay);
 badReviewerMode.agent["review-reliability"].mode = "primary";
 assert.throws(
   () => validateReviewHostInvocation({ command: ["serve"], config: badReviewerMode, assurance }),

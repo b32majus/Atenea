@@ -5,15 +5,17 @@ Status: **CURRENT FRONT DOOR**
 ## Current authority — read this first
 
 ```text
-CURRENT_DECISION      = C-080
+CURRENT_DECISION      = C-081
 FIELD_BASE            = C-078/C-079 preserved as provenance
+ASSURANCE_BASE         = C-080 preserved; C-081 replaces only its review-dispatch seam
 BASE_TOPOLOGY         = C-077 preserved
 prepared supervisor   = Pi + Herdr → DeepSeek V4 Flash (`nan/deepseek-v4-flash`)
 prepared worker       = ONE plain Pi child (`pi --no-extensions`)
 default profile       = production-volume → DeepSeek V4 Flash (implementation worker only)
 complex profile       = complex → GLM 5.3 Flash high (implementation worker only)
 review owner          = Gentle AI
-review transport      = OpenCode V1 only when collection is due
+review transport      = OpenCode V1 serve + deterministic direct-subtask dispatch only when collection is due
+review primary        = NONE; provider tasks dispatch directly to review-* subagents
 review profiles       = ONE assurance profile, independent of implementation profile
 lens depth            = native Gentle: 0 / 1 / 4, never Atenea-selected
 reviewer failure      = typed technical failure → HUMAN STOP (no automatic recovery)
@@ -25,13 +27,14 @@ If a ticket/train is already shaped and executable, **do not route it through OD
 
 Canonical current documents:
 
-- `docs/CURRENT_EXECUTION_DECISION_C080.md`;
+- `docs/CURRENT_EXECUTION_DECISION_C081.md`;
+- `docs/CURRENT_EXECUTION_DECISION_C080.md` (assurance/base provenance);
 - `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`;
 - `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`;
-- `docs/PREPARED_TRAIN_HANDOFF_C080.md`;
+- `docs/PREPARED_TRAIN_HANDOFF_C081.md`;
 - `docs/EXECUTION_EFFICIENCY_LEDGER_V1.md`.
 
-C-077/C-078/C-079 decision docs remain preserved provenance; they no longer define current operation.
+C-077/C-078/C-079 remain preserved provenance. C-080 remains the assurance/base decision, but its primary review-host seam is superseded by C-081.
 
 ## 1. Minimal preflight
 
@@ -101,7 +104,7 @@ An OpenCode Build V1 fallback implementation host additionally passes `--impleme
 
 Reviewer routes (ONE assurance profile): readability/reliability/resilience/validator → GPT-6 Luna high; risk → GLM 5.3 Flash high; refuter → conditional provider-issued. DeepSeek V4 holds no reviewer role and no review role uses Luna xhigh.
 
-The review host must be launched through `tools/launch-opencode-review-host.mjs`. That deterministic guard requires the rendered per-process config, enforces `atenea-review-host = primary` and `review-* = subagent`, and rejects `opencode run`, direct reviewer `--agent` selection, alternate config sources and implementation-profile selection. Do not invoke raw `opencode run --agent review-*` as a review transport.
+Launch the bounded OpenCode V1 serve process only through `tools/launch-opencode-review-host.mjs`. The guard requires the rendered per-process config, requires every `review-*` role to remain a subagent, and rejects `opencode run`, any host `--agent` selection, alternate config sources and implementation-profile selection. For each provider-issued collection slot, pipe the exact `provider_task` JSON to `tools/dispatch-opencode-review-task.mjs`; it uses OpenCode `prompt_async` + `SubtaskPartInput`, waits for the single Task to reach `completed`, then aborts the default parent before it can perform lifecycle/exploration work.
 
 ## 6. Technical reviewer failure → HUMAN STOP
 

@@ -2,15 +2,10 @@
   "schema": "atenea.opencode-assurance-profile/v1",
   "name": "assurance",
   "status": "current-single",
-  "qualified_at": "2026-09-29",
-  "purpose": "The ONE Atenea assurance routing profile. Reviewer routes are independent of the prepared implementation profile; Gentle alone selects review depth and lens slots. DeepSeek V4 holds no reviewer role and no review-* role uses Luna xhigh.",
-  "decision": "docs/CURRENT_EXECUTION_DECISION_C080.md",
+  "qualified_at": "2026-10-02",
+  "purpose": "The ONE Atenea assurance routing profile. Reviewer routes are independent of the prepared implementation profile; Gentle alone selects review depth and lens slots. OpenCode V1 receives provider-issued review tasks through deterministic direct subtask dispatch; no lifecycle or relay LLM owns review transitions.",
+  "decision": "docs/CURRENT_EXECUTION_DECISION_C081.md",
   "roles": {
-    "lifecycle-host": {
-      "agent": "atenea-review-host",
-      "model": "nan/mimo-v2.6-flash",
-      "mode": "primary"
-    },
     "review-readability": {
       "agent": "review-readability",
       "model": "openai/gpt-6-luna",
@@ -62,5 +57,5 @@
       "variant": "high"
     }
   },
-  "notes": "jd-* roles serve explicit-only Judgment Day sessions, not the Gentle review-lens surface. review-refuter is executed only when native Gentle requires adversarial refutation."
+  "notes": "jd-* roles serve explicit-only Judgment Day sessions, not the Gentle review-lens surface. review-refuter is executed only when native Gentle requires adversarial refutation. Review transport uses direct OpenCode subtask parts; there is no primary review relay agent."
 }
