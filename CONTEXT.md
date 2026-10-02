@@ -29,9 +29,10 @@ The supervisor owns train frontier and transport orchestration only. Its model i
 
 ## Current field hardening
 
-C-080 (subtraction, with the 2026-09-30 supervisor-routing addendum) preserves the C-077 topology and the durable C-078/C-079 lessons, then removes superseded machinery while keeping routing roles explicit:
+C-082 is the current control-plane boundary. It preserves C-081 deterministic review dispatch and C-080's C-077 topology / durable C-078/C-079 routing lessons while removing duplicate supervisor engineering:
 
-- DeepSeek V4 Flash is the default thin supervisor model;
+- DeepSeek V4 Flash is the default thin supervisor model; one ticket boundary gets one minimal preflight;
+- workers own deterministic verification and candidate-bound PASS evidence crosses the mechanical handoff without supervisor reruns;
 - production-volume / complex select the implementation worker only;
 - ONE assurance profile for reviewer routing, independent of the implementation profile;
 - DeepSeek V4 holds no reviewer role; no review role uses Luna xhigh;
@@ -41,4 +42,4 @@ C-080 (subtraction, with the 2026-09-30 supervisor-routing addendum) preserves t
 - no automatic supervisor escalation to GLM;
 - per-process OpenCode routing and zero-call telemetry preserved.
 
-Current authority: `docs/CURRENT_EXECUTION_DECISION_C080.md`.
+Current authority: `docs/CURRENT_EXECUTION_DECISION_C082.md`; C-081 review dispatch and C-080 assurance remain preserved bases.

@@ -1,6 +1,6 @@
 # Prepared train handoff — C-081
 
-Status: **CURRENT**
+Status: **SUPERSEDED BY C-082 — PRESERVED PROVENANCE**
 Decision: `docs/CURRENT_EXECUTION_DECISION_C081.md`
 
 Use this handoff only for already-shaped, executable work. Do not reopen ODD.

@@ -15,9 +15,10 @@ const forbid = (r, t, l) => { const b = read(r); if (b.includes(t)) failures.pus
 
 const current = [
   'README.md', 'AGENTS.md', 'CONTEXT.md', 'docs/START_HERE.md',
+  'docs/CURRENT_EXECUTION_DECISION_C082.md', 'docs/CURRENT_EXECUTION_DECISION_C081.md',
   'docs/CURRENT_EXECUTION_DECISION_C080.md',
   'docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md', 'docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md',
-  'docs/PREPARED_TRAIN_HANDOFF_C080.md', 'docs/EXECUTION_EFFICIENCY_LEDGER_V1.md',
+  'docs/PREPARED_TRAIN_HANDOFF_C082.md', 'docs/EXECUTION_EFFICIENCY_LEDGER_V1.md',
   'docs/vnext/CURRENT_COMPATIBILITY.md', 'config/native-gentle/prepared-routing-policy.json',
   'config/native-gentle/prepared-production-volume.profile.json', 'config/native-gentle/prepared-complex.profile.json',
   'config/native-gentle/opencode-routing-policy.json', 'config/native-gentle/opencode-assurance.profile.json'
@@ -25,29 +26,36 @@ const current = [
 for (const r of current) read(r);
 
 // ONE current decision and ONE assurance profile.
-req('docs/START_HERE.md', 'CURRENT_DECISION      = C-080', 'C-080 front door');
+req('docs/START_HERE.md', 'CURRENT_DECISION      = C-082', 'C-082 front door');
 req('docs/START_HERE.md', 'lens depth            = native Gentle: 0 / 1 / 4', 'adaptive lens depth');
 req('docs/START_HERE.md', 'review profiles       = ONE assurance profile', 'single assurance profile');
 req('docs/START_HERE.md', 'reviewer failure      = typed technical failure → HUMAN STOP (no automatic recovery)', 'fail-closed reviewer failure');
+req('docs/CURRENT_EXECUTION_DECISION_C082.md', 'The supervisor is **control plane**, not a second engineer.', 'C-082 control-plane ownership');
+req('docs/CURRENT_EXECUTION_DECISION_C082.md', 'Evidence crosses the boundary; engineering work does not.', 'C-082 evidence handoff');
+req('docs/CURRENT_EXECUTION_DECISION_C082.md', 'Preflight runs exactly once when entering an authorized ticket/work unit.', 'C-082 one-preflight rule');
+req('AGENTS.md', 'one minimal preflight per ticket/work-unit authority boundary', 'repository one-preflight rule');
 req('docs/CURRENT_EXECUTION_DECISION_C080.md', 'ONE assurance profile', 'single assurance profile decision');
 req('docs/CURRENT_EXECUTION_DECISION_C080.md', 'HUMAN STOP', 'technical failure stop');
 req('docs/CURRENT_EXECUTION_DECISION_C080.md', 'DeepSeek V4 holds **zero** reviewer roles', 'V4 removed from review roles');
-req('README.md', 'Current authority: **C-080**', 'README current authority');
-req('docs/vnext/CURRENT_COMPATIBILITY.md', 'current decision    C-080', 'compatibility current decision');
-req('docs/CURRENT_DECISIONS.md', 'C-080 is the current execution decision', 'decision ledger current decision');
+req('README.md', 'Current authority: **C-082**', 'README current authority');
+req('docs/vnext/CURRENT_COMPATIBILITY.md', 'current decision    C-082', 'compatibility current decision');
+req('docs/CURRENT_DECISIONS.md', 'C-082 is the current execution decision', 'decision ledger current decision');
 
 // C-080 supervisor-routing addendum: supervisor stays V4 regardless of child profile.
 req('docs/START_HERE.md', 'prepared supervisor   = Pi + Herdr → DeepSeek V4 Flash (`nan/deepseek-v4-flash`)', 'V4 supervisor default');
 req('docs/CURRENT_EXECUTION_DECISION_C080.md', '## 7. Supervisor routing addendum — DeepSeek V4 Flash default', 'supervisor-routing addendum');
 req('docs/CURRENT_EXECUTION_DECISION_C080.md', 'There is no automatic supervisor escalation to GLM', 'no automatic supervisor GLM escalation');
 req('docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md', 'pi --no-extensions --model nan/deepseek-v4-flash', 'supervisor launch route');
-req('docs/PREPARED_TRAIN_HANDOFF_C080.md', 'supervisor: clean `pi --no-extensions --model nan/deepseek-v4-flash` + Herdr;', 'handoff supervisor route');
+req('docs/PREPARED_TRAIN_HANDOFF_C082.md', 'Supervisor route remains clean `pi --no-extensions --model nan/deepseek-v4-flash` + Herdr.', 'handoff supervisor route');
 req('docs/vnext/CURRENT_COMPATIBILITY.md', 'prepared supervisor Pi + Herdr → nan/deepseek-v4-flash', 'compatibility supervisor route');
 req('README.md', 'Pi supervisor + Herdr → DeepSeek V4 Flash', 'README supervisor route');
 req('docs/EXECUTION_EFFICIENCY_LEDGER_V1.md', 'SUPERVISOR (Pi)', 'supervisor telemetry');
 req('docs/EXECUTION_EFFICIENCY_LEDGER_V1.md', 'implementation profile changing the supervisor model => C-080 supervisor-routing violation;', 'supervisor/profile independence telemetry check');
 
 // Superseded provenance must be marked, not silently current.
+req('docs/CURRENT_EXECUTION_DECISION_C081.md', 'SUPERSEDED BY C-082', 'C-081 supersession marker');
+req('docs/PREPARED_TRAIN_HANDOFF_C081.md', 'SUPERSEDED BY C-082', 'C-081 handoff supersession marker');
+req('docs/CURRENT_EXECUTION_DECISION_C080.md', 'SUPERSEDED AS CURRENT FRONT DOOR', 'C-080 front-door supersession marker');
 req('docs/CURRENT_EXECUTION_DECISION_C079.md', 'Status: **SUPERSEDED BY C-080 — PRESERVED PROVENANCE**', 'C-079 supersession marker');
 req('docs/CURRENT_EXECUTION_DECISION_C078.md', 'SUPERSEDED', 'C-078 supersession marker');
 req('docs/PREPARED_TRAIN_HANDOFF_C079.md', 'Status: **SUPERSEDED BY C-080**', 'C-079 handoff supersession marker');
@@ -95,10 +103,10 @@ for (const r of ['README.md', 'docs/START_HERE.md', 'docs/OPERATOR_RUNBOOK_PREPA
 // Review host must not ask for an implementation profile.
 forbid('docs/START_HERE.md', 'render-opencode-routing-overlay.mjs <profile>', 'review-time profile selection');
 forbid('docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md', 'render-opencode-routing-overlay.mjs <profile>', 'review-time profile selection');
-forbid('docs/PREPARED_TRAIN_HANDOFF_C080.md', 'render-opencode-routing-overlay.mjs <profile>', 'review-time profile selection');
+forbid('docs/PREPARED_TRAIN_HANDOFF_C082.md', 'render-opencode-routing-overlay.mjs <profile>', 'review-time profile selection');
 forbid('docs/START_HERE.md', '--resilience-recovery-luna', 'legacy free-form resilience recovery');
 forbid('docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md', '--resilience-recovery-luna', 'legacy free-form resilience recovery');
-forbid('docs/PREPARED_TRAIN_HANDOFF_C080.md', '--resilience-recovery-luna', 'legacy free-form resilience recovery');
+forbid('docs/PREPARED_TRAIN_HANDOFF_C082.md', '--resilience-recovery-luna', 'legacy free-form resilience recovery');
 forbid('docs/CURRENT_EXECUTION_DECISION_C077.md', '→ four RDD lenses /', 'stale always-four-lenses topology');
 forbid('AGENTS.md', 'C-079 recovery permit', 'stale recovery permit authority');
 req('AGENTS.md', 'Never mutate `~/.config/opencode/opencode.json` as train routing state.', 'global config race guard');

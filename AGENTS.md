@@ -55,14 +55,14 @@ Read:
 
 1. `README.md`;
 2. `docs/START_HERE.md`;
-3. `docs/CURRENT_EXECUTION_DECISION_C080.md`;
-4. `docs/CURRENT_EXECUTION_DECISION_C079.md`, C-078 and C-077 for provenance of what C-080 removed;
+3. `docs/CURRENT_EXECUTION_DECISION_C082.md`;
+4. `docs/CURRENT_EXECUTION_DECISION_C081.md` and C-080 for preserved review/assurance provenance;
 5. `CODING_STANDARDS.md`;
-6. relevant decision provenance only when needed;
+6. relevant earlier decision provenance only when needed;
 7. the accepted issue/work-order/spec being executed.
 
 Current operation: `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`.
-Current handoff: `docs/PREPARED_TRAIN_HANDOFF_C080.md`.
+Current handoff: `docs/PREPARED_TRAIN_HANDOFF_C082.md`.
 Prepared routing: `config/native-gentle/prepared-routing-policy.json`.
 Assurance routing: `config/native-gentle/opencode-assurance.profile.json`.
 Runtime exceptions: `docs/vnext/CURRENT_COMPATIBILITY.md`.
@@ -110,9 +110,11 @@ Project skills own domain/engineering/UI/QA guidance. Atenea owns execution rout
 
 ## 8. Supervisor boundary
 
-The supervisor owns only authorized frontier, profile selection at clean boundaries, launch/observation of one Pi implementation worker, already-authorized procedural relay, durable checkpoints and next-or-STOP.
+The supervisor is control plane only: authorized frontier, **one minimal preflight per ticket/work-unit authority boundary**, profile selection at that boundary, launch/observation of the responsible worker, mechanical evidence handoff, already-authorized procedural relay, Gentle lifecycle transport, durable checkpoints and next-or-STOP. Phase changes inside the same ticket — worker launch, ASSESS, review collection, reviewer return or provider-issued correction — do **not** reopen preflight.
 
-Material product/scope/acceptance/oracle/publication changes are HUMAN STOP.
+Workers own engineering and required deterministic verification. Their candidate-bound PASS evidence crosses the handoff. After worker FINAL the supervisor must not inspect code/diff semantically, rerun tests/typecheck/build/E2E, add independent QA/challenge, broaden checks, or edit code. It may establish only mechanical candidate/base/worktree/evidence facts needed for the next transition.
+
+Material product/scope/acceptance/oracle/publication changes are HUMAN STOP. Missing or failed required evidence is not permission for supervisor re-verification.
 
 ## 9. Implementation fallback
 

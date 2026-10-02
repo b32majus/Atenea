@@ -1,0 +1,12 @@
+{"type":"preflight","scope":"ticket"}
+{"type":"profile_selected","profile":"complex"}
+{"type":"worker_launch","worker":"implementation"}
+{"type":"worker_final","candidate_sha":"b4cfe9d","check_command":"worker-owned verification suite","check_status":"pass","worktree_status":"clean"}
+{"type":"mechanical_handoff","candidate_exists":true,"head_matches":true,"base_ancestor":true,"worktree_ok":true,"check_evidence_present":true}
+{"type":"supervisor_diff_read","detail":"manual diff review after worker completion"}
+{"type":"supervisor_check_run","detail":"pnpm -r typecheck/test/build"}
+{"type":"supervisor_check_run","detail":"full Playwright"}
+{"type":"supervisor_check_run","detail":"full Playwright under alternate timezone"}
+{"type":"supervisor_check_run","detail":"focused E2E groups"}
+{"type":"supervisor_challenge","detail":"additional independent assurance after worker evidence"}
+{"type":"gentle_assess","risk":"medium","review_due":true}

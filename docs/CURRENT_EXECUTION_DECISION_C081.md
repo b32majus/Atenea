@@ -1,6 +1,6 @@
 # C-081 — Prepared execution keeps C-080, review dispatch becomes deterministic
 
-Status: **CURRENT**
+Status: **SUPERSEDED BY C-082 — PRESERVED REVIEW-DISPATCH AUTHORITY**
 Date: **2026-10-02**
 
 C-081 is a narrow successor to C-080. It does **not** reopen the prepared-ticket front door, implementation routing, Gentle ownership, adaptive 0/1/4 review depth, reviewer models, publication boundary, or HUMAN STOP policy.
