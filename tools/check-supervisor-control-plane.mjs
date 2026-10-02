@@ -21,8 +21,9 @@ const launches = indexes('worker_launch');
 const finals = indexes('worker_final');
 
 if (preflights.length !== 1) failures.push(`preflight_count=${preflights.length}; expected exactly 1`);
-if (launches.length !== 1) failures.push(`worker_launch_count=${launches.length}; expected exactly 1`);
-if (finals.length !== 1) failures.push(`worker_final_count=${finals.length}; expected exactly 1`);
+if (launches.length < 1) failures.push('worker_launch_count=0; expected at least 1');
+if (finals.length < 1) failures.push('worker_final_count=0; expected at least 1');
+if (launches.length !== finals.length) failures.push(`worker launch/final mismatch: launches=${launches.length}, finals=${finals.length}`);
 if (preflights[0] != null && launches[0] != null && preflights[0] > launches[0]) failures.push('preflight must precede worker launch');
 
 const postFinalForbidden = new Set([
@@ -34,21 +35,36 @@ const postFinalForbidden = new Set([
   'supervisor_code_change',
 ]);
 
-if (finals.length === 1) {
-  for (let i = finals[0] + 1; i < events.length; i += 1) {
+for (const finalIndex of finals) {
+  for (let i = finalIndex + 1; i < events.length; i += 1) {
+    if (events[i].type === 'worker_launch') break;
     if (events[i].type === 'preflight') failures.push(`preflight repeated after worker handoff at event ${i + 1}`);
     if (postFinalForbidden.has(events[i].type)) failures.push(`post-handoff engineering forbidden: ${events[i].type} at event ${i + 1}`);
   }
-  const report = events[finals[0]];
-  if (report.check_status !== 'pass') failures.push(`worker check evidence is not PASS: ${report.check_status ?? '<missing>'}`);
+  const report = events[finalIndex];
+  if (report.check_status !== 'pass') failures.push(`worker check evidence is not PASS at event ${finalIndex + 1}: ${report.check_status ?? '<missing>'}`);
 }
 
-const handoffs = events.filter(e => e.type === 'mechanical_handoff');
-if (handoffs.length !== 1) failures.push(`mechanical_handoff_count=${handoffs.length}; expected exactly 1`);
-else {
-  const h = handoffs[0];
+const handoffIndexes = indexes('mechanical_handoff');
+if (handoffIndexes.length !== finals.length) failures.push(`mechanical handoff/final mismatch: handoffs=${handoffIndexes.length}, finals=${finals.length}`);
+for (let i = 0; i < Math.min(handoffIndexes.length, finals.length); i += 1) {
+  if (handoffIndexes[i] < finals[i]) failures.push(`mechanical handoff ${i + 1} must follow worker FINAL ${i + 1}`);
+  const h = events[handoffIndexes[i]];
   for (const key of ['candidate_exists','head_matches','base_ancestor','worktree_ok','check_evidence_present']) {
-    if (h[key] !== true) failures.push(`mechanical handoff ${key} must be true`);
+    if (h[key] !== true) failures.push(`mechanical handoff ${i + 1} ${key} must be true`);
+  }
+}
+
+const correctionAuth = indexes('provider_correction_authorized');
+if (launches.length > 1) {
+  if (correctionAuth.length !== launches.length - 1) failures.push(`correction authorization count=${correctionAuth.length}; expected ${launches.length - 1}`);
+  for (let i = 1; i < launches.length; i += 1) {
+    const authIndex = correctionAuth[i - 1];
+    const launch = events[launches[i]];
+    if (launch.worker !== 'correction') failures.push(`worker launch ${i + 1} must be a correction worker`);
+    if (authIndex == null || authIndex > launches[i]) failures.push(`correction worker launch ${i + 1} lacks prior provider_correction_authorized`);
+    if (handoffIndexes[i - 1] != null && launches[i] < handoffIndexes[i - 1]) failures.push(`correction worker launch ${i + 1} must follow prior mechanical handoff`);
+    if (handoffIndexes[i - 1] != null && authIndex != null && authIndex < handoffIndexes[i - 1]) failures.push(`correction authorization ${i} must follow prior mechanical handoff`);
   }
 }
 
@@ -72,6 +88,7 @@ process.stdout.write(JSON.stringify({
   preflight_count: preflights.length,
   worker_launch_count: launches.length,
   worker_final_count: finals.length,
+  mechanical_handoff_count: handoffIndexes.length,
   gentle_assess_count: assess.length,
   event_count: events.length,
 }, null, 2) + '\n');

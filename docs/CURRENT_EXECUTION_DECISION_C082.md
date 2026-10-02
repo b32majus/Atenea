@@ -48,6 +48,6 @@ Technical reviewer failure remains HUMAN STOP. Review approval remains evidence,
 
 ## Qualification status
 
-The deterministic control-plane oracle passes a clean one-preflight flow and rejects both repeated-preflight flow and the real Symphonia over-verification pattern (post-worker diff inspection + duplicate typecheck/test/build/E2E + independent challenge).
+The deterministic control-plane oracle passes both a clean one-worker flow and a provider-authorized correction continuation with a second worker/handoff but no second preflight. It rejects both repeated-preflight flow and the real Symphonia over-verification pattern (post-worker diff inspection + duplicate typecheck/test/build/E2E + independent challenge).
 
 The live native-Pi supervisor canary is **PASS** on 2026-10-02. It ran `pi --no-extensions` on `nan/deepseek-v4-flash` through Pi's native RPC I/O mode only (no Gentle Shell/ODD). One ticket boundary produced one preflight phase, one worker launch, one worker-owned checker execution, one mechanical handoff and one Gentle ASSESS. After WORKER_FINAL the only supervisor tool action was ASSESS: no source/diff inspection, check rerun, independent QA/challenge or second preflight. Gentle returned `review_due=false (under_budget)` and the supervisor stopped without review collection or publication.
