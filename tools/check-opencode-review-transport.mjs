@@ -24,6 +24,9 @@ assert.equal(overlay.agent?.["atenea-review-relay"], undefined, "C-081 forbids a
 assert.match(dispatcher, /prompt_async/, "dispatcher must use asynchronous native subtask dispatch");
 assert.match(dispatcher, /type:'subtask'/, "dispatcher must submit a SubtaskPartInput");
 assert.doesNotMatch(dispatcher, /gentle-ai review/, "dispatcher must not own Gentle lifecycle commands");
+assert.match(dispatcher, /atenea\.review-task-dispatch-result\/v1/, "dispatcher success/failure must share the task-dispatch schema");
+assert.doesNotMatch(dispatcher, /atenea\.review-relay-result\/v1/, "legacy relay result schema must not remain");
+assert.doesNotMatch(dispatcher, /dispatch-opencode-review-relay\.mjs/, "legacy relay executable name must not remain");
 
 assert.deepEqual(
   validateReviewHostInvocation({

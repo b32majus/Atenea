@@ -22,7 +22,7 @@ function parseArgs(argv) {
     if (t==='--timeout-ms') { const n=Number(argv[++i]); if (!Number.isInteger(n)||n<1000) throw new Error('invalid --timeout-ms'); out.timeoutMs=n; continue; }
     throw new Error(`unknown argument: ${t}`);
   }
-  if (!out.server||!out.cwd) throw new Error('usage: dispatch-opencode-review-relay.mjs --server <loopback-url> --cwd <repo> [--timeout-ms N]');
+  if (!out.server||!out.cwd) throw new Error('usage: dispatch-opencode-review-task.mjs --server <loopback-url> --cwd <repo> [--timeout-ms N]');
   out.timeoutMs ??= DEFAULT_TIMEOUT_MS;
   return out;
 }
@@ -75,7 +75,7 @@ try {
       if (state.status==='error') throw new Error(`review task failed: ${state.error?.message ?? state.error ?? 'task error'}`);
       if (state.status==='completed') {
         await abort();
-        process.stdout.write(JSON.stringify({schema:'atenea.review-relay-result/v1',status:'completed',review_agent:task.agent,session_id:sessionID,dispatch:'direct-subtask-part',task_calls:1,next_action:'query_gentle_status'})+'\n');
+        process.stdout.write(JSON.stringify({schema:'atenea.review-task-dispatch-result/v1',status:'completed',review_agent:task.agent,session_id:sessionID,dispatch:'direct-subtask-part',task_calls:1,next_action:'query_gentle_status'})+'\n');
         process.exit(0);
       }
     }
