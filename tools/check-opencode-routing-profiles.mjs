@@ -36,7 +36,6 @@ eq(assurance.name, 'assurance', 'assurance name');
 eq(assurance.status, 'current-single', 'assurance status');
 
 const expectedRoles = {
-  'lifecycle-host': { agent: 'atenea-review-host', model: 'nan/mimo-v2.6-flash', mode: 'primary' },
   'review-readability': { agent: 'review-readability', model: 'openai/gpt-6-luna', variant: 'high', mode: 'subagent' },
   'review-reliability': { agent: 'review-reliability', model: 'openai/gpt-6-luna', variant: 'high', mode: 'subagent' },
   'review-resilience': { agent: 'review-resilience', model: 'openai/gpt-6-luna', variant: 'high', mode: 'subagent' },
@@ -85,7 +84,7 @@ const jsonOut = (result, label) => {
   try { return JSON.parse(result.stdout); } catch { failures.push(`${label} did not return JSON`); return null; }
 };
 const reviewRoles = (overlay) => Object.fromEntries(
-  Object.entries(overlay?.agent || {}).filter(([agent]) => agent.startsWith('review-') || agent === 'atenea-review-host')
+  Object.entries(overlay?.agent || {}).filter(([agent]) => agent.startsWith('review-'))
 );
 const overlayDefault = jsonOut(run([]), 'default renderer');
 const overlayComplex = jsonOut(run(['--implementation', 'complex']), 'complex renderer');
