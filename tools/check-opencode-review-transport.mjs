@@ -27,6 +27,7 @@ assert.doesNotMatch(dispatcher, /gentle-ai review/, "dispatcher must not own Gen
 assert.match(dispatcher, /atenea\.review-task-dispatch-result\/v1/, "dispatcher success/failure must share the task-dispatch schema");
 assert.doesNotMatch(dispatcher, /atenea\.review-relay-result\/v1/, "legacy relay result schema must not remain");
 assert.doesNotMatch(dispatcher, /dispatch-opencode-review-relay\.mjs/, "legacy relay executable name must not remain");
+assert.match(dispatcher, /parent_abort_failed/, "dispatcher must fail closed when parent abort fails");
 
 assert.deepEqual(
   validateReviewHostInvocation({

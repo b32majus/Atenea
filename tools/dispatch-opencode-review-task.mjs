@@ -49,7 +49,13 @@ try {
 } catch(e) { fail('invalid_provider_task',e.message); process.exit(); }
 const endpoint=(path)=>{ const u=new URL(path,server); u.searchParams.set('directory',args.cwd); return u; };
 let sessionID;
-async function abort(){ if (!sessionID) return; try { await request(endpoint(`/session/${sessionID}/abort`),{method:'POST'},[200]); } catch {} }
+let abortAttempted=false;
+async function abortOnce(){
+  if (!sessionID || abortAttempted) return;
+  abortAttempted=true;
+  try { await request(endpoint(`/session/${sessionID}/abort`),{method:'POST'},[200]); }
+  catch(e) { throw new Error(`parent abort failed: ${e?.message ?? e}`); }
+}
 try {
   const session=await request(endpoint('/session'), {
     method:'POST', headers:{'content-type':'application/json'},
@@ -74,7 +80,7 @@ try {
       if (actual && actual!==task.agent) throw new Error(`review agent mismatch: expected ${task.agent}, got ${actual}`);
       if (state.status==='error') throw new Error(`review task failed: ${state.error?.message ?? state.error ?? 'task error'}`);
       if (state.status==='completed') {
-        await abort();
+        await abortOnce();
         process.stdout.write(JSON.stringify({schema:'atenea.review-task-dispatch-result/v1',status:'completed',review_agent:task.agent,session_id:sessionID,dispatch:'direct-subtask-part',task_calls:1,next_action:'query_gentle_status'})+'\n');
         process.exit(0);
       }
@@ -83,7 +89,14 @@ try {
   }
   throw new Error(`review task timeout after ${args.timeoutMs}ms`);
 } catch(e) {
-  await abort();
-  const reason=String(e?.message??e).includes('timeout') ? 'review_task_timeout' : 'review_task_failed';
-  fail(reason,e?.message??e,sessionID);
+  const original=String(e?.message??e);
+  if (!abortAttempted && sessionID) {
+    try { await abortOnce(); }
+    catch(abortError) {
+      fail('parent_abort_failed', `${original}; abort failed: ${abortError?.message ?? abortError}`, sessionID);
+      process.exit();
+    }
+  }
+  const reason=original.includes('timeout') ? 'review_task_timeout' : (original.includes('parent abort failed') ? 'parent_abort_failed' : 'review_task_failed');
+  fail(reason,original,sessionID);
 }
