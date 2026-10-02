@@ -15,6 +15,9 @@ export function validateReviewHostInvocation({ command, config, assurance }) {
   }
   const roles = assurance?.roles ?? {};
   if (roles["review-relay"] || roles["lifecycle-host"]) failures.push("assurance profile must not define a primary review relay/lifecycle host");
+  for (const forbidden of ["atenea-review-host", "atenea-review-relay"]) {
+    if (config?.agent?.[forbidden]) failures.push(`effective review config must not contain legacy primary ${forbidden}`);
+  }
   for (const [role, route] of Object.entries(roles)) {
     if (!role.startsWith(REVIEW_PREFIX)) continue;
     const effective = config?.agent?.[route.agent];

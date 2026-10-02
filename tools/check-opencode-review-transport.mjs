@@ -21,6 +21,12 @@ const overlay = JSON.parse(rendered.stdout);
 const dispatcher = await readFile(path.join(root, "tools/dispatch-opencode-review-task.mjs"), "utf8");
 assert.equal(overlay.agent?.["atenea-review-host"], undefined, "C-081 forbids the old lifecycle primary");
 assert.equal(overlay.agent?.["atenea-review-relay"], undefined, "C-081 forbids a relay primary");
+const stalePrimary = structuredClone(overlay);
+stalePrimary.agent["atenea-review-host"] = { mode: "primary", model: "nan/mimo-v2.6-flash" };
+assert.throws(
+  () => validateReviewHostInvocation({ command: ["serve"], config: stalePrimary, assurance }),
+  /must not contain legacy primary atenea-review-host/,
+);
 assert.match(dispatcher, /prompt_async/, "dispatcher must use asynchronous native subtask dispatch");
 assert.match(dispatcher, /type:'subtask'/, "dispatcher must submit a SubtaskPartInput");
 assert.doesNotMatch(dispatcher, /gentle-ai review/, "dispatcher must not own Gentle lifecycle commands");

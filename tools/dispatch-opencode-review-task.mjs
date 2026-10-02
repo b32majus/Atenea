@@ -6,6 +6,7 @@ const ALLOWED_REVIEW_AGENTS = new Set([
   'review-refuter', 'review-validator',
 ]);
 const DEFAULT_TIMEOUT_MS = 10 * 60 * 1000;
+const REQUEST_TIMEOUT_MS = 5000;
 
 function fail(reason, detail, sessionID) {
   const out = { schema: 'atenea.review-task-dispatch-result/v1', status: 'technical_failure', reason, next_action: 'human_stop' };
@@ -28,7 +29,7 @@ function parseArgs(argv) {
 }
 async function stdin() { let s=''; for await (const c of process.stdin) s+=c; return s; }
 async function request(url, init={}, expected=[200]) {
-  const r=await fetch(url,init); const text=await r.text();
+  const r=await fetch(url,{...init,signal:init.signal ?? AbortSignal.timeout(REQUEST_TIMEOUT_MS)}); const text=await r.text();
   if (!expected.includes(r.status)) throw new Error(`HTTP ${r.status}: ${text.slice(0,300)}`);
   return text ? JSON.parse(text) : null;
 }
