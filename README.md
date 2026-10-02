@@ -4,21 +4,23 @@ Atenea is an **upstream-first policy, configuration and conformance layer** for 
 
 ## Current prepared-ticket runtime
 
-Current authority: **C-080** (2026-09-29, supervisor-routing addendum 2026-09-30). C-080 preserves the C-077 Pi-first topology, collapses review routing to ONE assurance profile independent of the implementation profile, removes automatic reviewer recovery, and now makes DeepSeek V4 Flash the explicit default for the thin Pi supervisor.
+Current authority: **C-082** (2026-10-02). C-082 preserves C-081 deterministic review dispatch and C-080 routing/assurance, while narrowing the DeepSeek V4 Flash Pi supervisor to control-plane work only: one ticket-boundary preflight, worker launch, mechanical evidence handoff, Gentle lifecycle transport and checkpoint/STOP.
 
 ```text
 Pi supervisor + Herdr → DeepSeek V4 Flash
-→ select prepared implementation profile at a clean boundary
+→ ONE minimal preflight per authorized ticket/work-unit boundary
+→ select prepared implementation profile at that boundary
    - production-volume (default) → DeepSeek V4 Flash
    - complex → GLM 5.3 Flash high
 → ONE plain Pi ticket worker (`pi --no-extensions`)
 → repository authority + applicable project skills
-→ implementation + deterministic checks/oracles
-→ local candidate commit
-→ native Gentle ASSESS
+→ worker implementation + deterministic checks/oracles
+→ local candidate commit + structured worker evidence
+→ supervisor mechanical handoff; reuse candidate-bound PASS evidence
+→ native Gentle ASSESS (no new preflight)
 → if review_due=false: checkpoint; do not start a review host
 → if review_due=true: follow Gentle-selected 1 or 4 lens route exactly
-→ qualified OpenCode V1 transport only when Gentle requests collection
+→ deterministic C-081 OpenCode V1 direct-subtask transport only when Gentle requests collection
 → conditional refuter / bounded correction / validator
 → acknowledge-approved / burn
 → durable checkpoint
@@ -35,12 +37,13 @@ For a fresh agent or human, read in this order:
 
 1. `AGENTS.md`;
 2. `docs/START_HERE.md`;
-3. `docs/CURRENT_EXECUTION_DECISION_C080.md`;
-4. `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`;
-5. `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`;
-6. `docs/PREPARED_TRAIN_HANDOFF_C080.md`;
-7. `CODING_STANDARDS.md`;
-8. current product/task/ADR authority.
+3. `docs/CURRENT_EXECUTION_DECISION_C082.md`;
+4. `docs/CURRENT_EXECUTION_DECISION_C081.md` and C-080 for preserved review/assurance provenance;
+5. `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`;
+6. `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`;
+7. `docs/PREPARED_TRAIN_HANDOFF_C082.md`;
+8. `CODING_STANDARDS.md`;
+9. current product/task/ADR authority.
 
 Historical OpenCode-first, Gentle-Pi and ODD documents remain evidence for what they tested; they do not define current prepared-ticket execution.
 

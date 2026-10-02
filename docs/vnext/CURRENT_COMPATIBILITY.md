@@ -1,20 +1,21 @@
 # Atenea vNext — Current Compatibility Notes
 
 Status: **CURRENT RUNTIME / PROVIDER EVIDENCE**
-Date: 2026-09-30
+Date: 2026-10-02
 
 ## Current baseline
 
 ```text
-Pi                 0.87.1
+Pi                 1.0.0
 Herdr              0.9.1
-Gentle AI          3.7.0
-OpenCode transport V1 / 1.18.x line
+Gentle AI          4.0.0
+OpenCode transport V1 / 1.18.34
+Engram             3.0.0
 prepared supervisor Pi + Herdr → nan/deepseek-v4-flash
 prepared worker     one plain Pi child (`pi --no-extensions`)
 default profile     production-volume → nan/deepseek-v4-flash
 complex profile     complex → nan/glm5.3-flash high
-current decision    C-080 (including 2026-09-30 supervisor-routing addendum)
+current decision    C-082 (preserving C-081 review dispatch + C-080 assurance/routing)
 ```
 
 OpenCode `1.18.32` is the exact synthetic qualification baseline. The 2026-09-28+ field trains exercised the same V1 transport family; patch-level drift must be recorded in evidence, but ordinary prepared work should fail closed on actual transport incompatibility rather than re-running qualification by ritual.
@@ -58,4 +59,4 @@ Token/cost telemetry is observational. Runtime-native supervisor Pi, implementat
 
 ## Historical evidence
 
-Keep older OpenCode-first writer and Gentle-Pi/ODD qualification as provenance only. Current operation is C-080 + `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`.
+Keep older OpenCode-first writer and Gentle-Pi/ODD qualification as provenance only. Current operation is C-082 + `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`; prepared-ticket implementation still bypasses Gentle Shell/ODD.

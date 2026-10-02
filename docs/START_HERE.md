@@ -5,11 +5,11 @@ Status: **CURRENT FRONT DOOR**
 ## Current authority — read this first
 
 ```text
-CURRENT_DECISION      = C-081
+CURRENT_DECISION      = C-082
 FIELD_BASE            = C-078/C-079 preserved as provenance
-ASSURANCE_BASE         = C-080 preserved; C-081 replaces only its review-dispatch seam
+ASSURANCE_BASE         = C-080 preserved; C-081 review dispatch preserved under C-082
 BASE_TOPOLOGY         = C-077 preserved
-prepared supervisor   = Pi + Herdr → DeepSeek V4 Flash (`nan/deepseek-v4-flash`)
+prepared supervisor   = Pi + Herdr → DeepSeek V4 Flash (`nan/deepseek-v4-flash`) · control-plane only
 prepared worker       = ONE plain Pi child (`pi --no-extensions`)
 default profile       = production-volume → DeepSeek V4 Flash (implementation worker only)
 complex profile       = complex → GLM 5.3 Flash high (implementation worker only)
@@ -27,18 +27,19 @@ If a ticket/train is already shaped and executable, **do not route it through OD
 
 Canonical current documents:
 
-- `docs/CURRENT_EXECUTION_DECISION_C081.md`;
+- `docs/CURRENT_EXECUTION_DECISION_C082.md`;
+- `docs/CURRENT_EXECUTION_DECISION_C081.md` (review-dispatch provenance/current seam);
 - `docs/CURRENT_EXECUTION_DECISION_C080.md` (assurance/base provenance);
 - `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`;
 - `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`;
-- `docs/PREPARED_TRAIN_HANDOFF_C081.md`;
+- `docs/PREPARED_TRAIN_HANDOFF_C082.md`;
 - `docs/EXECUTION_EFFICIENCY_LEDGER_V1.md`.
 
-C-077/C-078/C-079 remain preserved provenance. C-080 remains the assurance/base decision, but its primary review-host seam is superseded by C-081.
+C-077/C-078/C-079 remain preserved provenance. C-080 remains assurance/base provenance; C-081 remains the current deterministic review-dispatch seam; C-082 narrows supervisor ownership and handoff.
 
 ## 1. Minimal preflight
 
-Establish only facts that can change the next action: correct repo/worktree/base, current accepted task authority, executable outcome/acceptance/constraints, compatible runtime, and publication boundary. Do not ask the human to restate durable authority.
+Establish only facts that can change the next action: correct repo/worktree/base, current accepted task authority, executable outcome/acceptance/constraints, compatible runtime, and publication boundary. Do not ask the human to restate durable authority. **Run this preflight once per authorized ticket/work-unit boundary. Do not repeat it at worker launch, worker handoff, Gentle ASSESS, review collection, reviewer return or provider-issued correction.**
 
 ## 2. Select the implementation profile
 
@@ -66,8 +67,9 @@ accepted ticket/train
 → ONE Pi child with selected implementation model
 → repo authority + applicable skills
 → implement
-→ deterministic checks/oracles
-→ local candidate commit
+→ worker-owned deterministic checks/oracles
+→ local candidate commit + structured evidence
+→ supervisor mechanical handoff only (no duplicate QA)
 → `gentle-ai review assess --agent opencode`
 → obey Gentle's review_due + exact next_transition
 → checkpoint/burn as applicable

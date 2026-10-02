@@ -1,10 +1,22 @@
 # Atenea — Current Decisions
 
-Date: 2026-09-29
+Date: 2026-10-02
 
-This file preserves accepted decision provenance. **C-080 is the current execution decision** (`docs/CURRENT_EXECUTION_DECISION_C080.md`); C-072 remains the current runtime-transition authority and supersedes the exact-version/install claims in C-070 while preserving C-069–C-071 as accepted topology/routing evidence. C-055–C-068 remain accepted provenance for the Pi/Gentle vNext epoch and for stable policy not explicitly reopened.
+This file preserves accepted decision provenance. **C-082 is the current execution decision** (`docs/CURRENT_EXECUTION_DECISION_C082.md`); C-081 remains the active review-dispatch design beneath it and C-080 remains the assurance/routing base. C-072 remains the runtime-transition provenance that supersedes the exact-version/install claims in C-070 while preserving C-069–C-071 as accepted topology/routing evidence. C-055–C-068 remain accepted provenance for the Pi/Gentle vNext epoch and for stable policy not explicitly reopened.
 
 Historical `docs/DECISIONS.md`, Stage files, old run recipes and pre-vNext field evidence remain valuable provenance, but they do not define the current execution path.
+
+## C-082 — Supervisor is control plane; evidence crosses the handoff
+
+**Accepted candidate 2026-10-02 after deterministic negative/positive conformance and a live native-Pi DeepSeek V4 canary.** One minimal preflight occurs per authorized ticket/work-unit boundary. Workers own implementation and required deterministic verification; candidate-bound evidence crosses a mechanical supervisor handoff. The supervisor does not recreate QA or semantically inspect the candidate after worker FINAL. Phase transitions into ASSESS, review collection or provider-issued correction do not reopen preflight.
+
+Evidence: `docs/CURRENT_EXECUTION_DECISION_C082.md`, `docs/PREPARED_TRAIN_HANDOFF_C082.md`, and `qualification/C082_LIVE_SUPERVISOR_CANARY_20261002.md`.
+
+## C-081 — Deterministic direct-subtask review dispatch
+
+**Accepted 2026-10-02; preserved as the review-dispatch seam beneath C-082.** Gentle provider tasks dispatch directly to exact OpenCode V1 `review-*` subagents; no review-host/relay LLM owns lifecycle or retries. The default parent is aborted after post-capture Task completion.
+
+Evidence: `docs/CURRENT_EXECUTION_DECISION_C081.md`.
 
 ## C-080 — Lean assurance runtime: one review profile, no automatic recovery
 

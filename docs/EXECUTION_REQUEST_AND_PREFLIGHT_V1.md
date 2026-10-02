@@ -32,6 +32,8 @@ Confirm only:
 
 If durable authority already proves a fact, do not ask the human to repeat it.
 
+**Preflight is single-entry.** Run it once when entering the authorized ticket/work unit. Do not repeat it when launching the worker, accepting the worker handoff, entering Gentle ASSESS, starting reviewer collection, returning from review, or launching a provider-issued correction. Reopen preflight only for a genuinely new authorized work unit, a controlling base/worktree change that invalidates prior authority, or new human authority after HUMAN STOP.
+
 ## Profile selection
 
 Default to `production-volume` → Pi on `nan/deepseek-v4-flash`.
@@ -53,7 +55,7 @@ Implement the smallest coherent authorized change, run required deterministic ch
 Do not broaden scope or publish beyond current authority.
 ```
 
-Do not teach the implementation worker reviewer ordering or transport mechanics. After its candidate commit, the supervisor follows C-078: native Gentle decides `review_due` and lens depth; OpenCode is started only for provider-issued collection and always with process-local routing config.
+Do not teach the implementation worker reviewer ordering or transport mechanics. The worker FINAL reports `base_sha`, `candidate_sha`, required deterministic check command(s) + PASS/FAIL, and worktree status. After its candidate commit, the supervisor consumes that candidate-bound evidence and verifies only mechanical handoff facts; it does **not** inspect implementation semantics or rerun the worker's checks. Native Gentle then decides `review_due` and lens depth; OpenCode starts only for provider-issued collection with process-local routing config.
 
 ## STOP conditions
 

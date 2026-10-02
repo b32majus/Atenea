@@ -1,0 +1,8 @@
+{"type":"preflight","scope":"ticket"}
+{"type":"profile_selected","profile":"production-volume"}
+{"type":"worker_launch","worker":"implementation"}
+{"type":"preflight","scope":"implementation_phase"}
+{"type":"worker_final","candidate_sha":"abc123","check_command":"node tools/check.mjs","check_status":"pass","worktree_status":"clean"}
+{"type":"mechanical_handoff","candidate_exists":true,"head_matches":true,"base_ancestor":true,"worktree_ok":true,"check_evidence_present":true}
+{"type":"preflight","scope":"assess_phase"}
+{"type":"gentle_assess","risk":"medium","review_due":false}

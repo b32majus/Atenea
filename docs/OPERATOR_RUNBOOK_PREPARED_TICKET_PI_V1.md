@@ -51,9 +51,13 @@ The supervisor itself must remain clean (`pi --no-extensions`) so local extensio
 
 ## 3. Implementation and evidence
 
-The worker reads repository authority and applicable skills, implements only accepted scope, preserves the principal oracle/tests, runs repository-required deterministic checks and creates the authorized local candidate commit. It does not publish unless separately authorized.
+The worker reads repository authority and applicable skills, implements only accepted scope, preserves the principal oracle/tests, runs repository-required deterministic checks and creates the authorized local candidate commit. It does not publish unless separately authorized. Its FINAL reports the base/candidate identity, required check command(s) and result, and worktree state.
+
+The supervisor consumes that evidence. Post-worker handoff is **mechanical only**: candidate exists, reported SHA matches HEAD, expected base relationship holds, worktree state is acceptable, evidence is present, and no new human-owned boundary appeared. Do not read implementation code/diff for assurance; do not rerun typecheck/test/build/E2E; do not launch an independent challenge or additional QA. Candidate-bound PASS evidence is reused until the candidate or controlling authority changes.
 
 ## 4. Review entry
+
+Entering review does **not** trigger another preflight. The one ticket/work-unit preflight remains in force through ASSESS, review collection and provider-issued correction unless controlling authority/base/worktree is materially invalidated.
 
 Use the real candidate base:
 
@@ -152,7 +156,9 @@ Record the supervisor model separately from the implementation profile, and reco
 
 ## 9. Supervisor escalation
 
-The supervisor may answer procedural questions already resolved by durable authority. HUMAN STOP for new/broadened scope, changed acceptance/product meaning, weakened oracle, destructive action, publication authority, provider/runtime refusal without a current safe continuation, or a material supervisor procedural error. A typed technical reviewer failure is always such a STOP.
+The supervisor may answer procedural questions already resolved by durable authority. It is not a second engineer: after worker FINAL it may not recreate deterministic evidence, inspect semantics, or add assurance of its own. If Gentle grants bounded correction, launch the correction worker; that worker owns edits and required verification for the new candidate, followed by another mechanical handoff — **not another preflight**.
+
+HUMAN STOP for new/broadened scope, changed acceptance/product meaning, weakened oracle, destructive action, publication authority, provider/runtime refusal without a current safe continuation, or a material supervisor procedural error. A typed technical reviewer failure is always such a STOP.
 
 Do not automatically relaunch the supervisor on GLM merely because a child is `complex` or because GLM quota is available. Model escalation is a separate human decision after an observed supervisor failure.
 

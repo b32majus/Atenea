@@ -1,0 +1,6 @@
+{"type":"preflight","ticket":"c082-live-canary2","boundary":"ticket","result":"pass"}
+{"type":"worker_launch","worker":"worker-fixture","count":1}
+{"type":"worker_final","base_sha":"b6a48c5fd5d3d2ed310e611a98767a018b1cc1ec","candidate_sha":"f67591abedb6b8c7ff4313c675fd9a909bf7706b","check_command":"./check.sh","check_status":"pass","worktree_state":"clean"}
+{"type":"mechanical_handoff","candidate_exists":true,"head_matches":true,"base_ancestor":true,"worktree_ok":true,"check_evidence_present":true}
+{"type":"gentle_assess","count":1,"risk":"medium","review_due":false,"review_due_reason":"under_budget"}
+{"type":"checkpoint","result":"stop_no_review_due"}
