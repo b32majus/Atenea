@@ -36,6 +36,14 @@ C-083 routing is project-local and versioned. Do not rewrite `~/.config/opencode
 
 The qualified OpenCode project agents resolve with `subagent_depth=2`, allowing the V4 implementation worker to invoke Matt's independent review/correction subagents without introducing an Atenea lifecycle controller.
 
+## Retained global residue
+
+The current VPS global OpenCode config still contains historical `gentle-orchestrator`/review agents and external plugins such as the Gentle review transport, skill-registry integration, telemetry helper, model-variant cache helper and SDD result-artifact helper. This is retained installation state, not C-083 authority.
+
+C-083 therefore requires `--pure` and project-local `default_agent=atenea-volume`; coordinator/implementer `task` permissions default-deny every subagent except the named `atenea-*` roles for that profile. The retained `model-variants.ts` plugin only populates a Gentle cache from OpenCode's already-resolved native model variants; excluding it does not implement or remove OpenCode reasoning variants.
+
+Do not delete the global residue as part of ordinary C-083 execution. Reconcile/remove it later as a separate hygiene/rollback action after the real pilot proves the new path.
+
 ## Historical runtime state
 
 Gentle/Pi assets may still exist on the VPS for provenance or unrelated compatibility. Their presence does not make them part of the C-083 path. Historical C-077–C-082 runbooks and config are not active execution authority.

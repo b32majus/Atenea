@@ -29,6 +29,7 @@ Herdr remains operator/session infrastructure. Atenea owns no separate LLM execu
 - Alibaba Open Code Review showed useful high-risk recall but insufficient latency for routine per-ticket use;
 - the official Matt updater refreshed current project skills without destructive deletion;
 - all 11 C-083 project-local OpenCode agents resolve through the actual installed OpenCode runtime;
+- the C-083 `--pure` launch boundary excludes external plugins from prior Gentle/SDD runtime epochs while retaining native OpenCode model variants;
 - sampled resolved routes confirm MiMo coordinator, Qwen explorer, V4 implementer, Luna High Standards, Sol 6.1 High Complex Spec and GLM High Complex correction;
 - `ATENEA_VNEXT_AUTHORITY_CHECK=PASS` and `git diff --check` pass for the C-083 promotion candidate.
 
