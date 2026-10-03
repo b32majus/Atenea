@@ -54,7 +54,7 @@ Oracles produce evidence; they do not grant publication authority.
 
 Matt's independent Standards and Spec axes are the normal semantic review surface. Conditional static/security/deep OCR assurance is risk-proportional.
 
-At most one fresh correction worker follows actionable review findings. A remaining blocker or new material issue becomes HUMAN STOP rather than a fix/review carousel.
+Review start closes the originating implementer's write phase. Actionable review findings are handled by fresh bound correctors, never by the original implementer. At most two finding-scoped correction attempts are allowed: a second fresh corrector may run only when focused evidence shows the same authorized finding(s) remain after the first. A blocker after attempt #2, a new material issue or scope expansion becomes HUMAN STOP rather than a fix/review carousel.
 
 ## 8. Shaping and entry
 

@@ -13,18 +13,20 @@ Read:
 Current shape:
 
 ```text
-existing persistent Herdr workspace/pane
-→ visible native OpenCode V2 TUI (`opencode .`)
-→ volume default / select complex in `/agents` before execution
+Cora prepares repo/worktree + durable handoff + preflight
+→ READY_TO_LAUNCH
+→ Cora returns exact bash + agent selection + exact prompt
+→ human opens visible native OpenCode V2 TUI (`opencode .`) in existing Herdr
+→ human verifies path/agent, pastes prompt and presses Enter
 → Matt /implement or /implement-spec
 → bound role agents
 → deterministic evidence
-→ Standards + Spec review
-→ one correction pass if needed
+→ Standards + Spec review (originating implementer write phase closes)
+→ up to two fresh finding-scoped correction attempts if needed
 → material composed-state closeout
 → Cora integrated audit when warranted
 → human publication / merge
 → post-merge worktree closeout
 ```
 
-Do not launch Herdr per ticket. Do not use V1 `--pure`. Historical Pi/Gentle/OpenCode V1 runbooks remain provenance only.
+Do not launch Herdr per ticket. For real work, Coras do not independently start OpenCode or submit the train prompt unless the human explicitly delegates that specific launch. Do not use V1 `--pure`. Historical Pi/Gentle/OpenCode V1 runbooks remain provenance only.

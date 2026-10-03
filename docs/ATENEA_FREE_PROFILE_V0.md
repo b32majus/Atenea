@@ -38,9 +38,10 @@ Both risk classes enter through the visible `atenea-free` coordinator. The Cora-
 
 - Cora shapes smaller/coherent work units when useful;
 - deterministic closure is emphasized before model opinion;
-- the one correction pass uses a model different from the normal Free writer;
+- review closes the Free implementer's write phase; review findings go to fresh Free corrector sessions;
+- up to two finding-scoped correction attempts are allowed, with the Complex corrector using a model different from the normal Free writer;
 - a material composed result requires Cora integrated audit before merge recommendation;
-- unresolved model insufficiency, ambiguity or a remaining blocker after correction is HUMAN STOP.
+- unresolved model insufficiency, ambiguity, a new material issue or a blocker remaining after correction #2 is HUMAN STOP.
 
 Complexity may make Cora recommend the paid Complex route, but the recommendation never overrides `free_only` human authority.
 

@@ -25,20 +25,22 @@ OpenCode project bindings are declared in `.opencode/agents/`; the policy snapsh
 
 ## Visible launch boundary
 
-Herdr is already running. Do not launch a new Herdr instance per ticket/train.
+Herdr is already running. Do not launch a new Herdr instance per ticket/train. For real work, Cora prepares everything through `READY_TO_LAUNCH`; the human operator performs the final visible launch.
 
-From the project's visible Herdr pane:
+Cora returns an exact launch packet. The ordinary shell part is:
 
 ```bash
-cd <project-or-worktree>
+cd <prepared-project-or-worktree>
 opencode .
 ```
 
-A new session starts on `atenea-volume` because the project declares it as `default_agent`.
+The human runs those commands in the project's visible Herdr pane, verifies the path/TUI, selects the required agent when needed, pastes the exact prompt supplied by Cora and presses Enter. Cora does not independently start the real OpenCode session or submit the train prompt unless the human explicitly authorizes automated launch for that specific unit.
 
-For `standard + complex`, select `atenea-complex` in the visible TUI **before** submitting the execution handoff. For human/project `free_only`, select `atenea-free` regardless of risk class and state `Risk class: volume|complex` in the handoff. Use `/agents`, `Ctrl+X` then `A`, or `Shift+Tab`.
+A new standard session starts on `atenea-volume` when the project declares it as `default_agent`. For `standard + complex`, select `atenea-complex` in the visible TUI **before** submitting the execution handoff. For human/project `free_only`, select `atenea-free` regardless of risk class and state `Risk class: volume|complex` in the handoff. Use `/agents`, `Ctrl+X` then `A`, or `Shift+Tab`.
 
-Do not add `--pure`: it is a V1 flag and is not part of native OpenCode V2. Do not use `opencode run` as the normal train surface; it is reserved for bounded automation/smokes.
+The preferred first prompt is short and references the durable prepared handoff, for example: `Read @docs/handoffs/TRAIN_X.md and execute it under current repository/Atenea authority.`
+
+Do not add `--pure`: it is a V1 flag and is not part of native OpenCode V2. Do not use `opencode run` as the normal train surface; it is reserved for bounded automation/smokes, not for bypassing the human launch boundary on real work.
 
 ## 1. Entry
 
@@ -70,7 +72,7 @@ Run the repo-native deterministic gates justified by the changed behavior/artifa
 
 Semgrep is conditional. Deep Alibaba OCR is selective, normally for high-risk semantics such as auth/privacy/tenancy, concurrency/state, difficult cross-file interactions or a material feature/train.
 
-Only one fresh correction pass is allowed. Standard Volume corrections use V4; standard Complex corrections use GLM high. Free Volume/Complex use the correction bindings in the current Free catalog. A remaining blocker/new material issue after that pass is HUMAN STOP.
+After review starts, the originating implementer does not edit the candidate again. Review-driven mutations use fresh bound corrector sessions. Allow at most two finding-scoped correction attempts: correction #1, focused deterministic evidence, and—only if the same authorized finding(s) remain—fresh correction #2. Standard Volume uses V4 correctors; standard Complex uses GLM high; Free uses the current Free correction bindings. A remaining blocker, a new material issue, or scope expansion after the second attempt is HUMAN STOP.
 
 ## 5. Feature/train boundary
 

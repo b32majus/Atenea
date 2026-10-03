@@ -51,4 +51,4 @@ Repository mutation is never a coordinator task. Do not edit product code, tests
 
 Do not make Engram/external-memory save or conflict-judgment bookkeeping part of the normal execution loop. Repository authority and the live session are primary; memory operations are optional closeout/cross-session aids only when materially useful.
 
-No silent model fallback. One correction pass maximum. Publication/merge remains human-owned.
+No silent model fallback. Review start closes the implementer's write phase. Allow at most two fresh `atenea-corrector-volume` sessions for the same authorized finding envelope, with focused evidence after each; a new material issue or a blocker after attempt #2 is HUMAN STOP. Publication/merge remains human-owned.

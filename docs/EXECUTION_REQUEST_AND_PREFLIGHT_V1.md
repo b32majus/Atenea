@@ -9,12 +9,14 @@ Prepared work enters at implementation. Atenea establishes only facts that can c
 
 ```text
 accepted bounded work
+→ prepare/reconcile repo + worktree + durable handoff
 → minimal preflight
 → select cost_policy + risk_class
-→ OpenCode V2 coordinator
+→ READY_TO_LAUNCH packet to human
+→ human opens visible OpenCode V2 coordinator + submits exact prompt
 → Matt /implement or /implement-spec
 → deterministic evidence + independent review
-→ one bounded correction if needed
+→ up to two fresh finding-scoped corrections if needed
 → ticket DONE / HUMAN STOP
 ```
 
@@ -32,6 +34,25 @@ Confirm only:
 If the prepared branch is merely behind its intended upstream and a clean fast-forward is already within the authorized preparation scope, reconcile it before launch. Divergence, unrelated dirt, unexpected commits or a missing handoff are STOP/reconcile conditions; do not let the coordinator discover and repair launch-state drift inside the train.
 
 If durable authority already proves a fact, do not ask the human to repeat it. Reopen preflight only for a genuinely new authorized work unit, a base/worktree change that invalidates prior authority, or new human authority after HUMAN STOP.
+
+## READY_TO_LAUNCH operator packet
+
+Cora may prepare the repository/worktree, reconcile remote/base state, write or update the durable execution handoff and run deterministic preflight. For real work, preparation stops at `READY_TO_LAUNCH`. The human operator owns the final visible launch.
+
+Return exactly what the human needs:
+
+```text
+Bash:
+cd <prepared-worktree>
+opencode .
+
+Agent: <atenea-volume default | select atenea-complex | select atenea-free>
+
+Prompt:
+Read @<durable-handoff-path> and execute it under current repository/Atenea authority.
+```
+
+The human verifies the path and visible TUI, performs any required agent selection, pastes the prompt and presses Enter. Do not independently launch the real OpenCode session or submit the execution prompt unless the human explicitly authorizes automated launch for that specific bounded unit.
 
 ## Cost policy and risk-class selection
 
@@ -75,8 +96,8 @@ Evidence to close: <focused deterministic proof + affected gates>.
 Stop: <condition requiring HUMAN STOP instead of broader repair>.
 ```
 
-Never send “fix the PR”, “improve everything”, “clean up what you see” or equivalent open-ended correction prompts. A human-authorized continuation after HUMAN STOP is a new bounded unit and follows the same rule.
+Never send “fix the PR”, “improve everything”, “clean up what you see” or equivalent open-ended correction prompts. Starting review closes the originating implementer's write phase. Review findings must be delegated to a fresh bound corrector. If focused evidence after correction #1 shows the same authorized finding(s) remain, one second fresh corrector attempt is allowed against the same bounded envelope. A human-authorized continuation after HUMAN STOP is a new bounded unit and follows the same rule.
 
 ## STOP conditions
 
-STOP for unresolved/contradictory product authority, new material scope, acceptance/oracle changes, destructive action outside authority, missing required secret handling, publication beyond authority, a required runtime/role binding that cannot be established, or a blocker/new material issue after the single correction pass.
+STOP for unresolved/contradictory product authority, new material scope, acceptance/oracle changes, destructive action outside authority, missing required secret handling, publication beyond authority, a required runtime/role binding that cannot be established, a new material issue during correction, or a blocker that remains after the second fresh correction attempt.

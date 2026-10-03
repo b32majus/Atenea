@@ -50,7 +50,7 @@ Atenea agents use native V2 fields:
 
 ## Visible operating path
 
-Herdr is user-owned, already-running persistent operator infrastructure. The user starts/keeps Herdr running. Coras and Atenea workers do **not** launch, restart, replace or stop Herdr per ticket/train.
+Herdr is user-owned, already-running persistent operator infrastructure. The user starts/keeps Herdr running. Coras and Atenea workers do **not** launch, restart, replace or stop Herdr per ticket/train. For real work, Cora prepares through `READY_TO_LAUNCH` (repo/worktree/handoff/preflight plus exact bash and prompt); the human operator starts the visible `opencode .` session and submits the first prompt unless that specific launch is explicitly delegated.
 
 The ordinary visible path is:
 
@@ -71,7 +71,7 @@ C-084 also carries the optional `free_only` cost-policy extension in `docs/ATENE
 
 ## Standard routing retained from C-083
 
-The standard-cost model matrix and assurance semantics from C-083 are retained unchanged:
+The standard-cost model matrix from C-083 is retained. Field control semantics are refined by C-084 evidence: review closes the original implementer write phase and the correction budget is now at most two fresh finding-scoped attempts:
 
 - MiMo coordinator;
 - Qwen explorer;
@@ -79,8 +79,8 @@ The standard-cost model matrix and assurance semantics from C-083 are retained u
 - Luna High Standards review;
 - Luna High Spec review in `volume`;
 - Sol 6.1 High Spec review in `complex`;
-- V4 one-pass correction in `volume`;
-- GLM 5.3 Flash High one-pass correction in `complex`;
+- V4 fresh correction sessions in `volume`, with at most two finding-scoped attempts;
+- GLM 5.3 Flash High fresh correction sessions in `complex`, with at most two finding-scoped attempts;
 - conditional Semgrep/OCR by risk;
 - Cora integrated audit at material feature/train/PR boundaries.
 

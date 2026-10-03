@@ -69,7 +69,15 @@ Two operational learnings are promoted from this run:
 - launch-state drift belongs in deterministic preflight: refresh/reconcile the intended remote/base and ensure the prepared handoff is present at the exact executing HEAD before OpenCode starts;
 - mechanically decidable review claims should use effective-state oracles where useful. In this run, accessibility contrast had to be calculated against the actual rendered background; token names/visual inference were insufficient. A recurring checker belongs in the UI project's own validation surface, not as a mandatory Atenea-core gate.
 
-The remaining contrast finding after the single autonomous correction correctly produced HUMAN STOP. A later human-authorized focal continuation is a new bounded unit, not a hidden second autonomous correction pass.
+Under the then-current one-attempt policy, the remaining contrast finding after the single autonomous correction correctly produced HUMAN STOP. That historical run remains valid evidence of bounded-stop behavior; the later field refinement below increases the ordinary correction budget to two fresh finding-scoped attempts.
+
+## Subsequent field process learning — correction-role separation
+
+A later Laboratorio de Privacidad run reported a C-084 routing deviation after independent review: the original `atenea-implementer-volume` applied a review-driven correction itself instead of delegating that mutation to a fresh `atenea-corrector-volume` session. The reported deterministic evidence after the fix was strong, so Atenea does not require replaying an already-correct candidate merely to repair lineage ceremony. The process learning is narrower: **review start closes the originating implementer's write phase**. Review findings belong to fresh corrector sessions even when implementer and corrector share the same underlying model.
+
+The same field discussion also restores a two-attempt correction budget: one fresh finding-scoped corrector, focused evidence, and—only when the same authorized finding(s) remain—one second fresh corrector. A third autonomous correction, a new material finding or scope expansion is HUMAN STOP. This preserves bounded autonomy without returning trivial residual fixes to the human after a single attempt.
+
+The preferred real-work entry is also explicit operator control: Cora prepares repo/worktree/handoff/preflight through `READY_TO_LAUNCH`, then returns exact bash/agent/prompt. The human launches the visible OpenCode TUI and presses Enter. This is an observability/control boundary, not a correctness dependency.
 
 ## Atenea Free v0 pre-field evidence
 
