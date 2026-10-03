@@ -43,3 +43,7 @@ Herdr remains supported for persistent sessions, observation and operator conven
 ## Publication
 
 Review is evidence, not merge authority. Publication remains target-repository + explicit human authority. Delivery worktrees are normally cleaned after accepted merge, not merely after PR creation.
+
+### Atenea Free
+
+C-084 also supports the optional `free_only` cost policy through `atenea-free`. Cost policy is human/project authority and is independent from the `volume|complex` risk class. See `docs/ATENEA_FREE_PROFILE_V0.md` and the replaceable `docs/ATENEA_FREE_MODEL_CATALOG_V0.md`.

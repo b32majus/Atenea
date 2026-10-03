@@ -8,9 +8,11 @@ Status: **CURRENT FRONT DOOR — C-084**
 runtime             = native OpenCode V2 (`opencode`, currently 2.0.22)
 operator surface    = existing persistent Herdr workspace/pane
 method              = upstream Matt skills, not forked by Atenea
-default profile     = volume
-risk profile        = complex
-writer both         = nan/deepseek-v4-flash
+default cost policy = standard
+default risk class  = volume
+risk class          = complex when triggered
+optional cost policy = free_only → `atenea-free`
+writer standard     = nan/deepseek-v4-flash
 volume correction   = nan/deepseek-v4-flash
 complex correction  = nan/glm5.3-flash · high
 Standards review    = openai/gpt-6-luna · high
@@ -34,7 +36,7 @@ opencode .
 
 A new session starts on `atenea-volume` because the project declares it as `default_agent`.
 
-For `complex`, select `atenea-complex` in the visible TUI **before** submitting the execution handoff. Use `/agents`, `Ctrl+X` then `A`, or `Shift+Tab`.
+For `standard + complex`, select `atenea-complex` in the visible TUI **before** submitting the execution handoff. For human/project `free_only`, select `atenea-free` regardless of risk class and state `Risk class: volume|complex` in the handoff. Use `/agents`, `Ctrl+X` then `A`, or `Shift+Tab`.
 
 Do not add `--pure`: it is a V1 flag and is not part of native OpenCode V2. Do not use `opencode run` as the normal train surface; it is reserved for bounded automation/smokes.
 
@@ -44,13 +46,11 @@ Establish the correct repository/worktree/base, current accepted issue/spec/tick
 
 When legacy harness/tooling state is ambiguous, use `REPOSITORY_ENTRY_RECONCILIATION_V1.md` read-only first.
 
-## 2. Select profile
+## 2. Select cost policy and risk class
 
-Use `volume` by default.
+Default to `cost_policy: standard` and `risk_class: volume`. Use `risk_class: complex` for material semantic/acceptance risk: cross-cutting architecture, difficult state/concurrency/temporal semantics, material security/privacy/auth/tenancy/clinical trust boundaries, delicate migration/back-compat invariants or repeated semantic failure. File count, ticket length, ordinary UI, many tests or business importance alone are not complex triggers.
 
-Use `complex` only for material semantic/acceptance risk: cross-cutting architecture, difficult state/concurrency/temporal semantics, material security/privacy/auth/tenancy/clinical trust boundaries, delicate migration/back-compat invariants or repeated semantic failure.
-
-File count, ticket length, ordinary UI, many tests or business importance alone are not complex triggers.
+The human/project may set `cost_policy: free_only` for any work, including complex work. Cora may recommend a paid route, but cannot override that cost decision. `free_only` routes through `atenea-free`; check current zero-cost bindings with `node tools/check-free-models.mjs`. Missing/unavailable Free bindings are STOP, not permission to spend. See `ATENEA_FREE_PROFILE_V0.md`.
 
 ## 3. Execute through Matt
 
@@ -70,7 +70,7 @@ Run the repo-native deterministic gates justified by the changed behavior/artifa
 
 Semgrep is conditional. Deep Alibaba OCR is selective, normally for high-risk semantics such as auth/privacy/tenancy, concurrency/state, difficult cross-file interactions or a material feature/train.
 
-Only one fresh correction pass is allowed. Volume corrections use V4; complex corrections use GLM high. A remaining blocker/new material issue after that pass is HUMAN STOP.
+Only one fresh correction pass is allowed. Standard Volume corrections use V4; standard Complex corrections use GLM high. Free Volume/Complex use the correction bindings in the current Free catalog. A remaining blocker/new material issue after that pass is HUMAN STOP.
 
 ## 5. Feature/train boundary
 

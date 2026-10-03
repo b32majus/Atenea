@@ -1271,3 +1271,7 @@ A graph/index never outranks source code, accepted product/spec authority, deter
 10. re-read external authority before taking another independent work item;
 11. publication/merge remains target-repository + human authority;
 12. new Atenea runtime glue requires new demonstrated upstream ownership evidence.
+
+### C-084 Free cost-policy extension — CURRENT
+
+`free_only` is an optional human/project cost policy layered on C-084, not a weaker complexity class. It may be used for Volume or Complex work, never silently escalates to paid models, and routes through `atenea-free` with the replaceable catalog in `ATENEA_FREE_MODEL_CATALOG_V0.md`.

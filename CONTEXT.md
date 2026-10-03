@@ -73,3 +73,7 @@ Feature/train/PR integrated audit is performed by Cora outside the OpenCode role
 Gentle, Pi relay, ASSESS, RDD/4R, lineages, burn, review hosts and OpenCode V1 transport remain historical evidence only. They are not required by C-084.
 
 Herdr remains supported operator infrastructure for persistent process/session control and observation; it is not correctness authority.
+
+## Free cost-policy extension
+
+Atenea also supports `cost_policy: free_only`, independent of the `volume|complex` risk class. Human/project cost authority wins; Free never silently escalates to paid bindings. See `docs/ATENEA_FREE_PROFILE_V0.md`.
