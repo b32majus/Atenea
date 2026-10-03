@@ -1,6 +1,8 @@
 # Atenea routing qualification evidence — 2026-09-12
 
-Status: **CURRENT ROUTING QUALIFICATION EVIDENCE**
+Status: **HISTORICAL / SUPERSEDED BY C-083 — PRESERVED PROVENANCE**
+
+Current execution authority is `docs/START_HERE.md` + `docs/CURRENT_EXECUTION_DECISION_C083.md`. Do not use this document as a current runbook or routing contract.
 Authority: operator decision recorded in Atenea issue #75.
 
 This record explains why Atenea's current role-specific model routing changed after the Gentle Pi 2.5 / Gentle AI 2.7 Golden promotion. It does **not** change Atenea architecture: model/provider/effort remain replaceable operational routing.

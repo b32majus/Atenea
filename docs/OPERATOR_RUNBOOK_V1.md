@@ -1,26 +1,29 @@
 # Atenea — Operator Runbook v1
 
-Status: **POINTER TO CURRENT OPERATION**
+Status: **POINTER TO CURRENT OPERATION — C-083**
 
-Current prepared-ticket operation is:
+Read:
 
-- `docs/START_HERE.md`;
-- `docs/CURRENT_EXECUTION_DECISION_C078.md`;
-- `docs/CURRENT_EXECUTION_DECISION_C077.md` for preserved base topology;
-- `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`;
-- `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`;
-- `docs/PREPARED_TRAIN_HANDOFF_C078.md`.
+1. `docs/START_HERE.md`;
+2. `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`;
+3. `docs/ATENEA_EXECUTION_ROUTING_V0.md`;
+4. the accepted issue/spec/ticket;
+5. repository `AGENTS.md`, `CODING_STANDARDS.md`, `CONTEXT.md` and relevant glossary/ADRs.
 
 Current shape:
 
 ```text
-Pi supervisor + Herdr
-→ ONE Pi implementation worker
-→ production-volume|complex
-→ deterministic checks + candidate commit
-→ Gentle ASSESS chooses 0 / 1 / 4 lens depth
-→ isolated OpenCode V1 transport only when collection is due
-→ terminal burn/checkpoint
+Herdr when useful
+→ OpenCode V2 `--pure` with `atenea-volume` or `atenea-complex`
+→ Matt /implement or /implement-spec
+→ bound role agents
+→ deterministic evidence
+→ Standards + Spec review
+→ one correction pass if needed
+→ material composed-state closeout
+→ Cora integrated audit when warranted
+→ human publication / merge
+→ post-merge worktree closeout
 ```
 
-`docs/OPERATOR_RUNBOOK_OPENCODE_SERVE_V1.md` remains OpenCode V1 review/fallback provenance. It is not the normal prepared implementation entry after C-077/C-078.
+Historical Pi/Gentle/OpenCode V1 runbooks remain provenance only.

@@ -1,6 +1,6 @@
 # C-080 — Lean Assurance Runtime: collapse review routing and remove automatic recovery
 
-Status: **SUPERSEDED AS CURRENT FRONT DOOR — PRESERVED ASSURANCE / ROUTING BASE**
+Status: **HISTORICAL — SUPERSEDED BY C-083; PRESERVED C-080 ASSURANCE/ROUTING PROVENANCE**
 Accepted: 2026-09-29
 Operational supervisor-routing addendum accepted: 2026-09-30
 Review transport enforcement addendum accepted: 2026-10-01

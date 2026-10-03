@@ -2,7 +2,7 @@
 
 This file contains Atenea's stable repo-local horizontal engineering guardrails.
 
-It does **not** define an execution sequence or require one permanent shaping, TDD, delegation or review methodology. Adopted upstream workflows may add task-specific procedures when they are explicitly active; these standards remain in force regardless of method. Machine-decidable rules belong in deterministic repo tooling. This file is engineering policy, not a second execution or review lifecycle.
+It does **not** define an execution sequence or require one permanent shaping, TDD, delegation or review methodology. Adopted upstream workflows may add task-specific procedures when they are explicitly active; these standards remain in force regardless of method. Machine-decidable rules belong in deterministic repo tooling. If a recurring quality failure can be expressed as a linter, type rule, schema check, test or CI guardrail, prefer that executable guardrail over adding another prose rule here. This file is engineering policy, not a second execution or review lifecycle.
 
 ## 1. Keep changes scoped
 
@@ -68,6 +68,8 @@ When test-first/TDD is explicitly active, follow the adopted upstream method. Do
 
 Negative and adversarial verification should be proportional to actual risk, especially around authorization, parsing, trust boundaries, migrations, failure/retry behavior, state transitions and destructive operations.
 
+For stateful, temporal, concurrent, cached, tenant-scoped or idempotent behavior, include at least one regression case that would fail a plausible stale-state, wrong-order, cross-scope or repeated-operation implementation when that risk is material. Prefer an executable interleaving/invariant check over prose about the risk.
+
 For a new or materially changed checker, scanner or gate over security, privacy, state, parsing or another trust boundary, prove that the oracle can disagree with the implementation: include at least one known-good case and at least one representative planted violation that must fail. When the invariant applies to shipped/generated runtime behavior, validate the built artifact as well as source where technically relevant. The goal is falsifiability, not ceremonial test volume.
 
 ## 8. Fail explicitly when correctness requires knowledge
@@ -77,6 +79,8 @@ Do not hide invariant, authority, persistence or safety failures behind silent f
 When correctness depends on knowing, `UNKNOWN` is not `SUCCESS`.
 
 Return or propagate actionable failures. Make retry, idempotency and recovery semantics explicit when operations may repeat or produce persistent side effects.
+
+When correctness depends on ordering, version/generation, ownership or state transitions, make the stale-write/duplicate/out-of-order behavior explicit rather than relying on timing luck or caller discipline.
 
 Preserve enough diagnostic context to understand failures without leaking secrets.
 

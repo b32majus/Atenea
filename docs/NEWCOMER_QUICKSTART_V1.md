@@ -1,30 +1,31 @@
 # Atenea — Newcomer Quickstart v1
 
-Status: **CURRENT QUICKSTART**
+Status: **CURRENT QUICKSTART — C-083**
 
 Do not infer current execution from older qualification filenames.
 
-Read:
+Read only:
 
 1. `AGENTS.md`;
 2. `docs/START_HERE.md`;
-3. `docs/CURRENT_EXECUTION_DECISION_C078.md`;
-4. `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`;
-5. `docs/PREPARED_TRAIN_HANDOFF_C078.md`;
-6. current ticket/product authority.
+3. `CODING_STANDARDS.md`;
+4. `CONTEXT.md`;
+5. `docs/ATENEA_EXECUTION_ROUTING_V0.md` when executing work;
+6. the current ticket/spec/ADR authority.
 
 Current prepared path:
 
 ```text
-Pi supervisor + Herdr
-→ one plain Pi worker
-→ production-volume V4 by default / complex GLM high on trigger
-→ deterministic checks + local commit
-→ Gentle ASSESS decides no review / 1 lens / 4R
-→ isolated OpenCode V1 transport only when due
-→ conditional refuter / validator / burn
+OpenCode V2 + Matt
+→ V4 normal writer in volume and complex
+→ deterministic evidence
+→ independent Luna Standards review
+→ Luna Spec (volume) / Sol Spec (complex)
+→ V4 correction (volume) / GLM correction (complex), at most once
+→ Cora integrated audit at material feature/train/PR boundary
+→ human merge
 ```
 
-Do not use `atenea-writer`, OpenCode serve or `gentle-orchestrator` as the normal prepared implementation parent. OpenCode V1 remains review transport and implementation fallback.
+Herdr remains the normal persistent operator/session surface when useful. It is not correctness authority.
 
-C-078 is current. C-077 remains base-topology provenance.
+Everything centered on Pi supervisor, Gentle ASSESS/RDD/4R, lineages, burn or OpenCode V1 review transport is historical unless a current C-083 document explicitly says otherwise.

@@ -1,130 +1,78 @@
 # Atenea — Start Here
 
-Status: **CURRENT FRONT DOOR**
+Status: **CURRENT FRONT DOOR — C-083**
 
-## Current authority — read this first
-
-```text
-CURRENT_DECISION      = C-082
-FIELD_BASE            = C-078/C-079 preserved as provenance
-ASSURANCE_BASE         = C-080 preserved; C-081 review dispatch preserved under C-082
-BASE_TOPOLOGY         = C-077 preserved
-prepared supervisor   = Pi + Herdr → DeepSeek V4 Flash (`nan/deepseek-v4-flash`) · control-plane only
-prepared worker       = ONE plain Pi child (`pi --no-extensions`)
-default profile       = production-volume → DeepSeek V4 Flash (implementation worker only)
-complex profile       = complex → GLM 5.3 Flash high (implementation worker only)
-review owner          = Gentle AI
-review transport      = OpenCode V1 serve + deterministic direct-subtask dispatch only when collection is due
-review primary        = NONE; provider tasks dispatch directly to review-* subagents
-review profiles       = ONE assurance profile, independent of implementation profile
-lens depth            = native Gentle: 0 / 1 / 4, never Atenea-selected
-reviewer failure      = typed technical failure → HUMAN STOP (no automatic recovery)
-review config         = per-process; no shared global mutation during trains
-Gentle Shell / ODD    = NOT the prepared-ticket implementation entry
-```
-
-If a ticket/train is already shaped and executable, **do not route it through ODD or `gentle-orchestrator`**.
-
-Canonical current documents:
-
-- `docs/CURRENT_EXECUTION_DECISION_C082.md`;
-- `docs/CURRENT_EXECUTION_DECISION_C081.md` (review-dispatch provenance/current seam);
-- `docs/CURRENT_EXECUTION_DECISION_C080.md` (assurance/base provenance);
-- `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md`;
-- `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`;
-- `docs/PREPARED_TRAIN_HANDOFF_C082.md`;
-- `docs/EXECUTION_EFFICIENCY_LEDGER_V1.md`.
-
-C-077/C-078/C-079 remain preserved provenance. C-080 remains assurance/base provenance; C-081 remains the current deterministic review-dispatch seam; C-082 narrows supervisor ownership and handoff.
-
-## 1. Minimal preflight
-
-Establish only facts that can change the next action: correct repo/worktree/base, current accepted task authority, executable outcome/acceptance/constraints, compatible runtime, and publication boundary. Do not ask the human to restate durable authority. **Run this preflight once per authorized ticket/work-unit boundary. Do not repeat it at worker launch, worker handoff, Gentle ASSESS, review collection, reviewer return or provider-issued correction.**
-
-## 2. Select the implementation profile
-
-Default:
+## Current path
 
 ```text
-production-volume → Pi worker on nan/deepseek-v4-flash
+runtime             = OpenCode V2 `--pure`
+operator surface    = Herdr when useful
+method              = upstream Matt skills, not forked by Atenea
+default profile     = volume
+risk profile        = complex
+writer both         = nan/deepseek-v4-flash
+volume correction   = nan/deepseek-v4-flash
+complex correction  = nan/glm5.3-flash · high
+Standards review    = openai/gpt-6-luna · high
+Spec review volume  = openai/gpt-6-luna · high
+Spec review complex = openai/gpt-6.1-sol · high
+feature/train audit = Cora when material
 ```
 
-Use `complex` only on a material trigger:
+OpenCode project bindings are declared in `.opencode/agents/`; the policy snapshot is `docs/ATENEA_EXECUTION_ROUTING_V0.md`.
 
-```text
-complex → Pi worker on nan/glm5.3-flash · high
-```
-
-Material triggers include novel/cross-cutting architecture; difficult concurrency/temporal/scheduling/state/solver semantics; material security/privacy/auth/tenancy/clinical/trust-boundary semantics; delicate migration/back-compat/distributed invariants; or repeated semantic/correction failure under production-volume.
-
-The profile selects the implementation worker only. Review routing never depends on it, and the supervisor remains DeepSeek V4 Flash for both profiles.
-
-## 3. Execute prepared work
-
-```text
-accepted ticket/train
-→ clean Pi supervisor + Herdr on nan/deepseek-v4-flash
-→ ONE Pi child with selected implementation model
-→ repo authority + applicable skills
-→ implement
-→ worker-owned deterministic checks/oracles
-→ local candidate commit + structured evidence
-→ supervisor mechanical handoff only (no duplicate QA)
-→ `gentle-ai review assess --agent opencode`
-→ obey Gentle's review_due + exact next_transition
-→ checkpoint/burn as applicable
-→ next authorized ticket or STOP
-```
-
-There is no automatic supervisor escalation to GLM. A concrete supervisor/runtime refusal or material procedural error preserves the checkpoint and becomes HUMAN STOP for explicit adjudication.
-
-## 4. Adaptive RDD — do not flatten this
-
-Gentle owns risk and lens selection from the frozen candidate:
-
-```text
-passive / low              → 0 lenses
-medium + review_due=false  → 0 lenses
-medium + review_due=true   → 1 focus lens
-high                       → canonical 4R
-```
-
-Atenea must never expand a one-lens review into four, and must never launch OpenCode collection when `review_due=false`.
-
-Refuter and targeted validator remain conditional provider-owned roles.
-
-## 5. Isolated OpenCode review transport
-
-Every review host uses the single assurance profile rendered as a per-process overlay. There is no review-time `production-volume | complex` choice:
+C-083 launch boundary:
 
 ```bash
-OPENCODE_CONFIG_CONTENT="$(node <ATENEA>/tools/render-opencode-routing-overlay.mjs)" \
-  opencode serve ...
+# ordinary work
+opencode --pure --agent atenea-volume
+
+# risk-triggered complex work
+opencode --pure --agent atenea-complex
 ```
 
-An OpenCode Build V1 fallback implementation host additionally passes `--implementation <profile>` to select the fallback writer model. Do **not** rewrite `~/.config/opencode/opencode.json` to switch active train routing.
+Herdr may own the persistent process/session around these commands. Do not launch C-083 without `--pure`; the VPS intentionally retains older external plugins as provenance/rollback state.
 
-Reviewer routes (ONE assurance profile): readability/reliability/resilience/validator → GPT-6 Luna high; risk → GLM 5.3 Flash high; refuter → conditional provider-issued. DeepSeek V4 holds no reviewer role and no review role uses Luna xhigh.
+## 1. Entry
 
-Launch the bounded OpenCode V1 serve process only through `tools/launch-opencode-review-host.mjs`. The guard requires the rendered per-process config, requires every `review-*` role to remain a subagent, and rejects `opencode run`, any host `--agent` selection, alternate config sources and implementation-profile selection. For each provider-issued collection slot, pipe the exact `provider_task` JSON to `tools/dispatch-opencode-review-task.mjs`; it uses OpenCode `prompt_async` + `SubtaskPartInput`, waits for the single Task to reach `completed`, then aborts the default parent before it can perform lifecycle/exploration work.
+Establish the correct repository/worktree/base, current accepted issue/spec/ticket, applicable repository authority and publication boundary. Do not repeat shaping or archaeology when executable authority already exists.
 
-## 6. Technical reviewer failure → HUMAN STOP
+When legacy harness/tooling state is ambiguous, use `REPOSITORY_ENTRY_RECONCILIATION_V1.md` read-only first.
 
-When a **required** reviewer Task terminally completes with no capturable result (empty output with `output_tokens=0`, or typed `opencode_task_output_empty`):
+## 2. Select profile
 
-1. stop the failed host; do not continue parent narration or repeat the same route;
-2. normalize the observation with `tools/classify-required-lens-zero-output.mjs`;
-3. the typed technical failure preserves candidate, lineage, revision and target;
-4. **HUMAN STOP** — no recovery route, no permit, no alternate model, no second attempt, no RESET/new START/new ASSESS, no skipped lens, no profile switch.
+Use `volume` by default.
 
-A timeout that kills a still-running reviewer is not a terminal zero-output result.
+Use `complex` only for material semantic/acceptance risk: cross-cutting architecture, difficult state/concurrency/temporal semantics, material security/privacy/auth/tenancy/clinical trust boundaries, delicate migration/back-compat invariants or repeated semantic failure.
 
-## 7. Efficiency telemetry
+File count, ticket length, ordinary UI, many tests or business importance alone are not complex triggers.
 
-Capture runtime-native usage when available without adding model calls. Telemetry failure does not block the ticket. Record supervisor Pi usage, implementation Pi usage, Gentle risk/review_due/selected lenses and OpenCode review usage including failed transport attempts. See `docs/EXECUTION_EFFICIENCY_LEDGER_V1.md`.
+## 3. Execute through Matt
 
-## 8. Fallback and publication
+Single bounded issue/ticket: use `/implement` through the selected Atenea profile.
 
-A concrete Pi implementation-worker runtime/tooling failure may switch implementation to qualified OpenCode Build V1 under the same shaped contract; do not reopen ODD. This fallback does not change the supervisor model.
+Whole accepted spec/task graph: use `/implement-spec` through the selected Atenea profile.
 
-Material product/scope/acceptance/oracle/publication changes are HUMAN STOP. Review approval never grants push/PR/merge/deploy authority.
+Matt owns TDD, task-graph/frontier behavior, implementation worktrees and its two-axis code-review method. Atenea supplies only named role/model bindings and repository guardrails.
+
+## 4. Evidence and assurance
+
+Run the repo-native deterministic gates justified by the changed behavior/artifacts. Prefer executable proof over another LLM opinion.
+
+Semgrep is conditional. Deep Alibaba OCR is selective, normally for high-risk semantics such as auth/privacy/tenancy, concurrency/state, difficult cross-file interactions or a material feature/train.
+
+Only one fresh correction pass is allowed. Volume corrections use V4; complex corrections use GLM high. A remaining blocker/new material issue after that pass is HUMAN STOP.
+
+## 5. Feature/train boundary
+
+For material composed work, run changed-artifact-aware and composed-state deterministic closeout. Cora then performs the integrated PR/feature/train audit when warranted.
+
+## 6. Publication and cleanup
+
+Review/audit does not grant merge authority. Follow explicit human/repository publication authority.
+
+Matt implementer worktrees should be cleaned by its workflow after integration. The delivery/integration worktree remains through PR review and accepted merge. Post-merge operator closeout then verifies durable merge, clean tree, no active process and no unique local state before removing the worktree.
+
+## Historical authority
+
+C-077–C-082, Gentle/Pi runbooks, RDD/4R, ASSESS, lineages, burn and OpenCode V1 review transport are retained as provenance only and must not be followed as current execution instructions.

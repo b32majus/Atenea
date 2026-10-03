@@ -1,6 +1,6 @@
 # Project Execution Handoff — Native Gentle vNext
 
-Status: **SUPERSEDED CURRENT-RUNTIME HANDOFF — PI ROLLBACK/PROVENANCE**
+Status: **HISTORICAL — SUPERSEDED BY C-083; PI/GENTLE ROLLBACK PROVENANCE**
 
 Current execution authority: `docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md` + `docs/OPERATOR_RUNBOOK_OPENCODE_SERVE_V1.md`; current runtime recipe: `docs/vnext/OPENCODE_SERVE_RUNTIME_RECIPE_20260927.md`.
 

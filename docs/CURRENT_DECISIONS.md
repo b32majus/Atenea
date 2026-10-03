@@ -1,10 +1,16 @@
 # Atenea — Current Decisions
 
-Date: 2026-10-02
+Date: 2026-10-03
 
-This file preserves accepted decision provenance. **C-082 is the current execution decision** (`docs/CURRENT_EXECUTION_DECISION_C082.md`); C-081 remains the active review-dispatch design beneath it and C-080 remains the assurance/routing base. C-072 remains the runtime-transition provenance that supersedes the exact-version/install claims in C-070 while preserving C-069–C-071 as accepted topology/routing evidence. C-055–C-068 remain accepted provenance for the Pi/Gentle vNext epoch and for stable policy not explicitly reopened.
+This file preserves accepted decision provenance. **C-083 is the current execution decision** (`docs/CURRENT_EXECUTION_DECISION_C083.md`). C-082 and earlier decisions remain accepted provenance for the Gentle/Pi/OpenCode V1 epochs and for stable lessons not explicitly reopened; they do not define the current execution path.
 
 Historical `docs/DECISIONS.md`, Stage files, old run recipes and pre-vNext field evidence remain valuable provenance, but they do not define the current execution path.
+
+## C-083 — OpenCode V2 + Matt, role-bound assurance
+
+**Accepted 2026-10-03 after OpenCode V2/Matt end-to-end qualification and reviewer/tool comparisons.** OpenCode V2 is the runtime; upstream Matt skills own implementation/task-graph/code-review method; Atenea owns stable repository policy, project-local role/model bindings, deterministic assurance and human publication boundaries. Both `volume` and `complex` use DeepSeek V4 Flash as the normal writer. `complex` strengthens independent assurance with Sol Spec review and GLM correction instead of automatically spending GLM on first-pass writing. Herdr remains operator infrastructure, not correctness authority. Gentle/RDD/4R/lineage/burn/OpenCode V1 transport move out of the active path.
+
+Evidence/authority: `docs/CURRENT_EXECUTION_DECISION_C083.md`, `docs/ATENEA_EXECUTION_ROUTING_V0.md`, current `.opencode/agents/`, and the Oct-02/03 OpenCode V2 + Matt qualification evidence.
 
 ## C-082 — Supervisor is control plane; evidence crosses the handoff
 

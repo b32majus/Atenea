@@ -1,6 +1,8 @@
 # Atenea — NaN Provider Capabilities v1
 
-Status: **CURRENT OPERATIONAL PROVIDER CONTRACT**
+Status: **HISTORICAL / SUPERSEDED BY C-083 — PRESERVED PROVENANCE**
+
+Current execution authority is `docs/START_HERE.md` + `docs/CURRENT_EXECUTION_DECISION_C083.md`. Do not use this document as a current runbook or routing contract.
 Date: 2026-09-20
 
 This file records NaN-specific facts that materially affect the current Atenea Pi/Gentle runtime. It is operational configuration, not Atenea architecture.

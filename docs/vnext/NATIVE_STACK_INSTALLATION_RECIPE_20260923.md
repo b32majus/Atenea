@@ -1,6 +1,8 @@
 # Atenea vNext — Native Stack Installation and Stable-Update Recipe
 
-Status: **CURRENT CANONICAL RECIPE**
+Status: **HISTORICAL / SUPERSEDED BY C-083 — PRESERVED PROVENANCE**
+
+Current execution authority is `docs/START_HERE.md` + `docs/CURRENT_EXECUTION_DECISION_C083.md`. Do not use this document as a current runbook or routing contract.
 
 Qualified: 2026-09-23
 

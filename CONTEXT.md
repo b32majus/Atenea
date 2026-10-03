@@ -1,45 +1,74 @@
 # Atenea Context
 
-Status: **CURRENT DOMAIN CONTEXT**
+Status: **CURRENT SYSTEM CONTEXT — C-083**
 
 ## Purpose
 
-Atenea makes autonomous engineering work safer, reproducible and operable without competing with Gentle's native review lifecycle.
+Atenea makes autonomous engineering work safer, reproducible and economical without rebuilding capabilities already owned by OpenCode or adopted upstream skills.
 
 ## Current architecture
 
 ```text
-prepared product authority
-→ Pi supervisor + Herdr on DeepSeek V4 Flash
-→ ONE plain Pi implementation worker
-   - production-volume: DeepSeek V4 Flash
-   - complex: GLM 5.3 Flash high
-→ deterministic checks/oracles
-→ candidate commit
-→ Gentle ASSESS
-   - review_due=false → checkpoint
-   - medium review_due=true → 1 focus lens
-   - high → canonical 4R
-→ OpenCode V1 only as provider transport when collection is due
-→ conditional refuter / correction / validator / burn
-→ checkpoint / next-or-STOP
+accepted product authority
+→ Herdr operator surface when useful
+→ OpenCode V2 `--pure` Atenea profile
+→ Matt skill appropriate to the work
+→ fresh role-bound subagents / worktrees
+→ deterministic evidence
+→ independent Matt Standards + Spec review
+→ one bounded correction when needed
+→ composed-state checks for material trains/features
+→ Cora integrated audit at material PR/feature/train boundary
+→ human publication / merge decision
+→ post-merge worktree closeout
 ```
 
-The supervisor owns train frontier and transport orchestration only. Its model is independent of the implementation profile: `complex` changes the implementation child, not the supervisor. Product meaning remains repository/human-owned; review state, risk and lens selection remain Gentle-owned.
+Atenea owns policy, bindings and conformance evidence. It does not own a second task graph, TDD method, review rubric, worktree algorithm or review lifecycle.
 
-## Current field hardening
+## Profiles
 
-C-082 is the current control-plane boundary. It preserves C-081 deterministic review dispatch and C-080's C-077 topology / durable C-078/C-079 routing lessons while removing duplicate supervisor engineering:
+### `volume`
 
-- DeepSeek V4 Flash is the default thin supervisor model; one ticket boundary gets one minimal preflight;
-- workers own deterministic verification and candidate-bound PASS evidence crosses the mechanical handoff without supervisor reruns;
-- production-volume / complex select the implementation worker only;
-- ONE assurance profile for reviewer routing, independent of the implementation profile;
-- DeepSeek V4 holds no reviewer role; no review role uses Luna xhigh;
-- the review host never asks for `production-volume | complex`;
-- a completed required reviewer slot with zero capturable output is one typed technical failure whose next action is always HUMAN STOP;
-- no automatic recovery: no qualified routes, no permits, no bound-STATUS authorization, no attempt ledger, no alternate-model fallback;
-- no automatic supervisor escalation to GLM;
-- per-process OpenCode routing and zero-call telemetry preserved.
+- coordinator: MiMo 2.6 Flash;
+- explorer: Qwen 3.8 Flash;
+- implementer: DeepSeek V4 Flash (provider currently serves V4.1 under this ID);
+- merger: MiMo 2.6 Flash;
+- Standards review: GPT-6 Luna high;
+- Spec review: GPT-6 Luna high;
+- correction: DeepSeek V4 Flash;
+- deep OCR: normally off.
 
-Current authority: `docs/CURRENT_EXECUTION_DECISION_C082.md`; C-081 review dispatch and C-080 assurance remain preserved bases.
+### `complex`
+
+- coordinator: MiMo 2.6 Flash;
+- explorer: Qwen 3.8 Flash;
+- implementer: DeepSeek V4 Flash;
+- merger: MiMo 2.6 Flash;
+- Standards review: GPT-6 Luna high;
+- Spec review: GPT-6.1 Sol high;
+- correction: GLM 5.3 Flash high;
+- deep OCR: GLM 5.3 Flash high when triggered.
+
+`complex` primarily means stronger independent assurance, not automatically a different writer.
+
+## Complex triggers
+
+Use `complex` for material semantic/acceptance risk such as cross-cutting architecture, difficult state/concurrency/temporal semantics, material auth/privacy/tenancy/clinical trust boundaries, delicate migration/back-compat invariants or repeated semantic failure.
+
+Do not select it from file count, ticket length, ordinary UI work, number of tests or business importance alone.
+
+## Exceptional writer escalation
+
+Cora/human shaping may explicitly select GLM as first writer when the implementation problem itself is unusually open or reasoning-heavy. This is an exception, not the meaning of `complex`.
+
+## Assurance
+
+Deterministic gates remain first-line evidence. Semgrep is conditional on relevant static/security risk. Alibaba Open Code Review is selective high-risk/deep semantic assurance, not routine per-ticket review.
+
+Feature/train/PR integrated audit is performed by Cora outside the OpenCode role graph when the boundary is material.
+
+## Historical runtime
+
+Gentle, Pi relay, ASSESS, RDD/4R, lineages, burn, review hosts and OpenCode V1 transport remain historical evidence only. They are not required by C-083.
+
+Herdr remains supported operator infrastructure for persistent process/session control and observation; it is not correctness authority.

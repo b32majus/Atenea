@@ -4,7 +4,9 @@
 # Atenea — Gentle Pi 3.3 One-Touch Train Recipe v1
 
 Date: 2026-09-20
-Status: **CURRENT PINNED EXECUTION RECIPE**
+Status: **HISTORICAL / SUPERSEDED BY C-083 — PRESERVED PROVENANCE**
+
+Current execution authority is `docs/START_HERE.md` + `docs/CURRENT_EXECUTION_DECISION_C083.md`. Do not use this document as a current runbook or routing contract.
 
 Purpose: make the current Pi/Gentle train reproducible without re-teaching review consent or model routing in every operator prompt.
 

@@ -1,10 +1,10 @@
 # Atenea — Repository Policy
 
-Status: **CURRENT AUTHORITY**
+Status: **CURRENT AUTHORITY — C-083**
 
-Atenea is a thin upstream-first policy, configuration and conformance layer over native engineering tools. This file defines stable repository policy; it is not a product specification, task tracker or duplicate Gentle manual.
+Atenea is a thin upstream-first policy, routing and conformance layer over OpenCode V2 and adopted upstream engineering skills. It does not duplicate those skills or implement a second execution/review lifecycle.
 
-## 1. Current ownership
+## 1. Ownership
 
 ```text
 WHAT / WHY / acceptance / domain authority
@@ -13,117 +13,113 @@ WHAT / WHY / acceptance / domain authority
 stable engineering quality
 → target repository AGENTS.md + CODING_STANDARDS.md
 
-shaping, only while genuinely active
-→ adopted shaping workflow
+shaping / implementation / code review method
+→ adopted Matt Pocock skills when invoked
 
-prepared implementation
-→ Pi supervisor + Herdr
-→ ONE plain Pi child (`pi --no-extensions`)
-→ production-volume by default; complex only on material trigger
-
-candidate risk / review timing / lens selection
-→ native Gentle
-
-review execution when due
-→ qualified OpenCode V1 transport with per-process routing config
-→ single assurance profile, independent of implementation profile
-→ conditional refuter / bounded correction / validator / burn
+role → model binding and assurance profile
+→ Atenea project-local OpenCode agents + routing policy
 
 machine-decidable facts
-→ tests / validators / oracles / CI
+→ tests / typecheck / lint / validators / oracles / CI
+
+process persistence / observation
+→ Herdr when useful; never correctness authority
 
 publish / merge
 → target repository policy + explicit human authority
 ```
 
-OpenCode V1 is not the ordinary prepared-ticket writer. It remains review transport and qualified implementation fallback.
-
 ## 2. Authority precedence
 
-1. current accepted product/domain authority;
-2. current authorized task/change artifacts;
-3. target repository policy;
-4. current Atenea execution authority;
-5. upstream tool defaults;
-6. historical docs, stale config and remembered session state.
+1. accepted current product/domain authority;
+2. accepted spec/ticket/work order for the current change;
+3. target-repository policy and coding standards;
+4. current Atenea execution/routing authority;
+5. adopted upstream skill instructions;
+6. upstream runtime defaults;
+7. historical docs, stale config and remembered session state.
 
-Material conflict between current authorities => **STOP and reconcile**.
+Material conflict between current authorities => STOP and reconcile. Runtime convenience never invents product semantics.
 
-## 3. Read before changing Atenea
+## 3. Read before work
 
-Read:
+Read only what the work needs:
 
-1. `README.md`;
-2. `docs/START_HERE.md`;
-3. `docs/CURRENT_EXECUTION_DECISION_C082.md`;
-4. `docs/CURRENT_EXECUTION_DECISION_C081.md` and C-080 for preserved review/assurance provenance;
-5. `CODING_STANDARDS.md`;
-6. relevant earlier decision provenance only when needed;
-7. the accepted issue/work-order/spec being executed.
+1. this file;
+2. `CODING_STANDARDS.md`;
+3. `CONTEXT.md` and relevant ADRs;
+4. `GLOSSARY.md` when domain vocabulary matters;
+5. the accepted issue/spec/ticket;
+6. `docs/ATENEA_EXECUTION_ROUTING_V0.md` when executing through Atenea.
 
-Current operation: `docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md`.
-Current handoff: `docs/PREPARED_TRAIN_HANDOFF_C082.md`.
-Prepared routing: `config/native-gentle/prepared-routing-policy.json`.
-Assurance routing: `config/native-gentle/opencode-assurance.profile.json`.
-Runtime exceptions: `docs/vnext/CURRENT_COMPATIBILITY.md`.
+Historical C-077–C-082 and Gentle/Pi runbooks are provenance, not current execution authority.
 
-## 4. Prepared-ticket entry
+## 4. Do not duplicate Matt
 
-If executable authority already exists, do **not** rerun ODD, `gentle-orchestrator`, broad archaeology or shaping by ritual.
+Matt skills own their methodology. Do not copy their TDD loop, task-graph procedure, code-review rubric or worktree choreography into Atenea policy.
 
-The Pi worker reads target-repository authority and applicable skills, implements the smallest coherent authorized change, preserves the principal acceptance oracle, runs deterministic checks and creates the authorized local candidate commit.
+Atenea adds only stable repository constraints, explicit role/model bindings, deterministic evidence requirements and human publication boundaries.
 
-## 5. Prepared profiles
+When Matt names a role such as explorer, implementer, merger, Standards reviewer or Spec reviewer, use the project-local Atenea role binding for the selected profile. Do not silently choose another model because a quota is inconvenient.
 
-Default: `production-volume → Pi + nan/deepseek-v4-flash`.
+Do not rewrite `~/.config/opencode/opencode.json` as per-ticket/train routing state. C-083 role semantics live in versioned project-local OpenCode configuration; global config supplies user/provider capability, not hidden Atenea policy.
 
-Triggered: `complex → Pi + nan/glm5.3-flash · high`.
+Run the C-083 OpenCode path with `--pure` so external plugins from older runtime epochs cannot re-enter execution. Historical global agents may remain installed, but C-083 coordinator/implementer task permissions allow only named `atenea-*` subagents.
 
-Use `complex` only for material reasoning/semantic risk. Do not escalate from file count, ticket length, ordinary UI, many tests or business importance alone. Do not switch the implementation profile inside an active candidate/review lineage.
+## 5. Deterministic-first
 
-## 6. Native review
+If a material property can be expressed deterministically, prove it deterministically. LLM review is for semantic, architectural, maintainability and unanticipated failure questions that are not better encoded as executable checks.
 
-After candidate commit, run Gentle ASSESS against the actual base and obey its result. Atenea does not select lenses.
+Do not create an oracle for every edit. Add one when an important invariant is worth pinning.
 
-- `review_due=false` → no review host; checkpoint.
-- medium review when due → the one focus lens Gentle selected.
-- high → Gentle's canonical 4R set.
-- refuter/validator run only when Gentle requires them.
+## 6. Bounded correction
 
-When provider-issued collection requires OpenCode, start a fresh bounded V1 review host with **per-process** routing configuration rendered from the single assurance profile (`tools/render-opencode-routing-overlay.mjs`, no profile argument). Never mutate `~/.config/opencode/opencode.json` as train routing state.
+Use at most one fresh correction pass after review findings:
 
-A completed required reviewer Task with zero capturable result is a **technical reviewer failure**: normalize it with the deterministic zero-output classifier into a typed failure whose next action is HUMAN STOP. There is no recovery route, no permit, no same-route retry, no alternate model, no model carousel, no RESET, no new START/ASSESS, no skipped lens, no profile switch and no global config mutation. Candidate/lineage/revision/target stay preserved.
+```text
+IMPLEMENT
+→ REVIEW
+→ clean → DONE
+→ findings → ONE fresh correction worker → focused regression evidence → DONE
+→ still blocker / new material issue → HUMAN STOP
+```
 
-Judgment Day is explicit-only. Plain Pi is not a Gentle-Pi review host; never manually assert `GENTLE_PI_REVIEW_RELAY_CONTRACT`.
+No fix/review carousel.
 
-## 7. Skills and trust
+## 7. Skills and repo setup
 
-Pi supports trusted project skills from `.pi/skills/` and `.agents/skills/`.
+Project-local skills may provide domain, engineering, UI or QA guidance. Keep upstream-owned skill content upstream-owned; update it through its supported mechanism rather than hand-forking it.
 
-- keep intentional runtime-specific resources where they belong;
-- prefer `.agents/skills/<name>/SKILL.md` for cross-runtime project authority;
-- do not duplicate skills solely to normalize layout;
-- discovered skills require non-empty `name` and `description` frontmatter;
-- use `--approve` only as a one-run trust override for an intentionally trusted repository that needs protected project resources.
+### Agent skills
 
-Project skills own domain/engineering/UI/QA guidance. Atenea owns execution routing.
+#### Issue tracker
 
-## 8. Supervisor boundary
+Issues/specs are tracked in GitHub. See `docs/agents/issue-tracker.md`.
 
-The supervisor is control plane only: authorized frontier, **one minimal preflight per ticket/work-unit authority boundary**, profile selection at that boundary, launch/observation of the responsible worker, mechanical evidence handoff, already-authorized procedural relay, Gentle lifecycle transport, durable checkpoints and next-or-STOP. Phase changes inside the same ticket — worker launch, ASSESS, review collection, reviewer return or provider-issued correction — do **not** reopen preflight.
+#### Triage labels
 
-Workers own engineering and required deterministic verification. Their candidate-bound PASS evidence crosses the handoff. After worker FINAL the supervisor must not inspect code/diff semantically, rerun tests/typecheck/build/E2E, add independent QA/challenge, broaden checks, or edit code. It may establish only mechanical candidate/base/worktree/evidence facts needed for the next transition.
+Use the Matt triage vocabulary mapped in `docs/agents/triage-labels.md`.
 
-Material product/scope/acceptance/oracle/publication changes are HUMAN STOP. Missing or failed required evidence is not permission for supervisor re-verification.
+#### Domain docs
 
-## 9. Implementation fallback
+Matt's domain glossary lives in `GLOSSARY.md` (or `GLOSSARY-MAP.md` for multi-context repos); architectural/current-system context may live separately in `CONTEXT.md`. See `docs/agents/domain.md`.
 
-If plain Pi has a concrete runtime/tooling failure, preserve the worktree, checkpoint, scope and acceptance and use qualified OpenCode Build V1 under the same prepared-ticket contract. Do not re-enter ODD, re-shape accepted work or silently change publication authority.
+## 8. Herdr
 
-## 10. Efficiency evidence
+Herdr remains the normal operator surface when persistent sessions, process observation or recovery ergonomics are useful. Atenea correctness must not depend on an Atenea-specific Herdr plugin or hidden Herdr state.
 
-Usage telemetry is observational and non-blocking. It must not add model calls, choose reviewer depth, change product acceptance or trigger profile changes inside a lineage. See `docs/EXECUTION_EFFICIENCY_LEDGER_V1.md`.
+## 9. Repository entry and resumption
+
+Use `docs/REPOSITORY_ENTRY_RECONCILIATION_V1.md` when prior harness/tooling state could be confused with current authority. Entry is read-only; finding stale state does not authorize deletion.
+
+## 10. Worktrees and cleanup
+
+Matt owns temporary implementer-worktree choreography while its skills are active. Repository-level cleanup policy lives in `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md`.
+
+A delivery/integration worktree is not removed merely because a PR exists. Post-merge closeout is the normal cleanup point after the accepted merge is durable, the worktree is clean, no process uses it and no unique local state remains.
 
 ## 11. Publication
+
+Before publication, validate the artifact types that actually changed; see `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md`.
 
 Review approval is not push/PR/merge/deploy authority. No automatic merge, force-push or destructive history recovery.

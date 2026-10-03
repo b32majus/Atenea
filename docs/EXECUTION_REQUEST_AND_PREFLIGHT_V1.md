@@ -1,62 +1,56 @@
 # Atenea — Execution request and preflight v1
 
-Status: **CURRENT EXECUTION ENTRY CONTRACT**
-Date: 2026-09-28
+Status: **CURRENT EXECUTION ENTRY CONTRACT — C-083**
+Date: 2026-10-03
 
 ## Principle
 
-Prepared work enters at implementation. Atenea validates only facts that can change the next action; it does not repeat shaping or Gentle's lifecycle by ritual.
+Prepared work enters at implementation. Atenea establishes only facts that can change the next action; it does not repeat shaping or Matt methodology by ritual.
 
 ```text
 accepted bounded work
 → minimal preflight
-→ select production-volume|complex
-→ ONE Pi implementation worker
-→ deterministic checks/oracles
-→ candidate commit
-→ native Gentle ASSESS
-→ no review host when review_due=false
-→ exact provider-issued review route when due
-→ checkpoint / next-or-STOP
+→ select volume | complex
+→ OpenCode V2 coordinator
+→ Matt /implement or /implement-spec
+→ deterministic evidence + independent review
+→ one bounded correction if needed
+→ ticket DONE / HUMAN STOP
 ```
 
 ## Ordinary preflight
 
 Confirm only:
 
-1. correct repository/worktree/base and no unrelated dirty state;
+1. correct repository, worktree and base; no unrelated dirty state;
 2. current accepted ticket/work-order/spec;
 3. executable outcome, acceptance and material constraints/non-goals;
-4. compatible Pi/Herdr/Gentle/OpenCode V1 review runtime available;
-5. publication boundary known.
+4. C-083 OpenCode project config/required role agents resolve;
+5. publication boundary is known.
 
-If durable authority already proves a fact, do not ask the human to repeat it.
-
-**Preflight is single-entry.** Run it once when entering the authorized ticket/work unit. Do not repeat it when launching the worker, accepting the worker handoff, entering Gentle ASSESS, starting reviewer collection, returning from review, or launching a provider-issued correction. Reopen preflight only for a genuinely new authorized work unit, a controlling base/worktree change that invalidates prior authority, or new human authority after HUMAN STOP.
+If durable authority already proves a fact, do not ask the human to repeat it. Reopen preflight only for a genuinely new authorized work unit, a base/worktree change that invalidates prior authority, or new human authority after HUMAN STOP.
 
 ## Profile selection
 
-Default to `production-volume` → Pi on `nan/deepseek-v4-flash`.
+Default to `volume`. Use `complex` only for the material semantic/risk triggers in `docs/ATENEA_EXECUTION_ROUTING_V0.md`.
 
-Use `complex` → Pi on `nan/glm5.3-flash` high only for material reasoning/semantic-risk triggers defined in `config/native-gentle/prepared-routing-policy.json`.
+Both profiles normally write with `nan/deepseek-v4-flash`. `complex` strengthens independent assurance and uses GLM high for the one correction pass. Profile/model selection stays fixed through the active bounded unit; no quota-driven mid-unit fallback.
 
-Profile selection occurs at a clean candidate/work-unit boundary and remains stable through the active lineage. The profile selects the implementation worker only; reviewer routing uses the single assurance profile and never depends on it.
+## Execution handoff
 
-## Default worker request
+The coordinator and Matt skills read the accepted authority directly. Do not restate `AGENTS.md`, `CODING_STANDARDS.md`, Matt's TDD loop or code-review rubric inside every ticket prompt.
+
+A useful handoff carries only the semantic delta:
 
 ```text
-Execute <ticket/work unit> only.
+Work: <ticket/work unit>.
 Authority: <issue/spec/work-order>.
-Profile: <production-volume|complex>.
-This work is already shaped; do not reopen product meaning, run ODD or use gentle-orchestrator.
-Before writing, read and obey repository AGENTS.md, CODING_STANDARDS.md when present, and applicable project skills.
-Preserve the principal acceptance oracle; do not weaken tests/checkers to make implementation pass.
-Implement the smallest coherent authorized change, run required deterministic checks, and create the authorized local candidate commit.
-Do not broaden scope or publish beyond current authority.
+Profile: <volume|complex>.
+Preserve: <principal invariant/oracle if material>.
+Constraints/non-goals: <only task-specific constraints>.
+Publication: <current boundary>.
 ```
-
-Do not teach the implementation worker reviewer ordering or transport mechanics. The worker FINAL reports `base_sha`, `candidate_sha`, required deterministic check command(s) + PASS/FAIL, and worktree status. After its candidate commit, the supervisor consumes that candidate-bound evidence and verifies only mechanical handoff facts; it does **not** inspect implementation semantics or rerun the worker's checks. Native Gentle then decides `review_due` and lens depth; OpenCode starts only for provider-issued collection with process-local routing config.
 
 ## STOP conditions
 
-STOP for unresolved/contradictory product authority, new material scope, acceptance/oracle changes, destructive action outside authority, missing required secrets handling, publication beyond authority, a typed provider refusal with no exact safe continuation, or a typed technical reviewer failure (next_action = human_stop). A technical reviewer failure has no automatic recovery: preserve candidate/lineage/revision/target and STOP.
+STOP for unresolved/contradictory product authority, new material scope, acceptance/oracle changes, destructive action outside authority, missing required secret handling, publication beyond authority, a required runtime/role binding that cannot be established, or a blocker/new material issue after the single correction pass.

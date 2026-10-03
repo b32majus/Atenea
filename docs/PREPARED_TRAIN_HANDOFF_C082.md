@@ -1,6 +1,8 @@
 # Prepared train handoff — C-082
 
-Status: **CURRENT**
+Status: **HISTORICAL / SUPERSEDED BY C-083 — PRESERVED PROVENANCE**
+
+Current execution authority is `docs/START_HERE.md` + `docs/CURRENT_EXECUTION_DECISION_C083.md`. Do not use this document as a current runbook or routing contract.
 Decision: `docs/CURRENT_EXECUTION_DECISION_C082.md`
 
 Use only for already-shaped, executable work. Supervisor = control plane; workers = engineering/data plane; evidence crosses the handoff, engineering work does not.

@@ -4,7 +4,9 @@
 # Gentle Pi 2.7 / Gentle AI 2.9.1 — hybrid-native zero-touch qualification
 
 Date: 2026-09-15
-Status: **CURRENT ADOPTION EVIDENCE**
+Status: **HISTORICAL / SUPERSEDED BY C-083 — PRESERVED PROVENANCE**
+
+Current execution authority is `docs/START_HERE.md` + `docs/CURRENT_EXECUTION_DECISION_C083.md`. Do not use this document as a current runbook or routing contract.
 
 This document preserves the complete replacement/deletion investigation that led from the pre-2.7 unattended topology to the current smaller path. It records failures and discarded alternatives as well as the final PASS so future operators do not repeat the archaeology.
 
