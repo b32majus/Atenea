@@ -1,6 +1,6 @@
 # Atenea Qualification
 
-Status: **CURRENT C-084 QUALIFICATION — NATIVE V2 FIELD-VALIDATED; FREE V0 READY FOR FIRST REAL PILOT**
+Status: **CURRENT C-084 QUALIFICATION — NATIVE V2 FIELD-VALIDATED; FREE V0 FIELD-VALIDATED FOR VOLUME WORK**
 Date: 2026-10-03
 
 ## Correction of C-083 evidence
@@ -18,7 +18,7 @@ Atenea policy + project-local native V2 role/model bindings
 → fresh role-bound subagents/worktrees
 → deterministic evidence
 → independent Standards + Spec review
-→ one bounded correction
+→ up to two fresh finding-scoped corrections
 → material feature/train closeout + Cora audit
 → human publication / merge
 ```
@@ -79,23 +79,41 @@ The same field discussion also restores a two-attempt correction budget: one fre
 
 The preferred real-work entry is also explicit operator control: Cora prepares repo/worktree/handoff/preflight through `READY_TO_LAUNCH`, then returns exact bash/agent/prompt. The human launches the visible OpenCode TUI and presses Enter. This is an observability/control boundary, not a correctness dependency.
 
-## Atenea Free v0 pre-field evidence
+## Atenea Free v0 field evidence
 
-The optional `free_only` cost-policy extension is configured but **not yet field-qualified for quality**. Pre-publication evidence is deliberately bounded:
+The Free profile has now completed two real `volume` project units in PROMueve Sure without paid fallback. The second unit (WU2 Company Base) was substantial enough to exercise implementation, independent review, a fresh correction and deterministic closeout:
 
-- `node tools/check-free-models.mjs` confirms the three current bound IDs are visible to this runtime: MiMo 2.6 Flash Free, Space Bunny Free and NaN Qwen 3.6;
-- a full-screen native `opencode .` launch with temporary `default_agent=atenea-free` displayed `Atenea-Free · MiMo-V2.6-Flash Free · OpenCode Zen`, proving the Golden Path primary binding;
-- MiMo Free, Space Bunny Free and Qwen 3.6 completed small bounded invocation/tool-use smokes on this VPS;
-- no paid model appears in any Free agent binding or Free coordinator subagent permission;
-- candidate models are not automatic fallbacks. LongCat, Gemma and Nemotron remain unbound after weaker local latency/tool-use observations.
+```text
+MiMo 2.6 Flash Free coordinator
+→ Space Bunny Free implementer
+→ Qwen 3.6 Standards + fresh MiMo Free Spec review
+→ fresh Space Bunny Free corrector
+→ deterministic coordinator verification
+→ human publication
+```
 
-`opencode mini --agent` is not used as primary-binding evidence: in 2.0.22 it may keep the interactive default model instead of the agent's declared model. The full-screen `opencode .` Golden Path resolves the project `default_agent` binding correctly.
+WU2 finished in one autonomous train with no HUMAN STOP. The final candidate passed the project suite (`143/143` tests), typecheck, build and `git diff --check`; independent Cora reruns reproduced those gates. No paid/standard model fallback occurred. WU1 had already supplied an earlier successful Free field run, so Free V0 now has repeated evidence for bounded `volume` work. This is evidence of practical viability, not a claim of quality/latency equivalence with the paid standard route and not proof of `free_only + complex`.
 
-The first real Free project ticket must supply the quality/process evidence: coordinator delegation, writer behavior, both review axes, bounded correction, deterministic closure, Cora audit when required, and observed latency/token behavior. Do not open a synthetic qualification campaign before that field run.
+The Free model catalog remains replaceable. `node tools/check-free-models.mjs` is still a preflight availability check, not a quality benchmark or permission to switch models mid-unit.
+
+`opencode mini --agent` remains unsuitable as primary-binding evidence in OpenCode V2 `2.0.22` because it may retain the interactive default model instead of the primary agent's declared model. The visible full-screen `opencode .` Golden Path and real session routing are the relevant evidence.
+
+## Subsequent field learning — single canonical review ownership
+
+Laboratorio de Privacidad POLICY-01 exercised the post-#125 correction boundary correctly but exposed duplicated review ownership. The V4 implementer committed candidate `7dd0978`, then launched Matt Standards + Spec reviews itself. The implementer did **not** write again. After control returned, the MiMo coordinator launched a second Standards + Spec pair over the same candidate; that second Spec review found two actionable issues and a fresh `atenea-corrector-volume` produced `1260403`. Final focused/unit/browser evidence was green and no HUMAN STOP was needed.
+
+The learning is not “delete the second review”. The first Spec review missed defects that the coordinator-owned Spec review found because the latter carried a stronger, complete Cora-shaped acceptance/evidence brief. The defect is **double lifecycle ownership**: both coordinator and implementer could invoke `/implement`/`code-review`. C-084 therefore assigns a single owner:
+
+- the primary coordinator owns Matt `/implement` or `/implement-spec`, the one canonical `/code-review`, review aggregation and correction dispatch;
+- implementation workers own implementation/TDD, implementation evidence and the candidate commit only;
+- implementers cannot invoke `/implement`, `/implement-spec`, `/code-review`, reviewer roles or corrector roles;
+- review a candidate/fixed-point pair exactly once unless the prior review failed technically, was incomplete or was anchored to the wrong fixed point/authority envelope.
+
+POLICY-01's duplicated first review consumed 138,844 fresh input/output/reasoning fields plus 371,712 cache-read fields. Removing that duplicate while preserving the stronger coordinator-owned brief would have reduced reported fresh fields from 803,961 to about 665,117 for that run. PROMueve Sure WU2 independently demonstrated the desired shape already: implementer returned the candidate, coordinator launched one review pair, then dispatched a fresh corrector.
 
 ## What is not yet claimed
 
-One real standard C-084 train does not permanently prove every routing/model choice or every project seam, and it does not prove Free V0 quality. Continue collecting field evidence through `EXECUTION_EFFICIENCY_LEDGER_V1.md`; change policy only at a clean future work boundary if repeated evidence warrants it.
+Repeated standard and Free `volume` field runs now support the C-084 direction, but they do not permanently prove every routing/model choice, `complex` behavior or future Free catalog. The new single-review permission hardening should be observed in subsequent real tickets rather than through another synthetic qualification campaign. Continue collecting field evidence through `EXECUTION_EFFICIENCY_LEDGER_V1.md`; change policy only at a clean future work boundary if repeated evidence warrants it.
 
 ## Current deterministic checks
 

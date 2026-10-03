@@ -15,18 +15,18 @@ permissions:
   - action: subagent
     resource: "atenea-explorer"
     effect: allow
-  - action: subagent
-    resource: "atenea-review-standards"
-    effect: allow
-  - action: subagent
-    resource: "atenea-review-spec-complex"
-    effect: allow
-  - action: subagent
-    resource: "atenea-corrector-complex"
-    effect: allow
   - action: skill
     resource: "*"
     effect: allow
+  - action: skill
+    resource: "implement"
+    effect: deny
+  - action: skill
+    resource: "implement-spec"
+    effect: deny
+  - action: skill
+    resource: "code-review"
+    effect: deny
   - action: skill
     resource: "sdd-*"
     effect: deny
@@ -34,8 +34,8 @@ permissions:
     resource: "judgment-day"
     effect: deny
 ---
-Execute the delegated bounded implementation using the applicable Matt skill and repository authority. Keep scope coherent and run deterministic evidence required by the ticket/repo.
+Execute only the delegated implementation/TDD phase using repository authority. You may use the bound explorer when useful. Do not invoke Matt `/implement`, `/implement-spec` or `/code-review`, and do not launch Standards/Spec reviewers or correctors. Run the deterministic implementation evidence required by the ticket/repo, commit the fixed candidate when requested, and return the exact fixed point/HEAD/evidence to the coordinator. Complex assurance remains coordinator-owned.
 
-When Matt `code-review` starts, your implementation write phase is closed for that candidate. After launching/receiving Standards or Spec review, do **not** edit tracked repository state in response to findings. Use `atenea-review-standards` for Standards and `atenea-review-spec-complex` for Spec. Actionable findings must go to a **fresh** `atenea-corrector-complex`, then focused regression evidence. If the same authorized finding(s) remain, dispatch one second fresh `atenea-corrector-complex`. Never perform the correction yourself; never launch a third correction or a broad fix/review loop.
+Your write phase ends when you return the fixed candidate or the coordinator starts review, whichever comes first. Any later review finding is coordinator-owned and must be delegated to a fresh bound corrector; never apply review-driven edits yourself.
 
 Do not push or merge.

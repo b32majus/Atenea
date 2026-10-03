@@ -57,7 +57,9 @@ Treat these as routing defects, not optimization opportunities:
 - volume correction uses a different model from V4 without a new boundary decision;
 - complex correction does not use GLM high;
 - Standards/Spec review is performed by the writer instead of the independent bound reviewer;
-- a second autonomous correction/review cycle starts after the bounded correction pass;
+- an implementer invokes `/implement`, `/implement-spec`, `/code-review`, a reviewer or a corrector instead of returning the fixed implementation candidate to the coordinator;
+- the same candidate/fixed-point pair is reviewed more than once without a technically failed, incomplete or incorrectly anchored prior review;
+- a third autonomous correction or a new broad review/fix cycle starts after the two-attempt correction budget;
 - per-ticket routing rewrites shared global OpenCode config;
 - quota pressure silently changes an active unit's model route.
 
@@ -97,6 +99,42 @@ Efficiency observations, not routing changes:
 - keep MiMo/routing unchanged until several real tickets show whether coordinator share remains high after these first-run effects disappear.
 
 One structural defect was observed: during an exact human-authorized E2E test-maintenance repair, the MiMo coordinator used shell mutation directly instead of delegating to a worker. The final change was correct and bounded, but this violated the intended coordinator/worker boundary. C-084 now makes the boundary artifact-wide (including tests/docs/config) and mechanism-independent (including shell), rather than relying only on `edit: deny`.
+
+## Field record — Laboratorio de Privacidad POLICY-01 (#56)
+
+Standard `volume`, OpenCode V2 `2.0.22`, final branch candidate `1260403` / PR #58. Provider-reported session subtree:
+
+```text
+MiMo coordinator                      fresh 156,400 | cache-read 2,797,312
+DeepSeek V4 implementer               fresh 217,675 | cache-read 6,606,592
+first Luna Standards + Spec pair      fresh 138,844 | cache-read   371,712
+second Luna Standards + Spec pair     fresh 125,934 | cache-read   220,672
+fresh DeepSeek V4 corrector           fresh 165,108 | cache-read 3,949,824
+
+reported subtree total                fresh 803,961 | cache-read 13,946,112
+```
+
+The implementer committed `7dd0978` before review and did not mutate afterward, so the post-#125 writer/corrector boundary held. The routing inefficiency was duplicated review ownership: the implementer ran Matt review and then the coordinator repeated both axes on the same fixed candidate. The first pair reported no actionable issue; the coordinator-owned second Spec review found factual-copy and deterministic responsive/contrast-evidence defects, then a fresh V4 corrector closed them in `1260403`. Therefore the safe optimization is not to keep the first review and remove the second; it is to make the coordinator the **single canonical review owner** with the complete Cora-shaped brief. The redundant first pair represented 138,844 fresh fields (~17.3% of this run's fresh total).
+
+Independent Cora rerun after closeout: focused policy tests `21/21`, policy/gate Playwright `12/12`, typecheck PASS, clean worktree.
+
+## Field record — PROMueve Sure WU2 Company Base
+
+Free `volume`, OpenCode V2 `2.0.22`, final branch candidate `525b84b` / PR #13. Provider-reported session subtree:
+
+```text
+MiMo 2.6 Flash Free coordinator        fresh  84,403 | cache-read    818,432
+Space Bunny Free implementer           fresh 325,207 | cache-read 18,917,508
+Qwen 3.6 Standards review              fresh 174,089 | cache-read    285,056
+MiMo 2.6 Flash Free Spec review        fresh 164,662 | cache-read  4,692,992
+fresh Space Bunny Free corrector       fresh  64,031 | cache-read  1,081,745
+
+reported subtree total                 fresh 812,392 | cache-read 25,795,733
+```
+
+WU2 demonstrated the desired ownership shape without duplicate review: coordinator → implementer candidate → one coordinator-dispatched Standards + Spec pair → fresh corrector → deterministic closeout. No paid fallback and no HUMAN STOP. Final independent Cora rerun: project tests `143/143`, typecheck PASS, build PASS, `git diff --check` PASS, clean worktree.
+
+The Free route remains slower and uses provider-reported token fields differently from the standard route, so these values are observational rather than a normalized cost comparison. Model routing remains unchanged.
 
 ## Useful field metrics
 

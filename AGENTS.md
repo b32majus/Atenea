@@ -66,7 +66,7 @@ Atenea separates **risk class** (`volume|complex`) from **cost policy** (`standa
 
 Do not rewrite `~/.config/opencode/opencode.json` as per-ticket/train routing state. C-084 role semantics live in versioned project-local OpenCode configuration; global config supplies user/provider capability, not hidden Atenea policy.
 
-C-084 uses native OpenCode V2. The active global OpenCode config is deliberately clean of Gentle execution agents/plugins; the Herdr OpenCode integration is allowed as observability/session metadata and is not Atenea execution authority; project-local coordinator/implementer `subagent` permissions allow only the named `atenea-*` roles for the selected profile. Do not add `--pure`: it is a V1 flag and is not part of the V2 CLI.
+C-084 uses native OpenCode V2. The active global OpenCode config is deliberately clean of Gentle execution agents/plugins; the Herdr OpenCode integration is allowed as observability/session metadata and is not Atenea execution authority. Project-local coordinator permissions own lifecycle roles; implementer permissions are deliberately narrower and may delegate only exploratory work, not review/correction ownership. Do not add `--pure`: it is a V1 flag and is not part of the V2 CLI.
 
 ## 5. Deterministic-first
 
@@ -88,11 +88,13 @@ The same rule applies to corrections. A finding from Matt review or Cora promoti
 
 Coordinator roles are orchestration-only for repository mutation. They must not change product code, tests, docs, config or other repository artifacts directly, including through shell-side backdoors such as `sed -i`, redirection, generated rewrite scripts or Git patch/application commands. Exact human instructions do not waive this boundary: delegate every repository mutation to the bound implementer/corrector/merger role, then verify from the coordinator. Deterministic gates may create ignored/transient build output; if a gate unexpectedly changes tracked state, STOP and delegate/reconcile rather than absorbing the mutation.
 
+Matt lifecycle ownership is single. The selected primary coordinator owns `/implement` or `/implement-spec`, the canonical `/code-review`, review aggregation and correction dispatch. Implementation workers own only the delegated implementation/TDD phase, implementation evidence and candidate commit; they return the fixed candidate to the coordinator and do **not** invoke `/implement`, `/implement-spec`, `/code-review`, Standards/Spec reviewers or correctors themselves. For a given candidate/fixed-point pair, run one canonical two-axis review with the complete Cora-shaped authority envelope. Re-run that review only when the prior review failed technically, was incomplete, or was anchored to the wrong fixed point—not because another role also reached the review stage.
+
 External memory is convenience, never execution authority. Do not turn memory save/reconciliation/judgment into routine train critical-path work. Durable repository authority plus the live OpenCode session are sufficient for normal execution; use external memory only when an explicit cross-session need justifies it, preferably at closeout rather than between implementation/review steps.
 
 ## 7. Bounded correction
 
-Starting Standards or Spec review closes the originating implementer's write phase for that candidate. Once review has started, the implementer must not mutate tracked repository state in response to review findings, even when the fix is trivial or the bound corrector uses the same underlying model family. Every review-driven mutation goes through a **fresh bound corrector session**.
+The coordinator starts the canonical Standards + Spec review only after the implementation candidate is fixed. Starting that review closes the originating implementer's write phase for that candidate. Once review has started, the implementer must not mutate tracked repository state in response to review findings, even when the fix is trivial or the bound corrector uses the same underlying model family. Every review-driven mutation goes through a **fresh bound corrector session** dispatched by the coordinator.
 
 Allow at most two fresh, finding-scoped correction attempts before HUMAN STOP:
 

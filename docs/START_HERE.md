@@ -60,7 +60,7 @@ Single bounded issue/ticket: use `/implement` through the selected Atenea profil
 
 Whole accepted spec/task graph: use `/implement-spec` through the selected Atenea profile.
 
-Matt owns TDD, task-graph/frontier behavior, implementation worktrees and its two-axis code-review method. Atenea supplies only named role/model bindings and repository guardrails.
+Matt owns TDD, task-graph/frontier behavior, implementation worktrees and its two-axis code-review method. Atenea supplies only named role/model bindings and repository guardrails. The selected primary Atenea coordinator owns that Matt lifecycle: implementation workers implement/TDD and return a fixed candidate; the coordinator then runs the **single canonical** Standards + Spec review and dispatches any fresh corrector. Do not nest `/implement` inside the implementer or review the same candidate/fixed point twice unless the earlier review failed technically, was incomplete or used the wrong anchor.
 
 Prefer a durable project handoff for material work, then reference it from the visible TUI (for example `@docs/handoffs/TRAIN_X.md`) rather than pasting a giant prompt repeatedly.
 

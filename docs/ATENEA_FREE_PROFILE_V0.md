@@ -56,7 +56,7 @@ opencode .
 
 Select `atenea-free` before submitting the handoff. Matt remains methodology owner. Cora remains the shaping/product/architecture authority and final integrated auditor when required.
 
-The coordinator is orchestration-only and may dispatch only the Free agents permitted in its project-local definition. Repository mutation is delegated to Free implementer/corrector/merger roles.
+The coordinator is orchestration-only for repository mutation and owns the Free Matt lifecycle, including the single canonical two-axis review and correction dispatch. Repository mutation is delegated to Free implementer/corrector/merger roles; the Free implementer returns the candidate before review and does not invoke review/correction roles itself.
 
 ## Model rotation
 

@@ -48,7 +48,7 @@ C-084 routing is project-local and versioned. Do not rewrite shared global confi
 
 Native V2 agents use `permissions` with `shell`, `subagent` and `edit`, and model variants use `provider/model#variant`.
 
-The project requires subagent nesting depth 2 so a V4 implementer can invoke the independent reviewer/corrector level without an Atenea lifecycle controller. Runtime behavior, not prose, is the final authority for this seam.
+The project keeps subagent nesting depth 2 for bounded nested implementation support such as coordinator → implementer → explorer. Review/correction lifecycle ownership is coordinator-level: implementers are not permitted to invoke reviewer/corrector roles. Runtime behavior, not prose, is the final authority for this seam.
 
 ## TUI selection
 
