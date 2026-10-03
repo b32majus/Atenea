@@ -42,6 +42,10 @@ req('docs/PROMOTION_REVIEW_V1.md', 'open-ended “fix the PR”', 'promotion cor
 req('docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md', 'reconciled with the intended upstream/base **before OpenCode starts**', 'prelaunch remote reconciliation');
 req('AGENTS.md', 'effective runtime/rendered state', 'effective-state deterministic oracle');
 req('docs/QUALIFICATION.md', 'First real field evidence — Laboratorio de Privacidad', 'C-084 real field evidence');
+req('AGENTS.md', 'Coordinator roles are orchestration-only for repository mutation', 'coordinator mutation boundary');
+req('.opencode/agents/atenea-volume.md', 'do not bypass `edit: deny` through shell commands', 'volume shell mutation guard');
+req('.opencode/agents/atenea-complex.md', 'do not bypass `edit: deny` through shell commands', 'complex shell mutation guard');
+req('docs/EXECUTION_EFFICIENCY_LEDGER_V1.md', 'Field record — Laboratorio de Privacidad #52', 'first C-084 efficiency record');
 req('docs/START_HERE.md', '/agents', 'complex visible agent selection');
 req('docs/START_HERE.md', 'Do not add `--pure`', 'V1 pure rejection');
 req('docs/PROMOTION_REVIEW_V1.md', "normally Cora's audit", 'Cora integrated audit');

@@ -84,6 +84,10 @@ If a material ambiguity would require choosing product behavior, architecture, s
 
 The same rule applies to corrections. A finding from Matt review or Cora promotion audit must become a finding-scoped correction: name the defect, allowed surface, explicit non-goals and evidence that closes it. Never issue an open-ended instruction such as “fix the PR”, “improve this” or “address anything else you notice”.
 
+Coordinator roles are orchestration-only for repository mutation. They must not change product code, tests, docs, config or other repository artifacts directly, including through shell-side backdoors such as `sed -i`, redirection, generated rewrite scripts or Git patch/application commands. Exact human instructions do not waive this boundary: delegate every repository mutation to the bound implementer/corrector/merger role, then verify from the coordinator. Deterministic gates may create ignored/transient build output; if a gate unexpectedly changes tracked state, STOP and delegate/reconcile rather than absorbing the mutation.
+
+External memory is convenience, never execution authority. Do not turn memory save/reconciliation/judgment into routine train critical-path work. Durable repository authority plus the live OpenCode session are sufficient for normal execution; use external memory only when an explicit cross-session need justifies it, preferably at closeout rather than between implementation/review steps.
+
 ## 7. Bounded correction
 
 Use at most one fresh correction pass after review findings:

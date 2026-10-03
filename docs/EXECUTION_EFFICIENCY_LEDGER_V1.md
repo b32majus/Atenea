@@ -52,7 +52,7 @@ Do not infer missing token/cache numbers and do not manufacture one normalized c
 
 Treat these as routing defects, not optimization opportunities:
 
-- coordinator authors product code instead of delegating to the bound implementer;
+- coordinator mutates repository artifacts (product code, tests, docs or config) by any mechanism instead of delegating to the bound worker;
 - normal `complex` implementation silently switches from V4 to GLM without explicit first-writer escalation;
 - volume correction uses a different model from V4 without a new boundary decision;
 - complex correction does not use GLM high;
@@ -60,6 +60,43 @@ Treat these as routing defects, not optimization opportunities:
 - a second autonomous correction/review cycle starts after the bounded correction pass;
 - per-ticket routing rewrites shared global OpenCode config;
 - quota pressure silently changes an active unit's model route.
+
+## Field record — Laboratorio de Privacidad #52 (UX-PILOT-01)
+
+First real native-C-084 `volume` field run, OpenCode V2 `2.0.22`, PR #54. Provider-reported usage from the OpenCode session subtree:
+
+```text
+MiMo coordinator
+  input 152,422 | output 29,053 | reasoning 39,764 | cache-read 7,042,432
+
+DeepSeek V4 workers (implementation + correction + bounded follow-up maintenance)
+  input 157,607 | output 24,244 | reasoning 36,176 | cache-read 5,514,624
+
+GPT-6 Luna high reviewers (Standards + Spec)
+  input 47,212 | output 1,317 | reasoning 1,590 | cache-read 79,872
+
+reported subtree total
+  input 357,241 | output 54,614 | reasoning 77,530 | cache-read 12,636,928
+```
+
+Do **not** interpret cache-read as fresh/billable input or sum it into a normalized cross-provider cost. For this run, cache-read represented 97.25% of reported input-context traffic (`cache_read / (cache_read + input)`), while fresh input+output+reasoning fields summed to 489,385. The runtime reports `cost=0` under the current subscription/provider accounting, so no monetary inference is recorded.
+
+Quality/flow evidence:
+
+- routing executed as intended: MiMo coordinator → V4 implementer → independent Luna Standards + Spec → fresh V4 correction;
+- deterministic closeout caught residual AA contrast after the one autonomous correction and produced HUMAN STOP rather than a carousel;
+- human-authorized focal continuation fixed only the three measured contrast pairs and produced rendered-state evidence;
+- later CI exposed stale Playwright locators; each newly discovered class produced another bounded human decision rather than opportunistic scope growth; final Playwright `9/9`, full `npm test` `54 files / 908 tests`, CI validate/CodeQL/E2E green, PR #54 merged;
+- no GLM/Sol/conditional OCR/Semgrep was spent on this `volume` UI change.
+
+Efficiency observations, not routing changes:
+
+- coordinator fresh fields were 221,239 tokens (45.2% of the run's input+output+reasoning total), almost the same order as all V4 worker fresh fields (218,027); this is higher than desired for a coordinator;
+- known contributors were launch-state archaeology from the stale worktree, repeated deterministic re-verification across human continuations, and routine Engram memory-save/judgment bookkeeping;
+- prelaunch reconciliation is now a deterministic preflight rule, memory bookkeeping is removed from the normal critical path, and coordinator mutation is explicitly forbidden by any mechanism;
+- keep MiMo/routing unchanged until several real tickets show whether coordinator share remains high after these first-run effects disappear.
+
+One structural defect was observed: during an exact human-authorized E2E test-maintenance repair, the MiMo coordinator used shell mutation directly instead of delegating to a worker. The final change was correct and bounded, but this violated the intended coordinator/worker boundary. C-084 now makes the boundary artifact-wide (including tests/docs/config) and mechanism-independent (including shell), rather than relying only on `edit: deny`.
 
 ## Useful field metrics
 
