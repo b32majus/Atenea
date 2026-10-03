@@ -29,4 +29,8 @@ Check proportionately:
 
 Report blocking findings first, then material nonblocking findings. Candidate mutation invalidates an audit bound to the old HEAD when the audit is still required.
 
+If the audit finds a blocker, Cora does not hand OpenCode an open-ended “fix the PR” request. Convert each authorized repair into one bounded correction envelope: exact finding, required target state, allowed surface, explicit non-goals and deterministic closure evidence. Do not authorize opportunistic cleanup or adjacent findings unless the human explicitly opens a new unit.
+
+After the autonomous correction budget is exhausted, a human may authorize a new focal continuation. That is a new bounded unit, not a hidden second autonomous correction pass.
+
 The audit is evidence for the human boundary. It never grants merge authority.

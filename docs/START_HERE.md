@@ -62,6 +62,8 @@ Matt owns TDD, task-graph/frontier behavior, implementation worktrees and its tw
 
 Prefer a durable project handoff for material work, then reference it from the visible TUI (for example `@docs/handoffs/TRAIN_X.md`) rather than pasting a giant prompt repeatedly.
 
+Before OpenCode receives that handoff, Cora must have reduced material interpretive freedom: exact outcome, in-scope surface, fixed decisions, preserved invariants, non-goals and closure evidence should be clear. Atenea execution models implement within that envelope; they do not discover product intent or reopen architecture by default. The same applies to every correction after review/audit.
+
 ## 4. Evidence and assurance
 
 Run the repo-native deterministic gates justified by the changed behavior/artifacts. Prefer executable proof over another LLM opinion.

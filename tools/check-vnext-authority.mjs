@@ -36,6 +36,9 @@ req('docs/ATENEA_EXECUTION_ROUTING_V0.md', '`atenea-corrector-complex` → GLM 5
 req('docs/ATENEA_EXECUTION_ROUTING_V0.md', '`atenea-review-spec-complex` → GPT-6.1 Sol high', 'complex Sol spec review');
 req('docs/ATENEA_EXECUTION_ROUTING_V0.md', 'No quota router', 'no quota router');
 req('docs/START_HERE.md', 'opencode .', 'native V2 TUI launch');
+req('AGENTS.md', 'Cora-shaped execution envelope', 'directed execution envelope');
+req('docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md', 'Finding-scoped corrections', 'bounded correction handoff');
+req('docs/PROMOTION_REVIEW_V1.md', 'open-ended “fix the PR”', 'promotion correction scope');
 req('docs/START_HERE.md', '/agents', 'complex visible agent selection');
 req('docs/START_HERE.md', 'Do not add `--pure`', 'V1 pure rejection');
 req('docs/PROMOTION_REVIEW_V1.md', "normally Cora's audit", 'Cora integrated audit');
