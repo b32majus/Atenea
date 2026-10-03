@@ -6,7 +6,18 @@ permission:
   edit: deny
   write: deny
   bash: allow
-  task: allow
+  task:
+    "*": deny
+    "atenea-explorer": allow
+    "atenea-implementer-volume": allow
+    "atenea-merger": allow
+    "atenea-review-standards": allow
+    "atenea-review-spec-volume": allow
+    "atenea-corrector-volume": allow
+  skill:
+    "*": allow
+    "sdd-*": deny
+    "judgment-day": deny
 ---
 Read `AGENTS.md`, `CODING_STANDARDS.md`, `CONTEXT.md` and `docs/ATENEA_EXECUTION_ROUTING_V0.md` before engineering work.
 

@@ -4,7 +4,9 @@
 # Gentle Pi 3.3 / Gentle AI 3.4 — Q10/Q11 adoption evidence
 
 Date: 2026-09-20
-Status: **CURRENT QUALIFICATION / ADOPTION EVIDENCE**
+Status: **HISTORICAL / SUPERSEDED BY C-083 — PRESERVED PROVENANCE**
+
+Current execution authority is `docs/START_HERE.md` + `docs/CURRENT_EXECUTION_DECISION_C083.md`. Do not use this document as a current runbook or routing contract.
 
 This file records why Atenea's current GP3.3 architecture is smaller than GP2.7. It is evidence, not a second runtime contract. Current normative authority remains `docs/ATENEA_HARNESS_CONTRACT_V1.md`.
 

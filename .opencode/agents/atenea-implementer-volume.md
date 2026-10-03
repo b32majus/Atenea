@@ -6,7 +6,16 @@ permission:
   edit: allow
   write: allow
   bash: allow
-  task: allow
+  task:
+    "*": deny
+    "atenea-explorer": allow
+    "atenea-review-standards": allow
+    "atenea-review-spec-volume": allow
+    "atenea-corrector-volume": allow
+  skill:
+    "*": allow
+    "sdd-*": deny
+    "judgment-day": deny
 ---
 Execute the delegated bounded implementation using the applicable Matt skill and repository authority. Keep scope coherent and run deterministic evidence required by the ticket/repo.
 

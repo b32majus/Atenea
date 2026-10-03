@@ -7,7 +7,7 @@ Current execution authority: **C-083 — OpenCode V2 + Matt, risk-proportional a
 ```text
 accepted issue/spec
 → Herdr when useful for persistent operation
-→ OpenCode V2 Atenea profile
+→ OpenCode V2 `--pure` Atenea profile
 → Matt /implement or /implement-spec
 → role-bound subagents
 → deterministic checks/oracles

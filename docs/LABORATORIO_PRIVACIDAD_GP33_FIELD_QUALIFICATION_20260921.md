@@ -3,7 +3,9 @@
 
 # Laboratorio_Privacidad_Clinica × Atenea GP3.3 / GAI3.4 — real field qualification
 
-Status: **CURRENT FIELD EVIDENCE**
+Status: **HISTORICAL / SUPERSEDED BY C-083 — PRESERVED PROVENANCE**
+
+Current execution authority is `docs/START_HERE.md` + `docs/CURRENT_EXECUTION_DECISION_C083.md`. Do not use this document as a current runbook or routing contract.
 Date: 2026-09-20/21
 
 ## 1. Scope

@@ -1,161 +1,75 @@
 # Atenea Harness Contract vNext
 
-Status: **CURRENT NORMATIVE BOUNDARY**
+Status: **CURRENT NORMATIVE BOUNDARY — C-083**
 
-Atenea is not a second execution harness around Gentle.
-
-The contract is the ownership boundary between durable repository authority, the thin Atenea train supervisor, fresh OpenCode + Gentle candidate execution, deterministic evidence and human publication authority.
+Atenea is not a second engineering framework around OpenCode or Matt.
 
 ## 1. Product authority
 
-Humans and durable repository artifacts own:
+Humans and durable repository artifacts own WHAT/WHY, acceptance, domain/safety constraints, non-goals and publication/merge authorization. A runtime may decompose accepted work; it may not expand product authority.
 
-- WHAT is being changed;
-- WHY it matters;
-- acceptance criteria;
-- domain/safety constraints;
-- non-goals;
-- publication/merge authorization.
+## 2. Atenea-owned value
 
-A runtime may decompose accepted work. It may not expand product authority.
+Atenea owns only durable value above upstream:
 
-## 2. Stable Atenea policy
+- stable repository/engineering policy;
+- secret-free project-local role/model bindings;
+- profile-selection rules and bounded escalation;
+- deterministic conformance/publication evidence;
+- worktree/Git safety policy;
+- qualification and architectural provenance.
 
-Atenea owns only durable policy/configuration/evidence that adds value above upstream:
+Target Atenea-owned LLM lifecycle controllers: **0**.
+Target Atenea-owned routing engines: **0**.
 
-- `AGENTS.md`;
-- `CODING_STANDARDS.md`;
-- phase-scoped shaping guidance;
-- secret-free provider/profile desired state;
-- deterministic conformance tooling;
-- publication/Git guardrails;
-- architectural and qualification provenance.
+## 3. Upstream method ownership
 
-Target Atenea-owned runtime controllers: **1 thin deterministic train supervisor; 0 review/implementation controllers**.
+OpenCode owns agent/subagent execution. Adopted Matt skills own their TDD, task-graph/frontier, worktree choreography and two-axis code-review methodology.
 
-## 3. Native execution authority
+Atenea does not copy those procedures into prompts/policy. It binds Matt roles to named project-local OpenCode agents and supplies repository constraints.
 
-Fresh OpenCode + Gentle own the bounded candidate lifecycle:
+## 4. Model-binding boundary
 
-```text
-explore/classify
-→ decompose
-→ delegate bounded work
-→ enforce edit surfaces
-→ verify
-→ create work-unit commits when native flow requires
-→ ASSESS / native review routing
-→ reviewer/refuter/validator
-→ correction lifecycle
-→ acknowledge-approved
-→ authority burned
-```
+Current role bindings live in `.opencode/agents/` and `docs/ATENEA_EXECUTION_ROUTING_V0.md`. Project-local desired state must be inspectable from Git.
 
-The thin supervisor must not proxy or shadow that lifecycle. It may only launch a fresh bounded process, transport exact already-authorized candidate consent, reconcile durable checkpoints and advance next-or-STOP.
+Do not mutate shared `~/.config/opencode/opencode.json` as per-ticket/train routing state. C-083 runs OpenCode with `--pure` to exclude external plugins inherited from older runtime epochs, and task permissions allow only named Atenea subagents. No automatic quota failover/model carousel inside an active bounded unit.
 
-## 4. Review authority
+## 5. Herdr
 
-Only native provider/Gentle state may create or consume review authority.
+Herdr may own persistent process/session surfaces, observation and operator convenience. It may not own product meaning, correctness, model-selection policy, review verdicts or publication authority.
 
-Atenea must not:
+## 6. Deterministic evidence
 
-- invent reviewer verdicts;
-- reconstruct lineage or target identity;
-- synthesize START;
-- reproduce provider review timing from line counts;
-- replace native consent;
-- replay reviewer output;
-- create a second burn/receipt state machine.
+Machine-decidable facts should be proven mechanically. Product repositories use their own relevant tests, typechecks, builds, schema/parsing validators, linters, security/static checks and CI.
 
-Successful native `acknowledge-approved` returning `authority=burned` is terminal evidence.
-
-Current version/provider exceptions are documented in `docs/vnext/CURRENT_COMPATIBILITY.md`.
-
-## 5. Deterministic evidence
-
-Machine-decidable facts should be proven mechanically.
-
-For Atenea:
+For Atenea authority/config conformance:
 
 ```bash
-node tools/check-opencode-runtime-policy.mjs
 node tools/check-vnext-authority.mjs
 ```
 
-Product repositories should use their own relevant tests, typechecks, builds, schema validators, security checks and CI.
+Oracles produce evidence; they do not grant publication authority.
 
-Oracles produce evidence; they do not grant review or publication authority.
+## 7. Review and correction
 
-## 6. Configuration
+Matt's independent Standards and Spec axes are the normal semantic review surface. Conditional static/security/deep OCR assurance is risk-proportional.
 
-Versioned desired state is secret-free:
+At most one fresh correction worker follows actionable review findings. A remaining blocker or new material issue becomes HUMAN STOP rather than a fix/review carousel.
 
-- `config/native-gentle/nan-provider.models.json`;
-- `config/native-gentle/opencode-runtime-policy.json`.
+## 8. Shaping and entry
 
-Pi-era profile files remain rollback/provenance rather than current OpenCode writer-routing authority.
+Shaping is phase-scoped. Accepted executable authority is not reshaped by ritual.
 
-OpenCode/Gentle own candidate execution mechanics. C-071 keeps nontrivial writer-model routing explicit until field-qualified.
+When entering a brownfield repository, find current authority first, inspect prior harness/tooling read-only and reconcile genuine contradictions before mutation.
 
-Credentials remain in supported local credential storage/environment and are never committed.
+## 9. Worktrees
 
-Hidden global state must be inspectable against versioned desired state whenever it materially affects behavior.
-
-## 7. Shaping
-
-Shaping is active only while product/execution authority is genuinely incomplete.
-
-Default execution-ready seam:
-
-```text
-minimal semantic execution contract
-→ native Gentle
-```
-
-Matt skills are optional discovery/shaping.
-
-OpenSpec is optional native SDD when durable specs/change history add value.
-
-No shaping method is mandatory by ritual.
-
-## 8. Repository entry
-
-Before changing a brownfield repository:
-
-- find live Git/GitHub/product authority;
-- read repository policy;
-- inspect old tooling read-only;
-- distinguish current from historical;
-- STOP on material unresolved conflict.
-
-Old files do not gain authority by existing.
-
-## 9. Work-unit composition
-
-Prefer coherent, reviewable work units.
-
-Do not code-golf useful tests/docs merely to hit a numeric budget.
-
-Planning size is not native review timing.
-
-If a change is obviously oversized, slice it before implementation when practical. Native Gentle remains the owner of actual review_due/risk decisions.
+Matt owns ephemeral implementer worktrees while its workflow is active. Delivery/integration worktrees remain through PR review and accepted merge. Post-merge cleanup occurs only after durable reconciliation, clean state, no active process and no unique local work.
 
 ## 10. Publication
 
-Native review approval is necessary evidence where review applies, but it is not merge authority.
-
-Publication follows:
-
-- target repository policy;
-- changed-artifact validation;
-- explicit human/publication authorization.
-
-No automatic merge, force-push or destructive history repair.
+Review/audit evidence is not merge authority. Publication follows target-repository policy, changed-artifact validation and explicit human authority. No automatic merge, force-push or destructive history repair.
 
 ## 11. Historical artifacts
 
-Pre-vNext runtime controllers, relays, patches and fixtures are preserved under `historical/runtime/` and Git history.
-
-They are non-operative.
-
-A future regression must first be reproduced against the supported native stack. Historical machinery may not be restored to production without a new explicit architectural decision and qualification.
+Gentle/Pi relay, ASSESS/RDD/4R, reviewer lineages/burn, review hosts and OpenCode V1 transport are historical provenance. They may remain in Git without remaining active runtime.

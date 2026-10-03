@@ -11,7 +11,7 @@ Atenea makes autonomous engineering work safer, reproducible and economical with
 ```text
 accepted product authority
 → Herdr operator surface when useful
-→ OpenCode V2 Atenea profile
+→ OpenCode V2 `--pure` Atenea profile
 → Matt skill appropriate to the work
 → fresh role-bound subagents / worktrees
 → deterministic evidence

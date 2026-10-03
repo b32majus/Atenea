@@ -5,7 +5,7 @@ Status: **CURRENT FRONT DOOR — C-083**
 ## Current path
 
 ```text
-runtime             = OpenCode V2
+runtime             = OpenCode V2 `--pure`
 operator surface    = Herdr when useful
 method              = upstream Matt skills, not forked by Atenea
 default profile     = volume
@@ -20,6 +20,18 @@ feature/train audit = Cora when material
 ```
 
 OpenCode project bindings are declared in `.opencode/agents/`; the policy snapshot is `docs/ATENEA_EXECUTION_ROUTING_V0.md`.
+
+C-083 launch boundary:
+
+```bash
+# ordinary work
+opencode --pure --agent atenea-volume
+
+# risk-triggered complex work
+opencode --pure --agent atenea-complex
+```
+
+Herdr may own the persistent process/session around these commands. Do not launch C-083 without `--pure`; the VPS intentionally retains older external plugins as provenance/rollback state.
 
 ## 1. Entry
 

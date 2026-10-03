@@ -64,6 +64,8 @@ When Matt names a role such as explorer, implementer, merger, Standards reviewer
 
 Do not rewrite `~/.config/opencode/opencode.json` as per-ticket/train routing state. C-083 role semantics live in versioned project-local OpenCode configuration; global config supplies user/provider capability, not hidden Atenea policy.
 
+Run the C-083 OpenCode path with `--pure` so external plugins from older runtime epochs cannot re-enter execution. Historical global agents may remain installed, but C-083 coordinator/implementer task permissions allow only named `atenea-*` subagents.
+
 ## 5. Deterministic-first
 
 If a material property can be expressed deterministically, prove it deterministically. LLM review is for semantic, architectural, maintainability and unanticipated failure questions that are not better encoded as executable checks.

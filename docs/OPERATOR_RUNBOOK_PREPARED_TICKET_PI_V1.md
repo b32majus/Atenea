@@ -1,6 +1,8 @@
 # Atenea — Prepared-ticket Pi runtime v1
 
-Status: **CURRENT PRODUCTIVE PATH FOR PREPARED WORK — C-080 LEAN ASSURANCE**
+Status: **HISTORICAL / SUPERSEDED BY C-083 — PRESERVED PROVENANCE**
+
+Current execution authority is `docs/START_HERE.md` + `docs/CURRENT_EXECUTION_DECISION_C083.md`. Do not use this document as a current runbook or routing contract.
 Date: 2026-09-30
 
 This runbook begins only after product/task authority is executable.

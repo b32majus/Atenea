@@ -22,7 +22,7 @@ Before this decision:
 
 ## Architectural rule
 
-Atenea does not fork Matt skills merely to express routing. OpenCode project-local agents bind Matt role names to models. Matt continues to own method; Atenea owns the binding.
+Atenea does not fork Matt skills merely to express routing. OpenCode project-local agents bind Matt role names to models. Matt continues to own method; Atenea owns the binding. C-083 launches OpenCode with `--pure` so externally installed plugins from prior runtime epochs are not active; named task allowlists prevent accidental delegation to legacy global agents.
 
 ## Profiles
 

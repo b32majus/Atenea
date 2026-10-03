@@ -1,6 +1,8 @@
 # Native Gentle skill reconciliation — 2026-09-24
 
-Status: **CURRENT MAINTENANCE EVIDENCE / PASS WITH TWO EXPLICIT UPSTREAM EXCEPTIONS**
+Status: **HISTORICAL / SUPERSEDED BY C-083 — PRESERVED PROVENANCE**
+
+Current execution authority is `docs/START_HERE.md` + `docs/CURRENT_EXECUTION_DECISION_C083.md`. Do not use this document as a current runbook or routing contract.
 
 ## Scope
 

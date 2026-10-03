@@ -3,7 +3,7 @@
 Status: **CURRENT C-083 ROUTING AUTHORITY**
 Date: 2026-10-03
 
-This file maps engineering roles to project-local OpenCode agents. It does not duplicate Matt skill procedures.
+This file maps engineering roles to project-local OpenCode agents. It does not duplicate Matt skill procedures. C-083 runs OpenCode with `--pure`; legacy global agents/plugins may remain installed but are outside the active route.
 
 ## Profiles
 

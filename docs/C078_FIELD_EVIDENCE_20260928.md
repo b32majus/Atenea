@@ -1,6 +1,8 @@
 # C-078 field evidence — 2026-09-28
 
-Status: **CURRENT SUPPORTING EVIDENCE**
+Status: **HISTORICAL / SUPERSEDED BY C-083 — PRESERVED PROVENANCE**
+
+Current execution authority is `docs/START_HERE.md` + `docs/CURRENT_EXECUTION_DECISION_C083.md`. Do not use this document as a current runbook or routing contract.
 
 This document records the real-project evidence used to harden C-077 without reopening its Pi-first implementation topology.
 

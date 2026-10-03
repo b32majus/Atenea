@@ -7,6 +7,7 @@ Date: 2026-10-03
 
 ```text
 OpenCode runtime    1.18.34 observed on the qualified VPS
+launch boundary     `opencode --pure`
 execution model     OpenCode V2 project agents/subagents
 Herdr               retained operator/session surface
 current decision    C-083
