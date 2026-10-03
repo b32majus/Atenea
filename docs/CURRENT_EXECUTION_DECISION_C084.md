@@ -46,7 +46,7 @@ Atenea agents use native V2 fields:
 - `subagent`, not V1 `task`;
 - `edit` covers edit/write/patch;
 - model variants use `provider/model#variant`;
-- project `experimental.subagent_depth=2` permits implementer → reviewer/corrector nesting.
+- project `experimental.subagent_depth=2` permits bounded nested implementation support such as coordinator → implementer → explorer; review/correction lifecycle ownership remains coordinator-level.
 
 ## Visible operating path
 
@@ -71,7 +71,7 @@ C-084 also carries the optional `free_only` cost-policy extension in `docs/ATENE
 
 ## Standard routing retained from C-083
 
-The standard-cost model matrix from C-083 is retained. Field control semantics are refined by C-084 evidence: review closes the original implementer write phase and the correction budget is now at most two fresh finding-scoped attempts:
+The standard-cost model matrix from C-083 is retained. Field control semantics are refined by C-084 evidence: the primary coordinator owns the single canonical Matt review for a fixed candidate, review closes the original implementer write phase, and the correction budget is at most two fresh finding-scoped attempts:
 
 - MiMo coordinator;
 - Qwen explorer;

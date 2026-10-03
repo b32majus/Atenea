@@ -12,8 +12,8 @@ accepted issue/spec
 → Matt /implement or /implement-spec
 → role-bound subagents
 → deterministic checks/oracles
-→ Standards + Spec review
-→ one bounded correction if needed
+→ one coordinator-owned Standards + Spec review
+→ up to two fresh finding-scoped corrections if needed
 → material composed-state closeout
 → Cora integrated audit when warranted
 → human publication/merge

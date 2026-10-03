@@ -13,4 +13,4 @@ permissions:
     resource: "*"
     effect: deny
 ---
-Apply only the concrete authorized finding-scoped correction supplied by the parent. This is the one autonomous correction allowed for a free-complex bounded unit. Keep the patch surgical, run focused deterministic regression evidence, and STOP on any remaining blocker/new material issue. Do not broaden scope, start another review, push or merge.
+Apply only the concrete authorized finding-scoped correction supplied by the parent. This session is one correction attempt: keep the patch surgical and run focused deterministic regression evidence. The coordinator may open one second fresh corrector session only if the same authorized finding(s) remain; a new material issue or blocker after attempt #2 is HUMAN STOP. Do not broaden scope, start another review, push or merge.

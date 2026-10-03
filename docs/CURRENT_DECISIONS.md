@@ -1280,6 +1280,8 @@ A graph/index never outranks source code, accepted product/spec authority, deter
 
 Field use refines C-084 without reopening its model/routing architecture:
 
+- the selected primary coordinator owns Matt `/implement`/`/implement-spec`, the single canonical `/code-review`, review aggregation and correction dispatch; implementation workers own implementation/TDD + candidate commit only and cannot launch reviewers/correctors;
 - review start closes the originating implementer's write phase; review-driven repository mutation belongs to a fresh bound corrector, even when the model family is identical;
+- review the same candidate/fixed-point pair exactly once unless the prior review failed technically, was incomplete or used the wrong anchor/authority envelope;
 - autonomous correction budget is at most two fresh finding-scoped attempts against the same authorized finding envelope, with focused deterministic evidence after each; a third attempt, new material issue or scope expansion is HUMAN STOP;
 - real-work preparation ends at `READY_TO_LAUNCH`: Cora prepares repo/worktree/handoff/preflight and returns exact bash + visible agent selection + exact prompt, while the human operator starts OpenCode in the already-running Herdr pane and presses Enter unless that specific launch is explicitly delegated.

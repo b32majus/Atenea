@@ -27,6 +27,7 @@ for (const r of current) read(r);
 req('README.md', 'C-084', 'README current decision');
 req('docs/START_HERE.md', 'CURRENT FRONT DOOR — C-084', 'C-084 front door');
 req('docs/CURRENT_DECISIONS.md', 'C-084 is the current execution decision', 'decision ledger');
+req('docs/CURRENT_DECISIONS.md', 'single canonical `/code-review`', 'current single-review ownership decision');
 req('docs/CURRENT_EXECUTION_DECISION_C084.md', 'Native OpenCode V2', 'native V2 correction decision');
 req('docs/CURRENT_EXECUTION_DECISION_C084.md', '`free_only` cost-policy extension', 'C-084 Free extension pointer');
 req('docs/CURRENT_EXECUTION_DECISION_C083.md', 'SUPERSEDED AS RUNTIME AUTHORITY BY C-084', 'C-083 correction marker');
@@ -38,13 +39,14 @@ req('docs/ATENEA_EXECUTION_ROUTING_V0.md', '`atenea-corrector-complex` → GLM 5
 req('docs/ATENEA_EXECUTION_ROUTING_V0.md', '`atenea-review-spec-complex` → GPT-6.1 Sol high', 'complex Sol spec review');
 req('docs/ATENEA_EXECUTION_ROUTING_V0.md', 'No quota router', 'no quota router');
 req('docs/START_HERE.md', 'opencode .', 'native V2 TUI launch');
+req('docs/START_HERE.md', 'single canonical', 'single canonical review front-door rule');
 req('AGENTS.md', 'Cora-shaped execution envelope', 'directed execution envelope');
 req('docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md', 'Finding-scoped corrections', 'bounded correction handoff');
 req('docs/PROMOTION_REVIEW_V1.md', 'open-ended “fix the PR”', 'promotion correction scope');
 req('docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md', 'reconciled with the intended upstream/base **before OpenCode starts**', 'prelaunch remote reconciliation');
 req('AGENTS.md', 'effective runtime/rendered state', 'effective-state deterministic oracle');
 req('docs/QUALIFICATION.md', 'First real field evidence — Laboratorio de Privacidad', 'C-084 real field evidence');
-req('docs/QUALIFICATION.md', 'Atenea Free v0 pre-field evidence', 'Free pre-field evidence boundary');
+req('docs/QUALIFICATION.md', 'Atenea Free v0 field evidence', 'Free field evidence boundary');
 req('AGENTS.md', 'Coordinator roles are orchestration-only for repository mutation', 'coordinator mutation boundary');
 req('.opencode/agents/atenea-volume.md', 'do not bypass `edit: deny` through shell commands', 'volume shell mutation guard');
 req('.opencode/agents/atenea-complex.md', 'do not bypass `edit: deny` through shell commands', 'complex shell mutation guard');
@@ -66,16 +68,20 @@ req('docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md', 'READY_TO_LAUNCH operator pack
 req('docs/START_HERE.md', 'presses Enter', 'human visible launch ownership');
 req('docs/ATENEA_HARNESS_CONTRACT_V1.md', 'At most two finding-scoped correction attempts', 'two-attempt correction budget');
 req('docs/QUALIFICATION.md', 'Subsequent field process learning — correction-role separation', 'implementer/corrector field learning');
-req('.opencode/agents/atenea-implementer-volume.md', 'your implementation write phase is closed', 'volume post-review write closure');
-req('.opencode/agents/atenea-implementer-complex.md', 'your implementation write phase is closed', 'complex post-review write closure');
-req('.opencode/agents/atenea-implementer-free.md', 'your implementation write phase is closed', 'Free post-review write closure');
+req('docs/QUALIFICATION.md', 'Subsequent field learning — single canonical review ownership', 'single-review field learning');
+req('.opencode/agents/atenea-volume.md', 'run exactly one canonical `/code-review` yourself', 'volume coordinator review ownership');
+req('.opencode/agents/atenea-complex.md', 'run exactly one canonical `/code-review` yourself', 'complex coordinator review ownership');
+req('.opencode/agents/atenea-free.md', 'run exactly one canonical `/code-review` yourself', 'Free coordinator review ownership');
+req('.opencode/agents/atenea-implementer-volume.md', 'Do not invoke Matt `/implement`, `/implement-spec` or `/code-review`', 'volume implementer lifecycle isolation');
+req('.opencode/agents/atenea-implementer-complex.md', 'Do not invoke Matt `/implement`, `/implement-spec` or `/code-review`', 'complex implementer lifecycle isolation');
+req('.opencode/agents/atenea-implementer-free.md', 'Do not invoke Matt `/implement`, `/implement-spec` or `/code-review`', 'Free implementer lifecycle isolation');
 req('.opencode/agents/atenea-volume.md', 'at most two fresh `atenea-corrector-volume` sessions', 'volume two-correction budget');
 req('.opencode/agents/atenea-complex.md', 'at most two fresh `atenea-corrector-complex` sessions', 'complex two-correction budget');
 req('.opencode/agents/atenea-free.md', 'one second fresh session', 'Free two-correction budget');
 
 const oc = JSON.parse(read('opencode.json') || '{}');
 if (oc.default_agent !== 'atenea-volume') failures.push('default OpenCode agent must be atenea-volume');
-if (oc.experimental?.subagent_depth !== 2) failures.push('OpenCode experimental.subagent_depth must be 2 for implementer -> reviewer/corrector nesting');
+if (oc.experimental?.subagent_depth !== 2) failures.push('OpenCode experimental.subagent_depth must be 2 for bounded coordinator -> implementer -> explorer nesting');
 if ('subagent_depth' in oc) failures.push('legacy top-level subagent_depth is forbidden in C-084');
 
 const agents = {
@@ -112,6 +118,13 @@ for (const r of ['.opencode/agents/atenea-review-standards.md','.opencode/agents
   req(r, 'action: subagent', 'reviewer nested-agent isolation');
 }
 req('.opencode/agents/atenea-explorer.md', 'resource: "/tmp/atenea-matt-*.md"', 'explorer external-note allowance');
+for (const r of ['.opencode/agents/atenea-implementer-volume.md','.opencode/agents/atenea-implementer-complex.md','.opencode/agents/atenea-implementer-free.md']) {
+  req(r, 'resource: "implement"\n    effect: deny', 'implementer /implement denial');
+  req(r, 'resource: "implement-spec"\n    effect: deny', 'implementer /implement-spec denial');
+  req(r, 'resource: "code-review"\n    effect: deny', 'implementer code-review denial');
+  forbid(r, 'resource: "atenea-review-', 'implementer reviewer subagent binding');
+  forbid(r, 'resource: "atenea-corrector-', 'implementer corrector subagent binding');
+}
 for (const r of ['.opencode/agents/atenea-volume.md','.opencode/agents/atenea-complex.md','.opencode/agents/atenea-implementer-volume.md','.opencode/agents/atenea-implementer-complex.md','.opencode/agents/atenea-free.md','.opencode/agents/atenea-implementer-free.md']) {
   req(r, 'action: subagent', 'native V2 subagent permission');
   req(r, 'resource: "sdd-*"', 'SDD skill exclusion');

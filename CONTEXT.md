@@ -16,8 +16,8 @@ accepted product authority
 → Matt skill appropriate to the work
 → fresh role-bound subagents / worktrees
 → deterministic evidence
-→ independent Matt Standards + Spec review
-→ one bounded correction when needed
+→ one coordinator-owned independent Matt Standards + Spec review
+→ up to two fresh finding-scoped corrections when needed
 → composed-state checks for material trains/features
 → Cora integrated audit at material PR/feature/train boundary
 → human publication / merge decision

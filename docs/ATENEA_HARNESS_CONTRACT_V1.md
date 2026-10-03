@@ -52,7 +52,7 @@ Oracles produce evidence; they do not grant publication authority.
 
 ## 7. Review and correction
 
-Matt's independent Standards and Spec axes are the normal semantic review surface. Conditional static/security/deep OCR assurance is risk-proportional.
+Matt's independent Standards and Spec axes are the normal semantic review surface. Conditional static/security/deep OCR assurance is risk-proportional. The selected primary coordinator owns one canonical Matt review per candidate/fixed-point pair; implementation workers return the fixed candidate before review and cannot launch review/correction roles. Duplicate review is allowed only to recover from a technically failed, incomplete or incorrectly anchored review.
 
 Review start closes the originating implementer's write phase. Actionable review findings are handled by fresh bound correctors, never by the original implementer. At most two finding-scoped correction attempts are allowed: a second fresh corrector may run only when focused evidence shows the same authorized finding(s) remain after the first. A blocker after attempt #2, a new material issue or scope expansion becomes HUMAN STOP rather than a fix/review carousel.
 
