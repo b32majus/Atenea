@@ -23,10 +23,13 @@ accepted bounded work
 Confirm only:
 
 1. correct repository, worktree and base; no unrelated dirty state;
-2. current accepted ticket/work-order/spec;
-3. executable outcome, acceptance and material constraints/non-goals;
-4. C-084 native OpenCode V2 project config/required role agents resolve;
-5. publication boundary is known.
+2. refresh the relevant remote ref and verify the prepared branch/worktree is reconciled with the intended upstream/base **before OpenCode starts**; the accepted handoff/ticket must exist at the exact local HEAD that will execute;
+3. current accepted ticket/work-order/spec;
+4. executable outcome, acceptance and material constraints/non-goals;
+5. C-084 native OpenCode V2 project config/required role agents resolve;
+6. publication boundary is known.
+
+If the prepared branch is merely behind its intended upstream and a clean fast-forward is already within the authorized preparation scope, reconcile it before launch. Divergence, unrelated dirt, unexpected commits or a missing handoff are STOP/reconcile conditions; do not let the coordinator discover and repair launch-state drift inside the train.
 
 If durable authority already proves a fact, do not ask the human to repeat it. Reopen preflight only for a genuinely new authorized work unit, a base/worktree change that invalidates prior authority, or new human authority after HUMAN STOP.
 

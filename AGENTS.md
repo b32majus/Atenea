@@ -70,6 +70,8 @@ C-084 uses native OpenCode V2. The active global OpenCode config is deliberately
 
 If a material property can be expressed deterministically, prove it deterministically. LLM review is for semantic, architectural, maintainability and unanticipated failure questions that are not better encoded as executable checks.
 
+When a review claim is numerically or mechanically decidable, validate the **effective runtime/rendered state**, not a token name, visual guess or proxy. For example, accessibility contrast is measured against the effective background actually rendered. If the invariant will recur in that project, prefer a cheap project-local oracle/checker over repeated model judgement; it does not become a mandatory Atenea-core check for unrelated repos.
+
 Do not create an oracle for every edit. Add one when an important invariant is worth pinning.
 
 ## 6. Cora-shaped execution envelope

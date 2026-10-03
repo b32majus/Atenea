@@ -40,7 +40,7 @@ Do not add `--pure`: it is a V1 flag and is not part of native OpenCode V2. Do n
 
 ## 1. Entry
 
-Establish the correct repository/worktree/base, current accepted issue/spec/ticket, applicable repository authority and publication boundary. Do not repeat shaping or archaeology when executable authority already exists.
+Establish the correct repository/worktree/base, current accepted issue/spec/ticket, applicable repository authority and publication boundary. Refresh the intended remote ref and ensure the exact local HEAD that will execute already contains the prepared handoff and is reconciled with its intended upstream; do not make OpenCode repair stale launch state as part of the train. Do not repeat shaping or archaeology when executable authority already exists.
 
 When legacy harness/tooling state is ambiguous, use `REPOSITORY_ENTRY_RECONCILIATION_V1.md` read-only first.
 
