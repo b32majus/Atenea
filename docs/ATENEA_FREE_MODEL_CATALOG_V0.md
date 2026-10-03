@@ -16,8 +16,8 @@ This file is deliberately replaceable. Free promotions rotate; changing the cata
 | merger | `opencode/mimo-v2.6-flash-free` | semantic integration under accepted intent |
 | Standards review | `nan/qwen3.6` | fresh read-only reviewer, different from writer/provider |
 | Spec review | `opencode/mimo-v2.6-flash-free` | fresh read-only context, different from writer |
-| volume correction | `opencode/space-bunny-free` | one fresh correction pass, mirroring writer-family Volume correction |
-| complex correction | `opencode/mimo-v2.6-flash-free` | one fresh correction pass using a model different from writer |
+| volume correction | `opencode/space-bunny-free` | fresh finding-scoped correction session; may be invoked twice maximum |
+| complex correction | `opencode/mimo-v2.6-flash-free` | fresh finding-scoped correction session using a model different from writer; may be invoked twice maximum |
 | integrated audit | Cora | required for material Free-complex composed work |
 
 ## Selection rationale

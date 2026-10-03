@@ -61,6 +61,17 @@ req('docs/ATENEA_FREE_MODEL_CATALOG_V0.md', '`opencode/space-bunny-free`', 'Free
 req('docs/START_HERE.md', 'node tools/check-free-models.mjs', 'Free runtime preflight');
 req('AGENTS.md', 'explicit human/project `free_only` authority wins', 'Free human override');
 req('.opencode/agents/atenea-free.md', 'Do not switch to a paid model', 'Free coordinator paid-fallback guard');
+req('AGENTS.md', 'through `READY_TO_LAUNCH` only', 'operator-controlled launch boundary');
+req('docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md', 'READY_TO_LAUNCH operator packet', 'operator launch packet contract');
+req('docs/START_HERE.md', 'presses Enter', 'human visible launch ownership');
+req('docs/ATENEA_HARNESS_CONTRACT_V1.md', 'At most two finding-scoped correction attempts', 'two-attempt correction budget');
+req('docs/QUALIFICATION.md', 'Subsequent field process learning — correction-role separation', 'implementer/corrector field learning');
+req('.opencode/agents/atenea-implementer-volume.md', 'your implementation write phase is closed', 'volume post-review write closure');
+req('.opencode/agents/atenea-implementer-complex.md', 'your implementation write phase is closed', 'complex post-review write closure');
+req('.opencode/agents/atenea-implementer-free.md', 'your implementation write phase is closed', 'Free post-review write closure');
+req('.opencode/agents/atenea-volume.md', 'at most two fresh `atenea-corrector-volume` sessions', 'volume two-correction budget');
+req('.opencode/agents/atenea-complex.md', 'at most two fresh `atenea-corrector-complex` sessions', 'complex two-correction budget');
+req('.opencode/agents/atenea-free.md', 'one second fresh session', 'Free two-correction budget');
 
 const oc = JSON.parse(read('opencode.json') || '{}');
 if (oc.default_agent !== 'atenea-volume') failures.push('default OpenCode agent must be atenea-volume');

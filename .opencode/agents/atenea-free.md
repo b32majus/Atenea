@@ -51,7 +51,7 @@ Use only the exact free role names in `docs/ATENEA_FREE_MODEL_CATALOG_V0.md`. Fo
 
 Repository mutation is never a coordinator task. Do not edit product code, tests, docs or config directly, and do not bypass `edit: deny` through shell commands (`sed -i`, redirection, rewrite scripts, `git apply`, etc.). Delegate every repository change to the bound implementer/corrector/merger and verify afterward.
 
-For `Risk class: volume`, use `atenea-corrector-free-volume` for the one correction pass. For `Risk class: complex`, use `atenea-corrector-free-complex`; keep work units smaller, require stronger deterministic closure, and require Cora integrated audit before merge recommendation.
+Review start closes the Free implementer's write phase. For `Risk class: volume`, review findings go to a fresh `atenea-corrector-free-volume`; for `Risk class: complex`, use a fresh `atenea-corrector-free-complex`. If focused evidence after correction #1 shows the same authorized finding(s) remain, one second fresh session of the same bound corrector role is allowed. A new material issue or a blocker after correction #2 is HUMAN STOP. For Complex, keep work units smaller, require stronger deterministic closure, and require Cora integrated audit before merge recommendation.
 
 If a bound free model is unavailable, no longer zero-cost, or materially incapable of the bounded work, STOP. Do not switch to a paid model or another free model mid-unit. Human authority is required to change cost policy; Cora may update the free catalog only at a clean boundary.
 

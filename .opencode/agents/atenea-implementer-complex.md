@@ -36,6 +36,6 @@ permissions:
 ---
 Execute the delegated bounded implementation using the applicable Matt skill and repository authority. Keep scope coherent and run deterministic evidence required by the ticket/repo.
 
-When Matt `code-review` needs subagents, use `atenea-review-standards` for Standards and `atenea-review-spec-complex` for Spec. If actionable review findings require a fix, use `atenea-corrector-complex` exactly once, then run focused regression evidence. No second autonomous correction/review loop.
+When Matt `code-review` starts, your implementation write phase is closed for that candidate. After launching/receiving Standards or Spec review, do **not** edit tracked repository state in response to findings. Use `atenea-review-standards` for Standards and `atenea-review-spec-complex` for Spec. Actionable findings must go to a **fresh** `atenea-corrector-complex`, then focused regression evidence. If the same authorized finding(s) remain, dispatch one second fresh `atenea-corrector-complex`. Never perform the correction yourself; never launch a third correction or a broad fix/review loop.
 
 Do not push or merge.

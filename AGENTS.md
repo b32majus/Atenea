@@ -92,17 +92,22 @@ External memory is convenience, never execution authority. Do not turn memory sa
 
 ## 7. Bounded correction
 
-Use at most one fresh correction pass after review findings:
+Starting Standards or Spec review closes the originating implementer's write phase for that candidate. Once review has started, the implementer must not mutate tracked repository state in response to review findings, even when the fix is trivial or the bound corrector uses the same underlying model family. Every review-driven mutation goes through a **fresh bound corrector session**.
+
+Allow at most two fresh, finding-scoped correction attempts before HUMAN STOP:
 
 ```text
 IMPLEMENT
 → REVIEW
 → clean → DONE
-→ findings → ONE fresh correction worker → focused regression evidence → DONE
-→ still blocker / new material issue → HUMAN STOP
+→ findings → fresh corrector #1 → focused deterministic evidence
+    → resolved → DONE
+    → same authorized finding(s) remain → fresh corrector #2 → focused deterministic evidence
+        → resolved → DONE
+        → still blocker / new material issue → HUMAN STOP
 ```
 
-No fix/review carousel.
+The second correction is not a second broad review cycle and does not authorize scope expansion. A new material finding outside the authorized correction envelope is HUMAN STOP unless Cora/human explicitly opens a new bounded unit. No fix/review carousel.
 
 ## 8. Skills and repo setup
 
@@ -122,9 +127,19 @@ Use the Matt triage vocabulary mapped in `docs/agents/triage-labels.md`.
 
 Matt's domain glossary lives in `GLOSSARY.md` (or `GLOSSARY-MAP.md` for multi-context repos); architectural/current-system context may live separately in `CONTEXT.md`. See `docs/agents/domain.md`.
 
-## 9. Herdr
+## 9. Herdr and operator-controlled launch
 
-Herdr is the already-running persistent operator surface for normal unattended work. Do not launch a new Herdr instance per ticket/train. Open the visible OpenCode V2 TUI inside the project workspace/pane; Atenea correctness must not depend on an Atenea-specific Herdr plugin or hidden Herdr state.
+Herdr is the already-running persistent operator surface for normal unattended work. Do not launch a new Herdr instance per ticket/train. Atenea correctness must not depend on an Atenea-specific Herdr plugin or hidden Herdr state.
+
+For a real ticket/train, Cora owns preparation **through `READY_TO_LAUNCH` only**: reconcile repo/base, prepare the worktree, write the durable handoff, run preflight/checkers, choose cost policy/risk class and return the exact launch packet. The human operator owns the final visible launch.
+
+The launch packet must contain:
+
+1. the exact shell commands to enter the prepared worktree and start `opencode .` in the already-running visible Herdr pane;
+2. any required visible agent selection (`atenea-complex` / `atenea-free` when not already the project default);
+3. the exact first prompt, preferably a short reference to the durable handoff such as `Read @docs/handoffs/TRAIN_X.md and execute it under current repository/Atenea authority.`
+
+Coras/workers do **not** start the real OpenCode session, submit the execution prompt or launch the train independently unless the human explicitly authorizes automated launch for that specific work unit. This preserves operator inspection and visible execution.
 
 ## 10. Repository entry and resumption
 

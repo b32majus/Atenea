@@ -1275,3 +1275,11 @@ A graph/index never outranks source code, accepted product/spec authority, deter
 ### C-084 Free cost-policy extension — CURRENT
 
 `free_only` is an optional human/project cost policy layered on C-084, not a weaker complexity class. It may be used for Volume or Complex work, never silently escalates to paid models, and routes through `atenea-free` with the replaceable catalog in `ATENEA_FREE_MODEL_CATALOG_V0.md`.
+
+### C-084 field control refinements — CURRENT
+
+Field use refines C-084 without reopening its model/routing architecture:
+
+- review start closes the originating implementer's write phase; review-driven repository mutation belongs to a fresh bound corrector, even when the model family is identical;
+- autonomous correction budget is at most two fresh finding-scoped attempts against the same authorized finding envelope, with focused deterministic evidence after each; a third attempt, new material issue or scope expansion is HUMAN STOP;
+- real-work preparation ends at `READY_TO_LAUNCH`: Cora prepares repo/worktree/handoff/preflight and returns exact bash + visible agent selection + exact prompt, while the human operator starts OpenCode in the already-running Herdr pane and presses Enter unless that specific launch is explicitly delegated.

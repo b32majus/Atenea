@@ -71,7 +71,7 @@ When a selected Matt skill asks for an exploration, implementer, merger, Standar
 
 For a single `/implement`, the primary coordinator delegates the implementation to the implementer bound by the selected route rather than writing product code itself. For `/implement-spec`, the primary coordinator runs Matt's task graph and uses the bound role agents.
 
-If Matt review returns actionable findings, use exactly one fresh correction agent from the selected profile. Run focused regression evidence afterward. Do not start a second autonomous correction/review cycle.
+Once Matt review starts, the originating implementer's write phase is closed. Actionable findings must be handled by a fresh correction agent from the selected route; the implementer does not apply review-driven edits itself. Run focused deterministic/regression evidence after each correction. If the same authorized finding(s) remain after correction #1, one second **fresh** correction session using the same bound correction role is allowed. After correction #2, or on a new material finding/scope change, HUMAN STOP. Do not start repeated broad review/fix cycles.
 
 ## Assurance triggers
 
