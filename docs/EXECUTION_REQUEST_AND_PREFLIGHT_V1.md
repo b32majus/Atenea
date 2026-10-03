@@ -1,6 +1,6 @@
 # Atenea — Execution request and preflight v1
 
-Status: **CURRENT EXECUTION ENTRY CONTRACT — C-083**
+Status: **CURRENT EXECUTION ENTRY CONTRACT — C-084**
 Date: 2026-10-03
 
 ## Principle
@@ -25,7 +25,7 @@ Confirm only:
 1. correct repository, worktree and base; no unrelated dirty state;
 2. current accepted ticket/work-order/spec;
 3. executable outcome, acceptance and material constraints/non-goals;
-4. C-083 OpenCode project config/required role agents resolve;
+4. C-084 native OpenCode V2 project config/required role agents resolve;
 5. publication boundary is known.
 
 If durable authority already proves a fact, do not ask the human to repeat it. Reopen preflight only for a genuinely new authorized work unit, a base/worktree change that invalidates prior authority, or new human authority after HUMAN STOP.

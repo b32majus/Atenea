@@ -1,6 +1,6 @@
 # Atenea Context
 
-Status: **CURRENT SYSTEM CONTEXT — C-083**
+Status: **CURRENT SYSTEM CONTEXT — C-084**
 
 ## Purpose
 
@@ -10,8 +10,9 @@ Atenea makes autonomous engineering work safer, reproducible and economical with
 
 ```text
 accepted product authority
-→ Herdr operator surface when useful
-→ OpenCode V2 `--pure` Atenea profile
+→ existing Herdr operator workspace/pane
+→ visible native OpenCode V2 TUI (`opencode .`)
+→ selected Atenea profile
 → Matt skill appropriate to the work
 → fresh role-bound subagents / worktrees
 → deterministic evidence
@@ -69,6 +70,6 @@ Feature/train/PR integrated audit is performed by Cora outside the OpenCode role
 
 ## Historical runtime
 
-Gentle, Pi relay, ASSESS, RDD/4R, lineages, burn, review hosts and OpenCode V1 transport remain historical evidence only. They are not required by C-083.
+Gentle, Pi relay, ASSESS, RDD/4R, lineages, burn, review hosts and OpenCode V1 transport remain historical evidence only. They are not required by C-084.
 
 Herdr remains supported operator infrastructure for persistent process/session control and observation; it is not correctness authority.

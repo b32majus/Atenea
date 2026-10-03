@@ -108,7 +108,7 @@ A cleanup action should be small, reviewable and fail closed:
 
 Do not combine cleanup with implementation, refactoring, documentation cutover or branch-history rewriting. Never force-remove a dirty worktree merely to reclaim space.
 
-## 5. C-083 worktree lifecycle
+## 5. C-084 worktree lifecycle
 
 Two classes must not be conflated:
 

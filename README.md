@@ -2,12 +2,13 @@
 
 Atenea is a thin upstream-first policy, routing and conformance layer for autonomous engineering work.
 
-Current execution authority: **C-083 — OpenCode V2 + Matt, risk-proportional assurance**.
+Current execution authority: **C-084 — native OpenCode V2 + Matt, visible Herdr operation**.
 
 ```text
 accepted issue/spec
-→ Herdr when useful for persistent operation
-→ OpenCode V2 `--pure` Atenea profile
+→ existing Herdr workspace/pane for persistent operation
+→ visible native OpenCode V2 TUI (`opencode .`)
+→ selected Atenea profile
 → Matt /implement or /implement-spec
 → role-bound subagents
 → deterministic checks/oracles

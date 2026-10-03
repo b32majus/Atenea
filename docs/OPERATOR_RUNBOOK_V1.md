@@ -1,6 +1,6 @@
 # Atenea — Operator Runbook v1
 
-Status: **POINTER TO CURRENT OPERATION — C-083**
+Status: **POINTER TO CURRENT OPERATION — C-084**
 
 Read:
 
@@ -13,8 +13,9 @@ Read:
 Current shape:
 
 ```text
-Herdr when useful
-→ OpenCode V2 `--pure` with `atenea-volume` or `atenea-complex`
+existing persistent Herdr workspace/pane
+→ visible native OpenCode V2 TUI (`opencode .`)
+→ volume default / select complex in `/agents` before execution
 → Matt /implement or /implement-spec
 → bound role agents
 → deterministic evidence
@@ -26,4 +27,4 @@ Herdr when useful
 → post-merge worktree closeout
 ```
 
-Historical Pi/Gentle/OpenCode V1 runbooks remain provenance only.
+Do not launch Herdr per ticket. Do not use V1 `--pure`. Historical Pi/Gentle/OpenCode V1 runbooks remain provenance only.

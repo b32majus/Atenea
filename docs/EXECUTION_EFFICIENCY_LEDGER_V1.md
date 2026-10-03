@@ -1,11 +1,11 @@
 # Atenea — Execution Efficiency Ledger v1
 
-Status: **CURRENT OBSERVATIONAL EVIDENCE CONTRACT — C-083**
+Status: **CURRENT OBSERVATIONAL EVIDENCE CONTRACT — C-084**
 Date: 2026-10-03
 
 ## Purpose
 
-Measure whether the C-083 model split gives enough quality while letting DeepSeek V4 absorb most writing volume. Collection must add **zero LLM calls** and must never become a pre-writer gate.
+Measure whether the C-084 model split gives enough quality while letting DeepSeek V4 absorb most writing volume. Collection must add **zero LLM calls** and must never become a pre-writer gate.
 
 Telemetry is observational, not product/review/publication authority. Missing telemetry does not invalidate otherwise valid engineering evidence.
 
@@ -85,4 +85,4 @@ OpenCode exports can be parsed locally when useful:
 node tools/extract-execution-usage.mjs opencode <opencode-export.json>
 ```
 
-Legacy Pi/Gentle parser modes in the helper are historical compatibility, not C-083 runtime requirements.
+Legacy Pi/Gentle parser modes in the helper are historical compatibility, not C-084 runtime requirements.
