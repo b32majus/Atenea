@@ -1,6 +1,6 @@
 # Atenea Harness Contract vNext
 
-Status: **CURRENT NORMATIVE BOUNDARY — C-083**
+Status: **CURRENT NORMATIVE BOUNDARY — C-084**
 
 Atenea is not a second engineering framework around OpenCode or Matt.
 
@@ -32,7 +32,7 @@ Atenea does not copy those procedures into prompts/policy. It binds Matt roles t
 
 Current role bindings live in `.opencode/agents/` and `docs/ATENEA_EXECUTION_ROUTING_V0.md`. Project-local desired state must be inspectable from Git.
 
-Do not mutate shared `~/.config/opencode/opencode.json` as per-ticket/train routing state. C-083 runs OpenCode with `--pure` to exclude external plugins inherited from older runtime epochs, and task permissions allow only named Atenea subagents. No automatic quota failover/model carousel inside an active bounded unit.
+Do not mutate shared `~/.config/opencode/opencode.json` as per-ticket/train routing state. C-084 uses a clean native V2 global capability config and project-local role bindings; `subagent` permissions allow only named Atenea subagents. No automatic quota failover/model carousel inside an active bounded unit.
 
 ## 5. Herdr
 

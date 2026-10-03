@@ -1,12 +1,12 @@
 # Atenea — Start Here
 
-Status: **CURRENT FRONT DOOR — C-083**
+Status: **CURRENT FRONT DOOR — C-084**
 
 ## Current path
 
 ```text
-runtime             = OpenCode V2 `--pure`
-operator surface    = Herdr when useful
+runtime             = native OpenCode V2 (`opencode`, currently 2.0.22)
+operator surface    = existing persistent Herdr workspace/pane
 method              = upstream Matt skills, not forked by Atenea
 default profile     = volume
 risk profile        = complex
@@ -21,17 +21,22 @@ feature/train audit = Cora when material
 
 OpenCode project bindings are declared in `.opencode/agents/`; the policy snapshot is `docs/ATENEA_EXECUTION_ROUTING_V0.md`.
 
-C-083 launch boundary:
+## Visible launch boundary
+
+Herdr is already running. Do not launch a new Herdr instance per ticket/train.
+
+From the project's visible Herdr pane:
 
 ```bash
-# ordinary work
-opencode --pure --agent atenea-volume
-
-# risk-triggered complex work
-opencode --pure --agent atenea-complex
+cd <project-or-worktree>
+opencode .
 ```
 
-Herdr may own the persistent process/session around these commands. Do not launch C-083 without `--pure`; the VPS intentionally retains older external plugins as provenance/rollback state.
+A new session starts on `atenea-volume` because the project declares it as `default_agent`.
+
+For `complex`, select `atenea-complex` in the visible TUI **before** submitting the execution handoff. Use `/agents`, `Ctrl+X` then `A`, or `Shift+Tab`.
+
+Do not add `--pure`: it is a V1 flag and is not part of native OpenCode V2. Do not use `opencode run` as the normal train surface; it is reserved for bounded automation/smokes.
 
 ## 1. Entry
 
@@ -55,6 +60,8 @@ Whole accepted spec/task graph: use `/implement-spec` through the selected Atene
 
 Matt owns TDD, task-graph/frontier behavior, implementation worktrees and its two-axis code-review method. Atenea supplies only named role/model bindings and repository guardrails.
 
+Prefer a durable project handoff for material work, then reference it from the visible TUI (for example `@docs/handoffs/TRAIN_X.md`) rather than pasting a giant prompt repeatedly.
+
 ## 4. Evidence and assurance
 
 Run the repo-native deterministic gates justified by the changed behavior/artifacts. Prefer executable proof over another LLM opinion.
@@ -75,4 +82,4 @@ Matt implementer worktrees should be cleaned by its workflow after integration. 
 
 ## Historical authority
 
-C-077–C-082, Gentle/Pi runbooks, RDD/4R, ASSESS, lineages, burn and OpenCode V1 review transport are retained as provenance only and must not be followed as current execution instructions.
+C-077–C-083 and Gentle/Pi/OpenCode V1 runbooks are retained as provenance. C-083's role/model architecture survives through C-084, but its V1 `1.18.34` qualification and `--pure` launch boundary are explicitly superseded.

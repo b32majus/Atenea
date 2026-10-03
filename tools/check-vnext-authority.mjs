@@ -15,46 +15,37 @@ const forbid = (r, t, label) => { const b = read(r); if (b.includes(t)) failures
 
 const current = [
   'README.md', 'AGENTS.md', 'CODING_STANDARDS.md', 'CONTEXT.md', 'GLOSSARY.md',
-  'docs/START_HERE.md', 'docs/CURRENT_EXECUTION_DECISION_C083.md',
+  'docs/START_HERE.md', 'docs/CURRENT_EXECUTION_DECISION_C084.md',
   'docs/ATENEA_EXECUTION_ROUTING_V0.md', 'docs/CURRENT_DECISIONS.md',
   'docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md', 'docs/PROMOTION_REVIEW_V1.md',
-  'docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md', 'opencode.json'
+  'docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md', 'docs/QUALIFICATION.md',
+  'docs/vnext/CURRENT_COMPATIBILITY.md', 'opencode.json'
 ];
 for (const r of current) read(r);
 
-req('README.md', 'C-083', 'README current decision');
-req('docs/START_HERE.md', 'CURRENT FRONT DOOR — C-083', 'C-083 front door');
-req('docs/CURRENT_DECISIONS.md', 'C-083 is the current execution decision', 'decision ledger');
-req('docs/CURRENT_EXECUTION_DECISION_C083.md', 'OpenCode V2', 'OpenCode V2 decision');
+req('README.md', 'C-084', 'README current decision');
+req('docs/START_HERE.md', 'CURRENT FRONT DOOR — C-084', 'C-084 front door');
+req('docs/CURRENT_DECISIONS.md', 'C-084 is the current execution decision', 'decision ledger');
+req('docs/CURRENT_EXECUTION_DECISION_C084.md', 'Native OpenCode V2', 'native V2 correction decision');
+req('docs/CURRENT_EXECUTION_DECISION_C083.md', 'SUPERSEDED AS RUNTIME AUTHORITY BY C-084', 'C-083 correction marker');
 req('AGENTS.md', 'Do not duplicate Matt', 'upstream skill ownership');
-req('AGENTS.md', 'Herdr remains the normal operator surface', 'Herdr operator boundary');
-req('AGENTS.md', 'Post-merge closeout is the normal cleanup point', 'post-merge worktree cleanup');
+req('AGENTS.md', 'already-running persistent operator surface', 'Herdr operator boundary');
 req('CONTEXT.md', 'complex` primarily means stronger independent assurance', 'complex assurance meaning');
 req('docs/ATENEA_EXECUTION_ROUTING_V0.md', '`atenea-implementer-complex` → DeepSeek V4 Flash', 'complex V4 writer');
 req('docs/ATENEA_EXECUTION_ROUTING_V0.md', '`atenea-corrector-complex` → GLM 5.3 Flash high', 'complex GLM correction');
 req('docs/ATENEA_EXECUTION_ROUTING_V0.md', '`atenea-review-spec-complex` → GPT-6.1 Sol high', 'complex Sol spec review');
 req('docs/ATENEA_EXECUTION_ROUTING_V0.md', 'No quota router', 'no quota router');
-req('docs/START_HERE.md', 'opencode --pure --agent atenea-volume', 'pure volume launch boundary');
-req('docs/START_HERE.md', 'opencode --pure --agent atenea-complex', 'pure complex launch boundary');
-req('AGENTS.md', 'Run the C-083 OpenCode path with `--pure`', 'external-plugin isolation');
+req('docs/START_HERE.md', 'opencode .', 'native V2 TUI launch');
+req('docs/START_HERE.md', '/agents', 'complex visible agent selection');
+req('docs/START_HERE.md', 'Do not add `--pure`', 'V1 pure rejection');
 req('docs/PROMOTION_REVIEW_V1.md', "normally Cora's audit", 'Cora integrated audit');
 req('docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md', 'post-merge operator closeout', 'worktree cleanup trigger');
-req('docs/QUALIFICATION.md', 'READY FOR REAL PILOT', 'honest pilot qualification state');
-req('docs/QUALIFICATION.md', 'not yet completed its first real product train', 'field qualification limitation');
-for (const r of [
-  'docs/OPERATOR_RUNBOOK_PREPARED_TICKET_PI_V1.md',
-  'docs/PREPARED_TRAIN_HANDOFF_C082.md',
-  'docs/OPERATOR_RUNBOOK_OPENCODE_SERVE_V1.md',
-  'docs/vnext/OPENCODE_SERVE_RUNTIME_RECIPE_20260927.md',
-  'docs/RUN_RECIPE_GENTLE_PI_33_ONE_TOUCH_TRAIN_V1.md',
-  'docs/NAN_PROVIDER_CAPABILITIES_V1.md'
-]) req(r, 'HISTORICAL / SUPERSEDED BY C-083', 'superseded runtime provenance marker');
-req('docs/agents/domain.md', 'GLOSSARY.md', 'Matt glossary convention');
-forbid('docs/agents/issue-tracker.md', 'Atenea completion convention', 'obsolete closure ceremony');
+req('docs/QUALIFICATION.md', 'C-083 targeted OpenCode V2 conceptually', 'honest C-083 correction');
 
 const oc = JSON.parse(read('opencode.json') || '{}');
 if (oc.default_agent !== 'atenea-volume') failures.push('default OpenCode agent must be atenea-volume');
-if (oc.subagent_depth !== 2) failures.push('OpenCode subagent_depth must be 2 for Matt implementer -> reviewer/corrector nesting');
+if (oc.experimental?.subagent_depth !== 2) failures.push('OpenCode experimental.subagent_depth must be 2 for implementer -> reviewer/corrector nesting');
+if ('subagent_depth' in oc) failures.push('legacy top-level subagent_depth is forbidden in C-084');
 
 const agents = {
   'atenea-volume.md': ['mode: primary', 'model: nan/mimo-v2.6-flash'],
@@ -63,37 +54,35 @@ const agents = {
   'atenea-implementer-volume.md': ['model: nan/deepseek-v4-flash'],
   'atenea-implementer-complex.md': ['model: nan/deepseek-v4-flash'],
   'atenea-merger.md': ['model: nan/mimo-v2.6-flash'],
-  'atenea-review-standards.md': ['model: openai/gpt-6-luna', 'variant: high'],
-  'atenea-review-spec-volume.md': ['model: openai/gpt-6-luna', 'variant: high'],
-  'atenea-review-spec-complex.md': ['model: openai/gpt-6.1-sol', 'variant: high'],
+  'atenea-review-standards.md': ['model: openai/gpt-6-luna#high'],
+  'atenea-review-spec-volume.md': ['model: openai/gpt-6-luna#high'],
+  'atenea-review-spec-complex.md': ['model: openai/gpt-6.1-sol#high'],
   'atenea-corrector-volume.md': ['model: nan/deepseek-v4-flash'],
-  'atenea-corrector-complex.md': ['model: nan/glm5.3-flash', 'variant: high']
+  'atenea-corrector-complex.md': ['model: nan/glm5.3-flash#high']
 };
-for (const [name, tokens] of Object.entries(agents)) for (const token of tokens) req(`.opencode/agents/${name}`, token, `${name} binding`);
-
-for (const r of [
-  '.opencode/agents/atenea-review-standards.md',
-  '.opencode/agents/atenea-review-spec-volume.md',
-  '.opencode/agents/atenea-review-spec-complex.md'
-]) {
-  req(r, '"*": deny', 'reviewer shell default deny');
-  req(r, '"git diff*": allow', 'reviewer diff allowlist');
-  req(r, 'skill: deny', 'reviewer skill isolation');
-  req(r, 'external_directory: deny', 'reviewer external-directory isolation');
+for (const [name, tokens] of Object.entries(agents)) {
+  for (const token of tokens) req(`.opencode/agents/${name}`, token, `${name} binding`);
+  req(`.opencode/agents/${name}`, 'permissions:', `${name} native V2 permissions`);
+  forbid(`.opencode/agents/${name}`, '\npermission:', `${name} V1 permission field`);
+  forbid(`.opencode/agents/${name}`, '\nvariant:', `${name} V1 variant field`);
 }
-req('.opencode/agents/atenea-explorer.md', '"/tmp/atenea-matt-*.md": allow', 'explorer external-note allowance');
-req('.opencode/agents/atenea-explorer.md', '"git diff*": allow', 'explorer read-only git allowance');
+for (const r of ['.opencode/agents/atenea-review-standards.md','.opencode/agents/atenea-review-spec-volume.md','.opencode/agents/atenea-review-spec-complex.md']) {
+  req(r, 'action: shell', 'reviewer shell rules');
+  req(r, 'resource: "git diff*"', 'reviewer diff allowlist');
+  req(r, 'action: external_directory', 'reviewer external-directory isolation');
+  req(r, 'action: subagent', 'reviewer nested-agent isolation');
+}
+req('.opencode/agents/atenea-explorer.md', 'resource: "/tmp/atenea-matt-*.md"', 'explorer external-note allowance');
 for (const r of ['.opencode/agents/atenea-volume.md','.opencode/agents/atenea-complex.md','.opencode/agents/atenea-implementer-volume.md','.opencode/agents/atenea-implementer-complex.md']) {
-  req(r, '"*": deny', 'task default deny');
-  forbid(r, 'task: allow', 'unbounded subagent permission');
-  req(r, '"sdd-*": deny', 'SDD skill exclusion');
-  req(r, '"judgment-day": deny', 'Judgment Day skill exclusion');
+  req(r, 'action: subagent', 'native V2 subagent permission');
+  req(r, 'resource: "sdd-*"', 'SDD skill exclusion');
+  req(r, 'resource: "judgment-day"', 'Judgment Day skill exclusion');
+  forbid(r, '\ntask:', 'V1 task permission');
 }
 
-for (const r of ['README.md','AGENTS.md','CONTEXT.md','docs/START_HERE.md']) {
-  forbid(r, 'review_due=', 'Gentle review timing as current authority');
-  forbid(r, 'acknowledge-approved', 'Gentle burn lifecycle as current authority');
-  forbid(r, 'render-opencode-routing-overlay.mjs', 'OpenCode V1 routing overlay as current authority');
+for (const r of ['README.md','AGENTS.md','CONTEXT.md','docs/START_HERE.md','docs/ATENEA_HARNESS_CONTRACT_V1.md','docs/OPERATOR_RUNBOOK_V1.md','docs/vnext/CURRENT_COMPATIBILITY.md']) {
+  forbid(r, 'opencode --pure', 'V1 pure launch as current authority');
+  forbid(r, '1.18.34 observed on the qualified VPS', 'V1 runtime as current baseline');
 }
 
 if (failures.length) {

@@ -1,7 +1,7 @@
 # Atenea — UI/UX Upstream Adjudication 2026-09-04
 
-Status: **CURRENT UI/UX ADJUDICATION / NONEXECUTABLE — EXECUTION REFERENCES SUPERSEDED BY C-083**
-C-083 owns current execution. Any Pi/Gentle/RDD/runtime topology shown below is historical context only; the UI/UX findings and open adjudication remain the live content of this document.
+Status: **CURRENT UI/UX ADJUDICATION / NONEXECUTABLE — EXECUTION REFERENCES SUPERSEDED BY C-084**
+C-084 owns current execution. Any Pi/Gentle/RDD/runtime topology shown below is historical context only; the UI/UX findings and open adjudication remain the live content of this document.
 
 Tracking issue: **#41**  
 Owners: **human + Cora**  

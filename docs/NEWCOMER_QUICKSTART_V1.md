@@ -1,6 +1,6 @@
 # Atenea — Newcomer Quickstart v1
 
-Status: **CURRENT QUICKSTART — C-083**
+Status: **CURRENT QUICKSTART — C-084**
 
 Do not infer current execution from older qualification filenames.
 
@@ -26,6 +26,6 @@ OpenCode V2 + Matt
 → human merge
 ```
 
-Herdr remains the normal persistent operator/session surface when useful. It is not correctness authority.
+Herdr is the already-running persistent operator/session surface for normal unattended work. Launch the visible OpenCode V2 TUI inside the project workspace/pane; do not launch another Herdr instance. Herdr is not correctness authority.
 
-Everything centered on Pi supervisor, Gentle ASSESS/RDD/4R, lineages, burn or OpenCode V1 review transport is historical unless a current C-083 document explicitly says otherwise.
+Everything centered on Pi supervisor, Gentle ASSESS/RDD/4R, lineages, burn or OpenCode V1 review transport is historical unless a current C-084 document explicitly says otherwise.

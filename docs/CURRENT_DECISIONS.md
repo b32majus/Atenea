@@ -2,13 +2,19 @@
 
 Date: 2026-10-03
 
-This file preserves accepted decision provenance. **C-083 is the current execution decision** (`docs/CURRENT_EXECUTION_DECISION_C083.md`). C-082 and earlier decisions remain accepted provenance for the Gentle/Pi/OpenCode V1 epochs and for stable lessons not explicitly reopened; they do not define the current execution path.
+This file preserves accepted decision provenance. **C-084 is the current execution decision** (`docs/CURRENT_EXECUTION_DECISION_C084.md`). C-083 remains the architectural/routing basis but its runtime qualification is superseded; C-082 and earlier decisions remain provenance and do not define the current execution path.
 
 Historical `docs/DECISIONS.md`, Stage files, old run recipes and pre-vNext field evidence remain valuable provenance, but they do not define the current execution path.
 
+## C-084 — Native OpenCode V2 cutover and visible Herdr operation
+
+**Accepted 2026-10-03 after discovering the C-083 runtime-identification defect.** The C-083 model/routing architecture is retained, but native execution now requires package-managed OpenCode V2 `2.0.x` as canonical `opencode`, V1 removed from the active path, native V2 agent permissions/model variants, a clean global provider/MCP configuration, and a visible OpenCode TUI inside the already-running Herdr workspace. V1 `--pure` and the C-083 V1 `1.18.34` qualification are explicitly superseded rather than relabelled.
+
+Evidence/authority: `docs/CURRENT_EXECUTION_DECISION_C084.md`, `docs/vnext/CURRENT_COMPATIBILITY.md`, native `.opencode/agents/`, and current V2 migration qualification.
+
 ## C-083 — OpenCode V2 + Matt, role-bound assurance
 
-**Accepted 2026-10-03 after OpenCode V2/Matt end-to-end qualification and reviewer/tool comparisons.** OpenCode V2 is the runtime; upstream Matt skills own implementation/task-graph/code-review method; Atenea owns stable repository policy, project-local role/model bindings, deterministic assurance and human publication boundaries. Both `volume` and `complex` use DeepSeek V4 Flash as the normal writer. `complex` strengthens independent assurance with Sol Spec review and GLM correction instead of automatically spending GLM on first-pass writing. Herdr remains operator infrastructure, not correctness authority. Gentle/RDD/4R/lineage/burn/OpenCode V1 transport move out of the active path.
+**Accepted 2026-10-03 as the routing/method architecture; superseded as runtime qualification by C-084.** The later C-084 audit found that the sampled executable was OpenCode V1 `1.18.34`, so C-083's runtime qualification claim must not be read as native V2 proof. OpenCode V2 is the runtime; upstream Matt skills own implementation/task-graph/code-review method; Atenea owns stable repository policy, project-local role/model bindings, deterministic assurance and human publication boundaries. Both `volume` and `complex` use DeepSeek V4 Flash as the normal writer. `complex` strengthens independent assurance with Sol Spec review and GLM correction instead of automatically spending GLM on first-pass writing. Herdr remains operator infrastructure, not correctness authority. Gentle/RDD/4R/lineage/burn/OpenCode V1 transport move out of the active path.
 
 Evidence/authority: `docs/CURRENT_EXECUTION_DECISION_C083.md`, `docs/ATENEA_EXECUTION_ROUTING_V0.md`, current `.opencode/agents/`, and the Oct-02/03 OpenCode V2 + Matt qualification evidence.
 

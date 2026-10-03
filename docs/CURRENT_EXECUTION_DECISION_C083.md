@@ -1,13 +1,13 @@
 # C-083 — OpenCode V2 + Matt becomes the Atenea execution path
 
-Status: **CURRENT EXECUTION DECISION**
+Status: **SUPERSEDED AS RUNTIME AUTHORITY BY C-084 — RETAINED ROUTING/ARCHITECTURE PROVENANCE**
 Date: 2026-10-03
 
 ## Decision
 
 Atenea adopts OpenCode V2 as the execution runtime and the upstream Matt Pocock engineering skills as the implementation/task-graph/code-review method. Atenea remains a thin policy, model-binding and deterministic-conformance layer.
 
-C-083 supersedes C-082 for execution. C-077–C-082 remain provenance for lessons learned; their Gentle/Pi/RDD/4R/lineage/burn machinery is not active authority.
+C-083 superseded C-082 for execution. C-084 later corrected the runtime qualification boundary after discovering that the sampled `opencode` command resolved to V1 1.18.34 rather than native V2. C-077–C-082 remain provenance for lessons learned; their Gentle/Pi/RDD/4R/lineage/burn machinery is not active authority.
 
 ## Qualified bases
 

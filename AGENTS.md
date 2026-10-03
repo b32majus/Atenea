@@ -1,6 +1,6 @@
 # Atenea — Repository Policy
 
-Status: **CURRENT AUTHORITY — C-083**
+Status: **CURRENT AUTHORITY — C-084**
 
 Atenea is a thin upstream-first policy, routing and conformance layer over OpenCode V2 and adopted upstream engineering skills. It does not duplicate those skills or implement a second execution/review lifecycle.
 
@@ -52,7 +52,7 @@ Read only what the work needs:
 5. the accepted issue/spec/ticket;
 6. `docs/ATENEA_EXECUTION_ROUTING_V0.md` when executing through Atenea.
 
-Historical C-077–C-082 and Gentle/Pi runbooks are provenance, not current execution authority.
+Historical C-077–C-083 and Gentle/Pi/OpenCode V1 runbooks are provenance, not current execution authority.
 
 ## 4. Do not duplicate Matt
 
@@ -62,9 +62,9 @@ Atenea adds only stable repository constraints, explicit role/model bindings, de
 
 When Matt names a role such as explorer, implementer, merger, Standards reviewer or Spec reviewer, use the project-local Atenea role binding for the selected profile. Do not silently choose another model because a quota is inconvenient.
 
-Do not rewrite `~/.config/opencode/opencode.json` as per-ticket/train routing state. C-083 role semantics live in versioned project-local OpenCode configuration; global config supplies user/provider capability, not hidden Atenea policy.
+Do not rewrite `~/.config/opencode/opencode.json` as per-ticket/train routing state. C-084 role semantics live in versioned project-local OpenCode configuration; global config supplies user/provider capability, not hidden Atenea policy.
 
-Run the C-083 OpenCode path with `--pure` so external plugins from older runtime epochs cannot re-enter execution. Historical global agents may remain installed, but C-083 coordinator/implementer task permissions allow only named `atenea-*` subagents.
+C-084 uses native OpenCode V2. The active global OpenCode config is deliberately clean of Gentle execution agents/plugins; the Herdr OpenCode integration is allowed as observability/session metadata and is not Atenea execution authority; project-local coordinator/implementer `subagent` permissions allow only the named `atenea-*` roles for the selected profile. Do not add `--pure`: it is a V1 flag and is not part of the V2 CLI.
 
 ## 5. Deterministic-first
 
@@ -106,7 +106,7 @@ Matt's domain glossary lives in `GLOSSARY.md` (or `GLOSSARY-MAP.md` for multi-co
 
 ## 8. Herdr
 
-Herdr remains the normal operator surface when persistent sessions, process observation or recovery ergonomics are useful. Atenea correctness must not depend on an Atenea-specific Herdr plugin or hidden Herdr state.
+Herdr is the already-running persistent operator surface for normal unattended work. Do not launch a new Herdr instance per ticket/train. Open the visible OpenCode V2 TUI inside the project workspace/pane; Atenea correctness must not depend on an Atenea-specific Herdr plugin or hidden Herdr state.
 
 ## 9. Repository entry and resumption
 

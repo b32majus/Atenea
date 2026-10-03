@@ -1,6 +1,6 @@
 # Atenea — Work-unit composition policy v1
 
-Status: **CURRENT CONDITIONAL POLICY — C-083**
+Status: **CURRENT CONDITIONAL POLICY — C-084**
 
 This is an escalation path, not mandatory ceremony.
 
