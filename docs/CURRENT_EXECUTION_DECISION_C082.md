@@ -1,6 +1,6 @@
 # C-082 — Supervisor is control plane; evidence crosses the handoff
 
-Status: **CURRENT**
+Status: **HISTORICAL — SUPERSEDED BY C-083 ON 2026-10-03**
 Date: **2026-10-02**
 
 C-082 is a narrow successor to C-081. It changes only supervisor ownership and phase handoff. C-081 review dispatch, C-080 assurance/routing, the prepared-ticket front door, worker models, Gentle ownership and publication boundaries remain unchanged.

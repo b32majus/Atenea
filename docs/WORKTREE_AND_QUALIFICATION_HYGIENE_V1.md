@@ -108,7 +108,18 @@ A cleanup action should be small, reviewable and fail closed:
 
 Do not combine cleanup with implementation, refactoring, documentation cutover or branch-history rewriting. Never force-remove a dirty worktree merely to reclaim space.
 
-## 5. Branch policy after worktree removal
+## 5. C-083 worktree lifecycle
+
+Two classes must not be conflated:
+
+- **Matt implementer worktrees** are ephemeral task worktrees and should be removed by the Matt workflow after their work is integrated and no unique state remains.
+- **Delivery/integration worktrees** carry the PR candidate and normally remain through PR review and accepted merge. PR creation alone is too early to remove them.
+
+The normal delivery cleanup trigger is **post-merge operator closeout**. After the accepted merge is durable, re-check: exact accepted HEAD is reachable from the intended remote/merge commit; tree is clean; no active Herdr/OpenCode/test process uses the path; no unique commit/stash/untracked evidence remains; no open work still names that worktree. Then classify it `CLEANUP_ELIGIBLE` and remove it with `git worktree remove`.
+
+Branch deletion remains a separate decision.
+
+## 6. Branch policy after worktree removal
 
 Removing a worktree does not imply deleting its branch.
 
@@ -116,7 +127,7 @@ A local work branch may be deleted only when its intended remote/PR outcome is f
 
 For an open PR, keep the branch and normally keep the worktree if active follow-up is plausible. Once the PR is merged and the exact head is durably reachable, the worktree should normally be cleaned promptly instead of becoming permanent VPS clutter.
 
-## 6. Qualification evidence retention
+## 7. Qualification evidence retention
 
 Durable evidence should preserve the information needed to understand or recreate a result without preserving the whole sandbox:
 
@@ -131,7 +142,7 @@ Durable evidence should preserve the information needed to understand or recreat
 
 Never commit credentials, provider auth, patient data or secret-bearing runtime homes as evidence.
 
-## 7. Current VPS hygiene finding — 2026-09-15
+## 8. Current VPS hygiene finding — 2026-09-15
 
 The policy was introduced after an inventory found substantial accumulated local state:
 
@@ -146,13 +157,13 @@ Most registered Atenea Git worktrees themselves are small; the largest disk use 
 
 A read-only 2026-09-15 Atenea inventory is retained outside the repo at `/srv/kairos-lab/qualification/atenea-gp27-cutover-20260915/worktree_inventory.tsv`. It is operational evidence, not permanent source authority.
 
-## 8. Current GP2.7 qualification sandboxes
+## 9. Current GP2.7 qualification sandboxes
 
 The GP2.7 sandboxes from `docs/GENTLE_PI_27_HYBRID_NATIVE_ZERO_TOUCH_EVIDENCE_20260915.md` are **not** deletion-eligible until that evidence and the reconciled current Atenea docs are published remotely. After publication and a no-active-process/no-unique-artifact check, they should normally be removed rather than kept indefinitely.
 
 The runtime rollback backup created during machine promotion is different: retain it until the GP2.7 operational cutover has survived normal use and the human explicitly authorizes retiring the rollback copy.
 
-## 9. STOP conditions
+## 10. STOP conditions
 
 Stop cleanup immediately on any of these:
 

@@ -32,7 +32,7 @@ fresh exact candidate / HEAD check
 → publish only if all required evidence is satisfied
 ```
 
-This does not create a second review lifecycle. Gentle exact-candidate RDD remains review authority; artifact validation is deterministic delivery evidence.
+This does not create a second review lifecycle. Matt/OpenCode review remains semantic engineering evidence; artifact validation is separate deterministic delivery evidence.
 
 ## 3. Changed-file-aware validation
 
@@ -100,7 +100,7 @@ Do not mutate the host globally merely to imitate CI when a narrower supported m
 
 ## 7. Composed-state / train integration closeout
 
-Per-work-unit verification and native RDD prove each exact candidate; they do not by themselves prove that several accepted work units compose correctly across their seams.
+Per-work-unit verification and Matt review provide evidence for each bounded change; they do not by themselves prove that several accepted work units compose correctly across their seams.
 
 When a multi-work-unit or multi-ticket change materially crosses integration, domain, safety, privacy, state, parser, generated-artifact or CI boundaries, perform a deterministic closeout on the **composed exact HEAD** before publication. The project owns the concrete gates. Use only those justified by the changed surfaces and accepted authority, for example:
 
@@ -112,9 +112,9 @@ When a multi-work-unit or multi-ticket change materially crosses integration, do
 - repository-specific debt/register reconciliation when the authorized work claims to close that debt;
 - exact base, HEAD, ordered work-unit inventory and a clean tracked tree after required build/generation.
 
-This closeout is deterministic integration evidence. It is **not** a second RDD controller, does not turn the whole feature branch into a synthetic Gentle review candidate, and does not require Promotion Review by ritual.
+This closeout is deterministic integration evidence. It is **not** a second review controller and does not require an integrated Cora audit by ritual.
 
-If closeout finds a defect, create the smallest coherent correction unit under existing authority, verify and commit it, follow native Gentle review for that exact candidate when required, then rerun the affected closeout gates on the new composed HEAD. If the repair would exceed current product authority, STOP for a human decision.
+If closeout finds a defect, use the smallest coherent correction under existing authority and the selected C-083 profile, then rerun the affected closeout gates on the new composed HEAD. The one-correction-pass limit still applies. If the repair would exceed current product authority or a blocker remains after the bounded correction, STOP for a human decision.
 
 For a single-ticket change, apply the same principle only to its declared integration seams; do not manufacture train ceremony where no composed-state risk exists.
 
@@ -136,7 +136,7 @@ If a byte preserved by the oracle is later proven defective:
 1. retain evidence that reconstruction itself was faithful;
 2. classify the defect separately;
 3. repair it as a bounded correction under current authority;
-4. re-run the applicable deterministic validation and Gentle lifecycle for the changed candidate.
+4. re-run the applicable deterministic validation and the selected bounded review/correction evidence for the changed candidate.
 
 Do not silently mutate the oracle during reconstruction merely because a defect is suspected; equally, do not preserve a proven defect forever merely to maintain byte equality.
 
