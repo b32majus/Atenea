@@ -40,7 +40,7 @@ Do not add `--pure`: it is a V1 flag and is not part of native OpenCode V2. Do n
 
 ## 1. Entry
 
-Establish the correct repository/worktree/base, current accepted issue/spec/ticket, applicable repository authority and publication boundary. Do not repeat shaping or archaeology when executable authority already exists.
+Establish the correct repository/worktree/base, current accepted issue/spec/ticket, applicable repository authority and publication boundary. Refresh the intended remote ref and ensure the exact local HEAD that will execute already contains the prepared handoff and is reconciled with its intended upstream; do not make OpenCode repair stale launch state as part of the train. Do not repeat shaping or archaeology when executable authority already exists.
 
 When legacy harness/tooling state is ambiguous, use `REPOSITORY_ENTRY_RECONCILIATION_V1.md` read-only first.
 
@@ -61,6 +61,8 @@ Whole accepted spec/task graph: use `/implement-spec` through the selected Atene
 Matt owns TDD, task-graph/frontier behavior, implementation worktrees and its two-axis code-review method. Atenea supplies only named role/model bindings and repository guardrails.
 
 Prefer a durable project handoff for material work, then reference it from the visible TUI (for example `@docs/handoffs/TRAIN_X.md`) rather than pasting a giant prompt repeatedly.
+
+Before OpenCode receives that handoff, Cora must have reduced material interpretive freedom: exact outcome, in-scope surface, fixed decisions, preserved invariants, non-goals and closure evidence should be clear. Atenea execution models implement within that envelope; they do not discover product intent or reopen architecture by default. The same applies to every correction after review/audit.
 
 ## 4. Evidence and assurance
 

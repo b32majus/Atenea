@@ -70,9 +70,25 @@ C-084 uses native OpenCode V2. The active global OpenCode config is deliberately
 
 If a material property can be expressed deterministically, prove it deterministically. LLM review is for semantic, architectural, maintainability and unanticipated failure questions that are not better encoded as executable checks.
 
+When a review claim is numerically or mechanically decidable, validate the **effective runtime/rendered state**, not a token name, visual guess or proxy. For example, accessibility contrast is measured against the effective background actually rendered. If the invariant will recur in that project, prefer a cheap project-local oracle/checker over repeated model judgement; it does not become a mandatory Atenea-core check for unrelated repos.
+
 Do not create an oracle for every edit. Add one when an important invariant is worth pinning.
 
-## 6. Bounded correction
+## 6. Cora-shaped execution envelope
+
+OpenCode/Matt execute work that has already been shaped tightly enough that role-bound Atenea execution models do not need to invent product intent, architecture or acceptance semantics. Precision is not verbosity: reference durable repo authority and state only the semantic delta, but remove material interpretive freedom before execution.
+
+A bounded execution handoff must make the outcome, in-scope surface, preserved invariants, material non-goals and closure evidence clear enough to implement without reopening product decisions. Local implementation mechanics may remain with the implementer when they do not change those semantics.
+
+If a material ambiguity would require choosing product behavior, architecture, security/privacy posture or acceptance meaning, Cora/human resolves it before OpenCode starts; the coordinator must not guess.
+
+The same rule applies to corrections. A finding from Matt review or Cora promotion audit must become a finding-scoped correction: name the defect, allowed surface, explicit non-goals and evidence that closes it. Never issue an open-ended instruction such as “fix the PR”, “improve this” or “address anything else you notice”.
+
+Coordinator roles are orchestration-only for repository mutation. They must not change product code, tests, docs, config or other repository artifacts directly, including through shell-side backdoors such as `sed -i`, redirection, generated rewrite scripts or Git patch/application commands. Exact human instructions do not waive this boundary: delegate every repository mutation to the bound implementer/corrector/merger role, then verify from the coordinator. Deterministic gates may create ignored/transient build output; if a gate unexpectedly changes tracked state, STOP and delegate/reconcile rather than absorbing the mutation.
+
+External memory is convenience, never execution authority. Do not turn memory save/reconciliation/judgment into routine train critical-path work. Durable repository authority plus the live OpenCode session are sufficient for normal execution; use external memory only when an explicit cross-session need justifies it, preferably at closeout rather than between implementation/review steps.
+
+## 7. Bounded correction
 
 Use at most one fresh correction pass after review findings:
 
@@ -86,7 +102,7 @@ IMPLEMENT
 
 No fix/review carousel.
 
-## 7. Skills and repo setup
+## 8. Skills and repo setup
 
 Project-local skills may provide domain, engineering, UI or QA guidance. Keep upstream-owned skill content upstream-owned; update it through its supported mechanism rather than hand-forking it.
 
@@ -104,21 +120,21 @@ Use the Matt triage vocabulary mapped in `docs/agents/triage-labels.md`.
 
 Matt's domain glossary lives in `GLOSSARY.md` (or `GLOSSARY-MAP.md` for multi-context repos); architectural/current-system context may live separately in `CONTEXT.md`. See `docs/agents/domain.md`.
 
-## 8. Herdr
+## 9. Herdr
 
 Herdr is the already-running persistent operator surface for normal unattended work. Do not launch a new Herdr instance per ticket/train. Open the visible OpenCode V2 TUI inside the project workspace/pane; Atenea correctness must not depend on an Atenea-specific Herdr plugin or hidden Herdr state.
 
-## 9. Repository entry and resumption
+## 10. Repository entry and resumption
 
 Use `docs/REPOSITORY_ENTRY_RECONCILIATION_V1.md` when prior harness/tooling state could be confused with current authority. Entry is read-only; finding stale state does not authorize deletion.
 
-## 10. Worktrees and cleanup
+## 11. Worktrees and cleanup
 
 Matt owns temporary implementer-worktree choreography while its skills are active. Repository-level cleanup policy lives in `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md`.
 
 A delivery/integration worktree is not removed merely because a PR exists. Post-merge closeout is the normal cleanup point after the accepted merge is durable, the worktree is clean, no process uses it and no unique local state remains.
 
-## 11. Publication
+## 12. Publication
 
 Before publication, validate the artifact types that actually changed; see `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md`.
 

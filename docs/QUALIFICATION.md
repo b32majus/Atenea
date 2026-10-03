@@ -49,11 +49,31 @@ primary coordinator
 
 A native V2 TTY/TUI smoke passed on OpenCode 2.0.22: the interactive surface opened successfully, NaN/Qwen 3.8 Flash executed, and returned the expected token. A single synthetic depth smoke confirmed that V2 parsed the parent/child/grandchild agent graph and permissions, but it did not complete the full nested token round-trip before the bounded stop. Treat that nesting smoke as technically inconclusive, not as a failure. Do not open another laboratory campaign; verify the same seam in the first real bounded pilot and stop on a typed/runtime refusal.
 
+## First real field evidence — Laboratorio de Privacidad
+
+The first real C-084 product train (Laboratorio de Privacidad, issue/train #52) exercised the intended execution chain on product work:
+
+```text
+MiMo coordinator
+→ DeepSeek V4 implementer
+→ independent Luna Standards + Luna Spec review
+→ one fresh DeepSeek V4 correction
+→ deterministic final verification
+→ HUMAN STOP on a remaining material accessibility blocker
+```
+
+Implementation and affected technical gates passed (including the project test suite), and the correction budget stopped exactly after one autonomous correction rather than entering a fix/review carousel. The run therefore supplies real field evidence for coordinator→implementer→review/correction routing and the bounded-stop policy; the earlier synthetic nesting smoke no longer carries that proof burden.
+
+Two operational learnings are promoted from this run:
+
+- launch-state drift belongs in deterministic preflight: refresh/reconcile the intended remote/base and ensure the prepared handoff is present at the exact executing HEAD before OpenCode starts;
+- mechanically decidable review claims should use effective-state oracles where useful. In this run, accessibility contrast had to be calculated against the actual rendered background; token names/visual inference were insufficient. A recurring checker belongs in the UI project's own validation surface, not as a mandatory Atenea-core gate.
+
+The remaining contrast finding after the single autonomous correction correctly produced HUMAN STOP. A later human-authorized focal continuation is a new bounded unit, not a hidden second autonomous correction pass.
+
 ## What is not yet claimed
 
-Native C-084 has not yet completed its first real product train. The next real train is field evidence, not another qualification project.
-
-Observe routing, correction rate, findings, human touches and consumption through `EXECUTION_EFFICIENCY_LEDGER_V1.md`; change policy only at a clean future work boundary if evidence warrants it.
+One real train does not permanently prove every routing/model choice or every project seam. Continue collecting field evidence through `EXECUTION_EFFICIENCY_LEDGER_V1.md`; change policy only at a clean future work boundary if repeated evidence warrants it.
 
 ## Current deterministic checks
 
