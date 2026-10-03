@@ -1,6 +1,6 @@
 # Atenea Qualification
 
-Status: **CURRENT C-084 QUALIFICATION — NATIVE V2 MIGRATION, READY FOR FIRST REAL PILOT**
+Status: **CURRENT C-084 QUALIFICATION — NATIVE V2 FIELD-VALIDATED; FREE V0 READY FOR FIRST REAL PILOT**
 Date: 2026-10-03
 
 ## Correction of C-083 evidence
@@ -31,10 +31,10 @@ Herdr is the already-running persistent operator/session surface. Atenea owns no
 - active global V1 `opencode-ai` is absent;
 - duplicate isolated V2 runtimes were retired;
 - NaN environment auth and OpenAI OAuth resolve under V2;
-- required NaN/OpenAI models appear in the V2 model catalog;
+- required standard-route NaN/OpenAI models appear in the V2 model catalog;
 - active global V2 config contains zero `gentle-orchestrator` references, no legacy Gentle execution plugins, and no global default model/agent; Herdr v13 observability integration is allowed;
 - project `default_agent=atenea-volume` resolves under V2;
-- all 11 Atenea agent files parse under native V2 permission/model syntax;
+- all 11 standard Atenea agent files parse under native V2 permission/model syntax; the additional Free V0 agent set loads through the same native configuration surface;
 - Matt skills remain upstream-managed; C-084 does not fork them.
 
 ## Bounded native V2 smoke evidence
@@ -71,9 +71,23 @@ Two operational learnings are promoted from this run:
 
 The remaining contrast finding after the single autonomous correction correctly produced HUMAN STOP. A later human-authorized focal continuation is a new bounded unit, not a hidden second autonomous correction pass.
 
+## Atenea Free v0 pre-field evidence
+
+The optional `free_only` cost-policy extension is configured but **not yet field-qualified for quality**. Pre-publication evidence is deliberately bounded:
+
+- `node tools/check-free-models.mjs` confirms the three current bound IDs are visible to this runtime: MiMo 2.6 Flash Free, Space Bunny Free and NaN Qwen 3.6;
+- a full-screen native `opencode .` launch with temporary `default_agent=atenea-free` displayed `Atenea-Free · MiMo-V2.6-Flash Free · OpenCode Zen`, proving the Golden Path primary binding;
+- MiMo Free, Space Bunny Free and Qwen 3.6 completed small bounded invocation/tool-use smokes on this VPS;
+- no paid model appears in any Free agent binding or Free coordinator subagent permission;
+- candidate models are not automatic fallbacks. LongCat, Gemma and Nemotron remain unbound after weaker local latency/tool-use observations.
+
+`opencode mini --agent` is not used as primary-binding evidence: in 2.0.22 it may keep the interactive default model instead of the agent's declared model. The full-screen `opencode .` Golden Path resolves the project `default_agent` binding correctly.
+
+The first real Free project ticket must supply the quality/process evidence: coordinator delegation, writer behavior, both review axes, bounded correction, deterministic closure, Cora audit when required, and observed latency/token behavior. Do not open a synthetic qualification campaign before that field run.
+
 ## What is not yet claimed
 
-One real train does not permanently prove every routing/model choice or every project seam. Continue collecting field evidence through `EXECUTION_EFFICIENCY_LEDGER_V1.md`; change policy only at a clean future work boundary if repeated evidence warrants it.
+One real standard C-084 train does not permanently prove every routing/model choice or every project seam, and it does not prove Free V0 quality. Continue collecting field evidence through `EXECUTION_EFFICIENCY_LEDGER_V1.md`; change policy only at a clean future work boundary if repeated evidence warrants it.
 
 ## Current deterministic checks
 
@@ -83,6 +97,7 @@ opencode auth list
 opencode models
 opencode debug config
 node tools/check-vnext-authority.mjs
+node tools/check-free-models.mjs  # when free_only is selected
 git diff --check
 ```
 

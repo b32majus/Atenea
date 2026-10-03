@@ -63,17 +63,19 @@ existing Herdr workspace/pane
 → Matt workflow + role-bound subagents
 ```
 
-`atenea-volume` is the project default for a new session. For `complex`, select `atenea-complex` in the visible TUI before submitting the execution handoff (`/agents`, Ctrl+X then A, or Shift+Tab).
+`atenea-volume` is the project default for a new session. For `standard + complex`, select `atenea-complex` in the visible TUI before submitting the execution handoff (`/agents`, Ctrl+X then A, or Shift+Tab).
+
+C-084 also carries the optional `free_only` cost-policy extension in `docs/ATENEA_FREE_PROFILE_V0.md`. Cost policy is independent from the `volume|complex` risk class: when human/project authority fixes `free_only`, select `atenea-free` for either risk class and use only the current zero-cost catalog. No paid fallback is implied by complexity.
 
 `opencode run` is for bounded automation/smokes, not the normal visible train surface.
 
-## Routing retained from C-083
+## Standard routing retained from C-083
 
-The model matrix and assurance semantics from C-083 are retained unchanged:
+The standard-cost model matrix and assurance semantics from C-083 are retained unchanged:
 
 - MiMo coordinator;
 - Qwen explorer;
-- DeepSeek V4 Flash normal writer in both profiles;
+- DeepSeek V4 Flash normal writer in both standard profiles;
 - Luna High Standards review;
 - Luna High Spec review in `volume`;
 - Sol 6.1 High Spec review in `complex`;
@@ -90,7 +92,7 @@ C-084 requires only bounded migration proof:
 
 1. canonical `opencode` resolves to V2 2.0.x;
 2. V1 active package/entrypoint is absent;
-3. NaN and OpenAI credentials/models resolve;
+3. the providers/models required by the selected route resolve (NaN/OpenAI for standard routing; current OpenCode Zen/NaN Free bindings for `free_only`);
 4. global config contains no legacy Gentle runtime authority;
 5. all project-local Atenea agents parse in native V2;
 6. the required nested subagent seam is smoke-tested or, if the synthetic smoke is inconclusive, verified in the first real bounded pilot;

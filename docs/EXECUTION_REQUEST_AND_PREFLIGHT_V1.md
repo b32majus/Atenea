@@ -10,7 +10,7 @@ Prepared work enters at implementation. Atenea establishes only facts that can c
 ```text
 accepted bounded work
 → minimal preflight
-→ select volume | complex
+→ select cost_policy + risk_class
 → OpenCode V2 coordinator
 → Matt /implement or /implement-spec
 → deterministic evidence + independent review
@@ -26,18 +26,18 @@ Confirm only:
 2. refresh the relevant remote ref and verify the prepared branch/worktree is reconciled with the intended upstream/base **before OpenCode starts**; the accepted handoff/ticket must exist at the exact local HEAD that will execute;
 3. current accepted ticket/work-order/spec;
 4. executable outcome, acceptance and material constraints/non-goals;
-5. C-084 native OpenCode V2 project config/required role agents resolve;
+5. C-084 native OpenCode V2 project config/required role agents resolve; for `free_only`, `node tools/check-free-models.mjs` passes before launch;
 6. publication boundary is known.
 
 If the prepared branch is merely behind its intended upstream and a clean fast-forward is already within the authorized preparation scope, reconcile it before launch. Divergence, unrelated dirt, unexpected commits or a missing handoff are STOP/reconcile conditions; do not let the coordinator discover and repair launch-state drift inside the train.
 
 If durable authority already proves a fact, do not ask the human to repeat it. Reopen preflight only for a genuinely new authorized work unit, a base/worktree change that invalidates prior authority, or new human authority after HUMAN STOP.
 
-## Profile selection
+## Cost policy and risk-class selection
 
-Default to `volume`. Use `complex` only for the material semantic/risk triggers in `docs/ATENEA_EXECUTION_ROUTING_V0.md`.
+Default to `cost_policy: standard` and `risk_class: volume`. Use `risk_class: complex` for the material semantic/risk triggers in `docs/ATENEA_EXECUTION_ROUTING_V0.md`.
 
-Both profiles normally write with `nan/deepseek-v4-flash`. `complex` strengthens independent assurance and uses GLM high for the one correction pass. Profile/model selection stays fixed through the active bounded unit; no quota-driven mid-unit fallback.
+Cost policy is independent. Explicit human/project `cost_policy: free_only` is authority even for complex work. Standard risk classes normally write with `nan/deepseek-v4-flash`; Free uses only the current bindings in `docs/ATENEA_FREE_MODEL_CATALOG_V0.md`. Selection stays fixed through the active bounded unit. No quota-driven fallback and no paid escalation from `free_only` without new human authority.
 
 ## Execution handoff
 
@@ -50,7 +50,8 @@ A useful handoff carries the semantic delta with explicit closure:
 ```text
 Work: <ticket/work unit and exact intended outcome>.
 Authority: <issue/spec/work-order>.
-Profile: <volume|complex>.
+Cost policy: <standard|free_only>.
+Risk class: <volume|complex>.
 In scope: <surfaces/seams this unit may change>.
 Preserve: <principal invariants/oracles>.
 Decisions already fixed: <material product/architecture choices OpenCode must not reopen>.

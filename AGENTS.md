@@ -60,7 +60,9 @@ Matt skills own their methodology. Do not copy their TDD loop, task-graph proced
 
 Atenea adds only stable repository constraints, explicit role/model bindings, deterministic evidence requirements and human publication boundaries.
 
-When Matt names a role such as explorer, implementer, merger, Standards reviewer or Spec reviewer, use the project-local Atenea role binding for the selected profile. Do not silently choose another model because a quota is inconvenient.
+When Matt names a role such as explorer, implementer, merger, Standards reviewer or Spec reviewer, use the project-local Atenea role binding for the selected route. Do not silently choose another model because a quota is inconvenient.
+
+Atenea separates **risk class** (`volume|complex`) from **cost policy** (`standard|free_only`). Cora may recommend the risk class, but explicit human/project `free_only` authority wins even for complex work. Under `free_only`, use only `atenea-free` and its current Free bindings; no paid model, standard profile or silent provider fallback is authorized. A project may persist `free_only` in durable project authority so the human does not need to repeat it per ticket. See `docs/ATENEA_FREE_PROFILE_V0.md`.
 
 Do not rewrite `~/.config/opencode/opencode.json` as per-ticket/train routing state. C-084 role semantics live in versioned project-local OpenCode configuration; global config supplies user/provider capability, not hidden Atenea policy.
 

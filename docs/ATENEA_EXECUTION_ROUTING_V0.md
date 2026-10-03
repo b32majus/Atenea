@@ -21,9 +21,29 @@ This file maps engineering roles to project-local native OpenCode V2 agents. It 
 
 The NaN provider ID `nan/deepseek-v4-flash` is intentionally retained even when the provider backend serves the newer V4.1 Flash implementation under that stable ID.
 
-## Profile selection
+## Routing dimensions
 
-Start with `volume` unless current accepted authority already exposes a material complex trigger.
+Complexity and cost are independent:
+
+```text
+cost_policy = standard | free_only
+risk_class  = volume   | complex
+```
+
+Cora recommends `risk_class` from the work. Human/project authority owns `cost_policy`. An explicit `free_only` decision remains authoritative even for complex work; complexity changes assurance, never permission to spend.
+
+| Cost policy | Risk class | Primary agent |
+| --- | --- | --- |
+| standard | volume | `atenea-volume` |
+| standard | complex | `atenea-complex` |
+| free_only | volume | `atenea-free` + `Risk class: volume` handoff |
+| free_only | complex | `atenea-free` + `Risk class: complex` handoff |
+
+The Free policy is defined in `docs/ATENEA_FREE_PROFILE_V0.md`; its replaceable model snapshot is `docs/ATENEA_FREE_MODEL_CATALOG_V0.md`. `free_only` has no silent paid fallback.
+
+## Risk-class selection
+
+Start with risk class `volume` unless current accepted authority already exposes a material complex trigger. This classification is advisory to assurance and remains useful even when the human/project has fixed `cost_policy: free_only`.
 
 Complex triggers:
 
@@ -41,15 +61,15 @@ Not triggers by themselves:
 - many tests;
 - business importance without corresponding semantic risk.
 
-Choose the profile at a clean issue/work-unit boundary. Do not silently switch models inside an active implementation merely because quota is inconvenient.
+Choose cost policy and risk class at a clean issue/work-unit boundary. Do not silently switch models inside an active implementation merely because quota is inconvenient. Human `free_only` authority cannot be overridden by the router.
 
 ## Matt role binding
 
 Matt remains upstream-owned. Atenea does not rewrite its skills.
 
-When a selected Matt skill asks for an exploration, implementer, merger, Standards reviewer or Spec reviewer, dispatch the exact named Atenea agent from the selected profile above.
+When a selected Matt skill asks for an exploration, implementer, merger, Standards reviewer or Spec reviewer, dispatch the exact named Atenea agent from the selected standard profile above or the exact Free binding from `docs/ATENEA_FREE_MODEL_CATALOG_V0.md`.
 
-For a single `/implement`, the primary coordinator delegates the implementation to the selected V4 implementer rather than writing product code itself. For `/implement-spec`, the primary coordinator runs Matt's task graph and uses the bound role agents.
+For a single `/implement`, the primary coordinator delegates the implementation to the implementer bound by the selected route rather than writing product code itself. For `/implement-spec`, the primary coordinator runs Matt's task graph and uses the bound role agents.
 
 If Matt review returns actionable findings, use exactly one fresh correction agent from the selected profile. Run focused regression evidence afterward. Do not start a second autonomous correction/review cycle.
 
