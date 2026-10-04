@@ -64,7 +64,7 @@ Matt owns TDD, task-graph/frontier behavior, implementation worktrees and its tw
 
 Prefer a durable project handoff for material work, then reference it from the visible TUI (for example `@docs/handoffs/TRAIN_X.md`) rather than pasting a giant prompt repeatedly.
 
-Before OpenCode receives that handoff, Cora must have reduced material interpretive freedom: exact outcome, in-scope surface, fixed decisions, preserved invariants, non-goals and closure evidence should be clear. Atenea execution models implement within that envelope; they do not discover product intent or reopen architecture by default. The same applies to every correction after review/audit.
+Before OpenCode receives that handoff, Cora + human must have completed any **material product shaping interactively**. Cora reduces material interpretive freedom: exact outcome, in-scope surface, fixed decisions, preserved invariants, non-goals and closure evidence should be clear, with no open material product question. Atenea execution models implement within that envelope; they do not discover product intent, answer their own shaping questions or reopen architecture. If execution exposes such a question, HUMAN STOP back to Cora + human. The same applies to every correction after review/audit.
 
 ## 4. Evidence and assurance
 

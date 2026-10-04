@@ -5,10 +5,11 @@ Date: 2026-10-03
 
 ## Principle
 
-Prepared work enters at implementation. Atenea establishes only facts that can change the next action; it does not repeat shaping or Matt methodology by ritual.
+Prepared work enters at implementation. **Material product shaping is an attended Cora + human phase, never an unattended OpenCode phase.** Atenea establishes only facts that can change the next action; it does not repeat shaping or Matt methodology by ritual.
 
 ```text
-accepted bounded work
+attended Cora + human product shaping complete
+→ accepted bounded work with no open material product questions
 → prepare/reconcile repo + worktree + durable handoff
 → minimal preflight
 → select cost_policy + risk_class
@@ -29,7 +30,8 @@ Confirm only:
 3. current accepted ticket/work-order/spec;
 4. executable outcome, acceptance and material constraints/non-goals;
 5. C-084 native OpenCode V2 project config/required role agents resolve; for `free_only`, `node tools/check-free-models.mjs` passes before launch;
-6. publication boundary is known.
+6. publication boundary is known;
+7. **open material product questions = NONE**. Any unresolved choice about product behavior, scope, architecture, privacy/security posture, data semantics or acceptance stays in attended shaping and blocks `READY_TO_LAUNCH`.
 
 If the prepared branch is merely behind its intended upstream and a clean fast-forward is already within the authorized preparation scope, reconcile it before launch. Divergence, unrelated dirt, unexpected commits or a missing handoff are STOP/reconcile conditions; do not let the coordinator discover and repair launch-state drift inside the train.
 
@@ -64,7 +66,7 @@ Cost policy is independent. Explicit human/project `cost_policy: free_only` is a
 
 Cora shapes the execution envelope before OpenCode/Matt starts. The coordinator and Matt skills read accepted repository authority directly, so precision does **not** mean duplicating `AGENTS.md`, `CODING_STANDARDS.md`, Matt's TDD loop or code-review rubric. It means removing material interpretive freedom from the work itself.
 
-Atenea execution roles are optimized for bounded execution, not for discovering product intent. Do not hand them an open product/architecture question and expect them to infer the intended answer. Before launch, resolve any ambiguity that could materially change product behavior, architecture, privacy/security posture, data semantics or acceptance.
+Atenea execution roles are optimized for bounded execution, not for discovering product intent. Do not hand them an open product/architecture question and expect them to infer the intended answer. Material shaping questions are handled interactively by Cora + human: Cora may present alternatives/recommendations and the human remains present to answer or confirm choices. An agent may research evidence for that conversation, but it must not become the decision-maker by asking and answering its own product questions. Before launch, resolve any ambiguity that could materially change product behavior, scope, architecture, privacy/security posture, data semantics or acceptance.
 
 A useful handoff carries the semantic delta with explicit closure:
 
@@ -76,6 +78,7 @@ Risk class: <volume|complex>.
 In scope: <surfaces/seams this unit may change>.
 Preserve: <principal invariants/oracles>.
 Decisions already fixed: <material product/architecture choices OpenCode must not reopen>.
+Open material product questions: NONE.
 Non-goals: <nearby work explicitly excluded>.
 Evidence to close: <tests/oracles/observable acceptance>.
 Publication: <current boundary>.
@@ -100,4 +103,4 @@ Never send “fix the PR”, “improve everything”, “clean up what you see�
 
 ## STOP conditions
 
-STOP for unresolved/contradictory product authority, new material scope, acceptance/oracle changes, destructive action outside authority, missing required secret handling, publication beyond authority, a required runtime/role binding that cannot be established, a new material issue during correction, or a blocker that remains after the second fresh correction attempt.
+STOP for any material product/shaping question discovered during execution, unresolved/contradictory product authority, new material scope, acceptance/oracle changes, destructive action outside authority, missing required secret handling, publication beyond authority, a required runtime/role binding that cannot be established, a new material issue during correction, or a blocker that remains after the second fresh correction attempt. A STOP caused by product shaping returns to the attended Cora + human loop; OpenCode does not self-answer it.

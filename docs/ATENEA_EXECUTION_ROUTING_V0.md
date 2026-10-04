@@ -61,7 +61,7 @@ Not triggers by themselves:
 - many tests;
 - business importance without corresponding semantic risk.
 
-Choose cost policy and risk class at a clean issue/work-unit boundary. Do not silently switch models inside an active implementation merely because quota is inconvenient. Human `free_only` authority cannot be overridden by the router.
+Choose cost policy and risk class at a clean issue/work-unit boundary. Routing begins only after attended Cora + human shaping has closed every material product question for the unit; model/profile choice is never a substitute for unresolved product authority. Do not silently switch models inside an active implementation merely because quota is inconvenient. Human `free_only` authority cannot be overridden by the router.
 
 ## Matt role binding
 

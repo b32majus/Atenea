@@ -111,6 +111,14 @@ The learning is not “delete the second review”. The first Spec review missed
 
 POLICY-01's duplicated first review consumed 138,844 fresh input/output/reasoning fields plus 371,712 cache-read fields. Removing that duplicate while preserving the stronger coordinator-owned brief would have reduced reported fresh fields from 803,961 to about 665,117 for that run. PROMueve Sure WU2 independently demonstrated the desired shape already: implementer returned the candidate, coordinator launched one review pair, then dispatched a fresh corrector.
 
+## Subsequent field learning — product shaping requires attended Cora + human
+
+A PROMueve Nexus field incident exposed a different boundary from execution/review routing: a substantial ticket allowed product shaping to continue inside an unattended OpenCode session. The agent was effectively able to surface product questions and resolve those questions itself. The resulting implementation moved away from the intended product direction and a material part of the ticket now requires discard/rework. This is treated as a **process-boundary failure**, not evidence that the implementation models are generally incapable.
+
+C-084 therefore makes the shaping/execution boundary explicit: material product shaping is an attended Cora + human decision loop. Cora may analyze alternatives, challenge assumptions and prepare questions; OpenCode may gather bounded evidence for that conversation, but unattended agents do not make the final material product choice. `READY_TO_LAUNCH` requires `Open material product questions: NONE`. If execution discovers a new material decision about behavior, scope, architecture, privacy/security posture, data semantics or acceptance, it returns HUMAN STOP with the question/options instead of selecting an answer.
+
+This does not turn every implementation detail into a human decision. Workers still own ordinary local engineering mechanics that do not alter accepted semantics. The boundary is material product authority, not code-level discretion.
+
 ## What is not yet claimed
 
 Repeated standard and Free `volume` field runs now support the C-084 direction, but they do not permanently prove every routing/model choice, `complex` behavior or future Free catalog. The new single-review permission hardening should be observed in subsequent real tickets rather than through another synthetic qualification campaign. Continue collecting field evidence through `EXECUTION_EFFICIENCY_LEDGER_V1.md`; change policy only at a clean future work boundary if repeated evidence warrants it.

@@ -82,7 +82,7 @@ OpenCode/Matt execute work that has already been shaped tightly enough that role
 
 A bounded execution handoff must make the outcome, in-scope surface, preserved invariants, material non-goals and closure evidence clear enough to implement without reopening product decisions. Local implementation mechanics may remain with the implementer when they do not change those semantics.
 
-If a material ambiguity would require choosing product behavior, architecture, security/privacy posture or acceptance meaning, Cora/human resolves it before OpenCode starts; the coordinator must not guess.
+**Product shaping is attended work.** Material product decisions are made in a human-present Cora + human shaping loop before unattended execution. Cora may analyze options, challenge assumptions and prepare explicit questions; OpenCode/agents may gather bounded evidence when asked, but no unattended agent may answer its own material product/architecture questions or convert an unresolved choice into executable authority. If a material ambiguity would require choosing product behavior, architecture, security/privacy posture, data semantics, scope or acceptance meaning, STOP and return the question to Cora + human. The coordinator must not guess.
 
 The same rule applies to corrections. A finding from Matt review or Cora promotion audit must become a finding-scoped correction: name the defect, allowed surface, explicit non-goals and evidence that closes it. Never issue an open-ended instruction such as “fix the PR”, “improve this” or “address anything else you notice”.
 

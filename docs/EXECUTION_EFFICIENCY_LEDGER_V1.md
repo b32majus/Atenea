@@ -50,8 +50,9 @@ Do not infer missing token/cache numbers and do not manufacture one normalized c
 
 ## Structural checks
 
-Treat these as routing defects, not optimization opportunities:
+Treat these as routing/process-boundary defects, not optimization opportunities:
 
+- an unattended coordinator/worker makes or self-answers a material product/architecture/scope/privacy/data-semantics/acceptance decision instead of HUMAN STOP back to Cora + human;
 - coordinator mutates repository artifacts (product code, tests, docs or config) by any mechanism instead of delegating to the bound worker;
 - normal `complex` implementation silently switches from V4 to GLM without explicit first-writer escalation;
 - volume correction uses a different model from V4 without a new boundary decision;
