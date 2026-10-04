@@ -25,7 +25,8 @@ Check proportionately:
 1. semantics/authority — accepted behavior, omissions, unsupported scope;
 2. engineering/maintainability — material design/failure-mode debt not already mechanically caught;
 3. adversarial/safety — fail-open, stale state, ordering, partial mutation, privacy/auth boundaries;
-4. composition — interactions introduced only by the integrated feature/train.
+4. composition — interactions introduced only by the integrated feature/train;
+5. product fidelity when material UI/product surface changed — whether the composed rendered product still preserves accepted user mental model, simplicity/complexity boundaries and intended surface rather than exposing internal domain structure merely because individual slices were locally faithful.
 
 Report blocking findings first, then material nonblocking findings. Candidate mutation invalidates an audit bound to the old HEAD when the audit is still required.
 

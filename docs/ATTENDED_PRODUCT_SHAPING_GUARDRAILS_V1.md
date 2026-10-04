@@ -62,4 +62,4 @@ STOP if the composition introduces material concepts, workflows, states, roles, 
 
 Cora conducts the comparison and challenges drift; the human remains present for material product choices. OpenCode/agents may gather bounded evidence, but they do not adjudicate whether product expansion is desirable.
 
-These checkpoints do not replace engineering review. They protect **product fidelity before implementation authority exists**.
+These checkpoints do not replace engineering review. They protect **product fidelity before implementation authority exists**. They are necessary but not sufficient for material UI: `PRODUCT_FIDELITY_GATES_V1.md` carries the same product boundaries through ticket decomposition, UI implementation/hardening and composed-product checkpoints.

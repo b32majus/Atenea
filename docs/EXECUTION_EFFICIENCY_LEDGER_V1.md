@@ -54,6 +54,7 @@ Treat these as routing/process-boundary defects, not optimization opportunities:
 
 - an unattended coordinator/worker makes or self-answers a material product/architecture/scope/privacy/data-semantics/acceptance decision instead of HUMAN STOP back to Cora + human;
 - an expansive shaping chain turns exploratory/grill answers into spec/ticket scope without reconciling them against predeclared product non-negotiables and composed-product fidelity;
+- material UI/product decomposition maps internal aggregate/domain structure into visible screens/forms/browser slices without explicit product authority, or cumulative locally-green slices fail the required composed-product fidelity checkpoint;
 - coordinator mutates repository artifacts (product code, tests, docs or config) by any mechanism instead of delegating to the bound worker;
 - normal `complex` implementation silently switches from V4 to GLM without explicit first-writer escalation;
 - volume correction uses a different model from V4 without a new boundary decision;

@@ -20,6 +20,7 @@ const current = [
   'docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md', 'docs/PROMOTION_REVIEW_V1.md',
   'docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md', 'docs/QUALIFICATION.md',
   'docs/ATENEA_FREE_PROFILE_V0.md', 'docs/ATENEA_FREE_MODEL_CATALOG_V0.md',
+  'docs/ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md', 'docs/PRODUCT_FIDELITY_GATES_V1.md',
   'docs/vnext/CURRENT_COMPATIBILITY.md', 'opencode.json'
 ];
 for (const r of current) read(r);
@@ -43,6 +44,7 @@ req('docs/START_HERE.md', 'opencode .', 'native V2 TUI launch');
 req('docs/START_HERE.md', 'single canonical', 'single canonical review front-door rule');
 req('AGENTS.md', 'Cora-shaped execution envelope', 'directed execution envelope');
 req('AGENTS.md', 'Product shaping is attended work', 'attended product-shaping boundary');
+req('AGENTS.md', 'hardening can perfect the wrong product', 'product hardening fidelity boundary');
 req('docs/ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md', 'complexity-expansion bias', 'expansive shaping bias guard');
 req('docs/ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md', 'Post-grill product-boundary audit', 'post-grill product fidelity checkpoint');
 req('docs/ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md', 'Post-spec fidelity audit', 'post-spec product fidelity checkpoint');
@@ -50,6 +52,10 @@ req('docs/ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md', 'Post-ticket product-compo
 req('docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md', 'Open material product questions: NONE', 'no-open-product-question handoff contract');
 req('docs/ATENEA_HARNESS_CONTRACT_V1.md', 'attended Cora + human activity', 'harness attended shaping ownership');
 req('docs/QUALIFICATION.md', 'Subsequent field learning — product shaping requires attended Cora + human', 'Nexus product-shaping field learning');
+req('docs/PRODUCT_FIDELITY_GATES_V1.md', 'Aggregate/module boundaries are not default screen/form/browser-slice boundaries', 'domain-to-UI anti-isomorphism boundary');
+req('docs/PRODUCT_FIDELITY_GATES_V1.md', 'A locally correct ticket does not prove the composed product', 'composed product fidelity rule');
+req('docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md', 'composed-product checkpoint', 'material UI composed-product closeout');
+req('docs/CURRENT_DECISIONS.md', 'Technical hardening cannot legitimize a surface', 'material UI hardening boundary');
 req('docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md', 'Finding-scoped corrections', 'bounded correction handoff');
 req('docs/PROMOTION_REVIEW_V1.md', 'open-ended “fix the PR”', 'promotion correction scope');
 req('docs/PROMOTION_REVIEW_V1.md', 'return to the attended Cora + human shaping loop', 'promotion audit shaping boundary');
