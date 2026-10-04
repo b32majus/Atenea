@@ -105,6 +105,7 @@ for (const sub of ['atenea-explorer-go','atenea-implementer-go','atenea-merger-g
 req('.opencode/agents/atenea-go.md', 'run exactly one canonical `/code-review` yourself', 'Go coordinator review ownership');
 req('.opencode/agents/atenea-go.md', 'at most two fresh correction sessions', 'Go two-correction budget');
 req('.opencode/agents/atenea-go.md', 'qualification candidate', 'Go qualification-candidate label');
+req('.opencode/agents/atenea-go.md', 'do not bypass `edit: deny` through shell commands', 'go shell mutation guard');
 req('docs/ATENEA_GO_PROFILE_V0.md', 'Cost policy: go', 'Go cost-policy marker');
 req('docs/ATENEA_GO_PROFILE_V0.md', 'Risk class: volume | complex', 'Go risk-class marker');
 req('docs/ATENEA_GO_PROFILE_V0.md', 'qualification candidate', 'Go qualification-candidate label');
@@ -118,6 +119,12 @@ req('docs/ATENEA_EXECUTION_ROUTING_V0.md', '| go | complex |', 'go complex routi
 req('docs/ATENEA_EXECUTION_ROUTING_V0.md', 'Cost policy: go', 'Go cost-policy marker');
 req('docs/ATENEA_EXECUTION_ROUTING_V0.md', 'docs/ATENEA_GO_PROFILE_V0.md', 'Go profile pointer');
 read('tools/check-go-models.mjs');
+for (const id of ['opencode-go/mimo-v2.6-flash','opencode-go/muse-spark-1.3-contributor','opencode-go/deepseek-v4.1-flash','nan/qwen3.6','openai/gpt-6-luna']) {
+  req('tools/check-go-models.mjs', `'${id}'`, 'Go runtime model ID literal');
+}
+req('tools/check-go-models.mjs', 'ATENEA_GO_MODEL_CHECK=FAIL', 'Go model fail-closed marker');
+req('AGENTS.md', '`standard|free_only|go`', 'cost policy go enumeration');
+req('docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md', '<standard|free_only|go>', 'preflight cost policy go enumeration');
 
 const oc = JSON.parse(read('opencode.json') || '{}');
 if (oc.default_agent !== 'atenea-volume') failures.push('default OpenCode agent must be atenea-volume');

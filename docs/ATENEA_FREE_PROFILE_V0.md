@@ -10,7 +10,7 @@ Date: 2026-10-03
 Atenea keeps two independent routing dimensions:
 
 ```text
-cost_policy = standard | free_only
+cost_policy = standard | free_only | go
 risk_class  = volume   | complex
 ```
 
