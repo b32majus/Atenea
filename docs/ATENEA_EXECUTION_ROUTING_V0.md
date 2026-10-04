@@ -26,7 +26,7 @@ The NaN provider ID `nan/deepseek-v4-flash` is intentionally retained even when 
 Complexity and cost are independent:
 
 ```text
-cost_policy = standard | free_only
+cost_policy = standard | free_only | go
 risk_class  = volume   | complex
 ```
 
@@ -38,8 +38,12 @@ Cora recommends `risk_class` from the work. Human/project authority owns `cost_p
 | standard | complex | `atenea-complex` |
 | free_only | volume | `atenea-free` + `Risk class: volume` handoff |
 | free_only | complex | `atenea-free` + `Risk class: complex` handoff |
+| go | volume | `atenea-go` + `Risk class: volume` handoff |
+| go | complex | `atenea-go` + `Risk class: complex` handoff |
 
 The Free policy is defined in `docs/ATENEA_FREE_PROFILE_V0.md`; its replaceable model snapshot is `docs/ATENEA_FREE_MODEL_CATALOG_V0.md`. `free_only` has no silent paid fallback.
+
+The Go policy (`Cost policy: go`) is a **qualification candidate** defined in `docs/ATENEA_GO_PROFILE_V0.md`; its replaceable model snapshot is `docs/ATENEA_GO_MODEL_CATALOG_V0.md`. `go` is a human-selected cost policy, not a quota router, and has no automatic model fallback.
 
 ## Risk-class selection
 

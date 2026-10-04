@@ -74,7 +74,7 @@ A useful handoff carries the semantic delta with explicit closure:
 ```text
 Work: <ticket/work unit and exact intended outcome>.
 Authority: <issue/spec/work-order>.
-Cost policy: <standard|free_only>.
+Cost policy: <standard|free_only|go>.
 Risk class: <volume|complex>.
 In scope: <surfaces/seams this unit may change>.
 Preserve: <principal invariants/oracles>.

@@ -97,6 +97,35 @@ req('.opencode/agents/atenea-volume.md', 'at most two fresh `atenea-corrector-vo
 req('.opencode/agents/atenea-complex.md', 'at most two fresh `atenea-corrector-complex` sessions', 'complex two-correction budget');
 req('.opencode/agents/atenea-free.md', 'one second fresh session', 'Free two-correction budget');
 
+req('.opencode/agents/atenea-go.md', 'action: edit', 'Go coordinator edit permission');
+req('.opencode/agents/atenea-go.md', 'resource: "*"\n    effect: deny', 'Go coordinator edit denial');
+for (const sub of ['atenea-explorer-go','atenea-implementer-go','atenea-merger-go','atenea-review-standards-go','atenea-review-spec-go','atenea-corrector-go-volume','atenea-corrector-go-complex']) {
+  req('.opencode/agents/atenea-go.md', `resource: "${sub}"`, `Go coordinator ${sub} dispatch`);
+}
+req('.opencode/agents/atenea-go.md', 'run exactly one canonical `/code-review` yourself', 'Go coordinator review ownership');
+req('.opencode/agents/atenea-go.md', 'at most two fresh correction sessions', 'Go two-correction budget');
+req('.opencode/agents/atenea-go.md', 'qualification candidate', 'Go qualification-candidate label');
+req('.opencode/agents/atenea-go.md', 'do not bypass `edit: deny` through shell commands', 'go shell mutation guard');
+req('docs/ATENEA_GO_PROFILE_V0.md', 'Cost policy: go', 'Go cost-policy marker');
+req('docs/ATENEA_GO_PROFILE_V0.md', 'Risk class: volume | complex', 'Go risk-class marker');
+req('docs/ATENEA_GO_PROFILE_V0.md', 'qualification candidate', 'Go qualification-candidate label');
+for (const r of ['docs/ATENEA_GO_PROFILE_V0.md','docs/ATENEA_GO_MODEL_CATALOG_V0.md']) {
+  for (const id of ['opencode-go/mimo-v2.6-flash','opencode-go/muse-spark-1.3-contributor','opencode-go/deepseek-v4.1-flash','nan/qwen3.6','openai/gpt-6-luna']) {
+    req(r, id, 'Go bound model ID');
+  }
+}
+req('docs/ATENEA_EXECUTION_ROUTING_V0.md', '| go | volume |', 'go volume routing row');
+req('docs/ATENEA_EXECUTION_ROUTING_V0.md', '| go | complex |', 'go complex routing row');
+req('docs/ATENEA_EXECUTION_ROUTING_V0.md', 'Cost policy: go', 'Go cost-policy marker');
+req('docs/ATENEA_EXECUTION_ROUTING_V0.md', 'docs/ATENEA_GO_PROFILE_V0.md', 'Go profile pointer');
+read('tools/check-go-models.mjs');
+for (const id of ['opencode-go/mimo-v2.6-flash','opencode-go/muse-spark-1.3-contributor','opencode-go/deepseek-v4.1-flash','nan/qwen3.6','openai/gpt-6-luna']) {
+  req('tools/check-go-models.mjs', `'${id}'`, 'Go runtime model ID literal');
+}
+req('tools/check-go-models.mjs', 'ATENEA_GO_MODEL_CHECK=FAIL', 'Go model fail-closed marker');
+req('AGENTS.md', '`standard|free_only|go`', 'cost policy go enumeration');
+req('docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md', '<standard|free_only|go>', 'preflight cost policy go enumeration');
+
 const oc = JSON.parse(read('opencode.json') || '{}');
 if (oc.default_agent !== 'atenea-volume') failures.push('default OpenCode agent must be atenea-volume');
 if (oc.experimental?.subagent_depth !== 2) failures.push('OpenCode experimental.subagent_depth must be 2 for bounded coordinator -> implementer -> explorer nesting');
@@ -121,7 +150,15 @@ const agents = {
   'atenea-review-standards-free.md': ['mode: subagent', 'model: nan/qwen3.6'],
   'atenea-review-spec-free.md': ['mode: subagent', 'model: opencode/mimo-v2.6-flash-free'],
   'atenea-corrector-free-volume.md': ['mode: subagent', 'model: opencode/space-bunny-free'],
-  'atenea-corrector-free-complex.md': ['mode: subagent', 'model: opencode/mimo-v2.6-flash-free']
+  'atenea-corrector-free-complex.md': ['mode: subagent', 'model: opencode/mimo-v2.6-flash-free'],
+  'atenea-go.md': ['mode: primary', 'model: opencode-go/mimo-v2.6-flash'],
+  'atenea-explorer-go.md': ['mode: subagent', 'model: nan/qwen3.6'],
+  'atenea-implementer-go.md': ['mode: subagent', 'model: opencode-go/muse-spark-1.3-contributor'],
+  'atenea-merger-go.md': ['mode: subagent', 'model: opencode-go/mimo-v2.6-flash'],
+  'atenea-review-standards-go.md': ['mode: subagent', 'model: nan/qwen3.6'],
+  'atenea-review-spec-go.md': ['mode: subagent', 'model: openai/gpt-6-luna#high'],
+  'atenea-corrector-go-volume.md': ['mode: subagent', 'model: opencode-go/muse-spark-1.3-contributor'],
+  'atenea-corrector-go-complex.md': ['mode: subagent', 'model: opencode-go/deepseek-v4.1-flash']
 };
 for (const [name, tokens] of Object.entries(agents)) {
   for (const token of tokens) req(`.opencode/agents/${name}`, token, `${name} binding`);
@@ -129,21 +166,21 @@ for (const [name, tokens] of Object.entries(agents)) {
   forbid(`.opencode/agents/${name}`, '\npermission:', `${name} V1 permission field`);
   forbid(`.opencode/agents/${name}`, '\nvariant:', `${name} V1 variant field`);
 }
-for (const r of ['.opencode/agents/atenea-review-standards.md','.opencode/agents/atenea-review-spec-volume.md','.opencode/agents/atenea-review-spec-complex.md','.opencode/agents/atenea-review-standards-free.md','.opencode/agents/atenea-review-spec-free.md']) {
+for (const r of ['.opencode/agents/atenea-review-standards.md','.opencode/agents/atenea-review-spec-volume.md','.opencode/agents/atenea-review-spec-complex.md','.opencode/agents/atenea-review-standards-free.md','.opencode/agents/atenea-review-spec-free.md','.opencode/agents/atenea-review-standards-go.md','.opencode/agents/atenea-review-spec-go.md']) {
   req(r, 'action: shell', 'reviewer shell rules');
   req(r, 'resource: "git diff*"', 'reviewer diff allowlist');
   req(r, 'action: external_directory', 'reviewer external-directory isolation');
   req(r, 'action: subagent', 'reviewer nested-agent isolation');
 }
 req('.opencode/agents/atenea-explorer.md', 'resource: "/tmp/atenea-matt-*.md"', 'explorer external-note allowance');
-for (const r of ['.opencode/agents/atenea-implementer-volume.md','.opencode/agents/atenea-implementer-complex.md','.opencode/agents/atenea-implementer-free.md']) {
+for (const r of ['.opencode/agents/atenea-implementer-volume.md','.opencode/agents/atenea-implementer-complex.md','.opencode/agents/atenea-implementer-free.md','.opencode/agents/atenea-implementer-go.md']) {
   req(r, 'resource: "implement"\n    effect: deny', 'implementer /implement denial');
   req(r, 'resource: "implement-spec"\n    effect: deny', 'implementer /implement-spec denial');
   req(r, 'resource: "code-review"\n    effect: deny', 'implementer code-review denial');
   forbid(r, 'resource: "atenea-review-', 'implementer reviewer subagent binding');
   forbid(r, 'resource: "atenea-corrector-', 'implementer corrector subagent binding');
 }
-for (const r of ['.opencode/agents/atenea-volume.md','.opencode/agents/atenea-complex.md','.opencode/agents/atenea-implementer-volume.md','.opencode/agents/atenea-implementer-complex.md','.opencode/agents/atenea-free.md','.opencode/agents/atenea-implementer-free.md']) {
+for (const r of ['.opencode/agents/atenea-volume.md','.opencode/agents/atenea-complex.md','.opencode/agents/atenea-implementer-volume.md','.opencode/agents/atenea-implementer-complex.md','.opencode/agents/atenea-free.md','.opencode/agents/atenea-implementer-free.md','.opencode/agents/atenea-go.md','.opencode/agents/atenea-implementer-go.md']) {
   req(r, 'action: subagent', 'native V2 subagent permission');
   req(r, 'resource: "sdd-*"', 'SDD skill exclusion');
   req(r, 'resource: "judgment-day"', 'Judgment Day skill exclusion');
