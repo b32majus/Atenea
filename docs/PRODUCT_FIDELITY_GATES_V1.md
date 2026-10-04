@@ -1,7 +1,7 @@
 # Atenea — Product fidelity gates v1
 
 Status: **CURRENT C-084 PRODUCT-FIDELITY BOUNDARY**
-Date: 2026-10-04
+Date: 2026-10-05
 
 ## Purpose
 
@@ -27,6 +27,7 @@ No single step is necessarily incorrect in isolation. The defect is loss of **co
 3. **Lossless/exact model representation is not product fidelity by itself.** Accessibility, validation, type safety, exact shape and complete CRUD can make the wrong surface technically excellent.
 4. **A locally correct ticket does not prove the composed product.** Several faithful slices can accumulate into a product that violates its original simplicity, workflow or conceptual-load constraints.
 5. **Product non-negotiables survive every transformation.** They remain authority through spec synthesis, ticketization, implementation, hardening and promotion.
+6. **Representation translation must not silently narrow accepted semantics.** A UI control, form, mapper, adapter, schema, persistence/export shape or other human-facing translation may simplify presentation, but it may not erase distinctions that accepted product/domain authority still requires users or downstream behavior to represent.
 
 ## Gate 1 — ticketization fidelity
 
@@ -38,7 +39,30 @@ Before material tickets become execution authority, check the proposed decomposi
 - For material UI tickets, state the **user-facing concept delta** (often `NONE`) and the product boundary the slice must preserve.
 - Read the full ticket set as one future product before execution. If literal implementation would create an unintended product, reconcile the tickets first.
 
-## Gate 2 — material UI composed-product checkpoint
+## Gate 2 — representation narrowing check
+
+When a change translates already-accepted semantics into a new representation, compare the **meaning representable before and after** the change. Ask:
+
+> Can every state, value or distinction that accepted authority requires still be represented after this change?
+
+Check proportionately for unauthorized loss of:
+
+- precision or granularity, including temporal precision/timezone semantics;
+- cardinality or multiplicity;
+- valid ranges or boundary values;
+- states, enum members or open-vocabulary values;
+- combinations of independently meaningful choices;
+- ordering when order is semantic;
+- distinctions such as `unset` / `unknown` / `not applicable` / explicit value;
+- any other representable distinction preserved by accepted product/domain authority.
+
+Typical narrowing examples include `instant → date-only`, `multiple values → single select`, `open vocabulary → closed taxonomy`, `arbitrary interval → fixed bucket`, `exact quantity → boolean`, or an optional distinction becoming a silent default.
+
+This guardrail does **not** require exposing internal-only richness. A richer internal model, by itself, is not product authority. The check triggers when the accepted user/product/domain semantics themselves allow a distinction that the proposed representation would collapse.
+
+If a material narrowing is not already authorized explicitly, it is a **HUMAN STOP / product-semantic decision**, not an implementation detail for an agent to choose.
+
+## Gate 3 — material UI composed-product checkpoint
 
 Use a Cora + human read-only product-fidelity checkpoint when material UI is accumulating across tickets/slices, especially when:
 
@@ -58,7 +82,7 @@ Inspect the **actual composed product** when practical (running UI, screenshots 
 
 A material mismatch is **HUMAN STOP / product reconciliation**, not a request for OpenCode to redesign autonomously.
 
-## Gate 3 — hardening cannot legitimize product drift
+## Gate 4 — hardening cannot legitimize product drift
 
 Technical hardening is subordinate to accepted product surface. Do not spend review/correction effort making an unauthorized or over-complex UI perfectly lossless, exact, accessible or exhaustive. First prove the surface belongs in the product; then harden it.
 
@@ -66,4 +90,4 @@ Reviewers/correctors may report evidence that suggests product drift, but they d
 
 ## Scope
 
-These gates are **conditional**, not ceremony for every ticket. They apply when product/UI composition risk is material. Backend-only or already-bounded work continues through the normal C-084 path without a product-composition ritual.
+These gates are **conditional**, not ceremony for every ticket. The composition gates apply when product/UI composition risk is material. The representation-narrowing check also applies to non-UI translations (for example adapters, schemas, persistence or export) when accepted semantics could be collapsed. Backend-only or already-bounded work with no such semantic translation continues through the normal C-084 path without a product-composition ritual.

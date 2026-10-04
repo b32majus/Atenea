@@ -125,6 +125,14 @@ A related Laboratorio de Privacidad correction had already suggested that locall
 
 C-084 therefore keeps Matt upstream unchanged and adds two complementary protections. `ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md` constrains expansive questioning/synthesis. `PRODUCT_FIDELITY_GATES_V1.md` carries the product boundaries through ticketization and implementation: internal aggregate/module structure does not imply UI structure; lossless/exact internal representation is not a product goal by itself; and material multi-ticket UI requires a read-only composed-product checkpoint against the actual rendered surface. These checks are conditional, not universal bureaucracy.
 
+## Subsequent field learning — representation narrowing is semantic authority
+
+A Symphonia Atenea Go `complex` field ticket exposed a narrower semantic-authority failure than the earlier composed-product drift cases. The accepted domain retained an exact `effectiveFrom` instant, while implementation translated that value into a date-only control and reconstructed it as Hospital-local `00:00`. That reduced temporal precision without explicit product authority. The implementer made the choice, the coordinator did not stop it, and the canonical Spec review did not identify the material loss of expressivity; the later integrated Cora audit did, before publication.
+
+The resulting guardrail is general rather than Symphonia-specific: **representation translation must not silently narrow accepted semantics**. When accepted meaning is mapped into UI/input controls, adapters, schemas, persistence/export forms or other representations, compare what can be represented before and after. Unauthorized loss of precision/granularity, cardinality, ranges, states/vocabulary, combinations, ordering or optional/unknown distinctions is a material product/data-semantics decision and therefore HUMAN STOP. This check does not require exposing internal-only richness that accepted product/domain authority never required users or downstream behavior to express.
+
+The field result also confirms why complex integrated audit remains valuable during qualification: the system prevented publication of the narrowing even though implementation + canonical review had not stopped it.
+
 ## What is not yet claimed
 
 Repeated standard and Free `volume` field runs now support the C-084 direction, but they do not permanently prove every routing/model choice, `complex` behavior or future Free catalog. The new single-review permission hardening should be observed in subsequent real tickets rather than through another synthetic qualification campaign. Continue collecting field evidence through `EXECUTION_EFFICIENCY_LEDGER_V1.md`; change policy only at a clean future work boundary if repeated evidence warrants it.
