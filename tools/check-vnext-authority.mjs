@@ -54,6 +54,15 @@ req('docs/ATENEA_HARNESS_CONTRACT_V1.md', 'attended Cora + human activity', 'har
 req('docs/QUALIFICATION.md', 'Subsequent field learning — product shaping requires attended Cora + human', 'Nexus product-shaping field learning');
 req('docs/PRODUCT_FIDELITY_GATES_V1.md', 'Aggregate/module boundaries are not default screen/form/browser-slice boundaries', 'domain-to-UI anti-isomorphism boundary');
 req('docs/PRODUCT_FIDELITY_GATES_V1.md', 'A locally correct ticket does not prove the composed product', 'composed product fidelity rule');
+req('docs/PRODUCT_FIDELITY_GATES_V1.md', 'Representation translation must not silently narrow accepted semantics', 'representation narrowing product-fidelity rule');
+req('AGENTS.md', 'Representation narrowing is product-semantic authority', 'representation narrowing runtime boundary');
+req('docs/START_HERE.md', 'representation-narrowing check', 'representation narrowing front-door rule');
+req('docs/ATENEA_HARNESS_CONTRACT_V1.md', 'may not silently narrow accepted semantics', 'representation narrowing harness boundary');
+req('docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md', 'Representation narrowing: <NONE | explicitly authorized narrowing + authority ref', 'representation narrowing handoff field');
+req('docs/PROMOTION_REVIEW_V1.md', 'representation narrowing when accepted semantics are translated', 'representation narrowing promotion axis');
+req('docs/CURRENT_DECISIONS.md', 'representation translation must preserve accepted expressivity', 'representation narrowing current decision');
+req('docs/QUALIFICATION.md', 'Subsequent field learning — representation narrowing is semantic authority', 'representation narrowing field learning');
+for (const r of ['.opencode/agents/atenea-review-spec-volume.md','.opencode/agents/atenea-review-spec-complex.md','.opencode/agents/atenea-review-spec-free.md','.opencode/agents/atenea-review-spec-go.md']) req(r, 'representation-narrowing check', 'Spec reviewer representation narrowing check');
 req('docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md', 'composed-product checkpoint', 'material UI composed-product closeout');
 req('docs/CURRENT_DECISIONS.md', 'Technical hardening cannot legitimize a surface', 'material UI hardening boundary');
 req('docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md', 'Finding-scoped corrections', 'bounded correction handoff');

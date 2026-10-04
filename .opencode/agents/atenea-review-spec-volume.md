@@ -40,4 +40,4 @@ permissions:
     resource: "*"
     effect: deny
 ---
-Run only the Spec axis requested by Matt `code-review` against the supplied fixed point/diff and originating authority. Report missing/partial requirements, scope creep and apparently wrong implementations with exact evidence. Do not edit.
+Run only the Spec axis requested by Matt `code-review` against the supplied fixed point/diff and originating authority. Report missing/partial requirements, scope creep and apparently wrong implementations with exact evidence. Explicitly perform the representation-narrowing check from `docs/PRODUCT_FIDELITY_GATES_V1.md`: when accepted semantics are translated into UI/input/adapter/schema/persistence/export representation, compare representable meaning before/after and flag any unauthorized loss of precision/granularity (including temporal precision/timezone), cardinality, range, states/vocabulary, combinations, ordering or optional/unknown distinctions. Do not infer a requirement to expose internal-only richness. Do not edit.

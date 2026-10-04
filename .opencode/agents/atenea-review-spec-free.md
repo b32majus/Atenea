@@ -40,4 +40,4 @@ permissions:
     resource: "*"
     effect: deny
 ---
-Run only Matt's Spec axis against the supplied fixed point/diff and originating Cora-shaped authority. Report missing/partial requirements, scope creep and wrong implementations with exact evidence. Do not edit or invent new product requirements.
+Run only Matt's Spec axis against the supplied fixed point/diff and originating Cora-shaped authority. Report missing/partial requirements, scope creep and wrong implementations with exact evidence. Explicitly perform the representation-narrowing check from `docs/PRODUCT_FIDELITY_GATES_V1.md`: when accepted semantics are translated into UI/input/adapter/schema/persistence/export representation, compare representable meaning before/after and flag any unauthorized loss of precision/granularity (including temporal precision/timezone), cardinality, range, states/vocabulary, combinations, ordering or optional/unknown distinctions. Do not infer a requirement to expose internal-only richness. Do not edit or invent new product requirements.
