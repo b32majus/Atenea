@@ -119,6 +119,12 @@ C-084 therefore makes the shaping/execution boundary explicit: material product 
 
 This does not turn every implementation detail into a human decision. Workers still own ordinary local engineering mechanics that do not alter accepted semantics. The boundary is material product authority, not code-level discretion.
 
+### Repeated shaping-expansion evidence — Laboratorio + Symphonia
+
+Subsequent field comparison showed the Nexus incident was not isolated. Laboratorio de Privacidad had already required a manual correction after shaping/synthesis created product complexity beyond the intended direction. Symphonia then exposed the mechanism directly in the installed Matt skills: `grilling` deliberately visits every branch of a design tree until nothing remains assumed; `to-spec` explicitly avoids a new product interview and synthesizes what is already known into an extremely extensive user-story set (while still checking proposed test seams with the user); `to-tickets` operationalizes the resulting spec into approved vertical slices. The chain is useful but has a predictable **complexity-expansion bias** when the product already has a simplicity philosophy: a question can become a requirement merely because it was askable and answered.
+
+C-084 therefore keeps Matt upstream unchanged and adds external shaping rails in `ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md`: record non-negotiable product boundaries before an expansive grill; prune branches that conflict with those constraints; audit grill output before `to-spec`; audit spec fidelity before `to-tickets`; and audit the composed ticket set before `EXECUTION_READY`. These are conditional read-only product-fidelity checks, not universal bureaucracy.
+
 ## What is not yet claimed
 
 Repeated standard and Free `volume` field runs now support the C-084 direction, but they do not permanently prove every routing/model choice, `complex` behavior or future Free catalog. The new single-review permission hardening should be observed in subsequent real tickets rather than through another synthetic qualification campaign. Continue collecting field evidence through `EXECUTION_EFFICIENCY_LEDGER_V1.md`; change policy only at a clean future work boundary if repeated evidence warrants it.

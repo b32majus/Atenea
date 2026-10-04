@@ -58,7 +58,7 @@ Review start closes the originating implementer's write phase. Actionable review
 
 ## 8. Shaping and entry
 
-Shaping is phase-scoped and human-attended when material product choices remain. Accepted executable authority is not reshaped by ritual. `EXECUTION_READY`/`READY_TO_LAUNCH` requires no unresolved material product question; if one appears later, execution STOPs back to Cora + human instead of letting the agent choose.
+Shaping is phase-scoped and human-attended when material product choices remain. Accepted executable authority is not reshaped by ritual. Expansive shaping is constrained by predeclared product non-negotiables and conditional fidelity audits defined in `ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md`; exhaustive questioning does not itself authorize product expansion. `EXECUTION_READY`/`READY_TO_LAUNCH` requires no unresolved material product question and a composed ticket set faithful to accepted product authority; if a material product choice appears later, execution STOPs back to Cora + human instead of letting the agent choose.
 
 When entering a brownfield repository, find current authority first, inspect prior harness/tooling read-only and reconcile genuine contradictions before mutation.
 

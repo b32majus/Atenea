@@ -84,7 +84,7 @@ The standard-cost model matrix from C-083 is retained. Field control semantics a
 - conditional Semgrep/OCR by risk;
 - Cora integrated audit at material feature/train/PR boundaries.
 
-No quota router or silent mid-unit fallback is introduced. Product shaping is also outside the unattended execution boundary: material product/architecture/scope/acceptance choices require an attended Cora + human decision before launch, and a newly discovered material shaping question produces HUMAN STOP rather than agent self-resolution.
+No quota router or silent mid-unit fallback is introduced. Product shaping is also outside the unattended execution boundary: material product/architecture/scope/acceptance choices require an attended Cora + human decision before launch, and a newly discovered material shaping question produces HUMAN STOP rather than agent self-resolution. Expansive shaping methods are constrained by `ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md` so exhaustive clarification cannot silently become product-scope expansion.
 
 ## Qualification boundary
 
