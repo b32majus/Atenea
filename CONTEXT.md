@@ -24,7 +24,7 @@ accepted product authority
 → post-merge worktree closeout
 ```
 
-Atenea owns policy, bindings and conformance evidence. It does not own a second task graph, TDD method, review rubric, worktree algorithm or review lifecycle.
+Atenea owns policy, bindings and conformance evidence. Material product shaping remains an attended Cora + human decision loop; OpenCode executes shaped authority and must STOP rather than self-answer unresolved product questions. Expansive shaping methods operate inside explicit non-negotiable product rails and conditional fidelity checkpoints. Product fidelity also survives decomposition/composition: internal domain richness and aggregate boundaries are not user-interface authority, and material cumulative UI is checked as a composed product when risk warrants it. Atenea does not own a second task graph, TDD method, review rubric, worktree algorithm or review lifecycle.
 
 ## Profiles
 

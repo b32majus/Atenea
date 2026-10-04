@@ -114,7 +114,9 @@ When a multi-work-unit or multi-ticket change materially crosses integration, do
 
 This closeout is deterministic integration evidence. It is **not** a second review controller and does not require an integrated Cora audit by ritual.
 
-If closeout finds a defect, use the smallest coherent correction under existing authority and the selected C-084 profile, then rerun the affected closeout gates on the new composed HEAD. The one-correction-pass limit still applies. If the repair would exceed current product authority or a blocker remains after the bounded correction, STOP for a human decision.
+If closeout finds a defect, use the smallest coherent correction under existing authority and the selected C-084 profile, then rerun the affected closeout gates on the new composed HEAD. The current C-084 correction budget still applies: at most two fresh finding-scoped correction attempts for the same authorized finding envelope. If the repair would exceed current product authority, introduces a new material issue, or a blocker remains after attempt #2, STOP for a human decision.
+
+For material multi-ticket UI/product changes, deterministic integration green is not the whole closure. When `docs/PRODUCT_FIDELITY_GATES_V1.md` is triggered, obtain the read-only Cora + human composed-product checkpoint against the actual rendered/composed surface before publication or further hardening. Internal aggregate completeness, lossless/exact shape or per-slice acceptance do not substitute for that product-fidelity decision.
 
 For a single-ticket change, apply the same principle only to its declared integration seams; do not manufacture train ceremony where no composed-state risk exists.
 

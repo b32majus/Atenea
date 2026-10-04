@@ -20,6 +20,7 @@ const current = [
   'docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md', 'docs/PROMOTION_REVIEW_V1.md',
   'docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md', 'docs/QUALIFICATION.md',
   'docs/ATENEA_FREE_PROFILE_V0.md', 'docs/ATENEA_FREE_MODEL_CATALOG_V0.md',
+  'docs/ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md', 'docs/PRODUCT_FIDELITY_GATES_V1.md',
   'docs/vnext/CURRENT_COMPATIBILITY.md', 'opencode.json'
 ];
 for (const r of current) read(r);
@@ -38,11 +39,26 @@ req('docs/ATENEA_EXECUTION_ROUTING_V0.md', '`atenea-implementer-complex` → Dee
 req('docs/ATENEA_EXECUTION_ROUTING_V0.md', '`atenea-corrector-complex` → GLM 5.3 Flash high', 'complex GLM correction');
 req('docs/ATENEA_EXECUTION_ROUTING_V0.md', '`atenea-review-spec-complex` → GPT-6.1 Sol high', 'complex Sol spec review');
 req('docs/ATENEA_EXECUTION_ROUTING_V0.md', 'No quota router', 'no quota router');
+req('docs/ATENEA_EXECUTION_ROUTING_V0.md', 'attended Cora + human shaping has closed every material product question', 'routing requires closed attended shaping');
 req('docs/START_HERE.md', 'opencode .', 'native V2 TUI launch');
 req('docs/START_HERE.md', 'single canonical', 'single canonical review front-door rule');
 req('AGENTS.md', 'Cora-shaped execution envelope', 'directed execution envelope');
+req('AGENTS.md', 'Product shaping is attended work', 'attended product-shaping boundary');
+req('AGENTS.md', 'hardening can perfect the wrong product', 'product hardening fidelity boundary');
+req('docs/ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md', 'complexity-expansion bias', 'expansive shaping bias guard');
+req('docs/ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md', 'Post-grill product-boundary audit', 'post-grill product fidelity checkpoint');
+req('docs/ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md', 'Post-spec fidelity audit', 'post-spec product fidelity checkpoint');
+req('docs/ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md', 'Post-ticket product-composition audit', 'ticket composition checkpoint');
+req('docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md', 'Open material product questions: NONE', 'no-open-product-question handoff contract');
+req('docs/ATENEA_HARNESS_CONTRACT_V1.md', 'attended Cora + human activity', 'harness attended shaping ownership');
+req('docs/QUALIFICATION.md', 'Subsequent field learning — product shaping requires attended Cora + human', 'Nexus product-shaping field learning');
+req('docs/PRODUCT_FIDELITY_GATES_V1.md', 'Aggregate/module boundaries are not default screen/form/browser-slice boundaries', 'domain-to-UI anti-isomorphism boundary');
+req('docs/PRODUCT_FIDELITY_GATES_V1.md', 'A locally correct ticket does not prove the composed product', 'composed product fidelity rule');
+req('docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md', 'composed-product checkpoint', 'material UI composed-product closeout');
+req('docs/CURRENT_DECISIONS.md', 'Technical hardening cannot legitimize a surface', 'material UI hardening boundary');
 req('docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md', 'Finding-scoped corrections', 'bounded correction handoff');
 req('docs/PROMOTION_REVIEW_V1.md', 'open-ended “fix the PR”', 'promotion correction scope');
+req('docs/PROMOTION_REVIEW_V1.md', 'return to the attended Cora + human shaping loop', 'promotion audit shaping boundary');
 req('docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md', 'reconciled with the intended upstream/base **before OpenCode starts**', 'prelaunch remote reconciliation');
 req('AGENTS.md', 'effective runtime/rendered state', 'effective-state deterministic oracle');
 req('docs/QUALIFICATION.md', 'First real field evidence — Laboratorio de Privacidad', 'C-084 real field evidence');
@@ -72,9 +88,11 @@ req('docs/QUALIFICATION.md', 'Subsequent field learning — single canonical rev
 req('.opencode/agents/atenea-volume.md', 'run exactly one canonical `/code-review` yourself', 'volume coordinator review ownership');
 req('.opencode/agents/atenea-complex.md', 'run exactly one canonical `/code-review` yourself', 'complex coordinator review ownership');
 req('.opencode/agents/atenea-free.md', 'run exactly one canonical `/code-review` yourself', 'Free coordinator review ownership');
+for (const r of ['.opencode/agents/atenea-volume.md','.opencode/agents/atenea-complex.md','.opencode/agents/atenea-free.md']) req(r, 'Product shaping is not your unattended responsibility', 'coordinator unattended shaping STOP');
 req('.opencode/agents/atenea-implementer-volume.md', 'Do not invoke Matt `/implement`, `/implement-spec` or `/code-review`', 'volume implementer lifecycle isolation');
 req('.opencode/agents/atenea-implementer-complex.md', 'Do not invoke Matt `/implement`, `/implement-spec` or `/code-review`', 'complex implementer lifecycle isolation');
 req('.opencode/agents/atenea-implementer-free.md', 'Do not invoke Matt `/implement`, `/implement-spec` or `/code-review`', 'Free implementer lifecycle isolation');
+for (const r of ['.opencode/agents/atenea-implementer-volume.md','.opencode/agents/atenea-implementer-complex.md','.opencode/agents/atenea-implementer-free.md']) req(r, 'STOP and return that question to the coordinator for Cora + human', 'implementer product-shaping STOP');
 req('.opencode/agents/atenea-volume.md', 'at most two fresh `atenea-corrector-volume` sessions', 'volume two-correction budget');
 req('.opencode/agents/atenea-complex.md', 'at most two fresh `atenea-corrector-complex` sessions', 'complex two-correction budget');
 req('.opencode/agents/atenea-free.md', 'one second fresh session', 'Free two-correction budget');

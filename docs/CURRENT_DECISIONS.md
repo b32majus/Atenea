@@ -963,7 +963,7 @@ Natural field evidence is pending because Atenea has not yet needed OpenSpec on 
 
 **Accepted and consolidated.**
 
-Material UI/UX applicability is decided during human-present shaping before `EXECUTION_READY`.
+Material UI/UX applicability is decided during human-present shaping before `EXECUTION_READY`. For material multi-ticket UI, that decision persists through decomposition and composition: internal aggregate/domain boundaries are not default screen boundaries, and a read-only composed-product fidelity checkpoint is required when `docs/PRODUCT_FIDELITY_GATES_V1.md` triggers. Technical hardening cannot legitimize a surface that violates accepted product simplicity or mental-model constraints.
 
 Do not make Impeccable mandatory for backend/non-UI work. `DESIGN.md` may own durable visual-system rules where warranted. If tooling needs `PRODUCT.md` while product truth lives elsewhere, use the smallest deterministic derived projection rather than duplicate authority.
 
@@ -1284,4 +1284,7 @@ Field use refines C-084 without reopening its model/routing architecture:
 - review start closes the originating implementer's write phase; review-driven repository mutation belongs to a fresh bound corrector, even when the model family is identical;
 - review the same candidate/fixed-point pair exactly once unless the prior review failed technically, was incomplete or used the wrong anchor/authority envelope;
 - autonomous correction budget is at most two fresh finding-scoped attempts against the same authorized finding envelope, with focused deterministic evidence after each; a third attempt, new material issue or scope expansion is HUMAN STOP;
-- real-work preparation ends at `READY_TO_LAUNCH`: Cora prepares repo/worktree/handoff/preflight and returns exact bash + visible agent selection + exact prompt, while the human operator starts OpenCode in the already-running Herdr pane and presses Enter unless that specific launch is explicitly delegated.
+- real-work preparation ends at `READY_TO_LAUNCH`: Cora prepares repo/worktree/handoff/preflight and returns exact bash + visible agent selection + exact prompt, while the human operator starts OpenCode in the already-running Herdr pane and presses Enter unless that specific launch is explicitly delegated;
+- **material product shaping is attended Cora + human work**. Unattended OpenCode may execute already-shaped authority or gather bounded evidence, but it must never ask and answer its own unresolved product/architecture/scope/privacy/data-semantics/acceptance questions. `READY_TO_LAUNCH` requires zero open material product questions; discovery of one during execution is HUMAN STOP back to Cora + human;
+- exhaustive shaping methods do not own product expansion. For material chains such as `grilling → to-spec → to-tickets`, freeze non-negotiable product boundaries first; prune questions that conflict with those constraints; then run lightweight read-only product-boundary, spec-fidelity and ticket-composition audits before execution authority. A user answer to a grill question is not automatically a requirement;
+- product fidelity survives decomposition: internal aggregate/module boundaries do not authorize corresponding screens/forms/browser slices, and local fidelity/losslessness/exact-shape hardening does not prove the product surface. Material multi-ticket UI uses `PRODUCT_FIDELITY_GATES_V1.md` and a composed rendered-product checkpoint when triggered.

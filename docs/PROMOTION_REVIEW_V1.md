@@ -25,11 +25,12 @@ Check proportionately:
 1. semantics/authority — accepted behavior, omissions, unsupported scope;
 2. engineering/maintainability — material design/failure-mode debt not already mechanically caught;
 3. adversarial/safety — fail-open, stale state, ordering, partial mutation, privacy/auth boundaries;
-4. composition — interactions introduced only by the integrated feature/train.
+4. composition — interactions introduced only by the integrated feature/train;
+5. product fidelity when material UI/product surface changed — whether the composed rendered product still preserves accepted user mental model, simplicity/complexity boundaries and intended surface rather than exposing internal domain structure merely because individual slices were locally faithful.
 
 Report blocking findings first, then material nonblocking findings. Candidate mutation invalidates an audit bound to the old HEAD when the audit is still required.
 
-If the audit finds a blocker, Cora does not hand OpenCode an open-ended “fix the PR” request. Convert each authorized repair into one bounded correction envelope: exact finding, required target state, allowed surface, explicit non-goals and deterministic closure evidence. Do not authorize opportunistic cleanup or adjacent findings unless the human explicitly opens a new unit.
+If the audit finds a blocker, first distinguish repair from shaping. If closing it requires a new material product/architecture/scope/privacy/data-semantics/acceptance decision, return to the attended Cora + human shaping loop; do not ask OpenCode to decide the answer. Otherwise Cora does not hand OpenCode an open-ended “fix the PR” request: convert each authorized repair into one bounded correction envelope with exact finding, required target state, allowed surface, explicit non-goals and deterministic closure evidence. Do not authorize opportunistic cleanup or adjacent findings unless the human explicitly opens a new unit.
 
 After the autonomous correction budget (at most two fresh finding-scoped correction attempts) is exhausted, a human may authorize a new focal continuation. That is a new bounded unit, not a hidden third autonomous correction pass.
 

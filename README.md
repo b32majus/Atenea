@@ -34,7 +34,7 @@ Routing and agent bindings: `docs/ATENEA_EXECUTION_ROUTING_V0.md` and project-lo
 
 ## What Atenea does not own
 
-Atenea does not fork Matt's TDD/task-graph/review methodology and does not rebuild an LLM execution/review lifecycle. Historical Gentle/Pi/RDD/4R/lineage/burn material remains provenance only.
+Atenea does not fork Matt's TDD/task-graph/review methodology and does not rebuild an LLM execution/review lifecycle. Material product shaping is deliberately outside unattended execution: Cora + human close product decisions before launch, and OpenCode STOPs on newly discovered material product questions instead of answering them itself. `docs/ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md` constrains expansive shaping; `docs/PRODUCT_FIDELITY_GATES_V1.md` prevents internal domain/ticket decomposition and local hardening from silently becoming an over-complex composed UI. Historical Gentle/Pi/RDD/4R/lineage/burn material remains provenance only.
 
 ## Operator surface
 
