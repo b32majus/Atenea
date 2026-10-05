@@ -20,7 +20,7 @@ const current = [
   'docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md', 'docs/PROMOTION_REVIEW_V1.md',
   'docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md', 'docs/QUALIFICATION.md',
   'docs/ATENEA_FREE_PROFILE_V0.md', 'docs/ATENEA_FREE_MODEL_CATALOG_V0.md',
-  'docs/ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md', 'docs/PRODUCT_FIDELITY_GATES_V1.md',
+  'docs/HUMAN_PRODUCT_DESIGN_AUTHORITY_V1.md', 'docs/ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md', 'docs/PRODUCT_FIDELITY_GATES_V1.md',
   'docs/vnext/CURRENT_COMPATIBILITY.md', 'opencode.json'
 ];
 for (const r of current) read(r);
@@ -45,11 +45,26 @@ req('docs/START_HERE.md', 'single canonical', 'single canonical review front-doo
 req('AGENTS.md', 'Cora-shaped execution envelope', 'directed execution envelope');
 req('AGENTS.md', 'Product shaping is attended work', 'attended product-shaping boundary');
 req('AGENTS.md', 'hardening can perfect the wrong product', 'product hardening fidelity boundary');
+req('docs/HUMAN_PRODUCT_DESIGN_AUTHORITY_V1.md', 'Task before structure', 'human product design task-first authority');
+req('docs/HUMAN_PRODUCT_DESIGN_AUTHORITY_V1.md', 'OBSERVED', 'human-work evidence provenance');
+req('docs/HUMAN_PRODUCT_DESIGN_AUTHORITY_V1.md', 'Conditional prototype gate for spatial/interaction questions', 'conditional human-product prototype gate');
+req('docs/HUMAN_PRODUCT_DESIGN_AUTHORITY_V1.md', 'Composed human-product grill before `/to-spec` / spec freeze', 'pre-freeze composed human-product grill');
+req('docs/HUMAN_PRODUCT_DESIGN_AUTHORITY_V1.md', 'composed human-task walkthrough', 'post-implementation human-task walkthrough');
+req('docs/HUMAN_PRODUCT_DESIGN_AUTHORITY_V1.md', 'Matt/spec grilling is the second filter', 'Matt second-filter product-design boundary');
+req('docs/HUMAN_PRODUCT_DESIGN_AUTHORITY_V1.md', 'No freeze without a humanity check', 'humanity-check freeze boundary');
+req('docs/HUMAN_PRODUCT_DESIGN_AUTHORITY_V1.md', 'Friction budget is explicit', 'human product friction-budget authority');
+req('docs/START_HERE.md', 'HUMAN_PRODUCT_DESIGN_AUTHORITY_V1.md', 'human product authority front door');
+req('AGENTS.md', 'Matt is the second filter rather than the primary UI designer', 'agent product-design ownership boundary');
 req('docs/ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md', 'complexity-expansion bias', 'expansive shaping bias guard');
 req('docs/ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md', 'Post-grill product-boundary audit', 'post-grill product fidelity checkpoint');
-req('docs/ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md', 'Post-spec fidelity audit', 'post-spec product fidelity checkpoint');
+req('docs/ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md', 'Post-spec fidelity + human-product recheck', 'post-spec product fidelity + human recheck checkpoint');
 req('docs/ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md', 'Post-ticket product-composition audit', 'ticket composition checkpoint');
 req('docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md', 'Open material product questions: NONE', 'no-open-product-question handoff contract');
+req('docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md', 'Human interaction authority: <N/A | durable ref to accepted interaction hypothesis', 'conditional interaction-authority handoff field');
+req('docs/ATENEA_HARNESS_CONTRACT_V1.md', 'HUMAN_PRODUCT_DESIGN_AUTHORITY_V1.md', 'harness human product-design authority');
+req('docs/CURRENT_EXECUTION_DECISION_C084.md', 'second rigor filter rather than the primary interaction designer', 'C-084 human product-design relationship to Matt');
+req('docs/CURRENT_DECISIONS.md', 'task before structure, human mental model, representation fit, default-path simplicity and friction budget', 'current human product-design refinement');
+req('docs/QUALIFICATION.md', 'Subsequent field learning — human product design must precede technical grilling', 'human product-design field learning');
 req('docs/ATENEA_HARNESS_CONTRACT_V1.md', 'attended Cora + human activity', 'harness attended shaping ownership');
 req('docs/QUALIFICATION.md', 'Subsequent field learning — product shaping requires attended Cora + human', 'Nexus product-shaping field learning');
 req('docs/PRODUCT_FIDELITY_GATES_V1.md', 'Aggregate/module boundaries are not default screen/form/browser-slice boundaries', 'domain-to-UI anti-isomorphism boundary');

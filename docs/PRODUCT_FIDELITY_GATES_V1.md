@@ -7,6 +7,8 @@ Date: 2026-10-05
 
 A product can drift even when shaping documents still contain the right principles and every implementation ticket passes locally. Atenea therefore protects product intent across **decomposition and composition**, not only during the initial shaping conversation.
 
+These gates primarily protect accepted product/interaction authority from drift; they do not create the human experience from internal structure. For material human-facing work, the upstream origin authority is `HUMAN_PRODUCT_DESIGN_AUTHORITY_V1.md`: task before structure, human mental model, representation fit, default-path simplicity, friction budget and the accepted interaction hypothesis are established before Matt/spec grilling and rechecked before freeze.
+
 The recurring failure mode is:
 
 ```text
@@ -106,7 +108,7 @@ Use a Cora + human read-only product-fidelity checkpoint when material UI is acc
 - the product has explicit simplicity/complexity-firewall principles;
 - local hardening is making a surface more complete without proving that the surface itself should exist.
 
-Inspect the **actual composed product** when practical (running UI, screenshots or equivalent high-fidelity evidence), not only code/diff/ticket text. Compare it with original product authority and ask:
+Inspect the **actual composed product** when practical (running UI, screenshots or equivalent high-fidelity evidence), not only code/diff/ticket text. For material human-facing work, include the `HUMAN_PRODUCT_DESIGN_AUTHORITY_V1.md` **composed human-task walkthrough** over the important real journey(s), rather than checking only that internal concepts/IDs stayed hidden. Compare it with original product authority **and the accepted interaction hypothesis when one exists**, then ask:
 
 - Does the interface still express the intended user mental model and primary task?
 - Has internal domain structure leaked into what the user must understand?

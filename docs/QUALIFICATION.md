@@ -125,6 +125,17 @@ A related Laboratorio de Privacidad correction had already suggested that locall
 
 C-084 therefore keeps Matt upstream unchanged and adds two complementary protections. `ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md` constrains expansive questioning/synthesis. `PRODUCT_FIDELITY_GATES_V1.md` carries the product boundaries through ticketization and implementation: internal aggregate/module structure does not imply UI structure; lossless/exact internal representation is not a product goal by itself; and material multi-ticket UI requires a read-only composed-product checkpoint against the actual rendered surface. These checks are conditional, not universal bureaucracy.
 
+
+## Subsequent field learning — human product design must precede technical grilling
+
+Accumulated Symphonia and Laboratorio recovery work exposed a boundary earlier than decomposition drift. Even when accepted specs retain valid product principles and later gates prevent aggregate-to-screen drift, an exhaustive technical/domain shaping flow can still make the implementation model more legible than the human job. The system can recover every capability correctly while the resulting application asks users to reason in the vocabulary, topology or equal-weight action set that was convenient to specify.
+
+The resulting correction is **not** to fork or weaken Matt. `HUMAN_PRODUCT_DESIGN_AUTHORITY_V1.md` makes Matt/spec grilling the second filter for material human-facing work. Cora + human first shape concrete real-world journeys, the default path, representation fit, information hierarchy, progressive disclosure, friction budget and a durable interaction hypothesis. After technical/spec synthesis, they perform an attended human-product recheck before freeze. A clear interaction conflict is reconciled before `EXECUTION_READY`; OpenCode is not asked to redesign it autonomously.
+
+Laboratorio's pending Export recovery supplied a concrete trigger for this distinction: “five technically correct export capabilities” does not by itself authorize five equal-weight buttons. The human question is first what the person is normally trying to finish, which action is primary, which downloads are secondary, and which confidential/audit behavior belongs behind a separate boundary. The specific Laboratorio answer remains project authority, not Atenea-core policy; the cross-project lesson is that important user-facing completion surfaces need human interaction authority before recovery/implementation tickets freeze.
+
+This layer is conditional. Backend-only work, invisible refactors and bounded repairs that do not materially change interaction continue without new design ceremony. Once an interaction hypothesis is frozen, `PRODUCT_FIDELITY_GATES_V1.md` carries it through decomposition, implementation and composed-product closeout.
+
 ## Subsequent field learning — representation narrowing is semantic authority
 
 A Symphonia Atenea Go `complex` field ticket exposed a narrower semantic-authority failure than the earlier composed-product drift cases. The accepted domain retained an exact `effectiveFrom` instant, while implementation translated that value into a date-only control and reconstructed it as Hospital-local `00:00`. That reduced temporal precision without explicit product authority. The implementer made the choice, the coordinator did not stop it, and the canonical Spec review did not identify the material loss of expressivity; the later integrated Cora audit did, before publication.
@@ -146,6 +157,14 @@ A later Symphonia Go `complex` qualification exposed a different evidence weakne
 This is treated as a lightweight cross-profile evidence lens rather than a new lifecycle gate. For Standard, Free and Go Spec review/correction, material universal, negative, preservation or boundary claims (`all`, `every`, `never`, `preserve`, `lossless`, `distinguishable`, `only after`, `irreducible`, etc.) require at least one adversarial/boundary/collision fixture capable of falsifying the exact property. Nominal positive examples still count as useful coverage, but they do not prove a universal property. Evidence claims are calibrated to that falsification power; `all A1..An verified` is not justified by fixtures that cannot fail on the property being claimed. This rule does not authorize wider product semantics or opportunistic edge-case work outside the accepted envelope.
 
 The same calibration applies to suite-level baseline reporting: record the actual failing test identities observed in the run. If baseline reds vary between runs, report unstable baseline debt rather than one deterministic failure.
+
+### Subsequent Go field evidence — Nexus #537 exercises the new lenses cleanly
+
+PROMueve Nexus #537 supplied a stronger positive field signal for the same Go routing. The runtime change was a minimal Statistics export wiring correction: the supported handler moved from a nonexistent `HubTools.exportCohortToCSV` symbol to the published `HubTools.export.exportCohortToCSV`, while deliberately preserving `currentCohort` as the formal-filter authority rather than the presentation-only search subset. The integrated audit found no additional supported consumer because the shared exporter, Read Port, data manager and filter semantics were unchanged and the affected-surface trace matched the actual diff.
+
+The evidence materially exercised the new falsification rules rather than merely citing them: a `total > filtered` fixture compared patient identities, an equal-cardinality/different-identity control could detect set substitution, an empty formal cohort could detect fallback to the total cohort, and a local-search adversarial case left one visible row while the formal cohort remained six. The canonical Luna review also found a real evidence-claim defect: the first browser checker reset part of accumulated errors while claiming zero errors across the full journey. Fresh correction #1 removed that reset and the URL restriction; no correction #2 was required. Deterministic oracle `8/8`, browser QA `6/6`, `verify:nexus` and `git diff --check` were green on the audited candidate.
+
+This is **qualification evidence, not a new lifecycle rule**. It supports the current affected-surface and adversarial-property-witness hardenings and is a better Go field signal than Nexus #528, while Cora integrated audit remains the material Complex publication boundary.
 
 ## What is not yet claimed
 
