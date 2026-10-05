@@ -1,6 +1,6 @@
 # Atenea — Execution request and preflight v1
 
-Status: **CURRENT EXECUTION ENTRY CONTRACT — C-084**
+Status: **CURRENT EXECUTION ENTRY CONTRACT — C-085**
 Date: 2026-10-03
 
 ## Principle
@@ -29,7 +29,7 @@ Confirm only:
 2. refresh the relevant remote ref and verify the prepared branch/worktree is reconciled with the intended upstream/base **before OpenCode starts**; the accepted handoff/ticket must exist at the exact local HEAD that will execute;
 3. current accepted ticket/work-order/spec;
 4. executable outcome, acceptance and material constraints/non-goals;
-5. C-084 native OpenCode V2 project config/required role agents resolve; for `free_only`, `node tools/check-free-models.mjs` passes before launch;
+5. C-085 native OpenCode V2 project config/required role agents resolve; for `free_only`, `node tools/check-free-models.mjs` passes before launch;
 6. publication boundary is known;
 7. **open material product questions = NONE**. Any unresolved choice about product behavior, scope, architecture, privacy/security posture, data semantics or acceptance stays in attended shaping and blocks `READY_TO_LAUNCH`;
 8. for material UI/product trains, ticket decomposition has passed `PRODUCT_FIDELITY_GATES_V1.md`: internal aggregate/module boundaries are not being treated as user-facing surfaces by default, and the composed ticket set still describes the intended product.

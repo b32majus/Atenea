@@ -1,6 +1,6 @@
 # Atenea — Start Here
 
-Status: **CURRENT FRONT DOOR — C-084**
+Status: **CURRENT FRONT DOOR — C-085**
 
 ## Current path
 
@@ -12,7 +12,9 @@ default cost policy = standard
 default risk class  = volume
 risk class          = complex when triggered
 optional cost policy = free_only → `atenea-free`
-writer standard     = nan/deepseek-v4-flash
+writer volume       = nan/deepseek-v4-flash
+writer complex      = nan/glm5.3-flash · high
+writer context guard= 220k effective → auto-compact ~198k → keep ~15k
 volume correction   = nan/deepseek-v4-flash
 complex correction  = nan/glm5.3-flash · high
 Standards review    = openai/gpt-6-luna · high
@@ -86,4 +88,4 @@ Matt implementer worktrees should be cleaned by its workflow after integration. 
 
 ## Historical authority
 
-C-077–C-083 and Gentle/Pi/OpenCode V1 runbooks are retained as provenance. C-083's role/model architecture survives through C-084, but its V1 `1.18.34` qualification and `--pure` launch boundary are explicitly superseded.
+C-077–C-084 and Gentle/Pi/OpenCode V1 runbooks are retained as provenance. C-084 remains the native OpenCode V2 runtime/lifecycle baseline; C-085 is the current narrow routing/context-economy amendment. C-083's V1 `1.18.34` qualification and `--pure` launch boundary remain superseded.

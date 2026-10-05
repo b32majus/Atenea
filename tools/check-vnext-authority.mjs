@@ -15,7 +15,7 @@ const forbid = (r, t, label) => { const b = read(r); if (b.includes(t)) failures
 
 const current = [
   'README.md', 'AGENTS.md', 'CODING_STANDARDS.md', 'CONTEXT.md', 'GLOSSARY.md',
-  'docs/START_HERE.md', 'docs/CURRENT_EXECUTION_DECISION_C084.md',
+  'docs/START_HERE.md', 'docs/CURRENT_EXECUTION_DECISION_C085.md', 'docs/CURRENT_EXECUTION_DECISION_C084.md',
   'docs/ATENEA_EXECUTION_ROUTING_V0.md', 'docs/CURRENT_DECISIONS.md',
   'docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md', 'docs/PROMOTION_REVIEW_V1.md',
   'docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md', 'docs/QUALIFICATION.md',
@@ -25,17 +25,18 @@ const current = [
 ];
 for (const r of current) read(r);
 
-req('README.md', 'C-084', 'README current decision');
-req('docs/START_HERE.md', 'CURRENT FRONT DOOR — C-084', 'C-084 front door');
-req('docs/CURRENT_DECISIONS.md', 'C-084 is the current execution decision', 'decision ledger');
+req('README.md', 'C-085', 'README current decision');
+req('docs/START_HERE.md', 'CURRENT FRONT DOOR — C-085', 'C-085 front door');
+req('docs/CURRENT_DECISIONS.md', 'C-085 is the current execution decision', 'decision ledger');
 req('docs/CURRENT_DECISIONS.md', 'single canonical `/code-review`', 'current single-review ownership decision');
-req('docs/CURRENT_EXECUTION_DECISION_C084.md', 'Native OpenCode V2', 'native V2 correction decision');
+req('docs/CURRENT_EXECUTION_DECISION_C085.md', 'Standard writer split and context-economy guard', 'C-085 current decision');
+req('docs/CURRENT_EXECUTION_DECISION_C084.md', 'Native OpenCode V2', 'native V2 baseline decision');
 req('docs/CURRENT_EXECUTION_DECISION_C084.md', '`free_only` cost-policy extension', 'C-084 Free extension pointer');
 req('docs/CURRENT_EXECUTION_DECISION_C083.md', 'SUPERSEDED AS RUNTIME AUTHORITY BY C-084', 'C-083 correction marker');
 req('AGENTS.md', 'Do not duplicate Matt', 'upstream skill ownership');
 req('AGENTS.md', 'already-running persistent operator surface', 'Herdr operator boundary');
-req('CONTEXT.md', 'complex` primarily means stronger independent assurance', 'complex assurance meaning');
-req('docs/ATENEA_EXECUTION_ROUTING_V0.md', '`atenea-implementer-complex` → DeepSeek V4 Flash', 'complex V4 writer');
+req('CONTEXT.md', 'standard cost it now also selects the distinct GLM 5.3 Flash high first-writer route', 'complex writer/assurance meaning');
+req('docs/ATENEA_EXECUTION_ROUTING_V0.md', '`atenea-implementer-complex` → GLM 5.3 Flash high', 'complex GLM writer');
 req('docs/ATENEA_EXECUTION_ROUTING_V0.md', '`atenea-corrector-complex` → GLM 5.3 Flash high', 'complex GLM correction');
 req('docs/ATENEA_EXECUTION_ROUTING_V0.md', '`atenea-review-spec-complex` → GPT-6.1 Sol high', 'complex Sol spec review');
 req('docs/ATENEA_EXECUTION_ROUTING_V0.md', 'No quota router', 'no quota router');
@@ -135,6 +136,7 @@ req('.opencode/agents/atenea-implementer-volume.md', 'Do not invoke Matt `/imple
 req('.opencode/agents/atenea-implementer-complex.md', 'Do not invoke Matt `/implement`, `/implement-spec` or `/code-review`', 'complex implementer lifecycle isolation');
 req('.opencode/agents/atenea-implementer-free.md', 'Do not invoke Matt `/implement`, `/implement-spec` or `/code-review`', 'Free implementer lifecycle isolation');
 for (const r of ['.opencode/agents/atenea-implementer-volume.md','.opencode/agents/atenea-implementer-complex.md','.opencode/agents/atenea-implementer-free.md']) req(r, 'STOP and return that question to the coordinator for Cora + human', 'implementer product-shaping STOP');
+for (const r of ['.opencode/agents/atenea-implementer-volume.md','.opencode/agents/atenea-implementer-complex.md']) req(r, 'Use tools economically without reducing evidence', 'standard implementer tool-economy guard');
 req('.opencode/agents/atenea-volume.md', 'at most two fresh `atenea-corrector-volume` sessions', 'volume two-correction budget');
 req('.opencode/agents/atenea-complex.md', 'at most two fresh `atenea-corrector-complex` sessions', 'complex two-correction budget');
 req('.opencode/agents/atenea-free.md', 'one second fresh session', 'Free two-correction budget');
@@ -178,7 +180,7 @@ const agents = {
   'atenea-complex.md': ['mode: primary', 'model: nan/mimo-v2.6-flash'],
   'atenea-explorer.md': ['mode: subagent', 'model: nan/qwen3.8-flash'],
   'atenea-implementer-volume.md': ['model: nan/deepseek-v4-flash'],
-  'atenea-implementer-complex.md': ['model: nan/deepseek-v4-flash'],
+  'atenea-implementer-complex.md': ['model: nan/glm5.3-flash#high'],
   'atenea-merger.md': ['model: nan/mimo-v2.6-flash'],
   'atenea-review-standards.md': ['model: openai/gpt-6-luna#high'],
   'atenea-review-spec-volume.md': ['model: openai/gpt-6-luna#high'],

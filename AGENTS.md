@@ -1,6 +1,6 @@
 # Atenea — Repository Policy
 
-Status: **CURRENT AUTHORITY — C-084**
+Status: **CURRENT AUTHORITY — C-085**
 
 Atenea is a thin upstream-first policy, routing and conformance layer over OpenCode V2 and adopted upstream engineering skills. It does not duplicate those skills or implement a second execution/review lifecycle.
 
@@ -67,9 +67,9 @@ When Matt names a role such as explorer, implementer, merger, Standards reviewer
 
 Atenea separates **risk class** (`volume|complex`) from **cost policy** (`standard|free_only|go`; `go` is a qualification candidate, see `docs/ATENEA_GO_PROFILE_V0.md`). Cora may recommend the risk class, but explicit human/project `free_only` authority wins even for complex work. Under `free_only`, use only `atenea-free` and its current Free bindings; no paid model, standard profile or silent provider fallback is authorized. A project may persist `free_only` in durable project authority so the human does not need to repeat it per ticket. See `docs/ATENEA_FREE_PROFILE_V0.md`.
 
-Do not rewrite `~/.config/opencode/opencode.json` as per-ticket/train routing state. C-084 role semantics live in versioned project-local OpenCode configuration; global config supplies user/provider capability, not hidden Atenea policy.
+Do not rewrite `~/.config/opencode/opencode.json` as per-ticket/train routing state. C-085 role semantics live in versioned project-local OpenCode configuration; global config supplies user/provider capability, not hidden Atenea policy.
 
-C-084 uses native OpenCode V2. The active global OpenCode config is deliberately clean of Gentle execution agents/plugins; the Herdr OpenCode integration is allowed as observability/session metadata and is not Atenea execution authority. Project-local coordinator permissions own lifecycle roles; implementer permissions are deliberately narrower and may delegate only exploratory work, not review/correction ownership. Do not add `--pure`: it is a V1 flag and is not part of the V2 CLI.
+C-085 inherits the C-084 native OpenCode V2 runtime/lifecycle. The active global OpenCode config is deliberately clean of Gentle execution agents/plugins; the Herdr OpenCode integration is allowed as observability/session metadata and is not Atenea execution authority. Project-local coordinator permissions own lifecycle roles; implementer permissions are deliberately narrower and may delegate only exploratory work, not review/correction ownership. Do not add `--pure`: it is a V1 flag and is not part of the V2 CLI.
 
 ## 5. Deterministic-first
 
