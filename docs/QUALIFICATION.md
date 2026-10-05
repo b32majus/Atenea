@@ -139,6 +139,14 @@ Two later Atenea Go `complex` audits exposed the same failure family across diff
 
 The resulting guardrail is **affected-surface / invariant propagation**: shared-seam impact is traced through supported consumers, and an invariant/defect discovered in one branch is checked across material sibling branches before closure. `NO TOCA` is a behavioral promise, not a filename rule. This does not authorize opportunistic widening: a materially affected supported consumer or sibling defect outside the current authority/evidence envelope produces HUMAN STOP/new bounded work. These field cases reinforce that integrated audit remains mandatory for material Complex qualification while this cross-surface weakness is being observed.
 
+## Subsequent field learning — universal claims need adversarial witnesses
+
+A later Symphonia Go `complex` qualification exposed a different evidence weakness. A requirement that multiple aggregates must remain **distinguishable** was exercised with multiple examples whose obvious human summaries were already different, so the fixture could pass without proving the collision case that made distinguishability difficult. A subsequent finding-scoped correction repeated the same shape: the closure language required **all available human semantics**, while the focused test demonstrated only a comfortable subset of operational semantics. The implementation/correction could therefore be locally reasonable while the evidence was too weak for the universal claim being made.
+
+This is treated as a lightweight cross-profile evidence lens rather than a new lifecycle gate. For Standard, Free and Go Spec review/correction, material universal, negative, preservation or boundary claims (`all`, `every`, `never`, `preserve`, `lossless`, `distinguishable`, `only after`, `irreducible`, etc.) require at least one adversarial/boundary/collision fixture capable of falsifying the exact property. Nominal positive examples still count as useful coverage, but they do not prove a universal property. Evidence claims are calibrated to that falsification power; `all A1..An verified` is not justified by fixtures that cannot fail on the property being claimed. This rule does not authorize wider product semantics or opportunistic edge-case work outside the accepted envelope.
+
+The same calibration applies to suite-level baseline reporting: record the actual failing test identities observed in the run. If baseline reds vary between runs, report unstable baseline debt rather than one deterministic failure.
+
 ## What is not yet claimed
 
 Repeated standard and Free `volume` field runs now support the C-084 direction, but they do not permanently prove every routing/model choice, `complex` behavior or future Free catalog. The new single-review permission hardening should be observed in subsequent real tickets rather than through another synthetic qualification campaign. Continue collecting field evidence through `EXECUTION_EFFICIENCY_LEDGER_V1.md`; change policy only at a clean future work boundary if repeated evidence warrants it.
@@ -152,6 +160,7 @@ opencode models
 opencode debug config
 node tools/check-vnext-authority.mjs
 node tools/check-free-models.mjs  # when free_only is selected
+node tools/check-go-models.mjs    # from the canonical Atenea checkout when go is selected
 git diff --check
 ```
 
