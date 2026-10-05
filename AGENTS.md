@@ -13,7 +13,10 @@ WHAT / WHY / acceptance / domain authority
 stable engineering quality
 → target repository AGENTS.md + CODING_STANDARDS.md
 
-shaping / implementation / code review method
+human product design / interaction authority
+→ attended Cora + human
+
+technical shaping / implementation / code review method
 → adopted Matt Pocock skills when invoked
 
 role → model binding and assurance profile
@@ -82,7 +85,7 @@ OpenCode/Matt execute work that has already been shaped tightly enough that role
 
 A bounded execution handoff must make the outcome, in-scope surface, preserved invariants, material non-goals and closure evidence clear enough to implement without reopening product decisions. Local implementation mechanics may remain with the implementer when they do not change those semantics.
 
-**Product shaping is attended work.** Material product decisions are made in a human-present Cora + human shaping loop before unattended execution. Cora may analyze options, challenge assumptions and prepare explicit questions; OpenCode/agents may gather bounded evidence when asked, but no unattended agent may answer its own material product/architecture questions or convert an unresolved choice into executable authority. If a material ambiguity would require choosing product behavior, architecture, security/privacy posture, data semantics, scope or acceptance meaning, STOP and return the question to Cora + human. The coordinator must not guess. For materially expansive shaping, apply `docs/ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md`. For material product/UI decomposition and composition, also apply `docs/PRODUCT_FIDELITY_GATES_V1.md`: internal aggregate/module boundaries do not become user-facing surfaces by default, locally correct slices do not prove the composed product, and technical hardening can perfect the wrong product if surface fidelity is never rechecked.
+**Product shaping is attended work.** Material product decisions are made in a human-present Cora + human shaping loop before unattended execution. Cora may analyze options, challenge assumptions and prepare explicit questions; OpenCode/agents may gather bounded evidence when asked, but no unattended agent may answer its own material product/architecture questions or convert an unresolved choice into executable authority. If a material ambiguity would require choosing product behavior, architecture, security/privacy posture, data semantics, scope or acceptance meaning, STOP and return the question to Cora + human. The coordinator must not guess. For material human-facing work, `docs/HUMAN_PRODUCT_DESIGN_AUTHORITY_V1.md` runs before technical/spec grilling: task/mental model/interaction hypothesis/default path/representation/friction are human-owned authority, and Matt is the second filter rather than the primary UI designer. The post-spec human-product recheck must close before freeze. For materially expansive shaping, apply `docs/ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md`. For material product/UI decomposition and composition, also apply `docs/PRODUCT_FIDELITY_GATES_V1.md`: internal aggregate/module boundaries do not become user-facing surfaces by default, locally correct slices do not prove the composed product, and technical hardening can perfect the wrong product if surface fidelity is never rechecked.
 
 **Representation narrowing is product-semantic authority, not a local implementation mechanic.** When accepted semantics are translated into UI controls, forms, adapters, schemas, persistence/export shapes or other representations, preserve the distinctions that accepted authority requires. Do not silently collapse precision/granularity, cardinality, valid ranges, states/vocabulary, combinations, ordering, optional/unknown distinctions or temporal precision/timezone semantics. This does not require exposing internal-only richness. If a material narrowing is not explicitly authorized, HUMAN STOP to Cora + human.
 
