@@ -80,6 +80,22 @@ Check proportionately that:
 
 This does **not** authorize agents to broaden product scope or repair every transitive consumer opportunistically. If source tracing reveals a materially affected supported surface outside the current authority/evidence envelope, or an explicit `NO TOCA` behavior would change indirectly, that is **HUMAN STOP / scope reconciliation**. A new material sibling defect found after review is a new finding/bounded unit, not a hidden extension of an old correction envelope.
 
+## Cross-profile evidence lens — adversarial property witness
+
+When accepted authority or an authorized finding makes a **universal, negative, preservation or boundary claim**, evidence must include at least one fixture capable of falsifying that exact property if the implementation is wrong. A nominal positive example is not proof of a universal claim.
+
+Typical trigger language includes `all`, `every`, `never`, `preserve`, `lossless`, `distinguishable`, `only after`, `irreducible`, `unique` and equivalent statements whose truth depends on a boundary rather than one representative example. Apply the lens proportionately:
+
+- `multiple entities remain distinguishable` → include a collision case where their obvious human summaries coincide;
+- `preserve all accepted semantics` → exercise a last-frontier/rare accepted semantic, not only the primary case;
+- `never exposes X` → exercise a case where X is actually present upstream;
+- `only after boundary B` → test immediately before/at/after the relevant boundary as needed;
+- `lossless` / `preserve cardinality` / `preserve ordering` → use input that would reveal collapse, truncation or reordering rather than an input where both representations happen to agree.
+
+**Evidence claims must not exceed falsification power.** Statements such as `all A1..An verified` are justified only when the evidence actually exercises the adversarial property behind each material claim; nominal examples may be reported as nominal coverage, not universal proof. Likewise, full-suite baseline attribution reports the actual failing test identities observed in that run. If baseline failures vary between runs, report **unstable baseline debt** rather than claiming one deterministic red.
+
+This is a lightweight reviewer/corrector evidence lens, not a new product gate or a mandate for extra tests on every sentence. It does not authorize new semantics, wider scope, or speculative edge-case invention: strengthen evidence only where the accepted requirement/finding itself makes a material universal, negative, preservation or boundary claim.
+
 ## Gate 4 — material UI composed-product checkpoint
 
 Use a Cora + human read-only product-fidelity checkpoint when material UI is accumulating across tickets/slices, especially when:
@@ -108,4 +124,4 @@ Reviewers/correctors may report evidence that suggests product drift, but they d
 
 ## Scope
 
-These gates are **conditional**, not ceremony for every ticket. The composition gates apply when product/UI composition risk is material. The representation-narrowing check also applies to non-UI translations (for example adapters, schemas, persistence or export) when accepted semantics could be collapsed. The affected-surface/invariant-propagation check applies when a shared seam can materially change supported consumers or when a discovered defect/guard plausibly repeats across sibling branches. Backend-only or already-bounded work with no such semantic translation or shared-consumer risk continues through the normal C-084 path without a product-composition ritual.
+These gates are **conditional**, not ceremony for every ticket. The composition gates apply when product/UI composition risk is material. The representation-narrowing check also applies to non-UI translations (for example adapters, schemas, persistence or export) when accepted semantics could be collapsed. The affected-surface/invariant-propagation check applies when a shared seam can materially change supported consumers or when a discovered defect/guard plausibly repeats across sibling branches. The adversarial-property-witness lens applies only when the accepted requirement/finding makes a material universal, negative, preservation or boundary claim whose evidence could otherwise pass through a comfortable nominal fixture. Backend-only or already-bounded work with none of these risks continues through the normal C-084 path without a product-composition ritual.
