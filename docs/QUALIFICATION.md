@@ -133,6 +133,12 @@ The resulting guardrail is general rather than Symphonia-specific: **representat
 
 The field result also confirms why complex integrated audit remains valuable during qualification: the system prevented publication of the narrowing even though implementation + canonical review had not stopped it.
 
+## Subsequent field learning — affected surfaces and sibling invariants are behavioral
+
+Two later Atenea Go `complex` audits exposed the same failure family across different products. In Laboratorio de Privacidad REC-04, canonical review correctly found a stale-state/TOCTOU gap in Confidential XLSX and correction added the post-`await` current-authority guard, but the sibling Safe XLSX path retained the same stale-download class; Cora falsified it independently before publication. In PROMueve Nexus #528, source tracing discovered that a shared prebiologic request generator also served the supported Dashboard → Solicitud FH journey, but that zero-diff consumer was recorded as unchanged/untested because it lay outside the ticket's explicit browser QA surfaces. Cora held publication because changing the shared generator changed the functional blast radius even though the dashboard files were untouched.
+
+The resulting guardrail is **affected-surface / invariant propagation**: shared-seam impact is traced through supported consumers, and an invariant/defect discovered in one branch is checked across material sibling branches before closure. `NO TOCA` is a behavioral promise, not a filename rule. This does not authorize opportunistic widening: a materially affected supported consumer or sibling defect outside the current authority/evidence envelope produces HUMAN STOP/new bounded work. These field cases reinforce that integrated audit remains mandatory for material Complex qualification while this cross-surface weakness is being observed.
+
 ## What is not yet claimed
 
 Repeated standard and Free `volume` field runs now support the C-084 direction, but they do not permanently prove every routing/model choice, `complex` behavior or future Free catalog. The new single-review permission hardening should be observed in subsequent real tickets rather than through another synthetic qualification campaign. Continue collecting field evidence through `EXECUTION_EFFICIENCY_LEDGER_V1.md`; change policy only at a clean future work boundary if repeated evidence warrants it.

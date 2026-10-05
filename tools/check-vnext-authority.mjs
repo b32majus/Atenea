@@ -63,6 +63,18 @@ req('docs/PROMOTION_REVIEW_V1.md', 'representation narrowing when accepted seman
 req('docs/CURRENT_DECISIONS.md', 'representation translation must preserve accepted expressivity', 'representation narrowing current decision');
 req('docs/QUALIFICATION.md', 'Subsequent field learning — representation narrowing is semantic authority', 'representation narrowing field learning');
 for (const r of ['.opencode/agents/atenea-review-spec-volume.md','.opencode/agents/atenea-review-spec-complex.md','.opencode/agents/atenea-review-spec-free.md','.opencode/agents/atenea-review-spec-go.md']) req(r, 'representation-narrowing check', 'Spec reviewer representation narrowing check');
+req('docs/PRODUCT_FIDELITY_GATES_V1.md', 'affected-surface / invariant-propagation check', 'affected-surface product-fidelity rule');
+req('AGENTS.md', 'Functional blast radius is behavioral, not file-based', 'affected-surface runtime boundary');
+req('docs/START_HERE.md', 'Shared-seam blast radius is behavioral', 'affected-surface front-door rule');
+req('docs/ATENEA_HARNESS_CONTRACT_V1.md', 'affected-surface/invariant-propagation check', 'affected-surface harness boundary');
+req('docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md', 'Affected supported surfaces: <NONE | material consumers/journeys of changed shared seams', 'affected-surface handoff field');
+req('docs/PROMOTION_REVIEW_V1.md', 'affected-surface / invariant propagation', 'affected-surface promotion axis');
+req('docs/CURRENT_DECISIONS.md', 'functional blast radius follows supported behavior/dependency', 'affected-surface current decision');
+req('docs/QUALIFICATION.md', 'Subsequent field learning — affected surfaces and sibling invariants are behavioral', 'affected-surface field learning');
+for (const r of ['.opencode/agents/atenea-volume.md','.opencode/agents/atenea-complex.md','.opencode/agents/atenea-free.md','.opencode/agents/atenea-go.md']) req(r, 'affected-surface/invariant-propagation guard', 'coordinator affected-surface guard');
+for (const r of ['.opencode/agents/atenea-implementer-volume.md','.opencode/agents/atenea-implementer-complex.md','.opencode/agents/atenea-implementer-free.md','.opencode/agents/atenea-implementer-go.md']) req(r, 'zero-diff consumer is unaffected', 'implementer affected-surface guard');
+for (const r of ['.opencode/agents/atenea-corrector-volume.md','.opencode/agents/atenea-corrector-complex.md','.opencode/agents/atenea-corrector-free-volume.md','.opencode/agents/atenea-corrector-free-complex.md','.opencode/agents/atenea-corrector-go-volume.md','.opencode/agents/atenea-corrector-go-complex.md']) req(r, 'supported sibling branch/consumer', 'corrector sibling-invariant guard');
+for (const r of ['.opencode/agents/atenea-review-spec-volume.md','.opencode/agents/atenea-review-spec-complex.md','.opencode/agents/atenea-review-spec-free.md','.opencode/agents/atenea-review-spec-go.md']) req(r, 'affected-surface/invariant-propagation check', 'Spec reviewer affected-surface check');
 req('docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md', 'composed-product checkpoint', 'material UI composed-product closeout');
 req('docs/CURRENT_DECISIONS.md', 'Technical hardening cannot legitimize a surface', 'material UI hardening boundary');
 req('docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md', 'Finding-scoped corrections', 'bounded correction handoff');

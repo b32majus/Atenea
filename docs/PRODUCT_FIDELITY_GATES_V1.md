@@ -28,6 +28,7 @@ No single step is necessarily incorrect in isolation. The defect is loss of **co
 4. **A locally correct ticket does not prove the composed product.** Several faithful slices can accumulate into a product that violates its original simplicity, workflow or conceptual-load constraints.
 5. **Product non-negotiables survive every transformation.** They remain authority through spec synthesis, ticketization, implementation, hardening and promotion.
 6. **Representation translation must not silently narrow accepted semantics.** A UI control, form, mapper, adapter, schema, persistence/export shape or other human-facing translation may simplify presentation, but it may not erase distinctions that accepted product/domain authority still requires users or downstream behavior to represent.
+7. **Functional blast radius is defined by behavior and dependency, not by diff paths.** A change to a shared helper, generator, mapper, serializer, state/async authority or other common seam can alter supported consumers whose own files remain byte-identical. `NO TOCA` applies to supported behavior, not merely to filenames.
 
 ## Gate 1 — ticketization fidelity
 
@@ -62,7 +63,24 @@ This guardrail does **not** require exposing internal-only richness. A richer in
 
 If a material narrowing is not already authorized explicitly, it is a **HUMAN STOP / product-semantic decision**, not an implementation detail for an agent to choose.
 
-## Gate 3 — material UI composed-product checkpoint
+## Gate 3 — affected-surface / invariant-propagation check
+
+When a change touches a shared authority/seam or when a review/correction exposes an invariant that may recur in sibling branches, trace the **materially affected supported consumers and parallel paths**, not only the files in the diff. Ask:
+
+> Which supported journeys/consumers can observe this changed authority, and which sibling branches are expected to preserve the same invariant?
+
+Check proportionately that:
+
+- supported consumers of a changed shared helper/generator/mapper/serializer/state authority are enumerated or mechanically traced when material;
+- a consumer is not classified as unaffected merely because its own file has no diff;
+- a declared `NO TOCA` surface has no unauthorized indirect behavior change; if the shared change intentionally reaches it, that behavior/evidence must already be authorized;
+- when a defect or guard is found in one branch of a parallel flow, sibling branches implementing the same invariant are checked for the same failure class before the envelope is considered closed;
+- async/current-state guards, authorization checks, serialization rules and other cross-cutting invariants are propagated wherever the same authority boundary exists;
+- evidence covers every materially affected supported journey needed to justify publication, rather than only the directly edited entry points.
+
+This does **not** authorize agents to broaden product scope or repair every transitive consumer opportunistically. If source tracing reveals a materially affected supported surface outside the current authority/evidence envelope, or an explicit `NO TOCA` behavior would change indirectly, that is **HUMAN STOP / scope reconciliation**. A new material sibling defect found after review is a new finding/bounded unit, not a hidden extension of an old correction envelope.
+
+## Gate 4 — material UI composed-product checkpoint
 
 Use a Cora + human read-only product-fidelity checkpoint when material UI is accumulating across tickets/slices, especially when:
 
@@ -82,7 +100,7 @@ Inspect the **actual composed product** when practical (running UI, screenshots 
 
 A material mismatch is **HUMAN STOP / product reconciliation**, not a request for OpenCode to redesign autonomously.
 
-## Gate 4 — hardening cannot legitimize product drift
+## Gate 5 — hardening cannot legitimize product drift
 
 Technical hardening is subordinate to accepted product surface. Do not spend review/correction effort making an unauthorized or over-complex UI perfectly lossless, exact, accessible or exhaustive. First prove the surface belongs in the product; then harden it.
 
@@ -90,4 +108,4 @@ Reviewers/correctors may report evidence that suggests product drift, but they d
 
 ## Scope
 
-These gates are **conditional**, not ceremony for every ticket. The composition gates apply when product/UI composition risk is material. The representation-narrowing check also applies to non-UI translations (for example adapters, schemas, persistence or export) when accepted semantics could be collapsed. Backend-only or already-bounded work with no such semantic translation continues through the normal C-084 path without a product-composition ritual.
+These gates are **conditional**, not ceremony for every ticket. The composition gates apply when product/UI composition risk is material. The representation-narrowing check also applies to non-UI translations (for example adapters, schemas, persistence or export) when accepted semantics could be collapsed. The affected-surface/invariant-propagation check applies when a shared seam can materially change supported consumers or when a discovered defect/guard plausibly repeats across sibling branches. Backend-only or already-bounded work with no such semantic translation or shared-consumer risk continues through the normal C-084 path without a product-composition ritual.
