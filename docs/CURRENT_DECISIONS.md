@@ -1,10 +1,16 @@
 # Atenea — Current Decisions
 
-Date: 2026-10-03
+Date: 2026-10-05
 
-This file preserves accepted decision provenance. **C-084 is the current execution decision** (`docs/CURRENT_EXECUTION_DECISION_C084.md`). C-083 remains the architectural/routing basis but its runtime qualification is superseded; C-082 and earlier decisions remain provenance and do not define the current execution path.
+This file preserves accepted decision provenance. **C-085 is the current execution decision** (`docs/CURRENT_EXECUTION_DECISION_C085.md`). C-085 inherits C-084's native V2 runtime/lifecycle and changes only standard writer routing plus context economy. C-083/C-084 and earlier decisions remain provenance except where C-085 explicitly incorporates them.
 
 Historical `docs/DECISIONS.md`, Stage files, old run recipes and pre-vNext field evidence remain valuable provenance, but they do not define the current execution path.
+
+## C-085 — Standard writer split and context-economy guard
+
+**Accepted 2026-10-05 from live Standard/Free session evidence.** C-084's canonical OpenCode `2.0.22` runtime and lifecycle remain intact. Standard Volume writes on DeepSeek V4 Flash; Standard Complex writes on GLM 5.3 Flash high. The active user/runtime config gives both long-running NaN writers a 220k effective OpenCode context budget with automatic compaction around ~198k and ~15k recent verbatim retention. Tool economy is advisory only and cannot weaken required evidence. The 2026-10-05 2.0.23 observation is treated as correlation, not causal proof; rollback restores the already accepted known-good C-084 runtime.
+
+Evidence/authority: `docs/CURRENT_EXECUTION_DECISION_C085.md`, `docs/ATENEA_EXECUTION_ROUTING_V0.md`, current standard implementer bindings, and the 2026-10-05 live session telemetry recorded in C-085.
 
 ## C-084 — Native OpenCode V2 cutover and visible Herdr operation
 

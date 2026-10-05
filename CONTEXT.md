@@ -1,6 +1,6 @@
 # Atenea Context
 
-Status: **CURRENT SYSTEM CONTEXT — C-084**
+Status: **CURRENT SYSTEM CONTEXT — C-085**
 
 ## Purpose
 
@@ -43,14 +43,14 @@ Atenea owns policy, bindings and conformance evidence. Material product shaping 
 
 - coordinator: MiMo 2.6 Flash;
 - explorer: Qwen 3.8 Flash;
-- implementer: DeepSeek V4 Flash;
+- implementer: GLM 5.3 Flash high;
 - merger: MiMo 2.6 Flash;
 - Standards review: GPT-6 Luna high;
 - Spec review: GPT-6.1 Sol high;
 - correction: GLM 5.3 Flash high;
 - deep OCR: GLM 5.3 Flash high when triggered.
 
-`complex` primarily means stronger independent assurance, not automatically a different writer.
+`complex` remains a risk/assurance class, and under standard cost it now also selects the distinct GLM 5.3 Flash high first-writer route. This is fixed routing at a clean work-unit boundary, not quota-based switching.
 
 ## Complex triggers
 
@@ -58,9 +58,9 @@ Use `complex` for material semantic/acceptance risk such as cross-cutting archit
 
 Do not select it from file count, ticket length, ordinary UI work, number of tests or business importance alone.
 
-## Exceptional writer escalation
+## Standard writer/context economy
 
-Cora/human shaping may explicitly select GLM as first writer when the implementation problem itself is unusually open or reasoning-heavy. This is an exception, not the meaning of `complex`.
+Standard `volume` writes on V4 and standard `complex` writes on GLM 5.3 Flash high. The active OpenCode 2.0.22 runtime gives both long-running NaN writers a 220k effective context budget with automatic compaction and ~15k recent verbatim retention, so pathological agent loops compact around ~198k instead of drifting toward the physical ~1M window. Required evidence is never reduced for token economy.
 
 ## Assurance
 

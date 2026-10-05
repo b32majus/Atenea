@@ -1,6 +1,6 @@
 # C-084 — Native OpenCode V2 cutover and visible Herdr operation
 
-Status: **CURRENT EXECUTION DECISION**
+Status: **RUNTIME/LIFECYCLE BASELINE — STANDARD WRITER ROUTING/CONTEXT ECONOMY AMENDED BY C-085**
 Date: 2026-10-03
 
 ## Why C-084 exists
