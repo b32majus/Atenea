@@ -188,3 +188,26 @@ Do not make repeated model-call canaries a ritual.
 ## Historical qualification
 
 Pi/Gentle/OpenCode V1 qualification and C-083's mistaken V1-as-V2 runtime evidence remain provenance. They do not define the C-084 execution path.
+
+## C-086 regression audit — thin execution restoration
+
+A 2026-10-06 regression audit fixed `Atenea@50122a13f1d1e191e659a21ad6445267e4e354e6` as the known-good modern control: native OpenCode V2 2.0.22 + Matt, Cora-shaped bounded work, single canonical review, fresh correctors, two-attempt correction and real project execution were already functioning there.
+
+Comparison with pre-restoration `9c6be73527c1b4ff8a661d29582bb6317b8e45f7` showed material hot-path accretion: central `AGENTS.md`, preflight, coordinators, implementers, Spec reviewers, correctors and the authority checker all grew; affected-surface tracing and adversarial-witness rules were copied across many roles; downstream projects then duplicated the same material again in local `AGENTS.md`, handoffs and child dispatches. Laboratorio supplied a concrete example: a known-good handoff of ~6.8k characters became a current #78 handoff of ~14.5k, while the actual writer child dispatch reached ~25.6k.
+
+The audit does **not** invalidate the defects that motivated representation narrowing, shared-seam propagation or adversarial evidence. C-086 changes ownership/placement: upstream shaping and review/Cora activate those safeguards when material; writers implement the accepted envelope; correctors close supplied findings; broad/full suites default to integration/publication rather than every slice.
+
+Matt skills were unchanged across the known-good/slowdown comparison. OpenCode 2.0.22 was already used by the known-good sessions. Go creation did not modify Standard/Free bindings and is treated as a catalyst for field learning, not the direct root cause. C-085 runtime/model/context settings remain fixed so the effect of protocol decompression can later be observed independently.
+
+Detailed evidence and restoration mapping: `docs/C086_REGRESSION_AUDIT_AND_RESTORATION_20261006.md`.
+
+### Deferred C-086 field validation
+
+Do not run a synthetic macro-benchmark as part of the restoration commit. At a later clean project boundary, validate with exactly two **small real tickets**:
+
+1. Standard Volume;
+2. Standard Complex.
+
+Observe elapsed time, child dispatch size, authority reads, model turns, tool calls, maximum context, compactions, broad-suite repetitions, review findings and correction count. Keep OpenCode/model/context settings fixed through the pair. A deliberately small ticket returning to routine hour-scale execution is itself a regression signal. Do not add more tickets merely to complete a benchmark matrix.
+
+C-086 restoration deterministic conformance is green: `check-vnext-authority` PASS; OpenCode 2.0.22 config/34-agent parse PASS; Free and Go model-presence checks PASS; hot-path legacy affected-surface/adversarial prompt text absent; `git diff --check` PASS. This validates configuration/document coherence only. Real field efficiency validation remains intentionally deferred to the two small Volume/Complex tickets described above.

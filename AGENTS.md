@@ -1,8 +1,8 @@
 # Atenea — Repository Policy
 
-Status: **CURRENT AUTHORITY — C-085**
+Status: **CURRENT AUTHORITY — C-086**
 
-Atenea is a thin upstream-first policy, routing and conformance layer over OpenCode V2 and adopted upstream engineering skills. It does not duplicate those skills or implement a second execution/review lifecycle.
+Atenea is a thin upstream-first policy, routing and conformance layer over native OpenCode V2 and adopted upstream engineering skills. It does not duplicate those skills or implement a second execution/review lifecycle.
 
 ## 1. Ownership
 
@@ -10,11 +10,11 @@ Atenea is a thin upstream-first policy, routing and conformance layer over OpenC
 WHAT / WHY / acceptance / domain authority
 → human + durable repository authority
 
+human product design / interaction authority
+→ attended Cora + human, when material
+
 stable engineering quality
 → target repository AGENTS.md + CODING_STANDARDS.md
-
-human product design / interaction authority
-→ attended Cora + human
 
 technical shaping / implementation / code review method
 → adopted Matt Pocock skills when invoked
@@ -44,124 +44,99 @@ publish / merge
 
 Material conflict between current authorities => STOP and reconcile. Runtime convenience never invents product semantics.
 
-## 3. Read before work
+## 3. Read only what the work needs
 
-Read only what the work needs:
+Normal engineering entry is deliberately small:
 
 1. this file;
-2. `CODING_STANDARDS.md`;
-3. `CONTEXT.md` and relevant ADRs;
-4. `GLOSSARY.md` when domain vocabulary matters;
-5. the accepted issue/spec/ticket;
-6. `docs/ATENEA_EXECUTION_ROUTING_V0.md` when executing through Atenea.
+2. the accepted issue/spec/ticket or durable execution handoff;
+3. `CODING_STANDARDS.md` and only the relevant project/domain authority it references;
+4. `docs/ATENEA_EXECUTION_ROUTING_V0.md` when executing through Atenea.
 
-Historical C-077–C-083 and Gentle/Pi/OpenCode V1 runbooks are provenance, not current execution authority.
+Do not load product-design, shaping, fidelity, qualification or historical documents by ritual. Specialized policies are referenced when their condition is explicitly triggered; they are not default execution payload.
+
+Historical C-077–C-085 and Gentle/Pi/OpenCode V1 runbooks remain provenance unless current authority explicitly cites them.
 
 ## 4. Do not duplicate Matt
 
-Matt skills own their methodology. Do not copy their TDD loop, task-graph procedure, code-review rubric or worktree choreography into Atenea policy.
+Matt skills own their methodology. Do not copy their TDD loop, task-graph procedure, code-review rubric or worktree choreography into Atenea policy, project handoffs or child prompts.
 
-Atenea adds only stable repository constraints, explicit role/model bindings, deterministic evidence requirements and human publication boundaries.
+Atenea adds stable repository constraints, explicit role/model bindings, deterministic evidence boundaries and human publication control.
 
-When Matt names a role such as explorer, implementer, merger, Standards reviewer or Spec reviewer, use the project-local Atenea role binding for the selected route. Do not silently choose another model because a quota is inconvenient.
+Atenea separates **risk class** (`volume|complex`) from **cost policy** (`standard|free_only|go`). Cora may recommend risk class; human/project authority owns cost policy. `free_only` and `go` have no silent provider/model fallback. See the profile documents for their replaceable bindings.
 
-Atenea separates **risk class** (`volume|complex`) from **cost policy** (`standard|free_only|go`; `go` is a qualification candidate, see `docs/ATENEA_GO_PROFILE_V0.md`). Cora may recommend the risk class, but explicit human/project `free_only` authority wins even for complex work. Under `free_only`, use only `atenea-free` and its current Free bindings; no paid model, standard profile or silent provider fallback is authorized. A project may persist `free_only` in durable project authority so the human does not need to repeat it per ticket. See `docs/ATENEA_FREE_PROFILE_V0.md`.
+C-086 retains C-085 routing/runtime economics over the C-084 native-V2 lifecycle: OpenCode 2.0.22 known-good runtime, standard Volume writer DeepSeek V4 Flash, standard Complex writer GLM 5.3 Flash high, and the 220k effective writer context guard with automatic compaction around ~198k and ~15k recent verbatim retention. Routing changes only at a clean work-unit boundary.
 
-Do not rewrite `~/.config/opencode/opencode.json` as per-ticket/train routing state. C-085 role semantics live in versioned project-local OpenCode configuration; global config supplies user/provider capability, not hidden Atenea policy.
+Do not rewrite shared `~/.config/opencode/opencode.json` as per-ticket/train routing state. Do not add `--pure`: it is a V1 flag and is not part of native OpenCode V2.
 
-C-085 inherits the C-084 native OpenCode V2 runtime/lifecycle. The active global OpenCode config is deliberately clean of Gentle execution agents/plugins; the Herdr OpenCode integration is allowed as observability/session metadata and is not Atenea execution authority. Project-local coordinator permissions own lifecycle roles; implementer permissions are deliberately narrower and may delegate only exploratory work, not review/correction ownership. Do not add `--pure`: it is a V1 flag and is not part of the V2 CLI.
+## 5. Deterministic-first, phase-scoped evidence
 
-## 5. Deterministic-first
+If a material property can be expressed deterministically, prove it mechanically. Do not create an oracle for every edit.
 
-If a material property can be expressed deterministically, prove it deterministically. LLM review is for semantic, architectural, maintainability and unanticipated failure questions that are not better encoded as executable checks.
+Evidence belongs to the phase that needs it:
 
-When a review claim is numerically or mechanically decidable, validate the **effective runtime/rendered state**, not a token name, visual guess or proxy. For example, accessibility contrast is measured against the effective background actually rendered. If the invariant will recur in that project, prefer a cheap project-local oracle/checker over repeated model judgement; it does not become a mandatory Atenea-core check for unrelated repos.
+```text
+writer      → focused TDD + smallest relevant deterministic checks
+integration → merge-sensitive / cross-slice checks when justified
+review      → inspect candidate + existing evidence; request new proof only for a concrete gap
+corrector   → finding-scoped fix + focused regression evidence
+publication → changed-artifact / composed-candidate closeout
+```
 
-Do not create an oracle for every edit. Add one when an important invariant is worth pinning.
+Broad/full suites are integration/publication evidence by default, not a ritual for every writer slice. A ticket/repository may require an earlier broad suite when that is genuinely necessary; otherwise do not repeat it at every phase.
 
 ## 6. Cora-shaped execution envelope
 
-OpenCode/Matt execute work that has already been shaped tightly enough that role-bound Atenea execution models do not need to invent product intent, architecture or acceptance semantics. Precision is not verbosity: reference durable repo authority and state only the semantic delta, but remove material interpretive freedom before execution.
+OpenCode/Matt execute already-accepted bounded work. Precision is not verbosity: reference durable authority and state only the semantic delta.
 
-A bounded execution handoff must make the outcome, in-scope surface, preserved invariants, material non-goals and closure evidence clear enough to implement without reopening product decisions. Local implementation mechanics may remain with the implementer when they do not change those semantics.
+A handoff names the outcome, authority refs, in-scope surface, principal invariants, non-goals, evidence needed to close the writer phase, publication boundary and any **explicitly triggered conditional safeguard**. It does not restate `AGENTS.md`, coding standards, Matt methodology or entire product histories.
 
-**Product shaping is attended work.** Material product decisions are made in a human-present Cora + human shaping loop before unattended execution. Cora may analyze options, challenge assumptions and prepare explicit questions; OpenCode/agents may gather bounded evidence when asked, but no unattended agent may answer its own material product/architecture questions or convert an unresolved choice into executable authority. If a material ambiguity would require choosing product behavior, architecture, security/privacy posture, data semantics, scope or acceptance meaning, STOP and return the question to Cora + human. The coordinator must not guess. For material human-facing work, `docs/HUMAN_PRODUCT_DESIGN_AUTHORITY_V1.md` runs before technical/spec grilling: task/mental model/interaction hypothesis/default path/representation/friction are human-owned authority, and Matt is the second filter rather than the primary UI designer. The post-spec human-product recheck must close before freeze. For materially expansive shaping, apply `docs/ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md`. For material product/UI decomposition and composition, also apply `docs/PRODUCT_FIDELITY_GATES_V1.md`: internal aggregate/module boundaries do not become user-facing surfaces by default, locally correct slices do not prove the composed product, and technical hardening can perfect the wrong product if surface fidelity is never rechecked.
+Material product choices are attended Cora + human work. If execution exposes an unresolved material product/architecture/scope/privacy/data-semantics/acceptance choice, HUMAN STOP rather than infer an answer.
 
-**Representation narrowing is product-semantic authority, not a local implementation mechanic.** When accepted semantics are translated into UI controls, forms, adapters, schemas, persistence/export shapes or other representations, preserve the distinctions that accepted authority requires. Do not silently collapse precision/granularity, cardinality, valid ranges, states/vocabulary, combinations, ordering, optional/unknown distinctions or temporal precision/timezone semantics. This does not require exposing internal-only richness. If a material narrowing is not explicitly authorized, HUMAN STOP to Cora + human.
+Specialized safeguards remain available but are phase-owned and conditional:
 
-**Functional blast radius is behavioral, not file-based.** When source tracing or implementation reveals that a changed shared helper/generator/mapper/serializer/state authority has additional supported consumers, or that a newly discovered invariant has sibling branches, trace those materially affected paths. A zero-diff consumer is not automatically unaffected, and `NO TOCA` does not mean “its file was not edited”. Do not silently change or leave unqualified a supported surface outside the execution/evidence envelope. If a material downstream consumer or sibling invariant is outside current authority, HUMAN STOP to Cora + human rather than broadening scope; reviewers/correctors must likewise report the new issue instead of absorbing it into an old envelope.
+- material human-facing design → `docs/HUMAN_PRODUCT_DESIGN_AUTHORITY_V1.md` upstream of execution;
+- expansive shaping → `docs/ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md` upstream;
+- product fidelity / representation / shared-seam questions → `docs/PRODUCT_FIDELITY_GATES_V1.md` when explicitly triggered;
+- publication closeout → `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md` at the final candidate boundary.
 
-The same rule applies to corrections. A finding from Matt review or Cora promotion audit must become a finding-scoped correction: name the defect, allowed surface, explicit non-goals and evidence that closes it. Never issue an open-ended instruction such as “fix the PR”, “improve this” or “address anything else you notice”.
+A writer is not a repository-wide auditor. It implements the accepted envelope. If it incidentally discovers a material affected surface or authority conflict outside that envelope, it reports the fact and STOPs; it does not start open-ended sibling tracing or broaden scope.
 
-Coordinator roles are orchestration-only for repository mutation. They must not change product code, tests, docs, config or other repository artifacts directly, including through shell-side backdoors such as `sed -i`, redirection, generated rewrite scripts or Git patch/application commands. Exact human instructions do not waive this boundary: delegate every repository mutation to the bound implementer/corrector/merger role, then verify from the coordinator. Deterministic gates may create ignored/transient build output; if a gate unexpectedly changes tracked state, STOP and delegate/reconcile rather than absorbing the mutation.
+## 7. Lifecycle ownership and bounded correction
 
-Matt lifecycle ownership is single. The selected primary coordinator owns `/implement` or `/implement-spec`, the canonical `/code-review`, review aggregation and correction dispatch. Implementation workers own only the delegated implementation/TDD phase, implementation evidence and candidate commit; they return the fixed candidate to the coordinator and do **not** invoke `/implement`, `/implement-spec`, `/code-review`, Standards/Spec reviewers or correctors themselves. For a given candidate/fixed-point pair, run one canonical two-axis review with the complete Cora-shaped authority envelope. Re-run that review only when the prior review failed technically, was incomplete, or was anchored to the wrong fixed point—not because another role also reached the review stage.
+The selected primary coordinator owns `/implement` or `/implement-spec`, one canonical Standards + Spec review, review aggregation and correction dispatch. Implementation workers own implementation/TDD, focused implementation evidence and the candidate commit only. They do not invoke `/implement`, `/implement-spec`, `/code-review`, reviewers or correctors.
 
-External memory is convenience, never execution authority. Do not turn memory save/reconciliation/judgment into routine train critical-path work. Durable repository authority plus the live OpenCode session are sufficient for normal execution; use external memory only when an explicit cross-session need justifies it, preferably at closeout rather than between implementation/review steps.
+When delegating, coordinators reference the durable handoff rather than copying it into a second giant child prompt. Pass only the work identity/fixed point, the handoff pointer, phase boundary and any small delta needed for that child.
 
-## 7. Bounded correction
+Review start closes the originating implementer's write phase. Every review-driven mutation goes through a fresh bound corrector.
 
-The coordinator starts the canonical Standards + Spec review only after the implementation candidate is fixed. Starting that review closes the originating implementer's write phase for that candidate. Once review has started, the implementer must not mutate tracked repository state in response to review findings, even when the fix is trivial or the bound corrector uses the same underlying model family. Every review-driven mutation goes through a **fresh bound corrector session** dispatched by the coordinator.
-
-Allow at most two fresh, finding-scoped correction attempts before HUMAN STOP:
+Allow at most two fresh finding-scoped correction attempts:
 
 ```text
 IMPLEMENT
 → REVIEW
 → clean → DONE
-→ findings → fresh corrector #1 → focused deterministic evidence
+→ findings → fresh corrector #1 → focused evidence
     → resolved → DONE
-    → same authorized finding(s) remain → fresh corrector #2 → focused deterministic evidence
+    → same findings remain → fresh corrector #2 → focused evidence
         → resolved → DONE
-        → still blocker / new material issue → HUMAN STOP
+        → blocker / new material issue → HUMAN STOP
 ```
 
-The second correction is not a second broad review cycle and does not authorize scope expansion. A new material finding outside the authorized correction envelope is HUMAN STOP unless Cora/human explicitly opens a new bounded unit. No fix/review carousel.
+Correctors close supplied findings; they do not search for new sibling defects by default. If a review finding explicitly requires an adversarial witness or named conditional safeguard, the corrector supplies only that bounded closure.
 
-## 8. Skills and repo setup
+## 8. Herdr and operator-controlled launch
 
-Project-local skills may provide domain, engineering, UI or QA guidance. Keep upstream-owned skill content upstream-owned; update it through its supported mechanism rather than hand-forking it.
+Herdr is the already-running persistent operator surface. Do not launch/restart/replace it per ticket/train.
 
-### Agent skills
+For real work, Cora prepares through `READY_TO_LAUNCH`; the human performs the final visible launch unless that specific launch is explicitly delegated. The preferred first prompt is short:
 
-#### Issue tracker
+`Read @docs/handoffs/TRAIN_X.md and execute it under current repository/Atenea authority.`
 
-Issues/specs are tracked in GitHub. See `docs/agents/issue-tracker.md`.
+Do not use `opencode run` as the normal production surface.
 
-#### Triage labels
+## 9. Repository entry, worktrees and publication
 
-Use the Matt triage vocabulary mapped in `docs/agents/triage-labels.md`.
+Use `docs/REPOSITORY_ENTRY_RECONCILIATION_V1.md` read-only when prior harness/tooling state is ambiguous. Matt owns ephemeral implementer worktrees while its workflow is active; delivery/integration worktrees remain through accepted publication closeout.
 
-#### Domain docs
-
-Matt's domain glossary lives in `GLOSSARY.md` (or `GLOSSARY-MAP.md` for multi-context repos); architectural/current-system context may live separately in `CONTEXT.md`. See `docs/agents/domain.md`.
-
-## 9. Herdr and operator-controlled launch
-
-Herdr is the already-running persistent operator surface for normal unattended work. Do not launch a new Herdr instance per ticket/train. Atenea correctness must not depend on an Atenea-specific Herdr plugin or hidden Herdr state.
-
-For a real ticket/train, Cora owns preparation **through `READY_TO_LAUNCH` only**: reconcile repo/base, prepare the worktree, write the durable handoff, run preflight/checkers, choose cost policy/risk class and return the exact launch packet. The human operator owns the final visible launch.
-
-The launch packet must contain:
-
-1. the exact shell commands to enter the prepared worktree and start `opencode .` in the already-running visible Herdr pane;
-2. any required visible agent selection (`atenea-complex` / `atenea-free` when not already the project default);
-3. the exact first prompt, preferably a short reference to the durable handoff such as `Read @docs/handoffs/TRAIN_X.md and execute it under current repository/Atenea authority.`
-
-Coras/workers do **not** start the real OpenCode session, submit the execution prompt or launch the train independently unless the human explicitly authorizes automated launch for that specific work unit. This preserves operator inspection and visible execution.
-
-## 10. Repository entry and resumption
-
-Use `docs/REPOSITORY_ENTRY_RECONCILIATION_V1.md` when prior harness/tooling state could be confused with current authority. Entry is read-only; finding stale state does not authorize deletion.
-
-## 11. Worktrees and cleanup
-
-Matt owns temporary implementer-worktree choreography while its skills are active. Repository-level cleanup policy lives in `docs/WORKTREE_AND_QUALIFICATION_HYGIENE_V1.md`.
-
-A delivery/integration worktree is not removed merely because a PR exists. Post-merge closeout is the normal cleanup point after the accepted merge is durable, the worktree is clean, no process uses it and no unique local state remains.
-
-## 12. Publication
-
-Before publication, validate the artifact types that actually changed; see `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md`.
-
-Review approval is not push/PR/merge/deploy authority. No automatic merge, force-push or destructive history recovery.
+Before publication, validate the artifact types that actually changed and the composed candidate as required by `docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md`. Review approval is not push/PR/merge/deploy authority. No automatic merge, force-push or destructive history recovery.

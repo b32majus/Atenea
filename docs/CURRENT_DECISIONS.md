@@ -1,10 +1,18 @@
 # Atenea — Current Decisions
 
-Date: 2026-10-05
+Date: 2026-10-06
 
-This file preserves accepted decision provenance. **C-085 is the current execution decision** (`docs/CURRENT_EXECUTION_DECISION_C085.md`). C-085 inherits C-084's native V2 runtime/lifecycle and changes only standard writer routing plus context economy. C-083/C-084 and earlier decisions remain provenance except where C-085 explicitly incorporates them.
+This file preserves accepted decision provenance. **C-086 is the current execution decision** (`docs/CURRENT_EXECUTION_DECISION_C086.md`). C-086 restores the thin C-084 execution architecture while retaining C-085 runtime/writer/context economics. Earlier decisions remain provenance except where current authority explicitly retains them.
 
 Historical `docs/DECISIONS.md`, Stage files, old run recipes and pre-vNext field evidence remain valuable provenance, but they do not define the current execution path.
+
+## C-086 — Thin execution restoration
+
+**Accepted 2026-10-06 from regression audit against known-good `50122a13f1d1e191e659a21ad6445267e4e354e6`.** C-086 preserves the C-084 native OpenCode V2 + Matt lifecycle and C-085 writer/context-economy settings while removing later unconditional policy duplication from the execution hot path. Specialized product/fidelity safeguards remain authoritative but are conditional and phase-owned; coordinators delegate by durable handoff reference; writers use focused evidence; broad/full suites default to justified integration/publication boundaries; correctors close supplied findings rather than searching for new sibling defects.
+
+Field validation is intentionally deferred and limited to one small Standard Volume ticket plus one small Standard Complex ticket at a later clean boundary. Runtime/model/context variables remain fixed through that pair.
+
+Evidence/authority: `docs/CURRENT_EXECUTION_DECISION_C086.md` and `docs/C086_REGRESSION_AUDIT_AND_RESTORATION_20261006.md`.
 
 ## C-085 — Standard writer split and context-economy guard
 

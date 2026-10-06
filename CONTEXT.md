@@ -1,6 +1,6 @@
 # Atenea Context
 
-Status: **CURRENT SYSTEM CONTEXT — C-085**
+Status: **CURRENT SYSTEM CONTEXT — C-086**
 
 ## Purpose
 
@@ -57,6 +57,10 @@ Atenea owns policy, bindings and conformance evidence. Material product shaping 
 Use `complex` for material semantic/acceptance risk such as cross-cutting architecture, difficult state/concurrency/temporal semantics, material auth/privacy/tenancy/clinical trust boundaries, delicate migration/back-compat invariants or repeated semantic failure.
 
 Do not select it from file count, ticket length, ordinary UI work, number of tests or business importance alone.
+
+## Thin execution restoration
+
+C-086 retains the C-085 runtime/model split below but restores C-084-style thin execution: specialized product/fidelity safeguards are conditional and phase-owned, coordinator→writer delegation references durable handoffs instead of duplicating them, writer evidence is focused, and broad/full suites default to integration/publication boundaries. See `docs/CURRENT_EXECUTION_DECISION_C086.md`.
 
 ## Standard writer/context economy
 
