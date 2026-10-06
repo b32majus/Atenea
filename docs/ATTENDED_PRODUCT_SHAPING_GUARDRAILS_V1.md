@@ -1,6 +1,6 @@
 # Atenea — Attended product shaping guardrails v1
 
-Status: **CURRENT C-086 SHAPING BOUNDARY**
+Status: **CURRENT C-087 SHAPING BOUNDARY**
 Date: 2026-10-04
 
 ## Execution consumption

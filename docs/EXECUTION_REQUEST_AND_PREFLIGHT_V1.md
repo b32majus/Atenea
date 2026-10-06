@@ -1,6 +1,6 @@
 # Atenea — Execution request and preflight v1
 
-Status: **CURRENT EXECUTION ENTRY CONTRACT — C-086**
+Status: **CURRENT EXECUTION ENTRY CONTRACT — C-087**
 Date: 2026-10-06
 
 ## Principle
@@ -9,9 +9,10 @@ Prepared work enters at implementation. Atenea establishes only facts that can c
 
 ```text
 accepted bounded work
-→ prepare/reconcile repo + worktree + durable handoff
-→ minimal preflight
-→ select cost_policy + risk_class
+→ reconcile authority + select frontier
+→ Cora pre-execution hardening (`PRE_EXECUTION_HARDENING_V1.md`)
+→ prepare worktree/fixed point + hardened durable handoff
+→ minimal preflight + route confirmation
 → READY_TO_LAUNCH
 → human launches visible OpenCode coordinator
 → focused implementation/TDD
@@ -19,6 +20,10 @@ accepted bounded work
 → finding-scoped correction when needed
 → integration/publication closeout at the appropriate boundary
 ```
+
+## Cora preparation boundary
+
+Before ordinary preflight, Cora applies `docs/PRE_EXECUTION_HARDENING_V1.md`. Preparation ends after delivering Silvia the exact bash/agent/prompt; Cora does not launch OpenCode unless that specific launch is explicitly delegated.
 
 ## Ordinary preflight
 
@@ -64,7 +69,7 @@ Default is `standard + volume`. Risk class changes assurance/model binding; cost
 
 ## Execution handoff
 
-Precision is not verbosity. The coordinator and Matt skills can read accepted repository authority directly. A useful handoff references durable sources and states only the semantic delta:
+Precision is not verbosity. The coordinator and Matt skills can read accepted repository authority directly. A useful hardened handoff references readable durable sources, includes a small seam map/closed decisions when they remove avoidable discovery, and states only the semantic delta:
 
 ```text
 Work: <ticket/work unit + intended outcome>.
@@ -86,7 +91,7 @@ The implementer owns ordinary local mechanics inside the envelope. If execution 
 
 ### Delegation to implementation worker
 
-The coordinator should not rewrite the handoff into another long prompt. The child dispatch should normally contain only:
+The coordinator should not rewrite the handoff into another long prompt. If the durable handoff is repo-local and readable by the child, the dispatch can remain pointer-first. If required authority is external or inaccessible, use the compact capsule in `docs/CHILD_AUTHORITY_CAPSULE_V1.md`. The child must never depend on `/outbox`, `/tmp`, another worktree or another denied external path. A normal repo-local implementation dispatch is:
 
 ```text
 You own implementation/TDD for <work>.
@@ -97,7 +102,7 @@ Do not review or publish.
 Return candidate SHA + the evidence required by the handoff.
 ```
 
-A small task-specific delta is allowed when needed. Duplicating policy prose is not.
+A small task-specific delta is allowed when needed. Duplicating policy prose is not. If required authority is unavailable, the child returns `INCOMPLETE_AUTHORITY` instead of guessing.
 
 ## Evidence layering
 

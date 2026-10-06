@@ -1,6 +1,6 @@
 # Atenea — Execution Efficiency Ledger v1
 
-Status: **CURRENT OBSERVATIONAL EVIDENCE CONTRACT — C-086**
+Status: **CURRENT OBSERVATIONAL EVIDENCE CONTRACT — C-087**
 Date: 2026-10-06
 
 ## Purpose
@@ -164,12 +164,21 @@ writer usage by risk class/model
 
 For the first C-086 field check, use only the two already-authorized small real tickets: one Standard Volume and one Standard Complex. The purpose is regression detection, not benchmark theater.
 
-## Extraction helper
+## Extraction helpers
 
-OpenCode exports can be parsed locally when useful:
+For native OpenCode V2 post-run telemetry, read the local SQLite store directly (read-only; zero LLM calls):
+
+```bash
+node tools/opencode-run-telemetry.mjs <root-session-id>
+node tools/opencode-run-telemetry.mjs <root-session-id> --json
+```
+
+The helper reports role/model usage, turns/tools, session wall time, assistant-message open time when exposed (not active model compute), observable question waits/large message gaps, compaction markers and `input + cache_read` as a labelled **prompt-context proxy**. The proxy is not the OpenCode compaction counter and cache-read is not fresh/billable input.
+
+OpenCode exports can still be parsed when useful:
 
 ```bash
 node tools/extract-execution-usage.mjs opencode <opencode-export.json>
 ```
 
-Legacy Pi/Gentle parser modes in the helper are historical compatibility, not C-084 runtime requirements.
+Legacy Pi/Gentle parser modes are historical compatibility, not current runtime requirements.

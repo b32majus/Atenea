@@ -1,6 +1,6 @@
 # Atenea — Start Here
 
-Status: **CURRENT FRONT DOOR — C-086**
+Status: **CURRENT FRONT DOOR — C-087**
 
 ## Current path
 
@@ -20,18 +20,18 @@ Spec review complex  = openai/gpt-6.1-sol · high
 feature/train audit  = Cora when material
 ```
 
-Bindings live in `.opencode/agents/`; routing is `docs/ATENEA_EXECUTION_ROUTING_V0.md`. C-086 restores the thin execution shape while retaining C-085 runtime/model economics.
+Bindings live in `.opencode/agents/`; routing is `docs/ATENEA_EXECUTION_ROUTING_V0.md`. C-087 retains the C-086 thin execution shape and adds hardened Cora preparation, child-readable authority transport and read-only post-run telemetry.
 
 ## Visible launch
 
-Cora prepares through `READY_TO_LAUNCH`; the human launches in the existing Herdr pane:
+Cora follows `docs/PRE_EXECUTION_HARDENING_V1.md` and prepares through `READY_TO_LAUNCH`; the human launches in the existing Herdr pane unless that specific launch was explicitly delegated:
 
 ```bash
 cd <prepared-project-or-worktree>
 opencode .
 ```
 
-Select `atenea-complex`, `atenea-free` or `atenea-go` only when the accepted route requires it. The preferred first prompt is a durable reference, not a pasted duplicate:
+Select `atenea-complex`, `atenea-free` or `atenea-go` only when the accepted route requires it. The preferred first prompt references a repo-local durable handoff:
 
 `Read @docs/handoffs/TRAIN_X.md and execute it under current repository/Atenea authority.`
 
@@ -102,4 +102,4 @@ Review/audit never grants merge authority. Follow target-repository policy and e
 
 ## Historical authority
 
-C-084 remains the native OpenCode V2 lifecycle baseline. C-085 remains the retained writer/context-economy amendment. C-086 is the current thin-execution restoration. Earlier C-077–C-083 and Gentle/Pi/OpenCode V1 material is provenance.
+C-084 remains the native OpenCode V2 lifecycle baseline; C-085 the writer/context-economy amendment; C-086 the thin-execution restoration; C-087 is current. Earlier C-077–C-083 and Gentle/Pi/OpenCode V1 material is provenance.

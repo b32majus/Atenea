@@ -24,15 +24,18 @@ const forbid = (rel, token, label) => {
 };
 
 // Current authority surfaces must exist. The checker intentionally does not pin
-// full policy prose: C-086 checks machine-decidable structure/coherence and lets
-// specialized documents evolve without forcing duplication into hot-path files.
+// full policy prose: C-087 checks machine-decidable structure/coherence and lets
+// preparation/runtime contracts evolve without forcing duplication into hot-path files.
 const required = [
   'README.md', 'AGENTS.md', 'CODING_STANDARDS.md', 'CONTEXT.md', 'GLOSSARY.md',
   'docs/START_HERE.md', 'docs/CURRENT_DECISIONS.md',
+  'docs/CURRENT_EXECUTION_DECISION_C087.md',
   'docs/CURRENT_EXECUTION_DECISION_C086.md',
   'docs/CURRENT_EXECUTION_DECISION_C085.md',
   'docs/CURRENT_EXECUTION_DECISION_C084.md',
   'docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md',
+  'docs/PRE_EXECUTION_HARDENING_V1.md',
+  'docs/CHILD_AUTHORITY_CAPSULE_V1.md',
   'docs/ATENEA_EXECUTION_ROUTING_V0.md',
   'docs/ATENEA_HARNESS_CONTRACT_V1.md',
   'docs/ATENEA_FREE_PROFILE_V0.md', 'docs/ATENEA_FREE_MODEL_CATALOG_V0.md',
@@ -46,34 +49,43 @@ const required = [
   'docs/QUALIFICATION.md', 'docs/NEWCOMER_QUICKSTART_V1.md',
   'docs/WORK_UNIT_COMPOSITION_POLICY_V1.md', 'docs/EXECUTION_EFFICIENCY_LEDGER_V1.md',
   'docs/vnext/CURRENT_COMPATIBILITY.md',
+  'tools/opencode-run-telemetry.mjs',
   'opencode.json'
 ];
 for (const rel of required) read(rel);
 
 // Current-decision coherence.
-req('README.md', 'C-086', 'README current decision');
-req('AGENTS.md', 'CURRENT AUTHORITY — C-086', 'AGENTS current authority');
-req('docs/START_HERE.md', 'CURRENT FRONT DOOR — C-086', 'front door');
-req('docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md', 'CURRENT EXECUTION ENTRY CONTRACT — C-086', 'preflight current decision');
-req('docs/ATENEA_EXECUTION_ROUTING_V0.md', 'CURRENT C-086 ROUTING AUTHORITY', 'routing current decision');
-req('docs/ATENEA_HARNESS_CONTRACT_V1.md', 'CURRENT NORMATIVE BOUNDARY — C-086', 'harness current decision');
-req('docs/CURRENT_DECISIONS.md', '## C-086 — Thin execution restoration', 'decision ledger');
-req('docs/CURRENT_EXECUTION_DECISION_C086.md', 'Thin execution restoration', 'C-086 decision');
-req('docs/CURRENT_EXECUTION_DECISION_C086.md', '50122a13f1d1e191e659a21ad6445267e4e354e6', 'known-good control identity');
-req('docs/CURRENT_EXECUTION_DECISION_C086.md', '220k', 'retained C-085 context guard');
-req('docs/CURRENT_EXECUTION_DECISION_C085.md', 'CURRENT EXECUTION AUTHORITY IS C-086', 'C-085 supersession marker');
+req('README.md', 'C-087', 'README current decision');
+req('AGENTS.md', 'CURRENT AUTHORITY — C-087', 'AGENTS current authority');
+req('docs/START_HERE.md', 'CURRENT FRONT DOOR — C-087', 'front door');
+req('docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md', 'CURRENT EXECUTION ENTRY CONTRACT — C-087', 'preflight current decision');
+req('docs/PRE_EXECUTION_HARDENING_V1.md', 'CURRENT CORA PREPARATION CONTRACT — C-087', 'Cora hardening current decision');
+req('docs/CHILD_AUTHORITY_CAPSULE_V1.md', 'CURRENT RUNTIME DISPATCH CONTRACT — C-087', 'child authority current decision');
+req('docs/ATENEA_EXECUTION_ROUTING_V0.md', 'CURRENT C-087 ROUTING AUTHORITY', 'routing current decision');
+req('docs/ATENEA_HARNESS_CONTRACT_V1.md', 'CURRENT NORMATIVE BOUNDARY — C-087', 'harness current decision');
+req('docs/CURRENT_DECISIONS.md', '## C-087 — Harden before launch; capsule authority; observe after run', 'decision ledger');
+req('docs/CURRENT_EXECUTION_DECISION_C087.md', 'Harden before launch; capsule authority; observe after run', 'C-087 decision');
+req('docs/CURRENT_EXECUTION_DECISION_C087.md', '220k', 'retained context guard');
+req('docs/CURRENT_EXECUTION_DECISION_C086.md', 'SUPERSEDED AS CURRENT EXECUTION AUTHORITY BY C-087', 'C-086 supersession marker');
 req('docs/CURRENT_EXECUTION_DECISION_C084.md', 'Native OpenCode V2', 'C-084 native-V2 baseline');
-req('docs/NEWCOMER_QUICKSTART_V1.md', 'CURRENT QUICKSTART — C-086', 'newcomer quickstart current decision');
-req('docs/WORK_UNIT_COMPOSITION_POLICY_V1.md', 'CURRENT CONDITIONAL POLICY — C-086', 'work-unit composition current decision');
-req('docs/EXECUTION_EFFICIENCY_LEDGER_V1.md', 'CURRENT OBSERVATIONAL EVIDENCE CONTRACT — C-086', 'efficiency ledger current decision');
-req('docs/QUALIFICATION.md', 'CURRENT C-086 QUALIFICATION', 'qualification current decision');
-req('docs/ATENEA_FREE_PROFILE_V0.md', 'CURRENT COST-POLICY PROFILE — C-086', 'Free profile current decision');
-req('docs/ATENEA_GO_PROFILE_V0.md', 'CURRENT C-086 GO PROFILE', 'Go profile current decision');
+req('docs/NEWCOMER_QUICKSTART_V1.md', 'CURRENT QUICKSTART — C-087', 'newcomer quickstart current decision');
+req('docs/WORK_UNIT_COMPOSITION_POLICY_V1.md', 'CURRENT CONDITIONAL POLICY — C-087', 'work-unit composition current decision');
+req('docs/EXECUTION_EFFICIENCY_LEDGER_V1.md', 'CURRENT OBSERVATIONAL EVIDENCE CONTRACT — C-087', 'efficiency ledger current decision');
+req('docs/QUALIFICATION.md', 'CURRENT C-087 QUALIFICATION', 'qualification current decision');
+req('docs/ATENEA_FREE_PROFILE_V0.md', 'CURRENT COST-POLICY PROFILE — C-087', 'Free profile current decision');
+req('docs/ATENEA_GO_PROFILE_V0.md', 'CURRENT C-087 GO PROFILE', 'Go profile current decision');
 
 // Thin-path structural markers: keep these few and stable; do not checksum prose.
 req('AGENTS.md', 'Do not duplicate Matt', 'upstream method ownership');
 req('docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md', 'Conditional safeguards:', 'conditional safeguard routing field');
-req('docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md', 'Delegation to implementation worker', 'durable-reference delegation contract');
+req('docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md', 'Delegation to implementation worker', 'delegation contract');
+req('docs/PRE_EXECUTION_HARDENING_V1.md', 'deliver Silvia the exact bash + visible agent + prompt', 'human launch boundary');
+req('docs/PRE_EXECUTION_HARDENING_V1.md', 'Is there a question the writer is likely to spend its first ~10 minutes investigating', 'hardening quality question');
+req('docs/CHILD_AUTHORITY_CAPSULE_V1.md', 'INCOMPLETE_AUTHORITY', 'fail-closed child authority');
+req('docs/CHILD_AUTHORITY_CAPSULE_V1.md', '/srv/.../outbox/...', 'external-path prohibition');
+req('tools/opencode-run-telemetry.mjs', 'readOnly: true', 'read-only telemetry DB open');
+req('tools/opencode-run-telemetry.mjs', 'max_prompt_context_proxy', 'context proxy telemetry');
+forbid('AGENTS.md', 'PRE_EXECUTION_HARDENING_V1.md', 'Cora-side hardening leaked into runtime policy');
 req('docs/START_HERE.md', 'Broad/full suites are not a per-slice default', 'evidence phase ownership');
 req('docs/PRODUCT_FIDELITY_GATES_V1.md', 'Invocation and phase ownership', 'conditional fidelity ownership');
 
@@ -130,6 +142,8 @@ for (const [coord, subs] of Object.entries({
   req(`.opencode/agents/${coord}`, 'action: edit', `${coord} edit permission declaration`);
   req(`.opencode/agents/${coord}`, 'resource: "*"\n    effect: deny', `${coord} edit denial`);
   for (const sub of subs) req(`.opencode/agents/${coord}`, `resource: "${sub}"`, `${coord} ${sub} dispatch`);
+  req(`.opencode/agents/${coord}`, 'INCOMPLETE_AUTHORITY', `${coord} fail-closed authority transport`);
+  req(`.opencode/agents/${coord}`, '/outbox', `${coord} external-authority awareness`);
 }
 
 // Implementers cannot own lifecycle/review.
@@ -148,6 +162,7 @@ for (const name of ['atenea-review-standards.md','atenea-review-spec-volume.md',
   req(rel, 'resource: "git diff*"', `${name} diff allowlist`);
   req(rel, 'action: external_directory', `${name} external-directory isolation`);
   req(rel, 'action: subagent', `${name} nested-agent isolation`);
+  req(rel, 'INCOMPLETE_AUTHORITY', `${name} fail-closed missing authority`);
 }
 
 // Free/Go availability contracts remain fail-closed.

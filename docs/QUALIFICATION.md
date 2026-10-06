@@ -1,11 +1,11 @@
 # Atenea Qualification
 
-Status: **CURRENT C-086 QUALIFICATION — THIN EXECUTION RESTORATION; NATIVE V2/FREE FIELD EVIDENCE RETAINED**
+Status: **CURRENT C-087 QUALIFICATION — THIN EXECUTION RESTORATION; NATIVE V2/FREE FIELD EVIDENCE RETAINED**
 Date: 2026-10-06
 
-## Reading this record under C-086
+## Reading this record under C-087
 
-This file preserves the field progression that produced C-084/C-085/C-086. Earlier sections describe the rule placement accepted **at that time**. Where later C-086 changes ownership/placement, `CURRENT_EXECUTION_DECISION_C086.md` is authoritative: the semantic lessons remain, but specialized safeguards are no longer unconditional writer/corrector payload.
+This file preserves the field progression that produced C-084/C-085/C-086/C-087. C-087 keeps the C-086 lifecycle/routing intact and changes only pre-launch hardening, child authority transport and post-run telemetry. Earlier field evidence remains valid provenance; `CURRENT_EXECUTION_DECISION_C087.md` is current.
 
 ## Correction of C-083 evidence
 

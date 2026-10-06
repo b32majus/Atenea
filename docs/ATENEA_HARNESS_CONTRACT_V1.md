@@ -1,6 +1,6 @@
 # Atenea Harness Contract vNext
 
-Status: **CURRENT NORMATIVE BOUNDARY — C-086**
+Status: **CURRENT NORMATIVE BOUNDARY — C-087**
 
 Atenea is not a second engineering framework around OpenCode or Matt.
 
@@ -28,7 +28,7 @@ OpenCode owns agent/subagent execution. Matt skills own TDD, task graph/frontier
 
 ## 4. Model/runtime boundary
 
-Bindings live in `.opencode/agents/` and `docs/ATENEA_EXECUTION_ROUTING_V0.md`. C-086 retains the C-085 writer/context-economy settings over the C-084 native V2 lifecycle. No automatic quota failover/model carousel exists inside a bounded unit.
+Bindings live in `.opencode/agents/` and `docs/ATENEA_EXECUTION_ROUTING_V0.md`. C-087 retains the C-086/C-085 writer/context-economy settings over the C-084 native V2 lifecycle. No automatic quota failover/model carousel exists inside a bounded unit.
 
 Shared `~/.config/opencode/opencode.json` is runtime capability, not per-ticket routing state.
 
@@ -36,7 +36,7 @@ Shared `~/.config/opencode/opencode.json` is runtime capability, not per-ticket 
 
 Normal execution receives only the durable handoff/ticket plus repository authority it actually needs. Specialized product/fidelity policies are referenced when triggered rather than injected universally.
 
-Coordinators delegate by durable handoff reference. Writers implement/TDD the accepted envelope and are not repo-wide auditors. A newly discovered material authority/scope conflict STOPs rather than expanding the unit.
+Coordinators delegate by readable repo-local reference or compact authority capsule. Child verdicts never depend on denied external paths. Writers implement/TDD the accepted envelope and are not repo-wide auditors. A newly discovered material authority/scope conflict STOPs rather than expanding the unit.
 
 ## 6. Evidence ownership
 
@@ -78,4 +78,4 @@ Review/audit evidence never grants merge authority. Publication follows target-r
 
 ## 10. Historical artifacts
 
-Gentle/Pi relay, ASSESS/RDD/4R, reviewer lineages/burn, review hosts and OpenCode V1 transport remain provenance. C-084 is the native-V2 lifecycle baseline; C-085 is the retained writer/context amendment; C-086 is the current thin-execution authority.
+Gentle/Pi relay, ASSESS/RDD/4R, reviewer lineages/burn, review hosts and OpenCode V1 transport remain provenance. C-084 is the native-V2 lifecycle baseline; C-085 is the retained writer/context amendment; C-086 restored thin execution; C-087 is current.

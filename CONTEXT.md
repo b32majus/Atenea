@@ -1,6 +1,6 @@
 # Atenea Context
 
-Status: **CURRENT SYSTEM CONTEXT — C-086**
+Status: **CURRENT SYSTEM CONTEXT — C-087**
 
 ## Purpose
 
@@ -58,9 +58,9 @@ Use `complex` for material semantic/acceptance risk such as cross-cutting archit
 
 Do not select it from file count, ticket length, ordinary UI work, number of tests or business importance alone.
 
-## Thin execution restoration
+## Thin execution + hardened preparation
 
-C-086 retains the C-085 runtime/model split below but restores C-084-style thin execution: specialized product/fidelity safeguards are conditional and phase-owned, coordinator→writer delegation references durable handoffs instead of duplicating them, writer evidence is focused, and broad/full suites default to integration/publication boundaries. See `docs/CURRENT_EXECUTION_DECISION_C086.md`.
+C-087 retains the C-086 thin runtime/model/lifecycle shape. Before launch, Cora hardens the selected work so known seams and closed decisions do not have to be rediscovered by the writer. At runtime, child authority is passed by readable repo-local reference or compact inline capsule rather than inaccessible external paths. Post-run telemetry is observational/read-only. See `docs/CURRENT_EXECUTION_DECISION_C087.md`.
 
 ## Standard writer/context economy
 

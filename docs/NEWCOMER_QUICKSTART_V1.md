@@ -1,6 +1,6 @@
 # Atenea — Newcomer Quickstart v1
 
-Status: **CURRENT QUICKSTART — C-086**
+Status: **CURRENT QUICKSTART — C-087**
 
 Do not infer current execution from historical qualification filenames.
 
@@ -33,4 +33,4 @@ Matt `/to-tickets` is upstream ticketization: use a fresh normal OpenCode sessio
 
 Herdr is the already-running persistent operator/session surface. Launch the visible OpenCode TUI inside the prepared project/worktree; do not launch another Herdr instance. Herdr is not correctness authority.
 
-Pi supervisor, Gentle ASSESS/RDD/4R, lineages, burn and OpenCode V1 transport are historical unless a current C-086 document explicitly says otherwise.
+Pi supervisor, Gentle ASSESS/RDD/4R, lineages, burn and OpenCode V1 transport are historical unless current C-087 authority explicitly says otherwise.

@@ -1,6 +1,6 @@
 # Atenea — Human Product Design Authority v1
 
-Status: **CURRENT C-086 ATTENDED PRODUCT-DESIGN BOUNDARY**
+Status: **CURRENT C-087 ATTENDED PRODUCT-DESIGN BOUNDARY**
 Date: 2026-10-05
 
 ## Execution consumption
