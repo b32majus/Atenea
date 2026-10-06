@@ -1,31 +1,36 @@
 # Atenea — Newcomer Quickstart v1
 
-Status: **CURRENT QUICKSTART — C-084**
+Status: **CURRENT QUICKSTART — C-086**
 
-Do not infer current execution from older qualification filenames.
+Do not infer current execution from historical qualification filenames.
 
-Read only:
+Read only what the work needs:
 
 1. `AGENTS.md`;
 2. `docs/START_HERE.md`;
-3. `CODING_STANDARDS.md`;
-4. `CONTEXT.md`;
-5. `docs/ATENEA_EXECUTION_ROUTING_V0.md` when executing work;
-6. the current ticket/spec/ADR authority.
+3. the accepted ticket/spec or durable execution handoff;
+4. `CODING_STANDARDS.md` and relevant product/domain authority referenced by that work;
+5. `docs/ATENEA_EXECUTION_ROUTING_V0.md` when executing through Atenea.
 
-Current prepared path:
+Current execution path:
 
 ```text
-OpenCode V2 + Matt
-→ V4 normal writer in volume and complex
-→ deterministic evidence
-→ independent Luna Standards review
-→ Luna Spec (volume) / Sol Spec (complex)
-→ V4 correction (volume) / GLM correction (complex), at most once
-→ Cora integrated audit at material feature/train/PR boundary
-→ human merge
+accepted bounded work
+→ OpenCode V2 2.0.22 + upstream Matt
+→ Standard Volume: DeepSeek V4 Flash writer
+   Standard Complex: GLM 5.3 Flash high writer
+→ focused writer TDD/evidence
+→ one coordinator-owned Standards + Spec review
+→ up to two fresh finding-scoped corrections when needed
+→ integration/publication closeout at the appropriate boundary
+→ Cora integrated audit when material
+→ human publication / merge
 ```
 
-Herdr is the already-running persistent operator/session surface for normal unattended work. Launch the visible OpenCode V2 TUI inside the project workspace/pane; do not launch another Herdr instance. Herdr is not correctness authority.
+Specialized Human Product Design / product-fidelity / representation / shared-seam / adversarial-evidence policies are **conditional**. Do not load or replay them for unrelated execution work.
 
-Everything centered on Pi supervisor, Gentle ASSESS/RDD/4R, lineages, burn or OpenCode V1 review transport is historical unless a current C-084 document explicitly says otherwise.
+Matt `/to-tickets` is upstream ticketization: use a fresh normal OpenCode session for it, not an `atenea-*` execution profile. Once tickets are accepted/executable, Atenea owns role/model routing for implementation.
+
+Herdr is the already-running persistent operator/session surface. Launch the visible OpenCode TUI inside the prepared project/worktree; do not launch another Herdr instance. Herdr is not correctness authority.
+
+Pi supervisor, Gentle ASSESS/RDD/4R, lineages, burn and OpenCode V1 transport are historical unless a current C-086 document explicitly says otherwise.

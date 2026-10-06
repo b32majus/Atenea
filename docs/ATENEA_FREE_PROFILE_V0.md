@@ -1,7 +1,7 @@
 # Atenea Free Profile v0
 
-Status: **CURRENT C-084 COST-POLICY EXTENSION**
-Date: 2026-10-03
+Status: **CURRENT COST-POLICY PROFILE — C-086 (introduced under C-084)**
+Date: 2026-10-06
 
 ## Purpose
 

@@ -1,7 +1,11 @@
 # Atenea Qualification
 
-Status: **CURRENT C-084 QUALIFICATION — NATIVE V2 FIELD-VALIDATED; FREE V0 FIELD-VALIDATED FOR VOLUME WORK**
-Date: 2026-10-03
+Status: **CURRENT C-086 QUALIFICATION — THIN EXECUTION RESTORATION; NATIVE V2/FREE FIELD EVIDENCE RETAINED**
+Date: 2026-10-06
+
+## Reading this record under C-086
+
+This file preserves the field progression that produced C-084/C-085/C-086. Earlier sections describe the rule placement accepted **at that time**. Where later C-086 changes ownership/placement, `CURRENT_EXECUTION_DECISION_C086.md` is authoritative: the semantic lessons remain, but specialized safeguards are no longer unconditional writer/corrector payload.
 
 ## Correction of C-083 evidence
 
@@ -12,14 +16,13 @@ C-084 records the correction instead of silently relabelling that evidence.
 ## Current architecture under qualification
 
 ```text
-Atenea policy + project-local native V2 role/model bindings
-→ OpenCode V2 2.0.x
-→ upstream Matt engineering skills
-→ fresh role-bound subagents/worktrees
-→ deterministic evidence
-→ independent Standards + Spec review
+accepted bounded work
+→ native OpenCode V2 2.0.22 + upstream Matt
+→ Standard Volume: V4 writer / Standard Complex: GLM 5.3 Flash high writer
+→ focused implementation/TDD evidence
+→ one coordinator-owned Standards + Spec review
 → up to two fresh finding-scoped corrections
-→ material feature/train closeout + Cora audit
+→ justified integration/publication closeout + Cora audit when material
 → human publication / merge
 ```
 
@@ -138,6 +141,8 @@ This layer is conditional. Backend-only work, invisible refactors and bounded re
 
 ## Subsequent field learning — representation narrowing is semantic authority
 
+> **C-086 placement:** the semantic invariant is retained; the check is conditional and normally owned by shaping/preflight plus Spec review/Cora, not an always-on writer audit.
+
 A Symphonia Atenea Go `complex` field ticket exposed a narrower semantic-authority failure than the earlier composed-product drift cases. The accepted domain retained an exact `effectiveFrom` instant, while implementation translated that value into a date-only control and reconstructed it as Hospital-local `00:00`. That reduced temporal precision without explicit product authority. The implementer made the choice, the coordinator did not stop it, and the canonical Spec review did not identify the material loss of expressivity; the later integrated Cora audit did, before publication.
 
 The resulting guardrail is general rather than Symphonia-specific: **representation translation must not silently narrow accepted semantics**. When accepted meaning is mapped into UI/input controls, adapters, schemas, persistence/export forms or other representations, compare what can be represented before and after. Unauthorized loss of precision/granularity, cardinality, ranges, states/vocabulary, combinations, ordering or optional/unknown distinctions is a material product/data-semantics decision and therefore HUMAN STOP. This check does not require exposing internal-only richness that accepted product/domain authority never required users or downstream behavior to express.
@@ -146,15 +151,19 @@ The field result also confirms why complex integrated audit remains valuable dur
 
 ## Subsequent field learning — affected surfaces and sibling invariants are behavioral
 
+> **C-086 placement:** the invariant is retained, but open-ended sibling/consumer tracing is removed from default writer/corrector work. Known material impact is shaped before execution; review/Cora challenges concrete shared-seam risk.
+
 Two later Atenea Go `complex` audits exposed the same failure family across different products. In Laboratorio de Privacidad REC-04, canonical review correctly found a stale-state/TOCTOU gap in Confidential XLSX and correction added the post-`await` current-authority guard, but the sibling Safe XLSX path retained the same stale-download class; Cora falsified it independently before publication. In PROMueve Nexus #528, source tracing discovered that a shared prebiologic request generator also served the supported Dashboard → Solicitud FH journey, but that zero-diff consumer was recorded as unchanged/untested because it lay outside the ticket's explicit browser QA surfaces. Cora held publication because changing the shared generator changed the functional blast radius even though the dashboard files were untouched.
 
-The resulting guardrail is **affected-surface / invariant propagation**: shared-seam impact is traced through supported consumers, and an invariant/defect discovered in one branch is checked across material sibling branches before closure. `NO TOCA` is a behavioral promise, not a filename rule. This does not authorize opportunistic widening: a materially affected supported consumer or sibling defect outside the current authority/evidence envelope produces HUMAN STOP/new bounded work. These field cases reinforce that integrated audit remains mandatory for material Complex qualification while this cross-surface weakness is being observed.
+The field lesson is that shared-seam impact is behavioral rather than file-based and `NO TOCA` is not proven merely by leaving a consumer file untouched. Under C-086, known material consumers are shaped into the envelope when needed and review/Cora may challenge a concrete shared-seam gap; writers/correctors do not perform open-ended sibling propagation by default. A materially affected supported consumer outside current authority remains HUMAN STOP/new bounded work.
 
 ## Subsequent field learning — universal claims need adversarial witnesses
 
+> **C-086 placement:** this field lesson is retained as finding-specific evidence discipline. Review asks for a witness only when a concrete material claim is not falsifiable by existing evidence; correctors do not generate preventive fixtures by keyword.
+
 A later Symphonia Go `complex` qualification exposed a different evidence weakness. A requirement that multiple aggregates must remain **distinguishable** was exercised with multiple examples whose obvious human summaries were already different, so the fixture could pass without proving the collision case that made distinguishability difficult. A subsequent finding-scoped correction repeated the same shape: the closure language required **all available human semantics**, while the focused test demonstrated only a comfortable subset of operational semantics. The implementation/correction could therefore be locally reasonable while the evidence was too weak for the universal claim being made.
 
-This is treated as a lightweight cross-profile evidence lens rather than a new lifecycle gate. For Standard, Free and Go Spec review/correction, material universal, negative, preservation or boundary claims (`all`, `every`, `never`, `preserve`, `lossless`, `distinguishable`, `only after`, `irreducible`, etc.) require at least one adversarial/boundary/collision fixture capable of falsifying the exact property. Nominal positive examples still count as useful coverage, but they do not prove a universal property. Evidence claims are calibrated to that falsification power; `all A1..An verified` is not justified by fixtures that cannot fail on the property being claimed. This rule does not authorize wider product semantics or opportunistic edge-case work outside the accepted envelope.
+The field lesson remains valid: evidence claims must not exceed their falsification power. The original hardening promoted this as a cross-profile reviewer/corrector requirement for universal/negative/preservation/boundary claims. **C-086 supersedes that blanket placement**: a reviewer requests an adversarial/boundary/collision witness only when a concrete material claim is not actually falsifiable by the evidence already present, and the corrector then closes that finding. Nominal positive examples remain useful coverage but are not mislabeled as stronger proof than they provide.
 
 The same calibration applies to suite-level baseline reporting: record the actual failing test identities observed in the run. If baseline reds vary between runs, report unstable baseline debt rather than one deterministic failure.
 
@@ -164,11 +173,11 @@ PROMueve Nexus #537 supplied a stronger positive field signal for the same Go ro
 
 The evidence materially exercised the new falsification rules rather than merely citing them: a `total > filtered` fixture compared patient identities, an equal-cardinality/different-identity control could detect set substitution, an empty formal cohort could detect fallback to the total cohort, and a local-search adversarial case left one visible row while the formal cohort remained six. The canonical Luna review also found a real evidence-claim defect: the first browser checker reset part of accumulated errors while claiming zero errors across the full journey. Fresh correction #1 removed that reset and the URL restriction; no correction #2 was required. Deterministic oracle `8/8`, browser QA `6/6`, `verify:nexus` and `git diff --check` were green on the audited candidate.
 
-This is **qualification evidence, not a new lifecycle rule**. It supports the current affected-surface and adversarial-property-witness hardenings and is a better Go field signal than Nexus #528, while Cora integrated audit remains the material Complex publication boundary.
+This is **qualification evidence, not a new lifecycle rule**. It supports the semantic lessons behind affected-surface reasoning and falsifiable evidence, while C-086 supersedes their former always-on placement. It remains a stronger Go field signal than Nexus #528; Cora integrated audit remains available at a material composed publication boundary.
 
 ## What is not yet claimed
 
-Repeated standard and Free `volume` field runs now support the C-084 direction, but they do not permanently prove every routing/model choice, `complex` behavior or future Free catalog. The new single-review permission hardening should be observed in subsequent real tickets rather than through another synthetic qualification campaign. Continue collecting field evidence through `EXECUTION_EFFICIENCY_LEDGER_V1.md`; change policy only at a clean future work boundary if repeated evidence warrants it.
+Historical Standard/Free field runs support the retained native-V2 lifecycle, but they do not prove the restored C-086 efficiency characteristics or permanently settle every model choice. C-086 therefore defers field validation to exactly two small real Standard tickets (one Volume, one Complex) with runtime/model/context settings held fixed. Continue collecting evidence through `EXECUTION_EFFICIENCY_LEDGER_V1.md`; change policy only at a clean future boundary if repeated evidence warrants it.
 
 ## Current deterministic checks
 
@@ -187,7 +196,7 @@ Do not make repeated model-call canaries a ritual.
 
 ## Historical qualification
 
-Pi/Gentle/OpenCode V1 qualification and C-083's mistaken V1-as-V2 runtime evidence remain provenance. They do not define the C-084 execution path.
+Pi/Gentle/OpenCode V1 qualification and C-083's mistaken V1-as-V2 runtime evidence remain provenance. They do not define the current C-086 execution path.
 
 ## C-086 regression audit — thin execution restoration
 

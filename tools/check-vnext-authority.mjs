@@ -43,7 +43,9 @@ const required = [
   'docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md',
   'docs/PROMOTION_REVIEW_V1.md',
   'docs/C086_REGRESSION_AUDIT_AND_RESTORATION_20261006.md',
-  'docs/QUALIFICATION.md', 'docs/vnext/CURRENT_COMPATIBILITY.md',
+  'docs/QUALIFICATION.md', 'docs/NEWCOMER_QUICKSTART_V1.md',
+  'docs/WORK_UNIT_COMPOSITION_POLICY_V1.md', 'docs/EXECUTION_EFFICIENCY_LEDGER_V1.md',
+  'docs/vnext/CURRENT_COMPATIBILITY.md',
   'opencode.json'
 ];
 for (const rel of required) read(rel);
@@ -61,6 +63,12 @@ req('docs/CURRENT_EXECUTION_DECISION_C086.md', '50122a13f1d1e191e659a21ad6445267
 req('docs/CURRENT_EXECUTION_DECISION_C086.md', '220k', 'retained C-085 context guard');
 req('docs/CURRENT_EXECUTION_DECISION_C085.md', 'CURRENT EXECUTION AUTHORITY IS C-086', 'C-085 supersession marker');
 req('docs/CURRENT_EXECUTION_DECISION_C084.md', 'Native OpenCode V2', 'C-084 native-V2 baseline');
+req('docs/NEWCOMER_QUICKSTART_V1.md', 'CURRENT QUICKSTART — C-086', 'newcomer quickstart current decision');
+req('docs/WORK_UNIT_COMPOSITION_POLICY_V1.md', 'CURRENT CONDITIONAL POLICY — C-086', 'work-unit composition current decision');
+req('docs/EXECUTION_EFFICIENCY_LEDGER_V1.md', 'CURRENT OBSERVATIONAL EVIDENCE CONTRACT — C-086', 'efficiency ledger current decision');
+req('docs/QUALIFICATION.md', 'CURRENT C-086 QUALIFICATION', 'qualification current decision');
+req('docs/ATENEA_FREE_PROFILE_V0.md', 'CURRENT COST-POLICY PROFILE — C-086', 'Free profile current decision');
+req('docs/ATENEA_GO_PROFILE_V0.md', 'CURRENT C-086 GO PROFILE', 'Go profile current decision');
 
 // Thin-path structural markers: keep these few and stable; do not checksum prose.
 req('AGENTS.md', 'Do not duplicate Matt', 'upstream method ownership');

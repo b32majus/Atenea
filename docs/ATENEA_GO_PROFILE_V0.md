@@ -1,7 +1,7 @@
 # Atenea Go Profile v0
 
-Status: **QUALIFICATION CANDIDATE — C-084 GO COST-POLICY EXTENSION**
-Date: 2026-10-04
+Status: **QUALIFICATION CANDIDATE — CURRENT C-086 GO PROFILE (introduced under C-084)**
+Date: 2026-10-06
 
 ## Purpose
 

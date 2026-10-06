@@ -1,11 +1,11 @@
 # Atenea — Execution Efficiency Ledger v1
 
-Status: **CURRENT OBSERVATIONAL EVIDENCE CONTRACT — C-084**
-Date: 2026-10-03
+Status: **CURRENT OBSERVATIONAL EVIDENCE CONTRACT — C-086**
+Date: 2026-10-06
 
 ## Purpose
 
-Measure whether the C-084 model split gives enough quality while letting DeepSeek V4 absorb most writing volume. Collection must add **zero LLM calls** and must never become a pre-writer gate.
+Measure whether C-086 restores a thin, efficient execution path while retaining C-085 routing quality. Collection must add **zero LLM calls** and must never become a pre-writer gate.
 
 Telemetry is observational, not product/review/publication authority. Missing telemetry does not invalidate otherwise valid engineering evidence.
 
@@ -14,7 +14,9 @@ Telemetry is observational, not product/review/publication authority. Missing te
 Capture when the runtime exposes it:
 
 ```text
-ticket / base / candidate HEAD / profile = volume | complex
+ticket / base / candidate HEAD
+cost_policy = standard | free_only | go
+risk_class = volume | complex
 runtime versions
 
 COORDINATOR
@@ -56,7 +58,8 @@ Treat these as routing/process-boundary defects, not optimization opportunities:
 - an expansive shaping chain turns exploratory/grill answers into spec/ticket scope without reconciling them against predeclared product non-negotiables and composed-product fidelity;
 - material UI/product decomposition maps internal aggregate/domain structure into visible screens/forms/browser slices without explicit product authority, or cumulative locally-green slices fail the required composed-product fidelity checkpoint;
 - coordinator mutates repository artifacts (product code, tests, docs or config) by any mechanism instead of delegating to the bound worker;
-- normal `complex` implementation silently switches from V4 to GLM without explicit first-writer escalation;
+- Standard `volume` implementation does not use the current V4 binding without an explicit clean-boundary routing decision;
+- Standard `complex` implementation does not use the current GLM 5.3 Flash high binding without an explicit clean-boundary routing decision;
 - volume correction uses a different model from V4 without a new boundary decision;
 - complex correction does not use GLM high;
 - Standards/Spec review is performed by the writer instead of the independent bound reviewer;
@@ -65,6 +68,8 @@ Treat these as routing/process-boundary defects, not optimization opportunities:
 - a third autonomous correction or a new broad review/fix cycle starts after the two-attempt correction budget;
 - per-ticket routing rewrites shared global OpenCode config;
 - quota pressure silently changes an active unit's model route.
+- coordinator→worker delegation re-expands the full durable handoff/policy corpus instead of referencing it;
+- broad/full suites are repeated per writer slice without repository/ticket authority requiring that early boundary.
 
 ## Field record — Laboratorio de Privacidad #52 (UX-PILOT-01)
 
@@ -141,19 +146,23 @@ The Free route remains slower and uses provider-reported token fields differentl
 
 ## Useful field metrics
 
-After enough real tickets exist, compare by profile and work class:
+After enough real tickets exist, compare by route/work class without manufacturing normalized provider cost:
 
 ```text
-v4_writer_share        = V4 writer usage / all writer usage
-correction_rate        = tickets needing correction / tickets completed
-complex_correction_rate
-findings_per_ticket by review axis
+wall_time
+child_dispatch_chars
+model_turns by role
+tool_calls by role
+max_prompt_context
+compactions
+broad_suite_runs
+review_findings by axis
+correction_count
 human_stop_rate
-wall_time by profile
-specialist_glm_share   = GLM correction + OCR usage / all model usage
+writer usage by risk class/model
 ```
 
-The goal is not equal provider consumption. The goal is to avoid spending scarce specialist capacity where a cheaper writer plus independent assurance performs well.
+For the first C-086 field check, use only the two already-authorized small real tickets: one Standard Volume and one Standard Complex. The purpose is regression detection, not benchmark theater.
 
 ## Extraction helper
 

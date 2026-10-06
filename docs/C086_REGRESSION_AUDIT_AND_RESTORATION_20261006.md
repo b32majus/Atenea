@@ -202,3 +202,23 @@ The goal is not smallest-file golf. These reductions are evidence that duplicate
 ### Field validation intentionally NOT RUN
 
 Per human decision, C-086 field behavior will be evaluated later with only two small real tickets: one Standard Volume and one Standard Complex. This restoration does not claim latency/token recovery from documentation checks alone.
+
+## PR #134 audit correction
+
+The first audit of the published PR found six current-facing documents that had not been reconciled in the initial restoration commit. This was a real documentation defect, not a runtime failure:
+
+- `NEWCOMER_QUICKSTART_V1.md` still described V4 as the normal writer for both Standard Volume and Complex and still said correction was "at most once";
+- `EXECUTION_EFFICIENCY_LEDGER_V1.md` still treated GLM first-writing in Standard Complex as a routing deviation and optimized around V4 absorbing most writing;
+- `QUALIFICATION.md` still declared itself CURRENT C-084 and its current architecture block did not express C-086/C-085 routing/evidence layering;
+- `WORK_UNIT_COMPOSITION_POLICY_V1.md`, Free profile and Go profile still carried old current-status labels.
+
+PR audit correction therefore:
+
+1. currentized those authority surfaces to C-086;
+2. reconciled the quickstart with Volume→V4 / Complex→GLM, two fresh corrections and phase-scoped evidence;
+3. updated the efficiency ledger to observe C-086 (including child-dispatch size, context/turn/tool churn and repeated broad-suite runs) without adding LLM calls;
+4. clarified that material post-reshaping decomposition uses normal upstream Matt `/to-tickets`, not an `atenea-*` execution profile, with no hard token-size ceremony;
+5. annotated historical qualification findings so their semantic lessons remain provenance while C-086 owns current role placement;
+6. extended the structural authority checker so these current-facing surfaces cannot silently remain on an older current-decision marker again.
+
+This correction is intentionally separate from the original restoration commit so the PR history records what the PR audit actually found and closed.
