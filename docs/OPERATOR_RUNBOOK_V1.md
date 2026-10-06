@@ -1,6 +1,6 @@
 # Atenea — Operator Runbook v1
 
-Status: **POINTER TO CURRENT OPERATION — C-085**
+Status: **POINTER TO CURRENT OPERATION — C-086**
 
 Read:
 

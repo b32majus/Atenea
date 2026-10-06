@@ -1,7 +1,11 @@
 # Atenea — Human Product Design Authority v1
 
-Status: **CURRENT C-084 ATTENDED PRODUCT-DESIGN BOUNDARY**
+Status: **CURRENT C-086 ATTENDED PRODUCT-DESIGN BOUNDARY**
 Date: 2026-10-05
+
+## Execution consumption
+
+This document governs attended human-product design upstream of execution. Its output is durable interaction/product authority. Normal implementation workers consume that accepted output by reference; they do **not** load this design method as routine execution context.
 
 ## Purpose
 

@@ -2,7 +2,7 @@
 
 Atenea is a thin upstream-first policy, routing and conformance layer for autonomous engineering work.
 
-Current execution authority: **C-085 — C-084 native OpenCode V2 + Matt, with standard writer split and context-economy guard**.
+Current execution authority: **C-086 — thin execution restoration over C-084 native OpenCode V2 + Matt, retaining C-085 writer/context economy**.
 
 ```text
 accepted issue/spec

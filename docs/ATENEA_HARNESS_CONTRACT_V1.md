@@ -1,12 +1,12 @@
 # Atenea Harness Contract vNext
 
-Status: **CURRENT NORMATIVE BOUNDARY — C-085**
+Status: **CURRENT NORMATIVE BOUNDARY — C-086**
 
 Atenea is not a second engineering framework around OpenCode or Matt.
 
 ## 1. Product authority
 
-Humans and durable repository artifacts own WHAT/WHY, acceptance, domain/safety constraints, non-goals and publication/merge authorization. Material product shaping is an **attended Cora + human activity**: OpenCode may support it with bounded research, but an unattended runtime may not make, infer or self-answer unresolved product decisions. A runtime may decompose accepted work; it may not expand product authority.
+Humans and durable repository artifacts own WHAT/WHY, acceptance, domain/safety constraints, non-goals and publication/merge authorization. Material product shaping is attended Cora + human work. Execution consumes accepted authority; it does not recreate the shaping method.
 
 ## 2. Atenea-owned value
 
@@ -24,23 +24,31 @@ Target Atenea-owned routing engines: **0**.
 
 ## 3. Upstream method ownership
 
-OpenCode owns agent/subagent execution. Adopted Matt skills own their TDD, task-graph/frontier, worktree choreography and two-axis code-review methodology.
+OpenCode owns agent/subagent execution. Matt skills own TDD, task graph/frontier, worktree choreography and two-axis review. Atenea does not copy those procedures into policy, handoffs or child prompts.
 
-Atenea does not copy those procedures into prompts/policy. It binds Matt roles to named project-local OpenCode agents and supplies repository constraints.
+## 4. Model/runtime boundary
 
-## 4. Model-binding boundary
+Bindings live in `.opencode/agents/` and `docs/ATENEA_EXECUTION_ROUTING_V0.md`. C-086 retains the C-085 writer/context-economy settings over the C-084 native V2 lifecycle. No automatic quota failover/model carousel exists inside a bounded unit.
 
-Current role bindings live in `.opencode/agents/` and `docs/ATENEA_EXECUTION_ROUTING_V0.md`. Project-local desired state must be inspectable from Git.
+Shared `~/.config/opencode/opencode.json` is runtime capability, not per-ticket routing state.
 
-Do not mutate shared `~/.config/opencode/opencode.json` as per-ticket/train routing state. C-085 inherits C-084's clean native V2 global capability config and project-local role bindings; `subagent` permissions allow only named Atenea subagents. No automatic quota failover/model carousel inside an active bounded unit.
+## 5. Thin execution boundary
 
-## 5. Herdr
+Normal execution receives only the durable handoff/ticket plus repository authority it actually needs. Specialized product/fidelity policies are referenced when triggered rather than injected universally.
 
-Herdr may own persistent process/session surfaces, observation and operator convenience. It may not own product meaning, correctness, model-selection policy, review verdicts or publication authority.
+Coordinators delegate by durable handoff reference. Writers implement/TDD the accepted envelope and are not repo-wide auditors. A newly discovered material authority/scope conflict STOPs rather than expanding the unit.
 
-## 6. Deterministic evidence
+## 6. Evidence ownership
 
-Machine-decidable facts should be proven mechanically. Product repositories use their own relevant tests, typechecks, builds, schema/parsing validators, linters, security/static checks and CI.
+Machine-decidable facts should be proven mechanically, but evidence is phase-scoped:
+
+- writer → focused checks;
+- integration → merge-sensitive/cross-slice checks when justified;
+- review → semantic inspection and concrete evidence findings;
+- corrector → finding-scoped focused evidence;
+- publication → changed-artifact/composed final closeout.
+
+Broad/full suites are not a per-writer default.
 
 For Atenea authority/config conformance:
 
@@ -48,28 +56,26 @@ For Atenea authority/config conformance:
 node tools/check-vnext-authority.mjs
 ```
 
-Oracles produce evidence; they do not grant publication authority.
+That checker validates structural/current-decision/binding facts; it must not force prose duplication across policy surfaces.
 
 ## 7. Review and correction
 
-Matt's independent Standards and Spec axes are the normal semantic review surface. Conditional static/security/deep OCR assurance is risk-proportional. The selected primary coordinator owns one canonical Matt review per candidate/fixed-point pair; implementation workers return the fixed candidate before review and cannot launch review/correction roles. Duplicate review is allowed only to recover from a technically failed, incomplete or incorrectly anchored review.
+The selected primary coordinator owns one canonical Matt review per candidate/fixed-point pair. Implementation workers cannot launch review/correction roles. Review start closes the writer.
 
-Review start closes the originating implementer's write phase. Actionable review findings are handled by fresh bound correctors, never by the original implementer. At most two finding-scoped correction attempts are allowed: a second fresh corrector may run only when focused evidence shows the same authorized finding(s) remain after the first. A blocker after attempt #2, a new material issue or scope expansion becomes HUMAN STOP rather than a fix/review carousel.
+Actionable findings go to fresh bound correctors. At most two finding-scoped correction attempts are allowed for the same envelope. Correctors close supplied findings; they do not search sibling branches for new defects by default.
 
-## 8. Shaping and entry
+## 8. Shaping and specialized safeguards
 
-Shaping is phase-scoped and human-attended when material product choices remain. Accepted executable authority is not reshaped by ritual. For material human-facing work, `HUMAN_PRODUCT_DESIGN_AUTHORITY_V1.md` establishes task-first human interaction authority before Matt/spec grilling and requires an attended human-product recheck before freeze; upstream technical rigor does not own navigation, representation or interaction hierarchy. Expansive shaping is constrained by predeclared product non-negotiables and conditional fidelity audits defined in `ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md`; exhaustive questioning does not itself authorize product expansion. `EXECUTION_READY`/`READY_TO_LAUNCH` requires no unresolved material product question and a composed ticket set faithful to accepted product authority. For material product/UI decomposition and accumulation, `PRODUCT_FIDELITY_GATES_V1.md` also applies: domain/aggregate completeness does not imply visible surface, locally correct slices do not prove the composed product, and translations into UI/input/adapter/schema/export representations may not silently narrow accepted semantics. If accepted precision, cardinality, range, states, combinations or another meaningful distinction would be collapsed without explicit authority, execution STOPs back to Cora + human instead of letting the agent choose. The richer internal model alone does not trigger this rule; accepted product/domain semantics do. Shared-seam changes also use the affected-surface/invariant-propagation check in `PRODUCT_FIDELITY_GATES_V1.md`: supported consumers can be behaviorally affected with zero file diff, and `NO TOCA` is not satisfied by leaving a consumer file untouched. A newly discovered material consumer/sibling path outside the authorized evidence envelope returns to Cora + human instead of being silently ignored or broadened.
+`HUMAN_PRODUCT_DESIGN_AUTHORITY_V1.md`, `ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md` and `PRODUCT_FIDELITY_GATES_V1.md` remain current specialized authority. Their methods run only at the phase/condition they own.
 
-When entering a brownfield repository, find current authority first, inspect prior harness/tooling read-only and reconcile genuine contradictions before mutation.
+An execution handoff may name a triggered safeguard. The safeguard then applies to the bounded issue/review question, not to every repository surface.
 
-## 9. Worktrees
+## 9. Herdr, worktrees and publication
 
-Matt owns ephemeral implementer worktrees while its workflow is active. Delivery/integration worktrees remain through PR review and accepted merge. Post-merge cleanup occurs only after durable reconciliation, clean state, no active process and no unique local work.
+Herdr is operator/session infrastructure, not correctness authority. Matt owns ephemeral implementer worktrees while active. Delivery/integration worktrees remain through accepted closeout.
 
-## 10. Publication
+Review/audit evidence never grants merge authority. Publication follows target-repository policy, final changed-artifact validation and explicit human authority. No automatic merge, force-push or destructive history repair.
 
-Review/audit evidence is not merge authority. Publication follows target-repository policy, changed-artifact validation and explicit human authority. No automatic merge, force-push or destructive history repair.
+## 10. Historical artifacts
 
-## 11. Historical artifacts
-
-Gentle/Pi relay, ASSESS/RDD/4R, reviewer lineages/burn, review hosts and OpenCode V1 transport are historical provenance. They may remain in Git without remaining active runtime.
+Gentle/Pi relay, ASSESS/RDD/4R, reviewer lineages/burn, review hosts and OpenCode V1 transport remain provenance. C-084 is the native-V2 lifecycle baseline; C-085 is the retained writer/context amendment; C-086 is the current thin-execution authority.

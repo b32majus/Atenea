@@ -1,6 +1,6 @@
 # C-085 — Standard writer split and context-economy guard
 
-Status: **CURRENT EXECUTION DECISION**
+Status: **RETAINED RUNTIME/ROUTING AMENDMENT — CURRENT EXECUTION AUTHORITY IS C-086**
 Date: 2026-10-05
 
 ## Scope

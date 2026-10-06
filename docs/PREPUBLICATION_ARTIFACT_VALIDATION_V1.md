@@ -16,6 +16,10 @@ Atenea remains upstream-first. It does not implement a universal parser/build sy
 
 Missing required validation is explicit evidence and may be a STOP condition. It is never silently converted into PASS.
 
+## Phase ownership
+
+This is a **final candidate/publication boundary**, not a checklist to copy into every writer work unit. Writers run focused evidence for their slice. Run these changed-artifact/composed checks once on the candidate that is actually being considered for publication, except where repository authority explicitly requires an earlier validator.
+
 ## 2. Required pre-publication sequence
 
 Immediately before ordinary non-force publication:

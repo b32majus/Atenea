@@ -1,6 +1,6 @@
 # Atenea — Integrated promotion audit v1
 
-Status: **CURRENT / CONDITIONAL WHEN INVOKED — C-084**
+Status: **CURRENT / CONDITIONAL WHEN INVOKED — C-086**
 
 ## Purpose
 
@@ -30,7 +30,7 @@ Check proportionately:
 6. representation narrowing when accepted semantics are translated — compare representable meaning before/after and flag unauthorized loss of precision/granularity (including temporal precision/timezone), cardinality, range, states/vocabulary, combinations, ordering or optional/unknown distinctions. Internal-only richness is not itself a requirement;
 7. affected-surface / invariant propagation — trace material supported consumers of changed shared seams and sibling branches of newly discovered invariants. Zero file diff does not prove no behavior change; verify that `NO TOCA` surfaces are behaviorally preserved or explicitly authorized/evidenced, and look for sister-path variants of material findings before recommending publication.
 
-Apply the **adversarial property witness** lens when a material acceptance/closeout claim is universal, negative, preservation-based or boundary-based (`all`, `never`, `preserve`, `lossless`, `distinguishable`, `only after`, etc.): require evidence capable of falsifying that exact property, not merely a comfortable positive example. **Evidence claims must not exceed falsification power.** If a full-suite run is used to attribute baseline debt, report the actual failing test identities observed in that run; varying baseline failures are unstable baseline debt, not one deterministic red.
+When a concrete material acceptance/closeout claim is not falsifiable by the supplied evidence, report that exact evidence gap. Do not demand new adversarial fixtures merely because universal/preservation language appears if existing evidence already proves the property. Evidence claims must not exceed their actual falsification power. If a full-suite run is used to attribute baseline debt, report the actual failing identities observed; varying reds are unstable baseline debt.
 
 Report blocking findings first, then material nonblocking findings. Candidate mutation invalidates an audit bound to the old HEAD when the audit is still required.
 

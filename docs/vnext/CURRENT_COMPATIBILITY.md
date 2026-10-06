@@ -1,6 +1,6 @@
 # Atenea vNext — Current Compatibility Notes
 
-Status: **CURRENT C-085 RUNTIME / PROVIDER NOTES — C-084 NATIVE V2 BASELINE RETAINED**
+Status: **CURRENT C-086 RUNTIME / PROVIDER NOTES — C-085 ECONOMY + C-084 NATIVE V2 BASELINE RETAINED**
 Date: 2026-10-03
 
 ## Current baseline
@@ -10,7 +10,7 @@ OpenCode package    @opencode/cli 2.0.22
 canonical command   opencode
 runtime             native OpenCode V2
 operator surface    existing persistent Herdr workspace/pane
-current decision    C-085
+current decision    C-086
 project config      opencode.json + .opencode/agents/
 Matt skills         project-local, upstream-managed
 ```
@@ -27,7 +27,7 @@ The former global Gentle/OpenCode V1 configuration was preserved in a private lo
 
 The active global V2 config contains provider/MCP capability plus the Herdr v13 observability/session integration. It has no Gentle orchestrator/reviewer agents, no Gentle review transport, no SDD/Gentle execution plugins, and no global default model/agent. Herdr integration is not Atenea routing or correctness authority.
 
-## Provider/model IDs used by the C-085/C-084 native V2 path
+## Provider/model IDs used by the C-086/C-085/C-084 native V2 path
 
 ```text
 nan/deepseek-v4-flash
@@ -44,7 +44,7 @@ The NaN `deepseek-v4-flash` provider ID is intentionally retained even when the 
 
 ## Configuration boundary
 
-C-085 routing is project-local and versioned. Do not rewrite shared global config as per-ticket/train routing state.
+C-086 retains C-085 routing; routing is project-local and versioned. Do not rewrite shared global config as per-ticket/train routing state.
 
 Native V2 agents use `permissions` with `shell`, `subagent` and `edit`, and model variants use `provider/model#variant`.
 
