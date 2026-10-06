@@ -2,9 +2,15 @@
 
 Date: 2026-10-06
 
-This file preserves accepted decision provenance. **C-086 is the current execution decision** (`docs/CURRENT_EXECUTION_DECISION_C086.md`). C-086 restores the thin C-084 execution architecture while retaining C-085 runtime/writer/context economics. Earlier decisions remain provenance except where current authority explicitly retains them.
+This file preserves accepted decision provenance. **C-087 is the current execution decision** (`docs/CURRENT_EXECUTION_DECISION_C087.md`). C-087 retains C-086 thin execution and adds Cora pre-execution hardening, child-readable authority transport and read-only post-run telemetry. Earlier decisions remain provenance except where current authority explicitly retains them.
 
 Historical `docs/DECISIONS.md`, Stage files, old run recipes and pre-vNext field evidence remain valuable provenance, but they do not define the current execution path.
+
+## C-087 — Harden before launch; capsule authority; observe after run
+
+**Accepted 2026-10-06 from multi-project C-086 field evidence.** Cora hardens accepted work before `READY_TO_LAUNCH`; coordinators use repo-local authority or compact inline capsules so child verdicts never depend on inaccessible external paths; a read-only SQLite helper extracts post-run timing/usage/tool/context evidence without LLM calls. Runtime, model bindings, review count, correction budget and context thresholds remain unchanged.
+
+Evidence/authority: `docs/CURRENT_EXECUTION_DECISION_C087.md`, `docs/PRE_EXECUTION_HARDENING_V1.md`, `docs/CHILD_AUTHORITY_CAPSULE_V1.md`, `tools/opencode-run-telemetry.mjs`.
 
 ## C-086 — Thin execution restoration
 

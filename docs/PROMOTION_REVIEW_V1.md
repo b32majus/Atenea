@@ -1,6 +1,6 @@
 # Atenea — Integrated promotion audit v1
 
-Status: **CURRENT / CONDITIONAL WHEN INVOKED — C-086**
+Status: **CURRENT / CONDITIONAL WHEN INVOKED — C-087**
 
 ## Purpose
 
