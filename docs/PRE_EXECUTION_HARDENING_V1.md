@@ -52,6 +52,15 @@ Name protected boundaries and neighboring tickets/features that this work must n
 
 State the smallest evidence that proves the writer phase is complete: focused tests, negative witnesses, browser journey, typecheck/lint or other relevant deterministic evidence. Do not request broad/full suites by ritual.
 
+**Proportional-evidence refinement (Nexus Train 20 field learning, 2026-10-10):**
+
+- **Reuse-first:** before commissioning new browser oracles, identify which existing harnesses/fixtures already prove the accepted behavior, and name only the remaining material gaps. Keep required acceptance oracles independent of the implementer; reuse must not become self-certification.
+- **Distinct evidence by phase:** writer tests focus on the changed seam; the canonical review can expose new concrete gaps; a fresh corrector proves its findings with focused RED→GREEN evidence; justified cross-consumer and full-repository checks belong at integration/publication. Repeating a broad suite is warranted by affected behavior or a changed candidate, not as standing ceremony.
+- **Rendered interaction when relevant:** if accepted work adds/changes visible controls, identify a small, real browser interaction at representative supported widths, including visibility and click reachability when responsive layout is material. Passing logic assertions does not prove that controls are usable.
+- **Existing preflight:** check the repository-declared runtime/engine and the local dependencies needed for the selected proofs before launch where applicable. Report/resolve a material mismatch in the existing preflight, rather than allowing avoidable environment failures to consume a writer/corrector cycle.
+
+These are **Cora-side planning considerations** for triggered risks, not new always-on worker duties, mandatory test counts, lifecycle gates or model/routing changes.
+
 ### STOP
 
 State the concrete discovery that requires HUMAN STOP: missing semantics, authority conflict, new product choice, required out-of-envelope seam, destructive/publication action outside authority, or another material unresolved decision.

@@ -36,6 +36,51 @@ strengthen **early production compatibility**, not multi-day endurance.
 Exact per-stream chronology and limits:
 `ATENEA_GO_OPERATIONAL_QUALIFICATION_C087_20261010.md`.
 
+## C-087 field learning — Nexus Reuma Train 20 / #621 (2026-10-10)
+
+**Classification: preparation and proof-economy evidence, not a C-087 runtime
+regression or a new qualification decision.** The local Standard Complex
+Train 20 (ephemeral TXT→CSV clinical gate) produced a frozen independent
+acceptance oracle, three sequential feature commits and one fresh
+finding-scoped correction on reviewed candidate `ec001f6`. The fixed
+local candidate `321282eb4042a9f0c8f2bdcc24305c11459a70c2`
+passed frozen acceptance **30 PASS / 0 FAIL / 1 SKIP** (bfcache not
+exercised), memory **26/26**, integrity **65/65**, shared-modal **95/95**
+and the project's full deterministic `verify:nexus`. Its canonical
+Spec reviewer caught material asynchronous/identity/download-truthfulness
+defects absent from the initial green checks; this supports independent
+review, **not** weaker scrutiny.
+
+A subsequent read-only Cora Gate 4 mobile inspection found actual
+action clipping at **390 px** despite the functional/browser passes
+(1280 px was usable). This was a concrete responsive UI finding,
+not permission to re-run the full train or to alter clinical logic.
+A separate bounded local C2 responsive correction was committed as
+`d33ed1f` on 2026-10-10; its existence is **not** publication approval,
+and this note does not certify final Gate 4 adjudication or issue #621
+implementation status. Gate 3 consumer mapping and Gate 4 visual evidence
+remain conditional to their material triggers.
+
+The initial implementation produced **4,170 lines across three new
+browser oracles** plus existing harness edits. The broad project
+`verify:nexus` consists of **40 top-level npm commands** and its
+observed complete runs each took roughly **64–68 seconds**; therefore
+the broad suite was **not proven to be the main wall-clock bottleneck**.
+Bigger avoidable costs were preparation/oracle duplication and complex
+cross-surface work. The executing environment was Node **24.15.0**
+against declared engines `>=20 <21`, and a missing local `ajv`
+dependency required recovery before a passing run.
+
+**Narrow reusable lesson:** Cora's existing
+`PRE_EXECUTION_HARDENING_V1.md` should specify reuse-first,
+risk-proportionate proof and material environment preflight;
+new UI controls merit a small *rendered* interaction check where
+appropriate. Maintain independent acceptance, one canonical review,
+fresh bounded corrections, HUMAN STOP and human publication.
+Do **not** impose new always-on oracles, time budgets, test quotas,
+specialists, runtime gates, architecture changes or mandatory
+synthetic campaigns based on this single train.
+
 ## Correction of C-083 evidence
 
 C-083 targeted OpenCode V2 conceptually, but the sampled `opencode` executable was V1 `1.18.34`. Therefore its `--pure` and agent-resolution checks are V1 compatibility evidence, not native V2 runtime qualification.
