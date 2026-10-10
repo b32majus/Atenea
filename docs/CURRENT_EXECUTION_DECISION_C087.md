@@ -69,6 +69,22 @@ publication                 human / target-repository authority
 
 No new model, role, routing engine, review pass, automatic ticket split or context threshold is introduced.
 
+## Post-decision Go operational qualification (2026-10-10)
+
+The human accepted **Atenea Go C-087 as operationally qualified** for
+bounded `risk_class: volume` and `risk_class: complex` work, on the
+basis of repeated merged real-project trains. This is a **qualification
+status update**, not a new execution decision, Standard-equivalence claim,
+cost-policy default change or waiver of Cora integrated audit when material.
+Evidence: `docs/ATENEA_GO_OPERATIONAL_QUALIFICATION_C087_20261010.md`.
+
+The `2.0.22 known-good` entry above is the original C-087 decision baseline.
+CLI `2.0.26` was subsequently promoted after a bounded Go canary (Muse
+implementation, Qwen Standards PASS, Luna High Spec PASS, 9/9 tests) and
+global model/agent/SQLite checks. Long-running real-project evidence on
+2.0.26 remains pending observation. Routing, lifecycle, context policy
+and correction budget remain unchanged.
+
 ## Field-validation boundary
 
 Do not open another synthetic qualification campaign. Reconcile C-087 into active projects at clean boundaries and observe the next ordinary tickets. Improvement is expected as less authority transport fails and writers receive better-known seams/closed decisions. Any future shaping/routing change requires repeated field evidence, not one slow ticket.

@@ -40,7 +40,7 @@ Human/project authority owns cost policy. Cora recommends risk class from accept
 
 Free bindings: `docs/ATENEA_FREE_PROFILE_V0.md` + `docs/ATENEA_FREE_MODEL_CATALOG_V0.md`.
 
-Go bindings: `docs/ATENEA_GO_PROFILE_V0.md` + `docs/ATENEA_GO_MODEL_CATALOG_V0.md`. Go remains a qualification candidate. Neither profile has silent fallback.
+Go bindings: `docs/ATENEA_GO_PROFILE_V0.md` + `docs/ATENEA_GO_MODEL_CATALOG_V0.md`. Go is **operationally qualified for bounded volume and complex**, with evidence in `docs/ATENEA_GO_OPERATIONAL_QUALIFICATION_C087_20261010.md`. Neither profile has silent fallback.
 
 ## Risk selection
 
