@@ -73,6 +73,34 @@ especially for clinical, privacy, authorization and representation claims.
   The C-085 NaN writer 220k context/compaction guard was inherited,
   not stress-tested again by the Go canary.
 
+### First real field executions after CLI 2.0.26 promotion — 2026-10-10
+
+The promotion was complete before **2026-10-09 21:35 UTC**. A read-only
+check of *production* OpenCode `session_v2` metadata, merged GitHub PRs,
+Git issue states and the executing worktrees establishes the following
+initial post-upgrade field evidence:
+
+| Stream | First observed post-promotion session (UTC) | Actual profile(s) | Observed status on 2026-10-10 |
+| --- | --- | --- | --- |
+| Nexus Reuma export-safety Train 18 | 2026-10-09 21:35 | **Standard Complex** (`atenea-complex`): MiMo coordinator, GLM high implementers, Luna Standards, Sol high Spec, GLM corrector | **COMPLETE**; merged [#619](https://github.com/b32majus/Hub-Clinico-Badajoz/pull/619) and closeout [#623](https://github.com/b32majus/Hub-Clinico-Badajoz/pull/623); issues #618 and #622 closed |
+| PROMueve Sure issue #25 post-closeout repair and publication | 2026-10-09 21:42 | **Go** repair: MiMo Go, Muse Go, Qwen Standards, Luna high Spec; subsequently **Standard Complex** for the R1–R3 correction/review envelope | **COMPLETE**; merged [#46](https://github.com/b32majus/PROMueve_Sure/pull/46) and documentation [#47](https://github.com/b32majus/PROMueve_Sure/pull/47); issue #25 closed. The original issue began before CLI promotion; the proven post-upgrade Go evidence is its **repair/review**, not the entire initial ticket |
+| Nexus Reuma copy/storage Train 19 (issues #620/#621) | 2026-10-10 00:05 | **Standard Complex** coordinator and GLM implementers | **IN PROGRESS**; both issues open, worktree has local commits and uncommitted changes, no publication verdict |
+| PROMueve Sure issue #29 operator validation | 2026-10-10 00:04 | **Standard Complex** coordinator and GLM implementer | **IN PROGRESS**; issue open, worktree has local uncommitted deliverables, no publication verdict |
+
+This corrects the earlier **canary-only** description: **real
+post-promotion project execution is now evidenced** on both Go
+(particularly issue #25 repair/review) and Standard Complex (Nexus
+Train 18, issue #25 correction). The two in-progress streams are
+evidence of invocation/routing and current work, **not completed
+quality outcomes**; they were not necessarily actively computing
+when this read-only inventory was taken.
+
+A few hours of early field use do **not** establish long-term 2.0.26
+stability, equivalence with Standard, unlimited provider capacity or
+unchanged compaction economics. No extra qualification train is
+required solely to accumulate a ceremonial run count; observe and
+reconcile ordinary real work.
+
 Local provenance only (NOT required execution authority):
 `/srv/kairos-lab/qualification/atenea-opencode-cli-v2026-10-09-canary/evidence/POSTPROMOTION_20261009.md`.
 Do **not** commit credential material, raw SQLite, binaries or backups;
