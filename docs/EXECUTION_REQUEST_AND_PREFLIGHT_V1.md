@@ -37,7 +37,7 @@ Confirm only:
 6. publication boundary;
 7. `Conditional safeguards: NONE` or the explicitly triggered named safeguard(s).
 
-For `free_only` or `go`, run the profile model-presence checker from canonical Atenea when required. A missing binding is STOP, not permission to improvise a fallback.
+For `free_only` or `go`, run the profile model-presence checker from canonical Atenea when required. For the explicitly human-selected experimental `openai_experimental` route, follow `docs/ATENEA_OPENAI_EXPERIMENTAL_PROFILE_V0.md` and verify the exact project-local agent/model bindings and OAuth/NaN access at a clean boundary. A missing binding is STOP, not permission to improvise a fallback.
 
 Do not make the coordinator repair stale launch state. Do not ask the human to repeat facts already durable in repository authority.
 
@@ -50,7 +50,7 @@ Bash:
 cd <prepared-worktree>
 opencode .
 
-Agent: <default atenea-volume | atenea-complex | atenea-free | atenea-go>
+Agent: <default atenea-volume | atenea-complex | atenea-free | atenea-go | experimental atenea-openai-sprint | experimental atenea-openai-frontier>
 
 Prompt:
 Read @<durable-handoff-path> and execute it under current repository/Atenea authority.
@@ -61,7 +61,7 @@ The human verifies the path/TUI, selects the agent when needed, pastes the promp
 ## Cost policy and risk class
 
 ```text
-cost_policy = standard | free_only | go
+cost_policy = standard | free_only | go | openai_experimental (experimental, opt-in)
 risk_class  = volume | complex
 ```
 
@@ -74,7 +74,7 @@ Precision is not verbosity. The coordinator and Matt skills can read accepted re
 ```text
 Work: <ticket/work unit + intended outcome>.
 Authority refs: <issue/spec/work-order/product authority actually needed>.
-Cost policy: <standard|free_only|go>.
+Cost policy: <standard|free_only|go|openai_experimental [human opt-in only]>.
 Risk class: <volume|complex>.
 In scope: <surface/seam this unit may change>.
 Preserve: <principal invariants already accepted>.

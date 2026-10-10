@@ -11,6 +11,7 @@ method               = upstream Matt skills, not forked by Atenea
 default cost policy  = standard
 default risk class   = volume
 optional cost policy = free_only | go (Go qualified, explicitly human-selected)
+experimental opt-in   = openai_experimental (Sprint volume / Frontier complex; NOT qualified)
 writer volume        = nan/deepseek-v4-flash
 writer complex       = nan/glm5.3-flash · high
 writer context guard = 220k effective → auto-compact ~198k → keep ~15k
@@ -31,7 +32,7 @@ cd <prepared-project-or-worktree>
 opencode .
 ```
 
-Select `atenea-complex`, `atenea-free` or `atenea-go` only when the accepted route requires it. The preferred first prompt references a repo-local durable handoff:
+Select `atenea-complex`, `atenea-free` or `atenea-go` only when the accepted route requires it. The experimental human-only OpenAI opt-in selects `atenea-openai-sprint` (volume) or `atenea-openai-frontier` (complex), following `docs/ATENEA_OPENAI_EXPERIMENTAL_PROFILE_V0.md`; not an automatic default, fallback or qualification claim. The preferred first prompt references a repo-local durable handoff:
 
 `Read @docs/handoffs/TRAIN_X.md and execute it under current repository/Atenea authority.`
 
@@ -49,7 +50,7 @@ Default: `cost_policy: standard`, `risk_class: volume`.
 
 Use `complex` for material semantic/acceptance risk such as cross-cutting architecture, difficult concurrency/temporal/state semantics, material security/privacy/trust boundaries, delicate migration/back-compat invariants or repeated semantic failure. File count, many tests, ordinary UI or business importance alone are not complex triggers.
 
-`free_only` and `go` are human/project cost-policy choices. See `ATENEA_FREE_PROFILE_V0.md` and `ATENEA_GO_PROFILE_V0.md`. No cost profile silently falls back to another provider/model.
+`free_only` and `go` are human/project cost-policy choices. The experimental `openai_experimental` route also requires human opt-in and a clean work-unit boundary. See `ATENEA_FREE_PROFILE_V0.md` and `ATENEA_GO_PROFILE_V0.md`. No cost profile silently falls back to another provider/model.
 
 ## 3. Shape upstream, execute downstream
 

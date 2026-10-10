@@ -178,6 +178,68 @@ for (const rel of ['README.md','AGENTS.md','CONTEXT.md','docs/START_HERE.md','do
   forbid(rel, 'opencode --pure', 'V1 pure launch as current authority');
 }
 
+// Post-C-087 experimental OpenAI profiles: strictly additive and opt-in.
+// Structural check only; this is NOT a model-quality or quota qualification.
+req('docs/ATENEA_OPENAI_EXPERIMENTAL_PROFILE_V0.md', 'NOT OPERATIONALLY QUALIFIED', 'experimental status');
+req('docs/START_HERE.md', 'openai_experimental', 'experimental front door');
+req('docs/ATENEA_EXECUTION_ROUTING_V0.md', 'openai_experimental', 'experimental route');
+
+const experimentalPins = {
+  'atenea-openai-sprint.md': ['primary', 'nan/mimo-v2.6-flash'],
+  'atenea-openai-frontier.md': ['primary', 'nan/mimo-v2.6-flash'],
+  'atenea-implementer-openai-sprint.md': ['subagent', 'openai/gpt-6-luna#high'],
+  'atenea-implementer-openai-frontier.md': ['subagent', 'openai/gpt-6.1-sol#high'],
+  'atenea-review-standards-openai-sprint.md': ['subagent', 'nan/deepseek-v4-flash'],
+  'atenea-review-standards-openai-frontier.md': ['subagent', 'nan/glm5.3-flash#high'],
+  'atenea-review-spec-openai-sprint.md': ['subagent', 'openai/gpt-6.1-sol#high'],
+  'atenea-review-spec-openai-frontier.md': ['subagent', 'openai/gpt-6-luna#high'],
+  'atenea-corrector-openai.md': ['subagent', 'openai/gpt-6.1-sol#high']
+};
+for (const [name, [mode, model]] of Object.entries(experimentalPins)) {
+  const rel = `.opencode/agents/` + name;
+  const body = read(rel);
+  const front = body.match(/^---\n([\s\S]*?)\n---/);
+  if (!front) failures.push(`missing native agent frontmatter: ` + name);
+  else {
+    const lines = front[1].split('\n');
+    if (!lines.includes(`mode: ` + mode)) failures.push(`wrong experimental mode: ` + name);
+    if (!lines.includes(`model: ` + model)) failures.push(`wrong experimental model: ` + name);
+  }
+  req(rel, 'permissions:', `native experimental permissions: ` + name);
+  forbid(rel, '\nvariant:', `legacy experimental variant: ` + name);
+}
+const experimentalDispatch = {
+  'atenea-openai-sprint.md': ['atenea-explorer', 'atenea-implementer-openai-sprint', 'atenea-merger',
+    'atenea-review-standards-openai-sprint', 'atenea-review-spec-openai-sprint', 'atenea-corrector-openai'],
+  'atenea-openai-frontier.md': ['atenea-explorer', 'atenea-implementer-openai-frontier', 'atenea-merger',
+    'atenea-review-standards-openai-frontier', 'atenea-review-spec-openai-frontier', 'atenea-corrector-openai']
+};
+for (const [name, expected] of Object.entries(experimentalDispatch)) {
+  const rel = `.opencode/agents/` + name;
+  const body = read(rel);
+  const permitted = [...body.matchAll(/- action: subagent\n\s+resource: "([^"]+)"\n\s+effect: allow/g)].map(m => m[1]);
+  if (JSON.stringify(permitted.sort()) !== JSON.stringify([...expected].sort()))
+    failures.push(`experimental coordinator dispatch allowlist mismatch: ` + name);
+  req(rel, 'action: edit\n    resource: "*"\n    effect: deny', 'experimental coordinator edit denial');
+  req(rel, 'INCOMPLETE_AUTHORITY', 'experimental coordinator fail-closed');
+  req(rel, 'at most two fresh finding-scoped', 'experimental correction bound');
+}
+for (const name of ['atenea-implementer-openai-sprint.md', 'atenea-implementer-openai-frontier.md']) {
+  const rel = `.opencode/agents/` + name;
+  for (const skill of ['implement', 'implement-spec', 'code-review']) req(rel,
+    'resource: "' + skill + '"\n    effect: deny', 'experimental worker lifecycle separation');
+  forbid(rel, 'resource: "atenea-review-', 'experimental worker reviewer isolation');
+  forbid(rel, 'resource: "atenea-corrector-', 'experimental worker corrector isolation');
+}
+for (const name of ['atenea-review-standards-openai-sprint.md', 'atenea-review-standards-openai-frontier.md',
+  'atenea-review-spec-openai-sprint.md', 'atenea-review-spec-openai-frontier.md']) {
+  const rel = `.opencode/agents/` + name;
+  req(rel, 'resource: "git diff*"', 'experimental reviewer diff access');
+  req(rel, 'INCOMPLETE_AUTHORITY', 'experimental reviewer authority boundary');
+  req(rel, 'action: external_directory', 'experimental reviewer directory isolation');
+  req(rel, 'action: subagent', 'experimental reviewer subagent isolation');
+}
+
 if (failures.length) {
   console.error('ATENEA_VNEXT_AUTHORITY_CHECK=FAIL');
   failures.forEach((x) => console.error(`- ${x}`));

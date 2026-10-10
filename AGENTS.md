@@ -63,7 +63,7 @@ Matt skills own their methodology. Do not copy their TDD loop, task-graph proced
 
 Atenea adds stable repository constraints, explicit role/model bindings, deterministic evidence boundaries and human publication control.
 
-Atenea separates **risk class** (`volume|complex`) from **cost policy** (`standard|free_only|go`). Cora may recommend risk class; human/project authority owns cost policy. `free_only` and `go` have no silent provider/model fallback. See the profile documents for their replaceable bindings.
+Atenea separates **risk class** (`volume|complex`) from **cost policy** (`standard|free_only|go`). A separately human-authorized, **experimental** `openai_experimental` cost policy exists for Sprint/Frontier under `docs/ATENEA_OPENAI_EXPERIMENTAL_PROFILE_V0.md`; it does not alter qualified routes or the default. Cora may recommend risk class; human/project authority owns cost policy. `free_only` and `go` have no silent provider/model fallback. See the profile documents for their replaceable bindings.
 
 C-087 retains C-086/C-085 routing and context economics over C-084 native V2: OpenCode 2.0.22 was the known-good decision baseline; CLI 2.0.26 was promoted after a bounded Go canary (extended post-upgrade field endurance pending). Standard Volume writes with DeepSeek V4 Flash and Standard Complex with GLM 5.3 Flash high. The inherited 220k effective NaN writer context guard has auto-compaction guidance around ~198k with ~15k recent retention; the Go canary did not stress-test that guard. Go is operationally qualified for bounded volume/complex work without altering cost policy or bindings. Routing changes only at a clean work-unit boundary.
 
