@@ -25,6 +25,17 @@ publication control. Material Cora integrated audit remains in scope.
 Full decision, limitations and pointers:
 `docs/ATENEA_GO_OPERATIONAL_QUALIFICATION_C087_20261010.md`.
 
+**Post-promotion field update (2026-10-10):** the initial 2.0.26
+canary was followed by **two completed real work streams**:
+Nexus Reuma Train 18 (Standard Complex, merged PR #619 + #623) and
+PROMueve Sure issue #25 post-closeout repair (Go with Muse/Qwen/Luna,
+then Standard Complex corrections, merged PR #46 + #47). Nexus Train
+19 (#620/#621) and PROMueve Sure #29 were **in progress**, not counted
+as passed work. These runs begin after global 2.0.26 promotion; they
+strengthen **early production compatibility**, not multi-day endurance.
+Exact per-stream chronology and limits:
+`ATENEA_GO_OPERATIONAL_QUALIFICATION_C087_20261010.md`.
+
 ## Correction of C-083 evidence
 
 C-083 targeted OpenCode V2 conceptually, but the sampled `opencode` executable was V1 `1.18.34`. Therefore its `--pure` and agent-resolution checks are V1 compatibility evidence, not native V2 runtime qualification.
