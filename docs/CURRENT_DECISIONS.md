@@ -1,6 +1,6 @@
 # Atenea — Current Decisions
 
-Date: 2026-10-06
+Date: 2026-10-10
 
 This file preserves accepted decision provenance. **C-087 is the current execution decision** (`docs/CURRENT_EXECUTION_DECISION_C087.md`). C-087 retains C-086 thin execution and adds Cora pre-execution hardening, child-readable authority transport and read-only post-run telemetry. Earlier decisions remain provenance except where current authority explicitly retains them.
 
@@ -11,6 +11,22 @@ Historical `docs/DECISIONS.md`, Stage files, old run recipes and pre-vNext field
 **Accepted 2026-10-06 from multi-project C-086 field evidence.** Cora hardens accepted work before `READY_TO_LAUNCH`; coordinators use repo-local authority or compact inline capsules so child verdicts never depend on inaccessible external paths; a read-only SQLite helper extracts post-run timing/usage/tool/context evidence without LLM calls. Runtime, model bindings, review count, correction budget and context thresholds remain unchanged.
 
 Evidence/authority: `docs/CURRENT_EXECUTION_DECISION_C087.md`, `docs/PRE_EXECUTION_HARDENING_V1.md`, `docs/CHILD_AUTHORITY_CAPSULE_V1.md`, `tools/opencode-run-telemetry.mjs`.
+
+### C-087 Go operational qualification — 2026-10-10
+
+**Accepted as qualification status, not as a new routing or execution
+decision.** Atenea Go is qualified for routine bounded `volume` and
+`complex` work after multiple merged real-project trains. The hybrid
+bindings remain MiMo/Muse/DeepSeek correction (Go), Qwen (NaN) and
+Luna (OpenAI); cost policy remains human-selected. No universal
+Standard parity, infinite provider capacity, bypass of material Cora
+audit or automatic merge is implied. CLI 2.0.26 separately passed a
+bounded functional canary and global compatibility checks; extended
+real-project endurance after the upgrade remains to be observed.
+
+Evidence: `docs/ATENEA_GO_OPERATIONAL_QUALIFICATION_C087_20261010.md`,
+`docs/QUALIFICATION.md`. C-087 remains the current execution decision;
+no binding, permission, review/correction rule or context threshold changed.
 
 ## C-086 — Thin execution restoration
 

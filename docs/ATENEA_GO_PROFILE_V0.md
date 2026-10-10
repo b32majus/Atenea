@@ -1,13 +1,13 @@
 # Atenea Go Profile v0
 
-Status: **QUALIFICATION CANDIDATE — CURRENT C-087 GO PROFILE (introduced under C-084)**
-Date: 2026-10-06
+Status: **OPERATIONALLY QUALIFIED — CURRENT C-087 GO PROFILE (introduced under C-084)**
+Date: 2026-10-06 (qualification accepted 2026-10-10)
 
 ## Purpose
 
-`atenea-go` is not a lower complexity class and is not yet a quality-equivalence claim. It is Atenea under an explicit **human-selected `go` cost policy**: a bounded hybrid route that can be field-qualified on real project tickets.
+`atenea-go` is not a lower complexity class or a claim of quality-equivalence with Standard. It is Atenea under an explicit **human-selected `go` cost policy**: a bounded hybrid route now qualified for routine accepted real-project work.
 
-Go is a **qualification candidate pending real-ticket field evidence**. It is not quality-equivalent to Standard Volume, and this document does not promote it as such.
+**Operationally qualified on 2026-10-10 for bounded Go Volume and Go Complex** based on repeated field evidence. This does not imply unlimited quota, equivalence to Standard, or independent product-publication authority. See `ATENEA_GO_OPERATIONAL_QUALIFICATION_C087_20261010.md`.
 
 Atenea keeps two independent routing dimensions:
 
@@ -106,4 +106,4 @@ When the Go inventory changes, Cora may propose a new catalog/binding at a clean
 
 ## Qualification evidence
 
-Real project tickets remain the quality evidence that matters. Go stays a qualification candidate until field evidence is recorded in the repository's normal qualification surface; synthetic probes and model presence are not quality-equivalence claims.
+Go is **operationally qualified for routine bounded `go + volume` and `go + complex`** work. The documented real-project evidence and separate 2.0.26 canary are in `ATENEA_GO_OPERATIONAL_QUALIFICATION_C087_20261010.md` and `QUALIFICATION.md`. This does not establish parity with Standard, bypass Cora integrated audit when material or claim extended real-project endurance after the 2.0.26 CLI promotion.

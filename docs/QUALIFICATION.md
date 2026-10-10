@@ -1,11 +1,29 @@
 # Atenea Qualification
 
-Status: **CURRENT C-087 QUALIFICATION — THIN EXECUTION RESTORATION; NATIVE V2/FREE FIELD EVIDENCE RETAINED**
-Date: 2026-10-06
+Status: **CURRENT C-087 QUALIFICATION — GO OPERATIONAL; NATIVE V2/FREE/STANDARD FIELD EVIDENCE RETAINED**
+Date: 2026-10-06 (Go qualification accepted 2026-10-10)
 
 ## Reading this record under C-087
 
-This file preserves the field progression that produced C-084/C-085/C-086/C-087. C-087 keeps the C-086 lifecycle/routing intact and changes only pre-launch hardening, child authority transport and post-run telemetry. Earlier field evidence remains valid provenance; `CURRENT_EXECUTION_DECISION_C087.md` is current.
+This file preserves the field progression that produced C-084/C-085/C-086/C-087. C-087 keeps C-086 lifecycle/routing intact and changes only pre-launch hardening, child authority transport and post-run telemetry. **Go Volume and Go Complex are now operationally qualified** on repeated real-project work (see `ATENEA_GO_OPERATIONAL_QUALIFICATION_C087_20261010.md`), not universally equivalent to Standard. Earlier field evidence remains valid provenance; `CURRENT_EXECUTION_DECISION_C087.md` stays current.
+
+## C-087 Go operational qualification — 2026-10-10
+
+**QUALIFIED: `cost_policy: go` with `risk_class: volume | complex`**,
+for accepted bounded work, while `standard` remains the default.
+Field evidence includes merged Nexus trains #586, #598, #602, #606
+(PR #588, #600, #603, #607) and subsequent real Go deliveries.
+A separate bounded 2.0.26 Go canary closed the exact Muse implementation,
+Qwen Standards and Luna High Spec axes on a fixed synthetic SHA with
+9/9 Node 20 tests; after global promotion, agent/model preflight and
+SQLite integrity also passed. **Post-upgrade 2.0.26 field endurance
+remains an observation boundary**, not an already-proven claim.
+
+This qualification does **not** change model bindings, default cost
+policy, correction ceiling, independent review, HUMAN STOP or human
+publication control. Material Cora integrated audit remains in scope.
+Full decision, limitations and pointers:
+`docs/ATENEA_GO_OPERATIONAL_QUALIFICATION_C087_20261010.md`.
 
 ## Correction of C-083 evidence
 

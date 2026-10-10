@@ -5,12 +5,12 @@ Status: **CURRENT FRONT DOOR — C-087**
 ## Current path
 
 ```text
-runtime              = native OpenCode V2 (`opencode`, 2.0.22 known-good)
+runtime              = native OpenCode V2 (`opencode`, 2.0.26 promoted; 2.0.22 baseline)
 operator surface     = existing persistent Herdr workspace/pane
 method               = upstream Matt skills, not forked by Atenea
 default cost policy  = standard
 default risk class   = volume
-optional cost policy = free_only | go
+optional cost policy = free_only | go (Go qualified, explicitly human-selected)
 writer volume        = nan/deepseek-v4-flash
 writer complex       = nan/glm5.3-flash · high
 writer context guard = 220k effective → auto-compact ~198k → keep ~15k
@@ -20,7 +20,7 @@ Spec review complex  = openai/gpt-6.1-sol · high
 feature/train audit  = Cora when material
 ```
 
-Bindings live in `.opencode/agents/`; routing is `docs/ATENEA_EXECUTION_ROUTING_V0.md`. C-087 retains the C-086 thin execution shape and adds hardened Cora preparation, child-readable authority transport and read-only post-run telemetry.
+Bindings live in `.opencode/agents/`; routing is `docs/ATENEA_EXECUTION_ROUTING_V0.md`. C-087 retains the C-086 thin execution shape and adds hardened Cora preparation, child-readable authority transport and read-only post-run telemetry. **Go Volume and Go Complex are operationally qualified** under `docs/ATENEA_GO_OPERATIONAL_QUALIFICATION_C087_20261010.md`; this does not alter the default `standard` cost policy or assert universal quality parity.
 
 ## Visible launch
 
@@ -92,7 +92,9 @@ Broad/full suites are not a per-slice default.
 
 ## 6. Current runtime economy
 
-Standard Volume uses V4; Standard Complex uses GLM 5.3 Flash high. The OpenCode 2.0.22 user/runtime guard keeps an effective 220k context budget for these long-running NaN writers, auto-compacting around ~198k with ~15k recent verbatim retention. This is an airbag, not a target work-unit size and not permission to weaken evidence.
+Standard Volume uses V4; Standard Complex uses GLM 5.3 Flash high. The C-085 OpenCode 2.0.22 baseline established an effective 220k context budget for these long-running NaN writers, auto-compacting around ~198k with ~15k recent verbatim retention. This is an airbag, not a target work-unit size and not permission to weaken evidence.
+
+The global CLI was promoted to 2.0.26 after a bounded C-087 Go canary and post-promotion routing checks. Continued real-project use under 2.0.26 is to be observed, not treated as already qualified endurance. The Go canary did not independently retest this inherited NaN context guard.
 
 No quota router, percentage balancing, model carousel or mid-unit writer switch exists.
 
