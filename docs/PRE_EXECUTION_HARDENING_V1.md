@@ -52,7 +52,7 @@ Name protected boundaries and neighboring tickets/features that this work must n
 
 ### PROOF
 
-State the smallest evidence that proves the writer phase is complete: focused tests, negative witnesses, browser journey, typecheck/lint or other relevant deterministic evidence. Do not request broad/full suites by ritual.
+State the smallest evidence that proves the writer phase is complete: focused tests, negative witnesses, browser journey, typecheck/lint or other relevant deterministic evidence. Name exact runnable commands and their phase owner. Only for known material cross-surface navigation/selection/async risk, Cora may name one existing integrated candidate witness for the coordinator to run before review. No optional broad/full suites in writer or corrector instructions.
 
 **Proportional evidence, conditional and reuse-first (C-087 field learning):**
 
