@@ -38,6 +38,7 @@ Before material tickets become execution authority, compare the proposed decompo
 - Product-facing tickets deliver a human/product outcome, not merely an internal aggregate.
 - New visible concepts/workflows require explicit product authority.
 - Read the ticket set as one future product before `EXECUTION_READY` when composition risk is material.
+- For a material UI redesign, preserve the accepted **whole-screen task and visual hierarchy** as an observable outcome across slices; do not let control/structure acceptance silently stand in for visual fidelity.
 - This check is upstream. Do not make every writer re-run it.
 
 ## Gate 2 — representation narrowing
@@ -83,11 +84,11 @@ Evidence claims still may not exceed their actual falsification power.
 
 ## Gate 4 — material composed-product checkpoint
 
-Use a Cora + human read-only checkpoint when multiple material UI/product slices accumulate, especially when the same user journey changes across tickets or internal domain structure risks leaking into the interface.
+Use a Cora + human read-only checkpoint when multiple material UI/product slices accumulate, especially when the same user journey changes across tickets or internal domain structure risks leaking into the interface. **For a material visual/UX redesign, inspect the first representative runnable composition before stacking further material UI slices**, not only at final product qualification.
 
-Inspect the composed product when practical. Compare it with accepted product authority and interaction hypothesis. Ask whether the user mental model, default path, conceptual load and intended surface remain intact.
+Compare the **rendered whole task surface** in a real browser, with representative populated data and a relevant viewport, against the accepted design/interaction authority: dominant work area, hierarchy, density, language, grouping and clear next actions. A green functional suite, visible controls or structurally correct columns **do not prove** this outcome. Use existing realistic fixtures and a bounded screenshot/observed walkthrough; no mandatory pixel-perfect baseline, extra viewport matrix or per-ticket UX audit.
 
-This is a composition boundary, not per-writer ceremony.
+Spec challenges missing material visual proof or a concrete design mismatch at its normal review; Cora independently checks triggered fidelity at the existing audit/composition boundary. **A material accepted-design mismatch or missing representative rendered evidence is NO-GO for closing/publishing a UI redesign as complete.** Functional PASS may be reported separately, never as visual/design PASS; use a bounded correction or HUMAN STOP for unresolved product choices. This is the existing conditional checkpoint, not a new phase.
 
 ## Gate 5 — hardening cannot legitimize product drift
 
