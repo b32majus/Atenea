@@ -4,6 +4,8 @@ Status: **CURRENT CONDITIONAL POLICY — C-087**
 
 This is an escalation path, not mandatory ceremony.
 
+When asked to select the *next Train*, prefer a meaningful accepted product outcome over advancing the Train counter. A tiny localized defect or wording change remains a maintenance-sized task; do not inflate it into a strategic Train or initiate a broad backlog/preflight investigation when its scope is already approved. The human/project chooses priority and publication route. **Small size never waives material clinical, privacy, safety or publication proof.**
+
 ```text
 ordinary bounded ticket
 → execute it

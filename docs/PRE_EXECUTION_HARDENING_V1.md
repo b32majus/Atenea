@@ -7,11 +7,13 @@ Date: 2026-10-06
 
 This is a **Cora-side preparation contract**, not an OpenCode coordinator/worker instruction and not an `AGENTS.md` runtime rule.
 
-Cora does the expensive thinking before launch so the selected execution model can work from a precise, already-decided envelope. Hardening removes avoidable discovery and ambiguity; it does **not** prescribe implementation mechanics that are still properly owned by the engineer/model.
+Cora resolves **only material launch blockers and already-known decisions** before launch. Hardening is a compact handoff, **not advance implementation, test repair, or a repository-wide audit**. Ordinary local discovery and mechanics remain with the implementer.
 
 ## Cora launch sequence
 
 For ordinary prepared work:
+
+When the human already selects an accepted bounded task, **do not repeat frontier selection, backlog archaeology or a global product audit**; reconcile only changes that could invalidate that task's authority/base.
 
 1. reconcile authority;
 2. select frontier;
@@ -52,17 +54,13 @@ Name protected boundaries and neighboring tickets/features that this work must n
 
 State the smallest evidence that proves the writer phase is complete: focused tests, negative witnesses, browser journey, typecheck/lint or other relevant deterministic evidence. Do not request broad/full suites by ritual.
 
-**Proportional-evidence refinement (Nexus Train 20 field learning, 2026-10-10):**
+**Proportional evidence, conditional and reuse-first (C-087 field learning):**
 
-- **Reuse-first:** before commissioning new browser oracles, identify which existing harnesses/fixtures already prove the accepted behavior, and name only the remaining material gaps. Keep required acceptance oracles independent of the implementer; reuse must not become self-certification.
-- **Distinct evidence by phase:** writer tests focus on the changed seam; the canonical review can expose new concrete gaps; a fresh corrector proves its findings with focused RED→GREEN evidence; justified cross-consumer and full-repository checks belong at integration/publication. Repeating a broad suite is warranted by affected behavior or a changed candidate, not as standing ceremony.
-- **Rendered interaction when relevant:** if accepted work adds/changes visible controls, identify a small, real browser interaction at representative supported widths, including visibility and click reachability when responsive layout is material. Passing logic assertions does not prove that controls are usable.
-- **Accepted visual composition (only for material UI/UX redesign):** point to the existing design authority, identify the intended whole-screen task/hierarchy, and name a representative populated browser view as evidence. If the unit cannot yet render the composed experience, identify its **first runnable composition boundary**; never claim visual/design completion from local controls alone or postpone all visual comparison to the final train. Reuse fixtures; no new mockup, pixel-perfect snapshot or routine extra suite.
-- **Existing preflight:** check the repository-declared runtime/engine and the local dependencies needed for the selected proofs before launch where applicable. Report/resolve a material mismatch in the existing preflight, rather than allowing avoidable environment failures to consume a writer/corrector cycle.
-- **Known temporal interleavings (only when triggered; Laboratorio #80 / PROMueve Sure #52 field learning, 2026-10-10):** when a ticket changes asynchronous reads/writes, active context or mutable selections, Cora names the few already-foreseeable orderings in which a late result could overwrite newer user intent, affect the wrong entity or erase confirmed state. Reuse existing witnesses; request focused negative evidence only for those material uncovered risks, not a generic concurrency matrix.
-- **Material semantic propagation (only when triggered; Nexus Train 22 field learning, 2026-10-10):** when a ticket changes the meaning or availability of shared data or a derived clinical/product event, Cora traces the **material supported** downstream consumers and independent generators far enough to distinguish **change / preserve / separate pre-existing debt**. Before `READY_TO_LAUNCH`, capture a compact source→consumer→decision map (or equivalent concrete references), check each acceptance criterion against `DO NOT TOUCH`, and resolve any material contradiction with the human; do not label the seam map `closed` merely because the planned edit points are known. This is bounded, risk-triggered reconciliation, not a repository-wide dependency census or a new writer/reviewer gate.
+- **Do not solve the ticket in preflight.** Identify existing focused **independent** acceptance witnesses and any material missing proof; check only required runtime/engine/dependencies; writer tests the changed seam, review challenges concrete gaps, correctors address supplied findings, integration/publication owns justified broader suites. Do not investigate or repair unrelated failing tests before launch; record known baseline limitations, and STOP only if they materially block this unit's valid proof.
+- For material visible UI changes, name a real browser interaction; for a material UI/UX redesign, reference the approved whole-screen task/composition and the first representative populated rendering (see `PRODUCT_FIDELITY_GATES_V1.md`). No routine snapshots or viewport matrix.
+- Only when the accepted change triggers them: identify **known** async ordering hazards (late results vs newer intent) or **known material** shared-semantic consumers; state the concrete preserved/changed boundary. Do not run hypothetical interleaving matrices or repository-wide consumer searches. Resolve a material acceptance/DO NOT TOUCH contradiction with the human.
 
-These are **Cora-side planning considerations** for triggered risks, not new always-on worker duties, mandatory test counts, lifecycle gates or model/routing changes.
+These are Cora-side decisions, **not new writer/reviewer gates**. Stop preparing once the handoff is sufficient for a bounded, safe implementation; further investigation belongs to execution or a separately authorized recovery.
 
 ### STOP
 
@@ -72,9 +70,9 @@ State the concrete discovery that requires HUMAN STOP: missing semantics, author
 
 Before launch, ask:
 
-> Is there a question the writer is likely to spend its first ~10 minutes investigating whose answer Cora already knows?
+> Is a **known, material decision or blocker** still missing that would cause the writer to guess, violate authority or repeat avoidable discovery?
 
-If yes, the work is not hardened yet. Add the answer or seam reference to the handoff.
+If yes, add the **existing answer or reference**, not a new investigation. If no, STOP; do not pre-execute tests or hunt potential failures for speculative savings.
 
 ## Anti-bloat rules
 
