@@ -97,7 +97,7 @@ if ('subagent_depth' in oc) failures.push('legacy top-level subagent_depth is fo
 
 const agents = {
   'atenea-volume.md': ['mode: primary', 'model: nan/mimo-v2.6-flash'],
-  'atenea-complex.md': ['mode: primary', 'model: nan/mimo-v2.6-flash'],
+  'atenea-complex.md': ['mode: primary', 'model: nan/glm5.3-flash#high'],
   'atenea-explorer.md': ['mode: subagent', 'model: nan/qwen3.8-flash'],
   'atenea-implementer-volume.md': ['mode: subagent', 'model: nan/deepseek-v4-flash'],
   'atenea-implementer-complex.md': ['mode: subagent', 'model: nan/glm5.3-flash#high'],

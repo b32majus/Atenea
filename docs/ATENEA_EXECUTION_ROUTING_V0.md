@@ -9,7 +9,7 @@ This file maps roles to project-local native OpenCode V2 agents. It does not dup
 
 | Role | volume | complex |
 | --- | --- | --- |
-| coordinator | `atenea-volume` → MiMo 2.6 Flash | `atenea-complex` → MiMo 2.6 Flash |
+| coordinator | `atenea-volume` → MiMo 2.6 Flash | `atenea-complex` → GLM 5.3 Flash high |
 | explorer | `atenea-explorer` → Qwen 3.8 Flash | same |
 | implementer | `atenea-implementer-volume` → DeepSeek V4 Flash | `atenea-implementer-complex` → GLM 5.3 Flash high |
 | merger | `atenea-merger` → MiMo 2.6 Flash | same |
