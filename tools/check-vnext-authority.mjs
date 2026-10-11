@@ -80,7 +80,7 @@ req('AGENTS.md', 'Do not duplicate Matt', 'upstream method ownership');
 req('docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md', 'Conditional safeguards:', 'conditional safeguard routing field');
 req('docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md', 'Delegation to implementation worker', 'delegation contract');
 req('docs/PRE_EXECUTION_HARDENING_V1.md', 'deliver Silvia the exact bash + visible agent + prompt', 'human launch boundary');
-req('docs/PRE_EXECUTION_HARDENING_V1.md', 'Is there a question the writer is likely to spend its first ~10 minutes investigating', 'hardening quality question');
+req('docs/PRE_EXECUTION_HARDENING_V1.md', '## Quality question', 'hardening quality-question section');
 req('docs/CHILD_AUTHORITY_CAPSULE_V1.md', 'INCOMPLETE_AUTHORITY', 'fail-closed child authority');
 req('docs/CHILD_AUTHORITY_CAPSULE_V1.md', '/srv/.../outbox/...', 'external-path prohibition');
 req('tools/opencode-run-telemetry.mjs', 'readOnly: true', 'read-only telemetry DB open');
