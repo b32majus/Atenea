@@ -2,9 +2,9 @@
 import { spawnSync } from 'node:child_process';
 
 const required = [
-  'opencode/mimo-v2.6-flash-free',
+  'opencode/muse-spark-1.3-contributor-free',
   'opencode/space-bunny-free',
-  'nan/qwen3.6'
+  'opencode/mimo-v2.6-flash-free'
 ];
 
 const result = spawnSync('opencode', ['models'], { encoding: 'utf8' });

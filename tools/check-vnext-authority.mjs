@@ -107,21 +107,21 @@ const agents = {
   'atenea-review-spec-complex.md': ['mode: subagent', 'model: openai/gpt-6.1-sol#high'],
   'atenea-corrector-volume.md': ['mode: subagent', 'model: nan/deepseek-v4-flash'],
   'atenea-corrector-complex.md': ['mode: subagent', 'model: nan/glm5.3-flash#high'],
-  'atenea-free.md': ['mode: primary', 'model: opencode/mimo-v2.6-flash-free'],
-  'atenea-explorer-free.md': ['mode: subagent', 'model: nan/qwen3.6'],
+  'atenea-free.md': ['mode: primary', 'model: opencode/muse-spark-1.3-contributor-free'],
+  'atenea-explorer-free.md': ['mode: subagent', 'model: opencode/mimo-v2.6-flash-free'],
   'atenea-implementer-free.md': ['mode: subagent', 'model: opencode/space-bunny-free'],
   'atenea-merger-free.md': ['mode: subagent', 'model: opencode/mimo-v2.6-flash-free'],
-  'atenea-review-standards-free.md': ['mode: subagent', 'model: nan/qwen3.6'],
+  'atenea-review-standards-free.md': ['mode: subagent', 'model: opencode/mimo-v2.6-flash-free'],
   'atenea-review-spec-free.md': ['mode: subagent', 'model: opencode/mimo-v2.6-flash-free'],
-  'atenea-corrector-free-volume.md': ['mode: subagent', 'model: opencode/space-bunny-free'],
-  'atenea-corrector-free-complex.md': ['mode: subagent', 'model: opencode/mimo-v2.6-flash-free'],
-  'atenea-go.md': ['mode: primary', 'model: opencode-go/mimo-v2.6-flash'],
-  'atenea-explorer-go.md': ['mode: subagent', 'model: nan/qwen3.6'],
+  'atenea-corrector-free-volume.md': ['mode: subagent', 'model: opencode/muse-spark-1.3-contributor-free'],
+  'atenea-corrector-free-complex.md': ['mode: subagent', 'model: opencode/muse-spark-1.3-contributor-free'],
+  'atenea-go.md': ['mode: primary', 'model: opencode-go/deepseek-v4.1-flash'],
+  'atenea-explorer-go.md': ['mode: subagent', 'model: nan/mimo-v2.6-flash'],
   'atenea-implementer-go.md': ['mode: subagent', 'model: opencode-go/muse-spark-1.3-contributor'],
   'atenea-merger-go.md': ['mode: subagent', 'model: opencode-go/mimo-v2.6-flash'],
-  'atenea-review-standards-go.md': ['mode: subagent', 'model: nan/qwen3.6'],
+  'atenea-review-standards-go.md': ['mode: subagent', 'model: nan/mimo-v2.6-flash'],
   'atenea-review-spec-go.md': ['mode: subagent', 'model: openai/gpt-6-luna#high'],
-  'atenea-corrector-go-volume.md': ['mode: subagent', 'model: opencode-go/muse-spark-1.3-contributor'],
+  'atenea-corrector-go-volume.md': ['mode: subagent', 'model: opencode-go/deepseek-v4.1-flash'],
   'atenea-corrector-go-complex.md': ['mode: subagent', 'model: opencode-go/deepseek-v4.1-flash']
 };
 for (const [name, tokens] of Object.entries(agents)) {
@@ -166,7 +166,7 @@ for (const name of ['atenea-review-standards.md','atenea-review-spec-volume.md',
 }
 
 // Free/Go availability contracts remain fail-closed.
-for (const id of ['opencode-go/mimo-v2.6-flash','opencode-go/muse-spark-1.3-contributor','opencode-go/deepseek-v4.1-flash','nan/qwen3.6','openai/gpt-6-luna']) {
+for (const id of ['opencode-go/mimo-v2.6-flash','opencode-go/muse-spark-1.3-contributor','opencode-go/deepseek-v4.1-flash','nan/mimo-v2.6-flash','openai/gpt-6-luna']) {
   req('docs/ATENEA_GO_MODEL_CATALOG_V0.md', id, 'Go model catalog binding');
   req('tools/check-go-models.mjs', `'${id}'`, 'Go runtime model literal');
 }

@@ -5,7 +5,7 @@ const required = [
   'opencode-go/mimo-v2.6-flash',
   'opencode-go/muse-spark-1.3-contributor',
   'opencode-go/deepseek-v4.1-flash',
-  'nan/qwen3.6',
+  'nan/mimo-v2.6-flash',
   'openai/gpt-6-luna'
 ];
 

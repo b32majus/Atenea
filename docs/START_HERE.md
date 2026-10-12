@@ -21,7 +21,7 @@ Spec review complex  = openai/gpt-6.1-sol · high
 feature/train audit  = Cora when material
 ```
 
-Bindings live in `.opencode/agents/`; routing is `docs/ATENEA_EXECUTION_ROUTING_V0.md`. C-087 retains the C-086 thin execution shape and adds hardened Cora preparation, child-readable authority transport and read-only post-run telemetry. **Go Volume and Go Complex are operationally qualified** under `docs/ATENEA_GO_OPERATIONAL_QUALIFICATION_C087_20261010.md`; this does not alter the default `standard` cost policy or assert universal quality parity.
+Bindings live in `.opencode/agents/`; routing is `docs/ATENEA_EXECUTION_ROUTING_V0.md`. C-087 retains the C-086 thin execution shape and adds hardened Cora preparation, child-readable authority transport and read-only post-run telemetry. **Go Volume and Go Complex were operationally qualified **with their prior bindings**** under `docs/ATENEA_GO_OPERATIONAL_QUALIFICATION_C087_20261010.md`; this does not alter the default `standard` cost policy or assert universal quality parity.
 
 ## Visible launch
 
