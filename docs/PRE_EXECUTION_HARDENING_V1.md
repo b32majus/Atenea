@@ -66,6 +66,12 @@ These are Cora-side decisions, **not new writer/reviewer gates**. Stop preparing
 
 State the concrete discovery that requires HUMAN STOP: missing semantics, authority conflict, new product choice, required out-of-envelope seam, destructive/publication action outside authority, or another material unresolved decision.
 
+## READY_TO_LAUNCH unit proportionality (Cora, no new phase)
+
+Before declaring `READY_TO_LAUNCH`, Cora determines whether the accepted result fits **one proportionate implementer delegation** or needs **ordered, bounded units**. For multiple material units, the handoff names the first independently verifiable result, its existing focused proof and owner, and what later work must wait for that proof; use the smallest executable unit or an already accepted Matt task graph, not one broad writer dispatch. A genuinely small or indivisible task remains one unit. This does not require new tickets, speculative discovery, extra reviews or a new lifecycle gate.
+
+When a material UI/UX composition is involved, name the **first representative populated rendering**, the approved criterion it must meet, and the Cora + human GO/NO-GO **before stacking subsequent material slices**, not only at the end. Protect known directly affected existing user actions with their smallest focused witness, without launching a general regression search. If a material boundary cannot be specified without a new product decision, HUMAN STOP rather than `READY_TO_LAUNCH`.
+
 ## Quality question
 
 Before launch, ask:
