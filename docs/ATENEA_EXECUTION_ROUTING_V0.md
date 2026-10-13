@@ -77,6 +77,10 @@ Matt remains upstream-owned. The selected primary coordinator delegates implemen
 
 Review start closes the originating implementer. Findings go to fresh bound correctors; at most two finding-scoped attempts are allowed for the same envelope. No repeated broad review/fix carousel.
 
+**Candidate/work-unit boundary, not a Train-wide review budget:** The coordinator owns the canonical Standards + Spec review at the authorized implementation-candidate boundary (or explicitly accepted integrated candidate boundary). A clean review for one ticket/work unit does not consume, replace or waive the canonical review required for a different authorized candidate. Do not duplicate review of the same candidate/fixed point, or invent one for every screen or read-only QA checkpoint; read-only verification alone never grants write authority.
+
+**Correction budget belongs to each authorized ticket/work-unit envelope:** At most two fresh finding-scoped correction attempts apply to that envelope's findings, **not** to the entire Train. A PASS with no findings consumes zero attempts; attempts used in one envelope do not deplete another's allowance. Never reset the same repair's exhausted budget by renaming, splitting or relaunching it. A defect discovered during read-only QA remains evidence for a separately authorized correction unit when the existing envelope does not permit a write.
+
 Coordinators delegate using a **child-readable authority envelope**: prefer a repo-local durable handoff reference; when required authority is external/inaccessible, inline the compact phase-specific capsule from `CHILD_AUTHORITY_CAPSULE_V1.md`. Never require a child verdict to read `/outbox`, `/tmp`, another worktree or another denied external directory. Full handoff/policy duplication remains forbidden.
 
 ## Conditional safeguards
@@ -88,6 +92,8 @@ A writer implements the supplied envelope. It does not perform open-ended siblin
 ## Evidence economy
 
 Writer evidence is focused. Broad/full suites default to integration/publication unless the accepted handoff explicitly names one existing integrated candidate witness and its command for a material cross-surface risk; the coordinator runs that witness once after the fixed candidate and before canonical reviewers. Correctors run only the required focused closure checks, not optional full regressions; out-of-scope reds are reported instead of pursued. Profile choice alone never mandates extra reviews or suites.
+
+**Reconcile negative evidence before claiming success:** A green test/check count does not override a **material negative observation** in the same required evidence, including browser observations. The coordinator must read the relevant reported observations, classify any material discrepancy against the approved acceptance (candidate defect, proven pre-existing/out of scope, invalid evidence, or unresolved), and either substantiate why it does not invalidate acceptance, obtain closure through the already-authorized bounded workflow, or STOP/escalate unresolved material findings to Cora + human. Do not claim an overall clean/PASS candidate while a material negative observation remains unresolved; report passing checks separately. No extra reviewer cycle, broad suite, speculative investigation or silent scope expansion is authorized by this rule.
 
 ## Standard writer/context economy
 
