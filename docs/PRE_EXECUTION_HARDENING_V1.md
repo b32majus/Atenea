@@ -45,6 +45,7 @@ Name accepted functions/models/state authorities/oracles that should be reused r
 ### CLOSED DECISIONS
 
 State material product/architecture/data/interaction decisions already closed. Mark them as **do not rediscover**.
+Preserve the **exact accepted requirements and acceptance conditions** in the handoff or an accessible repo-local reference. Do not paraphrase away known examples, boundary cases, negative conditions, exceptions or DO NOT TOUCH constraints; reuse the authoritative source rather than duplicating full specifications. This does not reopen approved decisions.
 
 ### DO NOT TOUCH / OUT OF SCOPE
 
@@ -53,6 +54,8 @@ Name protected boundaries and neighboring tickets/features that this work must n
 ### PROOF
 
 State the smallest evidence that proves the writer phase is complete: focused tests, negative witnesses, browser journey, typecheck/lint or other relevant deterministic evidence. Name exact runnable commands and their phase owner. Only for known material cross-surface navigation/selection/async risk, Cora may name one existing integrated candidate witness for the coordinator to run before review. No optional broad/full suites in writer or corrector instructions.
+
+**Known material risk → falsifiable evidence (within existing PROOF, not a new gate):** For each **already-known, relevant material risk**, identify (1) the affected surface and directly known consumers, (2) the exact behavior/property to preserve or achieve, (3) an input, sequence or state that would reveal a violation, and (4) the smallest existing assertion/witness that detects it or the indispensable focused check missing. If existing evidence is sufficient, reuse it; if no material risk is known, add nothing. This is a compact sufficiency check, **not** an exhaustive matrix, speculative consumer search, mandatory new test, preflight execution or reason to ask the human about closed decisions.
 
 **Proportional evidence, conditional and reuse-first (C-087 field learning):**
 

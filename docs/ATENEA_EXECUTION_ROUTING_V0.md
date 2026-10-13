@@ -89,6 +89,8 @@ A writer implements the supplied envelope. It does not perform open-ended siblin
 
 Writer evidence is focused. Broad/full suites default to integration/publication unless the accepted handoff explicitly names one existing integrated candidate witness and its command for a material cross-surface risk; the coordinator runs that witness once after the fixed candidate and before canonical reviewers. Correctors run only the required focused closure checks, not optional full regressions; out-of-scope reds are reported instead of pursued. Profile choice alone never mandates extra reviews or suites.
 
+**Reconcile negative evidence before claiming success:** A green test/check count does not override a **material negative observation** in the same required evidence, including browser observations. The coordinator must read the relevant reported observations, classify any material discrepancy against the approved acceptance (candidate defect, proven pre-existing/out of scope, invalid evidence, or unresolved), and either substantiate why it does not invalidate acceptance, obtain closure through the already-authorized bounded workflow, or STOP/escalate unresolved material findings to Cora + human. Do not claim an overall clean/PASS candidate while a material negative observation remains unresolved; report passing checks separately. No extra reviewer cycle, broad suite, speculative investigation or silent scope expansion is authorized by this rule.
+
 ## Standard writer/context economy
 
 Standard writer routing is fixed at a clean work-unit boundary:
