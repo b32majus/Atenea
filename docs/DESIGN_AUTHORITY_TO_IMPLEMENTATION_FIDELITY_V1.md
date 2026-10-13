@@ -8,7 +8,7 @@ Una conversación o un HTML aprobado que un implementador no recibe como autorid
 
 **La cadena obligatoria para cambios materiales de interfaz es:**
 
-\`\`\`
+```
 decisión humana explícita
 → artefacto aprobado, versionado, referenciable e inmutable
 → contrato acotado de pantalla/interacción
@@ -16,7 +16,7 @@ decisión humana explícita
 → implementación que reutiliza el sistema de diseño
 → testigos visuales comparables + revisión de composición
 → aceptación humana y registro de discrepancias
-\`\`\`
+```
 
 Responsabilidades: **Cora + humana** deciden producto, jerarquía y distribución. El **repositorio de cada producto** conserva la referencia ejecutiva. El **coordinador Atenea** entrega las referencias exactas a sus implementadores y a la única revisión canónica del candidato. El **implementador** ejecuta el contrato sin rediseñar. **Standards/Spec/CI** prueban su alcance específico, pero no equivalen por sí solos a aprobación visual. La **humana** acepta desviaciones materiales y publica cuando corresponde.
 
@@ -61,12 +61,12 @@ Mantener junto al maestro una matriz pequeña, viva y verificable:
 
 | Superficie/estado | Ref. aprobada | Criterio de composición | Implementación candidata | Evidencia comparable | Estado / delta |
 | --- | --- | --- | --- | --- | --- |
-| Ejemplo | ruta+SHA | información primaria y acción visibles | commit+path | capturas 1440/375 + recorrido | \`MATCH\` / \`ADAPT_APPROVED\` / \`DRIFT_OPEN\` / \`NOT_CHECKED\` |
+| Ejemplo | ruta+SHA | información primaria y acción visibles | commit+path | capturas 1440/375 + recorrido | `MATCH` / `ADAPT_APPROVED` / `DRIFT_OPEN` / `NOT_CHECKED` |
 
-- \`MATCH\`: evidencia suficiente para la composición evaluada, no garantía universal.
-- \`ADAPT_APPROVED\`: excepción autorizada, evidencia y razón registradas.
-- \`DRIFT_OPEN\`: diferencia detectada y pendiente; no maquillar como \`MATCH\`.
-- \`NOT_CHECKED\`: sin contraste; nunca equivale a PASS.
+- `MATCH`: evidencia suficiente para la composición evaluada, no garantía universal.
+- `ADAPT_APPROVED`: excepción autorizada, evidencia y razón registradas.
+- `DRIFT_OPEN`: diferencia detectada y pendiente; no maquillar como `MATCH`.
+- `NOT_CHECKED`: sin contraste; nunca equivale a PASS.
 - Separar **observación humana de captura** de **defecto reproducido en código**; no inventar causa ni fix.
 - Registrar nuevos acuerdos posteriores **como nuevas decisiones fechadas**, no reinterpretar retroactivamente qué decía el mockup antiguo.
 
@@ -79,12 +79,12 @@ Mantener junto al maestro una matriz pequeña, viva y verificable:
 
 ## 7. Entrada ligera para agentes
 
-**Preparación Cora:** comprobar que el mockup aprobado y registro están en el repo, entregar una ruta/commit exactos y criterios de fidelidad en el handoff. **Ejecución Atenea:** consumir ese handoff; si falta, \`INCOMPLETE_AUTHORITY\` o \`HUMAN STOP\`, nunca extrapolar desde el chat. **Review:** comprobar el alcance técnico y reportar desvíos observables conocidos; **Cora + humana:** comparar el resultado compuesto con el maestro y aceptar/rechazar las adaptaciones. 
+**Preparación Cora:** comprobar que el mockup aprobado y registro están en el repo, entregar una ruta/commit exactos y criterios de fidelidad en el handoff. **Ejecución Atenea:** consumir ese handoff; si falta, `INCOMPLETE_AUTHORITY` o `HUMAN STOP`, nunca extrapolar desde el chat. **Review:** comprobar el alcance técnico y reportar desvíos observables conocidos; **Cora + humana:** comparar el resultado compuesto con el maestro y aceptar/rechazar las adaptaciones.
 
-**Compatibilidad:** complemento documental de \`HUMAN_PRODUCT_DESIGN_AUTHORITY_V1.md\`, \`PRODUCT_FIDELITY_GATES_V1.md\` y \`CHILD_AUTHORITY_CAPSULE_V1.md\`; **no sustituye** sus límites ni crea roles, rondas de revisión o Trains estratégicos.
+**Compatibilidad:** complemento documental de `HUMAN_PRODUCT_DESIGN_AUTHORITY_V1.md`, `PRODUCT_FIDELITY_GATES_V1.md` y `CHILD_AUTHORITY_CAPSULE_V1.md`; **no sustituye** sus límites ni crea roles, rondas de revisión o Trains estratégicos.
 
 ## 8. Caso que motivó esta regla
 
 Laboratorio Sophilux B V1: existía el HTML aprobado, las capturas, el contrato de aprobación y la reconciliación funcional; la implementación adoptó identidad/tokens, pero la composición observable de Entrada y Revisión presenta diferencias materiales referidas por la usuaria. Esto **no demuestra pérdida del archivo**, sino un fallo de transporte/consumo o de aceptación de la autoridad de composición; la causa organizativa exacta exige evidencia de handoffs y comparaciones, no suposición. El producto seguirá su verificación funcional #92 antes de rediseñar; las divergencias visuales quedan como deuda separada.
 
-PROMueve Sure: ya existe \`docs/design/UX_APPROVED_IMPLEMENTATION_TRACEABILITY_V1_20261014.md\` con freezes y HTML integrales. Reutilizar ese índice; no generar otra autoridad paralela ni presuponer código conforme a los prototipos.
+PROMueve Sure: ya existe `docs/design/UX_APPROVED_IMPLEMENTATION_TRACEABILITY_V1_20261014.md` con freezes y HTML integrales. Reutilizar ese índice; no generar otra autoridad paralela ni presuponer código conforme a los prototipos.
