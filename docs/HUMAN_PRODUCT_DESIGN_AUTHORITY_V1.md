@@ -265,7 +265,3 @@ For material composed/rendered work, the existing Cora + human composed-product 
 Apply this authority when a change materially creates, redesigns or re-composes a human-facing workflow/surface, or when a technically bounded change materially alters how a person finishes important work (for example an Export/Publish/Approval surface).
 
 Do not impose a design ceremony on backend-only changes, invisible refactors, trivial copy fixes, deterministic bug repairs with no interaction change, or already-frozen bounded work whose accepted interaction authority remains sufficient.
-
-## Adenda documental — transporte del diseño aceptado a la implementación (2026-10-14)
-
-Para cambios **materiales de UI**, el complemento [DESIGN_AUTHORITY_TO_IMPLEMENTATION_FIDELITY_V1.md](DESIGN_AUTHORITY_TO_IMPLEMENTATION_FIDELITY_V1.md) registra la práctica aprobada de preservar maqueta exacta, sistema de diseño, composición por pantalla, handoff referenciado y comparación renderizada antes de aceptar la fidelidad. **No modifica C-087**, Matt, la cantidad de revisiones ni el control humano de merge/publicación. Es un complemento condicional a esta autoridad, no lectura rutinaria de todos los implementadores.
