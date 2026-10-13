@@ -77,6 +77,10 @@ Matt remains upstream-owned. The selected primary coordinator delegates implemen
 
 Review start closes the originating implementer. Findings go to fresh bound correctors; at most two finding-scoped attempts are allowed for the same envelope. No repeated broad review/fix carousel.
 
+**Candidate/work-unit boundary, not a Train-wide review budget:** The coordinator owns the canonical Standards + Spec review at the authorized implementation-candidate boundary (or explicitly accepted integrated candidate boundary). A clean review for one ticket/work unit does not consume, replace or waive the canonical review required for a different authorized candidate. Do not duplicate review of the same candidate/fixed point, or invent one for every screen or read-only QA checkpoint; read-only verification alone never grants write authority.
+
+**Correction budget belongs to each authorized ticket/work-unit envelope:** At most two fresh finding-scoped correction attempts apply to that envelope's findings, **not** to the entire Train. A PASS with no findings consumes zero attempts; attempts used in one envelope do not deplete another's allowance. Never reset the same repair's exhausted budget by renaming, splitting or relaunching it. A defect discovered during read-only QA remains evidence for a separately authorized correction unit when the existing envelope does not permit a write.
+
 Coordinators delegate using a **child-readable authority envelope**: prefer a repo-local durable handoff reference; when required authority is external/inaccessible, inline the compact phase-specific capsule from `CHILD_AUTHORITY_CAPSULE_V1.md`. Never require a child verdict to read `/outbox`, `/tmp`, another worktree or another denied external directory. Full handoff/policy duplication remains forbidden.
 
 ## Conditional safeguards
