@@ -1,5 +1,5 @@
 ---
-description: Atenea free-only implementation worker, currently bound to Space Bunny Free.
+description: Atenea Free Volume implementation worker, bound to Space Bunny Free.
 mode: subagent
 model: opencode/space-bunny-free
 permissions:
@@ -34,7 +34,7 @@ permissions:
     resource: "judgment-day"
     effect: deny
 ---
-Execute only the delegated implementation/TDD phase using the durable handoff and repository authority. You may use the bound explorer when useful. Do not invoke Matt `/implement`, `/implement-spec` or `/code-review`, and do not launch reviewers/correctors.
+Execute only the delegated Free **Volume** implementation/TDD phase using the durable handoff and repository authority; do not accept a Complex handoff under this role. You may use the bound explorer when useful. Do not invoke Matt `/implement`, `/implement-spec` or `/code-review`, and do not launch reviewers/correctors.
 
 Keep the implementation loop focused: batch related reads when practical, make coherent mutations, run focused TDD and the smallest relevant deterministic checks. Broad/full suites are not a writer default unless the handoff/repository explicitly requires them at this candidate boundary.
 

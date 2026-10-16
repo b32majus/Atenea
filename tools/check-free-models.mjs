@@ -4,7 +4,9 @@ import { spawnSync } from 'node:child_process';
 const required = [
   'opencode/muse-spark-1.3-contributor-free',
   'opencode/space-bunny-free',
-  'opencode/mimo-v2.6-flash-free'
+  'opencode/mimo-v2.6-flash-free',
+  'opencode/deepseek-v4.1-flash-free',
+  'opencode/glm-5.3-flash-free'
 ];
 
 const result = spawnSync('opencode', ['models'], { encoding: 'utf8' });

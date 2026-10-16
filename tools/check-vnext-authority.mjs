@@ -110,9 +110,11 @@ const agents = {
   'atenea-free.md': ['mode: primary', 'model: opencode/muse-spark-1.3-contributor-free'],
   'atenea-explorer-free.md': ['mode: subagent', 'model: opencode/mimo-v2.6-flash-free'],
   'atenea-implementer-free.md': ['mode: subagent', 'model: opencode/space-bunny-free'],
+  'atenea-implementer-free-complex.md': ['mode: subagent', 'model: opencode/glm-5.3-flash-free'],
   'atenea-merger-free.md': ['mode: subagent', 'model: opencode/mimo-v2.6-flash-free'],
-  'atenea-review-standards-free.md': ['mode: subagent', 'model: opencode/mimo-v2.6-flash-free'],
-  'atenea-review-spec-free.md': ['mode: subagent', 'model: opencode/mimo-v2.6-flash-free'],
+  'atenea-review-standards-free.md': ['mode: subagent', 'model: opencode/deepseek-v4.1-flash-free'],
+  'atenea-review-spec-free.md': ['mode: subagent', 'model: opencode/glm-5.3-flash-free'],
+  'atenea-review-spec-free-complex.md': ['mode: subagent', 'model: opencode/space-bunny-free'],
   'atenea-corrector-free-volume.md': ['mode: subagent', 'model: opencode/muse-spark-1.3-contributor-free'],
   'atenea-corrector-free-complex.md': ['mode: subagent', 'model: opencode/muse-spark-1.3-contributor-free'],
   'atenea-go.md': ['mode: primary', 'model: opencode-go/deepseek-v4.1-flash'],
@@ -136,7 +138,7 @@ for (const [name, tokens] of Object.entries(agents)) {
 for (const [coord, subs] of Object.entries({
   'atenea-volume.md': ['atenea-explorer','atenea-implementer-volume','atenea-merger','atenea-review-standards','atenea-review-spec-volume','atenea-corrector-volume'],
   'atenea-complex.md': ['atenea-explorer','atenea-implementer-complex','atenea-merger','atenea-review-standards','atenea-review-spec-complex','atenea-corrector-complex'],
-  'atenea-free.md': ['atenea-explorer-free','atenea-implementer-free','atenea-merger-free','atenea-review-standards-free','atenea-review-spec-free','atenea-corrector-free-volume','atenea-corrector-free-complex'],
+  'atenea-free.md': ['atenea-explorer-free','atenea-implementer-free','atenea-implementer-free-complex','atenea-merger-free','atenea-review-standards-free','atenea-review-spec-free','atenea-review-spec-free-complex','atenea-corrector-free-volume','atenea-corrector-free-complex'],
   'atenea-go.md': ['atenea-explorer-go','atenea-implementer-go','atenea-merger-go','atenea-review-standards-go','atenea-review-spec-go','atenea-corrector-go-volume','atenea-corrector-go-complex']
 })) {
   req(`.opencode/agents/${coord}`, 'action: edit', `${coord} edit permission declaration`);
@@ -147,7 +149,7 @@ for (const [coord, subs] of Object.entries({
 }
 
 // Implementers cannot own lifecycle/review.
-for (const name of ['atenea-implementer-volume.md','atenea-implementer-complex.md','atenea-implementer-free.md','atenea-implementer-go.md']) {
+for (const name of ['atenea-implementer-volume.md','atenea-implementer-complex.md','atenea-implementer-free.md','atenea-implementer-free-complex.md','atenea-implementer-go.md']) {
   const rel = `.opencode/agents/${name}`;
   req(rel, 'resource: "implement"\n    effect: deny', `${name} /implement denial`);
   req(rel, 'resource: "implement-spec"\n    effect: deny', `${name} /implement-spec denial`);
@@ -157,7 +159,7 @@ for (const name of ['atenea-implementer-volume.md','atenea-implementer-complex.m
 }
 
 // Reviewers remain read-only and repository-local.
-for (const name of ['atenea-review-standards.md','atenea-review-spec-volume.md','atenea-review-spec-complex.md','atenea-review-standards-free.md','atenea-review-spec-free.md','atenea-review-standards-go.md','atenea-review-spec-go.md']) {
+for (const name of ['atenea-review-standards.md','atenea-review-spec-volume.md','atenea-review-spec-complex.md','atenea-review-standards-free.md','atenea-review-spec-free.md','atenea-review-spec-free-complex.md','atenea-review-standards-go.md','atenea-review-spec-go.md']) {
   const rel = `.opencode/agents/${name}`;
   req(rel, 'resource: "git diff*"', `${name} diff allowlist`);
   req(rel, 'action: external_directory', `${name} external-directory isolation`);
@@ -171,7 +173,13 @@ for (const id of ['opencode-go/mimo-v2.6-flash','opencode-go/muse-spark-1.3-cont
   req('tools/check-go-models.mjs', `'${id}'`, 'Go runtime model literal');
 }
 req('tools/check-go-models.mjs', 'ATENEA_GO_MODEL_CHECK=FAIL', 'Go fail-closed marker');
-req('docs/ATENEA_FREE_MODEL_CATALOG_V0.md', '`opencode/space-bunny-free`', 'Free writer binding');
+for (const id of ['opencode/muse-spark-1.3-contributor-free','opencode/mimo-v2.6-flash-free','opencode/space-bunny-free','opencode/deepseek-v4.1-flash-free','opencode/glm-5.3-flash-free']) {
+  req('tools/check-free-models.mjs', `'${id}'`, `Free runtime required ID ${id}`);
+  req('docs/ATENEA_FREE_MODEL_CATALOG_V0.md', "`" + id + "`", `Free catalog ID ${id}`);
+}
+req('docs/ATENEA_EXECUTION_ROUTING_V0.md', 'atenea-implementer-free-complex', 'Free Complex writer binding');
+req('docs/ATENEA_EXECUTION_ROUTING_V0.md', 'atenea-review-spec-free-complex', 'Free Complex Spec binding');
+req('tools/check-free-models.mjs', 'ATENEA_FREE_MODEL_CHECK=FAIL', 'Free fail-closed marker');
 
 // V1 execution markers may remain in historical docs, never in current front-door surfaces.
 for (const rel of ['README.md','AGENTS.md','CONTEXT.md','docs/START_HERE.md','docs/ATENEA_HARNESS_CONTRACT_V1.md','docs/OPERATOR_RUNBOOK_V1.md','docs/vnext/CURRENT_COMPATIBILITY.md']) {
