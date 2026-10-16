@@ -1,7 +1,7 @@
 # Atenea Free Profile v0
 
-Status: **CURRENT COST-POLICY PROFILE — C-087; revised model bindings candidate, real Train canary pending**
-Date: 2026-10-06
+Status: **CURRENT COST-POLICY PROFILE — C-087; Free V2 Volume/Complex bindings human-approved**
+Date: 2026-10-16
 
 ## Purpose
 
@@ -32,14 +32,14 @@ A project may persist `cost_policy: free_only` in its accepted project authority
 
 Both risk classes enter through the visible `atenea-free` coordinator. The Cora-shaped handoff must state `Risk class: volume|complex`.
 
-`free_only + volume` uses the ordinary bounded C-084 loop with the Free bindings.
+`free_only + volume` uses the ordinary bounded C-084 loop with the human-approved Volume binding: Space Bunny Free implementation, DeepSeek V4.1 Free Standards, GLM 5.3 Flash Free Spec and a fresh Muse Free corrector when required.
 
-`free_only + complex` remains Free. It does **not** unlock paid models. Instead:
+`free_only + complex` remains Free, with GLM 5.3 Flash Free implementation, DeepSeek V4.1 Free Standards, Space Bunny Free Spec and a fresh Muse Free corrector. Both classes use the same Muse Free coordinator and MiMo Free explorer/merger; the explicit risk class decides the role-specific agents. It does **not** unlock paid models. Instead:
 
 - Cora shapes smaller/coherent work units when useful;
 - evidence follows the ordinary C-086 phase layering: focused writer proof, one canonical review, finding-scoped correction and final composed closeout when justified;
-- review closes the Free implementer's write phase; review findings go to fresh Free corrector sessions;
-- up to two fresh finding-scoped correction attempts are allowed; Volume and Complex use Muse Spark Free in separate corrector sessions, not the Space Bunny writer context;
+- review closes the risk-selected Free implementer's write phase; review findings go to fresh Free corrector sessions;
+- up to two fresh finding-scoped correction attempts are allowed; Volume and Complex use Muse Spark Free in separate corrector sessions, not the originating writer context;
 - a material composed result may still require Cora integrated audit before merge recommendation; `complex` alone does not mandate extra full suites or review passes;
 - unresolved model insufficiency, ambiguity, a new material issue or a blocker remaining after correction #2 is HUMAN STOP.
 
@@ -70,7 +70,7 @@ ATENEA_FREE_MODEL_CATALOG_V0.md  replaceable snapshot
 .opencode/agents/*free*.md       current bindings
 ```
 
-Before a Free train, `node tools/check-free-models.mjs` verifies exact bound model IDs visible to the installed OpenCode runtime. The revised Muse/MiMo/Space Bunny matrix remains a **candidate** pending a real Train canary; model visibility alone does not prove availability. Missing/unusable bindings require STOP, not fallback.
+Before a Free train, `node tools/check-free-models.mjs` verifies exact bound model IDs visible to the installed OpenCode runtime. The 2026-10-16 Free V2 Volume/Complex matrix is **human-approved for use without further bake-offs**, not certified to match paid-provider quality. Model visibility alone does not prove successful inference or lasting free availability. The selected project's agent copies must be synchronized at a clean unit boundary; missing/unusable bindings require STOP, not fallback.
 
 When free offers change, Cora may propose a new catalog/binding at a clean work boundary. Update and validate the snapshot before the next train; do not mutate routing mid-unit.
 

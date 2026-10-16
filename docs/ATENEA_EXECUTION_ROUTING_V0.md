@@ -40,7 +40,16 @@ Human/project authority owns cost policy. Cora recommends risk class from accept
 
 Free bindings: `docs/ATENEA_FREE_PROFILE_V0.md` + `docs/ATENEA_FREE_MODEL_CATALOG_V0.md`.
 
-Go bindings: `docs/ATENEA_GO_PROFILE_V0.md` + `docs/ATENEA_GO_MODEL_CATALOG_V0.md`. Go was **operationally qualified only with its prior bindings**. Revised Go/Free matrices are candidates and need separate field evidence, without inherited qualification. See `docs/ATENEA_GO_OPERATIONAL_QUALIFICATION_C087_20261010.md`. Neither profile has silent fallback.
+**Free V2 risk-specific bindings (human-approved 2026-10-16; one primary `atenea-free`):**
+
+| Free risk | Implementer | Standards | Spec | Corrector |
+| --- | --- | --- | --- | --- |
+| `volume` | `atenea-implementer-free` (Space Bunny Free) | `atenea-review-standards-free` (DeepSeek V4.1 Free) | `atenea-review-spec-free` (GLM 5.3 Flash Free) | `atenea-corrector-free-volume` (Muse Free) |
+| `complex` | `atenea-implementer-free-complex` (GLM 5.3 Flash Free) | `atenea-review-standards-free` (DeepSeek V4.1 Free) | `atenea-review-spec-free-complex` (Space Bunny Free) | `atenea-corrector-free-complex` (Muse Free) |
+
+Both use Muse Free coordination and MiMo Free exploration/merger. Cora/human own `risk_class`; missing/ambiguous risk is HUMAN STOP. No change to Matt review/correction budgets, no additional reviewers, no fallback and no in-flight reassignment.
+
+Go bindings: `docs/ATENEA_GO_PROFILE_V0.md` + `docs/ATENEA_GO_MODEL_CATALOG_V0.md`. Go was **operationally qualified only with its prior bindings**. The revised Go matrix still needs separate field evidence; Free V2 is human-approved for use without additional bake-offs but must not inherit paid/NaN endpoint qualification. See `docs/ATENEA_GO_OPERATIONAL_QUALIFICATION_C087_20261010.md`. Neither profile has silent fallback.
 
 ### Experimental OpenAI opt-in (post-C-087 field trial; not qualified)
 
@@ -53,9 +62,9 @@ The human may select `cost_policy: openai_experimental` at a **clean** work-unit
 
 Both reuse NaN MiMo coordinator, NaN Qwen 3.8 explorer and MiMo merger. Standards is NaN DeepSeek V4 Flash in Sprint and NaN GLM 5.3 Flash High in Frontier. See `docs/ATENEA_OPENAI_EXPERIMENTAL_PROFILE_V0.md` for the exact seven-role map, preflight, limitations and field-evidence requirements. No silent fallback or mid-run profile switch.
 
-## Go/Free candidate boundary (2026-10-12)
+## Go candidate / Free V2 human-approved boundary (2026-10-16)
 
-Standard Volume/Complex and experimental OpenAI model bindings are unchanged. The new Go/Free role assignments are detailed in their profile and catalog documents; no active Train may change models mid-unit. The project-local `.opencode/agents` must be reconciled with the approved Atenea version before launch: updating Atenea alone does not update another project's copied agents.
+Standard Volume/Complex and experimental OpenAI model bindings are unchanged. Go remains a pending candidate; Free V2 Volume and Complex are explicitly human-approved. Exact routing is in each replaceable catalog and native agents. No active Train may change models mid-unit. The project-local `.opencode/agents` must be reconciled with the approved Atenea version before launch: updating Atenea alone does not update another project's copied agents.
 
 A merger handles mechanical/fast-forward integration only; a material semantic conflict requires HUMAN STOP and Cora/human adjudication even if Git reports a clean merge. An exceptional GLM intervention requires explicit human authorization, never automatic fallback, and Free must not use paid routes absent separately approved cost-policy change. Up to two fresh finding-scoped correction attempts; coordinator and corrector sharing one model family is allowed only as distinct role sessions.
 
