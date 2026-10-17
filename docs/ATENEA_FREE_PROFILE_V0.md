@@ -45,6 +45,13 @@ Both risk classes enter through the visible `atenea-free` coordinator. The Cora-
 
 Complexity may make Cora recommend the paid Complex route, but the recommendation never overrides `free_only` human authority.
 
+## Conditional Free Visual/UX lane (2026-10-17)
+
+Cora + human fix `Implementation focus: technical|visual|mixed` and `UI impact: none|quality|fidelity` before launch. These are **orthogonal** to `risk_class`; they do not change the existing Free writer model or cost-policy. A material rendered UI impact dispatches the read-only `atenea-review-visual-free` on the same fixed candidate **in addition to** the canonical Matt Standards + Spec pair; a non-UI ticket skips it. Visual evidence is captured and compared against exact frozen approved master (`fidelity`) or accepted project visual-system rules (`quality`), never the model's aesthetic taste.
+
+Reviewers share the existing max two fresh finding-scoped corrections per work unit; this does not change Matt or automatically waive the Cora + human product checkpoint. Full bounded contract: `docs/ATENEA_FREE_VISUAL_UX_ROUTING_V1.md`. Availability of the conditional Nemotron Free endpoint is checked with `node tools/check-free-models.mjs --visual`; ordinary Free-only `none` units do not need that model.
+
+
 ## Execution boundary
 
 Launch remains native OpenCode V2 in the already-running Herdr workspace:

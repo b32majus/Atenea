@@ -1,7 +1,7 @@
 # Atenea Free model catalog v0 — Free V2 Volume/Complex bindings
 
 Status: **CURRENT HUMAN-APPROVED FREE BINDINGS — promotion without additional model-quality bake-off**
-Snapshot: 2026-10-16
+Snapshot: 2026-10-17 (Visual/UX conditional addendum; core risk-class model pins remain 2026-10-16)
 Runtime observed: OpenCode V2 `2.0.29`; exact IDs visible via `opencode models`.
 
 This is the **replaceable binding snapshot**, not a new lifecycle or a quality-equivalence certification. Free availability is promotional and may change. The human explicitly approved both Free risk-class routes on 2026-10-16, without further comparative tests. No automatic fallback or mid-unit model rotation.
@@ -19,6 +19,9 @@ This is the **replaceable binding snapshot**, not a new lifecycle or a quality-e
 | merger `atenea-merger-free` | `opencode/mimo-v2.6-flash-free` | same |
 | integrated audit | Cora when material | Cora when material |
 
+**Free-only conditional Visual/UX overlay (approved 2026-10-17):** `atenea-review-visual-free` → `opencode/nemotron-3.5-super-vl-free`. Dispatch only when the Cora-accepted handoff has `UI impact: quality|fidelity` and pixel evidence is available. No dispatch for `UI impact: none`. The existing risk-class implementers are both image-capable in the isolated 2026-10-17 laboratory, but Space Bunny had stronger fidelity evidence; GLM saw images yet timed out on the visual fixture. No new general-purpose writer model or automatic risk override is introduced. Details: `docs/ATENEA_FREE_VISUAL_UX_ROUTING_V1.md`.
+
+
 Both logical routes use **one visible primary agent**, `atenea-free`, which dispatches the risk-specific agents from the accepted handoff. In Volume, the Space Bunny writer is independent from GLM Spec and DeepSeek Standards. In Complex, the GLM writer is independent from Space Bunny Spec and DeepSeek Standards. Same-model reuse across *different* work units is not in-session reviewer/writer reuse.
 
 ## Evidence versus approved selection
@@ -27,10 +30,13 @@ Both logical routes use **one visible primary agent**, `atenea-free`, which disp
 - The real-world T6 shadow review of DeepSeek on 2026-10-15 was **NOT_EVALUABLE** because OpenCode standalone failed before session creation, including a MiMo control. It cannot be scored as model failure or success.
 - GLM 5.3 Flash Free was directly visible in OpenCode on 2026-10-16; the user elected to approve its Complex implementation and Volume Spec assignments from experience **without a new benchmark**. Do not claim their Free endpoint is field-qualified by the paid NaN variant.
 - The originally accepted C-087 evidence budgets, one canonical Standards+Spec pair per accepted candidate, at most two fresh finding-scoped correctors and Cora/human product/merge authority are unchanged.
+- The separate blind visual A/B experiment on 2026-10-17 (`/srv/kairos-lab/qualification/atenea-vision-blind-ab-20261017/RESULTS.md`) showed Space Bunny using pixels obtained better fidelity on one fixture (MAE 3.049, timeout 420 s) than a text-only Nemotron handoff (MAE 15.621; Nemotron 78 s + Space Bunny 53 s). Evidence is **N=1**, no claim of general model ranking. Nemotron 3.5 Super VL Free also detected material layout drift and passed an identical-image control in a separate isolated fixture.
+- **Known unresolved availability blocker (2026-10-17):** Muse Spark 1.3 Free has been removed from the Free catalog, while the coordinator/two correctors still pin its historical ID. Those bindings remain deliberately unchanged in this Visual/UX-only change pending a separately authorized Free model-rotation decision; model preflight MUST STOP. Do not treat adding Nemotron as repairing the Muse loss.
+
 
 ## Preflight and rotation
 
-Before a fresh Free Train, run `node tools/check-free-models.mjs`: this validates **model identifiers visible to OpenCode**, not inference/quality, endpoint stability or zero-retention. All agents in the target project's `.opencode/agents` must be synchronized from this accepted Atenea revision at a clean work boundary. The accepted cost policy and risk class must be explicit and respected.
+Before a fresh Free Train, run `node tools/check-free-models.mjs`: this validates **model identifiers visible to OpenCode**, not inference/quality, endpoint stability or zero-retention. For a unit with `UI impact: quality|fidelity`, use `node tools/check-free-models.mjs --visual` so Nemotron's conditional Free binding is also checked; backend-only units do not require the optional visual endpoint. All agents in the target project's `.opencode/agents` must be synchronized from this accepted Atenea revision at a clean work boundary. The accepted cost policy and risk class must be explicit and respected.
 
 Exact bound model IDs:
 
