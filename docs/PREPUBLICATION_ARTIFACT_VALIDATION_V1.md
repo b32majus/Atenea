@@ -18,7 +18,7 @@ Missing required validation is explicit evidence and may be a STOP condition. It
 
 ## Phase ownership
 
-This is a **final candidate/publication boundary**, not a checklist to copy into every writer work unit. Writers run focused evidence for their slice. Run these changed-artifact/composed checks once on the candidate that is actually being considered for publication, except where repository authority explicitly requires an earlier validator.
+This is a **final candidate/publication boundary**, not a checklist to copy into every writer work unit. A unit-level implementation/visual GO is **not** integration or publication GO. Reconcile any **already-known material affected consumers**, such as shared test helpers still expecting the old approved UI behavior, and require the corresponding composed/CI evidence before claiming integration readiness. A materially red required integration test remains an explicit blocker until resolved or authoritatively adjudicated; do not conceal it as a harmless visual-only debt. No blanket new test suite or additional gate is created. Writers run focused evidence for their slice. Run these changed-artifact/composed checks once on the candidate that is actually being considered for publication, except where repository authority explicitly requires an earlier validator.
 
 ## 2. Required pre-publication sequence
 

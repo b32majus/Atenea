@@ -37,7 +37,7 @@ Confirm only:
 6. publication boundary;
 7. `Conditional safeguards: NONE` or the explicitly triggered named safeguard(s).
 
-For `free_only` or `go`, run the profile model-presence checker from canonical Atenea when required. For the explicitly human-selected OpenAI Sprint/Frontier `openai_experimental` route, follow `docs/ATENEA_OPENAI_EXPERIMENTAL_PROFILE_V0.md` and verify the exact project-local agent/model bindings and OAuth/NaN access at a clean boundary. A missing binding is STOP, not permission to improvise a fallback. For NEW human-activated OpenAI tickets additionally include the five standard visual-classification/evidence fields (`Implementation focus`, `UI impact`, `Visual authority`, `Visual viewport/state`, `Visual witness`), even when `UI impact: none`. Use `tools/check-experimental-openai-visual-handoff.mjs` from the target project worktree. It does not override mandatory human activation. `quality|fidelity` triggers one conditional read-only visual child; `none` skips. See `docs/ATENEA_OPENAI_VISUAL_UX_ROUTING_V1.md`.
+Verify only the selected cost-policy/risk route and current **project-local** bindings; run the profile model-presence/preflight checker when required. OpenAI Sprint/Frontier is operative **only with explicit human activation per clean work unit**; its historical machine key remains `openai_experimental`. Missing or conflicting binding/authority is HUMAN STOP, not fallback or an improvised mid-unit profile switch. New Free, Standard and human-activated OpenAI units must supply the profile's seven canonical routing/visual fields even if `UI impact: none`; use the one applicable validator and profile-specific visual contract below. Go has no third Visual/UX axis.
 
 Do not make the coordinator repair stale launch state. Do not ask the human to repeat facts already durable in repository authority.
 
@@ -50,7 +50,7 @@ Bash:
 cd <prepared-worktree>
 opencode .
 
-Agent: <default atenea-volume | atenea-complex | atenea-free | atenea-go | experimental atenea-openai-sprint | experimental atenea-openai-frontier>
+Agent: <default atenea-volume | atenea-complex | atenea-free | atenea-go | human-activated atenea-openai-sprint | human-activated atenea-openai-frontier>
 
 Prompt:
 Read @<durable-handoff-path> and execute it under current repository/Atenea authority.
@@ -87,10 +87,15 @@ Open material product questions: NONE.
 
 For material human-facing work, `Authority refs` may point to the accepted interaction/product authority. Do not paste the human-product method into the execution handoff.
 
-**For NEW `cost_policy: free_only` units only (2026-10-17):** include `Implementation focus: technical|visual|mixed`, `UI impact: none|quality|fidelity`, `Visual authority: NONE|repo-local-ref`, `Visual viewport/state: NONE|named-screen-state-viewport` and `Visual witness: NONE|bounded-browser-capture-recipe`. Cora decides the classification; `node tools/check-free-visual-handoff.mjs <handoff.md>` checks its explicit coherence without invoking a model. See `docs/ATENEA_FREE_VISUAL_UX_ROUTING_V1.md`; Standard has its own amendment below; Go remains unchanged.
+**Visual/UX only for NEW Free, Standard or human-activated OpenAI units:** Cora fixes `Implementation focus`, `UI impact`, `Visual authority`, `Visual viewport/state` and `Visual witness`, alongside `Cost policy` and `Risk class`. The canonical profile contracts own the exact values, accepted real pixels, privacy conditions and conditional read-only reviewer:
 
-**For NEW `cost_policy: standard` units (2026-10-17):** additionally name `Implementation focus: technical|visual|mixed`, `UI impact: none|quality|fidelity`, `Visual authority: NONE|repo-local-ref`, `Visual viewport/state: NONE|screen/state/viewport`, and `Visual witness: NONE|bounded browser capture`. Cora sets these before launch. From the target worktree validate with `node /srv/kairos-lab/Atenea/tools/check-standard-visual-handoff.mjs <handoff.md>`. Visual impact adds one read-only Luna High evidence axis on the SAME fixed candidate, not another Matt review or correction budget. DeepSeek Volume and GLM Flash High Complex remain unchanged. See `docs/ATENEA_STANDARD_VISUAL_UX_ROUTING_V1.md`; Go and the separately governed OpenAI route unchanged.
+| Profile | Canonical validator, invoked from target worktree | Visual contract |
+| --- | --- | --- |
+| Free | `node /srv/kairos-lab/Atenea/tools/check-free-visual-handoff.mjs <handoff.md>` | `docs/ATENEA_FREE_VISUAL_UX_ROUTING_V1.md` |
+| Standard | `node /srv/kairos-lab/Atenea/tools/check-standard-visual-handoff.mjs <handoff.md>` | `docs/ATENEA_STANDARD_VISUAL_UX_ROUTING_V1.md` |
+| OpenAI human-activated (legacy key) | `node /srv/kairos-lab/Atenea/tools/check-experimental-openai-visual-handoff.mjs <handoff.md>` | `docs/ATENEA_OPENAI_VISUAL_UX_ROUTING_V1.md` |
 
+Use a verified repo-local validator path if installed rather than assuming the example absolute location. `UI impact: none` requires three visual fields `NONE`; `quality|fidelity` adds only the profile-authorized Visual/UX axis on the same frozen candidate. No extra Matt review/correction budget. Go unchanged.
 
 The implementer owns ordinary local mechanics inside the envelope. If execution discovers a material decision or affected surface outside it, STOP and report the concrete issue; do not broaden the unit.
 
@@ -122,16 +127,16 @@ A broad/full repository suite is not a default writer requirement merely because
 ### Finding-scoped corrections
 
 ```text
-Finding: <specific defect>.
-Required correction: <observable target state>.
-Allowed surface: <bounded files/components/seams when useful>.
-Do not change: <nearby behavior to preserve>.
+Finding + verified cause: <specific defect and supporting evidence>.
+Required edit if diagnosed: <exact file/function/anchor and what to insert/remove/replace, with literal diff if known>.
+Allowed surface: <exact writable files/components, known direct consumers only>.
+Do not change: <protected behavior/DO NOT TOUCH>.
 Conditional safeguard/evidence: <only if the finding explicitly requires it>.
 Evidence to close: <focused deterministic proof>.
 Stop: <condition requiring HUMAN STOP>.
 ```
 
-Never send “fix the PR”, “improve everything” or “clean up what you see”. Correctors do not search for sibling defects by default. A reviewer/Cora finding may explicitly open a new bounded unit if a sibling problem is material.
+Use `docs/CHILD_AUTHORITY_CAPSULE_V1.md` and `docs/PROMOTION_REVIEW_V1.md` to carry a known safe edit without another diagnosis. If the safe edit is unknown, request only a bounded diagnostic. Never send “fix the PR”, “improve everything” or “clean up what you see”. Correctors do not search for sibling defects by default. A reviewer/Cora finding may explicitly open a new bounded unit if a sibling problem is material.
 
 ## STOP conditions
 

@@ -240,6 +240,16 @@ req('docs/CORA_TICKET_TRAIN_PREPARATION_PROMPT_C087.md', 'READY_TO_LAUNCH', 'Cor
 req('docs/CORA_TICKET_TRAIN_PREPARATION_PROMPT_C087.md', 'activación humana', 'OpenAI user authorization in preparation');
 req('docs/CORA_TICKET_TRAIN_PREPARATION_PROMPT_C087.md', 'tools/check-experimental-openai-visual-handoff.mjs', 'stable legacy validator entry');
 
+// C-087 preparation ownership: guard against old known-consumer, visual-fixture and routing gaps.
+req('docs/PRE_EXECUTION_HARDENING_V1.md', 'shared test helpers', 'known direct test consumers in prelaunch proof');
+req('docs/PRE_EXECUTION_HARDENING_V1.md', 'existing usable child-readable capture recipe', 'material visual witness readiness');
+req('docs/CORA_TICKET_TRAIN_PREPARATION_PROMPT_C087.md', 'intercalación relevante', 'temporal falsifier retained');
+req('docs/EXECUTION_REQUEST_AND_PREFLIGHT_V1.md', 'human-activated atenea-openai-sprint', 'OpenAI operational route not mislabeled experimental');
+req('docs/ATENEA_EXECUTION_ROUTING_V0.md', 'Mid-unit human route requests', 'human override requires fixed-boundary reconciliation');
+req('docs/C087_THIN_WRITER_REVIEW_AND_EVIDENCE_RECOVERY_20261017.md', 'Incomplete is not unfinished', 'premature visual INCOMPLETE prevented');
+req('docs/PREPUBLICATION_ARTIFACT_VALIDATION_V1.md', 'unit-level implementation/visual GO', 'integration separate from unit acceptance');
+
+
 req('docs/START_HERE.md', 'openai_experimental', 'experimental front door');
 req('docs/ATENEA_EXECUTION_ROUTING_V0.md', 'openai_experimental', 'experimental route');
 
