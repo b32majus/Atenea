@@ -20,6 +20,8 @@ This file maps roles to project-local native OpenCode V2 agents. It does not dup
 
 The NaN provider ID `nan/deepseek-v4-flash` is intentionally retained even when the provider backend serves a newer compatible implementation under that stable ID.
 
+**Standard conditional Visual/UX (2026-10-17):** human-authorized Standard units classified `UI impact: quality|fidelity` call `atenea-review-visual-standard` (GPT-6 Luna High), once on the same fixed candidate alongside the canonical Matt Standards+Spec pair. `none` skips the visual agent. Risk-bound writer, reviewer bindings, correction budget, product authority, and Go/Free remain unchanged. Details: `docs/ATENEA_STANDARD_VISUAL_UX_ROUTING_V1.md`.
+
 ## Routing dimensions
 
 ```text

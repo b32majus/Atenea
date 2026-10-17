@@ -6,6 +6,12 @@ This file preserves accepted decision provenance. **C-087 is the current executi
 
 Historical `docs/DECISIONS.md`, Stage files, old run recipes and pre-vNext field evidence remain valuable provenance, but they do not define the current execution path.
 
+## Post-C-087 Standard Visual/UX conditional evidence — 2026-10-17
+
+**Human-authorized after a bounded Standard DeepSeek-vs-GLM Flash study.** Cora fixes new Standard handoffs as `Implementation focus: technical|visual|mixed` and `UI impact: none|quality|fidelity`. A rendered UI impact requires one fresh, read-only GPT-6 Luna High Visual/UX session against the SAME fixed candidate in addition to Matt's Standards+Spec pair, with shared existing correction budget. Standard Volume DeepSeek, Complex GLM 5.3 Flash High, Standards/Spec and corrector models remain unchanged. No Jev/d1-ultra, automatic risk rerouting or fallback. See `docs/ATENEA_STANDARD_VISUAL_UX_ROUTING_V1.md`.
+
+The 2026-10-17 synthetic comparison (`/srv/kairos-lab/qualification/atenea-standard-dsvs-glmflash-20261017/RESULTADOS.md`) gave both writers 49/49 semantic tests, DeepSeek faster; DeepSeek had greater pixel fidelity but timed out on the visual fixture, while GLM completed with a larger deviation. Not evidence to replace Complex. Product worktrees require separate sync at clean launch boundaries.
+
 ## Post-C-087 Free-only Visual/UX conditional evidence — 2026-10-17
 
 **Accepted by the human after attended discussion and isolated blind screenshots comparison; scoped to Free only.** Cora/human fix the implementation focus (`technical|visual|mixed`) and UI-impact class (`none|quality|fidelity`) before the new unit launches. This selects image-evidence obligations and optionally a read-only Nemotron 3.5 Super VL visual reviewer against the **same accepted fixed candidate**; it does **not** alter the canonical Matt Standards+Spec pair, two-correction budget, risk-bound writer model, or Standard/Go/OpenAI routes. `none` skips visual review entirely. A design-unknown or image-transport-unsupported situation STOPs rather than claiming PASS. No Jev/d1-ultra decider: Cora makes the routing classification during attended ticket shaping, with a deterministic validation only.
