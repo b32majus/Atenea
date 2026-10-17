@@ -105,6 +105,7 @@ const agents = {
   'atenea-review-standards.md': ['mode: subagent', 'model: openai/gpt-6-luna#high'],
   'atenea-review-spec-volume.md': ['mode: subagent', 'model: openai/gpt-6-luna#high'],
   'atenea-review-spec-complex.md': ['mode: subagent', 'model: openai/gpt-6.1-sol#high'],
+  'atenea-review-visual-standard.md': ['mode: subagent', 'model: openai/gpt-6-luna#high'],
   'atenea-corrector-volume.md': ['mode: subagent', 'model: nan/deepseek-v4-flash'],
   'atenea-corrector-complex.md': ['mode: subagent', 'model: nan/glm5.3-flash#high'],
   'atenea-free.md': ['mode: primary', 'model: opencode/mimo-v2.6-flash-free'],
@@ -137,8 +138,8 @@ for (const [name, tokens] of Object.entries(agents)) {
 
 // Coordinators are orchestration-only and can dispatch only their declared family.
 for (const [coord, subs] of Object.entries({
-  'atenea-volume.md': ['atenea-explorer','atenea-implementer-volume','atenea-merger','atenea-review-standards','atenea-review-spec-volume','atenea-corrector-volume'],
-  'atenea-complex.md': ['atenea-explorer','atenea-implementer-complex','atenea-merger','atenea-review-standards','atenea-review-spec-complex','atenea-corrector-complex'],
+  'atenea-volume.md': ['atenea-explorer','atenea-implementer-volume','atenea-merger','atenea-review-standards','atenea-review-spec-volume','atenea-review-visual-standard','atenea-corrector-volume'],
+  'atenea-complex.md': ['atenea-explorer','atenea-implementer-complex','atenea-merger','atenea-review-standards','atenea-review-spec-complex','atenea-review-visual-standard','atenea-corrector-complex'],
   'atenea-free.md': ['atenea-explorer-free','atenea-implementer-free','atenea-implementer-free-complex','atenea-merger-free','atenea-review-standards-free','atenea-review-spec-free','atenea-review-spec-free-complex','atenea-review-visual-free','atenea-corrector-free-volume','atenea-corrector-free-complex'],
   'atenea-go.md': ['atenea-explorer-go','atenea-implementer-go','atenea-merger-go','atenea-review-standards-go','atenea-review-spec-go','atenea-corrector-go-volume','atenea-corrector-go-complex']
 })) {
@@ -193,6 +194,23 @@ req('.opencode/agents/atenea-free.md', 'UI impact: none|quality|fidelity', 'Free
 req('.opencode/agents/atenea-free.md', 'atenea-review-visual-free', 'Free visual conditional dispatch');
 req('.opencode/agents/atenea-free.md', 'EXISTING maximum two', 'Free shared correction budget');
 req('docs/ATENEA_FREE_VISUAL_UX_ROUTING_V1.md', 'INCOMPLETE_VISUAL_EVIDENCE', 'Free visual missing media fails closed');
+// Standard third axis: conditional, read-only and bounded to the same fixed candidate.
+for (const token of ['action: edit\n    resource: "*"\n    effect: deny',
+                     'action: shell\n    resource: "*"\n    effect: deny',
+                     'action: subagent\n    resource: "*"\n    effect: deny',
+                     'action: external_directory\n    resource: "*"\n    effect: deny',
+                     'INCOMPLETE_VISUAL_EVIDENCE']) {
+  req('.opencode/agents/atenea-review-visual-standard.md', token, 'Standard visual read-only');
+}
+for (const coord of ['atenea-volume.md','atenea-complex.md']) {
+  req('.opencode/agents/'+coord, 'atenea-review-visual-standard', 'Standard optional visual delegation');
+  req('.opencode/agents/'+coord, 'UI impact: none|quality|fidelity', 'Cora UI classification');
+  req('.opencode/agents/'+coord, 'EXISTING maximum two', 'Shared existing correction budget');
+}
+req('tools/check-standard-visual-handoff.mjs','validateStandardVisualHandoff','Standard deterministic preflight');
+req('tools/test-standard-visual-handoff.mjs','ATENEA_STANDARD_VISUAL_HANDOFF_TEST=PASS','Standard route tests');
+req('docs/ATENEA_STANDARD_VISUAL_UX_ROUTING_V1.md','INCOMPLETE_VISUAL_EVIDENCE','Standard pixel evidence fail-closed');
+
 req('tools/check-free-models.mjs', "'--visual'", 'visual model preflight conditional option');
 req('tools/check-free-models.mjs', "'opencode/nemotron-3.5-super-vl-free'", 'visual model ID');
 

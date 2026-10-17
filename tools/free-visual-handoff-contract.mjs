@@ -7,7 +7,7 @@ const required = [
   'Visual authority', 'Visual viewport/state', 'Visual witness'
 ];
 const values = {
-  'Cost policy': ['free_only'],
+  'Cost policy': ['free_only', 'standard'],
   'Risk class': ['volume', 'complex'],
   'Implementation focus': ['technical', 'visual', 'mixed'],
   'UI impact': ['none', 'quality', 'fidelity']
@@ -45,9 +45,14 @@ function parseFields(markdown) {
   }
   return data;
 }
-function validateFreeVisualHandoff(markdown, repoRoot) {
+function validateVisualHandoff(markdown, repoRoot, costPolicy) {
+  if (!['free_only', 'standard'].includes(costPolicy)) error('unsupported visual handoff cost policy');
+
   const root = path.resolve(repoRoot);
   const fields = parseFields(markdown);
+  if (fields['Cost policy'] !== costPolicy) {
+    error(`invalid Cost policy value: ${fields['Cost policy']}; expected ${costPolicy}`);
+  }
   const focus = fields['Implementation focus'];
   const impact = fields['UI impact'];
   if (['visual','mixed'].includes(focus) && impact === 'none') {
@@ -93,22 +98,38 @@ function validateFreeVisualHandoff(markdown, repoRoot) {
       if (!hasPng) error('fidelity requires a frozen approved PNG rendering (HTML alone is insufficient)');
     }
   }
-  const writer = fields['Risk class'] === 'volume'
-    ? 'atenea-implementer-free' : 'atenea-implementer-free-complex';
-  const spec = fields['Risk class'] === 'volume'
-    ? 'atenea-review-spec-free' : 'atenea-review-spec-free-complex';
-  const corrector = fields['Risk class'] === 'volume'
-    ? 'atenea-corrector-free-volume' : 'atenea-corrector-free-complex';
+  const complex = fields['Risk class'] === 'complex';
+  const routes = costPolicy === 'free_only'
+    ? {
+        implementer: complex ? 'atenea-implementer-free-complex' : 'atenea-implementer-free',
+        standards: 'atenea-review-standards-free',
+        spec: complex ? 'atenea-review-spec-free-complex' : 'atenea-review-spec-free',
+        visual: 'atenea-review-visual-free',
+        corrector: complex ? 'atenea-corrector-free-complex' : 'atenea-corrector-free-volume'
+      }
+    : {
+        implementer: complex ? 'atenea-implementer-complex' : 'atenea-implementer-volume',
+        standards: 'atenea-review-standards',
+        spec: complex ? 'atenea-review-spec-complex' : 'atenea-review-spec-volume',
+        visual: 'atenea-review-visual-standard',
+        corrector: complex ? 'atenea-corrector-complex' : 'atenea-corrector-volume'
+      };
   return {
-    schema: 'atenea.free.visual-handoff/v1',
+    schema: costPolicy === 'standard' ? 'atenea.standard.visual-handoff/v1' : 'atenea.free.visual-handoff/v1',
     implementation_focus: focus,
     ui_impact: impact,
-    implementer: writer,
-    reviewers: ['atenea-review-standards-free',spec,...(impact === 'none' ? [] : ['atenea-review-visual-free'])],
-    corrector,
+    implementer: routes.implementer,
+    reviewers: [routes.standards, routes.spec, ...(impact === 'none' ? [] : [routes.visual])],
+    corrector: routes.corrector,
     max_fresh_corrections: 2,
     requires_visual_pixels: impact !== 'none',
     visual_authority: fields['Visual authority']
   };
 }
-export { parseFields, repoPath, validateFreeVisualHandoff };
+function validateFreeVisualHandoff(markdown, repoRoot) {
+  return validateVisualHandoff(markdown, repoRoot, 'free_only');
+}
+function validateStandardVisualHandoff(markdown, repoRoot) {
+  return validateVisualHandoff(markdown, repoRoot, 'standard');
+}
+export { parseFields, repoPath, validateFreeVisualHandoff, validateStandardVisualHandoff };
