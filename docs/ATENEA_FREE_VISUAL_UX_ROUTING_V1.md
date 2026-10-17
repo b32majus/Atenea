@@ -63,7 +63,7 @@ node <updated-Atenea-checkout>/tools/check-free-visual-handoff.mjs docs/handoffs
 ```
 The checker only validates the accepted classification and referenced evidence plan; it cannot inspect the resulting future screenshot or judge the interface. No Jev/d1-ultra scoring, threshold/router process or automatic model switch.
 
-For a UI-impact Free unit, first check `node tools/check-free-models.mjs --visual`. For `none`, use the ordinary Free model preflight only. Free endpoints can disappear; availability and actual image transport must be verified before a real UI Train. **As of this decision, the retired Muse Spark Free coordinator/correctors remain a separate unresolved blocker.**
+For a UI-impact Free unit, first check `node tools/check-free-models.mjs --visual`. For `none`, use the ordinary Free model preflight only. Free endpoints can disappear; availability and actual image transport must be verified before a real UI Train. **The retired Muse Spark Free coordinator/corrector bindings were replaced by explicit human-approved MiMo/GLM/DeepSeek Free assignments on 2026-10-17; preflight still fails closed if any bound endpoint disappears.**
 
 ## Representative handoff snippets
 

@@ -1,7 +1,7 @@
 ---
 description: Atenea free-only coordinator. Orchestrates bounded work using only the current zero-cost bindings; never authors repository changes directly.
 mode: primary
-model: opencode/muse-spark-1.3-contributor-free
+model: opencode/mimo-v2.6-flash-free
 permissions:
   - action: edit
     resource: "*"
@@ -60,10 +60,10 @@ Own the Matt lifecycle. Resolve the explicit `Risk class: volume|complex` from t
 
 | Accepted risk | Implementer | Standards | Spec | Fresh finding-scoped corrector |
 | --- | --- | --- | --- | --- |
-| `volume` | `atenea-implementer-free` (Space Bunny Free) | `atenea-review-standards-free` (DeepSeek V4.1 Free) | `atenea-review-spec-free` (GLM 5.3 Flash Free) | `atenea-corrector-free-volume` (Muse Free) |
-| `complex` | `atenea-implementer-free-complex` (GLM 5.3 Flash Free) | `atenea-review-standards-free` (DeepSeek V4.1 Free) | `atenea-review-spec-free-complex` (Space Bunny Free) | `atenea-corrector-free-complex` (Muse Free) |
+| `volume` | `atenea-implementer-free` (Space Bunny Free) | `atenea-review-standards-free` (DeepSeek V4.1 Free) | `atenea-review-spec-free` (GLM 5.3 Flash Free) | `atenea-corrector-free-volume` (GLM 5.3 Flash Free) |
+| `complex` | `atenea-implementer-free-complex` (GLM 5.3 Flash Free) | `atenea-review-standards-free` (DeepSeek V4.1 Free) | `atenea-review-spec-free-complex` (Space Bunny Free) | `atenea-corrector-free-complex` (DeepSeek V4.1 Free) |
 
-Explorer and merger remain `atenea-explorer-free` / `atenea-merger-free` (MiMo 2.6 Free) for both risk classes. Never mix the Volume and Complex writer/Spec pairs within a work unit. Delegate implementation/TDD only to the selected implementer, receive its fixed candidate, then run exactly one canonical Matt Standards + Spec review with the selected roles. Use only the selected fresh corrector for concrete findings. `/implement-spec` retains its one final integration review. Human-approved model bindings do not grant model fallback.
+Coordinator, explorer and merger now use MiMo 2.6 Free in fresh, role-isolated sessions for both risk classes; sharing the model family is not shared context. Never mix the Volume and Complex writer/Spec pairs within a work unit. Delegate implementation/TDD only to the selected implementer, receive its fixed candidate, then run exactly one canonical Matt Standards + Spec review with the selected roles. Use only the selected fresh corrector for concrete findings; correctors always have fresh contexts, including when they share a model family with the Spec (Volume) or Standards (Complex) reviewer. `/implement-spec` retains its one final integration review. Human-approved model bindings do not grant model fallback.
 
 **Free-only visual capability overlay, deterministic from the Cora-accepted handoff:** require `Implementation focus: technical|visual|mixed` and `UI impact: none|quality|fidelity`, with visual authority, representative screen/state/viewport and screenshot witness when UI impact is material. Read the compact `docs/ATENEA_FREE_VISUAL_UX_ROUTING_V1.md` only when applying this Free overlay:
 - `none`: NO visual reviewer. A technical/backend-only unit does not trigger an image audit.

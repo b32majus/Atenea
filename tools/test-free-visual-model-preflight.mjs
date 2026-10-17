@@ -7,7 +7,6 @@ import { spawnSync } from 'node:child_process';
 const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'atenea-free-visual-model-'));
 const checker = new URL('./check-free-models.mjs', import.meta.url);
 const core = [
- 'opencode/muse-spark-1.3-contributor-free',
  'opencode/space-bunny-free',
  'opencode/mimo-v2.6-flash-free',
  'opencode/deepseek-v4.1-flash-free',
@@ -24,7 +23,7 @@ try {
  assert.equal(run(core,[]).status,0,'core-only should NOT need conditional Nemotron');
  assert.equal(run(core,['--visual']).status,1,'visual route missing Nemotron must stop');
  assert.equal(run([...core,vision],['--visual']).status,0,'visual route with all models must pass');
- assert.equal(run([...core.slice(1),vision],[]).status,1,'missing coordinator model must fail even if visual reviewer is available');
+ assert.equal(run([...core.filter(x=>x!=='opencode/mimo-v2.6-flash-free'),vision],[]).status,1,'missing coordinator/explorer/merger MiMo model must fail even if visual reviewer is available');
  assert.equal(run([...core,vision],['--paid']).status,2,'unknown preflight flag must fail');
  console.log('ATENEA_FREE_VISUAL_MODEL_PREFLIGHT_TEST=PASS (5 deterministic cases)');
 } finally {fs.rmSync(dir,{recursive:true,force:true});}

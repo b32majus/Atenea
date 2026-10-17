@@ -107,7 +107,7 @@ const agents = {
   'atenea-review-spec-complex.md': ['mode: subagent', 'model: openai/gpt-6.1-sol#high'],
   'atenea-corrector-volume.md': ['mode: subagent', 'model: nan/deepseek-v4-flash'],
   'atenea-corrector-complex.md': ['mode: subagent', 'model: nan/glm5.3-flash#high'],
-  'atenea-free.md': ['mode: primary', 'model: opencode/muse-spark-1.3-contributor-free'],
+  'atenea-free.md': ['mode: primary', 'model: opencode/mimo-v2.6-flash-free'],
   'atenea-explorer-free.md': ['mode: subagent', 'model: opencode/mimo-v2.6-flash-free'],
   'atenea-implementer-free.md': ['mode: subagent', 'model: opencode/space-bunny-free'],
   'atenea-implementer-free-complex.md': ['mode: subagent', 'model: opencode/glm-5.3-flash-free'],
@@ -116,8 +116,8 @@ const agents = {
   'atenea-review-spec-free.md': ['mode: subagent', 'model: opencode/glm-5.3-flash-free'],
   'atenea-review-spec-free-complex.md': ['mode: subagent', 'model: opencode/space-bunny-free'],
   'atenea-review-visual-free.md': ['mode: subagent', 'model: opencode/nemotron-3.5-super-vl-free'],
-  'atenea-corrector-free-volume.md': ['mode: subagent', 'model: opencode/muse-spark-1.3-contributor-free'],
-  'atenea-corrector-free-complex.md': ['mode: subagent', 'model: opencode/muse-spark-1.3-contributor-free'],
+  'atenea-corrector-free-volume.md': ['mode: subagent', 'model: opencode/glm-5.3-flash-free'],
+  'atenea-corrector-free-complex.md': ['mode: subagent', 'model: opencode/deepseek-v4.1-flash-free'],
   'atenea-go.md': ['mode: primary', 'model: opencode-go/deepseek-v4.1-flash'],
   'atenea-explorer-go.md': ['mode: subagent', 'model: nan/mimo-v2.6-flash'],
   'atenea-implementer-go.md': ['mode: subagent', 'model: opencode-go/muse-spark-1.3-contributor'],
@@ -174,7 +174,7 @@ for (const id of ['opencode-go/mimo-v2.6-flash','opencode-go/muse-spark-1.3-cont
   req('tools/check-go-models.mjs', `'${id}'`, 'Go runtime model literal');
 }
 req('tools/check-go-models.mjs', 'ATENEA_GO_MODEL_CHECK=FAIL', 'Go fail-closed marker');
-for (const id of ['opencode/muse-spark-1.3-contributor-free','opencode/mimo-v2.6-flash-free','opencode/space-bunny-free','opencode/deepseek-v4.1-flash-free','opencode/glm-5.3-flash-free']) {
+for (const id of ['opencode/mimo-v2.6-flash-free','opencode/space-bunny-free','opencode/deepseek-v4.1-flash-free','opencode/glm-5.3-flash-free']) {
   req('tools/check-free-models.mjs', `'${id}'`, `Free runtime required ID ${id}`);
   req('docs/ATENEA_FREE_MODEL_CATALOG_V0.md', "`" + id + "`", `Free catalog ID ${id}`);
 }
