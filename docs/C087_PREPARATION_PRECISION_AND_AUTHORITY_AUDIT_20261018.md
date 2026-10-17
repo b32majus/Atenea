@@ -1,9 +1,9 @@
 # Auditoría de precisión y responsabilidades — Preparación Atenea C-087
 
-**18 octubre 2026 · Estado: propuesta, no activada.**
-Base Atenea: main@355681fc1d8a12d33702e875f571b9daca91c731 (PR #156).
-Rama aislada: review/c087-prep-authority-audit-20261018.
-No push, PR, merge, Train o modificación de otros proyectos.
+**18 octubre 2026 · Auditoría de la propuesta, integrada posteriormente mediante PR #157.**
+Base de comparación original: main@355681fc1d8a12d33702e875f571b9daca91c731 (PR #156).
+Rama de preparación (histórica): review/c087-prep-authority-audit-20261018.
+Durante la auditoría no se ejecutaron Trains ni se modificaron otros proyectos. La integración documental se efectuó posteriormente por PR #157, merge e9dcbf69664eea8574fa0892a8074070064b1534.
 
 ## Dictamen
 
@@ -81,11 +81,11 @@ Las garantías propias del runtime no se eliminan: se citan desde su fuente de a
 | Handoff repo-local | Toda la autoridad concreta del ticket, aunque resulte largo |
 | Prompt de lanzamiento | Ruta del handoff, unidad aprobada y STOP, sin recontar políticas ni producto |
 
-## Propuesta material preparada en rama aislada
+## Propuesta inicial preparada en rama aislada (histórico)
 
 Solo se propone modificar CORA_TICKET_TRAIN_PREPARATION_PROMPT_C087.md, conservando sus cuatro secciones y sus garantías. El candidato añade una exigencia concreta para testigos visuales y distingue lo sabido, la mecánica ordinaria del writer y el bloqueo material. El resto de documentos permanecen **sin cambios**; no nuevos modelos, roles, permisos, presupuestos o contratos.
 
-Comparación: antiguo 195 líneas/15.475 bytes; candidato 102 líneas/13.596 bytes. **La reducción de líneas no es el criterio de aceptación** y se debe principalmente a agrupar párrafos y dejar el detalle del lifecycle en su contrato; el handoff de producto puede conservar toda la extensión que necesite.
+Comparación: antiguo 195 líneas/15.475 bytes; candidato 106 líneas/14.909 bytes (versión final integrada; la versión inicial del candidato era más corta). **La reducción de líneas no es el criterio de aceptación** y se debe principalmente a agrupar párrafos y dejar el detalle del lifecycle en su contrato; el handoff de producto puede conservar toda la extensión que necesite.
 
 ## Comprobaciones y límite de esta evidencia
 
@@ -99,7 +99,7 @@ En rama aislada, tras resolver dos anclas literales de tests estáticos:
 
 Las comprobaciones son estructurales: **no demuestran mayor rendimiento del writer**. Para evaluarlo después de una eventual integración, comparar Trains materialmente equivalentes por: tiempo perdido antes de la primera edición, cuestiones conocidas que OpenCode rediagnosticó, testigos/fixtures inesperados, resultado del primer candidato, tiempo y número de correcciones, y presupuesto de autoridad respetado. No realizar una batería artificial de modelos.
 
-**Estado:** revisión lista para decisión humana; no fusionada en Atenea ni aplicada a proyectos/Trains activos.
+**Estado en el momento de la propuesta:** pendiente de aceptación; **resultado posterior:** PR #157 aceptada y fusionada en Atenea main@e9dcbf69664eea8574fa0892a8074070064b1534. La integración en Atenea no modifica automáticamente Trains activos ni sincroniza los proyectos receptores.
 ## 8. Revisión integral de autoridad canónica (18 octubre, ampliación sobre PR #157)
 
 **Cobertura y jerarquía:** inspeccionados directamente AGENTS.md, README, START_HERE, CURRENT_EXECUTION_DECISION_C087, PRE_EXECUTION_HARDENING, EXECUTION_REQUEST_AND_PREFLIGHT, CHILD_AUTHORITY_CAPSULE, PROMOTION_REVIEW, WORK_UNIT_COMPOSITION, ATENEA_EXECUTION_ROUTING, ATENEA_HARNESS_CONTRACT, C087_THIN_WRITER_RECOVERY, los tres contratos Visual/UX, HUMAN_PRODUCT_DESIGN_AUTHORITY, PRODUCT_FIDELITY_GATES, PREPUBLICATION_ARTIFACT_VALIDATION y WORKTREE_AND_QUALIFICATION_HYGIENE; revisado el inventario de 274 Markdown y las 28 superficies marcadas CURRENT/Accepted o de entrada. Los documentos Gentle/Pi antiguos, EXECUTION_PROFILE_SELECTION_POLICY_V1 y HANDOFF_CONTRACT contienen una declaración de histórico/superseded y **no se han elevado a autoridad actual**.
