@@ -235,6 +235,8 @@ const experimentalPins = {
   'atenea-review-standards-openai-frontier.md': ['subagent', 'nan/glm5.3-flash#high'],
   'atenea-review-spec-openai-sprint.md': ['subagent', 'openai/gpt-6.1-sol#high'],
   'atenea-review-spec-openai-frontier.md': ['subagent', 'openai/gpt-6-luna#high'],
+  'atenea-review-visual-openai-sprint.md': ['subagent', 'openai/gpt-6.1-sol#high'],
+  'atenea-review-visual-openai-frontier.md': ['subagent', 'openai/gpt-6-luna#high'],
   'atenea-corrector-openai.md': ['subagent', 'openai/gpt-6.1-sol#high']
 };
 for (const [name, [mode, model]] of Object.entries(experimentalPins)) {
@@ -252,9 +254,11 @@ for (const [name, [mode, model]] of Object.entries(experimentalPins)) {
 }
 const experimentalDispatch = {
   'atenea-openai-sprint.md': ['atenea-explorer', 'atenea-implementer-openai-sprint', 'atenea-merger',
-    'atenea-review-standards-openai-sprint', 'atenea-review-spec-openai-sprint', 'atenea-corrector-openai'],
+    'atenea-review-standards-openai-sprint', 'atenea-review-spec-openai-sprint', 'atenea-corrector-openai',
+    'atenea-review-visual-openai-sprint'],
   'atenea-openai-frontier.md': ['atenea-explorer', 'atenea-implementer-openai-frontier', 'atenea-merger',
-    'atenea-review-standards-openai-frontier', 'atenea-review-spec-openai-frontier', 'atenea-corrector-openai']
+    'atenea-review-standards-openai-frontier', 'atenea-review-spec-openai-frontier', 'atenea-corrector-openai',
+    'atenea-review-visual-openai-frontier']
 };
 for (const [name, expected] of Object.entries(experimentalDispatch)) {
   const rel = `.opencode/agents/` + name;
@@ -266,6 +270,23 @@ for (const [name, expected] of Object.entries(experimentalDispatch)) {
   req(rel, 'INCOMPLETE_AUTHORITY', 'experimental coordinator fail-closed');
   req(rel, 'at most two fresh finding-scoped', 'experimental correction bound');
 }
+// Experimental third evidence axis is conditional, read-only, NOT another Matt reviewer.
+for (const name of ['atenea-review-visual-openai-sprint.md','atenea-review-visual-openai-frontier.md']) {
+  const rel='.opencode/agents/'+name;
+  for (const action of ['edit','shell','subagent','external_directory','webfetch','websearch']) {
+    req(rel, '- action: '+action+'\n    resource: "*"\n    effect: deny', 'Experimental Visual reviewer read-only: '+action);
+  }
+  req(rel, '- action: read\n    resource: "*"\n    effect: allow', 'Experimental Visual reviewer media Read');
+  req(rel, 'INCOMPLETE_VISUAL_EVIDENCE', 'Experimental Visual missing media fail closed');
+}
+for (const coord of ['atenea-openai-sprint.md','atenea-openai-frontier.md']) {
+  req('.opencode/agents/'+coord, 'UI impact: none|quality|fidelity', 'Experimental visual classification');
+  req('.opencode/agents/'+coord, 'EXISTING maximum two', 'Experimental shared corrections');
+  req('.opencode/agents/'+coord, 'human-opted', 'Experimental explicit human opt-in');
+}
+req('docs/ATENEA_OPENAI_VISUAL_UX_ROUTING_V1.md', 'NOT OPERATIONALLY QUALIFIED', 'Experimental unqualified boundary');
+req('tools/check-experimental-openai-visual-handoff.mjs','validateExperimentalOpenAIVisualHandoff','Experimental deterministic routing');
+req('tools/test-experimental-openai-visual-handoff.mjs','ATENEA_OPENAI_EXPERIMENTAL_VISUAL_HANDOFF_TEST=PASS','Experimental route tests');
 for (const name of ['atenea-implementer-openai-sprint.md', 'atenea-implementer-openai-frontier.md']) {
   const rel = `.opencode/agents/` + name;
   for (const skill of ['implement', 'implement-spec', 'code-review']) req(rel,

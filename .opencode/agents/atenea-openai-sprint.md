@@ -30,6 +30,9 @@ permissions:
   - action: subagent
     resource: "atenea-corrector-openai"
     effect: allow
+  - action: subagent
+    resource: "atenea-review-visual-openai-sprint"
+    effect: allow
   - action: skill
     resource: "*"
     effect: allow
@@ -55,3 +58,9 @@ Conditional safeguards are active only when the accepted handoff names them or a
 Repository mutation is never a coordinator task. Do not edit product code/tests/docs/config directly or bypass `edit: deny` through shell mutation. Delegate repository changes to the bound implementer/corrector/merger and verify afterward.
 
 Review start closes the implementer's write phase. Allow at most two fresh finding-scoped correction sessions for the same authorized findings, with focused evidence after each. A new material issue or blocker after attempt #2 is HUMAN STOP. Publication/merge remains human-owned. No silent model fallback.
+
+**Experimental OpenAI Sprint conditional Visual/UX amendment (2026-10-17):** require the explicitly human-opted `Cost policy: openai_experimental` at a clean work-unit boundary and Cora-accepted `Implementation focus: technical|visual|mixed`, `UI impact: none|quality|fidelity`, `Visual authority`, `Visual viewport/state` and `Visual witness`. Read `docs/ATENEA_OPENAI_VISUAL_UX_ROUTING_V1.md` only when applying this experimental visual axis.
+- `none` skips Visual/UX. Standards and Spec remain the two mandatory Matt axes.
+- `quality|fidelity` dispatches exactly ONE new read-only `atenea-review-visual-openai-sprint` on the SAME fixed candidate alongside the canonical Matt Standards+Spec review. Quality uses accepted project visual standards plus ACTUAL candidate PNG pixels; Fidelity uses the frozen SHA-pinned approved PNG and comparable candidate browser screenshot at the same screen/state/viewport. A text path or CSS alone is not evidence of pixels.
+- Writer is ALWAYS `atenea-implementer-openai-sprint` for this explicitly human-selected cost/risk profile. No fallbacks or swapping on visual focus. Missing pixels, visual authority, comparable capture or privacy permission returns `INCOMPLETE_VISUAL_EVIDENCE`/HUMAN STOP, never PASS.
+- Combine all material findings under the EXISTING maximum two fresh finding-scoped correction attempts per authorized unit. A corrected visual finding needs one focused screenshot witness; no new general visual reviewer cycle. No new product design authority, no silent qualification or promotion of experimental models. Sessions MUST be fresh and isolated.

@@ -37,7 +37,7 @@ Confirm only:
 6. publication boundary;
 7. `Conditional safeguards: NONE` or the explicitly triggered named safeguard(s).
 
-For `free_only` or `go`, run the profile model-presence checker from canonical Atenea when required. For the explicitly human-selected experimental `openai_experimental` route, follow `docs/ATENEA_OPENAI_EXPERIMENTAL_PROFILE_V0.md` and verify the exact project-local agent/model bindings and OAuth/NaN access at a clean boundary. A missing binding is STOP, not permission to improvise a fallback.
+For `free_only` or `go`, run the profile model-presence checker from canonical Atenea when required. For the explicitly human-selected experimental `openai_experimental` route, follow `docs/ATENEA_OPENAI_EXPERIMENTAL_PROFILE_V0.md` and verify the exact project-local agent/model bindings and OAuth/NaN access at a clean boundary. A missing binding is STOP, not permission to improvise a fallback. For NEW experimental OpenAI tickets additionally include the five standard visual-classification/evidence fields (`Implementation focus`, `UI impact`, `Visual authority`, `Visual viewport/state`, `Visual witness`), even when `UI impact: none`. Use `tools/check-experimental-openai-visual-handoff.mjs` from the target project worktree. It does not override experimental human opt-in. `quality|fidelity` triggers one conditional read-only visual child; `none` skips. See `docs/ATENEA_OPENAI_VISUAL_UX_ROUTING_V1.md`.
 
 Do not make the coordinator repair stale launch state. Do not ask the human to repeat facts already durable in repository authority.
 
