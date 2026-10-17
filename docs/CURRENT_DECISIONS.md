@@ -6,9 +6,13 @@ This file preserves accepted decision provenance. **C-087 is the current executi
 
 Historical `docs/DECISIONS.md`, Stage files, old run recipes and pre-vNext field evidence remain valuable provenance, but they do not define the current execution path.
 
-## Post-C-087 OpenAI experimental conditional Visual/UX — 2026-10-17
+## Post-C-087 OpenAI Sprint + Frontier — operative, human activation only (2026-10-17)
 
-**Explicitly approved by the human for Sprint + Frontier; profiles remain NOT OPERATIONALLY QUALIFIED and require per-unit human opt-in.** Sprint/Volume gets one conditional independent Sol High visual witness, Frontier/Complex one conditional independent Luna High visual witness, for `quality|fidelity` on the same fixed candidate. `none` skips. No new Matt review, correction budget, implementer change, auto opt-in, or promotion. See `docs/ATENEA_OPENAI_VISUAL_UX_ROUTING_V1.md`. Provider pixel-media tests in separate synthetic qualification folders, not a field Train.
+**Explicit human promotion based on repeated real-project use:** Sprint/Volume (Luna High writer) and Frontier/Complex (Sol High writer) are no longer classified as experimental in *operational policy*. Their `openai_experimental` cost-policy ID and `*_EXPERIMENTAL_*` file/checker IDs remain unchanged solely for backward compatibility. They must be explicitly selected by the human for EACH accepted work unit at a CLEAN boundary, usually when OpenAI usage capacity is available near its reset. No default, auto-selection, fallback or switching in-flight. No unproven quality-parity, token cost or measured superiority claims. Conditional Sol/Luna Visual/UX remains part of C-087 and is not a separate review cycle. See `docs/ATENEA_OPENAI_EXPERIMENTAL_PROFILE_V0.md` for current status and `docs/CORA_TICKET_TRAIN_PREPARATION_PROMPT_C087.md` for preparation prompt.
+
+## Post-C-087 OpenAI experimental conditional Visual/UX — 2026-10-17 (historical label superseded)
+
+**Historical 2026-10-17 Visual/UX approval, superseded only as to *experimental* status by the later operational-use promotion above; mandatory per-unit human activation remains.** Sprint/Volume gets one conditional independent Sol High visual witness, Frontier/Complex one conditional independent Luna High visual witness, for `quality|fidelity` on the same fixed candidate. `none` skips. No new Matt review, correction budget, implementer change, auto opt-in, or promotion. See `docs/ATENEA_OPENAI_VISUAL_UX_ROUTING_V1.md`. Provider pixel-media tests in separate synthetic qualification folders, not a field Train.
 
 ## Post-C-087 Standard Visual/UX conditional evidence — 2026-10-17
 

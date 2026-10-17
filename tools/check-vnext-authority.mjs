@@ -222,7 +222,12 @@ for (const rel of ['README.md','AGENTS.md','CONTEXT.md','docs/START_HERE.md','do
 
 // Post-C-087 experimental OpenAI profiles: strictly additive and opt-in.
 // Structural check only; this is NOT a model-quality or quota qualification.
-req('docs/ATENEA_OPENAI_EXPERIMENTAL_PROFILE_V0.md', 'NOT OPERATIONALLY QUALIFIED', 'experimental status');
+req('docs/ATENEA_OPENAI_EXPERIMENTAL_PROFILE_V0.md', 'OPERATIVE BY EXPLICIT HUMAN ACTIVATION', 'current OpenAI human activation');
+req('docs/ATENEA_OPENAI_EXPERIMENTAL_PROFILE_V0.md', 'legacy identifier only', 'machine-key compatibility without experimental state');
+req('docs/CORA_TICKET_TRAIN_PREPARATION_PROMPT_C087.md', 'READY_TO_LAUNCH', 'Cora prompt handoff boundary');
+req('docs/CORA_TICKET_TRAIN_PREPARATION_PROMPT_C087.md', 'activación humana', 'OpenAI user authorization in preparation');
+req('docs/CORA_TICKET_TRAIN_PREPARATION_PROMPT_C087.md', 'tools/check-experimental-openai-visual-handoff.mjs', 'stable legacy validator entry');
+
 req('docs/START_HERE.md', 'openai_experimental', 'experimental front door');
 req('docs/ATENEA_EXECUTION_ROUTING_V0.md', 'openai_experimental', 'experimental route');
 
@@ -284,7 +289,7 @@ for (const coord of ['atenea-openai-sprint.md','atenea-openai-frontier.md']) {
   req('.opencode/agents/'+coord, 'EXISTING maximum two', 'Experimental shared corrections');
   req('.opencode/agents/'+coord, 'human-opted', 'Experimental explicit human opt-in');
 }
-req('docs/ATENEA_OPENAI_VISUAL_UX_ROUTING_V1.md', 'NOT OPERATIONALLY QUALIFIED', 'Experimental unqualified boundary');
+req('docs/ATENEA_OPENAI_VISUAL_UX_ROUTING_V1.md', 'operative by explicit human activation', 'OpenAI visual human-only boundary');
 req('tools/check-experimental-openai-visual-handoff.mjs','validateExperimentalOpenAIVisualHandoff','Experimental deterministic routing');
 req('tools/test-experimental-openai-visual-handoff.mjs','ATENEA_OPENAI_EXPERIMENTAL_VISUAL_HANDOFF_TEST=PASS','Experimental route tests');
 for (const name of ['atenea-implementer-openai-sprint.md', 'atenea-implementer-openai-frontier.md']) {

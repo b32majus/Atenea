@@ -37,7 +37,7 @@ Confirm only:
 6. publication boundary;
 7. `Conditional safeguards: NONE` or the explicitly triggered named safeguard(s).
 
-For `free_only` or `go`, run the profile model-presence checker from canonical Atenea when required. For the explicitly human-selected experimental `openai_experimental` route, follow `docs/ATENEA_OPENAI_EXPERIMENTAL_PROFILE_V0.md` and verify the exact project-local agent/model bindings and OAuth/NaN access at a clean boundary. A missing binding is STOP, not permission to improvise a fallback. For NEW experimental OpenAI tickets additionally include the five standard visual-classification/evidence fields (`Implementation focus`, `UI impact`, `Visual authority`, `Visual viewport/state`, `Visual witness`), even when `UI impact: none`. Use `tools/check-experimental-openai-visual-handoff.mjs` from the target project worktree. It does not override experimental human opt-in. `quality|fidelity` triggers one conditional read-only visual child; `none` skips. See `docs/ATENEA_OPENAI_VISUAL_UX_ROUTING_V1.md`.
+For `free_only` or `go`, run the profile model-presence checker from canonical Atenea when required. For the explicitly human-selected OpenAI Sprint/Frontier `openai_experimental` route, follow `docs/ATENEA_OPENAI_EXPERIMENTAL_PROFILE_V0.md` and verify the exact project-local agent/model bindings and OAuth/NaN access at a clean boundary. A missing binding is STOP, not permission to improvise a fallback. For NEW human-activated OpenAI tickets additionally include the five standard visual-classification/evidence fields (`Implementation focus`, `UI impact`, `Visual authority`, `Visual viewport/state`, `Visual witness`), even when `UI impact: none`. Use `tools/check-experimental-openai-visual-handoff.mjs` from the target project worktree. It does not override mandatory human activation. `quality|fidelity` triggers one conditional read-only visual child; `none` skips. See `docs/ATENEA_OPENAI_VISUAL_UX_ROUTING_V1.md`.
 
 Do not make the coordinator repair stale launch state. Do not ask the human to repeat facts already durable in repository authority.
 
@@ -61,7 +61,7 @@ The human verifies the path/TUI, selects the agent when needed, pastes the promp
 ## Cost policy and risk class
 
 ```text
-cost_policy = standard | free_only | go | openai_experimental (experimental, opt-in)
+cost_policy = standard | free_only | go | openai_experimental (legacy machine key; human-only opt-in)
 risk_class  = volume | complex
 ```
 
@@ -74,7 +74,7 @@ Precision is not verbosity. The coordinator and Matt skills can read accepted re
 ```text
 Work: <ticket/work unit + intended outcome>.
 Authority refs: <issue/spec/work-order/product authority actually needed>.
-Cost policy: <standard|free_only|go|openai_experimental [human opt-in only]>.
+Cost policy: <standard|free_only|go|openai_experimental [human activation; legacy key]>.
 Risk class: <volume|complex>.
 In scope: <surface/seam this unit may change>.
 Preserve: <principal invariants already accepted>.
@@ -89,7 +89,7 @@ For material human-facing work, `Authority refs` may point to the accepted inter
 
 **For NEW `cost_policy: free_only` units only (2026-10-17):** include `Implementation focus: technical|visual|mixed`, `UI impact: none|quality|fidelity`, `Visual authority: NONE|repo-local-ref`, `Visual viewport/state: NONE|named-screen-state-viewport` and `Visual witness: NONE|bounded-browser-capture-recipe`. Cora decides the classification; `node tools/check-free-visual-handoff.mjs <handoff.md>` checks its explicit coherence without invoking a model. See `docs/ATENEA_FREE_VISUAL_UX_ROUTING_V1.md`; Standard has its own amendment below; Go remains unchanged.
 
-**For NEW `cost_policy: standard` units (2026-10-17):** additionally name `Implementation focus: technical|visual|mixed`, `UI impact: none|quality|fidelity`, `Visual authority: NONE|repo-local-ref`, `Visual viewport/state: NONE|screen/state/viewport`, and `Visual witness: NONE|bounded browser capture`. Cora sets these before launch. From the target worktree validate with `node /srv/kairos-lab/Atenea/tools/check-standard-visual-handoff.mjs <handoff.md>`. Visual impact adds one read-only Luna High evidence axis on the SAME fixed candidate, not another Matt review or correction budget. DeepSeek Volume and GLM Flash High Complex remain unchanged. See `docs/ATENEA_STANDARD_VISUAL_UX_ROUTING_V1.md`; Go/experimental unchanged.
+**For NEW `cost_policy: standard` units (2026-10-17):** additionally name `Implementation focus: technical|visual|mixed`, `UI impact: none|quality|fidelity`, `Visual authority: NONE|repo-local-ref`, `Visual viewport/state: NONE|screen/state/viewport`, and `Visual witness: NONE|bounded browser capture`. Cora sets these before launch. From the target worktree validate with `node /srv/kairos-lab/Atenea/tools/check-standard-visual-handoff.mjs <handoff.md>`. Visual impact adds one read-only Luna High evidence axis on the SAME fixed candidate, not another Matt review or correction budget. DeepSeek Volume and GLM Flash High Complex remain unchanged. See `docs/ATENEA_STANDARD_VISUAL_UX_ROUTING_V1.md`; Go and the separately governed OpenAI route unchanged.
 
 
 The implementer owns ordinary local mechanics inside the envelope. If execution discovers a material decision or affected surface outside it, STOP and report the concrete issue; do not broaden the unit.
