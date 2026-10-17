@@ -11,8 +11,8 @@ method               = upstream Matt skills, not forked by Atenea
 default cost policy  = standard
 default risk class   = volume
 optional cost policy = free_only | go (Go qualified, explicitly human-selected)
-experimental opt-in   = openai_experimental (Sprint volume / Frontier complex; NOT qualified)
-experimental visual   = conditional Sol High (Sprint) / Luna High (Frontier), read-only, human opt-in
+human-activated OpenAI = openai_experimental (legacy ID; Sprint volume / Frontier complex; human-only selection)
+OpenAI visual         = conditional Sol High (Sprint) / Luna High (Frontier), read-only, human opt-in
 writer volume        = nan/deepseek-v4-flash
 writer complex       = nan/glm5.3-flash · high
 writer context guard = 220k effective → auto-compact ~198k → keep ~15k
@@ -22,7 +22,7 @@ Spec review complex  = openai/gpt-6.1-sol · high
 feature/train audit  = Cora when material
 ```
 
-Bindings live in `.opencode/agents/`; routing is `docs/ATENEA_EXECUTION_ROUTING_V0.md`. C-087 retains the C-086 thin execution shape and adds hardened Cora preparation, child-readable authority transport and read-only post-run telemetry. **Go Volume and Go Complex were operationally qualified **with their prior bindings**** under `docs/ATENEA_GO_OPERATIONAL_QUALIFICATION_C087_20261010.md`; this does not alter the default `standard` cost policy or assert universal quality parity.
+Bindings live in `.opencode/agents/`; routing is `docs/ATENEA_EXECUTION_ROUTING_V0.md`. Cora operator preparation prompt: `docs/CORA_TICKET_TRAIN_PREPARATION_PROMPT_C087.md` (not a substitute for C-087). C-087 retains the C-086 thin execution shape and adds hardened Cora preparation, child-readable authority transport and read-only post-run telemetry. **Go Volume and Go Complex were operationally qualified **with their prior bindings**** under `docs/ATENEA_GO_OPERATIONAL_QUALIFICATION_C087_20261010.md`; this does not alter the default `standard` cost policy or assert universal quality parity.
 
 ## Visible launch
 
@@ -33,7 +33,7 @@ cd <prepared-project-or-worktree>
 opencode .
 ```
 
-Select `atenea-complex`, `atenea-free` or `atenea-go` only when the accepted route requires it. The experimental human-only OpenAI opt-in selects `atenea-openai-sprint` (volume) or `atenea-openai-frontier` (complex), following `docs/ATENEA_OPENAI_EXPERIMENTAL_PROFILE_V0.md`; not an automatic default, fallback or qualification claim. The preferred first prompt references a repo-local durable handoff:
+Select `atenea-complex`, `atenea-free` or `atenea-go` only when the accepted route requires it. The operative, human-activation-only OpenAI route (legacy machine key) selects `atenea-openai-sprint` (volume) or `atenea-openai-frontier` (complex), following `docs/ATENEA_OPENAI_EXPERIMENTAL_PROFILE_V0.md`; not an automatic default, fallback or claim of measured superiority. The preferred first prompt references a repo-local durable handoff:
 
 `Read @docs/handoffs/TRAIN_X.md and execute it under current repository/Atenea authority.`
 
@@ -51,7 +51,7 @@ Default: `cost_policy: standard`, `risk_class: volume`.
 
 Use `complex` for material semantic/acceptance risk such as cross-cutting architecture, difficult concurrency/temporal/state semantics, material security/privacy/trust boundaries, delicate migration/back-compat invariants or repeated semantic failure. File count, many tests, ordinary UI or business importance alone are not complex triggers.
 
-`free_only` and `go` are human/project cost-policy choices. The experimental `openai_experimental` route also requires human opt-in and a clean work-unit boundary. See `ATENEA_FREE_PROFILE_V0.md` and `ATENEA_GO_PROFILE_V0.md`. No cost profile silently falls back to another provider/model.
+`free_only` and `go` are human/project cost-policy choices. The human-activated OpenAI route (legacy key `openai_experimental`) requires human opt-in and a clean work-unit boundary. See `ATENEA_FREE_PROFILE_V0.md` and `ATENEA_GO_PROFILE_V0.md`. No cost profile silently falls back to another provider/model.
 
 ## 3. Shape upstream, execute downstream
 
@@ -64,7 +64,7 @@ Once work is accepted/executable:
 - implementation workers implement/TDD only;
 - coordinator owns one canonical Standards + Spec review and any fresh correction dispatch.
 - **Free-only visual/UI-impact amendment (2026-10-17):** Cora fixes `Implementation focus` and `UI impact` in the handoff; `quality|fidelity` triggers exactly one read-only Nemotron Visual/UX axis on the same fixed candidate, sharing the existing two-corrector budget. `none` skips it. No new Matt review loop or new decision model. See `docs/ATENEA_FREE_VISUAL_UX_ROUTING_V1.md`.
-- **Standard-only Visual/UX amendment (2026-10-17):** same classification, with one fresh read-only Luna High visual witness only on `quality|fidelity` units. Existing risk-selected DeepSeek/GLM implementers, Standards/Spec and correction budget unchanged. `none` skips it. See `docs/ATENEA_STANDARD_VISUAL_UX_ROUTING_V1.md`. Go/experimental unchanged.
+- **Standard-only Visual/UX amendment (2026-10-17):** same classification, with one fresh read-only Luna High visual witness only on `quality|fidelity` units. Existing risk-selected DeepSeek/GLM implementers, Standards/Spec and correction budget unchanged. `none` skips it. See `docs/ATENEA_STANDARD_VISUAL_UX_ROUTING_V1.md`. Go and the separately governed OpenAI route are unchanged by this Standard-specific policy.
 
 
 Prefer durable authority by reference. Do not copy a handoff, `AGENTS.md`, coding standards or specialized policy prose into child prompts.
