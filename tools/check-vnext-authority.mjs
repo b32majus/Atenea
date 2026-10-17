@@ -38,7 +38,7 @@ const required = [
   'docs/CHILD_AUTHORITY_CAPSULE_V1.md',
   'docs/ATENEA_EXECUTION_ROUTING_V0.md',
   'docs/ATENEA_HARNESS_CONTRACT_V1.md',
-  'docs/ATENEA_FREE_PROFILE_V0.md', 'docs/ATENEA_FREE_MODEL_CATALOG_V0.md',
+  'docs/ATENEA_FREE_PROFILE_V0.md', 'docs/ATENEA_FREE_MODEL_CATALOG_V0.md', 'docs/ATENEA_FREE_VISUAL_UX_ROUTING_V1.md',
   'docs/ATENEA_GO_PROFILE_V0.md', 'docs/ATENEA_GO_MODEL_CATALOG_V0.md',
   'docs/HUMAN_PRODUCT_DESIGN_AUTHORITY_V1.md',
   'docs/ATTENDED_PRODUCT_SHAPING_GUARDRAILS_V1.md',
@@ -107,7 +107,7 @@ const agents = {
   'atenea-review-spec-complex.md': ['mode: subagent', 'model: openai/gpt-6.1-sol#high'],
   'atenea-corrector-volume.md': ['mode: subagent', 'model: nan/deepseek-v4-flash'],
   'atenea-corrector-complex.md': ['mode: subagent', 'model: nan/glm5.3-flash#high'],
-  'atenea-free.md': ['mode: primary', 'model: opencode/muse-spark-1.3-contributor-free'],
+  'atenea-free.md': ['mode: primary', 'model: opencode/mimo-v2.6-flash-free'],
   'atenea-explorer-free.md': ['mode: subagent', 'model: opencode/mimo-v2.6-flash-free'],
   'atenea-implementer-free.md': ['mode: subagent', 'model: opencode/space-bunny-free'],
   'atenea-implementer-free-complex.md': ['mode: subagent', 'model: opencode/glm-5.3-flash-free'],
@@ -115,8 +115,9 @@ const agents = {
   'atenea-review-standards-free.md': ['mode: subagent', 'model: opencode/deepseek-v4.1-flash-free'],
   'atenea-review-spec-free.md': ['mode: subagent', 'model: opencode/glm-5.3-flash-free'],
   'atenea-review-spec-free-complex.md': ['mode: subagent', 'model: opencode/space-bunny-free'],
-  'atenea-corrector-free-volume.md': ['mode: subagent', 'model: opencode/muse-spark-1.3-contributor-free'],
-  'atenea-corrector-free-complex.md': ['mode: subagent', 'model: opencode/muse-spark-1.3-contributor-free'],
+  'atenea-review-visual-free.md': ['mode: subagent', 'model: opencode/nemotron-3.5-super-vl-free'],
+  'atenea-corrector-free-volume.md': ['mode: subagent', 'model: opencode/glm-5.3-flash-free'],
+  'atenea-corrector-free-complex.md': ['mode: subagent', 'model: opencode/deepseek-v4.1-flash-free'],
   'atenea-go.md': ['mode: primary', 'model: opencode-go/deepseek-v4.1-flash'],
   'atenea-explorer-go.md': ['mode: subagent', 'model: nan/mimo-v2.6-flash'],
   'atenea-implementer-go.md': ['mode: subagent', 'model: opencode-go/muse-spark-1.3-contributor'],
@@ -138,7 +139,7 @@ for (const [name, tokens] of Object.entries(agents)) {
 for (const [coord, subs] of Object.entries({
   'atenea-volume.md': ['atenea-explorer','atenea-implementer-volume','atenea-merger','atenea-review-standards','atenea-review-spec-volume','atenea-corrector-volume'],
   'atenea-complex.md': ['atenea-explorer','atenea-implementer-complex','atenea-merger','atenea-review-standards','atenea-review-spec-complex','atenea-corrector-complex'],
-  'atenea-free.md': ['atenea-explorer-free','atenea-implementer-free','atenea-implementer-free-complex','atenea-merger-free','atenea-review-standards-free','atenea-review-spec-free','atenea-review-spec-free-complex','atenea-corrector-free-volume','atenea-corrector-free-complex'],
+  'atenea-free.md': ['atenea-explorer-free','atenea-implementer-free','atenea-implementer-free-complex','atenea-merger-free','atenea-review-standards-free','atenea-review-spec-free','atenea-review-spec-free-complex','atenea-review-visual-free','atenea-corrector-free-volume','atenea-corrector-free-complex'],
   'atenea-go.md': ['atenea-explorer-go','atenea-implementer-go','atenea-merger-go','atenea-review-standards-go','atenea-review-spec-go','atenea-corrector-go-volume','atenea-corrector-go-complex']
 })) {
   req(`.opencode/agents/${coord}`, 'action: edit', `${coord} edit permission declaration`);
@@ -173,13 +174,28 @@ for (const id of ['opencode-go/mimo-v2.6-flash','opencode-go/muse-spark-1.3-cont
   req('tools/check-go-models.mjs', `'${id}'`, 'Go runtime model literal');
 }
 req('tools/check-go-models.mjs', 'ATENEA_GO_MODEL_CHECK=FAIL', 'Go fail-closed marker');
-for (const id of ['opencode/muse-spark-1.3-contributor-free','opencode/mimo-v2.6-flash-free','opencode/space-bunny-free','opencode/deepseek-v4.1-flash-free','opencode/glm-5.3-flash-free']) {
+for (const id of ['opencode/mimo-v2.6-flash-free','opencode/space-bunny-free','opencode/deepseek-v4.1-flash-free','opencode/glm-5.3-flash-free']) {
   req('tools/check-free-models.mjs', `'${id}'`, `Free runtime required ID ${id}`);
   req('docs/ATENEA_FREE_MODEL_CATALOG_V0.md', "`" + id + "`", `Free catalog ID ${id}`);
 }
 req('docs/ATENEA_EXECUTION_ROUTING_V0.md', 'atenea-implementer-free-complex', 'Free Complex writer binding');
 req('docs/ATENEA_EXECUTION_ROUTING_V0.md', 'atenea-review-spec-free-complex', 'Free Complex Spec binding');
 req('tools/check-free-models.mjs', 'ATENEA_FREE_MODEL_CHECK=FAIL', 'Free fail-closed marker');
+req('docs/CURRENT_DECISIONS.md', 'Post-C-087 Free-only Visual/UX conditional evidence', 'Free visual accepted decision ledger');
+req('tools/check-free-visual-handoff.mjs', 'validateFreeVisualHandoff', 'Free handoff deterministic classifier');
+req('tools/test-free-visual-handoff.mjs', 'ATENEA_FREE_VISUAL_HANDOFF_TEST=PASS', 'Free visual routing proof');
+
+// Free-only UI: read-only conditional third evidence axis, never another Matt review/repair budget.
+for (const token of ['action: edit\n    resource: "*"\n    effect: deny','action: shell\n    resource: "*"\n    effect: deny','action: subagent\n    resource: "*"\n    effect: deny','action: external_directory\n    resource: "*"\n    effect: deny','INCOMPLETE_VISUAL_EVIDENCE']) {
+  req('.opencode/agents/atenea-review-visual-free.md', token.replaceAll('\\n', '\n'), 'Free Visual/UX review safety');
+}
+req('.opencode/agents/atenea-free.md', 'UI impact: none|quality|fidelity', 'Free visual dispatch classification');
+req('.opencode/agents/atenea-free.md', 'atenea-review-visual-free', 'Free visual conditional dispatch');
+req('.opencode/agents/atenea-free.md', 'EXISTING maximum two', 'Free shared correction budget');
+req('docs/ATENEA_FREE_VISUAL_UX_ROUTING_V1.md', 'INCOMPLETE_VISUAL_EVIDENCE', 'Free visual missing media fails closed');
+req('tools/check-free-models.mjs', "'--visual'", 'visual model preflight conditional option');
+req('tools/check-free-models.mjs', "'opencode/nemotron-3.5-super-vl-free'", 'visual model ID');
+
 
 // V1 execution markers may remain in historical docs, never in current front-door surfaces.
 for (const rel of ['README.md','AGENTS.md','CONTEXT.md','docs/START_HERE.md','docs/ATENEA_HARNESS_CONTRACT_V1.md','docs/OPERATOR_RUNBOOK_V1.md','docs/vnext/CURRENT_COMPATIBILITY.md']) {

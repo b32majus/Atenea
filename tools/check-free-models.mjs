@@ -2,12 +2,18 @@
 import { spawnSync } from 'node:child_process';
 
 const required = [
-  'opencode/muse-spark-1.3-contributor-free',
   'opencode/space-bunny-free',
   'opencode/mimo-v2.6-flash-free',
   'opencode/deepseek-v4.1-flash-free',
   'opencode/glm-5.3-flash-free'
 ];
+
+const args = process.argv.slice(2);
+if (args.some((arg) => arg !== '--visual')) {
+  console.error('Usage: node tools/check-free-models.mjs [--visual]');
+  process.exit(2);
+}
+if (args.includes('--visual')) required.push('opencode/nemotron-3.5-super-vl-free');
 
 const result = spawnSync('opencode', ['models'], { encoding: 'utf8' });
 if (result.error || result.status !== 0) {

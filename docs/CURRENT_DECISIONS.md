@@ -6,6 +6,12 @@ This file preserves accepted decision provenance. **C-087 is the current executi
 
 Historical `docs/DECISIONS.md`, Stage files, old run recipes and pre-vNext field evidence remain valuable provenance, but they do not define the current execution path.
 
+## Post-C-087 Free-only Visual/UX conditional evidence — 2026-10-17
+
+**Accepted by the human after attended discussion and isolated blind screenshots comparison; scoped to Free only.** Cora/human fix the implementation focus (`technical|visual|mixed`) and UI-impact class (`none|quality|fidelity`) before the new unit launches. This selects image-evidence obligations and optionally a read-only Nemotron 3.5 Super VL visual reviewer against the **same accepted fixed candidate**; it does **not** alter the canonical Matt Standards+Spec pair, two-correction budget, risk-bound writer model, or Standard/Go/OpenAI routes. `none` skips visual review entirely. A design-unknown or image-transport-unsupported situation STOPs rather than claiming PASS. No Jev/d1-ultra decider: Cora makes the routing classification during attended ticket shaping, with a deterministic validation only.
+
+This is a scoped Free capability amendment under current C-087 authority, not a new lifecycle/automatic router. Details: `docs/ATENEA_FREE_VISUAL_UX_ROUTING_V1.md`; lab evidence: `/srv/kairos-lab/qualification/atenea-vision-blind-ab-20261017/RESULTS.md`. **The same day the human separately approved replacement of retired Muse Free bindings by MiMo 2.6 Free coordination, GLM 5.3 Free Volume correction and DeepSeek V4.1 Free Complex correction**, preserving implementers, Standards, Spec, reviewer independence and correction budgets. This explicit clean-boundary selection is in `docs/ATENEA_FREE_MODEL_CATALOG_V0.md`; it is not quality-equivalence evidence or a fallback policy.
+
 ## C-087 — Harden before launch; capsule authority; observe after run
 
 **Accepted 2026-10-06 from multi-project C-086 field evidence.** Cora hardens accepted work before `READY_TO_LAUNCH`; coordinators use repo-local authority or compact inline capsules so child verdicts never depend on inaccessible external paths; a read-only SQLite helper extracts post-run timing/usage/tool/context evidence without LLM calls. Runtime, model bindings, review count, correction budget and context thresholds remain unchanged.
