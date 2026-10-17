@@ -17,9 +17,9 @@ Entrega un **handoff ejecutable, ultrapreciso, acotado y proporcional**. Cora re
 Aplicar WHAT / WHERE / REUSE / CLOSED DECISIONS / DO NOT TOUCH / PROOF / STOP del `PRE_EXECUTION_HARDENING_V1.md`:
 
 - **Resultado y aceptación:** comportamiento exacto aprobado, casos límite, excepciones, condiciones negativas y resultados observables, conservados literalmente o enlazados a una fuente repo-local accesible. No simplificar requisitos al delegar.
-- **Alcance y punto de partida:** ticket/unidad, SHA/base verificable, superficies y consumidores directos *ya conocidos*, costuras relevantes, alcance writable, no-goals y límites DO NOT TOUCH. No inventar consumidores ni ejecutar exploraciones generalizadas.
+- **Alcance y punto de partida:** ticket/unidad, SHA/base verificable, superficies y consumidores directos *ya conocidos* (también tests/helpers compartidos que dependen del comportamiento modificado), costuras relevantes, alcance writable, no-goals y límites DO NOT TOUCH. No inventar consumidores ni ejecutar exploraciones generalizadas.
 - **Decisiones cerradas / reutilización:** APIs, funciones, estados, reglas de producto, Design System y oráculos aceptados que deben preservarse; indicar qué no debe redescubrirse.
-- **Riesgo material y evidencia falsable:** por cada riesgo conocido, identificar (1) superficie/consumidores directos, (2) propiedad exacta, (3) entrada/secuencia/estado que la falsaría, (4) prueba/aserción existente o comprobación focalizada indispensable. No crear matriz exhaustiva si las pruebas existentes bastan. Un test verde no anula una observación material negativa.
+- **Riesgo material y evidencia falsable:** por cada riesgo conocido, identificar (1) superficie/consumidores directos, (2) propiedad exacta, (3) entrada/secuencia/estado que la falsaría (para riesgos temporales materiales: autoridad inicial, intercalación relevante e invariante protegido), (4) prueba/aserción existente o comprobación focalizada indispensable. No crear matriz exhaustiva si las pruebas existentes bastan. Un test verde no anula una observación material negativa.
 - **Pruebas y responsables:** comandos exactos **existentes y verificables**, pruebas focalizadas mínimas, momento y dueño (writer, testigo integrado del coordinador, revisión o integración). No inventar comandos ni imponer suites generales opcionales. Un testigo integrado existente puede pedirse **una vez** si hay un riesgo conocido material de navegación, selección, foco, estado asíncrono o consumidor compartido no cubierto por pruebas focales.
 - **Ejecución:** `cost_policy`, `risk_class`, agente visible autorizado, frontera de revisión, presupuesto vigente, punto fijo, **salvaguardas condicionales realmente activadas**, dependencias y checkpoints HUMAN STOP. Elegir riesgo por semántica material, no por longitud, UI o ahorro de modelo.
 - **STOP:** autoridad contradictoria, nueva decisión material, superficie fuera de alcance, evidencia requerida imposible/privacidad bloqueada, dependencia no autorizada, o reparación que excede la unidad. No abrir preguntas que ya respondan fuentes autorizadas.
@@ -41,6 +41,8 @@ Antes de declarar `READY_TO_LAUNCH`, clasifica cada incertidumbre **real y relev
 
 ### Clasificación Visual/UX (solo perfiles autorizados)
 
+Antes de cerrar el handoff, los consumidores directos conocidos que dependen del comportamiento alterado (p. ej. un helper de tests compartido) tienen **propietario y prueba focal**: adaptación autorizada en esta unidad, o deuda de integración identificada con responsable y testigo antes del merge. No se investigan consumidores hipotéticos. Separar siempre **GO de la unidad**, **pendientes de integración** y **autorización de publicación**; el primero no concede las otras dos.
+
 Para unidades nuevas Free (`free_only`), Standard (`standard`) y OpenAI Sprint/Frontier (`openai_experimental` **clave histórica; activación humana expresa por unidad**), fija **siete campos con valores concretos**, de acuerdo con su validador canónico:
 
 ```text
@@ -48,9 +50,9 @@ Cost policy: <perfil-autorizado>
 Risk class: <volume|complex>
 Implementation focus: <technical|visual|mixed>
 UI impact: <none|quality|fidelity>
-Visual authority: <NONE|autoridad-aceptada>
-Visual viewport/state: <NONE|pantalla, viewport y estado exactos>
-Visual witness: <NONE|receta de captura concreta y salida esperada>
+Visual authority: <NONE|ruta Design System aprobada|PNG repo-local@sha256:64hex>
+Visual viewport/state: <NONE|screen=...; viewport=WxH; state=...>
+Visual witness: <NONE|render=<receta existente y reproducible>; output=<captura repo-local.png>>
 ```
 
 `risk_class`, `Implementation focus` y `UI impact` son independientes. Un trabajo técnico también puede alterar UI; un trabajo visual no rebaja riesgo Complex. OpenAI Sprint = Volume, Frontier = Complex; activación exclusivamente humana, nunca automática por cuotas/reset. Go mantiene sus propias reglas sin tercer revisor Visual/UX.
@@ -77,6 +79,8 @@ Si la reparación está diagnosticada **y autorizada**, su handoff debe indicar 
 ## 3. Límites de preparación y garantías C-087
 
 **No ejecutes anticipadamente el ticket**, investigues tests ajenos, reabras decisiones aprobadas ni conviertas preflight en implementación o auditoría global. No hagas preguntas cuya respuesta conste en la autoridad disponible. Si no quedan cuestiones materiales abiertas, declara literalmente `Open material product questions: NONE` en el handoff. La preparación termina cuando los riesgos materiales *conocidos* tienen evidencia suficiente, no cuando se multiplican pruebas.
+
+**Ante peticiones humanas posteriores que cambian el perfil dentro de una unidad activa:** no presumir que la autorización de un modelo distinto también permite saltar la frontera fija de routing. El coordinador debe reconciliar expresamente el conflicto con la autoridad del handoff y, de ser necesario, obtener una excepción específica o una nueva unidad limpia. No reiniciar presupuesto de corrección. La cadena Git y cualquier prohibición de `amend`/rebase se mantienen. Estas comprobaciones las gobiernan routing y recuperación, no un nuevo preflight de Cora.
 
 **No reescribas aquí el motor de ejecución:** el coordinador y los agentes aplican `C087_THIN_WRITER_REVIEW_AND_EVIDENCE_RECOVERY_20261017.md` y el lifecycle Matt canónico. El handoff debe concretar **la unidad y fronteras autorizadas**, no volver a programar en prosa el protocolo de cada subagente.
 

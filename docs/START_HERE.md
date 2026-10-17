@@ -63,8 +63,7 @@ Once work is accepted/executable:
 - accepted multi-unit spec/task graph → `/implement-spec` when appropriate;
 - implementation workers implement/TDD only;
 - coordinator owns one canonical Standards + Spec review and any fresh correction dispatch.
-- **Free-only visual/UI-impact amendment (2026-10-17):** Cora fixes `Implementation focus` and `UI impact` in the handoff; `quality|fidelity` triggers exactly one read-only Nemotron Visual/UX axis on the same fixed candidate, sharing the existing two-corrector budget. `none` skips it. No new Matt review loop or new decision model. See `docs/ATENEA_FREE_VISUAL_UX_ROUTING_V1.md`.
-- **Standard-only Visual/UX amendment (2026-10-17):** same classification, with one fresh read-only Luna High visual witness only on `quality|fidelity` units. Existing risk-selected DeepSeek/GLM implementers, Standards/Spec and correction budget unchanged. `none` skips it. See `docs/ATENEA_STANDARD_VISUAL_UX_ROUTING_V1.md`. Go and the separately governed OpenAI route are unchanged by this Standard-specific policy.
+- **Conditional Visual/UX (Free, Standard, human-activated OpenAI):** `quality|fidelity` adds exactly one read-only profile-bound visual axis on the same candidate; `none` skips it, Go has no third axis. Cora fixes the seven handoff fields; exact role, pixel and privacy rules stay in `docs/ATENEA_FREE_VISUAL_UX_ROUTING_V1.md`, `docs/ATENEA_STANDARD_VISUAL_UX_ROUTING_V1.md` and `docs/ATENEA_OPENAI_VISUAL_UX_ROUTING_V1.md`. Matt Standards+Spec and shared correction budget remain unchanged.
 
 
 Prefer durable authority by reference. Do not copy a handoff, `AGENTS.md`, coding standards or specialized policy prose into child prompts.

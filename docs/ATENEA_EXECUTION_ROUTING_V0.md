@@ -67,6 +67,8 @@ The human may select `cost_policy: openai_experimental` at a **clean** work-unit
 
 Both reuse NaN MiMo coordinator, NaN Qwen 3.8 explorer and MiMo merger. Standards is NaN DeepSeek V4 Flash in Sprint and NaN GLM 5.3 Flash High in Frontier. See `docs/ATENEA_OPENAI_EXPERIMENTAL_PROFILE_V0.md` (historical filename) for exact role bindings, activation/preflight and limitations. No silent fallback or mid-run profile switch.
 
+**Mid-unit human route requests:** A **human request to use another profile during an existing unit** is genuine human input, not an autonomous fallback, **but it does not implicitly waive** the fixed-route rule or reset that unit's corrections. Before dispatch, reconcile the conflict with the accepted handoff and obtain explicit human/Cora disposition at a clean new unit boundary or a specifically documented one-use exception to the boundary; otherwise HUMAN STOP. Never combine the old coordinator route and a new corrector route as if both were the same approved execution envelope.
+
 **OpenAI human-activated Visual/UX conditional amendment (2026-10-17):** in NEW explicitly human-approved `openai_experimental` units with `UI impact: quality|fidelity`, dispatch once on the same fixed candidate:
 - Sprint/Volume → `atenea-review-visual-openai-sprint`, Sol High.
 - Frontier/Complex → `atenea-review-visual-openai-frontier`, Luna High.
