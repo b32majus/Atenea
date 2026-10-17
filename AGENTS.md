@@ -65,6 +65,8 @@ Atenea adds stable repository constraints, explicit role/model bindings, determi
 
 Atenea separates **risk class** (`volume|complex`) from **cost policy** (`standard|free_only|go`). A separately human-authorized **operative, human-activation-only** Sprint/Frontier route retains the legacy `openai_experimental` key under `docs/ATENEA_OPENAI_EXPERIMENTAL_PROFILE_V0.md`; it does not alter qualified routes or the default. Cora may recommend risk class; human/project authority owns cost policy. `free_only` and `go` have no silent provider/model fallback. See the profile documents for their replaceable bindings.
 
+Thin field recovery amendment (2026-10-17): `docs/C087_THIN_WRITER_REVIEW_AND_EVIDENCE_RECOVERY_20261017.md` prevents auto-replacement writers/phase splits after empty child returns, encourages concurrent applicable reviews in the same Matt-owned window and bounds tests/screenshots. Applies at future clean boundaries only, without any model, method or budget changes.
+
 Only for **Free** UI-impact units, `docs/ATENEA_FREE_VISUAL_UX_ROUTING_V1.md` adds a **conditional read-only visual evidence axis** on the same fixed candidate. Cora fixes visual intent and authority upstream; this does not alter the canonical Matt Standards+Spec pair or correction budget.
 
 Only for **Standard** UI-impact units, `docs/ATENEA_STANDARD_VISUAL_UX_ROUTING_V1.md` adds an analogous conditional Luna High visual evidence axis. The Standard writer remains risk-bound to DeepSeek Volume or GLM Flash High Complex. Free and Go routes remain unchanged; no extra Matt review or correction budget.

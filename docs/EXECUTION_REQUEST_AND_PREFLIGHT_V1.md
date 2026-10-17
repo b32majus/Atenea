@@ -5,7 +5,7 @@ Date: 2026-10-06
 
 ## Principle
 
-Prepared work enters at implementation. Atenea establishes only facts that can change the next action; it does not repeat shaping, product-design methodology or Matt methodology by ritual.
+Prepared work enters at implementation. Atenea establishes only facts that can change the next action; it does not repeat shaping, product-design methodology or Matt methodology by ritual. Current runtime recovery/review economy for NEW units: `docs/C087_THIN_WRITER_REVIEW_AND_EVIDENCE_RECOVERY_20261017.md`. No extra preflight fields or phases.
 
 ```text
 accepted bounded work

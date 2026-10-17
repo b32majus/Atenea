@@ -48,7 +48,7 @@ Machine-decidable facts should be proven mechanically, but evidence is phase-sco
 - corrector → finding-scoped focused evidence;
 - publication → changed-artifact/composed final closeout.
 
-Broad/full suites are not a per-writer default.
+Broad/full suites are not a per-writer default. The coordinator should reuse the writer's already valid focal evidence; it reruns only a materially necessary not-yet-covered integrated witness. Prefer an existing synthetic browser fixture and snapshots; do not rebuild them by default.
 
 For Atenea authority/config conformance:
 
@@ -60,7 +60,9 @@ That checker validates structural/current-decision/binding facts; it must not fo
 
 ## 7. Review and correction
 
-The selected primary coordinator owns one canonical Matt review per candidate/fixed-point pair. Implementation workers cannot launch review/correction roles. Review start closes the writer.
+The selected primary coordinator owns one canonical Matt review per candidate/fixed-point pair. Implementation workers cannot launch review/correction roles. Review start closes the writer. On the fixed candidate, dispatch Standards+Spec and conditional Visual/UX in ONE review window, concurrently when Matt/OpenCode allows, otherwise in necessary sequential calls WITHOUT repeated axes; consolidate ALL applicable findings before any correction. Do not build a parallel review engine.
+
+An empty subagent completion is `INCOMPLETE_WRITER_RESULT`, not proof of excessive prompt size or writer failure. Inspect supported read-only session/worktree evidence and, if the child session is identified and safe to resume, request at most ONE short status continuation in the SAME session. If still ambiguous: HUMAN STOP. No fresh probe writer or artificial "Writer Phase 1/2" in a single authorized unit. This does not prohibit Matt's genuine multi-unit `/implement-spec` task graph. See `docs/C087_THIN_WRITER_REVIEW_AND_EVIDENCE_RECOVERY_20261017.md`.
 
 Actionable findings go to fresh bound correctors. At most two finding-scoped correction attempts are allowed for the same envelope. Correctors close supplied findings; they do not search sibling branches for new defects by default.
 

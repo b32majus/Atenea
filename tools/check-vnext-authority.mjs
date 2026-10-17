@@ -222,6 +222,18 @@ for (const rel of ['README.md','AGENTS.md','CONTEXT.md','docs/START_HERE.md','do
 
 // Post-C-087 experimental OpenAI profiles: strictly additive and opt-in.
 // Structural check only; this is NOT a model-quality or quota qualification.
+// Post-PR155 C-087 thin field-recovery amendment: no new lifecycle/models.
+req('docs/C087_THIN_WRITER_REVIEW_AND_EVIDENCE_RECOVERY_20261017.md', 'INCOMPLETE_WRITER_RESULT', 'blank child output fails closed');
+req('docs/C087_THIN_WRITER_REVIEW_AND_EVIDENCE_RECOVERY_20261017.md', 'SAME fixed SHA', 'reviewer identity');
+req('docs/C087_THIN_WRITER_REVIEW_AND_EVIDENCE_RECOVERY_20261017.md', 'concurrently', 'concurrent review when supported');
+req('docs/C087_THIN_WRITER_REVIEW_AND_EVIDENCE_RECOVERY_20261017.md', 'before consolidating', 'await all reviewer reports');
+req('docs/C087_THIN_WRITER_REVIEW_AND_EVIDENCE_RECOVERY_20261017.md', 'bounded, specifically diagnosed environment repair', 'focal browser environment repair');
+req('tools/test-c087-thin-execution-recovery.mjs', 'ATENEA_C087_THIN_RECOVERY_CONTRACT_TEST=PASS', 'C-087 thin field-regression test');
+for (const role of ['atenea-free','atenea-volume','atenea-complex','atenea-go','atenea-openai-sprint','atenea-openai-frontier']) {
+  req('.opencode/agents/'+role+'.md','INCOMPLETE_WRITER_RESULT','fail-closed coordinator '+role);
+  req('.opencode/agents/'+role+'.md','IN THE SAME','same-session coordinator recovery '+role);
+}
+
 req('docs/ATENEA_OPENAI_EXPERIMENTAL_PROFILE_V0.md', 'OPERATIVE BY EXPLICIT HUMAN ACTIVATION', 'current OpenAI human activation');
 req('docs/ATENEA_OPENAI_EXPERIMENTAL_PROFILE_V0.md', 'legacy identifier only', 'machine-key compatibility without experimental state');
 req('docs/CORA_TICKET_TRAIN_PREPARATION_PROMPT_C087.md', 'READY_TO_LAUNCH', 'Cora prompt handoff boundary');
