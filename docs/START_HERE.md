@@ -12,6 +12,7 @@ default cost policy  = standard
 default risk class   = volume
 optional cost policy = free_only | go (Go qualified, explicitly human-selected)
 experimental opt-in   = openai_experimental (Sprint volume / Frontier complex; NOT qualified)
+experimental visual   = conditional Sol High (Sprint) / Luna High (Frontier), read-only, human opt-in
 writer volume        = nan/deepseek-v4-flash
 writer complex       = nan/glm5.3-flash · high
 writer context guard = 220k effective → auto-compact ~198k → keep ~15k

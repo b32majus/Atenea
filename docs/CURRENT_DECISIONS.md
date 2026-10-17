@@ -6,6 +6,10 @@ This file preserves accepted decision provenance. **C-087 is the current executi
 
 Historical `docs/DECISIONS.md`, Stage files, old run recipes and pre-vNext field evidence remain valuable provenance, but they do not define the current execution path.
 
+## Post-C-087 OpenAI experimental conditional Visual/UX — 2026-10-17
+
+**Explicitly approved by the human for Sprint + Frontier; profiles remain NOT OPERATIONALLY QUALIFIED and require per-unit human opt-in.** Sprint/Volume gets one conditional independent Sol High visual witness, Frontier/Complex one conditional independent Luna High visual witness, for `quality|fidelity` on the same fixed candidate. `none` skips. No new Matt review, correction budget, implementer change, auto opt-in, or promotion. See `docs/ATENEA_OPENAI_VISUAL_UX_ROUTING_V1.md`. Provider pixel-media tests in separate synthetic qualification folders, not a field Train.
+
 ## Post-C-087 Standard Visual/UX conditional evidence — 2026-10-17
 
 **Human-authorized after a bounded Standard DeepSeek-vs-GLM Flash study.** Cora fixes new Standard handoffs as `Implementation focus: technical|visual|mixed` and `UI impact: none|quality|fidelity`. A rendered UI impact requires one fresh, read-only GPT-6 Luna High Visual/UX session against the SAME fixed candidate in addition to Matt's Standards+Spec pair, with shared existing correction budget. Standard Volume DeepSeek, Complex GLM 5.3 Flash High, Standards/Spec and corrector models remain unchanged. No Jev/d1-ultra, automatic risk rerouting or fallback. See `docs/ATENEA_STANDARD_VISUAL_UX_ROUTING_V1.md`.

@@ -67,6 +67,12 @@ The human may select `cost_policy: openai_experimental` at a **clean** work-unit
 
 Both reuse NaN MiMo coordinator, NaN Qwen 3.8 explorer and MiMo merger. Standards is NaN DeepSeek V4 Flash in Sprint and NaN GLM 5.3 Flash High in Frontier. See `docs/ATENEA_OPENAI_EXPERIMENTAL_PROFILE_V0.md` for the exact seven-role map, preflight, limitations and field-evidence requirements. No silent fallback or mid-run profile switch.
 
+**Experimental Visual/UX conditional amendment (2026-10-17):** in NEW explicitly human-opted `openai_experimental` units with `UI impact: quality|fidelity`, dispatch once on the same fixed candidate:
+- Sprint/Volume → `atenea-review-visual-openai-sprint`, Sol High.
+- Frontier/Complex → `atenea-review-visual-openai-frontier`, Luna High.
+`none` skips. Matt Standards+Spec and shared max-two fresh correction budget remain intact; experiment remains unqualified. See `docs/ATENEA_OPENAI_VISUAL_UX_ROUTING_V1.md`.
+
+
 ## Go candidate / Free V2 human-approved boundary (2026-10-16)
 
 Standard Volume/Complex and experimental OpenAI model bindings are unchanged. Go remains a pending candidate; Free V2 Volume and Complex are explicitly human-approved. Exact routing is in each replaceable catalog and native agents. No active Train may change models mid-unit. The project-local `.opencode/agents` must be reconciled with the approved Atenea version before launch: updating Atenea alone does not update another project's copied agents.
