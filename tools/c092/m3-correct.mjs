@@ -57,7 +57,7 @@ export async function correctSyntheticM3({
  const criteria={title:correlation,agent:'build',repo};
  let session;
  try{
-  session=await host.create(correlation,'build');
+  session=await host.create(correlation,'build',expectedModel);
   const fetched=await host.get(session?.id);
   if(!verifyHostSession(session,criteria)||!verifyHostSession(fetched,criteria)||fetched.id!==session.id)
    return stop(storeDir,unitId,'CORRECTOR_HOST_IDENTITY_UNPROVEN');

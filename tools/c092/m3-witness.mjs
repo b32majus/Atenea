@@ -6,9 +6,11 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 import {execFileSync} from 'node:child_process';
+import {validateNativeWitness,runNativeWitnesses} from './m3-native-witness.mjs';
 const sha256=v=>crypto.createHash('sha256').update(v).digest('hex');
 const git=(repo,...args)=>execFileSync('git',['-C',repo,...args],{encoding:'utf8',timeout:15000}).trim();
 export function validateWitnessSpec(spec) {
+  if(spec?.kind==='native')return validateNativeWitness(spec);
   if(!spec || Object.keys(spec).sort().join(',')!=='argv,id,timeoutMs')return false;
   if(!/^[A-Z][A-Z0-9_]{1,47}$/.test(spec.id))return false;
   if(!Array.isArray(spec.argv) || spec.argv[0]!=='node' || spec.argv.length<2 || spec.argv.length>8)return false;
@@ -22,7 +24,11 @@ export function validateWitnessSpec(spec) {
     :parts.length<=2&&script.test(parts[0])&&(parts.length===1||parts[1]==='--self-test');
   return valid && Number.isInteger(spec.timeoutMs) && spec.timeoutMs>=100 && spec.timeoutMs<=300000;
 }
-export function runWitnesses({repo,sha,witnesses,outputDir}) {
+export function runWitnesses({repo,sha,witnesses,outputDir,runtime=null}) {
+  if(Array.isArray(witnesses)&&witnesses.length&&witnesses.every(w=>w.kind==='native'))
+    return runNativeWitnesses({repo,sha,witnesses,outputDir,runtime});
+  if(Array.isArray(witnesses)&&witnesses.some(w=>w.kind==='native'))
+    return {ok:false,code:'WITNESS_MIXED_MODES_FORBIDDEN'};
   if(!Array.isArray(witnesses)||!witnesses.length||witnesses.length>8
      ||new Set(witnesses.map(x=>x.id)).size!==witnesses.length
      ||!witnesses.every(validateWitnessSpec))

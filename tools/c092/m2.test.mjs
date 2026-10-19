@@ -106,6 +106,16 @@ test('lost prompt response never resends and cannot pass candidate',async()=>{
  assert.equal(api.calls.prompt,1);
 });
 
+test('known consumer symbols can be absent/new or non-JavaScript; never claim universal G03',()=>{
+ const c=setup();
+ c.manifest.consumerSymbols=[];
+ let r=preflightM2(c);
+ assert.equal(r.ok,true,JSON.stringify(r));assert.equal(r.consumerCheck.status,'G03_NOT_EVALUATED');
+ c.manifest.consumerSymbols=['NewProject.Symbol'];
+ r=preflightM2(c);
+ assert.equal(r.ok,true,JSON.stringify(r));assert.equal(r.consumerCheck.status,'G03_PARTIAL_DECLARED_SYMBOLS');
+ assert.deepEqual(r.consumerCheck.absentFromBase,['NewProject.Symbol']);
+});
 test('cross-unit M4 worktree lease blocks concurrent second writer',async()=>{
  const c=setup();
  const another={...c.manifest,unitId:'test-other-unit'};

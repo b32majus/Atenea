@@ -75,9 +75,9 @@ export async function runFixtureM2({repo,storeDir,manifest,authorityPath,url,cli
   let session=null;
   try {
     if(inject!=='lose_create_response') {
-      const response=await host.create(marker,'build');
+      const response=await host.create(marker,'build',expectedModel);
       if(verifyHostSession(response,criteria))session=response;
-    } else {await host.create(marker,'build');throw new Error('SIMULATED_LOST_CREATE_RESPONSE');}
+    } else {await host.create(marker,'build',expectedModel);throw new Error('SIMULATED_LOST_CREATE_RESPONSE');}
   } catch {}
   if(!session){
     try{

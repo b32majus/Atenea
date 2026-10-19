@@ -38,22 +38,22 @@ export function preflightM2({ repo, storeDir, manifest, authorityPath, trustedLo
   const git = preflightRepo(r,manifest);
   if(!git.ok) errors.push(...git.reasons);
   // Coverage is explicitly limited to symbols declared by the operator.
-  const consumers={};
-  if (!manifest.consumerSymbols.length) errors.push('G03 NOT_EVALUATED: synthetic M2 requires at least one symbol');
+  const consumers={},absent=[];
   for (const symbol of manifest.consumerSymbols) {
-    if(!/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(symbol)) {
-      errors.push('G03 symbol must be a literal identifier for git grep: '+symbol); continue;
-    }
+    // Literal symbols from TypeScript, Python, SQL or other languages are valid.
     let matches;
     try {
-      const raw=execFileSync('git',['-C',r,'grep','-l','-z','-w','-F','-e',symbol,manifest.baseSha,'--'],{encoding:'utf8'});
+      const args=['-C',r,'grep','-l','-z','-F'];
+      if(/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(symbol))args.push('-w');
+      args.push('-e',symbol,manifest.baseSha,'--');
+      const raw=execFileSync('git',args,{encoding:'utf8'});
       matches=raw.split('\0').filter(Boolean).map(x=>x.startsWith(manifest.baseSha+':')?x.slice(41):x);
     } catch(e) {
       if (e.status===1) matches=[];
       else {errors.push('G03 git grep error for '+symbol);continue;}
     }
     consumers[symbol]=matches;
-    if(!matches.length) errors.push('G03 symbol not found in BASE: '+symbol);
+    if(!matches.length)absent.push(symbol); // New symbols are not proof of missing consumers.
     for(const p of matches) {
       const classified=manifest.allowPaths.some(v=>p===v || p.startsWith(v+'/')) ||
         manifest.doNotTouch.some(v=>p===v || p.startsWith(v+'/'));
@@ -62,6 +62,8 @@ export function preflightM2({ repo, storeDir, manifest, authorityPath, trustedLo
   }
   return errors.length?{ok:false,code:'BLOCKED_PREP',errors}:{
     ok:true,repo:r,store,authoritySha,baseSha:manifest.baseSha,
-    consumerCheck:{status:'G03_PASS_DECLARED_SYMBOLS',symbols:consumers},
+    consumerCheck:{status:manifest.consumerSymbols.length?
+      (absent.length?'G03_PARTIAL_DECLARED_SYMBOLS':'G03_PASS_DECLARED_SYMBOLS'):'G03_NOT_EVALUATED',
+      absentFromBase:absent,symbols:consumers},
   };
 }

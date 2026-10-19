@@ -81,6 +81,23 @@ export function auditUnitM4({storeDir,unitId,repo=null,evidenceDir=null}) {
    ||new Set(reviews.receipts.map(x=>x.axis)).size!==reviews.receipts.length
    ||u.manifest.reviewAxes.some(a=>!reviews.receipts.some(r=>r.axis===a))
    ||reviews.witnessSha256!==hash(wd))return fail('ACCEPTANCE_RECEIPT_CONTENT_INVALID');
+  if(u.manifest.uiImpact!=='none'){
+   const visual=reviews.visualEvidence;
+   if(!Array.isArray(visual)||!visual.length||!u.manifest.reviewAxes.includes('VISUAL'))
+    return fail('VISUAL_EVIDENCE_MISSING');
+   const root=fs.realpathSync(repo),evidenceRoot=path.resolve(evidenceDir);
+   for(const item of visual){
+    const candidatePath=path.resolve(item.captureStoredPath||'');
+    if(!candidatePath.startsWith(evidenceRoot+path.sep)||
+       !fs.existsSync(candidatePath)||!fs.statSync(candidatePath).isFile()||
+       hash(fs.readFileSync(candidatePath))!==item.captureSha256)
+     return fail('VISUAL_CAPTURE_CHANGED_AFTER_REVIEW');
+    const source=path.resolve(root,item.referencePath||'');
+    if(!source.startsWith(root+path.sep)||!fs.existsSync(source)||
+       hash(fs.readFileSync(source))!==item.referenceSha256)
+     return fail('VISUAL_REFERENCE_CHANGED_AFTER_REVIEW');
+   }
+  }
   evidenceStatus='LOCAL_RECEIPTS_MATCH_SHA';
  }
  return {ok:true,code:'LOCAL_HISTORY_AND_RECEIPTS_CONSISTENT',unitId,

@@ -11,6 +11,11 @@ export function isLoopback(url) {
     && Number(u.port)>0 && u.username==='' && u.password==='' && u.pathname==='/' && u.search==='' && u.hash===''; }
   catch{return false;}
 }
+export function modelRef(id){
+ if(typeof id!=='string'||!/^[-a-zA-Z0-9_.]+\/[-a-zA-Z0-9_.]+(?:#[a-zA-Z0-9_.-]+)?$/.test(id))throw Error('MODEL_REF_INVALID');
+ const [base,variant]=id.split('#'),slash=base.indexOf('/');
+ return {providerID:base.slice(0,slash),modelID:base.slice(slash+1),...(variant?{variant}:{})};
+}
 export class HostAPI {
   constructor({url,repo,exe=OPENCODE_V2,env=process.env,timeoutMs=17000}){
     if(!isLoopback(url)) throw Error('HOST_URL_NOT_LOOPBACK');
@@ -30,11 +35,18 @@ export class HostAPI {
     return envelope?.data;
   }
   list(){ return this.request('GET','/api/session'); }
-  create(title,agent){return this.request('POST','/api/session',{title,agent});}
+  create(title,agent,expectedModel=null){return this.request('POST','/api/session',
+    expectedModel?{title,agent,model:modelRef(expectedModel)}:{title,agent});}
   get(id){if(!VALID_ID.test(id))throw Error('INVALID_SESSION_ID');return this.request('GET','/api/session/'+id);}
   messages(id){if(!VALID_ID.test(id))throw Error('INVALID_SESSION_ID');return this.request('GET','/api/session/'+id+'/message');}
   active(){return this.request('GET','/api/session/active');}
-  prompt(id,text){if(!VALID_ID.test(id))throw Error('INVALID_SESSION_ID');return this.request('POST','/api/session/'+id+'/prompt',{text});}
+  prompt(id,text,files=[]){
+    if(!VALID_ID.test(id))throw Error('INVALID_SESSION_ID');
+    if(!Array.isArray(files)||files.length>16||!files.every(f=>f&&typeof f.name==='string'&&
+      /^[A-Za-z0-9_.-]{1,100}$/.test(f.name)&&typeof f.uri==='string'&&f.uri.startsWith('file:///')))
+      throw Error('HOST_PROMPT_ATTACHMENT_INVALID');
+    return this.request('POST','/api/session/'+id+'/prompt',files.length?{text,files}:{text});
+  }
 }
 export function verifyHostSession(s,{title,agent,repo,projectID}) {
   if(!s || !VALID_ID.test(s.id) || s.title!==title || s.agent!==agent ||

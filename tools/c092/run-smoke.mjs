@@ -11,7 +11,8 @@ import {auditUnitM4} from './m4-integrity.mjs';
 export async function runSmokeEndToEnd({
  repo,storeDir,manifest,authorityPath,url,reviewUrl=url,evidenceDir,
  maxWriterMs=135000,maxReviewerMs=85000,maxCorrectorMs=100000,pollMs=1800,
- trustedLocal=false,writerPrompt=null,witnesses=null,models=null,
+ trustedLocal=false,writerPrompt=null,witnesses=null,witnessRuntime=null,models=null,
+ visualRefs=null,visualMediaAuthorized=false,reviewUrls=null,correctorUrl=null,
  onProgress=()=>{}
 }){
  const results=[];
@@ -23,8 +24,9 @@ export async function runSmokeEndToEnd({
  for(let attempt=0;attempt<=manifest.maxCorrections;attempt++){
   const rev=await reviewCandidateM3({repo,storeDir,unitId:manifest.unitId,
     authorityPath,outputDir:evidenceDir,
-    witnesses:witnesses??[{id:'TALLY',argv:['node','--test','test/tally.test.mjs'],timeoutMs:18000}],
-    url:reviewUrl,maxWaitMs:maxReviewerMs,pollMs,trustedLocal,
+    witnesses:witnesses??[{id:'TALLY',argv:['node','--test','test/tally.test.mjs'],timeoutMs:18000}],witnessRuntime,
+    url:reviewUrl,reviewUrls,visualRefs,visualMediaAuthorized,
+    maxWaitMs:maxReviewerMs,pollMs,trustedLocal,
     expectedModels:models?Object.fromEntries(manifest.reviewAxes.map((axis,i)=>[axis,models.reviewers[i]])):null});
   add(attempt?'FOCAL_REVIEW':'INITIAL_REVIEW',rev);
   if(!rev.ok)return {ok:false,stage:'REVIEW',results};
@@ -34,8 +36,8 @@ export async function runSmokeEndToEnd({
    return {ok:audit.ok,state:rev.state,sha:rev.sha,stage:'COMPLETE',results};
   }
   if(rev.state!=='CORRECTION_PENDING')return {ok:false,stage:'UNEXPECTED_REVIEW_STATE',results};
-  const fixed=await correctSyntheticM3({repo,storeDir,unitId:manifest.unitId,url,
-    maxWaitMs:maxCorrectorMs,pollMs,trustedLocal,expectedModel:models?.writer??null});
+  const fixed=await correctSyntheticM3({repo,storeDir,unitId:manifest.unitId,url:correctorUrl??url,
+    maxWaitMs:maxCorrectorMs,pollMs,trustedLocal,expectedModel:models?.corrector??models?.writer??null});
   add('CORRECTOR',fixed);
   if(!fixed.ok)return {ok:false,stage:'CORRECTOR',results};
  }

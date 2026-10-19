@@ -7,6 +7,8 @@ import {runSmokeEndToEnd} from './run-smoke.mjs';
 import {validateWitnessSpec} from './m3-witness.mjs';
 import {validateManifest} from './manifest.mjs';
 import {validateTicketAuthorityReference} from './run-ticket-preflight.mjs';
+import {resolveC092Profile} from './m3-profile.mjs';
+import {validateVisualContract} from './m3-visual-evidence.mjs';
 function abort(reason){console.log(JSON.stringify({ok:false,code:'PRELAUNCH_STOP',reason}));process.exit(2);}
 const [configFile,hostUrl,reviewUrl=hostUrl]=process.argv.slice(2);
 if(!configFile||!hostUrl)abort('required config path + host url');
@@ -19,13 +21,21 @@ if(!Array.isArray(c.witnesses)||!c.witnesses.length||!c.witnesses.every(validate
  abort('invalid witness declarations');
 if(!validateTicketAuthorityReference(c))
  abort('task prompt missing repo-local authority or limits');
+const routing=c.profile?resolveC092Profile(c.profile,c.manifest,c.models??null):
+ {ok:false,code:'PROFILE_REQUIRED_FOR_REAL_TICKET'};
+if(!routing.ok)abort(routing.code);
+if(!validateVisualContract(c.manifest,c.visualRefs??null))abort('VISUAL_CONTRACT_MISSING');
+if(c.manifest.uiImpact!=='none'&&c.visualMediaAuthorized!==true)abort('VISUAL_MEDIA_NOT_AUTHORIZED');
+const selectedModels=routing.models;
 const branch=execFileSync('git',['-C',c.repo,'symbolic-ref','--short','HEAD'],{encoding:'utf8'}).trim();
 if(branch!==c.expectedBranch)abort('branch mismatch '+branch);
 const started=new Date().toISOString();
 const result=await runSmokeEndToEnd({
  repo:c.repo,storeDir:c.storeDir,evidenceDir:c.evidenceDir,
  authorityPath:c.authorityPath,manifest:c.manifest,url:hostUrl,reviewUrl,
- writerPrompt:c.writerPrompt,witnesses:c.witnesses,trustedLocal:true,models:c.models,
+ writerPrompt:c.writerPrompt,witnesses:c.witnesses,witnessRuntime:c.witnessRuntime??null,trustedLocal:true,models:selectedModels,
+ visualRefs:c.visualRefs??null,visualMediaAuthorized:c.visualMediaAuthorized===true,
+ reviewUrls:c.reviewUrls??null,correctorUrl:c.correctorUrl??null,
  maxWriterMs:155000,maxReviewerMs:110000,maxCorrectorMs:135000,pollMs:2300,
  onProgress:(stage,x)=>console.log(JSON.stringify({at:new Date().toISOString(),stage,
    state:x?.state,ok:x?.ok,reason:x?.reason??x?.code,sha:x?.sha,
@@ -60,7 +70,7 @@ const comparison={
  candidateSha:result.ok?result.sha:null,
  candidateBranch:c.expectedBranch,prepSha:null,
  rootSessionIds:roots,
- models:{coordinator:null,writer:c.models.writer,reviewers:c.models.reviewers,other:null},
+ models:{coordinator:null,writer:selectedModels.writer,reviewers:selectedModels.reviewers,corrector:selectedModels.corrector,profile:routing.profile,other:null},
  corrections,reviewSessions,humanInterventions:[],stops,actualModels,
  notes:'C092 1 execution. Provider/model checked using OpenCode assistant messages; requested #variant is explicitly UNATTESTED unless returned by host. Only declared ticket witnesses; no neutral acceptance.'
 };

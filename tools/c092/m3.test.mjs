@@ -127,7 +127,7 @@ test('visual quality/fidelity cannot pass without pixel oracle; no reviewer laun
  for(const impact of ['quality','fidelity']){
   const c=fixture(impact),client=fakeHost(c);
   const result=await reviewCandidateM3({...c,unitId:c.manifest.unitId,client,maxWaitMs:30,pollMs:1});
-  assert.equal(result.ok,false);assert.equal(result.reason,'VISUAL_PIXEL_WITNESS_NOT_QUALIFIED');
+  assert.equal(result.ok,false);assert.equal(result.reason,'VISUAL_CONTRACT_MISSING_OR_INVALID');
   assert.equal(client.seen.length,0);
   assert.equal(loadUnit(c.storeDir,c.manifest.unitId).state.machine.state,'HUMAN_STOP');
  }
