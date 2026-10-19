@@ -6,6 +6,7 @@ import {execFileSync} from 'node:child_process';
 import {runSmokeEndToEnd} from './run-smoke.mjs';
 import {validateWitnessSpec} from './m3-witness.mjs';
 import {validateManifest} from './manifest.mjs';
+import {validateTicketAuthorityReference} from './run-ticket-preflight.mjs';
 function abort(reason){console.log(JSON.stringify({ok:false,code:'PRELAUNCH_STOP',reason}));process.exit(2);}
 const [configFile,hostUrl,reviewUrl=hostUrl]=process.argv.slice(2);
 if(!configFile||!hostUrl)abort('required config path + host url');
@@ -16,12 +17,7 @@ const manifestResult=validateManifest(c.manifest);
 if(!manifestResult.ok)abort(JSON.stringify(manifestResult.errors));
 if(!Array.isArray(c.witnesses)||!c.witnesses.length||!c.witnesses.every(validateWitnessSpec))
  abort('invalid witness declarations');
-const authorityRelative=path.relative(c.repo,c.authorityPath).split(path.sep).join('/');
-const authorityIsLocal=authorityRelative.length>0 && authorityRelative!=='.' &&
- !authorityRelative.startsWith('../') && !path.posix.isAbsolute(authorityRelative) &&
- !authorityRelative.split('/').some(x=>!x||x==='.'||x==='..'||x==='.git');
-if(!authorityIsLocal||!authorityRelative.endsWith('.md')||
- typeof c.writerPrompt!=='string'||!c.writerPrompt.includes(authorityRelative)||!c.writerPrompt.includes('No push'))
+if(!validateTicketAuthorityReference(c))
  abort('task prompt missing repo-local authority or limits');
 const branch=execFileSync('git',['-C',c.repo,'symbolic-ref','--short','HEAD'],{encoding:'utf8'}).trim();
 if(branch!==c.expectedBranch)abort('branch mismatch '+branch);
