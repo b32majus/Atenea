@@ -5,7 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import {execFileSync} from 'node:child_process';
-import {runFixtureM2} from './m2-run.mjs';
+import {runFixtureM2,classifyAssistantFailure} from './m2-run.mjs';
 import {preflightM2} from './m2-preflight.mjs';
 import {verifyHostSession,reconcileCreatedSession,isLoopback,attestSessionModel} from './m2-host.mjs';
 const git=(r,...args)=>execFileSync('git',['-C',r,...args],{encoding:'utf8'}).trim();
@@ -50,6 +50,14 @@ function fake(ctx,{duplicates=false,wrongGet=false,dropCreate=false}={}){
  return client;
 }
 const config=ctx=>({...ctx,maxWaitMs:60,pollMs:1});
+test('OpenCode model/provider error is classified before asserting a missing candidate',()=>{
+ const expired=[{type:'assistant',model:{providerID:'opencode',id:'glm-5.3-flash-free'},
+  finish:'error',error:{type:'provider.auth',status:401,message:'This API key has expired. Create a new API key.'}}];
+ assert.equal(classifyAssistantFailure(expired),'PROVIDER_API_KEY_EXPIRED');
+ assert.equal(classifyAssistantFailure([{type:'assistant',finish:'error',error:{type:'provider.auth',status:401,message:'Invalid key'}}]),'PROVIDER_AUTH_FAILED');
+ assert.equal(classifyAssistantFailure([{type:'assistant',finish:'error',error:{type:'provider.transport',message:'network'}}]),'MODEL_EXECUTION_ERROR');
+ assert.equal(classifyAssistantFailure([{type:'assistant',finish:'stop'}]),null);
+});
 test('loopback only, exact identity',()=>{assert.equal(isLoopback('http://127.0.0.1:12345/'),true);
  for(const u of ['http://localhost:12345/','https://127.0.0.1:12345/','http://example.org/','http://127.0.0.1:12345/a'])assert.equal(isLoopback(u),false);});
 test('preflight verifies authority bytes and declared consumer map',()=>{

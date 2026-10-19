@@ -40,6 +40,20 @@ function hostBusy(active,id){
   const value=active[id];
   return !!value && (typeof value!=='object' || value.type!=='idle');
 }
+export function classifyAssistantFailure(messages){
+ for(const m of messages||[]){
+  const role=m?.type??m?.info?.role??m?.role;
+  if(role!=='assistant')continue;
+  const error=m?.error??m?.info?.error;
+  const finished=m?.finish??m?.info?.finish;
+  if(!error&&finished!=='error')continue;
+  const message=String(error?.message??'');
+  if(error?.type==='provider.auth'||error?.status===401||error?.status===403)
+   return /expir|api_key_expired/i.test(message)?'PROVIDER_API_KEY_EXPIRED':'PROVIDER_AUTH_FAILED';
+  return 'MODEL_EXECUTION_ERROR';
+ }
+ return null;
+}
 function hasAssistantMessage(messages){
   return Array.isArray(messages) && messages.some(m=>m?.info?.role==='assistant' || m?.type==='assistant' || m?.role==='assistant');
 }
@@ -111,6 +125,8 @@ export async function runFixtureM2({repo,storeDir,manifest,authorityPath,url,cli
     }catch{continue;}
     seenAssistant ||= hasAssistantMessage(messages);
     if(seenAssistant && !hostBusy(active,session.id)){
+      const failure=classifyAssistantFailure(messages);
+      if(failure)return stop(storeDir,manifest.unitId,failure);
       const modelEvidence=attestSessionModel(messages,expectedModel);
       if(!modelEvidence.ok)return stop(storeDir,manifest.unitId,modelEvidence.code);
       const result=candidateEvidence(pre.repo,manifest.baseSha,manifest.allowPaths,manifest.doNotTouch);
