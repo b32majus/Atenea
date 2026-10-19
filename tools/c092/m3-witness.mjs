@@ -16,7 +16,7 @@ export function validateWitnessSpec(spec) {
     && !a.split('/').includes('..') && !a.includes('\\')))return false;
   const parts=spec.argv.slice(1);
   const script=/^scripts\/[a-zA-Z0-9._/-]+\.mjs$/;
-  const test=/^scripts\/[a-zA-Z0-9._/-]+\.test\.mjs$/;
+  const test=/^(?:scripts|test)\/[a-zA-Z0-9._/-]+\.test\.mjs$/;
   const valid=parts[0]==='--test'
     ?parts.length>=2&&parts.slice(1).every(p=>test.test(p))
     :parts.length<=2&&script.test(parts[0])&&(parts.length===1||parts[1]==='--self-test');
