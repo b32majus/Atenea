@@ -1,8 +1,10 @@
 # Atenea Free model catalog v0 — Free V2 Volume/Complex bindings
 
 Status: **CURRENT HUMAN-APPROVED FREE BINDINGS — promotion without additional model-quality bake-off**
-Snapshot: 2026-10-17 (human-approved Free-only Muse replacement + conditional Visual/UX addendum)
+Snapshot: 2026-10-19 (Free MiniMax M3.1 Flash model-availability amendment; previous 2026-10-17 role decisions retained)
 Runtime observed: OpenCode V2 `2.0.32`; exact current binding IDs visible via `opencode models`.
+
+**2026-10-19 model rename:** OpenCode lists `opencode/minimax-m3.1-flash-free` in place of the old `opencode/space-bunny-free` endpoint. MiniMax identifies Space Bunny as an earlier M3.1 Flash version; historical Space Bunny trial results below do not establish quality equivalence for the released endpoint. C-092 deterministic pilots must select models explicitly in their run configurations: this C-087 catalog does not automatically configure the C-092 engine.
 
 This is the **replaceable binding snapshot**, not a new lifecycle or a quality-equivalence certification. Free availability is promotional and may change. The human explicitly approved both Free risk-class routes on 2026-10-16 and the exact three-model Muse replacement on 2026-10-17, without further comparative model-quality tests. No automatic fallback or mid-unit model rotation.
 
@@ -12,9 +14,9 @@ This is the **replaceable binding snapshot**, not a new lifecycle or a quality-e
 | --- | --- | --- |
 | coordinator (visible `atenea-free`) | `opencode/mimo-v2.6-flash-free` | same |
 | explorer `atenea-explorer-free` | `opencode/mimo-v2.6-flash-free` | same |
-| implementer | `atenea-implementer-free` → `opencode/space-bunny-free` | `atenea-implementer-free-complex` → `opencode/glm-5.3-flash-free` |
+| implementer | `atenea-implementer-free` → `opencode/minimax-m3.1-flash-free` | `atenea-implementer-free-complex` → `opencode/glm-5.3-flash-free` |
 | Standards `atenea-review-standards-free` | `opencode/deepseek-v4.1-flash-free` | same |
-| Spec | `atenea-review-spec-free` → `opencode/glm-5.3-flash-free` | `atenea-review-spec-free-complex` → `opencode/space-bunny-free` |
+| Spec | `atenea-review-spec-free` → `opencode/glm-5.3-flash-free` | `atenea-review-spec-free-complex` → `opencode/minimax-m3.1-flash-free` |
 | finding-scoped corrector | `atenea-corrector-free-volume` → `opencode/glm-5.3-flash-free` | `atenea-corrector-free-complex` → `opencode/deepseek-v4.1-flash-free` |
 | merger `atenea-merger-free` | `opencode/mimo-v2.6-flash-free` | same |
 | integrated audit | Cora when material | Cora when material |
@@ -22,7 +24,7 @@ This is the **replaceable binding snapshot**, not a new lifecycle or a quality-e
 **Free-only conditional Visual/UX overlay (approved 2026-10-17):** `atenea-review-visual-free` → `opencode/nemotron-3.5-super-vl-free`. Dispatch only when the Cora-accepted handoff has `UI impact: quality|fidelity` and pixel evidence is available. No dispatch for `UI impact: none`. The existing risk-class implementers are both image-capable in the isolated 2026-10-17 laboratory, but Space Bunny had stronger fidelity evidence; GLM saw images yet timed out on the visual fixture. No new general-purpose writer model or automatic risk override is introduced. Details: `docs/ATENEA_FREE_VISUAL_UX_ROUTING_V1.md`.
 
 
-Both logical routes use **one visible primary agent**, `atenea-free`, which dispatches the risk-specific agents from the accepted handoff. In Volume, the Space Bunny writer is independent from GLM Spec and DeepSeek Standards. In Complex, the GLM writer is independent from Space Bunny Spec and DeepSeek Standards. MiMo coordinator/explorer/merger and GLM Volume Spec/corrector and DeepSeek Complex Standards/corrector share provider IDs only; their **sessions are fresh and independent**, never a reviewer or writer context reused for correction.
+Both logical routes use **one visible primary agent**, `atenea-free`, which dispatches the risk-specific agents from the accepted handoff. In Volume, the MiniMax M3.1 Flash Free writer is independent from GLM Spec and DeepSeek Standards. In Complex, the GLM writer is independent from MiniMax M3.1 Flash Free Spec and DeepSeek Standards. MiMo coordinator/explorer/merger and GLM Volume Spec/corrector and DeepSeek Complex Standards/corrector share provider IDs only; their **sessions are fresh and independent**, never a reviewer or writer context reused for correction.
 
 ## Evidence versus approved selection
 
@@ -42,7 +44,7 @@ Exact bound model IDs:
 
 ```text
 opencode/mimo-v2.6-flash-free
-opencode/space-bunny-free
+opencode/minimax-m3.1-flash-free
 opencode/deepseek-v4.1-flash-free
 opencode/glm-5.3-flash-free
 ```
