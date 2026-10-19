@@ -10,7 +10,7 @@ import {validateReview,extractVerdictText,combineReviewReceipts} from './m3-rece
 import {initStore,applyEvent,loadUnit} from './store.mjs';
 import {reviewCandidateM3} from './m3-review.mjs';
 const git=(r,...a)=>execFileSync('git',['-C',r,...a],{encoding:'utf8'}).trim();
-function fixture(){
+function fixture(uiImpact='none'){
  const root=fs.mkdtempSync(path.join(os.tmpdir(),'c092-m3-'));
  const repo=path.join(root,'repo');fs.mkdirSync(repo);fs.mkdirSync(path.join(repo,'src'));
  fs.mkdirSync(path.join(repo,'test'));fs.mkdirSync(path.join(repo,'docs'));
@@ -23,8 +23,8 @@ function fixture(){
  fs.writeFileSync(path.join(repo,'src/tally.mjs'),'export function bump(n){return n+2;}\n');
  git(repo,'add','src/tally.mjs');git(repo,'commit','-qm','candidate');const sha=git(repo,'rev-parse','HEAD');
  const manifest={schema:'atenea.c092.unit/v1',unitId:'fixture-m3',baseSha,allowPaths:['src/tally.mjs'],
- doNotTouch:['test/tally.test.mjs','docs/WO.md'],consumerSymbols:['bump'],uiImpact:'none',
- reviewAxes:['STANDARDS','SPEC'],maxCorrections:2,
+ doNotTouch:['test/tally.test.mjs','docs/WO.md'],consumerSymbols:['bump'],uiImpact,
+ reviewAxes:uiImpact==='none'?['STANDARDS','SPEC']:['STANDARDS','SPEC','VISUAL'],maxCorrections:2,
  authorityDigest:crypto.createHash('sha256').update(fs.readFileSync(authorityPath)).digest('hex')};
  const storeDir=path.join(root,'store');assert.equal(initStore(storeDir,manifest).ok,true);
  let version=1;
@@ -121,4 +121,14 @@ test('newest unfinished or invalid review cannot fall back to an older PASS',()=
  const wrong={type:'assistant',finish:'stop',content:[{type:'text',text:'unable to complete'}]};
  assert.equal(extractVerdictText([wrong,good]).ok,false);
  assert.equal(extractVerdictText([good]).ok,true);
+});
+
+test('visual quality/fidelity cannot pass without pixel oracle; no reviewer launched',async()=>{
+ for(const impact of ['quality','fidelity']){
+  const c=fixture(impact),client=fakeHost(c);
+  const result=await reviewCandidateM3({...c,unitId:c.manifest.unitId,client,maxWaitMs:30,pollMs:1});
+  assert.equal(result.ok,false);assert.equal(result.reason,'VISUAL_PIXEL_WITNESS_NOT_QUALIFIED');
+  assert.equal(client.seen.length,0);
+  assert.equal(loadUnit(c.storeDir,c.manifest.unitId).state.machine.state,'HUMAN_STOP');
+ }
 });

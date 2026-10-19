@@ -36,6 +36,7 @@ export async function reviewCandidateM3({
  const focal=loaded.state.machine.state==='FOCAL_REVIEW';
  if(!focal && loaded.state.machine.state!=='CANDIDATE')return {ok:false,code:'NOT_CANDIDATE_OR_FOCAL'};
  const manifest=loaded.manifest;
+ if(manifest.uiImpact!=='none')return stop(storeDir,unitId,'VISUAL_PIXEL_WITNESS_NOT_QUALIFIED');
  const sha=loaded.state.machine.candidates.at(-1)?.sha;
  if(!sha||!material(repo,sha))return stop(storeDir,unitId,'REVIEW_SHA_NOT_FIXED');
  // Every review begins with the fixed candidate and a sealed authority reference.
