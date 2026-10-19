@@ -31,7 +31,7 @@ Rules:
 
 | Risk | Default writer for technical focus | Visual/mixed focus |
 | --- | --- | --- |
-| `volume` | `atenea-implementer-free` → Space Bunny Free | **Same** Space Bunny Free, with actual approved PNG delivered as image media and browser evidence |
+| `volume` | `atenea-implementer-free` → MiniMax M3.1 Flash Free | **Same** MiniMax M3.1 Flash Free, with actual approved PNG delivered as image media and browser evidence |
 | `complex` | `atenea-implementer-free-complex` → GLM 5.3 Flash Free | **Same** GLM Free, with actual approved PNG and browser evidence; its prior visual lab timeout is known, so STOP if incapable within budget |
 
 Visual focus is **not** a license to change `risk_class`, use the Volume writer for Complex semantics, or switch to Go/NaN. Both bound models accepted PNG in isolated field probes, but neither is universally certified visually. If a selected writer does not receive image media or fails to deliver a bounded candidate, return it to Cora + human for a **new unit boundary** decision. No fallback or in-session rotation.
