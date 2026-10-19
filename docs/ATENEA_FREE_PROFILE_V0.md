@@ -1,7 +1,7 @@
 # Atenea Free Profile v0
 
 Status: **CURRENT COST-POLICY PROFILE — C-087; Free V2 Volume/Complex bindings human-approved**
-Date: 2026-10-16
+Date: 2026-10-16 (model availability amended 2026-10-19)
 
 ## Purpose
 
@@ -32,9 +32,9 @@ A project may persist `cost_policy: free_only` in its accepted project authority
 
 Both risk classes enter through the visible `atenea-free` coordinator. The Cora-shaped handoff must state `Risk class: volume|complex`.
 
-`free_only + volume` uses the ordinary bounded C-084 loop with the human-approved Volume binding: Space Bunny Free implementation, DeepSeek V4.1 Free Standards, GLM 5.3 Flash Free Spec and a fresh GLM 5.3 Flash Free corrector when required.
+`free_only + volume` uses the ordinary bounded C-084 loop with the human-approved Volume binding: MiniMax M3.1 Flash Free implementation, DeepSeek V4.1 Free Standards, GLM 5.3 Flash Free Spec and a fresh GLM 5.3 Flash Free corrector when required.
 
-`free_only + complex` remains Free, with GLM 5.3 Flash Free implementation, DeepSeek V4.1 Free Standards, Space Bunny Free Spec and a fresh DeepSeek V4.1 Flash Free corrector. Both classes use the same MiMo 2.6 Flash Free coordinator, explorer and merger; the explicit risk class decides the role-specific agents. It does **not** unlock paid models. Instead:
+`free_only + complex` remains Free, with GLM 5.3 Flash Free implementation, DeepSeek V4.1 Free Standards, MiniMax M3.1 Flash Free Spec and a fresh DeepSeek V4.1 Flash Free corrector. Both classes use the same MiMo 2.6 Flash Free coordinator, explorer and merger; the explicit risk class decides the role-specific agents. It does **not** unlock paid models. Instead:
 
 - Cora shapes smaller/coherent work units when useful;
 - evidence follows the ordinary C-086 phase layering: focused writer proof, one canonical review, finding-scoped correction and final composed closeout when justified;
