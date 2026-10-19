@@ -1,7 +1,7 @@
 ---
-description: Read-only Free Complex Spec reviewer on Space Bunny Free, fresh and independent from the GLM writer.
+description: Read-only Free Complex Spec reviewer on MiniMax M3.1 Flash Free, fresh and independent from the GLM writer.
 mode: subagent
-model: opencode/space-bunny-free
+model: opencode/minimax-m3.1-flash-free
 permissions:
   - action: edit
     resource: "*"
