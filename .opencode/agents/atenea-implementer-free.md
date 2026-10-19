@@ -1,7 +1,7 @@
 ---
-description: Atenea Free Volume implementation worker, bound to Space Bunny Free.
+description: Atenea Free Volume implementation worker, bound to MiniMax M3.1 Flash Free.
 mode: subagent
-model: opencode/space-bunny-free
+model: opencode/minimax-m3.1-flash-free
 permissions:
   - action: edit
     resource: "*"
