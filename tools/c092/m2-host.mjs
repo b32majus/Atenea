@@ -14,7 +14,8 @@ export function isLoopback(url) {
 export function modelRef(id){
  if(typeof id!=='string'||!/^[-a-zA-Z0-9_.]+\/[-a-zA-Z0-9_.]+(?:#[a-zA-Z0-9_.-]+)?$/.test(id))throw Error('MODEL_REF_INVALID');
  const [base,variant]=id.split('#'),slash=base.indexOf('/');
- return {providerID:base.slice(0,slash),modelID:base.slice(slash+1),...(variant?{variant}:{})};
+ // OpenCode V2 SessionCreate schema requires model.id, NOT model.modelID.
+ return {providerID:base.slice(0,slash),id:base.slice(slash+1),...(variant?{variant}:{})};
 }
 export class HostAPI {
   constructor({url,repo,exe=OPENCODE_V2,env=process.env,timeoutMs=17000}){

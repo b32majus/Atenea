@@ -28,8 +28,8 @@ test('visual profile is bound by authority, go visual does not silently upgrade'
  assert.equal(resolveC092Profile({costPolicy:'standard',riskClass:'unknown'},manifest(false)).code,'PROFILE_UNSUPPORTED');
 });
 test('OpenCode create pins provider, model and requested variant per independent session',()=>{
- assert.deepEqual(modelRef('openai/gpt-6-luna#high'),{providerID:'openai',modelID:'gpt-6-luna',variant:'high'});
- assert.deepEqual(modelRef('opencode/minimax-m3.1-flash-free'),{providerID:'opencode',modelID:'minimax-m3.1-flash-free'});
+ assert.deepEqual(modelRef('openai/gpt-6-luna#high'),{providerID:'openai',id:'gpt-6-luna',variant:'high'});
+ assert.deepEqual(modelRef('opencode/minimax-m3.1-flash-free'),{providerID:'opencode',id:'minimax-m3.1-flash-free'});
  const host=Object.create(HostAPI.prototype);
  host.request=(_method,_route,body)=>body;
  const body=host.create('review','plan','openai/gpt-6-luna#high');
