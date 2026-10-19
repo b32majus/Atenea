@@ -27,6 +27,15 @@ if(!routing.ok)abort(routing.code);
 if(!validateVisualContract(c.manifest,c.visualRefs??null))abort('VISUAL_CONTRACT_MISSING');
 if(c.manifest.uiImpact!=='none'&&c.visualMediaAuthorized!==true)abort('VISUAL_MEDIA_NOT_AUTHORIZED');
 const selectedModels=routing.models;
+const ceilings={maxWriterMs:900000,maxReviewerMs:300000,maxCorrectorMs:600000};
+const defaults={maxWriterMs:155000,maxReviewerMs:110000,maxCorrectorMs:135000};
+const budgets={};
+for(const [key,limit] of Object.entries(ceilings)){
+ const val=c.timeBudgets?.[key]??defaults[key];
+ if(!Number.isInteger(val)||val<defaults[key]||val>limit)abort('INVALID_TIME_BUDGET_'+key);
+ budgets[key]=val;
+}
+if(c.timeBudgets&&Object.keys(c.timeBudgets).some(k=>!(k in ceilings)))abort('TIME_BUDGET_UNKNOWN_KEY');
 const branch=execFileSync('git',['-C',c.repo,'symbolic-ref','--short','HEAD'],{encoding:'utf8'}).trim();
 if(branch!==c.expectedBranch)abort('branch mismatch '+branch);
 const started=new Date().toISOString();
@@ -36,7 +45,8 @@ const result=await runSmokeEndToEnd({
  writerPrompt:c.writerPrompt,witnesses:c.witnesses,witnessRuntime:c.witnessRuntime??null,trustedLocal:true,models:selectedModels,
  visualRefs:c.visualRefs??null,visualMediaAuthorized:c.visualMediaAuthorized===true,
  reviewUrls:c.reviewUrls??null,correctorUrl:c.correctorUrl??null,
- maxWriterMs:155000,maxReviewerMs:110000,maxCorrectorMs:135000,pollMs:2300,
+ maxWriterMs:budgets.maxWriterMs,maxReviewerMs:budgets.maxReviewerMs,
+ maxCorrectorMs:budgets.maxCorrectorMs,pollMs:2300,
  onProgress:(stage,x)=>console.log(JSON.stringify({at:new Date().toISOString(),stage,
    state:x?.state,ok:x?.ok,reason:x?.reason??x?.code,sha:x?.sha,
    sessionIDs:stage==='INITIAL_REVIEW'||stage==='FOCAL_REVIEW'
