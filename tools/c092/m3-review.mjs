@@ -22,14 +22,14 @@ function stop(storeDir,id,reason) {
  return {ok:false,state:'HUMAN_STOP',reason};
 }
 const material= (repo,sha)=>git(repo,'rev-parse','HEAD')===sha&&!git(repo,'status','--porcelain');
-const makePrompt=(axis,sha,authorityPath,allowed)=>`C092 M3 INDEPENDENT ${axis} REVIEW. READ ONLY: no edits or commits, no subagents. Review EXACT Git SHA ${sha} against approved WO ${authorityPath} and changed paths ${allowed.join(', ')}. Return exactly one JSON object (no markdown, no prose) with keys "axis","sha","status","findings". axis="${axis}", sha="${sha}", status either PASS with findings [] or FINDINGS with each {id,path,location,severity,prescription,evidence}. A finding must describe an actual defect and exact minimal correction. Do not pass on a tool receipt alone. Review only this candidate, not product future work. This is synthetic test code. No publish.`;
+const makePrompt=(axis,sha,authorityPath,allowed)=>`C092 M3 INDEPENDENT ${axis} REVIEW. READ ONLY: no edits or commits, no subagents. Review EXACT Git SHA ${sha} against approved WO ${authorityPath} and changed paths ${allowed.join(', ')}. Return exactly one JSON object (no markdown, no prose) with keys "axis","sha","status","findings". axis="${axis}", sha="${sha}", status either PASS with findings [] or FINDINGS with each {id,path,location,severity,prescription,evidence}. A finding must describe an actual defect and exact minimal correction. Do not pass on a tool receipt alone. Review only this candidate, not product future work. This is a local reviewed development ticket. Do not read branches outside this worktree. No publish.`;
 export async function reviewCandidateM3({
- repo,storeDir,unitId,authorityPath,outputDir,witnesses,url,client=null,
+ repo,storeDir,unitId,authorityPath,outputDir,witnesses,url,client=null,trustedLocal=false,
  maxWaitMs=120000,pollMs=3000
 }) {
  const marker=path.join(fs.realpathSync(repo),'.atenea-c092-synthetic.json');
  let synthetic;try{synthetic=JSON.parse(fs.readFileSync(marker,'utf8'));}catch{}
- if(synthetic?.schema!=='atenea.c092.synthetic-fixture/v1'||synthetic?.noRealProduct!==true)
+ if(!trustedLocal && (synthetic?.schema!=='atenea.c092.synthetic-fixture/v1'||synthetic?.noRealProduct!==true))
   return {ok:false,code:'M3_ONLY_SYNTHETIC'};
  const loaded=loadUnit(storeDir,unitId);
  if(!loaded.ok)return loaded;
@@ -63,7 +63,7 @@ export async function reviewCandidateM3({
   if(!material(repo,sha))return stop(storeDir,unitId,'REVIEW_MUTATED_CANDIDATE');
   const token=crypto.randomBytes(14).toString('hex');
   const title=`C092-M3-${unitId}-${axis}-${sha}-${token}`;
-  const idCriteria={title,agent:'plan',repo,projectID:manifest.baseSha};
+  const idCriteria={title,agent:'plan',repo};
   let session;
   try {
    session=await host.create(title,'plan');

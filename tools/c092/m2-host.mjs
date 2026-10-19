@@ -38,7 +38,7 @@ export class HostAPI {
 }
 export function verifyHostSession(s,{title,agent,repo,projectID}) {
   if(!s || !VALID_ID.test(s.id) || s.title!==title || s.agent!==agent ||
-    s.projectID!==projectID || s.parentID) return false;
+    (projectID !== undefined ? s.projectID!==projectID : typeof s.projectID !== 'string' || !s.projectID) || s.parentID) return false;
   let directory;
   try{directory=fs.realpathSync(s.location?.directory??'');}catch{return false;}
   return directory===fs.realpathSync(repo);
@@ -50,6 +50,6 @@ export async function reconcileCreatedSession(client,criteria) {
   const candidates=list.filter(s=>verifyHostSession(s,criteria));
   if(candidates.length!==1)return {ok:false,code:candidates.length>1?'HOST_AMBIGUOUS_MULTIPLE':'HOST_MATCH_NOT_PROVEN',count:candidates.length};
   const s=await client.get(candidates[0].id);
-  if(!verifyHostSession(s,criteria) || s.id!==candidates[0].id)return {ok:false,code:'HOST_GET_IDENTITY_MISMATCH'};
+  if(!verifyHostSession(s,{...criteria,projectID:candidates[0].projectID}) || s.id!==candidates[0].id)return {ok:false,code:'HOST_GET_IDENTITY_MISMATCH'};
   return {ok:true,session:s};
 }

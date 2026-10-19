@@ -12,9 +12,10 @@ export function validateWitnessSpec(spec) {
   if(!spec || Object.keys(spec).sort().join(',')!=='argv,id,timeoutMs')return false;
   return /^[A-Z][A-Z0-9_]{1,47}$/.test(spec.id)
     && Array.isArray(spec.argv) && spec.argv.length===3
-    && spec.argv[0]==='node' && spec.argv[1]==='--test'
-    && /^test\/[a-zA-Z0-9._/-]+\.test\.mjs$/.test(spec.argv[2])
-    && !spec.argv[2].split('/').includes('..')
+    && spec.argv[0]==='node'
+    && ((spec.argv[1]==='--test' && /^(?:test|scripts)\/[a-zA-Z0-9._/-]+\.test\.mjs$/.test(spec.argv[2]))
+     || (spec.argv[2]==='--self-test' && /^scripts\/[a-zA-Z0-9._/-]+\.mjs$/.test(spec.argv[1])))
+    && !spec.argv.some(x=>x.split('/').includes('..'))
     && Number.isInteger(spec.timeoutMs) && spec.timeoutMs>=100 && spec.timeoutMs<=120000;
 }
 export function runWitnesses({repo,sha,witnesses,outputDir}) {
@@ -34,7 +35,7 @@ export function runWitnesses({repo,sha,witnesses,outputDir}) {
     execFileSync('git',['-C',r,'worktree','add','--detach','-q',tree,sha],{timeout:18000});
     added=true;
     for(const w of witnesses){
-      const script=path.join(tree,w.argv[2]);
+      const script=path.join(tree,w.argv[1]==='--test'?w.argv[2]:w.argv[1]);
       if(!fs.existsSync(script)||fs.lstatSync(script).isSymbolicLink()){
         receipts.push({id:w.id,sha,status:'FAIL',reason:'TEST_MISSING_OR_SYMLINK'});break;
       }

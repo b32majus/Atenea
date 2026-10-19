@@ -9,7 +9,7 @@ import { preflightRepo, validateManifest } from './manifest.mjs';
 const fixtureSchema = 'atenea.c092.synthetic-fixture/v1';
 const hex = (b) => crypto.createHash('sha256').update(b).digest('hex');
 
-export function preflightM2({ repo, storeDir, manifest, authorityPath }) {
+export function preflightM2({ repo, storeDir, manifest, authorityPath, trustedLocal=false }) {
   const errors = [];
   const checked = validateManifest(manifest);
   if (!checked.ok) return { ok:false, code:'BLOCKED_PREP', errors:checked.errors };
@@ -20,12 +20,14 @@ export function preflightM2({ repo, storeDir, manifest, authorityPath }) {
   if (store===r || store.startsWith(r + path.sep) || r.startsWith(store + path.sep)) {
     errors.push('store and repository paths must be separate');
   }
+  if (!trustedLocal) {
   const sentinel = path.join(r, '.atenea-c092-synthetic.json');
   let info;
   try { info=JSON.parse(fs.readFileSync(sentinel,'utf8')); }
   catch { errors.push('explicit synthetic fixture marker missing or unreadable'); }
   if (info && (info.schema!==fixtureSchema || info.noRealProduct!==true)) {
     errors.push('synthetic marker does not authorize M2 fixture');
+  }
   }
   const auth = path.resolve(authorityPath);
   if (!(auth.startsWith(r+path.sep))) errors.push('authority file must be inside approved fixture repo');

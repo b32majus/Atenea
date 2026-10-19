@@ -30,12 +30,12 @@ function boundedDiff(repo,oldSha,allow,deny){
  return {ok:true,sha,changed};
 }
 export async function correctSyntheticM3({
- repo,storeDir,unitId,url,client=null,maxWaitMs=125000,pollMs=2000
+ repo,storeDir,unitId,url,client=null,maxWaitMs=125000,pollMs=2000,trustedLocal=false
 }) {
  let marker;
  try{marker=JSON.parse(fs.readFileSync(path.join(fs.realpathSync(repo),'.atenea-c092-synthetic.json'),'utf8'));}
  catch{return {ok:false,code:'SYNTHETIC_MARKER_MISSING'};}
- if(marker?.schema!=='atenea.c092.synthetic-fixture/v1'||marker?.noRealProduct!==true)
+ if(!trustedLocal && (marker?.schema!=='atenea.c092.synthetic-fixture/v1'||marker?.noRealProduct!==true))
    return {ok:false,code:'NOT_SYNTHETIC'};
  const loaded=loadUnit(storeDir,unitId);
  if(!loaded.ok)return loaded;
@@ -52,7 +52,7 @@ export async function correctSyntheticM3({
   payload:{correlation,reviewedSha:oldSha,ids:findings.map(f=>f.id)}},loaded.state.version);
  if(!reserved.ok)return reserved;
  const host=client??new HostAPI({url,repo});
- const criteria={title:correlation,agent:'build',repo,projectID:manifest.baseSha};
+ const criteria={title:correlation,agent:'build',repo};
  let session;
  try{
   session=await host.create(correlation,'build');
@@ -65,7 +65,7 @@ export async function correctSyntheticM3({
   payload:{sessionRef:session.id,reviewedSha:oldSha}},u.state.version);
  if(!identity.ok)return stop(storeDir,unitId,'CORRECTOR_SESSION_PERSIST_FAILED');
  const problem=findings.map((f,i)=>`${i+1}. [${f.id}] ${f.path} at ${f.location||'specified scope'}: ${f.prescription} (evidence: ${f.evidence||'review report'})`).join('\n');
- const prompt=`C092 M3 SYNTHETIC CORRECTOR. Fix ONLY approved precise findings on candidate ${oldSha}.\n${problem}\nChange only ${manifest.allowPaths.join(', ')}. Do not edit tests, docs or protected paths. Make exactly one NEW commit with current SHA as parent and leave clean worktree. No subagents, reviews, pushes, merges, deploys. If infeasible STOP without edits.`;
+ const prompt=`C092 M3 TRUSTED LOCAL CORRECTOR. Fix ONLY approved precise findings on candidate ${oldSha}.\n${problem}\nChange only ${manifest.allowPaths.join(', ')}. Do not edit tests, docs or protected paths. Make exactly one NEW commit with current SHA as parent and leave clean worktree. No subagents, reviews, pushes, merges, deploys. If infeasible STOP without edits.`;
  try{await host.prompt(session.id,prompt);}
  catch{return stop(storeDir,unitId,'CORRECTOR_PROMPT_AMBIGUOUS');}
  const started=Date.now();

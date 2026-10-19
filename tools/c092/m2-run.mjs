@@ -49,9 +49,9 @@ function getReservationCorrelation(unit) {
 }
 
 export async function runFixtureM2({repo,storeDir,manifest,authorityPath,url,client=null,
-  maxWaitMs=150000,pollMs=4000,inject=null}){
+  maxWaitMs=150000,pollMs=4000,inject=null,trustedLocal=false,writerPrompt=null}){
   if(manifest?.unitId===undefined)return {ok:false,code:'INVALID_MANIFEST'};
-  const pre=preflightM2({repo,storeDir,manifest,authorityPath});
+  const pre=preflightM2({repo,storeDir,manifest,authorityPath,trustedLocal});
   if(!pre.ok)return pre;
   if(inject && !['after_reserve','lose_create_response','lose_prompt_response'].includes(inject))
     return {ok:false,code:'INVALID_INJECTION'};
@@ -71,7 +71,7 @@ export async function runFixtureM2({repo,storeDir,manifest,authorityPath,url,cli
   if(!reservation.ok)return reservation;
   if(inject==='after_reserve')return stop(storeDir,manifest.unitId,'INJECTED_ABORT_AFTER_RESERVATION_NO_HOST_CALL');
   const host=client??new HostAPI({url,repo:pre.repo});
-  const criteria={title:marker,agent:'build',repo:pre.repo,projectID:manifest.baseSha};
+  const criteria={title:marker,agent:'build',repo:pre.repo};
   let session=null;
   try {
     if(inject!=='lose_create_response') {
@@ -95,7 +95,8 @@ export async function runFixtureM2({repo,storeDir,manifest,authorityPath,url,cli
   const confirmed=applyEvent(storeDir,manifest.unitId,{type:'HOST_CONFIRM',payload:{sessionRef:session.id},at:new Date().toISOString()},v);
   if(!confirmed.ok)return stop(storeDir,manifest.unitId,'HOST_CONFIRM_CAS_FAILED_'+confirmed.code);
   // M2 is deliberately a single fixed synthetic assignment. The model cannot control this transition.
-  const prompt='C092 M2 SYNTHETIC ONLY. Read @docs/WORK_ORDER.md. Edit only src/tally.mjs to change bump() from n+1 to n+2, preserve export name, run node --test test/tally.test.mjs and commit exactly one change. No docs/tests/other edits, no subagents, no push/merge/deploy. Return SHA.';
+  const prompt=trustedLocal?writerPrompt:'C092 M2 SYNTHETIC ONLY. Read @docs/WORK_ORDER.md. Edit only src/tally.mjs to change bump() from n+1 to n+2, preserve export name, run node --test test/tally.test.mjs and commit exactly one change. No docs/tests/other edits, no subagents, no push/merge/deploy. Return SHA.';
+  if(trustedLocal && (typeof prompt!=='string' || prompt.length<80))return stop(storeDir,manifest.unitId,'TRUSTED_PROMPT_MISSING');
   try{
     await host.prompt(session.id,prompt);
     if(inject==='lose_prompt_response')return stop(storeDir,manifest.unitId,'INJECTED_AMBIGUOUS_PROMPT_NO_RETRY');
