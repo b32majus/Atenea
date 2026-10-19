@@ -9,6 +9,7 @@ import {validateManifest} from './manifest.mjs';
 import {validateTicketAuthorityReference} from './run-ticket-preflight.mjs';
 import {resolveC092Profile} from './m3-profile.mjs';
 import {validateVisualContract} from './m3-visual-evidence.mjs';
+import {freeEnvPrelaunchIssue} from './free-env.mjs';
 function abort(reason){console.log(JSON.stringify({ok:false,code:'PRELAUNCH_STOP',reason}));process.exit(2);}
 const [configFile,hostUrl,reviewUrl=hostUrl]=process.argv.slice(2);
 if(!configFile||!hostUrl)abort('required config path + host url');
@@ -24,6 +25,8 @@ if(!validateTicketAuthorityReference(c))
 const routing=c.profile?resolveC092Profile(c.profile,c.manifest,c.models??null):
  {ok:false,code:'PROFILE_REQUIRED_FOR_REAL_TICKET'};
 if(!routing.ok)abort(routing.code);
+const freeEnvIssue=freeEnvPrelaunchIssue(process.env,c.profile.costPolicy);
+if(freeEnvIssue)abort(freeEnvIssue);
 if(!validateVisualContract(c.manifest,c.visualRefs??null))abort('VISUAL_CONTRACT_MISSING');
 if(c.manifest.uiImpact!=='none'&&c.visualMediaAuthorized!==true)abort('VISUAL_MEDIA_NOT_AUTHORIZED');
 const selectedModels=routing.models;
