@@ -10,7 +10,7 @@ import { freshDir, validManifest, MODULE_DIR } from './test-fixtures.mjs';
 const CLI = path.join(MODULE_DIR, 'cli.mjs');
 
 function cli(...args) {
-  const r = spawnSync(process.execPath, [CLI, ...args], { encoding: 'utf8' });
+  const r = spawnSync(process.execPath, [CLI, ...args], { encoding: 'utf8', env: { ...process.env, C092_UNSAFE_LAB_ONLY: '1' } });
   let json = null;
   try { json = JSON.parse(r.stdout); } catch { /* non-JSON output is itself a failure mode below */ }
   return { code: r.status, json, stdout: r.stdout, stderr: r.stderr };
@@ -122,4 +122,15 @@ test('CLI usage errors: malformed manifest file, missing options, bad event JSON
   const badEvent = cli('advance', '--event', 'not-json', '--unit', 'unit-0001', '--store', storeDir, '--expected-version', '1');
   assert.equal(badEvent.code, 1);
   assert.equal(badEvent.json.code, 'USAGE');
+});
+
+test('advance CLI is disabled by default even for a syntactically valid event', () => {
+  const { storeDir, manifestPath, unit } = setupStore();
+  cli('init', '--manifest', manifestPath, '--store', storeDir);
+  const p = spawnSync(process.execPath,[CLI,'advance','--unit',unit,'--store',storeDir,
+    '--expected-version','1','--event',JSON.stringify({type:'RESERVE_WRITER'})],
+    {encoding:'utf8',env:{...process.env,C092_UNSAFE_LAB_ONLY:'0'}});
+  assert.equal(p.status,1);
+  assert.equal(JSON.parse(p.stdout).code,'LAB_CLI_ADVANCE_DISABLED');
+  assert.equal(cli('status','--unit',unit,'--store',storeDir).json.state,'READY');
 });

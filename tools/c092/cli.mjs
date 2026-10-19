@@ -82,6 +82,11 @@ if (command === 'init') {
     }, null, 2) + '\n');
   }
 } else if (command === 'advance') {
+  // Test-only escape hatch. This is NOT OS isolation; a privileged model
+  // sharing the operator UID can spoof this env and must never access store.
+  if (process.env.C092_UNSAFE_LAB_ONLY !== '1') {
+    fail({ code: 'LAB_CLI_ADVANCE_DISABLED', reason: 'raw event writing is test-only; no production API' });
+  }
   const opts = requireOptions(values, ['event', 'unit', 'store', 'expected-version']);
   let event;
   try {

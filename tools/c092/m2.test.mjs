@@ -105,3 +105,16 @@ test('lost prompt response never resends and cannot pass candidate',async()=>{
  assert.equal((await runFixtureM2({...config(c),client:api})).ok,false);
  assert.equal(api.calls.prompt,1);
 });
+
+test('cross-unit M4 worktree lease blocks concurrent second writer',async()=>{
+ const c=setup();
+ const another={...c.manifest,unitId:'test-other-unit'};
+ const a=fake(c),b=fake(c);
+ const [one,two]=await Promise.all([
+  runFixtureM2({...config(c),client:a}),
+  runFixtureM2({...config(c),manifest:another,client:b})
+ ]);
+ assert.equal(one.ok,true,JSON.stringify(one));
+ assert.equal(two.ok,false);assert.equal(two.code,'WORKTREE_LEASE_HELD');
+ assert.equal(a.calls.create,1);assert.equal(b.calls.create,0);
+});

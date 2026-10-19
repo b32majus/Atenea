@@ -6,6 +6,7 @@ import crypto from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { initStore, loadUnit, applyEvent } from './store.mjs';
 import { preflightM2 } from './m2-preflight.mjs';
+import { claimWorktreeLease } from './m4-lease.mjs';
 import { HostAPI, verifyHostSession, reconcileCreatedSession } from './m2-host.mjs';
 
 const pause=(ms)=>new Promise(resolve=>setTimeout(resolve,ms));
@@ -64,6 +65,8 @@ export async function runFixtureM2({repo,storeDir,manifest,authorityPath,url,cli
   if(!u.ok)return u;
   if(u.state.machine.state!=='READY')return {ok:false,code:'WRITER_ALREADY_RESERVED',state:u.state.machine.state,correlation:getReservationCorrelation(u)};
   if(JSON.stringify(u.manifest)!==JSON.stringify(manifest))return {ok:false,code:'UNIT_MANIFEST_MISMATCH'};
+  const lease=claimWorktreeLease({repo:pre.repo,storeDir,unitId:manifest.unitId});
+  if(!lease.ok)return {ok:false,code:lease.code};
   const reservation=applyEvent(storeDir,manifest.unitId,{type:'RESERVE_WRITER',payload:{correlation:marker,authoritySha256:pre.authoritySha},at:new Date().toISOString()},u.state.version);
   if(!reservation.ok)return reservation;
   if(inject==='after_reserve')return stop(storeDir,manifest.unitId,'INJECTED_ABORT_AFTER_RESERVATION_NO_HOST_CALL');
