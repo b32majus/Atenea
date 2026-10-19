@@ -7,7 +7,7 @@ import {runSmokeEndToEnd} from './run-smoke.mjs';
 import {validateWitnessSpec} from './m3-witness.mjs';
 import {validateManifest} from './manifest.mjs';
 function abort(reason){console.log(JSON.stringify({ok:false,code:'PRELAUNCH_STOP',reason}));process.exit(2);}
-const [configFile,hostUrl]=process.argv.slice(2);
+const [configFile,hostUrl,reviewUrl=hostUrl]=process.argv.slice(2);
 if(!configFile||!hostUrl)abort('required config path + host url');
 const c=JSON.parse(fs.readFileSync(configFile,'utf8'));
 const fields=['repo','storeDir','evidenceDir','authorityPath','manifest','writerPrompt','witnesses','expectedBranch'];
@@ -16,14 +16,16 @@ const manifestResult=validateManifest(c.manifest);
 if(!manifestResult.ok)abort(JSON.stringify(manifestResult.errors));
 if(!Array.isArray(c.witnesses)||!c.witnesses.length||!c.witnesses.every(validateWitnessSpec))
  abort('invalid witness declarations');
-if(typeof c.writerPrompt!=='string'||!c.writerPrompt.includes('docs/metis/QA-005.md')
- ||!c.writerPrompt.includes('No push'))abort('task prompt missing authority or limits');
+const authorityRelative=path.relative(c.repo,c.authorityPath).split(path.sep).join('/');
+if(typeof c.writerPrompt!=='string'||!authorityRelative.startsWith('docs/metis/')||
+ !c.writerPrompt.includes(authorityRelative)||!c.writerPrompt.includes('No push'))
+ abort('task prompt missing authority or limits');
 const branch=execFileSync('git',['-C',c.repo,'symbolic-ref','--short','HEAD'],{encoding:'utf8'}).trim();
 if(branch!==c.expectedBranch)abort('branch mismatch '+branch);
 const started=new Date().toISOString();
 const result=await runSmokeEndToEnd({
  repo:c.repo,storeDir:c.storeDir,evidenceDir:c.evidenceDir,
- authorityPath:c.authorityPath,manifest:c.manifest,url:hostUrl,
+ authorityPath:c.authorityPath,manifest:c.manifest,url:hostUrl,reviewUrl,
  writerPrompt:c.writerPrompt,witnesses:c.witnesses,trustedLocal:true,
  maxWriterMs:155000,maxReviewerMs:110000,maxCorrectorMs:135000,pollMs:2300,
  onProgress:(stage,x)=>console.log(JSON.stringify({at:new Date().toISOString(),stage,
@@ -47,7 +49,7 @@ for(const {stage,result:r} of result.results){
  if(!r?.ok)stops.push({class:r?.state||stage,reason:r?.reason||r?.code||'INCOMPLETE',justified:null});
 }
 const comparison={
- arm:'atenea-c092-trusted-local',
+ ticket:c.ticket??null,arm:'atenea-c092-trusted-local',
  harnessRef:c.harnessRef,
  launchCommand:c.launchCommand,
  startedAt:c.startedAt||started,endedAt:ended,
@@ -61,5 +63,5 @@ const comparison={
 };
 fs.writeFileSync(path.join(path.dirname(configFile),'RESULT.json'),JSON.stringify(result,null,2)+'\n');
 fs.writeFileSync(path.join(path.dirname(configFile),'COMPARISON.json'),JSON.stringify(comparison,null,2)+'\n');
-console.log('C092_QA005_COMPARISON',JSON.stringify(comparison));
+console.log('C092_TICKET_COMPARISON',JSON.stringify(comparison));
 process.exitCode=result.ok?0:1;

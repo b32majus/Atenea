@@ -9,7 +9,7 @@ import {correctSyntheticM3} from './m3-correct.mjs';
 import {loadUnit} from './store.mjs';
 import {auditUnitM4} from './m4-integrity.mjs';
 export async function runSmokeEndToEnd({
- repo,storeDir,manifest,authorityPath,url,evidenceDir,
+ repo,storeDir,manifest,authorityPath,url,reviewUrl=url,evidenceDir,
  maxWriterMs=135000,maxReviewerMs=85000,maxCorrectorMs=100000,pollMs=1800,
  trustedLocal=false,writerPrompt=null,witnesses=null,
  onProgress=()=>{}
@@ -24,7 +24,7 @@ export async function runSmokeEndToEnd({
   const rev=await reviewCandidateM3({repo,storeDir,unitId:manifest.unitId,
     authorityPath,outputDir:evidenceDir,
     witnesses:witnesses??[{id:'TALLY',argv:['node','--test','test/tally.test.mjs'],timeoutMs:18000}],
-    url,maxWaitMs:maxReviewerMs,pollMs,trustedLocal});
+    url:reviewUrl,maxWaitMs:maxReviewerMs,pollMs,trustedLocal});
   add(attempt?'FOCAL_REVIEW':'INITIAL_REVIEW',rev);
   if(!rev.ok)return {ok:false,stage:'REVIEW',results};
   if(rev.state==='READY_FOR_HUMAN'){
