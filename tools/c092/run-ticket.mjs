@@ -17,9 +17,12 @@ if(!manifestResult.ok)abort(JSON.stringify(manifestResult.errors));
 if(!Array.isArray(c.witnesses)||!c.witnesses.length||!c.witnesses.every(validateWitnessSpec))
  abort('invalid witness declarations');
 const authorityRelative=path.relative(c.repo,c.authorityPath).split(path.sep).join('/');
-if(typeof c.writerPrompt!=='string'||!authorityRelative.startsWith('docs/metis/')||
- !c.writerPrompt.includes(authorityRelative)||!c.writerPrompt.includes('No push'))
- abort('task prompt missing authority or limits');
+const authorityIsLocal=authorityRelative.length>0 && authorityRelative!=='.' &&
+ !authorityRelative.startsWith('../') && !path.posix.isAbsolute(authorityRelative) &&
+ !authorityRelative.split('/').some(x=>!x||x==='.'||x==='..'||x==='.git');
+if(!authorityIsLocal||!authorityRelative.endsWith('.md')||
+ typeof c.writerPrompt!=='string'||!c.writerPrompt.includes(authorityRelative)||!c.writerPrompt.includes('No push'))
+ abort('task prompt missing repo-local authority or limits');
 const branch=execFileSync('git',['-C',c.repo,'symbolic-ref','--short','HEAD'],{encoding:'utf8'}).trim();
 if(branch!==c.expectedBranch)abort('branch mismatch '+branch);
 const started=new Date().toISOString();
