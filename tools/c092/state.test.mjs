@@ -117,7 +117,7 @@ test('candidate evidence: sha required, focal sha must be new', () => {
     expectRejected(m, event('CANDIDATE_CREATED', { sha }), 'INVALID_EVENT');
   }
   let f = toFocalReview(initialMachine());
-  f = expectOk(f, event('FOCAL_UNRESOLVED'), POLICY, 'CORRECTION_PENDING').machine;
+  f = expectOk(f, event('FOCAL_UNRESOLVED', {findings:[{id:'F1'}]}), POLICY, 'CORRECTION_PENDING').machine;
   f = expectOk(f, event('RESERVE_CORRECTION'), POLICY, 'CORRECTING').machine;
   expectRejected(f, event('FOCAL_CANDIDATE', { sha: CANDIDATE_SHA }), 'INVALID_EVENT'); // focal sha must be NEW
   f = expectOk(f, event('FOCAL_CANDIDATE', { sha: '3333333333333333333333333333333333333333' }), POLICY, 'FOCAL_REVIEW').machine;
@@ -135,19 +135,19 @@ test('correction budget: max 2 durable attempts, third forbidden, exhausted FOCA
   let m = initialMachine();
   m = toFocalReview(m);
   assert.equal(m.corrections.attemptsUsed, 1);
-  m = expectOk(m, event('FOCAL_UNRESOLVED'), POLICY, 'CORRECTION_PENDING').machine;
+  m = expectOk(m, event('FOCAL_UNRESOLVED', {findings:[{id:'F1'}]}), POLICY, 'CORRECTION_PENDING').machine;
   m = expectOk(m, event('RESERVE_CORRECTION'), POLICY, 'CORRECTING').machine;
   assert.equal(m.corrections.attemptsUsed, 2);
   m = expectOk(m, event('FOCAL_CANDIDATE', { sha: '4444444444444444444444444444444444444444' }), POLICY, 'FOCAL_REVIEW').machine;
-  expectRejected(m, event('FOCAL_UNRESOLVED'), 'CORRECTION_QUOTA_EXHAUSTED');
+  expectRejected(m, event('FOCAL_UNRESOLVED', {findings:[{id:'F1'}]}), 'CORRECTION_QUOTA_EXHAUSTED');
   m = expectOk(m, event('FOCAL_RESOLVED'), POLICY, 'READY_FOR_HUMAN').machine;
 
   // A unit that burns both attempts and stays unresolved can only stop for a human.
   let m2 = toFocalReview(initialMachine());
-  m2 = expectOk(m2, event('FOCAL_UNRESOLVED'), POLICY, 'CORRECTION_PENDING').machine;
+  m2 = expectOk(m2, event('FOCAL_UNRESOLVED', {findings:[{id:'F1'}]}), POLICY, 'CORRECTION_PENDING').machine;
   m2 = expectOk(m2, event('RESERVE_CORRECTION'), POLICY, 'CORRECTING').machine;
   m2 = expectOk(m2, event('FOCAL_CANDIDATE', { sha: '4444444444444444444444444444444444444444' }), POLICY, 'FOCAL_REVIEW').machine;
-  expectRejected(m2, event('FOCAL_UNRESOLVED'), 'CORRECTION_QUOTA_EXHAUSTED');
+  expectRejected(m2, event('FOCAL_UNRESOLVED', {findings:[{id:'F1'}]}), 'CORRECTION_QUOTA_EXHAUSTED');
   expectOk(m2, event('HUMAN_STOP'), POLICY, 'HUMAN_STOP');
 });
 

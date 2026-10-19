@@ -25,6 +25,7 @@ export const EVENT_TYPES = [
   'REVIEW_CLEAN',         // REVIEWING -> READY_FOR_HUMAN (all axes, 0 findings)
   'FINDINGS_REPORTED',    // REVIEWING -> CORRECTION_PENDING (concrete findings)
   'RESERVE_CORRECTION',   // CORRECTION_PENDING -> CORRECTING (durable attempt, <= maxCorrections)
+  'CORRECTION_HOST_CONFIRMED', // CORRECTING -> CORRECTING (real host identity receipt)
   'FOCAL_CANDIDATE',      // CORRECTING -> FOCAL_REVIEW (new sha + focused evidence)
   'FOCAL_RESOLVED',       // FOCAL_REVIEW -> READY_FOR_HUMAN
   'FOCAL_UNRESOLVED',     // FOCAL_REVIEW -> CORRECTION_PENDING (only while quota remains)
@@ -172,11 +173,17 @@ export function applyTransition(machine, event, policy) {
         if (machine.corrections.attemptsUsed >= maxCorrections) {
           return invalid(event, 'CORRECTION_QUOTA_EXHAUSTED', `correction attempts used: ${machine.corrections.attemptsUsed}, maxCorrections: ${maxCorrections}; only HUMAN_STOP remains`);
         }
-        return done('CORRECTING', { corrections: { attemptsUsed: machine.corrections.attemptsUsed + 1 } });
+        return done('CORRECTING', { corrections: { attemptsUsed: machine.corrections.attemptsUsed + 1, sessionRef: null } });
       }
       break;
     }
     case 'CORRECTING': {
+      if (event.type === 'CORRECTION_HOST_CONFIRMED') {
+        const ref=isPlainObject(event.payload) ? event.payload.sessionRef : undefined;
+        if(typeof ref!=='string' || !/^ses_[a-zA-Z0-9]+$/.test(ref) || machine.corrections.sessionRef)
+          return invalid(event,'CORRECTION_HOST_IDENTITY_INVALID','requires one previously unrecorded host-verified correction session');
+        return done('CORRECTING',{corrections:{...machine.corrections,sessionRef:ref}});
+      }
       if (event.type === 'FOCAL_CANDIDATE') {
         const sha = isPlainObject(event.payload) ? event.payload.sha : undefined;
         if (typeof sha !== 'string' || !SHA40_RE.test(sha)) {
@@ -194,10 +201,11 @@ export function applyTransition(machine, event, policy) {
         return done('READY_FOR_HUMAN');
       }
       if (event.type === 'FOCAL_UNRESOLVED') {
+        if (!validFindings(event.payload))return invalid(event,'INVALID_EVENT','FOCAL_UNRESOLVED must carry fresh prescriptive findings');
         if (machine.corrections.attemptsUsed >= maxCorrections) {
           return invalid(event, 'CORRECTION_QUOTA_EXHAUSTED', 'no correction quota remains; the architecture routes this to HUMAN_STOP, not back to CORRECTION_PENDING');
         }
-        return done('CORRECTION_PENDING');
+        return done('CORRECTION_PENDING',{findings:event.payload.findings});
       }
       break;
     }
