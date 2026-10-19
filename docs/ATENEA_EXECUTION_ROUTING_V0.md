@@ -46,8 +46,8 @@ Free bindings: `docs/ATENEA_FREE_PROFILE_V0.md` + `docs/ATENEA_FREE_MODEL_CATALO
 
 | Free risk | Implementer | Standards | Spec | Corrector |
 | --- | --- | --- | --- | --- |
-| `volume` | `atenea-implementer-free` (Space Bunny Free) | `atenea-review-standards-free` (DeepSeek V4.1 Free) | `atenea-review-spec-free` (GLM 5.3 Flash Free) | `atenea-corrector-free-volume` (GLM 5.3 Flash Free) |
-| `complex` | `atenea-implementer-free-complex` (GLM 5.3 Flash Free) | `atenea-review-standards-free` (DeepSeek V4.1 Free) | `atenea-review-spec-free-complex` (Space Bunny Free) | `atenea-corrector-free-complex` (DeepSeek V4.1 Free) |
+| `volume` | `atenea-implementer-free` (MiniMax M3.1 Flash Free) | `atenea-review-standards-free` (DeepSeek V4.1 Free) | `atenea-review-spec-free` (GLM 5.3 Flash Free) | `atenea-corrector-free-volume` (GLM 5.3 Flash Free) |
+| `complex` | `atenea-implementer-free-complex` (GLM 5.3 Flash Free) | `atenea-review-standards-free` (DeepSeek V4.1 Free) | `atenea-review-spec-free-complex` (MiniMax M3.1 Flash Free) | `atenea-corrector-free-complex` (DeepSeek V4.1 Free) |
 
 Both use MiMo 2.6 Flash Free coordination, exploration and merger (separate sessions). Cora/human own `risk_class`; missing/ambiguous risk is HUMAN STOP. No change to Matt review/correction budgets, no fallback and no in-flight reassignment. This was the 2026-10-16 two-axis Free V2 baseline, preceding the Free-only conditional Visual/UX amendment below.
 
