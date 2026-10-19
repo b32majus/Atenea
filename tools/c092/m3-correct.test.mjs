@@ -112,3 +112,33 @@ test('focal reviewer rechecks new SHA and can close READY_FOR_HUMAN',async()=>{
  assert.equal(out.state,'READY_FOR_HUMAN');assert.equal(seen.length,2);
  assert.equal(loadUnit(c.storeDir,c.unitId).state.machine.state,'READY_FOR_HUMAN');
 });
+
+test('trusted-local correction works without synthetic marker; synthetic mode remains protected',async()=>{
+ // Construct a real-looking fixture with a marker-free immutable baseline.
+ const real=fixture();const marker=path.join(real.repo,'.atenea-c092-synthetic.json');
+ fs.unlinkSync(marker);
+ // Rewrite synthetic baseline in-place and rebuild an equivalent clean commit lineage.
+ git(real.repo,'reset','--hard',real.manifest.baseSha);
+ fs.unlinkSync(marker);
+ git(real.repo,'add','-u');git(real.repo,'commit','-qm','fixture without sentinel');
+ const base=git(real.repo,'rev-parse','HEAD');
+ fs.writeFileSync(path.join(real.repo,'src/tally.mjs'),'export function bump(n){return n+3;}\n');
+ git(real.repo,'add','src/tally.mjs');git(real.repo,'commit','-qm','candidate');
+ const sha=git(real.repo,'rev-parse','HEAD');
+ // Existing test store belongs to earlier fixture; create a new isolated store/history.
+ const storeDir=path.join(real.root,'trusted-local-store');
+ const manifest={...real.manifest,baseSha:base};
+ assert.equal(initStore(storeDir,manifest).ok,true);
+ let v=1;
+ for(const e of [{type:'RESERVE_WRITER'},{type:'HOST_CONFIRM',payload:{sessionRef:'ses_initial'}},
+  {type:'CANDIDATE_CREATED',payload:{sha}},{type:'WITNESSES_REQUESTED'},{type:'WITNESSES_PASSED'},
+  {type:'FINDINGS_REPORTED',payload:{findings:real.findings}}]){
+   const r=applyEvent(storeDir,manifest.unitId,e,v);assert.equal(r.ok,true);v=r.version;
+ }
+ const ctx={...real,storeDir,manifest,sha};
+ const client=host(ctx);
+ assert.equal((await correctSyntheticM3({...ctx,client,trustedLocal:false,maxWaitMs:20,pollMs:1})).code,'SYNTHETIC_MARKER_MISSING');
+ const result=await correctSyntheticM3({...ctx,client,trustedLocal:true,maxWaitMs:50,pollMs:1});
+ assert.equal(result.ok,true,JSON.stringify(result));assert.equal(result.state,'FOCAL_REVIEW');
+ assert.equal(client.counter.create,1);
+});

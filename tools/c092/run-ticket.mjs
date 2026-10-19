@@ -26,25 +26,29 @@ const started=new Date().toISOString();
 const result=await runSmokeEndToEnd({
  repo:c.repo,storeDir:c.storeDir,evidenceDir:c.evidenceDir,
  authorityPath:c.authorityPath,manifest:c.manifest,url:hostUrl,reviewUrl,
- writerPrompt:c.writerPrompt,witnesses:c.witnesses,trustedLocal:true,
+ writerPrompt:c.writerPrompt,witnesses:c.witnesses,trustedLocal:true,models:c.models,
  maxWriterMs:155000,maxReviewerMs:110000,maxCorrectorMs:135000,pollMs:2300,
  onProgress:(stage,x)=>console.log(JSON.stringify({at:new Date().toISOString(),stage,
    state:x?.state,ok:x?.ok,reason:x?.reason??x?.code,sha:x?.sha,
    sessionIDs:stage==='INITIAL_REVIEW'||stage==='FOCAL_REVIEW'
-     ?x?.receipts?.map(r=>r.sessionID):[x?.sessionID].filter(Boolean)
+     ?(x?.sessionIDs??x?.receipts?.map(r=>r.sessionID)??[]):[x?.sessionID].filter(Boolean)
  }))
 });
 const ended=new Date().toISOString();
 const roots=[];
-let corrections=0,reviewSessions=0,stops=[];
+let corrections=0,reviewSessions=0,stops=[],actualModels=[];
 for(const {stage,result:r} of result.results){
  if(stage==='WRITER'||stage==='CORRECTOR') {
   if(r?.sessionID)roots.push(r.sessionID);
+  if(r?.sessionID&&r?.modelEvidence?.model)
+   actualModels.push({sessionId:r.sessionID,role:stage==='WRITER'?'writer':'corrector',...r.modelEvidence});
   if(stage==='CORRECTOR')corrections++;
  } else if(stage.includes('REVIEW')){
-  for(const item of r?.receipts||[]){
-   roots.push(item.sessionID);reviewSessions++;
+  for(const id of r?.sessionIDs||r?.receipts?.map(item=>item.sessionID)||[]){
+   roots.push(id);reviewSessions++;
   }
+  for(const m of r?.modelEvidence||[])actualModels.push({sessionId:m.sessionID,
+    role:m.axis==='STANDARDS'?'reviewer-standards':m.axis==='SPEC'?'reviewer-spec':'reviewer-visual',...m});
  }
  if(!r?.ok)stops.push({class:r?.state||stage,reason:r?.reason||r?.code||'INCOMPLETE',justified:null});
 }
@@ -58,8 +62,8 @@ const comparison={
  candidateBranch:c.expectedBranch,prepSha:null,
  rootSessionIds:roots,
  models:{coordinator:null,writer:c.models.writer,reviewers:c.models.reviewers,other:null},
- corrections,reviewSessions,humanInterventions:[],stops,
- notes:'C092 1 execution. Model IDs configured as specified; session DB verification in post-run audit. Only ticket witnesses executed by Atenea, no neutral acceptance.'
+ corrections,reviewSessions,humanInterventions:[],stops,actualModels,
+ notes:'C092 1 execution. Provider/model checked using OpenCode assistant messages; requested #variant is explicitly UNATTESTED unless returned by host. Only declared ticket witnesses; no neutral acceptance.'
 };
 fs.writeFileSync(path.join(path.dirname(configFile),'RESULT.json'),JSON.stringify(result,null,2)+'\n');
 fs.writeFileSync(path.join(path.dirname(configFile),'COMPARISON.json'),JSON.stringify(comparison,null,2)+'\n');

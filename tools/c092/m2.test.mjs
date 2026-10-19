@@ -7,7 +7,7 @@ import crypto from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {runFixtureM2} from './m2-run.mjs';
 import {preflightM2} from './m2-preflight.mjs';
-import {verifyHostSession,reconcileCreatedSession,isLoopback} from './m2-host.mjs';
+import {verifyHostSession,reconcileCreatedSession,isLoopback,attestSessionModel} from './m2-host.mjs';
 const git=(r,...args)=>execFileSync('git',['-C',r,...args],{encoding:'utf8'}).trim();
 function setup(){
  const root=fs.mkdtempSync(path.join(os.tmpdir(),'c092-m2-test-'));
@@ -117,4 +117,17 @@ test('cross-unit M4 worktree lease blocks concurrent second writer',async()=>{
  assert.equal(one.ok,true,JSON.stringify(one));
  assert.equal(two.ok,false);assert.equal(two.code,'WORKTREE_LEASE_HELD');
  assert.equal(a.calls.create,1);assert.equal(b.calls.create,0);
+});
+
+test('actual model attestation never treats requested #high as proof',()=>{
+ const messages=[{type:'assistant',model:{providerID:'openai',id:'gpt-6-luna'},finish:'stop'}];
+ const result=attestSessionModel(messages,'openai/gpt-6-luna#high');
+ assert.equal(result.ok,true);assert.equal(result.model,'openai/gpt-6-luna');
+ assert.equal(result.variantStatus,'UNATTESTED');assert.equal(result.requestedVariant,'high');
+ const explicit=attestSessionModel([{...messages[0],variant:'high'}],'openai/gpt-6-luna#high');
+ assert.equal(explicit.variantStatus,'ATTESTED');
+ assert.equal(attestSessionModel([{...messages[0],variant:'low'}],'openai/gpt-6-luna#high').code,'MODEL_VARIANT_MISMATCH');
+ assert.equal(attestSessionModel(messages,'nan/deepseek-v4-flash').code,'MODEL_MISMATCH');
+ assert.equal(attestSessionModel([{type:'assistant',finish:'stop'}],'openai/gpt-6-luna#high').code,'MODEL_NOT_ATTESTED');
+ assert.equal(attestSessionModel([{type:'assistant',model:{providerID:'openai',id:'gpt-6-luna'}},{type:'assistant',model:{providerID:'nan',id:'deepseek-v4-flash'}}],'openai/gpt-6-luna#high').code,'MODEL_MISMATCH');
 });

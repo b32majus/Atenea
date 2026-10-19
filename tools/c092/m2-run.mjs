@@ -7,7 +7,7 @@ import { execFileSync } from 'node:child_process';
 import { initStore, loadUnit, applyEvent } from './store.mjs';
 import { preflightM2 } from './m2-preflight.mjs';
 import { claimWorktreeLease } from './m4-lease.mjs';
-import { HostAPI, verifyHostSession, reconcileCreatedSession } from './m2-host.mjs';
+import { HostAPI, verifyHostSession, reconcileCreatedSession, attestSessionModel } from './m2-host.mjs';
 
 const pause=(ms)=>new Promise(resolve=>setTimeout(resolve,ms));
 const git=(repo,...args)=>execFileSync('git',['-C',repo,...args],{encoding:'utf8',timeout:12000}).trim();
@@ -49,7 +49,7 @@ function getReservationCorrelation(unit) {
 }
 
 export async function runFixtureM2({repo,storeDir,manifest,authorityPath,url,client=null,
-  maxWaitMs=150000,pollMs=4000,inject=null,trustedLocal=false,writerPrompt=null}){
+  maxWaitMs=150000,pollMs=4000,inject=null,trustedLocal=false,writerPrompt=null,expectedModel=null}){
   if(manifest?.unitId===undefined)return {ok:false,code:'INVALID_MANIFEST'};
   const pre=preflightM2({repo,storeDir,manifest,authorityPath,trustedLocal});
   if(!pre.ok)return pre;
@@ -111,13 +111,15 @@ export async function runFixtureM2({repo,storeDir,manifest,authorityPath,url,cli
     }catch{continue;}
     seenAssistant ||= hasAssistantMessage(messages);
     if(seenAssistant && !hostBusy(active,session.id)){
+      const modelEvidence=attestSessionModel(messages,expectedModel);
+      if(!modelEvidence.ok)return stop(storeDir,manifest.unitId,modelEvidence.code);
       const result=candidateEvidence(pre.repo,manifest.baseSha,manifest.allowPaths,manifest.doNotTouch);
       if(!result.ok)return stop(storeDir,manifest.unitId,result.reason);
       v=loadUnit(storeDir,manifest.unitId).state.version;
       const commit=applyEvent(storeDir,manifest.unitId,{type:'CANDIDATE_CREATED',payload:{sha:result.sha,sessionRef:session.id,changed:result.changed},at:new Date().toISOString()},v);
       if(!commit.ok)return stop(storeDir,manifest.unitId,'CANDIDATE_CAS_FAILED_'+commit.code);
       return {ok:true,state:'CANDIDATE',sessionID:session.id,correlation:marker,sha:result.sha,
-        changed:result.changed,consumerCheck:pre.consumerCheck,elapsedMs:Date.now()-start};
+        changed:result.changed,modelEvidence,consumerCheck:pre.consumerCheck,elapsedMs:Date.now()-start};
     }
   }
   return stop(storeDir,manifest.unitId,'HOST_OR_WRITER_TIME_BOUNDED_INCOMPLETE');

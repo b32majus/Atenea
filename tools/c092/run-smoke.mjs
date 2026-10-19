@@ -11,20 +11,21 @@ import {auditUnitM4} from './m4-integrity.mjs';
 export async function runSmokeEndToEnd({
  repo,storeDir,manifest,authorityPath,url,reviewUrl=url,evidenceDir,
  maxWriterMs=135000,maxReviewerMs=85000,maxCorrectorMs=100000,pollMs=1800,
- trustedLocal=false,writerPrompt=null,witnesses=null,
+ trustedLocal=false,writerPrompt=null,witnesses=null,models=null,
  onProgress=()=>{}
 }){
  const results=[];
  const add=(stage,result)=>{results.push({stage,result});onProgress(stage,result);};
  const impl=await runFixtureM2({repo,storeDir,manifest,authorityPath,url,
-   maxWaitMs:maxWriterMs,pollMs,trustedLocal,writerPrompt});
+   maxWaitMs:maxWriterMs,pollMs,trustedLocal,writerPrompt,expectedModel:models?.writer??null});
  add('WRITER',impl);
  if(!impl.ok)return {ok:false,stage:'WRITER',results};
  for(let attempt=0;attempt<=manifest.maxCorrections;attempt++){
   const rev=await reviewCandidateM3({repo,storeDir,unitId:manifest.unitId,
     authorityPath,outputDir:evidenceDir,
     witnesses:witnesses??[{id:'TALLY',argv:['node','--test','test/tally.test.mjs'],timeoutMs:18000}],
-    url:reviewUrl,maxWaitMs:maxReviewerMs,pollMs,trustedLocal});
+    url:reviewUrl,maxWaitMs:maxReviewerMs,pollMs,trustedLocal,
+    expectedModels:models?Object.fromEntries(manifest.reviewAxes.map((axis,i)=>[axis,models.reviewers[i]])):null});
   add(attempt?'FOCAL_REVIEW':'INITIAL_REVIEW',rev);
   if(!rev.ok)return {ok:false,stage:'REVIEW',results};
   if(rev.state==='READY_FOR_HUMAN'){
@@ -34,7 +35,7 @@ export async function runSmokeEndToEnd({
   }
   if(rev.state!=='CORRECTION_PENDING')return {ok:false,stage:'UNEXPECTED_REVIEW_STATE',results};
   const fixed=await correctSyntheticM3({repo,storeDir,unitId:manifest.unitId,url,
-    maxWaitMs:maxCorrectorMs,pollMs,trustedLocal});
+    maxWaitMs:maxCorrectorMs,pollMs,trustedLocal,expectedModel:models?.writer??null});
   add('CORRECTOR',fixed);
   if(!fixed.ok)return {ok:false,stage:'CORRECTOR',results};
  }

@@ -79,19 +79,19 @@ test('model output must be strict JSON of assistant message',()=>{
  assert.equal(extractVerdictText([{type:'assistant',finish:'stop',content:[{type:'text',text:'PASS, all good'}]}]).ok,false);
  assert.equal(extractVerdictText([{type:'user',content:[{type:'text',text:'{}'}]}]).ok,false);
 });
-function fakeHost(c,{badAxis=null,withFinding=false,missingText=false}={}){
- const seen=[];let last=null;
- return {seen,async create(title,agent){const axis=title.includes('-STANDARDS-')?'STANDARDS':'SPEC';
+function fakeHost(c,{badAxis=null,withFinding=false,missingText=false,badSeverity=null}={}){
+ const seen=[],prompts=[];let last=null;
+ return {seen,prompts,async create(title,agent){const axis=title.includes('-STANDARDS-')?'STANDARDS':'SPEC';
   const session={id:'ses_mock'+axis,title,agent,projectID:c.manifest.baseSha,
     location:{directory:c.repo}};seen.push({axis,session});last=session;return session;},
  async get(id){return seen.find(x=>x.session.id===id)?.session;},
- async prompt(){return {}},
+ async prompt(id,text){prompts.push(text);return {}},
  async active(){return {}},
  async messages(id){
   const axis=seen.find(x=>x.session.id===id)?.axis;
   const report={axis:badAxis||axis,sha:c.sha,status:withFinding?'FINDINGS':'PASS',
-    findings:withFinding?[finding]:[]};
-  return missingText?[]:[{type:'assistant',finish:'stop',content:[{type:'text',text:JSON.stringify(report)}]}];
+    findings:withFinding?[badSeverity?{...finding,severity:badSeverity}:finding]:[]};
+  return missingText?[]:[{type:'assistant',finish:'stop',model:{providerID:'openai',id:'gpt-6-luna'},content:[{type:'text',text:JSON.stringify(report)}]}];
  }};
 }
 test('M3 independent two-axis PASS transitions only after tests and real-shaped receipts',async()=>{
@@ -131,4 +131,32 @@ test('visual quality/fidelity cannot pass without pixel oracle; no reviewer laun
   assert.equal(client.seen.length,0);
   assert.equal(loadUnit(c.storeDir,c.manifest.unitId).state.machine.state,'HUMAN_STOP');
  }
+});
+
+test('review prompt prescribes exact machine severity enum',async()=>{
+ const c=fixture(),client=fakeHost(c);
+ const r=await reviewCandidateM3({...c,unitId:c.manifest.unitId,client,maxWaitMs:70,pollMs:1});
+ assert.equal(r.ok,true,JSON.stringify(r));
+ assert.equal(client.prompts.length,2);
+ for(const prompt of client.prompts){
+  assert.match(prompt,/severity MUST be exactly one of BLOCKER, MAJOR, MINOR/);
+  assert.match(prompt,/never high\/medium\/low/);
+ }
+});
+test('incompatible reviewer severity STOP retains session ID and measured model',async()=>{
+ const c=fixture(),client=fakeHost(c,{withFinding:true,badSeverity:'high'});
+ const r=await reviewCandidateM3({...c,unitId:c.manifest.unitId,client,maxWaitMs:70,pollMs:1,
+  expectedModels:{STANDARDS:'openai/gpt-6-luna#high',SPEC:'openai/gpt-6-luna#high'}});
+ assert.equal(r.ok,false);assert.equal(r.reason,'FINDING_NOT_PRESCRIPTIVE');
+ assert.equal(r.sessionIDs.length,1);
+ assert.equal(r.modelEvidence.length,1);
+ assert.equal(r.modelEvidence[0].model,'openai/gpt-6-luna');
+ assert.equal(r.modelEvidence[0].variantStatus,'UNATTESTED');
+});
+test('review model mismatch fails closed and retains session ID',async()=>{
+ const c=fixture(),client=fakeHost(c);
+ const r=await reviewCandidateM3({...c,unitId:c.manifest.unitId,client,maxWaitMs:70,pollMs:1,
+  expectedModels:{STANDARDS:'nan/deepseek-v4-flash'}});
+ assert.equal(r.ok,false);assert.equal(r.reason,'MODEL_MISMATCH');
+ assert.equal(r.sessionIDs.length,1);assert.equal(r.modelEvidence.length,1);
 });

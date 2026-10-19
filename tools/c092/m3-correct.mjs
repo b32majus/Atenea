@@ -5,7 +5,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {loadUnit,applyEvent} from './store.mjs';
-import {HostAPI,verifyHostSession} from './m2-host.mjs';
+import {HostAPI,verifyHostSession,attestSessionModel} from './m2-host.mjs';
 const git=(r,...args)=>execFileSync('git',['-C',r,...args],{encoding:'utf8',timeout:15000}).trim();
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
 function stop(storeDir,id,reason){
@@ -30,13 +30,15 @@ function boundedDiff(repo,oldSha,allow,deny){
  return {ok:true,sha,changed};
 }
 export async function correctSyntheticM3({
- repo,storeDir,unitId,url,client=null,maxWaitMs=125000,pollMs=2000,trustedLocal=false
+ repo,storeDir,unitId,url,client=null,maxWaitMs=125000,pollMs=2000,trustedLocal=false,expectedModel=null
 }) {
- let marker;
- try{marker=JSON.parse(fs.readFileSync(path.join(fs.realpathSync(repo),'.atenea-c092-synthetic.json'),'utf8'));}
- catch{return {ok:false,code:'SYNTHETIC_MARKER_MISSING'};}
- if(!trustedLocal && (marker?.schema!=='atenea.c092.synthetic-fixture/v1'||marker?.noRealProduct!==true))
-   return {ok:false,code:'NOT_SYNTHETIC'};
+ if(!trustedLocal) {
+  let marker;
+  try{marker=JSON.parse(fs.readFileSync(path.join(fs.realpathSync(repo),'.atenea-c092-synthetic.json'),'utf8'));}
+  catch{return {ok:false,code:'SYNTHETIC_MARKER_MISSING'};}
+  if(marker?.schema!=='atenea.c092.synthetic-fixture/v1'||marker?.noRealProduct!==true)
+    return {ok:false,code:'NOT_SYNTHETIC'};
+ }
  const loaded=loadUnit(storeDir,unitId);
  if(!loaded.ok)return loaded;
  if(loaded.state.machine.state!=='CORRECTION_PENDING')return {ok:false,code:'NOT_CORRECTION_PENDING'};
@@ -65,7 +67,7 @@ export async function correctSyntheticM3({
   payload:{sessionRef:session.id,reviewedSha:oldSha}},u.state.version);
  if(!identity.ok)return stop(storeDir,unitId,'CORRECTOR_SESSION_PERSIST_FAILED');
  const problem=findings.map((f,i)=>`${i+1}. [${f.id}] ${f.path} at ${f.location||'specified scope'}: ${f.prescription} (evidence: ${f.evidence||'review report'})`).join('\n');
- const prompt=`C092 M3 TRUSTED LOCAL CORRECTOR. Fix ONLY approved precise findings on candidate ${oldSha}.\n${problem}\nChange only ${manifest.allowPaths.join(', ')}. Do not edit tests, docs or protected paths. Make exactly one NEW commit with current SHA as parent and leave clean worktree. No subagents, reviews, pushes, merges, deploys. If infeasible STOP without edits.`;
+ const prompt=`C092 M3 CORRECTOR. Fix ONLY approved precise findings on candidate ${oldSha}.\n${problem}\nChange only ${manifest.allowPaths.join(', ')}. Do not edit tests, unlisted docs or protected paths. Make exactly one NEW commit with current SHA as parent and leave clean worktree. No subagents, reviews, pushes, merges, deploys. If infeasible STOP without edits.`;
  try{await host.prompt(session.id,prompt);}
  catch{return stop(storeDir,unitId,'CORRECTOR_PROMPT_AMBIGUOUS');}
  const started=Date.now();
@@ -75,6 +77,8 @@ export async function correctSyntheticM3({
   try{active=await host.active();messages=await host.messages(session.id);}catch{continue;}
   const hasAssistant=Array.isArray(messages)&&messages.some(m=>m?.type==='assistant');
   if(hasAssistant&&!active?.[session.id]){
+   const modelEvidence=attestSessionModel(messages,expectedModel);
+   if(!modelEvidence.ok)return stop(storeDir,unitId,modelEvidence.code);
    const result=boundedDiff(repo,oldSha,manifest.allowPaths,manifest.doNotTouch);
    if(!result.ok)return stop(storeDir,unitId,result.code);
    u=loadUnit(storeDir,unitId);
@@ -82,7 +86,7 @@ export async function correctSyntheticM3({
     payload:{sha:result.sha,sessionRef:session.id,parent:oldSha,changed:result.changed}},u.state.version);
    if(!candidate.ok)return stop(storeDir,unitId,'CORRECTOR_CAS_FAILED');
    return {ok:true,state:'FOCAL_REVIEW',sha:result.sha,parent:oldSha,sessionID:session.id,
-    correctionAttempt:u.state.machine.corrections.attemptsUsed};
+    correctionAttempt:u.state.machine.corrections.attemptsUsed,modelEvidence};
   }
  }
  return stop(storeDir,unitId,'CORRECTOR_INCOMPLETE');

@@ -53,3 +53,28 @@ export async function reconcileCreatedSession(client,criteria) {
   if(!verifyHostSession(s,{...criteria,projectID:candidates[0].projectID}) || s.id!==candidates[0].id)return {ok:false,code:'HOST_GET_IDENTITY_MISMATCH'};
   return {ok:true,session:s};
 }
+
+// Exact provider/model evidence from this run's own final assistant messages.
+// A requested #variant is NOT proof that the provider executed that variant.
+export function attestSessionModel(messages, expectedModel=null) {
+  if(expectedModel===null)return {ok:true,model:null,variantStatus:'NOT_REQUESTED'};
+  if(typeof expectedModel!=='string'||!/^[-a-zA-Z0-9_.]+\/[-a-zA-Z0-9_.]+(?:#[a-zA-Z0-9_.-]+)?$/.test(expectedModel))
+    return {ok:false,code:'MODEL_EXPECTATION_INVALID'};
+  const [base, requestedVariant]=expectedModel.split('#');
+  const assistant=(messages||[]).filter(m=>m?.type==='assistant'||m?.info?.role==='assistant');
+  const observed=assistant.map(m=>({
+    id:m.model?.id??m.info?.model?.id,
+    providerID:m.model?.providerID??m.info?.model?.providerID,
+    variant:m.variant??m.info?.variant??null,
+  })).filter(m=>m.id&&m.providerID);
+  if(!observed.length)return {ok:false,code:'MODEL_NOT_ATTESTED',expectedModel};
+  const bases=[...new Set(observed.map(m=>m.providerID+'/'+m.id))];
+  if(bases.length!==1||bases[0]!==base)
+    return {ok:false,code:'MODEL_MISMATCH',expectedModel,observed:bases};
+  const explicitVariants=[...new Set(observed.filter(m=>m.variant!=null).map(m=>m.variant))];
+  if(explicitVariants.length>1||(explicitVariants.length===1&&requestedVariant&&explicitVariants[0]!==requestedVariant))
+    return {ok:false,code:'MODEL_VARIANT_MISMATCH',expectedModel,observedVariant:explicitVariants};
+  return {ok:true,model:base,requestedVariant:requestedVariant??null,
+    observedVariant:explicitVariants.length===1?explicitVariants[0]:null,
+    variantStatus:requestedVariant?(explicitVariants.length===1?'ATTESTED':'UNATTESTED'):'NOT_REQUESTED'};
+}
