@@ -1,0 +1,93 @@
+// C-092 / M2 — OpenCode v2.0.32 CLI API transport (no model logic).
+// The CLI mediates private loopback host auth; fixed argv, no shell interpolation.
+import { execFileSync } from 'node:child_process';
+import fs from 'node:fs';
+import path from 'node:path';
+
+export const OPENCODE_V2 = '/home/hermes/.npm-global/lib/node_modules/@opencode/cli/bin/opencode.exe';
+const VALID_ID=/^ses_[A-Za-z0-9]+$/;
+export function isLoopback(url) {
+  try { const u=new URL(url);return u.protocol==='http:' && u.hostname==='127.0.0.1'
+    && Number(u.port)>0 && u.username==='' && u.password==='' && u.pathname==='/' && u.search==='' && u.hash===''; }
+  catch{return false;}
+}
+export function modelRef(id){
+ if(typeof id!=='string'||!/^[-a-zA-Z0-9_.]+\/[-a-zA-Z0-9_.]+(?:#[a-zA-Z0-9_.-]+)?$/.test(id))throw Error('MODEL_REF_INVALID');
+ const [base,variant]=id.split('#'),slash=base.indexOf('/');
+ // OpenCode V2 SessionCreate schema requires model.id, NOT model.modelID.
+ return {providerID:base.slice(0,slash),id:base.slice(slash+1),...(variant?{variant}:{})};
+}
+export class HostAPI {
+  constructor({url,repo,exe=OPENCODE_V2,env=process.env,timeoutMs=17000}){
+    if(!isLoopback(url)) throw Error('HOST_URL_NOT_LOOPBACK');
+    if(!fs.existsSync(exe)) throw Error('OPENCODE_BINARY_MISSING');
+    this.url=url;this.repo=fs.realpathSync(repo);this.exe=exe;this.env=env;this.timeoutMs=timeoutMs;
+  }
+  request(method,route,body) {
+    if(!/^\/(api\/session(?:\/(?:active|ses_[A-Za-z0-9]+(?:\/message|\/prompt)?))?)$/.test(route)) throw Error('HOST_API_ROUTE_NOT_ALLOWED');
+    if(!['GET','POST'].includes(method)) throw Error('HOST_METHOD_NOT_ALLOWED');
+    const args=['api','--server',this.url,method,route];
+    if(body!==undefined)args.push('--data',JSON.stringify(body));
+    const output=execFileSync(this.exe,args,{
+      encoding:'utf8',cwd:this.repo,env:this.env,timeout:this.timeoutMs,maxBuffer:8*1024*1024,
+    });
+    const envelope=JSON.parse(output);
+    if(envelope && typeof envelope==='object' && 'error' in envelope && envelope.error)throw Error('HOST_API_ERROR');
+    return envelope?.data;
+  }
+  list(){ return this.request('GET','/api/session'); }
+  create(title,agent,expectedModel=null){return this.request('POST','/api/session',
+    expectedModel?{title,agent,model:modelRef(expectedModel)}:{title,agent});}
+  get(id){if(!VALID_ID.test(id))throw Error('INVALID_SESSION_ID');return this.request('GET','/api/session/'+id);}
+  messages(id){if(!VALID_ID.test(id))throw Error('INVALID_SESSION_ID');return this.request('GET','/api/session/'+id+'/message');}
+  active(){return this.request('GET','/api/session/active');}
+  prompt(id,text,files=[]){
+    if(!VALID_ID.test(id))throw Error('INVALID_SESSION_ID');
+    if(!Array.isArray(files)||files.length>16||!files.every(f=>f&&typeof f.name==='string'&&
+      /^[A-Za-z0-9_.-]{1,100}$/.test(f.name)&&typeof f.uri==='string'&&f.uri.startsWith('file:///')))
+      throw Error('HOST_PROMPT_ATTACHMENT_INVALID');
+    return this.request('POST','/api/session/'+id+'/prompt',files.length?{text,files}:{text});
+  }
+}
+export function verifyHostSession(s,{title,agent,repo,projectID}) {
+  if(!s || !VALID_ID.test(s.id) || s.title!==title || s.agent!==agent ||
+    (projectID !== undefined ? s.projectID!==projectID : typeof s.projectID !== 'string' || !s.projectID) || s.parentID) return false;
+  let directory;
+  try{directory=fs.realpathSync(s.location?.directory??'');}catch{return false;}
+  return directory===fs.realpathSync(repo);
+}
+// Session listings are GLOBAL on this host: the matching predicate must be exact.
+export async function reconcileCreatedSession(client,criteria) {
+  const list=await client.list();
+  if(!Array.isArray(list))return {ok:false,code:'HOST_LIST_UNAVAILABLE'};
+  const candidates=list.filter(s=>verifyHostSession(s,criteria));
+  if(candidates.length!==1)return {ok:false,code:candidates.length>1?'HOST_AMBIGUOUS_MULTIPLE':'HOST_MATCH_NOT_PROVEN',count:candidates.length};
+  const s=await client.get(candidates[0].id);
+  if(!verifyHostSession(s,{...criteria,projectID:candidates[0].projectID}) || s.id!==candidates[0].id)return {ok:false,code:'HOST_GET_IDENTITY_MISMATCH'};
+  return {ok:true,session:s};
+}
+
+// Exact provider/model evidence from this run's own final assistant messages.
+// A requested #variant is NOT proof that the provider executed that variant.
+export function attestSessionModel(messages, expectedModel=null) {
+  if(expectedModel===null)return {ok:true,model:null,variantStatus:'NOT_REQUESTED'};
+  if(typeof expectedModel!=='string'||!/^[-a-zA-Z0-9_.]+\/[-a-zA-Z0-9_.]+(?:#[a-zA-Z0-9_.-]+)?$/.test(expectedModel))
+    return {ok:false,code:'MODEL_EXPECTATION_INVALID'};
+  const [base, requestedVariant]=expectedModel.split('#');
+  const assistant=(messages||[]).filter(m=>m?.type==='assistant'||m?.info?.role==='assistant');
+  const observed=assistant.map(m=>({
+    id:m.model?.id??m.info?.model?.id,
+    providerID:m.model?.providerID??m.info?.model?.providerID,
+    variant:m.variant??m.info?.variant??null,
+  })).filter(m=>m.id&&m.providerID);
+  if(!observed.length)return {ok:false,code:'MODEL_NOT_ATTESTED',expectedModel};
+  const bases=[...new Set(observed.map(m=>m.providerID+'/'+m.id))];
+  if(bases.length!==1||bases[0]!==base)
+    return {ok:false,code:'MODEL_MISMATCH',expectedModel,observed:bases};
+  const explicitVariants=[...new Set(observed.filter(m=>m.variant!=null).map(m=>m.variant))];
+  if(explicitVariants.length>1||(explicitVariants.length===1&&requestedVariant&&explicitVariants[0]!==requestedVariant))
+    return {ok:false,code:'MODEL_VARIANT_MISMATCH',expectedModel,observedVariant:explicitVariants};
+  return {ok:true,model:base,requestedVariant:requestedVariant??null,
+    observedVariant:explicitVariants.length===1?explicitVariants[0]:null,
+    variantStatus:requestedVariant?(explicitVariants.length===1?'ATTESTED':'UNATTESTED'):'NOT_REQUESTED'};
+}
