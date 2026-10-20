@@ -73,6 +73,16 @@ test('reject missing evidence, ambiguous status and duplicate axis',()=>{
  assert.equal(combineReviewReceipts([
   {...a,sessionID:'ses_a'},{...a,sessionID:'ses_b'}],['STANDARDS','SPEC'],c.sha).ok,false);
 });
+test('findings with the same reviewer-local ID remain distinct across independent axes',()=>{
+ const sha='a'.repeat(40);
+ const a={axis:'STANDARDS',sha,status:'FINDINGS',sessionID:'ses_1',findings:[{...finding,id:'F1',evidence:'Standards concrete defect'}]};
+ const b={axis:'SPEC',sha,status:'FINDINGS',sessionID:'ses_2',findings:[{...finding,id:'F1',evidence:'Spec independent defect'}]};
+ const merged=combineReviewReceipts([a,b],['STANDARDS','SPEC'],sha);
+ assert.equal(merged.ok,true,JSON.stringify(merged));
+ assert.deepEqual(merged.findings.map(x=>x.id),['STANDARDS:F1','SPEC:F1']);
+ assert.equal(a.findings[0].id,'F1');
+ assert.equal(b.findings[0].id,'F1');
+});
 test('model output must be strict JSON of assistant message',()=>{
  const valid={type:'assistant',finish:'stop',content:[{type:'text',text:JSON.stringify({axis:'SPEC',sha:'1'.repeat(40),status:'PASS',findings:[]})}]};
  assert.equal(extractVerdictText([valid]).ok,true);
@@ -111,7 +121,8 @@ test('M3 valid findings move to CORRECTION_PENDING and preserve ids',async()=>{
  const result=await reviewCandidateM3({...c,unitId:c.manifest.unitId,client,url:'http://127.0.0.1:1234/',maxWaitMs:100,pollMs:1});
  assert.equal(result.ok,true,JSON.stringify(result));assert.equal(result.state,'CORRECTION_PENDING');
  const state=loadUnit(c.storeDir,c.manifest.unitId).state;
- assert.equal(state.machine.findings.length,1);
+ assert.equal(state.machine.findings.length,2);
+ assert.deepEqual(state.machine.findings.map(f=>f.id),['STANDARDS:SPEC-1','SPEC:SPEC-1']);
 });
 
 test('newest unfinished or invalid review cannot fall back to an older PASS',()=>{

@@ -60,17 +60,18 @@ export function combineReviewReceipts(receipts,axes,sha) {
   const byAxis=new Map(receipts.map(x=>[x.axis,x]));
   if(byAxis.size!==axes.length)return {ok:false,code:'REVIEW_DUPLICATE_AXIS'};
   const findings=[];
-  const ids=new Map();
+  const ids=new Set();
   for(const axis of axes){
     const r=byAxis.get(axis);
     if(!r||r.sha!==sha||!['PASS','FINDINGS'].includes(r.status))
       return {ok:false,code:'REVIEW_SHA_OR_AXIS_MISMATCH'};
     for(const f of r.findings){
-      if(ids.has(f.id)){
-        const prev=ids.get(f.id);
-        if(JSON.stringify(prev)!==JSON.stringify(f))
-          return {ok:false,code:'REVIEW_CONFLICT_REQUIRES_HUMAN'};
-      }else {ids.set(f.id,f);findings.push({...f,axis});}
+      // Reviewer-local IDs such as F1 must never collide across independent axes.
+      // Keep raw receipts intact; only the aggregate/corrector IDs are qualified.
+      const qualifiedId=`${axis}:${f.id}`;
+      if(ids.has(qualifiedId))return {ok:false,code:'REVIEW_DUPLICATE_FINDING_ID'};
+      ids.add(qualifiedId);
+      findings.push({...f,id:qualifiedId,axis});
     }
   }
   return {ok:true,status:findings.length?'FINDINGS':'PASS',sha,findings};
